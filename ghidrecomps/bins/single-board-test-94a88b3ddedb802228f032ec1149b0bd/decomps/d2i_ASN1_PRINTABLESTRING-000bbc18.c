@@ -1,0 +1,10 @@
+
+ASN1_PRINTABLESTRING * d2i_ASN1_PRINTABLESTRING(ASN1_PRINTABLESTRING **a,uchar **in,long len)
+
+{
+  ASN1_PRINTABLESTRING *pAVar1;
+  
+  pAVar1 = (ASN1_PRINTABLESTRING *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000bbc20);
+  return pAVar1;
+}
+

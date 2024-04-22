@@ -1,0 +1,10 @@
+
+CERTIFICATEPOLICIES * d2i_CERTIFICATEPOLICIES(CERTIFICATEPOLICIES **a,uchar **in,long len)
+
+{
+  CERTIFICATEPOLICIES *pCVar1;
+  
+  pCVar1 = (CERTIFICATEPOLICIES *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000ca4dc);
+  return pCVar1;
+}
+

@@ -1,0 +1,41 @@
+
+void minerconfig(io_data *io_data,long c,char *param,_Bool isjson,char group)
+
+{
+  char *buf;
+  _Bool isjson_local;
+  char *param_local;
+  long c_local;
+  io_data *io_data_local;
+  int pgacount;
+  int asccount;
+  _Bool io_open;
+  api_data *root;
+  
+  root = (api_data *)0x0;
+  asccount = 0;
+  pgacount = 0;
+  asccount = numascs();
+  message(io_data,0x21,0,(char *)0x0,isjson);
+  if (isjson) {
+    buf = ",\"CONFIG\":[";
+  }
+  else {
+    buf = "CONFIG,";
+  }
+  io_open = io_add(io_data,buf);
+  root = api_add_int(root,"ASC Count",&asccount,false);
+  root = api_add_int(root,"PGA Count",&pgacount,false);
+  root = api_add_int(root,"Pool Count",&total_pools,false);
+  root = api_add_const(root,"Strategy",strategies[pool_strategy].s,false);
+  root = api_add_int(root,"Log Interval",&opt_log_interval,false);
+  root = api_add_const(root,"Device Code",DEVICECODE,false);
+  root = api_add_const(root,"OS",OSINFO,false);
+  root = api_add_const(root,"Hotplug",NONE,false);
+  root = print_data(io_data,root,isjson,false);
+  if ((isjson) && (io_open != false)) {
+    io_close(io_data);
+  }
+  return;
+}
+

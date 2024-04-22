@@ -1,0 +1,8 @@
+
+void CERTIFICATEPOLICIES_free(CERTIFICATEPOLICIES *a)
+
+{
+  ASN1_item_free((ASN1_VALUE *)a,DAT_000ca500);
+  return;
+}
+

@@ -1,0 +1,33 @@
+
+undefined4
+makeup_get_status_cmd
+          (undefined *param_1,uint param_2,byte param_3,undefined param_4,undefined param_5)
+
+{
+  byte bVar1;
+  undefined4 uVar2;
+  char acStack_418 [1024];
+  undefined4 local_18;
+  byte local_14;
+  
+  if (param_2 < 7) {
+    if (((use_syslog != '\0') || (opt_log_output != '\0')) || (-1 < opt_log_level)) {
+      snprintf(acStack_418,0x400,"%s input param error: str length = %u\n","makeup_get_status_cmd",7
+              );
+      _applog(0,acStack_418,0);
+    }
+    uVar2 = 0xffffffff;
+  }
+  else {
+    memset(&local_18,0,5);
+    local_18 = CONCAT13(param_5,CONCAT12(param_4,CONCAT11(5,(param_3 & 1) << 4 | 0x42)));
+    bVar1 = CRC5_v1(&local_18,0x20);
+    *param_1 = 0x55;
+    param_1[1] = 0xaa;
+    *(undefined4 *)(param_1 + 2) = local_18;
+    param_1[6] = local_14 & 0xe0 | bVar1 & 0x1f;
+    uVar2 = 7;
+  }
+  return uVar2;
+}
+

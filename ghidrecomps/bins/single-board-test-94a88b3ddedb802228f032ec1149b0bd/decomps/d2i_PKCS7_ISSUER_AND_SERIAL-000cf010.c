@@ -1,0 +1,11 @@
+
+PKCS7_ISSUER_AND_SERIAL *
+d2i_PKCS7_ISSUER_AND_SERIAL(PKCS7_ISSUER_AND_SERIAL **a,uchar **in,long len)
+
+{
+  PKCS7_ISSUER_AND_SERIAL *pPVar1;
+  
+  pPVar1 = (PKCS7_ISSUER_AND_SERIAL *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000cf018);
+  return pPVar1;
+}
+

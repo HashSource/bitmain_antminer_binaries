@@ -1,0 +1,10 @@
+
+AUTHORITY_INFO_ACCESS * d2i_AUTHORITY_INFO_ACCESS(AUTHORITY_INFO_ACCESS **a,uchar **in,long len)
+
+{
+  AUTHORITY_INFO_ACCESS *pAVar1;
+  
+  pAVar1 = (AUTHORITY_INFO_ACCESS *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000cc1e4);
+  return pAVar1;
+}
+

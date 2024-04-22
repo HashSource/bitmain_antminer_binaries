@@ -1,0 +1,33 @@
+INFO  Using log config file: jar:file:/home/danielsokil/Downloads/ghidra_11.0.1_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /home/danielsokil/.ghidra/.ghidra_11.0.1_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /home/danielsokil/.ghidra/.ghidra_11.0.1_PUBLIC/preferences (Preferences)  
+INFO  Loading previous preferences: /home/danielsokil/.ghidra/.ghidra_11.0_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (809 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  Opening project: /home/danielsokil/Lab/Zetta-Pow/bmminer_NBP1901/antminer_debug_binaries/ghidrecomps/ghidra_projects/single-board-test-781c2d73be3d87ae4dae779cb669440b/single-board-test-781c2d73be3d87ae4dae779cb669440b (DefaultProject)  
+INFO  Opening project: /home/danielsokil/Lab/Zetta-Pow/bmminer_NBP1901/antminer_debug_binaries/ghidrecomps/ghidra_projects/single-board-test-781c2d73be3d87ae4dae779cb669440b/single-board-test-781c2d73be3d87ae4dae779cb669440b (DefaultProject)  
+Starting decompliations: Namespace(bin='./S17/single-board-test', cppexport=False, filters=None, project_path='ghidra_projects', gdt=None, output_path='ghidrecomps', skip_cache=False, sym_file_path=None, symbols_path='symbols', skip_symbols=False, thread_count=16, va=False, fa=False, max_ram_percent=50.0, print_flags=False, callgraphs=False, callgraph_filter='.', max_display_depth=None, max_time_cg_gen=5, cg_direction='calling', bsim=False, bsim_sig_path='bsim-xmls', bsim_template='medium_nosize', bsim_cat=None)
+Setting up Symbol Server for symbols...
+path: ghidrecomps/symbols level: 1
+Loaded well known /home/danielsokil/Downloads/ghidra_11.0.1_PUBLIC/Ghidra/Configurations/Public_Release/data/PDB_SYMBOL_SERVER_URLS.pdburl' length: 883'
+Symbol Server Configured path: SymbolServerService:
+	symbolStore: LocalSymbolStore: [ rootDir: /home/danielsokil/Lab/Zetta-Pow/bmminer_NBP1901/antminer_debug_binaries/ghidrecomps/symbols, storageLevel: -1],
+	symbolServers:
+		HttpSymbolServer: [ url: https://msdl.microsoft.com/download/symbols/, storageLevel: -1]
+		HttpSymbolServer: [ url: https://chromium-browser-symsrv.commondatastorage.googleapis.com/, storageLevel: -1]
+		HttpSymbolServer: [ url: https://symbols.mozilla.org/, storageLevel: -1]
+		HttpSymbolServer: [ url: https://software.intel.com/sites/downloads/symbols/, storageLevel: -1]
+		HttpSymbolServer: [ url: https://driver-symbols.nvidia.com/, storageLevel: -1]
+		HttpSymbolServer: [ url: https://download.amd.com/dir/bin/, storageLevel: -1]
+Failed to find pdb for single-board-test - .ProgramDB
+Using file gdts: [generic_clib]
+single-board-test - .ProgramDB already analyzed... skipping
+Decompiling 411 functions using 16 threads
+Setup 16 decompliers
+Decompiled 0 functions for single-board-test in 0.011396646499633789
+411 decompilations already existed.
+Wrote 0 decompilations for single-board-test to ghidrecomps/bins/single-board-test-781c2d73be3d87ae4dae779cb669440b/decomps in 3.147125244140625e-05

@@ -1,0 +1,10 @@
+
+ASN1_VISIBLESTRING * d2i_ASN1_VISIBLESTRING(ASN1_VISIBLESTRING **a,uchar **in,long len)
+
+{
+  ASN1_VISIBLESTRING *pAVar1;
+  
+  pAVar1 = (ASN1_VISIBLESTRING *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000bbd40);
+  return pAVar1;
+}
+
