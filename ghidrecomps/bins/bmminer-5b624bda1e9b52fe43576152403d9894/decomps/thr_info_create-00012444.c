@@ -5,11 +5,10 @@ int thr_info_create(thr_info *thr,pthread_attr_t *attr,_func_void_ptr_void_ptr *
 
 {
   int iVar1;
+  undefined4 unaff_lr;
   
-  _cgsem_init(&thr->sem,"util.c",DAT_00012478,0x4a7);
-                    /* WARNING: Could not recover jumptable at 0x0000a35c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f258)(&thr->pth,attr,start,arg);
+  _cgsem_init(&thr->sem,"util.c","thr_info_create",0x4a7);
+  iVar1 = (*(code *)(undefined *)0x0)(&thr->pth,attr,start,arg,unaff_lr);
   return iVar1;
 }
 

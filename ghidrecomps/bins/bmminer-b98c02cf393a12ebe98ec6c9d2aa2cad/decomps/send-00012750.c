@@ -6,7 +6,7 @@ ssize_t send(int __fd,void *__buf,size_t __n,int __flags)
 {
   ssize_t sVar1;
   
-  sVar1 = (*(code *)PTR_send_0007d0a4)();
+  sVar1 = send(__fd,__buf,__n,__flags);
   return sVar1;
 }
 

@@ -4,7 +4,7 @@
 void pthread_testcancel(void)
 
 {
-  (*(code *)PTR_pthread_testcancel_0004798c)();
+  pthread_testcancel();
   return;
 }
 

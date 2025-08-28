@@ -84,11 +84,10 @@ uint uart_send(uchar which_uart,uchar *buf,uint length)
     chain_send_buffer_addr = 0x417;
     break;
   default:
-    if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 2)) {
-      return 0;
+    if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
+      snprintf(tmp42,0x400,"%s: The uart%d is not supported!!!\n","uart_send",(uint)which_uart);
+      _applog(2,tmp42,false);
     }
-    snprintf(tmp42,0x400,"%s: The uart%d is not supported!!!\n","uart_send",(uint)which_uart);
-    _applog(2,tmp42,false);
     return 0;
   }
   send_counter = 0;

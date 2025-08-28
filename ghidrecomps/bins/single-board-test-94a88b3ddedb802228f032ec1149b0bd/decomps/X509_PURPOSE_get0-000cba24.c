@@ -8,9 +8,9 @@ X509_PURPOSE * X509_PURPOSE_get0(int idx)
     return (X509_PURPOSE *)0x0;
   }
   if (idx < 9) {
-    return (X509_PURPOSE *)(DAT_000cba48 + idx * 0x1c);
+    return (X509_PURPOSE *)(&xstandard + idx * 0x1c);
   }
-  pXVar1 = (X509_PURPOSE *)sk_value(*DAT_000cba4c,idx + -9);
+  pXVar1 = (X509_PURPOSE *)sk_value(xptable,idx + -9);
   return pXVar1;
 }
 

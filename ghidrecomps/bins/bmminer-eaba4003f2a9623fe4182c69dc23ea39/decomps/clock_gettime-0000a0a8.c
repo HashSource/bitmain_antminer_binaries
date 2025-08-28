@@ -6,9 +6,7 @@ int clock_gettime(clockid_t __clock_id,timespec *__tp)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a0b0. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_000851f8)();
+  iVar1 = (*(code *)(undefined *)0x0)(__clock_id);
   return iVar1;
 }
 

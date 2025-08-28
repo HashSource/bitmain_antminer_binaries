@@ -4,7 +4,6 @@
 int json_array_remove(json_t *json,size_t index)
 
 {
-  json_array_t *array;
   json_t *json_00;
   size_t sVar1;
   size_t sVar2;

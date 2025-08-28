@@ -1,5 +1,5 @@
 
-int tftp_do(int param_1,undefined *param_2)
+int tftp_do(int param_1,undefined1 *param_2)
 
 {
   int iVar1;

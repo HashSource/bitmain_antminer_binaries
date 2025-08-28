@@ -22,7 +22,7 @@ int x509_name_oneline_constprop_5(X509_NAME *param_1,void *param_2)
       __n = 0x3fff;
     }
     memcpy(param_2,(void *)local_1c[0][1],__n);
-    *(undefined *)((int)param_2 + __n) = 0;
+    *(undefined1 *)((int)param_2 + __n) = 0;
     BIO_free(out);
     iVar2 = 1 - uVar1;
     if (1 < uVar1) {

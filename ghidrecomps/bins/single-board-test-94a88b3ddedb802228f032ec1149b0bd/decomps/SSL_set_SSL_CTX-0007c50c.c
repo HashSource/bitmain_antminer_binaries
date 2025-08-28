@@ -32,7 +32,7 @@ SSL_CTX * SSL_set_SSL_CTX(SSL *ssl,SSL_CTX *ctx)
       ssl_cert_free(pcVar7);
     }
     if (0x20 < ssl->sid_ctx_length) {
-      OpenSSLDie(DAT_0007c630,0xc67,DAT_0007c634);
+      OpenSSLDie("ssl_lib.c",0xc67,"ssl->sid_ctx_length <= sizeof(ssl->sid_ctx)");
     }
     p_Var4 = ssl->psk_server_callback;
     if (((p_Var4 != (_func_3296 *)0x0) && (ssl->sid_ctx_length == *(size_t *)(p_Var4 + 0xc4))) &&
@@ -53,10 +53,10 @@ SSL_CTX * SSL_set_SSL_CTX(SSL *ssl,SSL_CTX *ctx)
       *(undefined4 *)(ssl->sid_ctx + 0x18) = uVar5;
       *(undefined4 *)(ssl->sid_ctx + 0x1c) = uVar6;
     }
-    CRYPTO_add_lock(&ctx->references,1,0xc,DAT_0007c630,0xc76);
+    CRYPTO_add_lock(&ctx->references,1,0xc,"ssl_lib.c",0xc76);
     p_Var4 = ssl->psk_server_callback;
     if (p_Var4 != (_func_3296 *)0x0) {
-      iVar2 = CRYPTO_add_lock((int *)(p_Var4 + 0x60),-1,0xc,DAT_0007c630,0x82a);
+      iVar2 = CRYPTO_add_lock((int *)(p_Var4 + 0x60),-1,0xc,"ssl_lib.c",0x82a);
       if (iVar2 < 1) {
         SSL_CTX_free_part_5(p_Var4);
       }

@@ -2,9 +2,9 @@
 char * ERR_error_string(ulong e,char *buf)
 
 {
-  char *buf_00;
+  undefined1 *buf_00;
   
-  buf_00 = DAT_000ad45c;
+  buf_00 = buf_7667;
   if (buf != (char *)0x0) {
     buf_00 = buf;
   }

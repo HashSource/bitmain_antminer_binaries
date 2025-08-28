@@ -61,7 +61,7 @@ LAB_000c2eb6:
   a->set = uVar5;
   iVar3 = sk_insert(sk,a,loc);
   if (iVar3 == 0) {
-    ERR_put_error(0xb,0x71,0x41,DAT_000c2f70,0x10d);
+    ERR_put_error(0xb,0x71,0x41,"x509name.c",0x10d);
     X509_NAME_ENTRY_free(a);
     return 0;
   }

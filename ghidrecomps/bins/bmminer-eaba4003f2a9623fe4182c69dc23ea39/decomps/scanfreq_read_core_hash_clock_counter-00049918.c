@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void scanfreq_read_core_hash_clock_counter(void)
 
@@ -21,7 +21,7 @@ void scanfreq_read_core_hash_clock_counter(void)
   core.reserved = '\0';
   core.reg_data = 0;
   memset(&core,0,0xc);
-  core._0_2_ = (ushort)core._0_4_ & 0xff;
+  core._0_2_ = core._0_2_ & 0xff;
   core.mode = '\x01';
   core.core_mode = '\x01';
   core.reg_data = 1;
@@ -36,7 +36,7 @@ void scanfreq_read_core_hash_clock_counter(void)
   }
   sleep(2);
   memset(&core,0,0xc);
-  core._0_2_ = (ushort)core._0_4_ & 0xff;
+  core._0_2_ = core._0_2_ & 0xff;
   core.mode = '\0';
   core.core_mode = '\x01';
   core.reg_data = 0;

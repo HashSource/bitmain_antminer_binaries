@@ -1,9 +1,9 @@
 
-void save_power_working_iic_date(undefined param_1)
+void save_power_working_iic_date(undefined1 param_1)
 
 {
   FILE *__stream;
-  undefined local_14 [8];
+  undefined1 local_14 [8];
   
   __stream = fopen("/config/vol_iic_data","wb+");
   if (__stream != (FILE *)0x0) {

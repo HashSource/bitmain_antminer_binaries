@@ -121,14 +121,18 @@ void poolstatus(io_data *io_data,long c,char *param,_Bool isjson,char group)
         }
         root = api_add_bool(root,"Has GBT",&pool->has_gbt,false);
         root = api_add_uint64(root,"Best Share",&pool->best_diff,true);
-        rejp = DAT_0007f378;
-        if (pool->diff_accepted + pool->diff_rejected + pool->diff_stale != 0.0) {
+        if (pool->diff_accepted + pool->diff_rejected + pool->diff_stale == 0.0) {
+          rejp = 0.0;
+        }
+        else {
           rejp = pool->diff_rejected /
                  (pool->diff_accepted + pool->diff_rejected + pool->diff_stale);
         }
         root = api_add_percent(root,"Pool Rejected%",&rejp,false);
-        stalep = DAT_0007f378;
-        if (pool->diff_accepted + pool->diff_rejected + pool->diff_stale != 0.0) {
+        if (pool->diff_accepted + pool->diff_rejected + pool->diff_stale == 0.0) {
+          stalep = 0.0;
+        }
+        else {
           stalep = pool->diff_stale / (pool->diff_accepted + pool->diff_rejected + pool->diff_stale)
           ;
         }

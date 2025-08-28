@@ -2,50 +2,41 @@
 undefined4 ibm_4758_cca_finish(void)
 
 {
-  undefined4 *puVar1;
-  DSO *dso;
-  int iVar2;
-  undefined4 uVar3;
+  int iVar1;
+  undefined4 uVar2;
   
-  puVar1 = DAT_000d8df0;
-  if ((void *)DAT_000d8df0[4] != (void *)0x0) {
-    CRYPTO_free((void *)DAT_000d8df0[4]);
+  if (CCA4758_LIB_NAME != (void *)0x0) {
+    CRYPTO_free(CCA4758_LIB_NAME);
   }
-  dso = (DSO *)puVar1[5];
-  puVar1[4] = 0;
-  puVar1 = DAT_000d8df0;
+  CCA4758_LIB_NAME = (void *)0x0;
   if (dso == (DSO *)0x0) {
-    iVar2 = DAT_000d8df0[3];
-    if (iVar2 == 0) {
-      iVar2 = ERR_get_next_error_library();
-      puVar1[3] = iVar2;
+    if (CCA4758_lib_error_code == 0) {
+      CCA4758_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar2,0x65,0x6a,DAT_000d8df4,0x15b);
-    uVar3 = 0;
+    ERR_put_error(CCA4758_lib_error_code,0x65,0x6a,"e_4758cca.c",0x15b);
+    uVar2 = 0;
   }
   else {
-    iVar2 = DSO_free(dso);
-    if (iVar2 == 0) {
-      iVar2 = puVar1[3];
-      if (iVar2 == 0) {
-        iVar2 = ERR_get_next_error_library();
-        puVar1[3] = iVar2;
+    iVar1 = DSO_free(dso);
+    if (iVar1 == 0) {
+      if (CCA4758_lib_error_code == 0) {
+        CCA4758_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error(iVar2,0x65,0x6c,DAT_000d8df4,0x15f);
-      uVar3 = 0;
+      ERR_put_error(CCA4758_lib_error_code,0x65,0x6c,"e_4758cca.c",0x15f);
+      uVar2 = 0;
     }
     else {
-      uVar3 = 1;
-      puVar1[5] = 0;
-      puVar1[6] = 0;
-      *puVar1 = 0;
-      puVar1[7] = 0;
-      puVar1[8] = 0;
-      puVar1[9] = 0;
-      puVar1[2] = 0;
-      puVar1[1] = 0;
+      uVar2 = 1;
+      dso = (DSO *)0x0;
+      keyRecordRead = 0;
+      randomNumberGenerate = 0;
+      digitalSignatureGenerate = 0;
+      digitalSignatureVerify = 0;
+      publicKeyExtract = 0;
+      pkaEncrypt = 0;
+      pkaDecrypt = 0;
     }
   }
-  return uVar3;
+  return uVar2;
 }
 

@@ -3,7 +3,7 @@ int ASN1_GENERALIZEDTIME_print(BIO *fp,ASN1_GENERALIZEDTIME *a)
 
 {
   int iVar1;
-  undefined4 uVar2;
+  undefined1 *puVar2;
   byte *pbVar3;
   int iVar4;
   int iVar5;
@@ -51,20 +51,22 @@ int ASN1_GENERALIZEDTIME_print(BIO *fp,ASN1_GENERALIZEDTIME *a)
           }
         }
       }
-      uVar2 = DAT_000b8608;
       if (pbVar3[iVar4 + -1] == 0x5a) {
-        uVar2 = DAT_000b860c;
+        puVar2 = &DAT_00160c24;
       }
-      iVar4 = BIO_printf(fp,DAT_000b8604,*(undefined4 *)(DAT_000b8600 + uVar7 * 4),
+      else {
+        puVar2 = &DAT_0013a6fc;
+      }
+      iVar4 = BIO_printf(fp,"%s %2d %02d:%02d:%02d%.*s %d%s",(&mon)[uVar7],
                          (uint)pbVar3[7] + (uint)pbVar3[6] * 10 + -0x210,
                          (pbVar3[9] - 0x30) + (uint)pbVar3[8] * 10 + -0x1e0,
                          (pbVar3[0xb] - 0x30) + (uint)pbVar3[10] * 10 + -0x1e0,iVar11,iVar5,pbVar9,
                          (uint)*pbVar3 * 1000 + (uint)pbVar3[1] * 100 + (uint)pbVar3[2] * 10 +
-                         (pbVar3[3] - 0xd050),uVar2);
+                         (pbVar3[3] - 0xd050),puVar2);
       return (uint)(0 < iVar4);
     }
   }
-  BIO_write(fp,DAT_000b85fc,0xe);
+  BIO_write(fp,"Bad time value",0xe);
   return 0;
 }
 

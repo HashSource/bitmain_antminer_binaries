@@ -37,11 +37,11 @@ int RSA_eay_private_decrypt
     iVar3 = iVar1 + 7;
   }
   len = iVar3 >> 3;
-  to = (uchar *)CRYPTO_malloc(len,DAT_000fb5b4,0x1fa);
+  to = (uchar *)CRYPTO_malloc(len,"rsa_eay.c",0x1fa);
   r = (BIGNUM *)(uint)(ret == (BIGNUM *)0x0 || n == (BIGNUM *)0x0);
   if ((ret == (BIGNUM *)0x0 || n == (BIGNUM *)0x0) || (to == (uchar *)0x0)) {
     iVar3 = -1;
-    ERR_put_error(4,0x65,0x41,DAT_000fb618,0x1fc);
+    ERR_put_error(4,0x65,0x41,"rsa_eay.c",0x1fc);
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     if (to == (uchar *)0x0) {
@@ -50,7 +50,7 @@ int RSA_eay_private_decrypt
     goto LAB_000fb510;
   }
   if ((int)len < param_1) {
-    ERR_put_error(4,0x65,0x6c,DAT_000fb5b4,0x206);
+    ERR_put_error(4,0x65,0x6c,"rsa_eay.c",0x206);
     iVar3 = -1;
   }
   else {
@@ -67,20 +67,20 @@ LAB_000fb44a:
         if ((uVar6 & 0x80) == 0) {
           pBVar2 = (BIGNUM *)rsa_get_blinding(param_4,&local_40,ctx);
           if (pBVar2 == (BIGNUM *)0x0) {
-            ERR_put_error(4,0x65,0x44,DAT_000fb618,0x217);
+            ERR_put_error(4,0x65,0x44,"rsa_eay.c",0x217);
             iVar3 = -1;
             goto LAB_000fb504;
           }
           if (local_40 == 0) {
             r = BN_CTX_get(ctx);
             if (r == (BIGNUM *)0x0) {
-              ERR_put_error(4,0x65,0x41,DAT_000fb618,0x21e);
+              ERR_put_error(4,0x65,0x41,"rsa_eay.c",0x21e);
               iVar3 = -1;
               goto LAB_000fb504;
             }
-            CRYPTO_lock(9,0x19,DAT_000fb5b4,0x146);
+            CRYPTO_lock(9,0x19,"rsa_eay.c",0x146);
             iVar3 = BN_BLINDING_convert_ex(ret,r,(BN_BLINDING *)pBVar2,ctx);
-            CRYPTO_lock(10,0x19,DAT_000fb5b4,0x148);
+            CRYPTO_lock(10,0x19,"rsa_eay.c",0x148);
           }
           else {
             iVar3 = BN_BLINDING_convert_ex(ret,(BIGNUM *)0x0,(BN_BLINDING *)pBVar2,ctx);
@@ -136,15 +136,15 @@ LAB_000fb44a:
           break;
         default:
           iVar3 = -1;
-          ERR_put_error(4,0x65,0x76,DAT_000fb5b4,0x256);
+          ERR_put_error(4,0x65,0x76,"rsa_eay.c",0x256);
           goto LAB_000fb504;
         }
         if (iVar3 < 0) {
-          ERR_put_error(4,0x65,0x72,DAT_000fb5b4,0x25a);
+          ERR_put_error(4,0x65,0x72,"rsa_eay.c",0x25a);
         }
       }
       else {
-        ERR_put_error(4,0x65,0x84,DAT_000fb5b4,0x210);
+        ERR_put_error(4,0x65,0x84,"rsa_eay.c",0x210);
         iVar3 = -1;
       }
     }

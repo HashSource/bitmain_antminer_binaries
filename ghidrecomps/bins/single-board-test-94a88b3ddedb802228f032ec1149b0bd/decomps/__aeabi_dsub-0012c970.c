@@ -24,10 +24,10 @@ ulonglong __aeabi_dsub(uint param_1,uint param_2,uint param_3,uint param_4)
   bVar13 = ((param_2 ^ uVar6) & 0x7fffffff) == 0;
   bVar14 = bVar13 && param_1 == param_3;
   if (!bVar13 || param_1 != param_3) {
-    bVar14 = (uVar9 | param_1) == 0;
+    bVar14 = uVar9 == 0 && param_1 == 0;
   }
   if (!bVar14) {
-    bVar14 = (param_4 | param_3) == 0;
+    bVar14 = param_4 == 0 && param_3 == 0;
   }
   iVar8 = (int)uVar9 >> 0x15;
   if (!bVar14) {
@@ -49,20 +49,21 @@ ulonglong __aeabi_dsub(uint param_1,uint param_2,uint param_3,uint param_4)
         param_3 = uVar11;
         uVar6 = uVar9;
       }
-      bVar14 = (uVar11 | uVar9 << 0xc) == 0;
-      if (bVar14) {
-        bVar14 = (param_3 | uVar6 << 0xc) == 0;
+      bVar14 = (uVar9 & 0xfffff) == 0;
+      bVar13 = uVar11 == 0 && bVar14;
+      if (uVar11 == 0 && bVar14) {
+        bVar13 = param_3 == 0 && (uVar6 & 0xfffff) == 0;
       }
-      if (bVar14) {
-        bVar14 = uVar9 == uVar6;
+      if (bVar13) {
+        bVar13 = uVar9 == uVar6;
       }
-      if (!bVar14) {
+      if (!bVar13) {
         uVar9 = uVar9 | 0x80000;
       }
       return CONCAT44(uVar9,uVar11);
     }
     if (((param_2 ^ uVar6) & 0x7fffffff) != 0 || param_1 != param_3) {
-      if ((uVar9 | param_1) == 0) {
+      if (uVar9 == 0 && param_1 == 0) {
         param_1 = param_3;
         param_2 = uVar6;
       }

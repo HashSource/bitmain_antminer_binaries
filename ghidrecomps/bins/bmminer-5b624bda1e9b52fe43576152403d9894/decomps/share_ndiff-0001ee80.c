@@ -8,24 +8,21 @@ uint64_t share_ndiff(work *work)
   double dVar2;
   double dVar3;
   double dVar4;
-  double dVar5;
-  uint64_t uVar6;
+  uint64_t uVar5;
   
-  dVar1 = DAT_0001ef08;
   if (work != (work *)0x0) {
-    dVar2 = (double)__aeabi_ul2d(*(undefined4 *)(work->hash + 0x18),
+    dVar1 = (double)__aeabi_ul2d(*(undefined4 *)(work->hash + 0x18),
                                  *(undefined4 *)(work->hash + 0x1c));
-    dVar3 = (double)__aeabi_ul2d(*(undefined4 *)(work->hash + 0x10),
+    dVar2 = (double)__aeabi_ul2d(*(undefined4 *)(work->hash + 0x10),
                                  *(undefined4 *)(work->hash + 0x14));
-    dVar3 = dVar3 * DAT_0001ef10;
-    dVar4 = (double)__aeabi_ul2d(*(undefined4 *)(work->hash + 8),*(undefined4 *)(work->hash + 0xc));
-    dVar4 = dVar4 * DAT_0001ef18;
-    dVar5 = (double)__aeabi_ul2d(*(undefined4 *)work->hash,*(undefined4 *)(work->hash + 4));
-    dVar5 = dVar2 * dVar1 + dVar3 + dVar4 + dVar5;
-    if (dVar5 != 0.0) {
-      dVar5 = DAT_0001ef20 / dVar5;
-      uVar6 = __fixunsdfdi(SUB84(dVar5,0),(int)((ulonglong)dVar5 >> 0x20));
-      return uVar6;
+    dVar3 = (double)__aeabi_ul2d(*(undefined4 *)(work->hash + 8),*(undefined4 *)(work->hash + 0xc));
+    dVar4 = (double)__aeabi_ul2d(*(undefined4 *)work->hash,*(undefined4 *)(work->hash + 4));
+    dVar4 = dVar1 * 6.277101735386681e+57 + dVar2 * 3.402823669209385e+38 +
+            dVar3 * 1.8446744073709552e+19 + dVar4;
+    if (dVar4 != 0.0) {
+      dVar4 = 2.695953529101131e+67 / dVar4;
+      uVar5 = __fixunsdfdi(SUB84(dVar4,0),(int)((ulonglong)dVar4 >> 0x20));
+      return uVar5;
     }
   }
   return 0;

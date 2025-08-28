@@ -21,7 +21,7 @@ int Curl_dupset(int param_1,int param_2)
     }
   } while (iVar3 != 0x2c);
   iVar3 = 0;
-  if (((*(uint *)(param_2 + 0x198) | *(uint *)(param_2 + 0x19c)) != 0) &&
+  if ((*(int *)(param_2 + 0x198) != 0 || *(int *)(param_2 + 0x19c) != 0) &&
      (iVar1 = *(int *)(param_2 + 0x3f4), iVar1 != 0)) {
     uVar2 = curlx_sotouz();
     iVar3 = Curl_memdup(iVar1,uVar2);

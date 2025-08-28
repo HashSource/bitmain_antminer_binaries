@@ -14,8 +14,6 @@ BN_BLINDING * RSA_setup_blinding(RSA *rsa,BN_CTX *ctx)
   BIGNUM *pBVar4;
   BIGNUM *pBVar5;
   BIGNUM *a;
-  undefined4 in_stack_ffffffa8;
-  undefined4 in_stack_ffffffac;
   BIGNUM local_3c;
   
   ctx_00 = ctx;
@@ -25,7 +23,7 @@ BN_BLINDING * RSA_setup_blinding(RSA *rsa,BN_CTX *ctx)
   BN_CTX_start(ctx_00);
   pBVar1 = BN_CTX_get(ctx_00);
   if (pBVar1 == (BIGNUM *)0x0) {
-    ERR_put_error(4,0x88,0x41,DAT_000a4728,0xcc);
+    ERR_put_error(4,0x88,0x41,"rsa_crpt.c",0xcc);
     pBVar1 = (BIGNUM *)0x0;
     pBVar3 = (BN_BLINDING *)0x0;
     goto LAB_000a45ea;
@@ -37,7 +35,7 @@ LAB_000a45a2:
     iVar2 = RAND_status();
     if (((iVar2 == 0) && (pBVar1 = rsa->d, pBVar1 != (BIGNUM *)0x0)) && (pBVar1->d != (ulong *)0x0))
     {
-      RAND_add(pBVar1->d,pBVar1->dmax << 2,(double)CONCAT44(in_stack_ffffffac,in_stack_ffffffa8));
+      RAND_add(pBVar1->d,pBVar1->dmax << 2,0.0);
     }
     if (rsa->flags << 0x17 < 0) {
       pBVar1 = rsa->n;
@@ -56,7 +54,7 @@ LAB_000a45a2:
                         rsa->_method_mod_n);
     pBVar1 = pBVar5;
     if (pBVar3 == (BN_BLINDING *)0x0) {
-      ERR_put_error(4,0x88,3,DAT_000a4728,0xeb);
+      ERR_put_error(4,0x88,3,"rsa_crpt.c",0xeb);
     }
     else {
       id = BN_BLINDING_thread_id(pBVar3);
@@ -89,7 +87,7 @@ LAB_000a45a2:
     BN_CTX_end(ctx_00);
   }
 LAB_000a4692:
-  ERR_put_error(4,0x88,0x8c,DAT_000a4728,0xd3);
+  ERR_put_error(4,0x88,0x8c,"rsa_crpt.c",0xd3);
   pBVar3 = (BN_BLINDING *)0x0;
 LAB_000a45ea:
   BN_CTX_end(ctx_00);

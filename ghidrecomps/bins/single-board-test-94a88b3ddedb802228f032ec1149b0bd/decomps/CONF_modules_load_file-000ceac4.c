@@ -40,17 +40,17 @@ LAB_000ceadc:
       }
       goto LAB_000ceaf6;
     }
-    pcVar4 = getenv(DAT_000ceb88);
+    pcVar4 = getenv("OPENSSL_CONF");
     if (pcVar4 == (char *)0x0) {
       pcVar4 = X509_get_default_cert_area();
       sVar5 = strlen(pcVar4);
       sVar5 = sVar5 + 0xd;
-      pcVar4 = (char *)CRYPTO_malloc(sVar5,DAT_000ceb8c,0x21b);
+      pcVar4 = (char *)CRYPTO_malloc(sVar5,"conf_mod.c",0x21b);
       if (pcVar4 != (char *)0x0) {
         src = X509_get_default_cert_area();
         BUF_strlcpy(pcVar4,src,sVar5);
-        BUF_strlcat(pcVar4,DAT_000ceb90,sVar5);
-        BUF_strlcat(pcVar4,DAT_000ceb94,sVar5);
+        BUF_strlcat(pcVar4,"/",sVar5);
+        BUF_strlcat(pcVar4,"openssl.cnf",sVar5);
         goto LAB_000ceadc;
       }
     }

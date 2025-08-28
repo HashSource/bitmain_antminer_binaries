@@ -7,8 +7,8 @@ char * get_sessionid(json_t *val)
   json_t *val_00;
   char *pcVar2;
   int iVar3;
-  byte bVar4;
-  byte bVar5;
+  char cVar4;
+  bool bVar5;
   json_t *pjVar6;
   json_t *val_local;
   char *notify;
@@ -27,17 +27,17 @@ char * get_sessionid(json_t *val)
       if (val_00 != (json_t *)0x0) {
         pjVar6 = (json_t *)0x0;
       }
-      bVar4 = (byte)pjVar6;
+      cVar4 = (char)pjVar6;
       if (val_00 != (json_t *)0x0) {
         if (val_00->type != JSON_ARRAY) goto LAB_00060388;
-        bVar5 = 0;
+        bVar5 = false;
       }
       else {
-        bVar4 = 1;
+        cVar4 = '\x01';
 LAB_00060388:
-        bVar5 = 1;
+        bVar5 = true;
       }
-      if ((bVar5 | bVar4) != 0) {
+      if (bVar5 || cVar4 != '\0') {
         return (char *)0x0;
       }
       pcVar2 = __json_array_string(val_00,0);

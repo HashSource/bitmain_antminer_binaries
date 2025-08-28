@@ -14,16 +14,16 @@ undefined4 * bn_expand_internal(undefined4 *param_1,int param_2)
   undefined4 *puVar10;
   
   if (0xffffff < param_2) {
-    ERR_put_error(3,0x78,0x72,DAT_0009cf00,0x128);
+    ERR_put_error(3,0x78,0x72,"bn_lib.c",0x128);
     return (undefined4 *)0x0;
   }
   if ((int)(param_1[4] << 0x1e) < 0) {
-    ERR_put_error(3,0x78,0x69,DAT_0009cf00,300);
+    ERR_put_error(3,0x78,0x69,"bn_lib.c",300);
     return (undefined4 *)0x0;
   }
-  puVar2 = (undefined4 *)CRYPTO_malloc(param_2 << 2,DAT_0009cf00,0x12f);
+  puVar2 = (undefined4 *)CRYPTO_malloc(param_2 << 2,"bn_lib.c",0x12f);
   if (puVar2 == (undefined4 *)0x0) {
-    ERR_put_error(3,0x78,0x41,DAT_0009cf00,0x131);
+    ERR_put_error(3,0x78,0x41,"bn_lib.c",0x131);
     return (undefined4 *)0x0;
   }
   puVar10 = (undefined4 *)*param_1;

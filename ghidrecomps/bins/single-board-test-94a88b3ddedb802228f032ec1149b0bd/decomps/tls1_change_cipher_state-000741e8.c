@@ -25,11 +25,11 @@ COMP_CTX * tls1_change_cipher_state(int param_1,uint param_2)
   uchar *local_104;
   EVP_MD_CTX *local_100;
   uchar *local_fc;
-  undefined4 local_f0;
+  char *local_f0;
   uchar auStack_e8 [32];
-  undefined auStack_c8 [32];
+  undefined1 auStack_c8 [32];
   uchar auStack_a8 [64];
-  undefined auStack_68 [68];
+  undefined1 auStack_68 [68];
   
   iVar6 = *(int *)(param_1 + 0x58);
   type = *(EVP_MD **)(iVar6 + 0x380);
@@ -48,7 +48,7 @@ COMP_CTX * tls1_change_cipher_state(int param_1,uint param_2)
     }
     *(uint *)(param_1 + 0x7c) = uVar7;
     if (pEVar8 == (EVP_CIPHER_CTX *)0x0) {
-      pEVar8 = (EVP_CIPHER_CTX *)CRYPTO_malloc(0x8c,DAT_000746ec,0x17a);
+      pEVar8 = (EVP_CIPHER_CTX *)CRYPTO_malloc(0x8c,"t1_enc.c",0x17a);
       *(EVP_CIPHER_CTX **)(param_1 + 0x80) = pEVar8;
       if (pEVar8 == (EVP_CIPHER_CTX *)0x0) goto LAB_0007454c;
       EVP_CIPHER_CTX_init(pEVar8);
@@ -73,21 +73,21 @@ COMP_CTX * tls1_change_cipher_state(int param_1,uint param_2)
       if (pCVar3 == (COMP_CTX *)0x0) goto LAB_000746d0;
       iVar6 = *(int *)(param_1 + 0x58);
       if (*(int *)(iVar6 + 0x120) == 0) {
-        pvVar10 = CRYPTO_malloc(0x4540,DAT_000745f0,0x191);
+        pvVar10 = CRYPTO_malloc(0x4540,"t1_enc.c",0x191);
         *(void **)(iVar6 + 0x120) = pvVar10;
         iVar6 = *(int *)(param_1 + 0x58);
         if (*(int *)(iVar6 + 0x120) == 0) goto LAB_0007454c;
       }
     }
     if ((*(uint *)(*(int *)(*(int *)(param_1 + 8) + 100) + 0x38) & 8) == 0) {
-      *(undefined *)(iVar6 + 8) = 0;
-      *(undefined *)(iVar6 + 9) = 0;
-      *(undefined *)(iVar6 + 10) = 0;
-      *(undefined *)(iVar6 + 0xb) = 0;
-      *(undefined *)(iVar6 + 0xc) = 0;
-      *(undefined *)(iVar6 + 0xd) = 0;
-      *(undefined *)(iVar6 + 0xe) = 0;
-      *(undefined *)(iVar6 + 0xf) = 0;
+      *(undefined1 *)(iVar6 + 8) = 0;
+      *(undefined1 *)(iVar6 + 9) = 0;
+      *(undefined1 *)(iVar6 + 10) = 0;
+      *(undefined1 *)(iVar6 + 0xb) = 0;
+      *(undefined1 *)(iVar6 + 0xc) = 0;
+      *(undefined1 *)(iVar6 + 0xd) = 0;
+      *(undefined1 *)(iVar6 + 0xe) = 0;
+      *(undefined1 *)(iVar6 + 0xf) = 0;
       iVar6 = *(int *)(param_1 + 0x58);
     }
     local_104 = (uchar *)(iVar6 + 0x14);
@@ -113,7 +113,7 @@ LAB_0007451c:
       *(EVP_CIPHER_CTX **)(param_1 + 0x8c) = pEVar8;
       if (pEVar8 == (EVP_CIPHER_CTX *)0x0) {
 LAB_0007454c:
-        ERR_put_error(0x14,0xd1,0x41,DAT_000745f0,0x26a);
+        ERR_put_error(0x14,0xd1,0x41,"t1_enc.c",0x26a);
         return (COMP_CTX *)0x0;
       }
       if ((*(uint *)(*(int *)(*(int *)(param_1 + 8) + 100) + 0x38) & 8) == 0) {
@@ -141,20 +141,20 @@ LAB_000744c2:
         iVar6 = 0x1b7;
         pCVar3 = (COMP_CTX *)0x0;
 LAB_000746d0:
-        ERR_put_error(0x14,0xd1,0x8e,DAT_000746ec,iVar6);
+        ERR_put_error(0x14,0xd1,0x8e,"t1_enc.c",iVar6);
         return pCVar3;
       }
     }
     if ((*(uint *)(*(int *)(*(int *)(param_1 + 8) + 100) + 0x38) & 8) == 0) {
       iVar6 = *(int *)(param_1 + 0x58);
-      *(undefined *)(iVar6 + 0x54) = 0;
-      *(undefined *)(iVar6 + 0x55) = 0;
-      *(undefined *)(iVar6 + 0x56) = 0;
-      *(undefined *)(iVar6 + 0x57) = 0;
-      *(undefined *)(iVar6 + 0x58) = 0;
-      *(undefined *)(iVar6 + 0x59) = 0;
-      *(undefined *)(iVar6 + 0x5a) = 0;
-      *(undefined *)(iVar6 + 0x5b) = 0;
+      *(undefined1 *)(iVar6 + 0x54) = 0;
+      *(undefined1 *)(iVar6 + 0x55) = 0;
+      *(undefined1 *)(iVar6 + 0x56) = 0;
+      *(undefined1 *)(iVar6 + 0x57) = 0;
+      *(undefined1 *)(iVar6 + 0x58) = 0;
+      *(undefined1 *)(iVar6 + 0x59) = 0;
+      *(undefined1 *)(iVar6 + 0x5a) = 0;
+      *(undefined1 *)(iVar6 + 0x5b) = 0;
     }
     iVar6 = *(int *)(param_1 + 0x58);
     local_104 = (uchar *)(iVar6 + 0x60);
@@ -192,7 +192,7 @@ LAB_000746d0:
     iVar9 = __n * 2;
     bVar1 = true;
     iVar6 = iVar9 + local_10c * 2;
-    local_f0 = DAT_000745e4;
+    local_f0 = "client write key";
     __src = pvVar10;
     if (*(int *)(*(int *)(param_1 + 0x58) + 0x374) < iVar6 + local_110 * 2) {
 LAB_000745cc:
@@ -203,9 +203,9 @@ LAB_000745cc:
   else {
     bVar1 = false;
     iVar9 = local_10c + __n * 2;
-    local_f0 = DAT_000745f4;
     iVar6 = local_110 + local_10c + iVar9;
     __src = (void *)((int)pvVar10 + __n);
+    local_f0 = "server write key";
     if (*(int *)(*(int *)(param_1 + 0x58) + 0x374) < iVar6 + local_110) goto LAB_000745cc;
   }
   local_fc = (uchar *)((int)pvVar10 + iVar6);
@@ -232,8 +232,8 @@ LAB_000745cc:
       local_fc = auStack_e8;
       uVar5 = ssl_get_algorithm2(param_1);
       iVar2 = tls1_PRF_constprop_0
-                        (uVar5,DAT_000745ec,8,*(int *)(param_1 + 0x58) + 0xc0,0x20,
-                         *(int *)(param_1 + 0x58) + 0xa0,0x20,0,0,DAT_000745e8,0,local_fc,auStack_c8
+                        (uVar5,"IV block",8,*(int *)(param_1 + 0x58) + 0xc0,0x20,
+                         *(int *)(param_1 + 0x58) + 0xa0,0x20,0,0,&empty_18630,0,local_fc,auStack_c8
                          ,local_110 << 1);
       if (iVar2 == 0) {
         return (COMP_CTX *)0x0;
@@ -263,7 +263,7 @@ LAB_000745cc:
     iVar2 = 0x23d;
     if (iVar6 == 0) {
 LAB_000745d0:
-      ERR_put_error(0x14,0xd1,0x44,DAT_000745f0,iVar2);
+      ERR_put_error(0x14,0xd1,0x44,"t1_enc.c",iVar2);
       return (COMP_CTX *)0x0;
     }
   }

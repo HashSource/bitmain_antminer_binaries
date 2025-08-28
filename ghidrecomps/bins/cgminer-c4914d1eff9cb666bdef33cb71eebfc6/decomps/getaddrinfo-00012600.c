@@ -6,7 +6,7 @@ int getaddrinfo(char *__name,char *__service,addrinfo *__req,addrinfo **__pai)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_getaddrinfo_000a8254)();
+  iVar1 = getaddrinfo(__name,__service,__req,__pai);
   return iVar1;
 }
 

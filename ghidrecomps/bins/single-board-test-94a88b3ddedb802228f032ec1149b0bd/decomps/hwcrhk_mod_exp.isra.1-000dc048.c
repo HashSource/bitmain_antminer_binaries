@@ -4,12 +4,10 @@ hwcrhk_mod_exp_isra_1(BIGNUM *param_1,undefined4 *param_2,undefined4 *param_3,un
 
 {
   int iVar1;
-  int iVar2;
-  undefined4 uVar3;
-  int iVar4;
-  ulong *puVar5;
-  uint uVar6;
-  undefined *local_448;
+  undefined4 uVar2;
+  ulong *puVar3;
+  uint uVar4;
+  undefined1 *local_448;
   undefined4 local_444;
   undefined4 local_440;
   int local_43c;
@@ -19,19 +17,16 @@ hwcrhk_mod_exp_isra_1(BIGNUM *param_1,undefined4 *param_2,undefined4 *param_3,un
   int local_42c;
   ulong *local_428;
   uint local_424;
-  undefined auStack_420 [1024];
+  undefined1 auStack_420 [1024];
   
-  iVar4 = DAT_000dc164;
   local_448 = auStack_420;
   local_444 = 0x400;
-  if (*(int *)(DAT_000dc164 + 0x14) == 0) {
-    iVar2 = *(int *)(DAT_000dc164 + 0x1c);
-    if (iVar2 == 0) {
-      iVar2 = ERR_get_next_error_library();
-      *(int *)(iVar4 + 0x1c) = iVar2;
+  if (hwcrhk_context == 0) {
+    if (HWCRHK_lib_error_code == 0) {
+      HWCRHK_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar2,0x6b,0x6a,DAT_000dc168,0x396);
-    uVar3 = 0;
+    ERR_put_error(HWCRHK_lib_error_code,0x6b,0x6a,"e_chil.c",0x396);
+    uVar2 = 0;
   }
   else {
     bn_expand2(param_1,param_4[1]);
@@ -43,44 +38,39 @@ hwcrhk_mod_exp_isra_1(BIGNUM *param_1,undefined4 *param_2,undefined4 *param_3,un
     local_440 = *param_2;
     local_424 = param_1->dmax << 2;
     local_428 = param_1->d;
-    iVar2 = (**(code **)(iVar4 + 0x28))
-                      (*(undefined4 *)(iVar4 + 0x14),local_440,local_43c,local_438,local_434,
-                       local_430,local_42c,&local_428,&local_448);
-    uVar6 = local_424 >> 2;
-    param_1->top = uVar6;
-    if (uVar6 != 0) {
-      puVar5 = param_1->d + (uVar6 - 1);
+    iVar1 = (*p_hwcrhk_ModExp)(hwcrhk_context,local_440,local_43c,local_438,local_434,local_430,
+                               local_42c,&local_428,&local_448);
+    uVar4 = local_424 >> 2;
+    param_1->top = uVar4;
+    if (uVar4 != 0) {
+      puVar3 = param_1->d + (uVar4 - 1);
       do {
-        if (*puVar5 != 0) break;
-        uVar6 = uVar6 - 1;
-        puVar5 = puVar5 + -1;
-      } while (uVar6 != 0);
-      param_1->top = uVar6;
+        if (*puVar3 != 0) break;
+        uVar4 = uVar4 - 1;
+        puVar3 = puVar3 + -1;
+      } while (uVar4 != 0);
+      param_1->top = uVar4;
     }
-    iVar1 = DAT_000dc164;
-    if (iVar2 < 0) {
-      iVar4 = *(int *)(iVar4 + 0x1c);
-      if (iVar2 == -2) {
-        if (iVar4 == 0) {
-          iVar4 = ERR_get_next_error_library();
-          *(int *)(iVar1 + 0x1c) = iVar4;
+    if (iVar1 < 0) {
+      if (iVar1 == -2) {
+        if (HWCRHK_lib_error_code == 0) {
+          HWCRHK_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error(iVar4,0x6b,0x70,DAT_000dc168,0x3ad);
+        ERR_put_error(HWCRHK_lib_error_code,0x6b,0x70,"e_chil.c",0x3ad);
       }
       else {
-        if (iVar4 == 0) {
-          iVar4 = ERR_get_next_error_library();
-          *(int *)(iVar1 + 0x1c) = iVar4;
+        if (HWCRHK_lib_error_code == 0) {
+          HWCRHK_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error(iVar4,0x6b,0x6f,DAT_000dc168,0x3af);
+        ERR_put_error(HWCRHK_lib_error_code,0x6b,0x6f,"e_chil.c",0x3af);
       }
       ERR_add_error_data(1,local_448);
-      uVar3 = 0;
+      uVar2 = 0;
     }
     else {
-      uVar3 = 1;
+      uVar2 = 1;
     }
   }
-  return uVar3;
+  return uVar2;
 }
 

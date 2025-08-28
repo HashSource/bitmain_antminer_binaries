@@ -1,19 +1,17 @@
 
-int cswift_dsa_verify(undefined4 param_1,undefined4 param_2,BIGNUM **param_3,int param_4)
+int cswift_dsa_verify(undefined4 param_1,undefined4 param_2,undefined4 *param_3,int param_4)
 
 {
-  int iVar1;
   BN_CTX *ctx;
-  int iVar2;
-  BIGNUM *pBVar3;
+  int iVar1;
+  BIGNUM *pBVar2;
   BIGNUM *a;
   BIGNUM *a_00;
   BIGNUM *a_01;
   BIGNUM *a_02;
-  int iVar4;
-  int iVar5;
-  BIGNUM *pBVar6;
-  ulong *puVar7;
+  int iVar3;
+  BIGNUM *pBVar4;
+  ulong *puVar5;
   undefined4 local_84;
   int local_80;
   undefined4 local_7c;
@@ -34,159 +32,144 @@ int cswift_dsa_verify(undefined4 param_1,undefined4 param_2,BIGNUM **param_3,int
   ulong *local_34;
   
   ctx = BN_CTX_new();
-  iVar1 = DAT_000dab04;
   if (ctx == (BN_CTX *)0x0) {
     return -1;
   }
-  iVar2 = (**(code **)(DAT_000dab04 + 0xc))(&local_84);
-  if (iVar2 != 0) {
-    iVar2 = *(int *)(iVar1 + 4);
-    if (iVar2 == 0) {
-      iVar2 = ERR_get_next_error_library();
-      *(int *)(iVar1 + 4) = iVar2;
+  iVar1 = (*p_CSwift_AcquireAccContext)(&local_84);
+  if (iVar1 != 0) {
+    if (CSWIFT_lib_error_code == 0) {
+      CSWIFT_lib_error_code = ERR_get_next_error_library();
     }
-    iVar4 = -1;
-    ERR_put_error(iVar2,0x66,0x6c,DAT_000dab08,0x393);
+    iVar1 = -1;
+    ERR_put_error(CSWIFT_lib_error_code,0x66,0x6c,"e_cswift.c",0x393);
     goto LAB_000daa7e;
   }
   BN_CTX_start(ctx);
-  pBVar3 = BN_CTX_get(ctx);
+  pBVar2 = BN_CTX_get(ctx);
   a = BN_CTX_get(ctx);
   a_00 = BN_CTX_get(ctx);
   a_01 = BN_CTX_get(ctx);
   a_02 = BN_CTX_get(ctx);
   if (a_02 == (BIGNUM *)0x0) {
-    iVar2 = *(int *)(iVar1 + 4);
-    if (iVar2 == 0) {
-      iVar2 = ERR_get_next_error_library();
-      *(int *)(iVar1 + 4) = iVar2;
+    if (CSWIFT_lib_error_code == 0) {
+      CSWIFT_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar2,0x66,0x66,DAT_000dab68,0x39f);
-    iVar4 = -1;
+    ERR_put_error(CSWIFT_lib_error_code,0x66,0x66,"e_cswift.c",0x39f);
+    iVar1 = -1;
   }
   else {
-    iVar2 = *(int *)(*(int *)(param_4 + 0xc) + 4);
-    if (pBVar3->dmax < iVar2) {
-      pBVar6 = bn_expand2(pBVar3,iVar2);
-      if (pBVar6 != (BIGNUM *)0x0) {
-        iVar2 = *(int *)(*(int *)(param_4 + 0x10) + 4);
-        if (a->dmax < iVar2) goto LAB_000daaaa;
+    iVar1 = *(int *)(*(int *)(param_4 + 0xc) + 4);
+    if (pBVar2->dmax < iVar1) {
+      pBVar4 = bn_expand2(pBVar2,iVar1);
+      if (pBVar4 != (BIGNUM *)0x0) {
+        iVar1 = *(int *)(*(int *)(param_4 + 0x10) + 4);
+        if (a->dmax < iVar1) goto LAB_000daaaa;
         goto LAB_000da8ca;
       }
     }
     else {
-      iVar2 = *(int *)(*(int *)(param_4 + 0x10) + 4);
-      if (a->dmax < iVar2) {
+      iVar1 = *(int *)(*(int *)(param_4 + 0x10) + 4);
+      if (a->dmax < iVar1) {
 LAB_000daaaa:
-        pBVar6 = bn_expand2(a,iVar2);
-        if (pBVar6 == (BIGNUM *)0x0) goto LAB_000daa18;
+        pBVar4 = bn_expand2(a,iVar1);
+        if (pBVar4 == (BIGNUM *)0x0) goto LAB_000daa18;
       }
 LAB_000da8ca:
-      iVar2 = *(int *)(*(int *)(param_4 + 0x14) + 4);
-      if ((iVar2 <= a_00->dmax) || (pBVar6 = bn_expand2(a_00,iVar2), pBVar6 != (BIGNUM *)0x0)) {
-        iVar2 = *(int *)(*(int *)(param_4 + 0x18) + 4);
-        if (a_01->dmax < iVar2) {
-          pBVar6 = bn_expand2(a_01,iVar2);
-          if (pBVar6 == (BIGNUM *)0x0) goto LAB_000daa18;
-          iVar2 = a_02->dmax;
+      iVar1 = *(int *)(*(int *)(param_4 + 0x14) + 4);
+      if ((iVar1 <= a_00->dmax) || (pBVar4 = bn_expand2(a_00,iVar1), pBVar4 != (BIGNUM *)0x0)) {
+        iVar1 = *(int *)(*(int *)(param_4 + 0x18) + 4);
+        if (a_01->dmax < iVar1) {
+          pBVar4 = bn_expand2(a_01,iVar1);
+          if (pBVar4 == (BIGNUM *)0x0) goto LAB_000daa18;
+          iVar1 = a_02->dmax;
         }
         else {
-          iVar2 = a_02->dmax;
+          iVar1 = a_02->dmax;
         }
-        if ((0x27 < iVar2) || (pBVar6 = bn_expand2(a_02,0x28), pBVar6 != (BIGNUM *)0x0)) {
+        if ((0x27 < iVar1) || (pBVar4 = bn_expand2(a_02,0x28), pBVar4 != (BIGNUM *)0x0)) {
           local_54 = 3;
-          local_50 = BN_bn2bin(*(BIGNUM **)(param_4 + 0xc),(uchar *)pBVar3->d);
-          iVar2 = DAT_000dab04;
-          local_4c = pBVar3->d;
+          local_50 = BN_bn2bin(*(BIGNUM **)(param_4 + 0xc),(uchar *)pBVar2->d);
+          local_4c = pBVar2->d;
           local_48 = BN_bn2bin(*(BIGNUM **)(param_4 + 0x10),(uchar *)a->d);
           local_44 = a->d;
           local_40 = BN_bn2bin(*(BIGNUM **)(param_4 + 0x14),(uchar *)a_00->d);
           local_3c = a_00->d;
           local_38 = BN_bn2bin(*(BIGNUM **)(param_4 + 0x18),(uchar *)a_01->d);
           local_34 = a_01->d;
-          iVar4 = (**(code **)(iVar1 + 0x10))(local_84,&local_54);
-          if (iVar4 == -0x2716) {
-            iVar4 = *(int *)(iVar2 + 4);
-            if (iVar4 == 0) {
-              iVar4 = ERR_get_next_error_library();
-              *(int *)(iVar2 + 4) = iVar4;
+          iVar1 = (*p_CSwift_AttachKeyParam)(local_84,&local_54);
+          if (iVar1 == -0x2716) {
+            if (CSWIFT_lib_error_code == 0) {
+              CSWIFT_lib_error_code = ERR_get_next_error_library();
             }
-            ERR_put_error(iVar4,0x66,0x65,DAT_000dab08,0x3ba);
-            iVar4 = -1;
+            ERR_put_error(CSWIFT_lib_error_code,0x66,0x65,"e_cswift.c",0x3ba);
+            iVar1 = -1;
           }
-          else if (iVar4 == 0) {
-            puVar7 = a_02->d;
+          else if (iVar1 == 0) {
+            puVar5 = a_02->d;
             local_5c = 0x28;
             local_64 = param_2;
             local_60 = param_1;
-            local_58 = puVar7;
-            memset(puVar7,0,0x28);
-            pBVar3 = *param_3;
-            iVar5 = BN_num_bits(pBVar3);
-            iVar4 = iVar5 + 0xe;
-            if (-1 < iVar5 + 7) {
-              iVar4 = iVar5 + 7;
+            local_58 = puVar5;
+            memset(puVar5,0,0x28);
+            pBVar2 = (BIGNUM *)*param_3;
+            iVar3 = BN_num_bits(pBVar2);
+            iVar1 = iVar3 + 0xe;
+            if (-1 < iVar3 + 7) {
+              iVar1 = iVar3 + 7;
             }
-            BN_bn2bin(pBVar3,(uchar *)((int)puVar7 + (0x14 - (iVar4 >> 3))));
-            puVar7 = local_58;
-            pBVar3 = param_3[1];
-            iVar5 = BN_num_bits(pBVar3);
-            iVar4 = iVar5 + 0xe;
-            if (-1 < iVar5 + 7) {
-              iVar4 = iVar5 + 7;
+            BN_bn2bin(pBVar2,(uchar *)((int)puVar5 + (0x14 - (iVar1 >> 3))));
+            puVar5 = local_58;
+            pBVar2 = (BIGNUM *)param_3[1];
+            iVar3 = BN_num_bits(pBVar2);
+            iVar1 = iVar3 + 0xe;
+            if (-1 < iVar3 + 7) {
+              iVar1 = iVar3 + 7;
             }
-            BN_bn2bin(pBVar3,(uchar *)((0x28 - (iVar4 >> 3)) + (int)puVar7));
+            BN_bn2bin(pBVar2,(uchar *)((0x28 - (iVar1 >> 3)) + (int)puVar5));
             local_78 = &local_80;
             local_7c = 4;
-            iVar4 = (**(code **)(iVar2 + 0x14))(local_84,4,&local_64,2,&local_7c,1);
-            if (iVar4 == 0) {
-              iVar4 = local_80;
+            iVar1 = (*p_CSwift_SimpleRequest)(local_84,4,&local_64,2,&local_7c,1);
+            if (iVar1 == 0) {
+              iVar1 = local_80;
               if (local_80 != 0) {
-                iVar4 = 1;
+                iVar1 = 1;
               }
             }
             else {
-              iVar5 = *(int *)(iVar2 + 4);
-              if (iVar5 == 0) {
-                iVar5 = ERR_get_next_error_library();
-                *(int *)(iVar2 + 4) = iVar5;
+              if (CSWIFT_lib_error_code == 0) {
+                CSWIFT_lib_error_code = ERR_get_next_error_library();
               }
-              ERR_put_error(iVar5,0x66,0x6b,DAT_000dab68,0x3d4);
-              sprintf(acStack_74,DAT_000dab6c,iVar4);
-              ERR_add_error_data(2,DAT_000dab70,acStack_74);
-              iVar4 = -1;
+              ERR_put_error(CSWIFT_lib_error_code,0x66,0x6b,"e_cswift.c",0x3d4);
+              sprintf(acStack_74,"%ld",iVar1);
+              ERR_add_error_data(2,"CryptoSwift error number is ",acStack_74);
+              iVar1 = -1;
             }
           }
           else {
-            iVar5 = *(int *)(iVar2 + 4);
-            if (iVar5 == 0) {
-              iVar5 = ERR_get_next_error_library();
-              *(int *)(iVar2 + 4) = iVar5;
+            if (CSWIFT_lib_error_code == 0) {
+              CSWIFT_lib_error_code = ERR_get_next_error_library();
             }
-            ERR_put_error(iVar5,0x66,0x6b,DAT_000dab08,0x3bf);
-            sprintf((char *)&local_64,DAT_000dab0c,iVar4);
-            ERR_add_error_data(2,DAT_000dab10,&local_64);
-            iVar4 = -1;
+            ERR_put_error(CSWIFT_lib_error_code,0x66,0x6b,"e_cswift.c",0x3bf);
+            sprintf((char *)&local_64,"%ld",iVar1);
+            ERR_add_error_data(2,"CryptoSwift error number is ",&local_64);
+            iVar1 = -1;
           }
           goto LAB_000daa78;
         }
       }
     }
 LAB_000daa18:
-    iVar2 = DAT_000dab04;
-    iVar4 = *(int *)(iVar1 + 4);
-    if (iVar4 == 0) {
-      iVar4 = ERR_get_next_error_library();
-      *(int *)(iVar2 + 4) = iVar4;
+    if (CSWIFT_lib_error_code == 0) {
+      CSWIFT_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar4,0x66,0x67,DAT_000dab08,0x3a7);
-    iVar4 = -1;
+    ERR_put_error(CSWIFT_lib_error_code,0x66,0x67,"e_cswift.c",0x3a7);
+    iVar1 = -1;
   }
 LAB_000daa78:
-  (**(code **)(iVar1 + 0x18))(local_84);
+  (*p_CSwift_ReleaseAccContext)(local_84);
 LAB_000daa7e:
   BN_CTX_end(ctx);
   BN_CTX_free(ctx);
-  return iVar4;
+  return iVar1;
 }
 

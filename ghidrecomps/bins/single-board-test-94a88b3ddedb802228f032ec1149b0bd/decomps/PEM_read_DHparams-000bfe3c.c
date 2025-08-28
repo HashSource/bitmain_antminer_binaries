@@ -9,7 +9,7 @@ DH * PEM_read_DHparams(FILE *fp,DH **x,undefined1 *cb,void *u)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(9,0x8e,7,DAT_000bfe94,0x11b);
+    ERR_put_error(9,0x8e,7,"pem_pkey.c",0x11b);
     pDVar1 = (DH *)0x0;
   }
   else {

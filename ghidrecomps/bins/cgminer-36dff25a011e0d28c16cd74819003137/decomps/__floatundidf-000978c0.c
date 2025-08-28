@@ -15,7 +15,7 @@ ulonglong __floatundidf(uint param_1,uint param_2)
   bool bVar11;
   bool bVar12;
   
-  if ((param_1 | param_2) == 0) {
+  if (param_1 == 0 && param_2 == 0) {
     return CONCAT44(param_2,param_1);
   }
   iVar9 = 0x432;

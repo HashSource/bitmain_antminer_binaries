@@ -5,8 +5,7 @@ PEM_read_NETSCAPE_CERT_SEQUENCE(FILE *fp,NETSCAPE_CERT_SEQUENCE **x,undefined1 *
 {
   NETSCAPE_CERT_SEQUENCE *pNVar1;
   
-  pNVar1 = (NETSCAPE_CERT_SEQUENCE *)
-           PEM_ASN1_read(d2i_NETSCAPE_CERT_SEQUENCE + 1,"CERTIFICATE",fp,x,cb,u);
+  pNVar1 = (NETSCAPE_CERT_SEQUENCE *)PEM_ASN1_read((undefined1 *)0x107fb5,"CERTIFICATE",fp,x,cb,u);
   return pNVar1;
 }
 

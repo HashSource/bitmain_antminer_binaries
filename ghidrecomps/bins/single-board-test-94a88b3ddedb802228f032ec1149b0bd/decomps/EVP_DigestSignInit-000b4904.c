@@ -4,7 +4,7 @@ int EVP_DigestSignInit(EVP_MD_CTX *ctx,EVP_PKEY_CTX **pctx,EVP_MD *type,ENGINE *
 {
   int iVar1;
   
-  iVar1 = do_sigver_init();
+  iVar1 = do_sigver_init(ctx);
   return iVar1;
 }
 

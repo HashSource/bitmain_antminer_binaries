@@ -10,7 +10,7 @@ int ECParameters_print_fp(FILE *fp,EC_KEY *key)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0x10,0x94,0x20,DAT_000f8bd0,0x6b);
+    ERR_put_error(0x10,0x94,0x20,"eck_prn.c",0x6b);
     iVar1 = 0;
   }
   else {

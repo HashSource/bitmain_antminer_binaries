@@ -6,7 +6,7 @@ int inet_pton(int __af,char *__cp,void *__buf)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_inet_pton_000a8068)();
+  iVar1 = inet_pton(__af,__cp,__buf);
   return iVar1;
 }
 

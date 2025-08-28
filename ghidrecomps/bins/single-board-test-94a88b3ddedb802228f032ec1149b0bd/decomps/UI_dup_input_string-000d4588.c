@@ -11,7 +11,7 @@ int UI_dup_input_string(UI *ui,char *prompt,int flags,char *result_buf,int minsi
   else {
     pcVar1 = BUF_strdup(prompt);
     if (pcVar1 == (char *)0x0) {
-      ERR_put_error(0x28,0x67,0x41,DAT_000d45dc,0xf9);
+      ERR_put_error(0x28,0x67,0x41,"ui_lib.c",0xf9);
       return 0;
     }
   }

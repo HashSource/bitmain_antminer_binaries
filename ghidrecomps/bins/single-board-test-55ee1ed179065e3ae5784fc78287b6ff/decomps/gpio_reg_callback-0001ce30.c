@@ -5,8 +5,7 @@ undefined4 gpio_reg_callback(undefined4 param_1,int param_2)
   int iVar1;
   undefined4 uVar2;
   undefined4 local_14;
-  int local_10;
-  undefined4 local_c;
+  int local_10 [2];
   
   local_14 = param_1;
   if (param_2 == 0) {
@@ -21,9 +20,9 @@ undefined4 gpio_reg_callback(undefined4 param_1,int param_2)
       if (iVar1 == 0) {
         printf("%s:%d","gpio_reg_callback",0x81);
         printf("add %d to callback map\n",local_14);
-        local_c = 0xffffffff;
-        local_10 = param_2;
-        insert_c_map(gpio_ctrl_map._24_4_,&local_14,4,&local_10,8);
+        local_10[1] = 0xffffffff;
+        local_10[0] = param_2;
+        insert_c_map(gpio_ctrl_map._24_4_,&local_14,4,local_10,8);
       }
       else {
         printf("%s:%d","gpio_reg_callback",0x85);

@@ -10,7 +10,7 @@ int X509_check_private_key(X509 *x509,EVP_PKEY *pkey)
      (a = X509_PUBKEY_get(x509->cert_info->key), a == (EVP_PKEY *)0x0)) {
     a = (EVP_PKEY *)0x0;
 LAB_000c04e0:
-    ERR_put_error(0xb,0x80,0x75,DAT_000c0510,0x15a);
+    ERR_put_error(0xb,0x80,0x75,"x509_cmp.c",0x15a);
     if (a == (EVP_PKEY *)0x0) {
       return 0;
     }
@@ -18,7 +18,7 @@ LAB_000c04e0:
   else {
     iVar1 = EVP_PKEY_cmp(a,pkey);
     if (iVar1 == -1) {
-      ERR_put_error(0xb,0x80,0x73,DAT_000c0510,0x157);
+      ERR_put_error(0xb,0x80,0x73,"x509_cmp.c",0x157);
     }
     else {
       if (iVar1 != 0) {
@@ -28,7 +28,7 @@ LAB_000c04e0:
         }
         goto LAB_000c04e0;
       }
-      ERR_put_error(0xb,0x80,0x74,DAT_000c0510,0x154);
+      ERR_put_error(0xb,0x80,0x74,"x509_cmp.c",0x154);
     }
   }
   uVar2 = 0;

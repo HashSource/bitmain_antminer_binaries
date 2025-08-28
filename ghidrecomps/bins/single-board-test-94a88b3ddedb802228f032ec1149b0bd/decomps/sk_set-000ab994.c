@@ -2,13 +2,13 @@
 void * sk_set(_STACK *param_1,int param_2,void *param_3)
 
 {
-  uint uVar1;
+  int iVar1;
   
-  uVar1 = 1 - (int)param_1;
+  iVar1 = 1 - (int)param_1;
   if ((_STACK *)0x1 < param_1) {
-    uVar1 = 0;
+    iVar1 = 0;
   }
-  if ((uVar1 | (uint)param_2 >> 0x1f) == 0) {
+  if (iVar1 == 0 && -1 < param_2) {
     if (param_2 < param_1->num) {
       param_1->data[param_2] = (char *)param_3;
     }

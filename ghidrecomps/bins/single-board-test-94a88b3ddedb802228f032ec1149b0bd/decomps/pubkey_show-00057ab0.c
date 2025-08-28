@@ -5,7 +5,7 @@ void pubkey_show(undefined4 param_1,BIO *param_2,undefined4 param_3,undefined4 p
 {
   long lVar1;
   undefined4 local_3c;
-  undefined auStack_38 [36];
+  undefined1 auStack_38 [36];
   
   curl_msnprintf(auStack_38,0x20,"%s(%s)",param_4,param_5);
   BN_print(param_2,param_6);

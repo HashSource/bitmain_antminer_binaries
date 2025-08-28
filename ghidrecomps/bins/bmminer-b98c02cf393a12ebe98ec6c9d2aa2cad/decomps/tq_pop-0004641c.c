@@ -1,5 +1,5 @@
 
-int tq_pop(int **param_1,timespec *param_2)
+int tq_pop(int *param_1,timespec *param_2)
 
 {
   int iVar1;
@@ -11,10 +11,10 @@ int tq_pop(int **param_1,timespec *param_2)
   __mutex = (pthread_mutex_t *)(param_1 + 3);
   iVar1 = pthread_mutex_lock(__mutex);
   if (iVar1 != 0) {
-    _mutex_lock_part_1_constprop_16(DAT_000464a0,0x486);
+    _mutex_lock_part_1_constprop_16("tq_pop",0x486);
   }
-  piVar3 = *param_1;
-  if (param_1 == (int **)piVar3) {
+  piVar3 = (int *)*param_1;
+  if (param_1 == piVar3) {
     if (param_2 == (timespec *)0x0) {
       iVar1 = pthread_cond_wait((pthread_cond_t *)(param_1 + 10),__mutex);
     }
@@ -25,8 +25,8 @@ int tq_pop(int **param_1,timespec *param_2)
       iVar1 = 0;
       goto LAB_0004644c;
     }
-    piVar3 = *param_1;
-    if ((int **)piVar3 == param_1) {
+    piVar3 = (int *)*param_1;
+    if (piVar3 == param_1) {
       iVar1 = 0;
       goto LAB_0004644c;
     }
@@ -40,7 +40,7 @@ int tq_pop(int **param_1,timespec *param_2)
   piVar3[1] = 0;
   free(piVar3 + -1);
 LAB_0004644c:
-  _mutex_unlock_noyield_constprop_15(__mutex,DAT_000464a0,0x4a0);
+  _mutex_unlock_noyield_constprop_15(__mutex,"tq_pop",0x4a0);
   (*selective_yield)();
   return iVar1;
 }

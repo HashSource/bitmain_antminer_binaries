@@ -9,7 +9,7 @@ int ECPKParameters_print_fp(FILE *fp,EC_GROUP *x,int off)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0x10,0x96,7,DAT_000f91e4,0x4d);
+    ERR_put_error(0x10,0x96,7,"eck_prn.c",0x4d);
     iVar1 = 0;
   }
   else {

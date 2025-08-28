@@ -9,7 +9,7 @@ void _k_unlink_tail(undefined4 *param_1,undefined4 param_2,undefined4 param_3,un
   if (*(char *)(param_1 + 0xb) == '\0') {
     snprintf(acStack_818,0x800,
              "List %s can\'t %s() - do_tail is false - from %s %s() line %d in %s %s():%d",*param_1,
-             DAT_0004041c,param_2,param_3,param_4,"klist.c",DAT_0004041c,0xb5);
+             "_k_unlink_tail",param_2,param_3,param_4,"klist.c","_k_unlink_tail",0xb5);
     _applog(3,acStack_818,1);
     _quit(1);
   }

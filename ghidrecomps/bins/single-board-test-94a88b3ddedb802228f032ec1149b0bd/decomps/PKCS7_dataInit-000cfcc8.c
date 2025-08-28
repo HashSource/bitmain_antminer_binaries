@@ -33,11 +33,11 @@ BIO * PKCS7_dataInit(PKCS7 *p7,BIO *bio)
   
   local_84 = (BIO *)0x0;
   if (p7 == (PKCS7 *)0x0) {
-    ERR_put_error(0x21,0x69,0x8f,DAT_000d00f4,0x109);
+    ERR_put_error(0x21,0x69,0x8f,"pk7_doit.c",0x109);
     return (BIO *)0x0;
   }
   if ((p7->d).ptr == (char *)0x0) {
-    ERR_put_error(0x21,0x69,0x7a,DAT_000d00f4,0x117);
+    ERR_put_error(0x21,0x69,0x7a,"pk7_doit.c",0x117);
     return (BIO *)0x0;
   }
   iVar3 = OBJ_obj2nid(p7->type);
@@ -86,7 +86,7 @@ LAB_000cff84:
       iVar3 = 0x132;
       cipher = (BIO *)0x0;
 LAB_000d0014:
-      ERR_put_error(0x21,0x69,0x74,DAT_000d00f4,iVar3);
+      ERR_put_error(0x21,0x69,0x74,"pk7_doit.c",iVar3);
       local_a0 = cipher;
       goto LAB_000cff0c;
     }
@@ -132,7 +132,7 @@ LAB_000cfd24:
     local_98 = (_STACK *)0x0;
     break;
   default:
-    ERR_put_error(0x21,0x69,0x70,DAT_000d00f4,0x13d);
+    ERR_put_error(0x21,0x69,0x70,"pk7_doit.c",0x13d);
     local_a0 = (BIO *)0x0;
     goto LAB_000cff0c;
   }
@@ -147,7 +147,7 @@ LAB_000cfd24:
         pBVar5 = BIO_f_cipher();
         local_a0 = BIO_new(pBVar5);
         if (local_a0 == (BIO *)0x0) {
-          ERR_put_error(0x21,0x69,0x20,DAT_000d00f4,0x14f);
+          ERR_put_error(0x21,0x69,0x20,"pk7_doit.c",0x14f);
           goto LAB_000cff0c;
         }
         BIO_ctrl(local_a0,0x81,0,&local_80);
@@ -197,15 +197,15 @@ LAB_000cfee4:
   else {
     iVar4 = EVP_PKEY_CTX_ctrl(ctx,-1,0x100,3,0,pvVar7);
     if (iVar4 < 1) {
-      ERR_put_error(0x21,0x84,0x98,DAT_000d00f4,0xa0);
+      ERR_put_error(0x21,0x84,0x98,"pk7_doit.c",0xa0);
       bVar1 = false;
     }
     else {
       iVar4 = EVP_PKEY_encrypt(ctx,(uchar *)0x0,&local_7c,auStack_68,len);
       if (iVar4 < 1) goto LAB_000cfee4;
-      out = (uchar *)CRYPTO_malloc(local_7c,DAT_000d00f4,0xa7);
+      out = (uchar *)CRYPTO_malloc(local_7c,"pk7_doit.c",0xa7);
       if (out == (uchar *)0x0) {
-        ERR_put_error(0x21,0x84,0x41,DAT_000d00f4,0xaa);
+        ERR_put_error(0x21,0x84,0x41,"pk7_doit.c",0xaa);
         bVar1 = false;
       }
       else {

@@ -9,7 +9,7 @@ int X509_CRL_add0_revoked(X509_CRL *crl,X509_REVOKED *rev)
   pXVar2 = crl->crl;
   st = &pXVar2->revoked->stack;
   if (st == (_STACK *)0x0) {
-    st = sk_new(DAT_00107df4);
+    st = sk_new((cmp *)0x107d01);
     pXVar2->revoked = (stack_st_X509_REVOKED *)st;
     if (st == (_STACK *)0x0) goto LAB_00107dde;
   }
@@ -19,7 +19,7 @@ int X509_CRL_add0_revoked(X509_CRL *crl,X509_REVOKED *rev)
     return 1;
   }
 LAB_00107dde:
-  ERR_put_error(0xd,0xa9,0x41,DAT_00107df8,0x16e);
+  ERR_put_error(0xd,0xa9,0x41,"x_crl.c",0x16e);
   return 0;
 }
 

@@ -148,7 +148,7 @@ void travel_eeprom_store(uint8_t chain,_Bool debug)
     if (3 < log_level) {
       pFile_8 = (FILE *)fopen(log_file,"a+");
       if (pFile_8 != (FILE *)0x0) {
-        dVar2 = (double)((float)(ulonglong)((eeprom->chain_volt + 300) * 2) / DAT_0006e360);
+        dVar2 = (double)((float)((eeprom->chain_volt + 300) * 2) / 100.0);
         fprintf((FILE *)pFile_8,"voltage: %.02f V\n",SUB84(dVar2,0),(int)((ulonglong)dVar2 >> 0x20))
         ;
       }
@@ -203,7 +203,7 @@ void travel_eeprom_store(uint8_t chain,_Bool debug)
       if (3 < log_level) {
         pFile_14 = (FILE *)fopen(log_file,"a+");
         if (pFile_14 != (FILE *)0x0) {
-          dVar2 = (double)((float)(ulonglong)((eeprom->chain_volt_mode2 + 300) * 2) / DAT_0006e360);
+          dVar2 = (double)((float)((eeprom->chain_volt_mode2 + 300) * 2) / 100.0);
           fprintf((FILE *)pFile_14,"voltage in mode2: %.02f V\n",SUB84(dVar2,0),
                   (int)((ulonglong)dVar2 >> 0x20));
         }

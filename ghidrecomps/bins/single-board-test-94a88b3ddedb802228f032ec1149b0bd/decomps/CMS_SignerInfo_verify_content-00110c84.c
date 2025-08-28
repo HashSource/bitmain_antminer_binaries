@@ -22,7 +22,7 @@ int CMS_SignerInfo_verify_content(CMS_SignerInfo *si,BIO *chain)
     oid = OBJ_nid2obj(0x33);
     psVar2 = (size_t *)CMS_signed_get0_data_by_OBJ(si,oid,-3,4);
     if (psVar2 == (size_t *)0x0) {
-      ERR_put_error(0x2e,0x9a,0x72,DAT_00110e10,0x33c);
+      ERR_put_error(0x2e,0x9a,0x72,"cms_sd.c",0x33c);
       iVar1 = -1;
       goto LAB_00110cec;
     }
@@ -34,7 +34,7 @@ int CMS_SignerInfo_verify_content(CMS_SignerInfo *si,BIO *chain)
   }
   iVar1 = EVP_DigestFinal_ex(&EStack_70,auStack_58,&local_74);
   if (iVar1 < 1) {
-    ERR_put_error(0x2e,0x9a,0x93,DAT_00110e10,0x346);
+    ERR_put_error(0x2e,0x9a,0x93,"cms_sd.c",0x346);
     iVar1 = -1;
     goto LAB_00110cec;
   }
@@ -43,12 +43,12 @@ int CMS_SignerInfo_verify_content(CMS_SignerInfo *si,BIO *chain)
       iVar3 = memcmp(auStack_58,(void *)psVar2[2],*psVar2);
       iVar1 = 1;
       if (iVar3 != 0) {
-        ERR_put_error(0x2e,0x9a,0x9e,DAT_00110e10,0x355);
+        ERR_put_error(0x2e,0x9a,0x9e,"cms_sd.c",0x355);
         iVar1 = 0;
       }
     }
     else {
-      ERR_put_error(0x2e,0x9a,0x78,DAT_00110e10,0x34f);
+      ERR_put_error(0x2e,0x9a,0x78,"cms_sd.c",0x34f);
       iVar1 = -1;
     }
     goto LAB_00110cec;
@@ -68,11 +68,11 @@ LAB_00110dc6:
     if ((iVar1 != 0) && (pcVar4 = *(code **)(iVar1 + 0x58), pcVar4 != (code *)0x0)) {
       iVar1 = (*pcVar4)(*(int *)(si + 0x20),5,1,si);
       if (iVar1 == -2) {
-        ERR_put_error(0x2e,0xaa,0x7d,DAT_00110e10,0x100);
+        ERR_put_error(0x2e,0xaa,0x7d,"cms_sd.c",0x100);
       }
       else {
         if (0 < iVar1) goto LAB_00110d64;
-        ERR_put_error(0x2e,0xaa,0x6f,DAT_00110e10,0x104);
+        ERR_put_error(0x2e,0xaa,0x6f,"cms_sd.c",0x104);
       }
       goto LAB_00110dc6;
     }
@@ -81,7 +81,7 @@ LAB_00110d64:
                             auStack_58,local_74);
     if (iVar1 < 1) {
       iVar1 = 0;
-      ERR_put_error(0x2e,0x9a,0x9e,DAT_00110e10,0x367);
+      ERR_put_error(0x2e,0x9a,0x9e,"cms_sd.c",0x367);
     }
   }
   if (ctx != (EVP_PKEY_CTX *)0x0) {

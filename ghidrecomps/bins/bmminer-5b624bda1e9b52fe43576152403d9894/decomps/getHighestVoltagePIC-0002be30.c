@@ -4,62 +4,57 @@
 uchar getHighestVoltagePIC(int chainIndex)
 
 {
-  uchar minVolPIC;
-  byte bVar1;
+  int iVar1;
   byte bVar2;
-  int startIndex;
   uint uVar3;
-  int iVar4;
   
-  if (*DAT_0002bef4 < 0xe) {
-    bVar2 = *(byte *)(DAT_0002bef8 + chainIndex + 0x7c);
-    iVar4 = DAT_0002bef8 + (chainIndex / 3) * 3;
-    bVar1 = *(byte *)(iVar4 + 0x7c);
-    if (bVar2 <= *(byte *)(iVar4 + 0x7c)) {
-      bVar1 = bVar2;
+  if (fpga_version < 0xe) {
+    iVar1 = (chainIndex / 3) * 3;
+    bVar2 = chain_voltage_pic[iVar1];
+    if (chain_voltage_pic[chainIndex] <= chain_voltage_pic[iVar1]) {
+      bVar2 = chain_voltage_pic[chainIndex];
     }
-    if (*(byte *)(iVar4 + 0x7d) <= bVar1) {
-      bVar1 = *(byte *)(iVar4 + 0x7d);
+    if (chain_voltage_pic[iVar1 + 1] <= bVar2) {
+      bVar2 = chain_voltage_pic[iVar1 + 1];
     }
-    if (*(byte *)(iVar4 + 0x7e) <= bVar1) {
-      bVar1 = *(byte *)(iVar4 + 0x7e);
+    if (chain_voltage_pic[iVar1 + 2] <= bVar2) {
+      bVar2 = chain_voltage_pic[iVar1 + 2];
     }
-    return bVar1;
+    return bVar2;
   }
   if ((uint)chainIndex < 0xe) {
     uVar3 = 1 << (chainIndex & 0xffU);
     if ((uVar3 & 0x3008) != 0) {
-      bVar2 = *(byte *)(DAT_0002bef8 + 0x88);
-      if (*(byte *)(DAT_0002bef8 + 0x7f) <= *(byte *)(DAT_0002bef8 + 0x88)) {
-        bVar2 = *(byte *)(DAT_0002bef8 + 0x7f);
+      bVar2 = chain_voltage_pic[0xc];
+      if (chain_voltage_pic[3] <= chain_voltage_pic[0xc]) {
+        bVar2 = chain_voltage_pic[3];
       }
-      if (*(byte *)(DAT_0002bef8 + 0x89) <= bVar2) {
-        bVar2 = *(byte *)(DAT_0002bef8 + 0x89);
+      if (chain_voltage_pic[0xd] <= bVar2) {
+        bVar2 = chain_voltage_pic[0xd];
       }
       return bVar2;
     }
     if ((uVar3 & 0xc04) != 0) {
-      bVar2 = *(byte *)(DAT_0002bef8 + 0x86);
-      if (*(byte *)(DAT_0002bef8 + 0x7e) <= *(byte *)(DAT_0002bef8 + 0x86)) {
-        bVar2 = *(byte *)(DAT_0002bef8 + 0x7e);
+      bVar2 = chain_voltage_pic[10];
+      if (chain_voltage_pic[2] <= chain_voltage_pic[10]) {
+        bVar2 = chain_voltage_pic[2];
       }
-      if (*(byte *)(DAT_0002bef8 + 0x87) <= bVar2) {
-        bVar2 = *(byte *)(DAT_0002bef8 + 0x87);
+      if (chain_voltage_pic[0xb] <= bVar2) {
+        bVar2 = chain_voltage_pic[0xb];
       }
       return bVar2;
     }
     if ((uVar3 & 0x302) != 0) {
-      bVar2 = *(byte *)(DAT_0002bef8 + 0x84);
-      if (*(byte *)(DAT_0002bef8 + 0x7d) <= *(byte *)(DAT_0002bef8 + 0x84)) {
-        bVar2 = *(byte *)(DAT_0002bef8 + 0x7d);
+      bVar2 = chain_voltage_pic[8];
+      if (chain_voltage_pic[1] <= chain_voltage_pic[8]) {
+        bVar2 = chain_voltage_pic[1];
       }
-      if (*(byte *)(DAT_0002bef8 + 0x85) <= bVar2) {
-        bVar2 = *(byte *)(DAT_0002bef8 + 0x85);
+      if (chain_voltage_pic[9] <= bVar2) {
+        bVar2 = chain_voltage_pic[9];
       }
       return bVar2;
     }
   }
-  minVolPIC = '\0';
-  return minVolPIC;
+  return '\0';
 }
 

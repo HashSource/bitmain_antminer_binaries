@@ -1,6 +1,7 @@
 
 int Curl_ntlm_core_mk_ntlmv2_resp
-              (undefined4 param_1,undefined4 *param_2,int param_3,void **param_4,size_t *param_5)
+              (undefined4 param_1,undefined4 *param_2,int param_3,undefined4 *param_4,
+              size_t *param_5)
 
 {
   longlong lVar1;
@@ -16,14 +17,14 @@ int Curl_ntlm_core_mk_ntlmv2_resp
   
   tVar2 = time((time_t *)0x0);
   __n = *(int *)(param_3 + 0x14) + 0x30;
-  __s = (undefined4 *)(**DAT_0005fa88)(__n);
+  __s = (undefined4 *)(*Curl_cmalloc)(__n);
   if (__s == (undefined4 *)0x0) {
     iVar3 = 0x1b;
   }
   else {
     memset(__s,0,__n);
-    curl_msnprintf(__s + 4,*(int *)(param_3 + 0x14) + 0x20,DAT_0005fa8c,0,0,0,0);
-    lVar1 = (longlong)tVar2 * 10000000 + CONCAT44(DAT_0005fa84,DAT_0005fa80);
+    curl_msnprintf(__s + 4,*(int *)(param_3 + 0x14) + 0x20,&DAT_0013d0d8,0,0,0,0);
+    lVar1 = (longlong)tVar2 * 10000000 + 0x19db1ded53e8000;
     Curl_write64_le((int)lVar1,(int)((ulonglong)lVar1 >> 0x20),__s + 6);
     uVar4 = param_2[1];
     __s[8] = *param_2;
@@ -42,7 +43,7 @@ int Curl_ntlm_core_mk_ntlmv2_resp
       *param_5 = __n;
     }
     else {
-      (**DAT_0005fa90)(__s);
+      (*Curl_cfree)(__s);
     }
   }
   return iVar3;

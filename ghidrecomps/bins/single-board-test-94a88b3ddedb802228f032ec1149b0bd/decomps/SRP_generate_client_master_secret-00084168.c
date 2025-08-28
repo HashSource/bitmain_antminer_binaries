@@ -43,7 +43,7 @@ LAB_00084276:
         iVar1 = iVar2 + 7;
       }
       sVar4 = iVar1 >> 3;
-      to = (uchar *)CRYPTO_malloc(sVar4,DAT_00084288,0x191);
+      to = (uchar *)CRYPTO_malloc(sVar4,"tls_srp.c",0x191);
       if (to == (uchar *)0x0) goto LAB_00084276;
       BN_bn2bin(a_01,to);
       uVar3 = (**(code **)(*(int *)(*(int *)(param_1 + 8) + 100) + 0xc))(param_1,param_2,to,sVar4);

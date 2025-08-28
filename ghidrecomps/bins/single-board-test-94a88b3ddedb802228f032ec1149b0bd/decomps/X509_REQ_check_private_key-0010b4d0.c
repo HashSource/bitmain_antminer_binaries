@@ -17,7 +17,7 @@ int X509_REQ_check_private_key(X509_REQ *x509,EVP_PKEY *pkey)
   iVar1 = EVP_PKEY_cmp(a,pkey);
   switch(iVar1) {
   case 0:
-    ERR_put_error(0xb,0x90,0x74,DAT_0010b580,0x83);
+    ERR_put_error(0xb,0x90,0x74,"x509_req.c",0x83);
     iVar1 = 0;
     break;
   case 1:
@@ -25,21 +25,21 @@ int X509_REQ_check_private_key(X509_REQ *x509,EVP_PKEY *pkey)
     break;
   case -2:
     if (pkey->type == 0x198) {
-      ERR_put_error(0xb,0x90,0x10,DAT_0010b580,0x8b);
+      ERR_put_error(0xb,0x90,0x10,"x509_req.c",0x8b);
       iVar1 = 0;
       break;
     }
     if (pkey->type != 0x1c) {
-      ERR_put_error(0xb,0x90,0x75,DAT_0010b580,0x97);
+      ERR_put_error(0xb,0x90,0x75,"x509_req.c",0x97);
       iVar1 = 0;
       break;
     }
-    ERR_put_error(0xb,0x90,0x72,DAT_0010b580,0x93);
+    ERR_put_error(0xb,0x90,0x72,"x509_req.c",0x93);
   default:
     iVar1 = 0;
     break;
   case -1:
-    ERR_put_error(0xb,0x90,0x73,DAT_0010b580,0x86);
+    ERR_put_error(0xb,0x90,0x73,"x509_req.c",0x86);
     iVar1 = 0;
   }
   EVP_PKEY_free(a);

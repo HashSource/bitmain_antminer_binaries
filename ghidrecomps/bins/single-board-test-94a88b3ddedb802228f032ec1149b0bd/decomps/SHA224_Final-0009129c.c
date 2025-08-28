@@ -10,7 +10,7 @@ int SHA224_Final(uchar *md,SHA256_CTX *c)
   uVar2 = c->num;
   puVar3 = c->data;
   uVar1 = uVar2 + 1;
-  *(undefined *)((int)puVar3 + uVar2) = 0x80;
+  *(undefined1 *)((int)puVar3 + uVar2) = 0x80;
   if (uVar1 < 0x39) {
     __n = 0x37 - uVar2;
   }

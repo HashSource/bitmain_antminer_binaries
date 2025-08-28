@@ -41,7 +41,7 @@ undefined4 sig_cb(void *param_1,size_t param_2,uint *param_3)
     uVar7 = 0x74;
     goto LAB_0007020e;
   }
-  iVar2 = strcmp(local_28,DAT_00070258);
+  iVar2 = strcmp(local_28,"ECDSA");
   if (iVar2 != 0) {
     return 0;
   }

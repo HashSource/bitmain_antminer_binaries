@@ -7,13 +7,13 @@ undefined4 json_loadf(int param_1,undefined4 param_2,undefined4 param_3)
   char *pcVar3;
   code *local_60;
   int iStack_5c;
-  undefined local_58;
+  undefined1 local_58;
   undefined4 local_50;
   undefined4 local_4c;
   undefined4 local_48;
   undefined4 local_44;
   undefined4 local_3c;
-  undefined auStack_38 [12];
+  undefined1 auStack_38 [12];
   undefined4 local_2c;
   undefined4 local_24;
   

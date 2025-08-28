@@ -4,6 +4,6 @@
 BIGNUM * BN_get0_nist_prime_256(void)
 
 {
-  return DAT_001285b4;
+  return (BIGNUM *)_bignum_nist_p_256;
 }
 

@@ -6,9 +6,7 @@ size_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)
 {
   size_t sVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x00008d70. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  sVar1 = (*(code *)PTR_LAB_00035478)();
+  sVar1 = (*(code *)(undefined *)0x0)(__ptr);
   return sVar1;
 }
 

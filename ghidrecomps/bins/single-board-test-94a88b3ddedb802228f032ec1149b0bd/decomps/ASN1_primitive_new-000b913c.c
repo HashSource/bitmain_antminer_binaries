@@ -42,7 +42,7 @@ LAB_000b91a6:
     *pval = (ASN1_VALUE *)pAVar2;
     break;
   case -4:
-    pAVar3 = (ASN1_STRING *)CRYPTO_malloc(8,DAT_000b91d4,0x156);
+    pAVar3 = (ASN1_STRING *)CRYPTO_malloc(8,"tasn_new.c",0x156);
     if (pAVar3 == (ASN1_STRING *)0x0) {
       return 0;
     }

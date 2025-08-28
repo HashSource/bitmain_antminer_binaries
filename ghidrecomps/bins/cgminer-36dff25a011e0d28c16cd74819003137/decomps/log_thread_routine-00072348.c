@@ -32,8 +32,7 @@ void * log_thread_routine(void *arg)
   *(char **)((int)arg + 0x5c) = "cglog_sync";
   do {
     counter = counter + 1;
-    if (counter + (((uint)((ulonglong)counter * 0x88888889 >> 0x20) & 0xfffffff0) - counter / 0x1e)
-                  * -2 == 0) {
+    if (counter % 0x1e == 0) {
       time(&tloc);
       tm_info = (tm *)localtime(&tloc);
       strftime(path,0xf,"%Y-%m/%d",(tm *)tm_info);

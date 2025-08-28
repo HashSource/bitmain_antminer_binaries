@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void scanfreq_print_core_hash_clock_counter(void)
 
@@ -32,8 +32,9 @@ void scanfreq_print_core_hash_clock_counter(void)
         }
       }
       if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-        tmp42._0_2_ = (undefined2)DAT_0007854c;
-        tmp42[2] = (char)((uint)DAT_0007854c >> 0x10);
+        tmp42[0] = '\n';
+        tmp42[1] = '\n';
+        tmp42[2] = '\0';
         _applog(5,tmp42,false);
       }
     }

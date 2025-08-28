@@ -16,7 +16,7 @@ void ftp_nb_type(int param_1,int param_2,undefined4 param_3)
     ftp_state_type_resp_part_5(param_1,param_3);
     return;
   }
-  iVar1 = Curl_pp_sendf(param_1 + 0x3c0,DAT_0005c8f4,cVar2);
+  iVar1 = Curl_pp_sendf(param_1 + 0x3c0,"TYPE %c",cVar2);
   if (iVar1 == 0) {
     *(undefined4 *)(param_1 + 0x428) = param_3;
     *(char *)(param_1 + 0x418) = cVar2;

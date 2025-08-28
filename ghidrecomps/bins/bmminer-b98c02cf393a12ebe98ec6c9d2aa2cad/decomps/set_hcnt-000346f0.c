@@ -10,7 +10,7 @@ void set_hcnt(uint param_1)
   uint uVar6;
   int iVar7;
   undefined4 local_40;
-  int local_3c;
+  undefined1 local_3c [4];
   byte local_38;
   undefined4 local_34;
   uint local_30;
@@ -27,11 +27,12 @@ void set_hcnt(uint param_1)
   local_38 = 0;
   do {
     while ((*(int *)(dev + (iVar7 + 2) * 4) == 1 && (opt_multi_version != 0))) {
-      local_3c = (uVar5 & 0xff) << 8;
-      local_3c._0_3_ = CONCAT12((char)uVar6,(undefined2)local_3c);
+      local_3c = (undefined1  [4])((uVar5 & 0xff) << 8);
+      local_3c[2] = (char)uVar6;
       local_40 = 0x14000958;
-      local_3c = CONCAT13((char)param_1,(int3)CONCAT31((uint3)local_3c >> 8,(char)(param_1 >> 0x18))
-                         );
+      local_3c = (undefined1  [4])
+                 CONCAT13((char)param_1,
+                          (int3)CONCAT31((uint3)local_3c._0_3_ >> 8,(char)(param_1 >> 0x18)));
       local_38 = CRC5(&local_40,0x40,uVar5,uVar6,uVar6,uVar5);
       local_2c = (uint)local_38 << 0x18;
       local_34 = 0x58090014;

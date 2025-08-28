@@ -23,20 +23,20 @@ int general_allocate_boolean_constprop_3
           __c = (uint)*pbVar5;
           if (__c == 0) goto LAB_000d43aa;
         }
-        ERR_put_error(0x28,0x6c,0x68,DAT_000d4480,0xcb);
+        ERR_put_error(0x28,0x6c,0x68,"ui_lib.c",0xcb);
         pbVar5 = pbVar5 + 1;
         bVar1 = *pbVar5;
       }
 LAB_000d43aa:
       if (param_2 == 0) {
-        ERR_put_error(0x28,0x6d,0x43,DAT_000d4480,0x8f);
+        ERR_put_error(0x28,0x6d,0x43,"ui_lib.c",0x8f);
         return -1;
       }
       if (param_8 == 0) {
-        ERR_put_error(0x28,0x6d,0x69,DAT_000d4480,0x92);
+        ERR_put_error(0x28,0x6d,0x69,"ui_lib.c",0x92);
         return -1;
       }
-      ptr = (int *)CRYPTO_malloc(0x20,DAT_000d4480,0x93);
+      ptr = (int *)CRYPTO_malloc(0x20,"ui_lib.c",0x93);
       if (ptr == (int *)0x0) {
         return -1;
       }
@@ -73,7 +73,7 @@ LAB_000d43aa:
     }
     iVar4 = 0xc6;
   }
-  ERR_put_error(0x28,0x6c,0x43,DAT_000d4480,iVar4);
+  ERR_put_error(0x28,0x6c,0x43,"ui_lib.c",iVar4);
   return -1;
 }
 

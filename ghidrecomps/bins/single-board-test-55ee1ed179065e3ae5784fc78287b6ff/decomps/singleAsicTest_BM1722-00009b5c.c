@@ -2,10 +2,7 @@
 void singleAsicTest_BM1722(void)
 
 {
-  undefined4 local_2c;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
+  char local_2c [16];
   int local_1c;
   undefined4 local_18;
   undefined4 local_14;
@@ -13,20 +10,17 @@ void singleAsicTest_BM1722(void)
   local_14 = 0;
   local_18 = 0;
   local_1c = 0x1e240;
-  local_2c = s______BBD25601_check_asic_number_00028500._0_4_;
-  uStack_28 = s______BBD25601_check_asic_number_00028500._4_4_;
-  uStack_24 = s______BBD25601_check_asic_number_00028500._8_4_;
-  uStack_20 = s______BBD25601_check_asic_number_00028500._12_4_;
+  builtin_strncpy(local_2c,"                ",0x10);
   printf("\nBegin %s test\n","singleAsicTest_BM1722");
   system("date");
   putchar(10);
   reset_global_arg();
   chain_reset(gChain);
   fan_control(0x32);
-  pthread_create(DAT_00009eb4,(pthread_attr_t *)0x0,show_status_func + 1,
+  pthread_create((pthread_t *)(cgpu + 0x80008),(pthread_attr_t *)0x0,(__start_routine *)0xe135,
                  (void *)((int)&chain_info + (uint)gChain * 2));
-  *(undefined *)((int)&start_receive + (uint)gChain) = 1;
-  pthread_create(DAT_00009eb8,(pthread_attr_t *)0x0,receive_func + 1,
+  *(undefined1 *)((int)&start_receive + (uint)gChain) = 1;
+  pthread_create((pthread_t *)(cgpu + 0x80004),(pthread_attr_t *)0x0,(__start_routine *)0xebc5,
                  (void *)((int)&chain_info + (uint)gChain * 2));
   set_baud(gChain,0x1a);
   puts("\n--- check asic number");
@@ -35,10 +29,10 @@ void singleAsicTest_BM1722(void)
   if ((uint)(byte)cgpu[gChain + 0x1004b8] == Conf._108_4_) {
     calculate_timeout_and_baud();
     set_baud(gChain,Conf._260_4_ & 0xff);
-    set_BM1722_freq((float)(ulonglong)(uint)Conf._68_4_,gChain,0,1);
+    set_BM1722_freq((float)(uint)Conf._68_4_,gChain,0,1);
     BM1722_set_address_all(gChain);
     check_BM1722_asic_reg(gChain,0,0,1);
-    if (Conf[252] == '\x01') {
+    if (Conf[0xfc] == '\x01') {
       if (pattern_test_time == '\0') {
         get_temperature_offset_value_from_asic_chain(gChain);
         set_default_temperature_offset_value_chain(gChain);
@@ -47,7 +41,7 @@ void singleAsicTest_BM1722(void)
         set_default_temperature_offset_value_chain(gChain);
       }
     }
-    pthread_create(DAT_00009ebc,(pthread_attr_t *)0x0,read_temp_func + 1,
+    pthread_create((pthread_t *)(cgpu + 0x80010),(pthread_attr_t *)0x0,(__start_routine *)0xf349,
                    (void *)((int)&chain_info + (uint)gChain * 2));
     set_BM1725_asic_register(gChain,0,0x14,1,0x26);
     BM1722_open_core(gChain);
@@ -68,7 +62,7 @@ void singleAsicTest_BM1722(void)
       }
       usleep(10000);
     }
-    pthread_create(DAT_0000a060,(pthread_attr_t *)0x0,send_func + 1,
+    pthread_create((pthread_t *)(cgpu + 0x80000),(pthread_attr_t *)0x0,(__start_routine *)0xef59,
                    (void *)((int)&chain_info + (uint)gChain * 2));
     local_1c = pthread_join(cgpu._524288_4_,(void **)0x0);
     local_1c = pthread_join(cgpu._524292_4_,(void **)0x0);
@@ -81,9 +75,9 @@ void singleAsicTest_BM1722(void)
   else {
     pthread_cancel(cgpu._524292_4_);
     pthread_cancel(cgpu._524296_4_);
-    sprintf((char *)((int)&uStack_28 + 3),"%d",(uint)(byte)cgpu[gChain + 0x1004b8]);
+    sprintf(local_2c + 7,"%d",(uint)(byte)cgpu[gChain + 0x1004b8]);
     write_lcd(0,"   Only have    ",0x10);
-    write_lcd_no_memset(1,&local_2c,0x10);
+    write_lcd_no_memset(1,local_2c,0x10);
     write_lcd_no_memset(2,"      ASIC      ",0x10);
     printf("\n\n%s: Only have %d ASIC\n","singleAsicTest_BM1722",(uint)(byte)cgpu[gChain + 0x1004b8]
           );

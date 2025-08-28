@@ -15,12 +15,12 @@ ssl_parse_serverhello_renegotiate_ext(int param_1,byte *param_2,int param_3,unde
   uVar6 = uVar5 + uVar3;
   if (uVar6 != 0) {
     if (uVar5 == 0) {
-      OpenSSLDie(DAT_00083b84,0xf0,DAT_00083b88);
+      OpenSSLDie("t1_reneg.c",0xf0,"!expected_len || s->s3->previous_client_finished_len");
       if (*(char *)(*(int *)(param_1 + 0x58) + 0x415) == '\0') goto LAB_00083b64;
     }
     else if (uVar3 == 0) {
 LAB_00083b64:
-      OpenSSLDie(DAT_00083b84,0xf1,DAT_00083b8c);
+      OpenSSLDie("t1_reneg.c",0xf1,"!expected_len || s->s3->previous_server_finished_len");
     }
   }
   if (param_3 < 1) {
@@ -31,7 +31,7 @@ LAB_00083b64:
       if (*param_2 != uVar6) {
         iVar2 = 0x108;
 LAB_00083b16:
-        ERR_put_error(0x14,0x12d,0x151,DAT_00083b84,iVar2);
+        ERR_put_error(0x14,0x12d,0x151,"t1_reneg.c",iVar2);
         *param_4 = 0x28;
         return 0;
       }
@@ -55,7 +55,7 @@ LAB_00083b16:
   }
   iVar4 = 0x150;
 LAB_00083b40:
-  ERR_put_error(0x14,0x12d,iVar4,DAT_00083b84,iVar2);
+  ERR_put_error(0x14,0x12d,iVar4,"t1_reneg.c",iVar2);
   *param_4 = 0x2f;
   return 0;
 }

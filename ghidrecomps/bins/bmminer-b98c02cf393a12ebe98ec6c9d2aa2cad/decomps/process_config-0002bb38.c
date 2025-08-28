@@ -1,5 +1,5 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* WARNING: Type propagation algorithm not settling */
 
 undefined4 process_config(void)
 
@@ -7,17 +7,9 @@ undefined4 process_config(void)
   undefined4 uVar1;
   undefined4 uVar2;
   int iVar3;
-  undefined4 local_820;
-  undefined4 uStack_81c;
-  undefined4 uStack_818;
-  undefined4 uStack_814;
-  undefined4 local_810;
-  undefined4 uStack_80c;
-  undefined4 uStack_808;
-  undefined4 uStack_804;
-  undefined4 local_800;
+  char local_820 [36];
   undefined4 local_7fc;
-  undefined4 uStack_7f8;
+  char acStack_7f8 [4];
   undefined2 local_7f4;
   
   conf._52_4_ = Conf._68_4_;
@@ -26,25 +18,20 @@ undefined4 process_config(void)
   if (Conf._68_4_ == 1) {
     if (Conf._152_4_ == 1) {
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (2 < opt_log_level)) {
-        local_820 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._0_4_;
-        uStack_81c = s_Can_t_get_temperature_from_ASIC_i_00060bc0._4_4_;
-        uStack_818 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._8_4_;
-        uStack_814 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._12_4_;
-        local_810 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._16_4_;
-        uStack_80c = s_Can_t_get_temperature_from_ASIC_i_00060bc0._20_4_;
-        uStack_808 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._24_4_;
-        uStack_804 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._28_4_;
-        local_800 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._32_4_;
-        local_7fc = s_Can_t_get_temperature_from_ASIC_i_00060bc0._36_4_;
-        uStack_7f8 = s_Can_t_get_temperature_from_ASIC_i_00060bc0._40_4_;
-        local_7f4 = (undefined2)ram0x00060bec;
-        _applog(3,&local_820,0);
+        builtin_strncpy(local_820,"Can\'t get temperature from ASIC in F",0x24);
+        local_7fc._0_1_ = 'I';
+        local_7fc._1_1_ = 'L';
+        local_7fc._2_1_ = ' ';
+        local_7fc._3_1_ = 'm';
+        builtin_strncpy(acStack_7f8,"ode!",4);
+        local_7f4 = 10;
+        _applog(3,local_820,0);
       }
       return 0xffffffff;
     }
   }
   else if (Conf._152_4_ == 1 && Conf._68_4_ == 0) {
-    DAT_002f457c = (undefined)Conf._156_4_;
+    DAT_002f457c = (undefined1)Conf._156_4_;
     DAT_002f457d = 1;
     DAT_002f457e = 3;
     if (Conf._160_4_ + Conf._164_4_ + Conf._168_4_ + Conf._172_4_ == 0) {
@@ -56,30 +43,22 @@ undefined4 process_config(void)
         conf._132_4_ = Conf._156_4_;
         return 0xffffffff;
       }
-      local_820 = s_Must_set_temperature_sensor_addr_00060bf0._0_4_;
-      uStack_81c = s_Must_set_temperature_sensor_addr_00060bf0._4_4_;
-      uStack_818 = s_Must_set_temperature_sensor_addr_00060bf0._8_4_;
-      uStack_814 = s_Must_set_temperature_sensor_addr_00060bf0._12_4_;
-      local_810 = s_Must_set_temperature_sensor_addr_00060bf0._16_4_;
-      uStack_80c = s_Must_set_temperature_sensor_addr_00060bf0._20_4_;
-      uStack_808 = s_Must_set_temperature_sensor_addr_00060bf0._24_4_;
-      uStack_804 = s_Must_set_temperature_sensor_addr_00060bf0._28_4_;
-      local_800 = s_Must_set_temperature_sensor_addr_00060bf0._32_4_;
-      local_7fc = CONCAT22(local_7fc._2_2_,(short)ram0x00060c14);
-      _applog(3,&local_820,0);
+      builtin_strncpy(local_820,"Must set temperature sensor address!",0x24);
+      local_7fc = CONCAT22(local_7fc._2_2_,10);
+      _applog(3,local_820,0);
       return 0xffffffff;
     }
-    DAT_002f457f = Conf[176];
-    conf[139] = (undefined)Conf._172_4_;
-    conf[136] = (undefined)Conf._160_4_;
-    conf[137] = (undefined)Conf._164_4_;
-    conf[138] = (undefined)Conf._168_4_;
-    conf[168] = (undefined)Conf._204_4_;
-    conf[169] = (undefined)Conf._208_4_;
+    DAT_002f457f = Conf[0xb0];
+    conf[0x8b] = (undefined1)Conf._172_4_;
+    conf[0x88] = (undefined1)Conf._160_4_;
+    conf[0x89] = (undefined1)Conf._164_4_;
+    conf[0x8a] = (undefined1)Conf._168_4_;
+    conf[0xa8] = (undefined1)Conf._204_4_;
+    conf[0xa9] = (undefined1)Conf._208_4_;
     DAT_002f4580 = DAT_002f457f;
     DAT_002f4581 = DAT_002f457f;
     DAT_002f4582 = DAT_002f457f;
-    conf[140] = DAT_002f457f;
+    conf[0x8c] = DAT_002f457f;
   }
   conf._144_4_ = Conf._180_4_;
   conf._148_4_ = Conf._184_4_;
@@ -129,22 +108,20 @@ undefined4 process_config(void)
   if (Conf._8_4_ - 1 < 5000) {
     conf._0_4_ = Conf._8_4_;
 LAB_0002bcb2:
-    if (((uint)((int)conf._0_4_ < (int)Conf._12_4_) | (uint)Conf._12_4_ >> 0x1f) == 0)
-    goto LAB_0002bcc4;
+    if ((int)Conf._12_4_ <= (int)conf._0_4_ && -1 < (int)Conf._12_4_) goto LAB_0002bcc4;
     if ((use_syslog != '\0') || (opt_log_output != '\0')) {
 LAB_0002bd7a:
-      snprintf((char *)&local_820,0x800,"$$$$Config argument DataCount:%d err\n",Conf._8_4_);
-      _applog(3,&local_820);
+      snprintf(local_820,0x800,"$$$$Config argument DataCount:%d err\n",Conf._8_4_);
+      _applog(3,local_820,0);
       goto LAB_0002bcc8;
     }
 LAB_0002bf6c:
     if (2 < opt_log_level) goto LAB_0002bd7a;
-    if (((uint)((int)conf._0_4_ < (int)Conf._16_4_) | (uint)Conf._16_4_ >> 0x1f) != 0)
-    goto LAB_0002bf96;
+    if ((int)conf._0_4_ < (int)Conf._16_4_ || (int)Conf._16_4_ < 0) goto LAB_0002bf96;
 LAB_0002bcda:
     conf._8_4_ = Conf._16_4_;
 LAB_0002bcde:
-    if (((uint)((int)conf._0_4_ < (int)Conf._20_4_) | (uint)Conf._20_4_ >> 0x1f) == 0) {
+    if ((int)Conf._20_4_ <= (int)conf._0_4_ && -1 < (int)Conf._20_4_) {
       conf._12_4_ = Conf._20_4_;
       return 0;
     }
@@ -152,26 +129,24 @@ LAB_0002bcde:
   }
   else {
     if (((use_syslog != '\0') || (opt_log_output != '\0')) || (2 < opt_log_level)) {
-      snprintf((char *)&local_820,0x800,"$$$$Config argument DataCount:%d err\n");
-      _applog(3,&local_820);
+      snprintf(local_820,0x800,"$$$$Config argument DataCount:%d err\n");
+      _applog(3,local_820,0);
       goto LAB_0002bcb2;
     }
-    if (((uint)((int)conf._0_4_ < (int)Conf._12_4_) | (uint)Conf._12_4_ >> 0x1f) != 0)
-    goto LAB_0002bf6c;
+    if ((int)conf._0_4_ < (int)Conf._12_4_ || (int)Conf._12_4_ < 0) goto LAB_0002bf6c;
 LAB_0002bcc4:
     conf._4_4_ = Conf._12_4_;
 LAB_0002bcc8:
-    if (((uint)((int)conf._0_4_ < (int)Conf._16_4_) | (uint)Conf._16_4_ >> 0x1f) == 0)
-    goto LAB_0002bcda;
+    if ((int)Conf._16_4_ <= (int)conf._0_4_ && -1 < (int)Conf._16_4_) goto LAB_0002bcda;
     if ((use_syslog != '\0') || (opt_log_output != '\0')) {
 LAB_0002bdbc:
-      snprintf((char *)&local_820,0x800,"$$$$Config argument DataCount:%d err\n",Conf._8_4_);
-      _applog(3,&local_820,0);
+      snprintf(local_820,0x800,"$$$$Config argument DataCount:%d err\n",Conf._8_4_);
+      _applog(3,local_820,0);
       goto LAB_0002bcde;
     }
 LAB_0002bf96:
     if (2 < opt_log_level) goto LAB_0002bdbc;
-    if (((uint)((int)conf._0_4_ < (int)Conf._20_4_) | (uint)Conf._20_4_ >> 0x1f) == 0) {
+    if ((int)Conf._20_4_ <= (int)conf._0_4_ && -1 < (int)Conf._20_4_) {
       conf._12_4_ = Conf._20_4_;
       return 0;
     }
@@ -180,8 +155,8 @@ LAB_0002bf96:
     return 0;
   }
 LAB_0002be0a:
-  snprintf((char *)&local_820,0x800,"$$$$Config argument DataCount:%d err\n",Conf._8_4_);
-  _applog(3,&local_820,0);
+  snprintf(local_820,0x800,"$$$$Config argument DataCount:%d err\n",Conf._8_4_);
+  _applog(3,local_820,0);
   return 0;
 }
 

@@ -1,5 +1,5 @@
 
-undefined4 nonce_handle(int param_1,int param_2,int param_3,int param_4,undefined param_5)
+undefined4 nonce_handle(int param_1,int param_2,int param_3,int param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -11,11 +11,11 @@ undefined4 nonce_handle(int param_1,int param_2,int param_3,int param_4,undefine
   byte local_15;
   byte local_14;
   byte local_13;
-  undefined local_12;
+  undefined1 local_12;
   byte local_11;
   
   local_11 = *(byte *)(param_3 + 2) & 0xf;
-  local_12 = *(undefined *)(param_3 + 3);
+  local_12 = *(undefined1 *)(param_3 + 3);
   local_13 = __udivsi3(local_12,addr_interval);
   local_14 = *(byte *)(param_3 + 5);
   local_15 = 0;
@@ -60,13 +60,13 @@ undefined4 nonce_handle(int param_1,int param_2,int param_3,int param_4,undefine
         pthread_mutex_lock((pthread_mutex_t *)nonce_mutex);
         nonce_fifo[nonce_fifo._0_4_ * 0x54d + 0x558] = param_5;
         nonce_fifo[nonce_fifo._0_4_ * 0x54d + 0x54c] =
-             *(undefined *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x540);
+             *(undefined1 *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x540);
         nonce_fifo[nonce_fifo._0_4_ * 0x54d + 0x54d] =
-             *(undefined *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x541);
+             *(undefined1 *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x541);
         nonce_fifo[nonce_fifo._0_4_ * 0x54d + 0x54e] =
-             *(undefined *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x542);
+             *(undefined1 *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x542);
         nonce_fifo[nonce_fifo._0_4_ * 0x54d + 0x54f] =
-             *(undefined *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x543);
+             *(undefined1 *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x543);
         memcpy(nonce_fifo + nonce_fifo._0_4_ * 0x54d + 0x550,
                (void *)((uint)local_15 * 0x54d + param_1 + (uint)local_13 * 0x54d + 0x544),4);
         memcpy(nonce_fifo + nonce_fifo._0_4_ * 0x54d + 0x554,

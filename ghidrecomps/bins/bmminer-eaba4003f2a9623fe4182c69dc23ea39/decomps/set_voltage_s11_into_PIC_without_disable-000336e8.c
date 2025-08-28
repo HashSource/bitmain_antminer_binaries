@@ -18,7 +18,7 @@ int set_voltage_s11_into_PIC_without_disable(uchar which_chain,uint pic_voltage)
   double temp_voltage;
   
   cgsleep_ms(500);
-  temp_voltage = DAT_00033868 - ((double)(ulonglong)pic_voltage * DAT_00033858) / DAT_00033860;
+  temp_voltage = 1718.459125 - ((double)pic_voltage * 85.509875) / 100.0;
   if ((int)((uint)(temp_voltage < 0.0) << 0x1f) < 0) {
     temp_voltage = 0.0;
   }

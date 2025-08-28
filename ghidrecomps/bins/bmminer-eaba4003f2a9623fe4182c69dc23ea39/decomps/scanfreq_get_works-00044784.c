@@ -31,36 +31,13 @@ int scanfreq_get_works(void)
     scanfreq_info.works[i] = pSVar3;
     if (scanfreq_info.works[i] == (SCAN_FREQ_WORK *)0x0) {
       if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-        tmp42[0] = s_malloc_struct_work_err_00077cc4[0];
-        tmp42[1] = s_malloc_struct_work_err_00077cc4[1];
-        tmp42[2] = s_malloc_struct_work_err_00077cc4[2];
-        tmp42[3] = s_malloc_struct_work_err_00077cc4[3];
-        tmp42[4] = s_malloc_struct_work_err_00077cc4[4];
-        tmp42[5] = s_malloc_struct_work_err_00077cc4[5];
-        tmp42[6] = s_malloc_struct_work_err_00077cc4[6];
-        tmp42[7] = s_malloc_struct_work_err_00077cc4[7];
-        tmp42[8] = s_malloc_struct_work_err_00077cc4[8];
-        tmp42[9] = s_malloc_struct_work_err_00077cc4[9];
-        tmp42[10] = s_malloc_struct_work_err_00077cc4[10];
-        tmp42[11] = s_malloc_struct_work_err_00077cc4[11];
-        tmp42[12] = s_malloc_struct_work_err_00077cc4[12];
-        tmp42[13] = s_malloc_struct_work_err_00077cc4[13];
-        tmp42[14] = s_malloc_struct_work_err_00077cc4[14];
-        tmp42[15] = s_malloc_struct_work_err_00077cc4[15];
-        tmp42[16] = s_malloc_struct_work_err_00077cc4[16];
-        tmp42[17] = s_malloc_struct_work_err_00077cc4[17];
-        tmp42[18] = s_malloc_struct_work_err_00077cc4[18];
-        tmp42[19] = s_malloc_struct_work_err_00077cc4[19];
-        tmp42[20] = s_malloc_struct_work_err_00077cc4[20];
-        tmp42[21] = s_malloc_struct_work_err_00077cc4[21];
-        tmp42[22] = s_malloc_struct_work_err_00077cc4[22];
-        tmp42[23] = s_malloc_struct_work_err_00077cc4[23];
+        builtin_strncpy(tmp42,"malloc struct work err\n",0x18);
         _applog(5,tmp42,false);
       }
       return -1;
     }
     for (j = 0; j < iVar2; j = j + 1) {
-      sprintf(strFilePath,"%s%02i%s%02i.txt",DAT_00044a78,i,DAT_00044a74,j);
+      sprintf(strFilePath,"%s%02i%s%02i.txt",0x18b858,i,0x18b898,j);
       pFVar4 = fopen(strFilePath,"r");
       scanfreq_info.fps[iVar2 * i + j] = (FILE *)pFVar4;
       if (scanfreq_info.fps[iVar2 * i + j] == (FILE *)0x0) {

@@ -14,7 +14,7 @@ undefined4 check_policy(int param_1)
                               *(stack_st_ASN1_OBJECT **)(*(int *)(param_1 + 0x14) + 0x1c),
                               *(uint *)(*(int *)(param_1 + 0x14) + 0xc));
     if (iVar1 == 0) {
-      ERR_put_error(0xb,0x91,0x41,DAT_000c0c7c,0x64b);
+      ERR_put_error(0xb,0x91,0x41,"x509_vfy.c",0x64b);
       return 0;
     }
     if (iVar1 == -1) {

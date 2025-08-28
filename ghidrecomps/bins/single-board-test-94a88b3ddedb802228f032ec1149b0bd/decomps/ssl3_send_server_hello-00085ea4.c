@@ -47,7 +47,7 @@ undefined4 ssl3_send_server_hello(undefined4 *param_1)
       __n = 0;
 LAB_00085f30:
       *(char *)(iVar5 + 0x22) = (char)__n;
-      iVar7 = (int)(void *)(iVar5 + 0x23) + __n;
+      iVar7 = iVar5 + 0x23 + __n;
       memcpy((void *)(iVar5 + 0x23),(void *)(param_1[0x30] + 0x48),__n);
       iVar3 = ssl3_put_cipher_by_char(*(undefined4 *)(param_1[0x16] + 0x344),iVar7);
       pbVar4 = *(byte **)(param_1[0x16] + 0x38c);
@@ -72,7 +72,7 @@ LAB_00085f30:
         iVar3 = 0x44;
       }
     }
-    ERR_put_error(0x14,0xf2,iVar3,DAT_00085fe4,iVar5);
+    ERR_put_error(0x14,0xf2,iVar3,"s3_srvr.c",iVar5);
     uVar1 = 0xffffffff;
     param_1[0xd] = 5;
   }

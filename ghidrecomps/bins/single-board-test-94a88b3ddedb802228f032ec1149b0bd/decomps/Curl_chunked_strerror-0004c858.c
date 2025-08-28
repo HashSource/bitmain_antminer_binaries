@@ -1,13 +1,15 @@
 
-undefined4 Curl_chunked_strerror(int param_1)
+undefined * Curl_chunked_strerror(int param_1)
 
 {
-  undefined4 uVar1;
+  undefined *puVar1;
   
-  uVar1 = DAT_0004c86c;
   if (param_1 - 1U < 6) {
-    uVar1 = *(undefined4 *)(DAT_0004c868 + (param_1 - 1U) * 4);
+    puVar1 = (&CSWTCH_11)[param_1 - 1U];
   }
-  return uVar1;
+  else {
+    puVar1 = &DAT_00137e94;
+  }
+  return puVar1;
 }
 

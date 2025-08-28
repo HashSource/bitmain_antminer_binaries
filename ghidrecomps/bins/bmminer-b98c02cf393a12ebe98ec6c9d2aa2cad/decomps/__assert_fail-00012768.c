@@ -4,7 +4,7 @@
 void __assert_fail(char *__assertion,char *__file,uint __line,char *__function)
 
 {
-  (*(code *)PTR___assert_fail_0007d0ac)();
-  return;
+                    /* WARNING: Subroutine does not return */
+  __assert_fail(__assertion,__file,__line,__function);
 }
 

@@ -14,13 +14,13 @@ uchar * eckey_pub_encode(X509_PUBKEY *param_1,int param_2)
   local_24 = (ASN1_OBJECT *)0x0;
   iVar1 = eckey_param2type(&local_20,&local_24,key);
   if (iVar1 == 0) {
-    ERR_put_error(0x10,0xd8,0x10,DAT_000f83e0,0x72);
+    ERR_put_error(0x10,0xd8,0x10,"ec_ameth.c",0x72);
     penc = (uchar *)0x0;
   }
   else {
     iVar1 = i2o_ECPublicKey(key,(uchar **)0x0);
     if ((iVar1 < 1) ||
-       (penc = (uchar *)CRYPTO_malloc(iVar1,DAT_000f83e0,0x78), penc == (uchar *)0x0)) {
+       (penc = (uchar *)CRYPTO_malloc(iVar1,"ec_ameth.c",0x78), penc == (uchar *)0x0)) {
       penc = (uchar *)0x0;
     }
     else {

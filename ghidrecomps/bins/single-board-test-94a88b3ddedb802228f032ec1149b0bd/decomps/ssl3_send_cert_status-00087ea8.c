@@ -4,7 +4,7 @@ undefined4 ssl3_send_cert_status(int param_1)
 {
   undefined4 uVar1;
   int iVar2;
-  undefined *puVar3;
+  undefined1 *puVar3;
   
   if (*(int *)(param_1 + 0x34) == 0x2200) {
     iVar2 = BUF_MEM_grow(*(BUF_MEM **)(param_1 + 0x3c),*(int *)(param_1 + 0x13c) + 8);
@@ -12,7 +12,7 @@ undefined4 ssl3_send_cert_status(int param_1)
       *(undefined4 *)(param_1 + 0x34) = 5;
       return 0xffffffff;
     }
-    puVar3 = *(undefined **)(*(int *)(param_1 + 0x3c) + 4);
+    puVar3 = *(undefined1 **)(*(int *)(param_1 + 0x3c) + 4);
     *puVar3 = 0x16;
     puVar3[1] = (char)((uint)(*(int *)(param_1 + 0x13c) + 4) >> 0x10);
     puVar3[2] = (char)((uint)(*(int *)(param_1 + 0x13c) + 4) >> 8);

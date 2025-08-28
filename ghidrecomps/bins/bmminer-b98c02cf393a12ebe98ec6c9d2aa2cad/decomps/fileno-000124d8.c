@@ -6,7 +6,7 @@ int fileno(FILE *__stream)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_fileno_0007cfd8)();
+  iVar1 = fileno(__stream);
   return iVar1;
 }
 

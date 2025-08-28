@@ -2,30 +2,28 @@
 void OBJ_NAME_cleanup(int type)
 
 {
-  _STACK **pp_Var1;
-  LHASH_DOALL_FN_TYPE func;
-  _LHASH *lh;
+  _LHASH *extraout_r3;
+  _LHASH *p_Var1;
   ulong uVar2;
   
-  pp_Var1 = DAT_0008bfa0;
-  lh = (_LHASH *)DAT_0008bfa0[2];
-  if (lh != (_LHASH *)0x0) {
-    uVar2 = lh->down_load;
-    lh->down_load = 0;
-    func = DAT_0008bfa4;
-    pp_Var1[1] = (_STACK *)type;
-    lh_doall(lh,func);
+  p_Var1 = names_lh;
+  if (names_lh != (_LHASH *)0x0) {
+    uVar2 = names_lh->down_load;
+    names_lh->down_load = 0;
+    free_type = type;
+    lh_doall(p_Var1,(LHASH_DOALL_FN_TYPE)0x8baed);
+    p_Var1 = extraout_r3;
     if (-1 < type) {
-      lh = (_LHASH *)pp_Var1[2];
+      p_Var1 = names_lh;
     }
     if (-1 >= type) {
-      lh_free((_LHASH *)pp_Var1[2]);
-      sk_pop_free(*pp_Var1,DAT_0008bfa8);
-      pp_Var1[2] = (_STACK *)0x0;
-      *pp_Var1 = (_STACK *)0x0;
+      lh_free(names_lh);
+      sk_pop_free(name_funcs_stack,(func *)0x8ba39);
+      names_lh = (_LHASH *)0x0;
+      name_funcs_stack = (_STACK *)0x0;
       return;
     }
-    lh->down_load = uVar2;
+    p_Var1->down_load = uVar2;
   }
   return;
 }

@@ -28,7 +28,7 @@ void ssl3_free(int param_1)
       iVar1 = *(int *)(param_1 + 0x58);
     }
     if (*(_STACK **)(iVar1 + 0x36c) != (_STACK *)0x0) {
-      sk_pop_free(*(_STACK **)(iVar1 + 0x36c),DAT_000694bc);
+      sk_pop_free(*(_STACK **)(iVar1 + 0x36c),(func *)0xb7acd);
       iVar1 = *(int *)(param_1 + 0x58);
     }
     if (*(BIO **)(iVar1 + 0x178) != (BIO *)0x0) {

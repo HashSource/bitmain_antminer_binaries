@@ -4,18 +4,13 @@ int jsonp_dtostr(char *buffer,size_t size,double value)
 {
   int iVar1;
   char *pcVar2;
-  int ret;
-  size_t length;
   lconv *plVar3;
-  char **point;
   char *pcVar4;
-  char *pos;
   char *pcVar5;
-  char *start;
+  undefined4 in_r3;
   char *__src;
-  char *end;
   
-  pcVar2 = (char *)snprintf(buffer,size,DAT_0003c7dc);
+  pcVar2 = (char *)snprintf(buffer,size,"%.17g",in_r3,value);
   if (((int)pcVar2 < 0) || (size <= pcVar2)) {
     return -1;
   }

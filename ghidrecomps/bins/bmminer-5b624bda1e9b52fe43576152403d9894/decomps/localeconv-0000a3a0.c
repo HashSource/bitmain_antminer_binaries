@@ -6,9 +6,7 @@ lconv * localeconv(void)
 {
   lconv *plVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a3a8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  plVar1 = (lconv *)(*(code *)PTR_LAB_0005f270)();
+  plVar1 = (lconv *)(*(code *)(undefined *)0x0)();
   return plVar1;
 }
 

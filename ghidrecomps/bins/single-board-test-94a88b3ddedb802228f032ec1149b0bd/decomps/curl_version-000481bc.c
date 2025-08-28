@@ -2,39 +2,30 @@
 undefined4 * curl_version(void)
 
 {
-  undefined4 *puVar1;
-  int iVar2;
-  undefined4 *puVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  undefined *puVar7;
-  int iVar8;
+  int iVar1;
+  undefined4 uVar2;
+  undefined1 *puVar3;
+  int iVar4;
   
-  puVar1 = DAT_00048210;
-  if (*(char *)(DAT_00048210 + 0x32) != '\0') {
-    return DAT_00048210;
+  if (initialized_22785 != '\0') {
+    return &version_22786;
   }
-  iVar8 = 0xba;
-  uVar4 = DAT_00048214[1];
-  uVar5 = DAT_00048214[2];
-  uVar6 = DAT_00048214[3];
-  *DAT_00048210 = *DAT_00048214;
-  puVar1[1] = uVar4;
-  puVar1[2] = uVar5;
-  *(short *)(puVar1 + 3) = (short)uVar6;
-  puVar7 = (undefined *)((int)puVar1 + 0xe);
-  *puVar7 = (char)((uint)uVar6 >> 0x10);
-  iVar2 = Curl_ssl_version((int)puVar1 + 0xf,0xb9);
-  if (iVar2 != 0) {
-    iVar8 = 0xb9 - iVar2;
-    puVar7 = puVar7 + iVar2 + 1;
-    *(undefined *)((int)puVar1 + 0xe) = 0x20;
+  iVar4 = 0xba;
+  version_22786 = 0x6362696c;
+  DAT_003b0fd8 = 0x2f6c7275;
+  DAT_003b0fdc = 0x38342e37;
+  DAT_003b0fe0 = 0x302e;
+  puVar3 = &DAT_003b0fe2;
+  DAT_003b0fe2 = 0;
+  iVar1 = Curl_ssl_version(&DAT_003b0fe3,0xb9);
+  if (iVar1 != 0) {
+    iVar4 = 0xb9 - iVar1;
+    puVar3 = &DAT_003b0fe3 + iVar1;
+    DAT_003b0fe2 = 0x20;
   }
-  uVar4 = zlibVersion();
-  curl_msnprintf(puVar7,iVar8,DAT_00048218,uVar4);
-  puVar3 = DAT_00048210;
-  *(undefined *)(puVar1 + 0x32) = 1;
-  return puVar3;
+  uVar2 = zlibVersion();
+  curl_msnprintf(puVar3,iVar4," zlib/%s",uVar2);
+  initialized_22785 = 1;
+  return &version_22786;
 }
 

@@ -1,13 +1,9 @@
 
-/* WARNING: Variable defined which should be unmapped: id-local */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int parse_job_to_soc(uchar **buf,pool *pool,uint32_t id)
 
 {
   uchar *puVar1;
   bool bVar2;
-  undefined4 uStack_890;
   uint32_t id_local;
   pool *pool_local;
   uchar **buf_local;
@@ -37,38 +33,15 @@ int parse_job_to_soc(uchar **buf,pool *pool,uint32_t id)
   part_job.coinbase_len = (uint16_t)pool->coinbase_len;
   part_job.nonce2_offset = (uint16_t)pool->nonce2_offset;
   part_job.nonce2_bytes_num = (uint16_t)pool->n2size;
-  nonce2 = __uint64_identity(CONCAT44(id,uStack_890));
+  nonce2 = __uint64_identity(pool->nonce2);
   memcpy(&part_job.nonce2_start_value,pool->coinbase + pool->nonce2_offset,8);
   memcpy(&part_job.nonce2_start_value,&nonce2,pool->n2size);
   part_job.merkles_num = (uint16_t)pool->merkles;
   buf_len = pool->coinbase_len + pool->merkles * 0x20 + 0x5a;
   tmp_buf = (uchar *)malloc(buf_len);
   if (tmp_buf == (uchar *)0x0) {
-    tmp42[0] = s_Failed_to_malloc_tmp_buf_0009d308[0];
-    tmp42[1] = s_Failed_to_malloc_tmp_buf_0009d308[1];
-    tmp42[2] = s_Failed_to_malloc_tmp_buf_0009d308[2];
-    tmp42[3] = s_Failed_to_malloc_tmp_buf_0009d308[3];
-    tmp42[4] = s_Failed_to_malloc_tmp_buf_0009d308[4];
-    tmp42[5] = s_Failed_to_malloc_tmp_buf_0009d308[5];
-    tmp42[6] = s_Failed_to_malloc_tmp_buf_0009d308[6];
-    tmp42[7] = s_Failed_to_malloc_tmp_buf_0009d308[7];
-    tmp42[8] = s_Failed_to_malloc_tmp_buf_0009d308[8];
-    tmp42[9] = s_Failed_to_malloc_tmp_buf_0009d308[9];
-    tmp42[10] = s_Failed_to_malloc_tmp_buf_0009d308[10];
-    tmp42[11] = s_Failed_to_malloc_tmp_buf_0009d308[11];
-    tmp42[12] = s_Failed_to_malloc_tmp_buf_0009d308[12];
-    tmp42[13] = s_Failed_to_malloc_tmp_buf_0009d308[13];
-    tmp42[14] = s_Failed_to_malloc_tmp_buf_0009d308[14];
-    tmp42[15] = s_Failed_to_malloc_tmp_buf_0009d308[15];
-    tmp42[16] = s_Failed_to_malloc_tmp_buf_0009d308[16];
-    tmp42[17] = s_Failed_to_malloc_tmp_buf_0009d308[17];
-    tmp42[18] = s_Failed_to_malloc_tmp_buf_0009d308[18];
-    tmp42[19] = s_Failed_to_malloc_tmp_buf_0009d308[19];
-    tmp42[20] = s_Failed_to_malloc_tmp_buf_0009d308[20];
-    tmp42[21] = s_Failed_to_malloc_tmp_buf_0009d308[21];
-    tmp42[22] = s_Failed_to_malloc_tmp_buf_0009d308[22];
-    tmp42[23] = s_Failed_to_malloc_tmp_buf_0009d308[23];
-    tmp42[24] = (char)ram0x0009d320;
+    builtin_strncpy(tmp42,"Failed to malloc tmp_buf",0x18);
+    tmp42[0x18] = '\0';
     _applog(3,tmp42,true);
     _quit(1);
   }
@@ -87,27 +60,8 @@ int parse_job_to_soc(uchar **buf,pool *pool,uint32_t id)
   puVar1 = (uchar *)malloc(buf_len);
   *buf = puVar1;
   if (tmp_buf == (uchar *)0x0) {
-    tmp42[0] = s_Failed_to_malloc_buf_0009d324[0];
-    tmp42[1] = s_Failed_to_malloc_buf_0009d324[1];
-    tmp42[2] = s_Failed_to_malloc_buf_0009d324[2];
-    tmp42[3] = s_Failed_to_malloc_buf_0009d324[3];
-    tmp42[4] = s_Failed_to_malloc_buf_0009d324[4];
-    tmp42[5] = s_Failed_to_malloc_buf_0009d324[5];
-    tmp42[6] = s_Failed_to_malloc_buf_0009d324[6];
-    tmp42[7] = s_Failed_to_malloc_buf_0009d324[7];
-    tmp42[8] = s_Failed_to_malloc_buf_0009d324[8];
-    tmp42[9] = s_Failed_to_malloc_buf_0009d324[9];
-    tmp42[10] = s_Failed_to_malloc_buf_0009d324[10];
-    tmp42[11] = s_Failed_to_malloc_buf_0009d324[11];
-    tmp42[12] = s_Failed_to_malloc_buf_0009d324[12];
-    tmp42[13] = s_Failed_to_malloc_buf_0009d324[13];
-    tmp42[14] = s_Failed_to_malloc_buf_0009d324[14];
-    tmp42[15] = s_Failed_to_malloc_buf_0009d324[15];
-    tmp42[16] = s_Failed_to_malloc_buf_0009d324[16];
-    tmp42[17] = s_Failed_to_malloc_buf_0009d324[17];
-    tmp42[18] = s_Failed_to_malloc_buf_0009d324[18];
-    tmp42[19] = s_Failed_to_malloc_buf_0009d324[19];
-    tmp42[20] = (char)ram0x0009d338;
+    builtin_strncpy(tmp42,"Failed to malloc buf",0x14);
+    tmp42._20_4_ = tmp42._20_4_ & 0xffffff00;
     _applog(3,tmp42,true);
     _quit(1);
   }

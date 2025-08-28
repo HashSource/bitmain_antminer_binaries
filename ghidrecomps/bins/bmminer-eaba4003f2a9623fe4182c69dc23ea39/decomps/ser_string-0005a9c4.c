@@ -22,7 +22,7 @@ uchar * ser_string(char *s,int *slen)
   }
   else if (n < 0x10000) {
     *puVar1 = 0xfd;
-    *(ushort *)(puVar1 + 1) = (ushort)((n & 0xff) << 8) | (ushort)n >> 8;
+    *(ushort *)(puVar1 + 1) = (ushort)n << 8 | (ushort)n >> 8;
     _cg_memcpy(puVar1 + 3,s,n,"util.c","ser_string",0x3f1);
     *slen = n + 3;
   }

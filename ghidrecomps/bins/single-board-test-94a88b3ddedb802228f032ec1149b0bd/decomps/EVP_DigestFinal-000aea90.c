@@ -7,7 +7,7 @@ int EVP_DigestFinal(EVP_MD_CTX *ctx,uchar *md,uint *s)
   
   pEVar2 = ctx->digest;
   if (0x40 < pEVar2->md_size) {
-    OpenSSLDie(DAT_000aeae8,0x115,DAT_000aeaec);
+    OpenSSLDie("digest.c",0x115,"ctx->digest->md_size <= EVP_MAX_MD_SIZE");
     pEVar2 = ctx->digest;
   }
   iVar1 = (*pEVar2->final)(ctx,md);

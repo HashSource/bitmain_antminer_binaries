@@ -22,7 +22,7 @@ void get_PIC16F1704_voltage_z9(uint32_t i2c,uint8_t chain)
     read_vol[8] = '\0';
     read_vol[9] = '\0';
     read_vol[10] = '\0';
-    read_vol[11] = '\0';
+    read_vol[0xb] = '\0';
     iVar1 = PIC16F1704_i2c_forward_send(i2c,chain,"PQTU"[i],1,'!',2,read_vol);
     if (iVar1 == 0) {
       if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {

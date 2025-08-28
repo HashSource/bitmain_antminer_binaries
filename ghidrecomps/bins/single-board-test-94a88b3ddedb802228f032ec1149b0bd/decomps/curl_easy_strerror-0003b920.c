@@ -1,13 +1,15 @@
 
-undefined4 curl_easy_strerror(uint param_1)
+char * curl_easy_strerror(uint param_1)
 
 {
-  undefined4 uVar1;
+  char *pcVar1;
   
-  uVar1 = DAT_0003b934;
   if (param_1 < 0x5c) {
-    uVar1 = *(undefined4 *)(DAT_0003b930 + param_1 * 4);
+    pcVar1 = (&CSWTCH_4)[param_1];
   }
-  return uVar1;
+  else {
+    pcVar1 = "Unknown error";
+  }
+  return pcVar1;
 }
 

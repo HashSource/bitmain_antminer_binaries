@@ -41,8 +41,8 @@ void open_core_BM1393_pre_open_yf(uchar num,int chain)
   buf_vil_tw[8] = 0;
   buf_vil_tw[9] = 0;
   buf_vil_tw[10] = 0;
-  buf_vil_tw[11] = 0;
-  buf_vil_tw[12] = 0;
+  buf_vil_tw[0xb] = 0;
+  buf_vil_tw[0xc] = 0;
   uVar1 = get_dhash_acc_control();
   set_dhash_acc_control(uVar1 & 0xffffffdf);
   set_hash_counting_number(0);

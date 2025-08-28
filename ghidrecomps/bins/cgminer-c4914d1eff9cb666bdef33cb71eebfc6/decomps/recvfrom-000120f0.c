@@ -6,7 +6,7 @@ ssize_t recvfrom(int __fd,void *__buf,size_t __n,int __flags,sockaddr *__addr,so
 {
   ssize_t sVar1;
   
-  sVar1 = (*(code *)PTR_recvfrom_000a80a4)();
+  sVar1 = recvfrom(__fd,__buf,__n,__flags,__addr,__addr_len);
   return sVar1;
 }
 

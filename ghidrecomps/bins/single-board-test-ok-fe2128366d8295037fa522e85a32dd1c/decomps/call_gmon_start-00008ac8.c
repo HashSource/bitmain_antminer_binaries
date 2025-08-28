@@ -1,11 +1,10 @@
 
+/* WARNING: Removing unreachable block (ram,0x00008ad6) */
+
 void call_gmon_start(void)
 
 {
-  if (*(int *)(DAT_00008ad8 + 0x8ad0 + DAT_00008adc) == 0) {
-    return;
-  }
-  (*(code *)PTR___gmon_start___000244f8)();
+  __gmon_start__();
   return;
 }
 

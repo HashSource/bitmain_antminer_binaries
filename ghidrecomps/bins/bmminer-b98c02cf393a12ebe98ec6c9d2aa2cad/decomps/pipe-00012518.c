@@ -6,7 +6,7 @@ int pipe(int *__pipedes)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pipe_0007cfec)();
+  iVar1 = pipe(__pipedes);
   return iVar1;
 }
 

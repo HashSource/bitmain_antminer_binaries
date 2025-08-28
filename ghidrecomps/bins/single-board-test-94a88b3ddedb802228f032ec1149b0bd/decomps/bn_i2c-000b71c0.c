@@ -1,5 +1,5 @@
 
-int bn_i2c(BIGNUM **param_1,uchar *param_2)
+int bn_i2c(undefined4 *param_1,uchar *param_2)
 
 {
   uint uVar1;
@@ -8,7 +8,7 @@ int bn_i2c(BIGNUM **param_1,uchar *param_2)
   BIGNUM *a;
   uchar *to;
   
-  a = *param_1;
+  a = (BIGNUM *)*param_1;
   if (a == (BIGNUM *)0x0) {
     return -1;
   }

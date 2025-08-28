@@ -2,9 +2,9 @@
 void check_asic_reg_oneChain(uint param_1,byte param_2)
 
 {
-  undefined local_34;
-  undefined uStack_33;
-  undefined uStack_32;
+  undefined1 local_34;
+  undefined1 uStack_33;
+  undefined1 uStack_32;
   undefined4 uStack_31;
   FILE *local_2c;
   FILE *local_28;
@@ -60,13 +60,13 @@ void check_asic_reg_oneChain(uint param_1,byte param_2)
             uStack_31 = CONCAT31(uStack_31._1_3_,
                                  (char)*(undefined4 *)
                                         (reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8));
-            uStack_32 = (undefined)
+            uStack_32 = (undefined1)
                         ((uint)*(undefined4 *)
                                 (reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8) >> 8);
-            uStack_33 = (undefined)
+            uStack_33 = (undefined1)
                         ((uint)*(undefined4 *)
                                 (reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8) >> 0x10);
-            local_34 = (undefined)
+            local_34 = (undefined1)
                        ((uint)*(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8)
                        >> 0x18);
             if (param_2 == CHIP_ADDRESS) {

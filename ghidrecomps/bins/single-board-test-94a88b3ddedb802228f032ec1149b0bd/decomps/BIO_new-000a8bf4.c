@@ -5,9 +5,9 @@ BIO * BIO_new(BIO_METHOD *type)
   BIO *obj;
   int iVar1;
   
-  obj = (BIO *)CRYPTO_malloc(0x40,DAT_000a8c70,0x46);
+  obj = (BIO *)CRYPTO_malloc(0x40,"bio_lib.c",0x46);
   if (obj == (BIO *)0x0) {
-    ERR_put_error(0x20,0x6c,0x41,DAT_000a8c70,0x48);
+    ERR_put_error(0x20,0x6c,0x41,"bio_lib.c",0x48);
   }
   else {
     obj->callback = (_func_745 *)0x0;

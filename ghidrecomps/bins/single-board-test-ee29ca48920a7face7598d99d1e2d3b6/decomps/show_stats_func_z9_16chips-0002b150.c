@@ -91,7 +91,7 @@ undefined4 show_stats_func_z9_16chips(void)
     if (!bVar10) {
       bVar9 = 0;
     }
-    sprintf(DAT_0002b390,"nonce=%d%d%d%d %d%d%d%d",(uint)bVar2,(uint)bVar3,(uint)bVar4,(uint)bVar5,
+    sprintf(&DAT_00047b4c,"nonce=%d%d%d%d %d%d%d%d",(uint)bVar2,(uint)bVar3,(uint)bVar4,(uint)bVar5,
             (uint)bVar6,(uint)bVar7,(uint)bVar8,(uint)bVar9);
     iVar1 = is_asic_pass(8);
     bVar10 = iVar1 != 0;
@@ -165,9 +165,9 @@ undefined4 show_stats_func_z9_16chips(void)
     if (!bVar10) {
       bVar9 = 0;
     }
-    sprintf(DAT_0002b394,"      %d%d%d%d %d%d%d%d",(uint)bVar2,(uint)bVar3,(uint)bVar4,(uint)bVar5,
+    sprintf(&DAT_00047b5c,"      %d%d%d%d %d%d%d%d",(uint)bVar2,(uint)bVar3,(uint)bVar4,(uint)bVar5,
             (uint)bVar6,(uint)bVar7,(uint)bVar8,(uint)bVar9);
-    sprintf(DAT_0002b398,"%d-%d\'C %d-%d\'C",(uint)sensor_info._1_1_,(uint)(byte)sensor_info,
+    sprintf(&DAT_00047b6c,"%d-%d\'C %d-%d\'C",(uint)sensor_info._1_1_,(uint)(byte)sensor_info,
             (uint)sensor_info._5_1_,(uint)sensor_info._4_1_);
     local_24 = local_24 + 1;
     write(cgpu._36_4_,lcd_buffer + 0x20,0x40);

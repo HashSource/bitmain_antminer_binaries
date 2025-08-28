@@ -7,9 +7,9 @@ _STACK * sk_new_null(void)
   _STACK *ptr;
   char **ppcVar1;
   
-  ptr = (_STACK *)CRYPTO_malloc(0x14,DAT_000ab44c,0xa2);
+  ptr = (_STACK *)CRYPTO_malloc(0x14,"stack.c",0xa2);
   if (ptr != (_STACK *)0x0) {
-    ppcVar1 = (char **)CRYPTO_malloc(0x10,DAT_000ab44c,0xa4);
+    ppcVar1 = (char **)CRYPTO_malloc(0x10,"stack.c",0xa4);
     ptr->data = ppcVar1;
     if (ppcVar1 == (char **)0x0) {
       CRYPTO_free(ptr);

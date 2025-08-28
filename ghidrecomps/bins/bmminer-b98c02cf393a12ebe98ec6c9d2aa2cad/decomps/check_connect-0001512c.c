@@ -1,5 +1,5 @@
 
-bool check_connect(sockaddr *param_1,char **param_2,byte *param_3)
+bool check_connect(sockaddr *param_1,undefined4 *param_2,byte *param_3)
 
 {
   bool bVar1;
@@ -25,12 +25,12 @@ bool check_connect(sockaddr *param_1,char **param_2,byte *param_3)
     inet_pton(10,acStack_40,&local_50);
   }
   else {
-    inet_pton(10,*param_2,&local_50);
+    inet_pton(10,(char *)*param_2,&local_50);
   }
   pp_Var2 = __ctype_toupper_loc();
   *param_3 = (byte)(*pp_Var2)[0x52];
   if (opt_api_allow == 0) {
-    if ((opt_api_network == '\0') && (iVar6 = strcmp(*param_2,"127.0.0.1"), iVar6 != 0)) {
+    if ((opt_api_network == '\0') && (iVar6 = strcmp((char *)*param_2,"127.0.0.1"), iVar6 != 0)) {
       bVar1 = false;
       if (local_50 == 0) {
         if (local_4c == 0) {

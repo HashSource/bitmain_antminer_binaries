@@ -8,17 +8,18 @@ undefined4 znyq7010_axi_Reinit(void)
   uVar2 = *axi_fpga_addr;
   if ((uVar2 & 0xffff) != 0xc501) {
     if (log_level < 6) goto LAB_0004c54e;
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s: data = 0x%x, and it\'s not equal to HARDWARE_VERSION_VALUE : 0x%x\n"
-              ,"znyq7010.c",0x117,DAT_0004c604,uVar2,0xc501);
+              ,"znyq7010.c",0x117,"znyq7010_axi_Reinit",uVar2,0xc501);
     }
     fclose(pFVar1);
   }
   if (5 < log_level) {
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: axi_fpga_addr data = 0x%x\n","znyq7010.c",0x11a,DAT_0004c604,uVar2);
+      fprintf(pFVar1,"%s:%d:%s: axi_fpga_addr data = 0x%x\n","znyq7010.c",0x11a,
+              "znyq7010_axi_Reinit",uVar2);
     }
     fclose(pFVar1);
   }

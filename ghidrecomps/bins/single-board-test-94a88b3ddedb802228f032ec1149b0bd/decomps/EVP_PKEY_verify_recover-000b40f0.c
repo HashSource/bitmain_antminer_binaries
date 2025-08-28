@@ -8,7 +8,7 @@ int EVP_PKEY_verify_recover(EVP_PKEY_CTX *ctx,uchar *rout,size_t *routlen,uchar 
   
   if (((ctx == (EVP_PKEY_CTX *)0x0) || (iVar1 = *(int *)ctx, iVar1 == 0)) ||
      (pcVar3 = *(code **)(iVar1 + 0x38), pcVar3 == (code *)0x0)) {
-    ERR_put_error(6,0x90,0x96,DAT_000b4188,0xad);
+    ERR_put_error(6,0x90,0x96,"pmeth_fn.c",0xad);
     iVar1 = -2;
   }
   else if (*(int *)(ctx + 0x10) == 0x20) {
@@ -19,7 +19,7 @@ int EVP_PKEY_verify_recover(EVP_PKEY_CTX *ctx,uchar *rout,size_t *routlen,uchar 
         return 1;
       }
       if (*routlen < uVar2) {
-        ERR_put_error(6,0x90,0x9b,DAT_000b4188,0xb4);
+        ERR_put_error(6,0x90,0x9b,"pmeth_fn.c",0xb4);
         return 0;
       }
       pcVar3 = *(code **)(*(int *)ctx + 0x38);
@@ -27,7 +27,7 @@ int EVP_PKEY_verify_recover(EVP_PKEY_CTX *ctx,uchar *rout,size_t *routlen,uchar 
     iVar1 = (*pcVar3)(ctx,rout,routlen,sig,siglen);
   }
   else {
-    ERR_put_error(6,0x90,0x97,DAT_000b4188,0xb1);
+    ERR_put_error(6,0x90,0x97,"pmeth_fn.c",0xb1);
     iVar1 = -1;
   }
   return iVar1;

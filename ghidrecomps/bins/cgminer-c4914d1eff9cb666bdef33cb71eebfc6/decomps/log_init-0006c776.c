@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void log_init(void)
 
@@ -22,7 +22,7 @@ void log_init(void)
     ctx->tgt_dir = "nvdata";
     ctx->prefix = "cglog_init";
     log_rotate(ctx);
-    iVar1 = pthread_create(&log_thread,(pthread_attr_t *)0x0,log_thread_routine + 1,ctx);
+    iVar1 = pthread_create(&log_thread,(pthread_attr_t *)0x0,(__start_routine *)0x6c56d,ctx);
     if (iVar1 != 0) {
       print_crt_time_to_file(log_file,1);
       pFile = (FILE *)fopen(log_file,"a+");

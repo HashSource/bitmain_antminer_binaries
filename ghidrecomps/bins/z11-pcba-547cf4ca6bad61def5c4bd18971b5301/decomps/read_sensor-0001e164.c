@@ -1,6 +1,6 @@
 
 undefined4
-read_sensor(undefined param_1,int param_2,undefined param_3,byte param_4,undefined *param_5)
+read_sensor(undefined1 param_1,int param_2,undefined1 param_3,byte param_4,undefined1 *param_5)
 
 {
   int iVar1;
@@ -9,12 +9,12 @@ read_sensor(undefined param_1,int param_2,undefined param_3,byte param_4,undefin
   undefined4 local_14;
   
   local_18 = 0;
-  iVar1 = i2c_recv(param_1,*(undefined *)((int)&sensor_chip_addr + param_2),param_3,param_4,
+  iVar1 = i2c_recv(param_1,*(undefined1 *)((int)&sensor_chip_addr + param_2),param_3,param_4,
                    &local_18);
   if (iVar1 == 0) {
     if (((local_18 & 0xc0000000) == 0) && ((local_18 & 0xff) != 0)) {
       local_14 = 5;
-      if (param_5 != (undefined *)0x0) {
+      if (param_5 != (undefined1 *)0x0) {
         *param_5 = (char)local_18;
       }
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (2 < opt_log_level)) {

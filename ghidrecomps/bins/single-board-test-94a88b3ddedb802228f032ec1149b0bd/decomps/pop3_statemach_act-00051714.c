@@ -1,13 +1,15 @@
 
+/* WARNING: Type propagation algorithm not settling */
+
 int pop3_statemach_act(int *param_1)
 
 {
   char cVar1;
-  code **ppcVar2;
-  int iVar3;
-  size_t sVar4;
-  uint uVar5;
+  int iVar2;
+  size_t sVar3;
+  uint uVar4;
   void *__dest;
+  undefined1 *puVar5;
   char *pcVar6;
   int iVar7;
   uint uVar8;
@@ -17,15 +19,12 @@ int pop3_statemach_act(int *param_1)
   int iVar12;
   int iVar13;
   char *pcVar14;
-  int local_38;
-  undefined4 local_34;
-  uint local_30;
+  int local_38 [3];
   int local_2c [2];
   
-  ppcVar2 = DAT_00051aec;
   piVar11 = param_1 + 0xf0;
   iVar12 = param_1[0x55];
-  local_34 = 0;
+  local_38[1] = 0;
   if (param_1[0xfe] == 4) {
     iVar12 = pop3_perform_upgrade_tls();
     return iVar12;
@@ -35,38 +34,38 @@ int pop3_statemach_act(int *param_1)
     return iVar12;
   }
 LAB_00051740:
-  iVar3 = Curl_pp_readresp(iVar12,piVar11,&local_38,&local_34);
-  iVar7 = local_38;
-  if (iVar3 != 0) {
-    return iVar3;
+  iVar2 = Curl_pp_readresp(iVar12,piVar11,local_38,local_38 + 1);
+  iVar7 = local_38[0];
+  if (iVar2 != 0) {
+    return iVar2;
   }
-  if (local_38 == 0) {
+  if (local_38[0] == 0) {
     return 0;
   }
-  iVar3 = param_1[0xfe];
-  switch(iVar3) {
+  iVar2 = param_1[0xfe];
+  switch(iVar2) {
   case 1:
-    iVar3 = *param_1;
-    sVar4 = strlen((char *)(iVar3 + 0x59c));
+    iVar2 = *param_1;
+    sVar3 = strlen((char *)(iVar2 + 0x59c));
     if (iVar7 != 0x2b) {
-      Curl_failf(iVar3,DAT_00051ad0);
+      Curl_failf(iVar2,"Got unexpected pop3-server response");
       return 8;
     }
-    if (((3 < sVar4) && (*(char *)(iVar3 + sVar4 + 0x59a) == '>')) && (3 < sVar4 - 2)) {
+    if (((3 < sVar3) && (*(char *)(iVar2 + sVar3 + 0x59a) == '>')) && (3 < sVar3 - 2)) {
       uVar8 = 3;
-      cVar1 = *(char *)(iVar3 + 0x59f);
+      cVar1 = *(char *)(iVar2 + 0x59f);
       while (cVar1 != '<') {
         uVar8 = uVar8 + 1;
-        if (uVar8 == sVar4 - 2) goto LAB_0005193e;
-        cVar1 = *(char *)(iVar3 + uVar8 + 0x59c);
+        if (uVar8 == sVar3 - 2) goto LAB_0005193e;
+        cVar1 = *(char *)(iVar2 + uVar8 + 0x59c);
       }
-      sVar4 = (sVar4 - uVar8) - 1;
-      if (sVar4 != 0) {
-        __dest = (void *)(**DAT_00051b3c)(1);
+      sVar3 = (sVar3 - uVar8) - 1;
+      if (sVar3 != 0) {
+        __dest = (void *)(*Curl_ccalloc)(1);
         param_1[0x10a] = (int)__dest;
         if (__dest != (void *)0x0) {
-          memcpy(__dest,(void *)(iVar3 + uVar8 + 0x59c),sVar4);
-          *(undefined *)(param_1[0x10a] + sVar4) = 0;
+          memcpy(__dest,(void *)(iVar2 + uVar8 + 0x59c),sVar3);
+          *(undefined1 *)(param_1[0x10a] + sVar3) = 0;
           param_1[0x108] = param_1[0x108] | 2;
         }
       }
@@ -74,8 +73,8 @@ LAB_00051740:
 LAB_0005193e:
     param_1[0x104] = 0;
     param_1[0x106] = 0;
-    *(undefined *)(param_1 + 0x10b) = 0;
-    iVar7 = Curl_pp_sendf(piVar11,DAT_00051ad8,DAT_00051adc);
+    *(undefined1 *)(param_1 + 0x10b) = 0;
+    iVar7 = Curl_pp_sendf(piVar11,"%s",&DAT_0013978c);
     if (iVar7 != 0) {
       return iVar7;
     }
@@ -84,12 +83,12 @@ LAB_0005193e:
   case 2:
     iVar13 = *param_1;
     pcVar14 = (char *)(iVar13 + 0x59c);
-    sVar4 = strlen(pcVar14);
+    sVar3 = strlen(pcVar14);
     if (iVar7 != 0x2a) {
       if (iVar7 == 0x2b) {
-        if ((*(int *)(iVar13 + 0x318) != 0) && (*(char *)(param_1 + 0x5e) == '\0')) {
-          if (*(char *)(param_1 + 0x10b) != '\0') {
-            iVar7 = Curl_pp_sendf(piVar11,DAT_00051ad8,DAT_00051ae0);
+        if ((*(int *)(iVar13 + 0x318) != 0) && ((char)param_1[0x5e] == '\0')) {
+          if ((char)param_1[0x10b] != '\0') {
+            iVar7 = Curl_pp_sendf(piVar11,"%s",&DAT_001397f0);
             if (iVar7 != 0) {
               return iVar7;
             }
@@ -97,7 +96,7 @@ LAB_0005193e:
             goto LAB_000518c0;
           }
           if (*(int *)(iVar13 + 0x318) != 1) {
-            Curl_failf(iVar13,DAT_00051ad4);
+            Curl_failf(iVar13,"STLS not supported.");
             return 0x40;
           }
         }
@@ -107,18 +106,18 @@ LAB_0005193e:
       iVar7 = pop3_perform_authentication(param_1);
       goto LAB_000518b4;
     }
-    if (3 < sVar4) {
-      iVar7 = memcmp(pcVar14,DAT_00051ae0,4);
+    if (3 < sVar3) {
+      iVar7 = memcmp(pcVar14,&DAT_001397f0,4);
       if (iVar7 == 0) {
-        *(undefined *)(param_1 + 0x10b) = 1;
+        *(undefined1 *)(param_1 + 0x10b) = 1;
       }
       else {
-        iVar7 = memcmp(pcVar14,DAT_00051ae4,4);
+        iVar7 = memcmp(pcVar14,"USER",4);
         if (iVar7 == 0) {
           param_1[0x108] = param_1[0x108] | 1;
         }
-        else if ((sVar4 != 4) && (iVar7 = memcmp(pcVar14,DAT_00051ae8,5), iVar7 == 0)) {
-          uVar8 = sVar4 - 5;
+        else if ((sVar3 != 4) && (iVar7 = memcmp(pcVar14,"SASL ",5), iVar7 == 0)) {
+          uVar8 = sVar3 - 5;
           pcVar14 = (char *)0x0;
           if (uVar8 != 0) {
             pcVar14 = (char *)(iVar13 + 0x5a1);
@@ -144,13 +143,13 @@ LAB_0005193e:
                   pcVar6 = pcVar14 + uVar10;
                 }
 LAB_000519fe:
-                uVar5 = Curl_sasl_decode_mech(pcVar14,uVar10,&local_30);
-                if (uVar5 != 0) {
-                  uVar9 = local_30;
-                  if (uVar10 == local_30) {
-                    uVar9 = param_1[0x104] | uVar5;
+                uVar4 = Curl_sasl_decode_mech(pcVar14,uVar10,local_38 + 2);
+                if (uVar4 != 0) {
+                  uVar9 = local_38[2];
+                  if (uVar10 == local_38[2]) {
+                    uVar9 = param_1[0x104] | uVar4;
                   }
-                  if (uVar10 == local_30) {
+                  if (uVar10 == local_38[2]) {
                     param_1[0x104] = uVar9;
                   }
                 }
@@ -168,12 +167,12 @@ LAB_000519fe:
     }
     goto LAB_000518bc;
   case 3:
-    if (local_38 == 0x2b) {
+    if (local_38[0] == 0x2b) {
       iVar7 = pop3_perform_upgrade_tls(param_1);
     }
     else {
       if (*(int *)(*param_1 + 0x318) != 1) {
-        Curl_failf(*param_1,DAT_00051acc);
+        Curl_failf(*param_1,"STARTTLS denied. %c");
         return 0x40;
       }
 LAB_0005191c:
@@ -185,8 +184,8 @@ LAB_000518b4:
     }
     goto LAB_000518b8;
   case 5:
-    iVar3 = *param_1;
-    iVar7 = Curl_sasl_continue(param_1 + 0x102,param_1,local_38,local_2c);
+    iVar2 = *param_1;
+    iVar7 = Curl_sasl_continue(param_1 + 0x102,param_1,local_38[0],local_2c);
     if (iVar7 != 0) {
       return iVar7;
     }
@@ -198,7 +197,7 @@ LAB_000518b4:
       }
       else {
         if (-1 < (param_1[0x108] & param_1[0x109]) << 0x1f) {
-          Curl_failf(iVar3,DAT_00051ac8);
+          Curl_failf(iVar2,"Authentication cancelled");
           return 0x43;
         }
         iVar7 = pop3_perform_user(param_1);
@@ -210,30 +209,30 @@ LAB_000518b4:
       return 0;
     }
 LAB_000518b8:
-    iVar3 = param_1[0xfe];
+    iVar2 = param_1[0xfe];
 LAB_000518bc:
-    if (iVar3 == 0) {
+    if (iVar2 == 0) {
       return 0;
     }
     goto LAB_000518c0;
   case 6:
-    if (local_38 != 0x2b) {
-      Curl_failf(*param_1,DAT_00051ac4);
+    if (local_38[0] != 0x2b) {
+      Curl_failf(*param_1,"Authentication failed: %d");
       return 0x43;
     }
     break;
   case 7:
     iVar7 = *param_1;
-    if (local_38 != 0x2b) {
+    if (local_38[0] != 0x2b) {
 LAB_000517f2:
-      Curl_failf(iVar7,DAT_00051ab8);
+      Curl_failf(iVar7,"Access denied. %c");
       return 0x43;
     }
-    iVar7 = param_1[0x49];
-    if (param_1[0x49] == 0) {
-      iVar7 = DAT_00051abc;
+    puVar5 = (undefined1 *)param_1[0x49];
+    if (puVar5 == (undefined1 *)0x0) {
+      puVar5 = &DAT_0013a6fc;
     }
-    iVar7 = Curl_pp_sendf(piVar11,DAT_00051ac0,iVar7);
+    iVar7 = Curl_pp_sendf(piVar11,"PASS %s",puVar5);
     if (iVar7 != 0) {
       return iVar7;
     }
@@ -246,11 +245,11 @@ LAB_000518c0:
     goto LAB_00051740;
   case 8:
     iVar7 = *param_1;
-    if (local_38 != 0x2b) goto LAB_000517f2;
+    if (local_38[0] != 0x2b) goto LAB_000517f2;
     break;
   case 9:
     iVar12 = *param_1;
-    if (local_38 != 0x2b) {
+    if (local_38[0] != 0x2b) {
       param_1[0xfe] = 0;
       return 0x38;
     }
@@ -268,7 +267,7 @@ LAB_000518c0:
           }
           iVar7 = param_1[0xf0];
         }
-        (**ppcVar2)(iVar7);
+        (*Curl_cfree)(iVar7);
         param_1[0xf0] = 0;
         param_1[0xf1] = 0;
       }

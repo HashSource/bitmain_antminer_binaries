@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void low_temp_process_parm_init(void)
 

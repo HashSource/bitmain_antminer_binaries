@@ -44,7 +44,7 @@ undefined4 get_works(void)
     *(void **)(cgpu + (local_20 + 0x20028) * 4) = pvVar1;
     if (*(int *)(cgpu + (local_20 + 0x20028) * 4) == 0) break;
     for (local_1c = 0; local_1c < (uint)Conf._112_4_; local_1c = local_1c + 1) {
-      sprintf(acStack_64,"%s%02d%s%03d.txt",DAT_00012a38,local_20,DAT_00012a34,local_1c);
+      sprintf(acStack_64,"%s%02d%s%03d.txt",0x2b632c,local_20,0x2b636c,local_1c);
       iVar4 = local_20 * Conf._112_4_ + local_1c;
       pFVar2 = fopen(acStack_64,"r");
       *(FILE **)(cgpu + iVar4 * 4) = pFVar2;

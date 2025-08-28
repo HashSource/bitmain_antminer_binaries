@@ -9,14 +9,14 @@ ASN1_OCTET_STRING * a2i_IPADDRESS(char *ipasc)
   int local_38 [2];
   int local_30 [2];
   int local_28 [2];
-  undefined local_20;
-  undefined local_1f;
-  undefined local_1e;
-  undefined local_1d;
+  undefined1 local_20;
+  undefined1 local_1f;
+  undefined1 local_1e;
+  undefined1 local_1d;
   
   pcVar1 = strchr(ipasc,0x3a);
   if (pcVar1 == (char *)0x0) {
-    iVar2 = __isoc99_sscanf(ipasc,DAT_000c84f4,local_40,local_38,local_30,local_28);
+    iVar2 = __isoc99_sscanf(ipasc,"%d.%d.%d.%d",local_40,local_38,local_30,local_28);
     if (iVar2 != 4) {
       return (ASN1_OCTET_STRING *)0x0;
     }
@@ -41,10 +41,10 @@ ASN1_OCTET_STRING * a2i_IPADDRESS(char *ipasc)
     if (0xff < local_28[0]) {
       return (ASN1_OCTET_STRING *)0x0;
     }
-    local_20 = (undefined)local_40[0];
-    local_1f = (undefined)local_38[0];
-    local_1e = (undefined)local_30[0];
-    local_1d = (undefined)local_28[0];
+    local_20 = (undefined1)local_40[0];
+    local_1f = (undefined1)local_38[0];
+    local_1e = (undefined1)local_30[0];
+    local_1d = (undefined1)local_28[0];
     iVar2 = 4;
   }
   else {

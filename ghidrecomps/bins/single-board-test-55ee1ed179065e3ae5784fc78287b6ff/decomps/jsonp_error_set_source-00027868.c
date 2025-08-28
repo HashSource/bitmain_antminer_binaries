@@ -10,7 +10,7 @@ void jsonp_error_set_source(int param_1,char *param_2)
       strcpy((char *)(param_1 + 0xc),param_2);
     }
     else {
-      *(undefined4 *)(param_1 + 0xc) = DAT_0002d314;
+      *(undefined4 *)(param_1 + 0xc) = 0x2e2e2e;
       strcpy((char *)(param_1 + 0xf),param_2 + (sVar1 - 0x4c));
     }
   }

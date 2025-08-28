@@ -1,6 +1,6 @@
 
 undefined4
-ISL_get_voltage(undefined param_1,undefined param_2,undefined param_3,undefined2 *param_4)
+ISL_get_voltage(undefined1 param_1,undefined1 param_2,undefined1 param_3,undefined2 *param_4)
 
 {
   undefined2 local_c [2];

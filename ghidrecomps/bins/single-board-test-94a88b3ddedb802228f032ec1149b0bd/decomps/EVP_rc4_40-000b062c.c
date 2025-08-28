@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_rc4_40(void)
 
 {
-  return DAT_000b0630;
+  return (EVP_CIPHER *)r4_40_cipher;
 }
 

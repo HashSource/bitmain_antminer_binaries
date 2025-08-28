@@ -22,14 +22,12 @@ _Bool submit_nonce_1(thr_info *thr,work *work,uint nonce,int *nofull)
       if (nofull != (int *)0x0) {
         *nofull = 1;
       }
-      if (((*DAT_000221b0 != '\0') || (*DAT_000221b4 != '\0')) || (_Var1 = false, 5 < *DAT_000221b8)
+      if (((use_syslog != false) || (opt_log_output != false)) || (_Var1 = false, 5 < opt_log_level)
          ) {
-        tmp42._0_4_ = *DAT_000221bc;
-        tmp42._4_4_ = DAT_000221bc[1];
-        tmp42._8_4_ = DAT_000221bc[2];
-        tmp42._12_4_ = DAT_000221bc[3];
-        tmp42._16_2_ = (undefined2)DAT_000221bc[4];
-        tmp42[18] = (char)((uint)DAT_000221bc[4] >> 0x10);
+        builtin_strncpy(tmp42,"Share above targ",0x10);
+        tmp42[0x10] = 'e';
+        tmp42[0x11] = 't';
+        tmp42[0x12] = '\0';
         _applog(6,tmp42,false);
         _Var1 = false;
       }

@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void flush_queue(cgpu_info *cgpu)
 
 {
@@ -18,32 +16,10 @@ void flush_queue(cgpu_info *cgpu)
     if (((work != (work *)0x0) &&
         (_free_work(&work,"cgminer.c","flush_queue",0x2579), opt_debug != false)) &&
        (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-      tmp42[0] = s_Discarded_queued_work_item_0008db80[0];
-      tmp42[1] = s_Discarded_queued_work_item_0008db80[1];
-      tmp42[2] = s_Discarded_queued_work_item_0008db80[2];
-      tmp42[3] = s_Discarded_queued_work_item_0008db80[3];
-      tmp42[4] = s_Discarded_queued_work_item_0008db80[4];
-      tmp42[5] = s_Discarded_queued_work_item_0008db80[5];
-      tmp42[6] = s_Discarded_queued_work_item_0008db80[6];
-      tmp42[7] = s_Discarded_queued_work_item_0008db80[7];
-      tmp42[8] = s_Discarded_queued_work_item_0008db80[8];
-      tmp42[9] = s_Discarded_queued_work_item_0008db80[9];
-      tmp42[10] = s_Discarded_queued_work_item_0008db80[10];
-      tmp42[11] = s_Discarded_queued_work_item_0008db80[11];
-      tmp42[12] = s_Discarded_queued_work_item_0008db80[12];
-      tmp42[13] = s_Discarded_queued_work_item_0008db80[13];
-      tmp42[14] = s_Discarded_queued_work_item_0008db80[14];
-      tmp42[15] = s_Discarded_queued_work_item_0008db80[15];
-      tmp42[16] = s_Discarded_queued_work_item_0008db80[16];
-      tmp42[17] = s_Discarded_queued_work_item_0008db80[17];
-      tmp42[18] = s_Discarded_queued_work_item_0008db80[18];
-      tmp42[19] = s_Discarded_queued_work_item_0008db80[19];
-      tmp42[20] = s_Discarded_queued_work_item_0008db80[20];
-      tmp42[21] = s_Discarded_queued_work_item_0008db80[21];
-      tmp42[22] = s_Discarded_queued_work_item_0008db80[22];
-      tmp42[23] = s_Discarded_queued_work_item_0008db80[23];
-      tmp42._24_2_ = (undefined2)ram0x0008db98;
-      tmp42[26] = (char)((uint)ram0x0008db98 >> 0x10);
+      builtin_strncpy(tmp42,"Discarded queued work it",0x18);
+      tmp42[0x18] = 'e';
+      tmp42[0x19] = 'm';
+      tmp42[0x1a] = '\0';
       _applog(7,tmp42,false);
     }
   }

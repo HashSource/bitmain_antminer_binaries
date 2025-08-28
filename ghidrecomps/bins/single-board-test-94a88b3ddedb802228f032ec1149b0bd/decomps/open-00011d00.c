@@ -6,7 +6,7 @@ int open(char *__file,int __oflag,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_open_00194120)();
+  iVar1 = open(__file,__oflag);
   return iVar1;
 }
 

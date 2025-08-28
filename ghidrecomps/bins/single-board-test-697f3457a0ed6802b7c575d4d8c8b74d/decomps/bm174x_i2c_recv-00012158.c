@@ -11,7 +11,7 @@ int bm174x_i2c_recv(int fd,uint8_t chip_addr,uint8_t i2c_dev_addr,uint8_t i2c_re
   int i;
   
   i2c_reg.core_timeout.core_timeout._0_2_ =
-       CONCAT11(i2c_reg_addr,(undefined)(char)reg_value.general_i2c_command);
+       CONCAT11(i2c_reg_addr,(undefined1)(char)reg_value.general_i2c_command);
   i2c_reg.reg_bin =
        CONCAT22(CONCAT11((char)(reg_value.general_i2c_command >> 0x18),i2c_dev_addr << 1),
                 i2c_reg.core_timeout.core_timeout._0_2_) | 0x1000000;

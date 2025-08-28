@@ -3,24 +3,16 @@ void __libc_csu_init(EVP_PKEY_CTX *param_1,undefined4 param_2,undefined4 param_3
 
 {
   int iVar1;
-  int iVar2;
-  int iVar3;
-  code **ppcVar4;
+  undefined4 *puVar2;
   
-  iVar1 = DAT_0006c768;
-  iVar2 = DAT_0006c764;
-  iVar3 = DAT_0006c764 + 0x6c73c;
   _init(param_1);
-  iVar1 = (iVar1 + 0x6c742) - iVar3 >> 2;
-  if (iVar1 != 0) {
-    ppcVar4 = (code **)(iVar2 + 0x6c738);
-    iVar2 = 0;
-    do {
-      ppcVar4 = ppcVar4 + 1;
-      iVar2 = iVar2 + 1;
-      (**ppcVar4)(param_1,param_2,param_3,*ppcVar4,param_4);
-    } while (iVar2 != iVar1);
-  }
+  puVar2 = (undefined4 *)0x8508c;
+  iVar1 = 0;
+  do {
+    puVar2 = puVar2 + 1;
+    iVar1 = iVar1 + 1;
+    (*(code *)*puVar2)(param_1,param_2,param_3,(code *)*puVar2,param_4);
+  } while (iVar1 != 1);
   return;
 }
 

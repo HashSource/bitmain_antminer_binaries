@@ -8,8 +8,8 @@ void _k_add_head(K_LIST *list,K_ITEM *item,char *file,char *func,int line)
   char tmp42 [2048];
   
   if (item->name != list->name) {
-    snprintf(tmp42,0x800,DAT_0000fe00,list->name,DAT_0000fdfc,item->name,file,func,line,DAT_0000fe04
-             ,DAT_0000fdfc,0xcd);
+    snprintf(tmp42,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_add_head",item->name,file,func,line,"klist.c","_k_add_head",0xcd);
     _applog(3,tmp42,true);
     _quit(1);
   }

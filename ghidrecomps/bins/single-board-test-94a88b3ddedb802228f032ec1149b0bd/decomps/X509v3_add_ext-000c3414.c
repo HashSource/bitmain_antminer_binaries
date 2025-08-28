@@ -9,12 +9,12 @@ stack_st_X509_EXTENSION * X509v3_add_ext(stack_st_X509_EXTENSION **x,X509_EXTENS
   uint where;
   
   if (x == (stack_st_X509_EXTENSION **)0x0) {
-    ERR_put_error(0xb,0x68,0x43,DAT_000c34c4,0x98);
+    ERR_put_error(0xb,0x68,0x43,"x509_v3.c",0x98);
     return (stack_st_X509_EXTENSION *)0x0;
   }
   sk = &(*x)->stack;
   if ((sk == (_STACK *)0x0) && (sk = sk_new_null(), sk == (_STACK *)0x0)) {
-    ERR_put_error(0xb,0x68,0x41,DAT_000c34c4,0xb0);
+    ERR_put_error(0xb,0x68,0x41,"x509_v3.c",0xb0);
     return (stack_st_X509_EXTENSION *)0x0;
   }
   uVar1 = sk_num(sk);
@@ -43,7 +43,7 @@ stack_st_X509_EXTENSION * X509v3_add_ext(stack_st_X509_EXTENSION **x,X509_EXTENS
       }
       return (stack_st_X509_EXTENSION *)sk;
     }
-    ERR_put_error(0xb,0x68,0x41,DAT_000c34c4,0xb0);
+    ERR_put_error(0xb,0x68,0x41,"x509_v3.c",0xb0);
     X509_EXTENSION_free(a);
   }
   sk_free(sk);

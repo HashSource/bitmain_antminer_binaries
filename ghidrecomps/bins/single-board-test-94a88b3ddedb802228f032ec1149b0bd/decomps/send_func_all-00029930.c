@@ -6,10 +6,10 @@ undefined4 send_func_all(void)
   uint local_1b4 [5];
   uint auStack_1a0 [8];
   uint auStack_180 [13];
-  undefined local_14c;
+  undefined1 local_14c;
   byte local_14b;
-  undefined local_14a;
-  undefined local_149;
+  undefined1 local_14a;
+  undefined1 local_149;
   int local_148;
   byte local_144 [96];
   byte local_e4 [52];
@@ -30,7 +30,7 @@ undefined4 send_func_all(void)
   memset(local_e4,0,0x34);
   local_e4[0] = 0xff;
   memset(local_144 + 0x2c,0,0x34);
-  local_144[44] = 0xff;
+  local_144[0x2c] = 0xff;
   memset(auStack_180,0,0x34);
   memset(local_1b4,0,0x34);
   local_15 = '\0';
@@ -121,9 +121,10 @@ undefined4 send_func_all(void)
             }
             for (local_10 = 0; local_10 < 0xd; local_10 = local_10 + 1) {
               auStack_180[local_10] =
-                   (uint)local_e4[local_10 * 4 + 2] << 8 |
-                   (uint)local_e4[local_10 * 4] << 0x18 | (uint)local_e4[local_10 * 4 + 1] << 0x10 |
-                   (uint)local_e4[local_10 * 4 + 3];
+                   (uint)*(byte *)((int)aiStack_b0 + local_10 * 4 + -0x32) << 8 |
+                   (uint)*(byte *)(aiStack_b0 + (local_10 - 0xd)) << 0x18 |
+                   (uint)*(byte *)((int)aiStack_b0 + local_10 * 4 + -0x33) << 0x10 |
+                   (uint)*(byte *)((int)aiStack_b0 + local_10 * 4 + -0x31);
               if (local_10 == 9) {
                 auStack_180[9] = aiStack_b0[local_14];
               }

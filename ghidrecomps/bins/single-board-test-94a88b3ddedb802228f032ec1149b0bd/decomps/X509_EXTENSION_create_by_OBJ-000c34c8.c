@@ -11,7 +11,7 @@ X509_EXTENSION_create_by_OBJ(X509_EXTENSION **ex,ASN1_OBJECT *obj,int crit,ASN1_
   
   if (((ex == (X509_EXTENSION **)0x0) || (a = *ex, a == (X509_EXTENSION *)0x0)) &&
      (a = X509_EXTENSION_new(), a == (X509_EXTENSION *)0x0)) {
-    ERR_put_error(0xb,0x6d,0x41,DAT_000c3554,0xd4);
+    ERR_put_error(0xb,0x6d,0x41,"x509_v3.c",0xd4);
   }
   else {
     if (obj != (ASN1_OBJECT *)0x0) {

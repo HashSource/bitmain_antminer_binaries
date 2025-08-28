@@ -8,11 +8,10 @@ int32_t decode_unicode_escape(char *str)
   uint uVar2;
   uint uVar3;
   int iVar4;
-  int i;
   
   if (*str != 'u') {
                     /* WARNING: Subroutine does not return */
-    __assert_fail(DAT_0003c9d8,DAT_0003c9dc,0x120,DAT_0003c9e0);
+    __assert_fail("str[0] == \'u\'","compat/jansson-2.6/src/load.c",0x120,"decode_unicode_escape");
   }
   iVar1 = 0;
   iVar4 = 1;
@@ -26,7 +25,7 @@ int32_t decode_unicode_escape(char *str)
       else {
         if (0x19 < uVar3 - 0x41) {
                     /* WARNING: Subroutine does not return */
-          __assert_fail(DAT_0003c9e4,DAT_0003c9dc,300,DAT_0003c9e0);
+          __assert_fail("0","compat/jansson-2.6/src/load.c",300,"decode_unicode_escape");
         }
         uVar2 = uVar3 - 0x37;
       }

@@ -6,7 +6,7 @@ int accept(int __fd,sockaddr *__addr,socklen_t *__addr_len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_accept_00194214)();
+  iVar1 = accept(__fd,__addr,__addr_len);
   return iVar1;
 }
 

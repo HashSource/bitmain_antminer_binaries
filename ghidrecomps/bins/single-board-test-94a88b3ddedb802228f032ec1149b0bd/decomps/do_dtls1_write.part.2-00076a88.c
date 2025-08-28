@@ -8,11 +8,11 @@ do_dtls1_write_part_2(int *param_1,undefined4 param_2,void *param_3,size_t param
   undefined4 uVar3;
   int *piVar4;
   int iVar5;
-  undefined uVar6;
+  undefined1 uVar6;
   int iVar7;
-  undefined *puVar8;
+  undefined1 *puVar8;
   int iVar9;
-  undefined *puVar10;
+  undefined1 *puVar10;
   bool bVar11;
   int local_30;
   int local_2c;
@@ -29,7 +29,7 @@ do_dtls1_write_part_2(int *param_1,undefined4 param_2,void *param_3,size_t param
       return 0xffffffff;
     }
   }
-  puVar8 = *(undefined **)(iVar9 + 0xfc);
+  puVar8 = *(undefined1 **)(iVar9 + 0xfc);
   *puVar8 = (char)param_2;
   piVar4 = (int *)param_1[2];
   *(undefined4 *)(iVar9 + 0x130) = param_2;
@@ -49,10 +49,10 @@ do_dtls1_write_part_2(int *param_1,undefined4 param_2,void *param_3,size_t param
   if (!bVar11) {
     iVar7 = iVar7 >> 8;
   }
-  uVar6 = (undefined)iVar7;
+  uVar6 = (undefined1)iVar7;
   if (!bVar11) {
     puVar8[1] = uVar6;
-    uVar6 = (undefined)*param_1;
+    uVar6 = (undefined1)*param_1;
   }
   puVar8[2] = uVar6;
   if ((EVP_CIPHER_CTX *)param_1[0x23] != (EVP_CIPHER_CTX *)0x0) {
@@ -71,7 +71,7 @@ LAB_00076b36:
   iVar5 = param_1[0x25];
   *(size_t *)(iVar9 + 0x134) = param_4;
   *(void **)(iVar9 + 0x140) = param_3;
-  *(undefined **)(iVar9 + 0x13c) = puVar10 + local_2c;
+  *(undefined1 **)(iVar9 + 0x13c) = puVar10 + local_2c;
   if (iVar5 == 0) {
     memcpy(puVar10 + local_2c,param_3,param_4);
     *(undefined4 *)(iVar9 + 0x140) = *(undefined4 *)(iVar9 + 0x13c);
@@ -79,7 +79,7 @@ LAB_00076b36:
   else {
     iVar5 = ssl3_do_compress(param_1);
     if (iVar5 == 0) {
-      ERR_put_error(0x14,0xf5,0x8d,DAT_00076cac,0x656);
+      ERR_put_error(0x14,0xf5,0x8d,"d1_pkt.c",0x656);
       return 0xffffffff;
     }
   }
@@ -91,12 +91,12 @@ LAB_00076b36:
     }
     *(int *)(iVar9 + 0x134) = *(int *)(iVar9 + 0x134) + local_30;
   }
-  *(undefined **)(iVar9 + 0x140) = puVar10;
-  *(undefined **)(iVar9 + 0x13c) = puVar10;
+  *(undefined1 **)(iVar9 + 0x140) = puVar10;
+  *(undefined1 **)(iVar9 + 0x13c) = puVar10;
   if (local_2c != 0) {
     *(int *)(iVar9 + 0x134) = *(int *)(iVar9 + 0x134) + local_2c;
   }
-  iVar5 = (***(code ***)(param_1[2] + 100))(param_1,1);
+  iVar5 = (*(code *)**(undefined4 **)(param_1[2] + 100))(param_1,1);
   if (iVar5 < 1) {
     return 0xffffffff;
   }

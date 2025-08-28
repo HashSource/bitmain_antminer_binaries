@@ -8,10 +8,11 @@ RSA * d2i_RSA_PUBKEY(RSA **a,uchar **pp,long length)
   uchar *local_1c [2];
   
   local_1c[0] = *pp;
-  key = (X509_PUBKEY *)ASN1_item_d2i((ASN1_VALUE **)0x0,local_1c,length,DAT_000b6e88);
+  key = (X509_PUBKEY *)
+        ASN1_item_d2i((ASN1_VALUE **)0x0,local_1c,length,(ASN1_ITEM *)&X509_PUBKEY_it);
   if (key != (X509_PUBKEY *)0x0) {
     pkey = X509_PUBKEY_get(key);
-    ASN1_item_free((ASN1_VALUE *)key,DAT_000b6e88);
+    ASN1_item_free((ASN1_VALUE *)key,(ASN1_ITEM *)&X509_PUBKEY_it);
     if (pkey != (EVP_PKEY *)0x0) {
       prVar1 = EVP_PKEY_get1_RSA(pkey);
       EVP_PKEY_free(pkey);

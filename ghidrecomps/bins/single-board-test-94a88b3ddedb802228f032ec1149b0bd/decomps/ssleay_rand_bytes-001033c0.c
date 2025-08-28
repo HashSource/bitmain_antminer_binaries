@@ -1,106 +1,105 @@
 
-undefined4 ssleay_rand_bytes(undefined *param_1,size_t param_2,int param_3,int param_4)
+undefined4 ssleay_rand_bytes(undefined1 *param_1,size_t param_2,int param_3,int param_4)
 
 {
   bool bVar1;
-  undefined4 *puVar2;
-  undefined4 *puVar3;
-  EVP_MD *pEVar4;
-  undefined4 extraout_r1;
-  byte bVar5;
-  int iVar6;
-  undefined *puVar7;
-  undefined *puVar8;
+  int iVar2;
+  EVP_MD *pEVar3;
+  int extraout_r1;
+  byte bVar4;
+  int iVar5;
+  undefined1 *puVar6;
+  undefined1 *puVar7;
+  int iVar8;
   int iVar9;
-  int iVar10;
-  int iVar11;
   size_t cnt;
   size_t cnt_00;
-  int iVar12;
-  bool bVar13;
-  double dVar14;
-  double dVar15;
-  void *local_78;
+  int iVar10;
+  bool bVar11;
   __pid_t local_64;
   int local_60;
   undefined4 local_5c;
-  undefined4 local_58;
-  undefined4 local_54;
-  undefined4 local_50;
-  undefined4 uStack_4c;
-  undefined4 local_48;
+  byte local_58;
+  byte bStack_57;
+  byte bStack_56;
+  byte bStack_55;
+  byte local_54;
+  byte local_53;
+  byte local_52;
+  byte local_51;
+  byte local_50;
+  byte local_4f;
+  undefined1 local_4e;
+  byte local_4d;
+  undefined1 local_4c;
+  undefined1 local_4b;
+  undefined1 local_4a;
+  undefined1 local_49;
+  undefined1 local_48;
+  undefined1 uStack_47;
+  undefined1 uStack_46;
+  undefined1 uStack_45;
   EVP_MD_CTX EStack_40;
   
   local_64 = getpid();
   if (0 < (int)param_2) {
     EVP_MD_CTX_init(&EStack_40);
     if (param_4 != 0) {
-      CRYPTO_lock(9,0x12,DAT_00103838,0x182);
+      CRYPTO_lock(9,0x12,"md_rand.c",0x182);
     }
-    puVar2 = DAT_00103510;
-    CRYPTO_lock(9,0x13,DAT_00103514,0x185);
-    CRYPTO_THREADID_current((CRYPTO_THREADID *)(puVar2 + 1));
-    CRYPTO_lock(10,0x13,DAT_00103514,0x187);
-    *puVar2 = 1;
-    if (puVar2[3] == 0) {
+    CRYPTO_lock(9,0x13,"md_rand.c",0x185);
+    CRYPTO_THREADID_current((CRYPTO_THREADID *)&locking_threadid);
+    CRYPTO_lock(10,0x13,"md_rand.c",0x187);
+    crypto_lock_rand = 1;
+    if (initialized == 0) {
       RAND_poll();
-      puVar2[3] = 1;
+      initialized = 1;
     }
-    dVar14 = *(double *)(puVar2 + 4);
-    iVar6 = puVar2[0x114];
-    bVar1 = dVar14 < DAT_00103500 == (NAN(dVar14) || NAN(DAT_00103500));
+    bVar1 = 32.0 <= entropy;
     if (!bVar1) {
-      dVar15 = dVar14 - (double)(longlong)(int)param_2;
-      if ((int)((uint)(dVar14 - (double)(longlong)(int)param_2 < DAT_00103508) << 0x1f) < 0) {
-        dVar15 = DAT_00103508;
+      entropy = entropy - (double)(longlong)(int)param_2;
+      if ((int)((uint)(entropy < 0.0) << 0x1f) < 0) {
+        entropy = 0.0;
       }
-      *(double *)(DAT_00103510 + 4) = dVar15;
     }
-    if (iVar6 == 0) {
-      iVar6 = 0x34;
+    if (stirred_pool_10802 == 0) {
+      iVar8 = 0x34;
       do {
-        ssleay_rand_add_part_0(SUB84(DAT_00103508,0),DAT_00103518,0x14);
-        iVar6 = iVar6 + -1;
-      } while (iVar6 != 0);
+        ssleay_rand_add_part_0(0,"....................",0x14);
+        iVar8 = iVar8 + -1;
+      } while (iVar8 != 0);
       if (bVar1) {
-        puVar2[0x114] = 1;
+        stirred_pool_10802 = 1;
       }
     }
-    puVar3 = DAT_00103510;
-    iVar6 = puVar2[0x10c];
-    local_58 = DAT_00103510[0x10d];
-    local_54 = DAT_00103510[0x10e];
-    local_50 = DAT_00103510[0x10f];
-    uStack_4c = DAT_00103510[0x110];
-    iVar12 = ((int)(param_2 - 1) / 10 + 1) * 10 + iVar6;
-    iVar11 = puVar2[0x112];
-    local_48 = DAT_00103510[0x111];
-    iVar9 = puVar2[0x10b];
-    local_5c = puVar2[0x113];
-    local_60 = iVar11;
-    if (iVar9 < iVar12) {
-      __aeabi_idivmod(iVar12,iVar9);
-      puVar3[0x10c] = extraout_r1;
+    iVar5 = (int)md_count;
+    iVar8 = state_index;
+    iVar2 = state_num;
+    iVar10 = ((int)(param_2 - 1) / 10 + 1) * 10 + state_index;
+    _local_58 = md._0_4_;
+    _local_54 = md._4_4_;
+    _local_50 = md._8_4_;
+    _local_4c = md._12_4_;
+    _local_48 = md._16_4_;
+    local_60 = (int)md_count;
+    local_5c = md_count._4_4_;
+    if (state_num < iVar10) {
+      __aeabi_idivmod(iVar10,state_num);
+      iVar10 = extraout_r1;
     }
-    else {
-      DAT_00103510[0x10c] = iVar12;
-    }
-    puVar2[0x112] = iVar11 + 1;
-    *puVar2 = 0;
-    if (param_4 == 0) {
-      local_78 = DAT_0010351c;
-    }
-    else {
-      local_78 = DAT_00103830;
-      CRYPTO_lock(10,0x12,DAT_00103838,0x1d2);
+    state_index = iVar10;
+    md_count._0_4_ = iVar5 + 1;
+    crypto_lock_rand = 0;
+    if (param_4 != 0) {
+      CRYPTO_lock(10,0x12,"md_rand.c",0x1d2);
     }
     do {
-      pEVar4 = EVP_sha1();
+      pEVar3 = EVP_sha1();
       cnt = param_2;
       if (9 < (int)param_2) {
         cnt = 10;
       }
-      EVP_DigestInit_ex(&EStack_40,pEVar4,(ENGINE *)0x0);
+      EVP_DigestInit_ex(&EStack_40,pEVar3,(ENGINE *)0x0);
       param_2 = param_2 - cnt;
       if (local_64 != 0) {
         EVP_DigestUpdate(&EStack_40,&local_64,4);
@@ -109,201 +108,196 @@ undefined4 ssleay_rand_bytes(undefined *param_1,size_t param_2,int param_3,int p
       EVP_DigestUpdate(&EStack_40,&local_58,0x14);
       EVP_DigestUpdate(&EStack_40,&local_60,8);
       EVP_DigestUpdate(&EStack_40,param_1,cnt);
-      cnt_00 = (iVar6 + 10) - iVar9;
+      cnt_00 = (iVar8 + 10) - iVar2;
       if ((int)cnt_00 < 1) {
-        EVP_DigestUpdate(&EStack_40,(void *)((int)local_78 + iVar6),10);
+        EVP_DigestUpdate(&EStack_40,state + iVar8,10);
       }
       else {
-        EVP_DigestUpdate(&EStack_40,(void *)((int)local_78 + iVar6),10 - cnt_00);
-        EVP_DigestUpdate(&EStack_40,DAT_00103830,cnt_00);
+        EVP_DigestUpdate(&EStack_40,state + iVar8,10 - cnt_00);
+        EVP_DigestUpdate(&EStack_40,state,cnt_00);
       }
-      EVP_DigestFinal_ex(&EStack_40,(uchar *)&local_58,(uint *)0x0);
-      iVar11 = iVar6 + 1;
-      if (iVar11 < iVar9) {
-        iVar10 = iVar6 + 2;
-        iVar12 = iVar11;
+      EVP_DigestFinal_ex(&EStack_40,&local_58,(uint *)0x0);
+      iVar5 = iVar8 + 1;
+      if (iVar5 < iVar2) {
+        iVar9 = iVar8 + 2;
+        iVar10 = iVar5;
       }
       else {
-        iVar10 = iVar6;
-        iVar12 = 0;
+        iVar9 = iVar8;
+        iVar10 = 0;
       }
-      *(byte *)((int)puVar2 + iVar6 + 0x18) = *(byte *)((int)puVar2 + iVar6 + 0x18) ^ (byte)local_58
-      ;
-      if (iVar9 <= iVar11) {
+      state[iVar8] = state[iVar8] ^ local_58;
+      if (iVar2 <= iVar5) {
+        iVar9 = 1;
+      }
+      iVar5 = iVar9;
+      if (iVar2 <= iVar9) {
+        iVar5 = 0;
+      }
+      *param_1 = local_4e;
+      bVar4 = state[iVar10];
+      state[iVar10] = bVar4 ^ bStack_57;
+      if (iVar9 < iVar2) {
+        iVar10 = iVar5 + 1;
+      }
+      else {
         iVar10 = 1;
       }
-      iVar6 = iVar10;
-      if (iVar9 <= iVar10) {
-        iVar6 = 0;
+      bVar11 = cnt == 1;
+      bVar4 = bVar4 ^ bStack_57;
+      if (!bVar11) {
+        bVar4 = local_4d;
       }
-      *param_1 = local_50._2_1_;
-      bVar5 = *(byte *)((int)puVar2 + iVar12 + 0x18) ^ local_58._1_1_;
-      *(byte *)((int)puVar2 + iVar12 + 0x18) = bVar5;
-      if (iVar10 < iVar9) {
-        iVar11 = iVar6 + 1;
-      }
-      else {
-        iVar11 = 1;
-      }
-      bVar13 = cnt == 1;
-      if (!bVar13) {
-        bVar5 = local_50._3_1_;
-      }
-      iVar6 = iVar6 + (int)puVar2;
-      if (bVar13) {
+      iVar8 = (int)&crypto_lock_rand + iVar5;
+      if (bVar11) {
         param_1 = param_1 + 1;
       }
-      if (!bVar13) {
-        param_1[1] = bVar5;
+      if (!bVar11) {
+        param_1[1] = bVar4;
         param_1 = param_1 + 2;
       }
-      iVar12 = iVar11;
-      if (iVar9 <= iVar11) {
-        iVar12 = 0;
+      iVar9 = iVar10;
+      if (iVar2 <= iVar10) {
+        iVar9 = 0;
       }
-      *(byte *)(iVar6 + 0x18) = *(byte *)(iVar6 + 0x18) ^ local_58._2_1_;
-      if (iVar11 < iVar9) {
-        iVar11 = iVar12 + 1;
+      state[iVar5] = state[iVar5] ^ bStack_56;
+      if (iVar10 < iVar2) {
+        iVar5 = iVar9 + 1;
       }
       else {
-        iVar11 = 1;
+        iVar5 = 1;
       }
-      puVar7 = param_1;
+      puVar6 = param_1;
       if (2 < (int)cnt) {
-        puVar7 = param_1 + 1;
-        *param_1 = (undefined)uStack_4c;
+        puVar6 = param_1 + 1;
+        *param_1 = local_4c;
       }
-      iVar10 = iVar11;
-      if (iVar9 <= iVar11) {
+      iVar10 = iVar5;
+      if (iVar2 <= iVar5) {
         iVar10 = 0;
       }
-      *(byte *)((int)puVar2 + iVar12 + 0x18) =
-           *(byte *)((int)puVar2 + iVar12 + 0x18) ^ local_58._3_1_;
-      if (iVar11 < iVar9) {
-        iVar11 = iVar10 + 1;
+      state[iVar9] = state[iVar9] ^ bStack_55;
+      if (iVar5 < iVar2) {
+        iVar5 = iVar10 + 1;
       }
       else {
-        iVar11 = 1;
+        iVar5 = 1;
       }
-      puVar8 = puVar7;
+      puVar7 = puVar6;
       if (3 < (int)cnt) {
-        puVar8 = puVar7 + 1;
-        *puVar7 = uStack_4c._1_1_;
+        puVar7 = puVar6 + 1;
+        *puVar6 = local_4b;
       }
-      iVar12 = iVar11;
-      if (iVar9 <= iVar11) {
-        iVar12 = 0;
+      iVar9 = iVar5;
+      if (iVar2 <= iVar5) {
+        iVar9 = 0;
       }
-      *(byte *)((int)puVar2 + iVar10 + 0x18) =
-           *(byte *)((int)puVar2 + iVar10 + 0x18) ^ (byte)local_54;
-      if (iVar11 < iVar9) {
-        iVar11 = iVar12 + 1;
+      state[iVar10] = state[iVar10] ^ local_54;
+      if (iVar5 < iVar2) {
+        iVar5 = iVar9 + 1;
       }
       else {
-        iVar11 = 1;
+        iVar5 = 1;
       }
-      puVar7 = puVar8;
+      puVar6 = puVar7;
       if (4 < (int)cnt) {
-        puVar7 = puVar8 + 1;
-        *puVar8 = uStack_4c._2_1_;
+        puVar6 = puVar7 + 1;
+        *puVar7 = local_4a;
       }
-      iVar10 = iVar11;
-      if (iVar9 <= iVar11) {
+      iVar10 = iVar5;
+      if (iVar2 <= iVar5) {
         iVar10 = 0;
       }
-      *(byte *)((int)puVar2 + iVar12 + 0x18) =
-           *(byte *)((int)puVar2 + iVar12 + 0x18) ^ local_54._1_1_;
-      if (iVar11 < iVar9) {
-        iVar11 = iVar10 + 1;
+      state[iVar9] = state[iVar9] ^ local_53;
+      if (iVar5 < iVar2) {
+        iVar5 = iVar10 + 1;
       }
       else {
-        iVar11 = 1;
+        iVar5 = 1;
       }
-      puVar8 = puVar7;
+      puVar7 = puVar6;
       if (5 < (int)cnt) {
-        puVar8 = puVar7 + 1;
-        *puVar7 = uStack_4c._3_1_;
+        puVar7 = puVar6 + 1;
+        *puVar6 = local_49;
       }
-      iVar12 = iVar11;
-      if (iVar9 <= iVar11) {
-        iVar12 = 0;
+      iVar9 = iVar5;
+      if (iVar2 <= iVar5) {
+        iVar9 = 0;
       }
-      *(byte *)((int)puVar2 + iVar10 + 0x18) =
-           *(byte *)((int)puVar2 + iVar10 + 0x18) ^ local_54._2_1_;
-      if (iVar11 < iVar9) {
-        iVar11 = iVar12 + 1;
+      state[iVar10] = state[iVar10] ^ local_52;
+      if (iVar5 < iVar2) {
+        iVar5 = iVar9 + 1;
       }
       else {
-        iVar11 = 1;
+        iVar5 = 1;
       }
-      puVar7 = puVar8;
+      puVar6 = puVar7;
       if (6 < (int)cnt) {
-        puVar7 = puVar8 + 1;
-        *puVar8 = (undefined)local_48;
+        puVar6 = puVar7 + 1;
+        *puVar7 = local_48;
       }
-      iVar10 = iVar11;
-      if (iVar9 <= iVar11) {
+      iVar10 = iVar5;
+      if (iVar2 <= iVar5) {
         iVar10 = 0;
       }
-      *(byte *)((int)puVar2 + iVar12 + 0x18) =
-           *(byte *)((int)puVar2 + iVar12 + 0x18) ^ local_54._3_1_;
-      if (iVar11 < iVar9) {
-        iVar11 = iVar10 + 1;
+      state[iVar9] = state[iVar9] ^ local_51;
+      if (iVar5 < iVar2) {
+        iVar5 = iVar10 + 1;
       }
       else {
-        iVar11 = 1;
+        iVar5 = 1;
       }
-      puVar8 = puVar7;
+      puVar7 = puVar6;
       if (7 < (int)cnt) {
-        puVar8 = puVar7 + 1;
-        *puVar7 = local_48._1_1_;
+        puVar7 = puVar6 + 1;
+        *puVar6 = uStack_47;
       }
-      if (iVar11 < iVar9) {
-        iVar6 = iVar11 + 1;
+      if (iVar5 < iVar2) {
+        iVar8 = iVar5 + 1;
       }
-      if (iVar9 <= iVar11) {
-        iVar6 = 1;
-        iVar11 = 0;
+      if (iVar2 <= iVar5) {
+        iVar8 = 1;
+        iVar5 = 0;
       }
-      *(byte *)((int)puVar2 + iVar10 + 0x18) =
-           *(byte *)((int)puVar2 + iVar10 + 0x18) ^ (byte)local_50;
-      puVar7 = puVar8;
+      state[iVar10] = state[iVar10] ^ local_50;
+      puVar6 = puVar7;
       if (8 < (int)cnt) {
-        puVar7 = puVar8 + 1;
-        *puVar8 = local_48._2_1_;
+        puVar6 = puVar7 + 1;
+        *puVar7 = uStack_46;
       }
-      if (iVar9 <= iVar6) {
-        iVar6 = 0;
+      if (iVar2 <= iVar8) {
+        iVar8 = 0;
       }
-      *(byte *)((int)puVar2 + iVar11 + 0x18) =
-           *(byte *)((int)puVar2 + iVar11 + 0x18) ^ local_50._1_1_;
-      param_1 = puVar7;
+      state[iVar5] = state[iVar5] ^ local_4f;
+      param_1 = puVar6;
       if (cnt == 10) {
-        param_1 = puVar7 + 1;
-        *puVar7 = local_48._3_1_;
+        param_1 = puVar6 + 1;
+        *puVar6 = uStack_45;
       }
     } while (0 < (int)param_2);
-    pEVar4 = EVP_sha1();
-    EVP_DigestInit_ex(&EStack_40,pEVar4,(ENGINE *)0x0);
+    pEVar3 = EVP_sha1();
+    EVP_DigestInit_ex(&EStack_40,pEVar3,(ENGINE *)0x0);
     EVP_DigestUpdate(&EStack_40,&local_60,8);
     EVP_DigestUpdate(&EStack_40,&local_58,0x14);
     if (param_4 == 0) {
-      EVP_DigestUpdate(&EStack_40,DAT_00103834,0x14);
-      EVP_DigestFinal_ex(&EStack_40,DAT_00103834,(uint *)0x0);
+      EVP_DigestUpdate(&EStack_40,md,0x14);
+      EVP_DigestFinal_ex(&EStack_40,md,(uint *)0x0);
     }
     else {
-      CRYPTO_lock(9,0x12,DAT_00103838,0x203);
-      EVP_DigestUpdate(&EStack_40,DAT_00103834,0x14);
-      EVP_DigestFinal_ex(&EStack_40,DAT_00103834,(uint *)0x0);
-      CRYPTO_lock(10,0x12,DAT_00103838,0x207);
+      CRYPTO_lock(9,0x12,"md_rand.c",0x203);
+      EVP_DigestUpdate(&EStack_40,md,0x14);
+      EVP_DigestFinal_ex(&EStack_40,md,(uint *)0x0);
+      CRYPTO_lock(10,0x12,"md_rand.c",0x207);
     }
     EVP_MD_CTX_cleanup(&EStack_40);
     if (!bVar1) {
       if (param_3 != 0) {
         return 0;
       }
-      ERR_put_error(0x24,100,100,DAT_00103838,0x20f);
-      ERR_add_error_data(1,DAT_0010383c);
+      ERR_put_error(0x24,100,100,"md_rand.c",0x20f);
+      ERR_add_error_data(1,
+                         "You need to read the OpenSSL FAQ, http://www.openssl.org/support/faq.html"
+                        );
       return 0;
     }
   }

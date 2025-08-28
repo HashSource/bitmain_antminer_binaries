@@ -1,5 +1,5 @@
 
-undefined4 dsPIC33EP16GS202_send_data_to_pic(byte param_1,undefined *param_2)
+undefined4 dsPIC33EP16GS202_send_data_to_pic(byte param_1,undefined1 *param_2)
 
 {
   char cVar1;

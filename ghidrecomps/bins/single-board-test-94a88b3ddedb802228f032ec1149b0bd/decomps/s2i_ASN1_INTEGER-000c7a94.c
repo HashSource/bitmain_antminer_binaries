@@ -10,7 +10,7 @@ ASN1_INTEGER * s2i_ASN1_INTEGER(X509V3_EXT_METHOD *meth,char *value)
   
   local_14[0] = (BIGNUM *)0x0;
   if (value == (char *)0x0) {
-    ERR_put_error(0x22,0x6c,0x6d,DAT_000c7b60,0xb6);
+    ERR_put_error(0x22,0x6c,0x6d,"v3_utl.c",0xb6);
   }
   else {
     local_14[0] = BN_new();
@@ -31,7 +31,7 @@ ASN1_INTEGER * s2i_ASN1_INTEGER(X509V3_EXT_METHOD *meth,char *value)
     }
     if ((iVar2 == 0) || (value[iVar2] != '\0')) {
       BN_free(local_14[0]);
-      ERR_put_error(0x22,0x6c,100,DAT_000c7b60,0xcd);
+      ERR_put_error(0x22,0x6c,100,"v3_utl.c",0xcd);
     }
     else {
       if (bVar4 == 0) {
@@ -53,7 +53,7 @@ ASN1_INTEGER * s2i_ASN1_INTEGER(X509V3_EXT_METHOD *meth,char *value)
           return pAVar3;
         }
       }
-      ERR_put_error(0x22,0x6c,0x65,DAT_000c7b60,0xd8);
+      ERR_put_error(0x22,0x6c,0x65,"v3_utl.c",0xd8);
     }
   }
   return (ASN1_INTEGER *)0x0;

@@ -10,9 +10,9 @@ void power_init(void)
   power_check_protocal_type();
   power_info = 2;
   if (3 < log_level) {
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      fprintf(pFVar2,"%s:%d:%s: start detect power type\n","power.c",0xad,DAT_000417f0);
+      fprintf(pFVar2,"%s:%d:%s: start detect power type\n","power.c",0xad,"power_type_detect");
     }
     fclose(pFVar2);
   }
@@ -23,9 +23,9 @@ void power_init(void)
       system("echo 36 > /sys/class/gpio/export");
       system("echo out > /sys/class/gpio/gpio36/direction");
       if (3 < log_level) {
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          fprintf(pFVar2,"%s:%d:%s: init gpio36\n","power.c",0xc1,DAT_000417f0);
+          fprintf(pFVar2,"%s:%d:%s: init gpio36\n","power.c",0xc1,"power_type_detect");
         }
         fclose(pFVar2);
       }
@@ -38,9 +38,9 @@ void power_init(void)
       system("echo 907 > /sys/class/gpio/export");
       system("echo out > /sys/class/gpio/gpio907/direction");
       if (3 < log_level) {
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          fprintf(pFVar2,"%s:%d:%s: init gpio907\n","power.c",0xb5,DAT_000417f0);
+          fprintf(pFVar2,"%s:%d:%s: init gpio907\n","power.c",0xb5,"power_type_detect");
         }
         fclose(pFVar2);
       }
@@ -65,27 +65,27 @@ void power_init(void)
     system("echo 1 > /sys/class/gpio/gpio907/value");
   }
   if (3 < log_level) {
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
       pcVar3 = "APW8 new type";
       if (power_info != 2) {
         pcVar3 = "APW8 old type";
       }
-      fprintf(pFVar2,"%s:%d:%s: power type is %s\n","power.c",0xd3,DAT_000417f0,pcVar3);
+      fprintf(pFVar2,"%s:%d:%s: power type is %s\n","power.c",0xd3,"power_type_detect",pcVar3);
     }
     fclose(pFVar2);
   }
   DAT_0080b6e8 = 0;
   DAT_0080b6d4 = 0;
-  if ((int)((uint)((double)CONCAT44(DAT_0080b6d8._4_4_,(undefined4)DAT_0080b6d8) < DAT_000417e8) <<
-           0x1f) < 0) {
-    DAT_0080b6d8._0_4_ = DAT_000417f4;
-    DAT_0080b6d8._4_4_ = DAT_000417f8;
+  if ((int)((uint)((double)CONCAT44(DAT_0080b6d8._4_4_,(undefined4)DAT_0080b6d8) < 9.7) << 0x1f) < 0
+     ) {
+    DAT_0080b6d8._0_4_ = 0x66666666;
+    DAT_0080b6d8._4_4_ = 0x4024e666;
   }
   DAT_0080b6ec = 0;
   DAT_0080b6f0 = 0;
-  DAT_0080b6e0._0_4_ = DAT_000417fc;
-  DAT_0080b6e0._4_4_ = DAT_00041800;
+  DAT_0080b6e0._0_4_ = 0xcccccccd;
+  DAT_0080b6e0._4_4_ = 0x4025cccc;
   return;
 }
 

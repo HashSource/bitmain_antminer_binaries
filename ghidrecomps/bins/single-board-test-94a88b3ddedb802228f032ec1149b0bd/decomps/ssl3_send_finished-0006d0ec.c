@@ -22,7 +22,7 @@ ssl3_send_finished(int param_1,int param_2,undefined4 param_3,undefined4 param_4
     memcpy((void *)(iVar4 + iVar3),(void *)(iVar2 + 0x234),__n);
     if (*(int *)(param_1 + 4) == 0x1000) {
       if (0x40 < (int)__n) {
-        OpenSSLDie(DAT_0006d1a8,0xb5,DAT_0006d1ac);
+        OpenSSLDie("s3_both.c",0xb5,"i <= EVP_MAX_MD_SIZE");
       }
       memcpy((void *)(*(int *)(param_1 + 0x58) + 0x394),(void *)(*(int *)(param_1 + 0x58) + 0x234),
              __n);
@@ -30,7 +30,7 @@ ssl3_send_finished(int param_1,int param_2,undefined4 param_3,undefined4 param_4
     }
     else {
       if (0x40 < (int)__n) {
-        OpenSSLDie(DAT_0006d1a8,0xb9,DAT_0006d1ac);
+        OpenSSLDie("s3_both.c",0xb9,"i <= EVP_MAX_MD_SIZE");
       }
       memcpy((void *)(*(int *)(param_1 + 0x58) + 0x3d5),(void *)(*(int *)(param_1 + 0x58) + 0x234),
              __n);

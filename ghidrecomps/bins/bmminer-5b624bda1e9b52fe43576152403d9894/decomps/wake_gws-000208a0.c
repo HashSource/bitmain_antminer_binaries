@@ -1,25 +1,25 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void wake_gws(void)
 
 {
   int iVar1;
-  int iVar2;
-  char *in_r2;
-  int in_r3;
+  char *func;
+  char *func_00;
+  int line;
+  int line_00;
   
-  iVar2 = DAT_000208e0;
-  iVar1 = pthread_mutex_lock(*(pthread_mutex_t **)(DAT_000208e0 + 0x454));
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)stgd_lock);
   if (iVar1 != 0) {
-    _mutex_lock(DAT_000208ec,(char *)0x1494,in_r2,in_r3);
+    _mutex_lock((pthread_mutex_t *)"wake_gws",(char *)0x1494,func,line);
   }
-  pthread_cond_signal(DAT_000208e4);
-  iVar2 = pthread_mutex_unlock(*(pthread_mutex_t **)(iVar2 + 0x454));
-  if (iVar2 != 0) {
-    _mutex_unlock_noyield(DAT_000208ec,(char *)0x1496,in_r2,in_r3);
+  pthread_cond_signal((pthread_cond_t *)&gws_cond);
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)stgd_lock);
+  if (iVar1 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"wake_gws",(char *)0x1496,func_00,line_00);
   }
-  (**DAT_000208e8)();
+  (*selective_yield)();
   return;
 }
 

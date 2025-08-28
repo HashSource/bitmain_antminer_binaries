@@ -8,7 +8,7 @@ int BN_BLINDING_convert(BIGNUM *n,BN_BLINDING *b,BN_CTX *ctx)
   
   b_00 = *(BIGNUM **)b;
   if ((b_00 == (BIGNUM *)0x0) || (*(int *)(b + 4) == 0)) {
-    ERR_put_error(3,100,0x6b,DAT_000f2904,0xea);
+    ERR_put_error(3,100,0x6b,"bn_blind.c",0xea);
     iVar1 = 0;
   }
   else {

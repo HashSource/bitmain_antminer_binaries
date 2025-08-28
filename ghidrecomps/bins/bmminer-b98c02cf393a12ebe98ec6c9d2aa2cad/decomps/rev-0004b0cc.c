@@ -1,12 +1,12 @@
 
-void rev(undefined *param_1,int param_2)
+void rev(undefined1 *param_1,int param_2)
 
 {
-  undefined uVar1;
-  undefined *puVar2;
+  undefined1 uVar1;
+  undefined1 *puVar2;
   uint uVar3;
-  undefined *puVar4;
-  undefined *puVar5;
+  undefined1 *puVar4;
+  undefined1 *puVar5;
   
   uVar3 = param_2 - 1;
   if (uVar3 != 0) {

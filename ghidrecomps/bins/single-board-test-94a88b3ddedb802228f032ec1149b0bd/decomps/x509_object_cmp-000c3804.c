@@ -1,13 +1,13 @@
 
-void x509_object_cmp(int **param_1,int **param_2)
+void x509_object_cmp(undefined4 *param_1,undefined4 *param_2)
 
 {
   int *piVar1;
   int iVar2;
   int *piVar3;
   
-  piVar1 = *param_2;
-  piVar3 = *param_1;
+  piVar1 = (int *)*param_2;
+  piVar3 = (int *)*param_1;
   iVar2 = *piVar3;
   if (iVar2 == *piVar1) {
     if (iVar2 == 1) {

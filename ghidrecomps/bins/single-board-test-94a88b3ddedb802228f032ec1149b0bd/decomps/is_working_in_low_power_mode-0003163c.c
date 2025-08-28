@@ -1,8 +1,8 @@
 
-undefined is_working_in_low_power_mode(void)
+undefined1 is_working_in_low_power_mode(void)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   char acStack_74 [100];
   char *local_10;
@@ -42,7 +42,7 @@ undefined is_working_in_low_power_mode(void)
     if (working_mode == 1) {
       iVar2 = 1;
     }
-    uVar1 = (undefined)iVar2;
+    uVar1 = (undefined1)iVar2;
     if (working_mode != 1) {
       uVar1 = 0;
     }

@@ -8,7 +8,7 @@ void bm174x_set_nonce_shift(int fd,uint32_t nonce_shift,uint32_t *outer_shift)
   base_type_t item;
   bm174x_reg nonce_shift_reg;
   
-  nonce_shift_reg.core_timeout.core_timeout._0_1_ = (undefined)reg_value.nonce_shift;
+  nonce_shift_reg.core_timeout.core_timeout._0_1_ = (undefined1)reg_value.nonce_shift;
   nonce_shift_reg.core_timeout.core_timeout._1_3_ = (undefined3)(reg_value.nonce_shift >> 8);
   nonce_shift_reg.core_timeout.core_timeout._0_1_ =
        nonce_shift_reg.core_timeout.core_timeout._0_1_ & 0xe0 | (byte)nonce_shift & 0x1f;

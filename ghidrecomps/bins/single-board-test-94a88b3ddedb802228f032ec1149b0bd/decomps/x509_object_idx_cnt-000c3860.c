@@ -8,7 +8,7 @@ uint x509_object_idx_cnt(_STACK *param_1,int param_2,X509_ALGOR *param_3,int *pa
   uint uVar4;
   int local_130;
   X509 *local_12c;
-  undefined auStack_128 [60];
+  undefined1 auStack_128 [60];
   X509_ALGOR *local_ec;
   X509 local_cc;
   

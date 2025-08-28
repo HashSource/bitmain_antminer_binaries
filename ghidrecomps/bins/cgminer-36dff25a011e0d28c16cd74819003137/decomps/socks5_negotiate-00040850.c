@@ -37,9 +37,8 @@ _Bool socks5_negotiate(pool *pool,int sockd)
     buf[4] = (char)len;
     _cg_memcpy(buf + 5,pool->sockaddr_url,len,"util.c","socks5_negotiate",0xb05);
     iVar1 = atoi(pool->stratum_port);
-    port._0_1_ = (char)iVar1;
     buf[len + 5] = (char)((uint)iVar1 >> 8);
-    buf[len + 6] = (char)port;
+    buf[len + 6] = (char)iVar1;
     send(sockd,buf,len + 7,0);
     iVar1 = recv_byte(sockd);
     if ((iVar1 == 5) && (iVar1 = recv_byte(sockd), iVar1 == 0)) {

@@ -19,7 +19,7 @@ void Curl_ssl_close_all(int param_1)
         iVar1 = *(int *)(param_1 + 0x85b0);
       } while (uVar3 < *(uint *)(param_1 + 0x2a8));
     }
-    (**DAT_0003cc7c)();
+    (*Curl_cfree)();
     *(undefined4 *)(param_1 + 0x85b0) = 0;
   }
   Curl_ossl_close_all(param_1);

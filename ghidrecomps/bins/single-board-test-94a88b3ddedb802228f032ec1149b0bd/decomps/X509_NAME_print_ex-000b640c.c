@@ -9,23 +9,23 @@ int X509_NAME_print_ex(BIO *out,X509_NAME *nm,int indent,ulong flags)
   ASN1_STRING *pAVar3;
   size_t sVar4;
   int iVar5;
-  char *__s;
   uint uVar6;
-  void *data;
+  undefined *data;
   int iVar7;
   uint uVar8;
   uint uVar9;
   uint uVar10;
+  char *buf;
   int iVar11;
   size_t len;
-  size_t sVar12;
-  int iVar13;
+  int iVar12;
+  size_t sVar13;
   int local_b0;
   int local_ac;
   int local_94;
   int local_84;
-  void *local_80;
-  void *local_7c;
+  char *local_80;
+  undefined *local_7c;
   char acStack_78 [84];
   
   if (flags == 0) {
@@ -36,7 +36,7 @@ int X509_NAME_print_ex(BIO *out,X509_NAME *nm,int indent,ulong flags)
   if ((uVar8 != 0) && (out != (BIO *)0x0)) {
     uVar9 = 0;
     do {
-      iVar1 = BIO_write(out,DAT_000b6690,1);
+      iVar1 = BIO_write(out,&DAT_001729cc,1);
       if (iVar1 != 1) {
         return -1;
       }
@@ -48,16 +48,16 @@ int X509_NAME_print_ex(BIO *out,X509_NAME *nm,int indent,ulong flags)
     local_84 = 3;
     uVar9 = 0;
     local_94 = 2;
-    local_7c = DAT_000b669c;
-    local_80 = DAT_000b66a0;
+    local_7c = &DAT_001604f0;
+    local_80 = ", ";
   }
   else if (uVar9 < 0x20001) {
     if (uVar9 != 0x10000) {
       return -1;
     }
     local_84 = 1;
-    local_7c = DAT_000b6694;
-    local_80 = DAT_000b6698;
+    local_7c = &DAT_001604f4;
+    local_80 = ",";
     local_94 = 1;
     uVar9 = 0;
   }
@@ -65,26 +65,26 @@ int X509_NAME_print_ex(BIO *out,X509_NAME *nm,int indent,ulong flags)
     local_84 = 3;
     uVar9 = 0;
     local_94 = 2;
-    local_7c = DAT_000b66f0;
-    local_80 = DAT_000b66f8;
+    local_7c = &DAT_001604f0;
+    local_80 = "; ";
   }
   else {
     if (uVar9 != 0x40000) {
       return -1;
     }
-    local_7c = DAT_000b66f0;
     local_84 = 3;
-    local_80 = DAT_000b66f4;
     local_94 = 1;
+    local_7c = &DAT_001604f0;
+    local_80 = "\n";
     uVar9 = uVar8;
   }
+  data = &DAT_00137518;
   if ((flags & 0x800000) == 0) {
     iVar1 = 1;
-    data = DAT_000b66a4;
+    data = &DAT_00160320;
   }
   else {
     iVar1 = 3;
-    data = DAT_000b66a8;
   }
   uVar6 = flags & 0x600000;
   iVar2 = X509_NAME_entry_count(nm);
@@ -120,7 +120,7 @@ int X509_NAME_print_ex(BIO *out,X509_NAME *nm,int indent,ulong flags)
             uVar10 = 0;
             if (uVar9 != 0) {
               do {
-                iVar7 = BIO_write(out,DAT_000b6690,1);
+                iVar7 = BIO_write(out,&DAT_001729cc,1);
                 if (iVar7 != 1) {
                   return -1;
                 }
@@ -138,46 +138,46 @@ int X509_NAME_print_ex(BIO *out,X509_NAME *nm,int indent,ulong flags)
       iVar7 = OBJ_obj2nid(o);
       if (uVar6 != 0x600000) {
         if (uVar6 == 0x400000 || iVar7 == 0) {
-          OBJ_obj2txt(acStack_78,0x50,o,1);
+          buf = acStack_78;
+          sVar13 = 0;
+          OBJ_obj2txt(buf,0x50,o,1);
           len = strlen(acStack_78);
-          __s = acStack_78;
-          sVar12 = 0;
         }
         else {
           len = 0;
           if (uVar6 == 0) {
-            __s = OBJ_nid2sn(iVar7);
-            len = strlen(__s);
-            sVar12 = 10;
+            buf = OBJ_nid2sn(iVar7);
+            sVar13 = 10;
+            len = strlen(buf);
+          }
+          else if (uVar6 == 0x200000) {
+            buf = OBJ_nid2ln(iVar7);
+            sVar13 = 0x19;
+            len = strlen(buf);
           }
           else {
-            __s = DAT_000b66ac;
-            sVar12 = len;
-            if (uVar6 == 0x200000) {
-              __s = OBJ_nid2ln(iVar7);
-              len = strlen(__s);
-              sVar12 = 0x19;
-            }
+            buf = "";
+            sVar13 = len;
           }
         }
-        if ((out != (BIO *)0x0) && (sVar4 = BIO_write(out,__s,len), len != sVar4)) {
+        if ((out != (BIO *)0x0) && (sVar4 = BIO_write(out,buf,len), len != sVar4)) {
           return -1;
         }
-        if (((int)len < (int)sVar12) && ((flags & 0x2000000) != 0)) {
-          iVar13 = sVar12 - len;
-          if ((0 < iVar13) && (out != (BIO *)0x0)) {
+        if (((int)len < (int)sVar13) && ((flags & 0x2000000) != 0)) {
+          iVar12 = sVar13 - len;
+          if ((0 < iVar12) && (out != (BIO *)0x0)) {
             iVar11 = 0;
             do {
-              iVar5 = BIO_write(out,DAT_000b6690,1);
+              iVar5 = BIO_write(out,&DAT_001729cc,1);
               if (iVar5 != 1) {
                 return -1;
               }
               iVar11 = iVar11 + 1;
-            } while (iVar11 != iVar13);
+            } while (iVar11 != iVar12);
           }
-          uVar8 = uVar8 + iVar13;
+          uVar8 = uVar8 + iVar12;
         }
-        if ((out != (BIO *)0x0) && (iVar13 = BIO_write(out,data,iVar1), iVar1 != iVar13)) {
+        if ((out != (BIO *)0x0) && (iVar12 = BIO_write(out,data,iVar1), iVar1 != iVar12)) {
           return -1;
         }
         uVar8 = uVar8 + len + iVar1;

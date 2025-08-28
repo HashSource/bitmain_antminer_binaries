@@ -1,5 +1,5 @@
 
-undefined single_board_frq_tuning(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+undefined1 single_board_frq_tuning(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
   char cVar1;
@@ -20,7 +20,7 @@ undefined single_board_frq_tuning(undefined4 param_1,undefined4 param_2,undefine
   FILE *local_20;
   FILE *local_1c;
   FILE *local_18;
-  undefined local_11;
+  bool local_11;
   int local_10;
   int local_c;
   
@@ -114,7 +114,7 @@ undefined single_board_frq_tuning(undefined4 param_1,undefined4 param_2,undefine
       fclose(local_38);
     }
 LAB_000145fe:
-    local_11 = 1;
+    local_11 = true;
     bVar4 = local_c != 0;
     if (bVar4) {
       tuning_restore(local_24,local_40);
@@ -132,7 +132,7 @@ LAB_000145fe:
     }
   }
   else {
-    local_11 = 0;
+    local_11 = false;
   }
   return local_11;
 }

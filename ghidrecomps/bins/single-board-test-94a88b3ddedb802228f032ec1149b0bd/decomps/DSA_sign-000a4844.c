@@ -13,7 +13,7 @@ int DSA_sign(int type,uchar *dgst,int dlen,uchar *sig,uint *siglen,DSA *dsa)
     *siglen = 0;
   }
   else {
-    uVar1 = ASN1_item_i2d((ASN1_VALUE *)a,&local_14,DAT_000a4884);
+    uVar1 = ASN1_item_i2d((ASN1_VALUE *)a,&local_14,(ASN1_ITEM *)&DSA_SIG_it);
     *siglen = uVar1;
     DSA_SIG_free(a);
   }

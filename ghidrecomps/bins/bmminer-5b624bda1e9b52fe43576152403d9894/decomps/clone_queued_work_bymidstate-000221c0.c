@@ -8,15 +8,14 @@ work * clone_queued_work_bymidstate
 {
   int iVar1;
   work *base_work;
-  work *work;
   char *func;
-  char *line;
+  char *func_00;
+  int line;
+  int line_00;
   
-  func = (char *)midstatelen;
-  line = data;
   iVar1 = pthread_rwlock_rdlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar1 != 0) {
-    _rd_lock(DAT_00022230,(char *)0x249a,func,(int)line);
+    _rd_lock((pthread_rwlock_t *)"clone_queued_work_bymidstate",(char *)0x249a,func,line);
   }
   base_work = __find_work_bymidstate(cgpu->queued_work,midstate,midstatelen,data,offset,datalen);
   if (base_work != (work *)0x0) {
@@ -24,9 +23,9 @@ work * clone_queued_work_bymidstate
   }
   iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar1 != 0) {
-    _rw_unlock(DAT_00022230,(char *)0x249e,(char *)midstatelen,(int)data);
+    _rw_unlock((pthread_rwlock_t *)"clone_queued_work_bymidstate",(char *)0x249e,func_00,line_00);
   }
-  (**DAT_0002222c)();
+  (*selective_yield)();
   return base_work;
 }
 

@@ -4,24 +4,24 @@ int EVP_DigestSignFinal(EVP_MD_CTX *ctx,uchar *sigret,size_t *siglen)
 {
   size_t tbslen;
   int iVar1;
-  int *piVar2;
+  EVP_PKEY_CTX *pEVar2;
   code *pcVar3;
   code *pcVar4;
   size_t local_74;
   EVP_MD_CTX EStack_70;
   uchar auStack_58 [64];
   
-  piVar2 = (int *)ctx->pctx;
-  iVar1 = *piVar2;
+  pEVar2 = ctx->pctx;
+  iVar1 = *(int *)pEVar2;
   if (*(int *)(iVar1 + 4) << 0x1d < 0) {
     if (sigret == (uchar *)0x0) {
-      iVar1 = (**(code **)(iVar1 + 0x40))(piVar2,0,siglen,ctx);
+      iVar1 = (**(code **)(iVar1 + 0x40))(pEVar2,0,siglen,ctx);
       return iVar1;
     }
-    piVar2 = (int *)EVP_PKEY_CTX_dup((EVP_PKEY_CTX *)piVar2);
-    if (piVar2 != (int *)0x0) {
-      iVar1 = (**(code **)(*piVar2 + 0x40))(piVar2,sigret,siglen,ctx);
-      EVP_PKEY_CTX_free((EVP_PKEY_CTX *)piVar2);
+    pEVar2 = EVP_PKEY_CTX_dup(pEVar2);
+    if (pEVar2 != (EVP_PKEY_CTX *)0x0) {
+      iVar1 = (**(code **)(*(int *)pEVar2 + 0x40))(pEVar2,sigret,siglen,ctx);
+      EVP_PKEY_CTX_free(pEVar2);
       return iVar1;
     }
   }
@@ -33,12 +33,12 @@ int EVP_DigestSignFinal(EVP_MD_CTX *ctx,uchar *sigret,size_t *siglen)
     }
     if (sigret == (uchar *)0x0) {
       if (pcVar3 != (code *)0x0) {
-        iVar1 = (*pcVar4)(piVar2,0,siglen,ctx);
+        iVar1 = (*pcVar4)(pEVar2,0,siglen,ctx);
         return (uint)(0 < iVar1);
       }
       tbslen = EVP_MD_size(ctx->digest);
       if (-1 < (int)tbslen) {
-        iVar1 = EVP_PKEY_sign((EVP_PKEY_CTX *)piVar2,(uchar *)0x0,siglen,(uchar *)0x0,tbslen);
+        iVar1 = EVP_PKEY_sign(pEVar2,(uchar *)0x0,siglen,(uchar *)0x0,tbslen);
         return (uint)(0 < iVar1);
       }
     }
@@ -50,7 +50,8 @@ int EVP_DigestSignFinal(EVP_MD_CTX *ctx,uchar *sigret,size_t *siglen)
           iVar1 = EVP_DigestFinal_ex(&EStack_70,auStack_58,&local_74);
         }
         else {
-          iVar1 = (**(code **)(*(int *)EStack_70.pctx + 0x40))(EStack_70.pctx,sigret,siglen);
+          iVar1 = (**(code **)(*(int *)EStack_70.pctx + 0x40))
+                            (EStack_70.pctx,sigret,siglen,&EStack_70);
         }
         EVP_MD_CTX_cleanup(&EStack_70);
         if (iVar1 == 0) {

@@ -23,15 +23,15 @@ int read_PIC16F1704_flash_data(uint which_i2c,uchar which_chain,uchar *buf)
   read_back_data[8] = '\0';
   read_back_data[9] = '\0';
   read_back_data[10] = '\0';
-  read_back_data[11] = '\0';
-  read_back_data[12] = '\0';
-  read_back_data[13] = '\0';
-  read_back_data[14] = '\0';
-  read_back_data[15] = '\0';
-  read_back_data[16] = '\0';
-  read_back_data[17] = '\0';
-  read_back_data[18] = '\0';
-  read_back_data[19] = '\0';
+  read_back_data[0xb] = '\0';
+  read_back_data[0xc] = '\0';
+  read_back_data[0xd] = '\0';
+  read_back_data[0xe] = '\0';
+  read_back_data[0xf] = '\0';
+  read_back_data[0x10] = '\0';
+  read_back_data[0x11] = '\0';
+  read_back_data[0x12] = '\0';
+  read_back_data[0x13] = '\0';
   read_back_data[0] = 0xff;
   read_back_data[1] = '\0';
   read_back_data[2] = '\0';
@@ -70,13 +70,13 @@ int read_PIC16F1704_flash_data(uint which_i2c,uchar which_chain,uchar *buf)
   }
   usleep(100000);
   if ((read_back_data[1] == '\x03') && (read_back_data[0] == '\x14')) {
-    uVar1 = (ushort)read_back_data[17] +
-            (ushort)read_back_data[16] +
-            (ushort)read_back_data[15] +
-            (ushort)read_back_data[14] +
-            (ushort)read_back_data[13] +
-            (ushort)read_back_data[12] +
-            (ushort)read_back_data[11] +
+    uVar1 = (ushort)read_back_data[0x11] +
+            (ushort)read_back_data[0x10] +
+            (ushort)read_back_data[0xf] +
+            (ushort)read_back_data[0xe] +
+            (ushort)read_back_data[0xd] +
+            (ushort)read_back_data[0xc] +
+            (ushort)read_back_data[0xb] +
             (ushort)read_back_data[10] +
             (ushort)read_back_data[9] +
             (ushort)read_back_data[8] +
@@ -84,7 +84,7 @@ int read_PIC16F1704_flash_data(uint which_i2c,uchar which_chain,uchar *buf)
             (ushort)read_back_data[6] +
             (ushort)read_back_data[5] +
             (ushort)read_back_data[4] + (ushort)read_back_data[3] + read_back_data[2] + 0x17;
-    if (((uchar)(uVar1 >> 8) == read_back_data[18]) && ((uchar)uVar1 == read_back_data[19])) {
+    if (((uchar)(uVar1 >> 8) == read_back_data[0x12]) && ((uchar)uVar1 == read_back_data[0x13])) {
       for (i = '\0'; i < 0x10; i = i + '\x01') {
         buf[i] = read_back_data[i + 2];
       }

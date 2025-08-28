@@ -124,13 +124,13 @@ int check_asicnum(int asic_num,uchar nonce)
   case 0x20:
     uVar3 = (uint)(byte)((nonce & 0xf8) - 8);
     if (uVar3 < 0xf1) {
-      return (int)*(char *)(DAT_000153d0 + uVar3 + 0x7c8);
+      return (int)(char)CSWTCH_327[uVar3];
     }
     break;
   case 0x40:
     uVar3 = (uint)(byte)((nonce & 0xfc) - 4);
     if (uVar3 < 0xf9) {
-      return (int)*(char *)(DAT_000153d0 + uVar3 + 0x8bc);
+      return (int)(char)CSWTCH_329[uVar3];
     }
   }
   return 1;

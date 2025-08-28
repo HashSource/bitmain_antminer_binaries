@@ -14,21 +14,21 @@ SSL_CTX * SSL_CTX_new(SSL_METHOD *meth)
   stack_st_SSL_COMP *psVar9;
   ssl3_buf_freelist_st *psVar10;
   _func_3218 *p_Var11;
-  undefined4 uVar12;
+  char *pcVar12;
   uint uVar13;
   
   if (meth == (SSL_METHOD *)0x0) {
-    ERR_put_error(0x14,0xa9,0xc4,DAT_0007b70c,0x74e);
+    ERR_put_error(0x14,0xa9,0xc4,"ssl_lib.c",0x74e);
     return (SSL_CTX *)0x0;
   }
   iVar1 = SSL_get_ex_data_X509_STORE_CTX_idx();
   if (iVar1 < 0) {
-    ERR_put_error(0x14,0xa9,0x10d,DAT_0007b70c,0x759);
+    ERR_put_error(0x14,0xa9,0x10d,"ssl_lib.c",0x759);
 LAB_0007b67a:
-    ERR_put_error(0x14,0xa9,0x41,DAT_0007b70c,0x809);
+    ERR_put_error(0x14,0xa9,0x41,"ssl_lib.c",0x809);
     return (SSL_CTX *)0x0;
   }
-  __s = (SSL_CTX *)CRYPTO_malloc(0x1d8,DAT_0007b70c,0x75c);
+  __s = (SSL_CTX *)CRYPTO_malloc(0x1d8,"ssl_lib.c",0x75c);
   if (__s == (SSL_CTX *)0x0) goto LAB_0007b67a;
   memset(__s,0,0x1d8);
   __s->session_cache_mode = 2;
@@ -65,42 +65,42 @@ LAB_0007b67a:
     __s->client_cert_cb = (_func_3233 *)0x0;
     __s->app_gen_cookie_cb = (_func_3234 *)0x0;
     __s->app_verify_cookie_cb = (_func_3235 *)0x0;
-    p_Var4 = lh_new(DAT_0007b710,DAT_0007b714);
+    p_Var4 = lh_new((LHASH_HASH_FN_TYPE)0x79985,(LHASH_COMP_FN_TYPE)0x799e1);
     __s->sessions = (lhash_st_SSL_SESSION *)p_Var4;
     if (p_Var4 != (_LHASH *)0x0) {
       pXVar5 = X509_STORE_new();
       __s->cert_store = pXVar5;
       if (pXVar5 != (X509_STORE *)0x0) {
-        uVar12 = DAT_0007b71c;
+        pcVar12 = "SSLv2";
         if (meth->version != 2) {
-          uVar12 = DAT_0007b718;
+          pcVar12 = "ALL:!EXPORT:!aNULL:!eNULL:!SSLv2";
         }
         ssl_create_cipher_list
-                  (__s->method,&__s->cipher_list,&__s->cipher_list_by_id,uVar12,__s->cert);
+                  (__s->method,&__s->cipher_list,&__s->cipher_list_by_id,pcVar12,__s->cert);
         if ((&__s->cipher_list->stack == (_STACK *)0x0) ||
            (iVar1 = sk_num(&__s->cipher_list->stack), iVar1 < 1)) {
-          ERR_put_error(0x14,0xa9,0xa1,DAT_0007b70c,0x7a3);
+          ERR_put_error(0x14,0xa9,0xa1,"ssl_lib.c",0x7a3);
           goto LAB_0007b644;
         }
         pXVar6 = X509_VERIFY_PARAM_new();
         __s->param = pXVar6;
         if (pXVar6 != (X509_VERIFY_PARAM *)0x0) {
-          pEVar7 = EVP_get_digestbyname(DAT_0007b720);
+          pEVar7 = EVP_get_digestbyname("ssl2-md5");
           __s->rsa_md5 = pEVar7;
           if (pEVar7 == (EVP_MD *)0x0) {
-            ERR_put_error(0x14,0xa9,0xf1,DAT_0007b70c,0x7ac);
+            ERR_put_error(0x14,0xa9,0xf1,"ssl_lib.c",0x7ac);
             goto LAB_0007b644;
           }
-          pEVar7 = EVP_get_digestbyname(DAT_0007b724);
+          pEVar7 = EVP_get_digestbyname("ssl3-md5");
           __s->md5 = pEVar7;
           if (pEVar7 == (EVP_MD *)0x0) {
-            ERR_put_error(0x14,0xa9,0xf2,DAT_0007b70c,0x7b0);
+            ERR_put_error(0x14,0xa9,0xf2,"ssl_lib.c",0x7b0);
             goto LAB_0007b644;
           }
-          pEVar7 = EVP_get_digestbyname(DAT_0007b728);
+          pEVar7 = EVP_get_digestbyname("ssl3-sha1");
           __s->sha1 = pEVar7;
           if (pEVar7 == (EVP_MD *)0x0) {
-            ERR_put_error(0x14,0xa9,0xf3,DAT_0007b70c,0x7b4);
+            ERR_put_error(0x14,0xa9,0xf3,"ssl_lib.c",0x7b4);
             goto LAB_0007b644;
           }
           p_Var8 = sk_new_null();
@@ -130,17 +130,17 @@ LAB_0007b67a:
             __s->psk_server_callback = (_func_3244 *)0x0;
             SSL_CTX_SRP_CTX_init(__s);
             __s->freelist_max_len = 0x20;
-            psVar10 = (ssl3_buf_freelist_st *)CRYPTO_malloc(0xc,DAT_0007b70c,0x7df);
+            psVar10 = (ssl3_buf_freelist_st *)CRYPTO_malloc(0xc,"ssl_lib.c",0x7df);
             __s->rbuf_freelist = psVar10;
             if (psVar10 != (ssl3_buf_freelist_st *)0x0) {
-              *(undefined4 *)&psVar10->field_0x0 = 0;
+              *(undefined4 *)psVar10 = 0;
               *(undefined4 *)(psVar10 + 4) = 0;
               *(undefined4 *)(psVar10 + 8) = 0;
-              psVar10 = (ssl3_buf_freelist_st *)CRYPTO_malloc(0xc,DAT_0007b70c,0x7e5);
+              psVar10 = (ssl3_buf_freelist_st *)CRYPTO_malloc(0xc,"ssl_lib.c",0x7e5);
               __s->wbuf_freelist = psVar10;
               if (psVar10 != (ssl3_buf_freelist_st *)0x0) {
                 uVar13 = __s->options;
-                *(undefined4 *)&psVar10->field_0x0 = 0;
+                *(undefined4 *)psVar10 = 0;
                 *(undefined4 *)(psVar10 + 4) = 0;
                 *(undefined4 *)(psVar10 + 8) = 0;
                 __s->client_cert_engine = (ENGINE *)0x0;
@@ -154,9 +154,9 @@ LAB_0007b67a:
       }
     }
   }
-  ERR_put_error(0x14,0xa9,0x41,DAT_0007b70c,0x809);
+  ERR_put_error(0x14,0xa9,0x41,"ssl_lib.c",0x809);
 LAB_0007b644:
-  iVar1 = CRYPTO_add_lock(&__s->references,-1,0xc,DAT_0007b70c,0x82a);
+  iVar1 = CRYPTO_add_lock(&__s->references,-1,0xc,"ssl_lib.c",0x82a);
   if (0 < iVar1) {
     return (SSL_CTX *)0x0;
   }

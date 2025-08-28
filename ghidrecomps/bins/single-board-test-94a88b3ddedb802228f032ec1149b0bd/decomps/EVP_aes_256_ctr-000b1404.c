@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_aes_256_ctr(void)
 
 {
-  return DAT_000b1408;
+  return (EVP_CIPHER *)aes_256_ctr;
 }
 

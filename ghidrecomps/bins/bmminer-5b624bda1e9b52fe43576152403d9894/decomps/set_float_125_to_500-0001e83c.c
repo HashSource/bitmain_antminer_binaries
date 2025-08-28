@@ -5,18 +5,14 @@ char * set_float_125_to_500(char *arg,float *i)
 
 {
   char *pcVar1;
-  char *err;
-  float fVar2;
   
   pcVar1 = opt_set_floatval(arg,i);
   if (pcVar1 != (char *)0x0) {
     return pcVar1;
   }
-  fVar2 = *i;
-  if ((-1 < (int)((uint)(fVar2 < DAT_0001e86c) << 0x1f)) &&
-     (fVar2 == DAT_0001e870 || fVar2 < DAT_0001e870 != (NAN(fVar2) || NAN(DAT_0001e870)))) {
+  if ((-1 < (int)((uint)(*i < 125.0) << 0x1f)) && (*i <= 500.0)) {
     return (char *)0x0;
   }
-  return DAT_0001e874;
+  return "Value out of range";
 }
 

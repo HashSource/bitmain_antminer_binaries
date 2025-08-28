@@ -6,7 +6,7 @@ char * getenv(char *__name)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_getenv_000a810c)();
+  pcVar1 = getenv(__name);
   return pcVar1;
 }
 

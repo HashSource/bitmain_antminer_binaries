@@ -33,8 +33,7 @@ int scan_freq_prepare(void)
     iVar2 = -1;
   }
   else {
-    pthread_create(&receive_id,(pthread_attr_t *)0x0,scanfreq_receive_nonce_register + 1,(void *)0x0
-                  );
+    pthread_create(&receive_id,(pthread_attr_t *)0x0,(__start_routine *)0x30731,(void *)0x0);
     pthread_detach(receive_id);
     iVar2 = 0;
   }

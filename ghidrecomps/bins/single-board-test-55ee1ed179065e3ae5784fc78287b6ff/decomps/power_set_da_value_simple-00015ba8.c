@@ -1,8 +1,8 @@
 
-undefined power_set_da_value_simple(undefined param_1)
+undefined1 power_set_da_value_simple(undefined1 param_1)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   
   pthread_mutex_lock((pthread_mutex_t *)i2c_mutex);
   usleep(100000);

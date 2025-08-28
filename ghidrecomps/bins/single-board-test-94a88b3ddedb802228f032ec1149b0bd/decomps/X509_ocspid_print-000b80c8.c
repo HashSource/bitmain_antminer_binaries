@@ -12,10 +12,10 @@ int X509_ocspid_print(BIO *bp,X509 *x)
   undefined4 local_38;
   byte local_34 [24];
   
-  iVar1 = BIO_printf(bp,DAT_000b81a4);
+  iVar1 = BIO_printf(bp,"        Subject OCSP hash: ");
   if (0 < iVar1) {
     sVar2 = i2d_X509_NAME(x->cert_info->subject,(uchar **)0x0);
-    puVar3 = (uchar *)CRYPTO_malloc(sVar2,DAT_000b81a8,0x117);
+    puVar3 = (uchar *)CRYPTO_malloc(sVar2,"t_x509.c",0x117);
     if (puVar3 != (uchar *)0x0) {
       local_38 = puVar3;
       i2d_X509_NAME(x->cert_info->subject,(uchar **)&local_38);
@@ -30,11 +30,11 @@ LAB_000b817a:
       pbVar6 = pbVar7;
       do {
         pbVar6 = pbVar6 + 1;
-        iVar1 = BIO_printf(bp,DAT_000b81ac,(uint)*pbVar6);
+        iVar1 = BIO_printf(bp,"%02X",(uint)*pbVar6);
         if (iVar1 < 1) goto LAB_000b817a;
       } while (pbVar6 != local_34 + 0x13);
       CRYPTO_free(puVar3);
-      iVar1 = BIO_printf(bp,DAT_000b81b0);
+      iVar1 = BIO_printf(bp,"\n        Public key OCSP hash: ");
       if (0 < iVar1) {
         pAVar5 = x->cert_info->key->public_key;
         puVar3 = pAVar5->data;
@@ -44,10 +44,10 @@ LAB_000b817a:
         if (iVar1 != 0) {
           while( true ) {
             pbVar7 = pbVar7 + 1;
-            iVar1 = BIO_printf(bp,DAT_000b81ac,(uint)*pbVar7);
+            iVar1 = BIO_printf(bp,"%02X",(uint)*pbVar7);
             if (iVar1 < 1) break;
             if (local_34 + 0x13 == pbVar7) {
-              BIO_printf(bp,DAT_000b81b4);
+              BIO_printf(bp,"\n");
               return 1;
             }
           }

@@ -7,7 +7,7 @@ int getnameinfo(sockaddr *__sa,socklen_t __salen,char *__host,socklen_t __hostle
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_getnameinfo_0007d014)();
+  iVar1 = getnameinfo(__sa,__salen,__host,__hostlen,__serv,__servlen,__flags);
   return iVar1;
 }
 

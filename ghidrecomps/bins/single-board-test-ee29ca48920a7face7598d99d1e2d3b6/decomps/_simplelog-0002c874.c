@@ -1,5 +1,5 @@
 
-void _simplelog(undefined4 param_1,undefined4 param_2,undefined param_3)
+void _simplelog(undefined4 param_1,undefined4 param_2,undefined1 param_3)
 
 {
   int iVar1;

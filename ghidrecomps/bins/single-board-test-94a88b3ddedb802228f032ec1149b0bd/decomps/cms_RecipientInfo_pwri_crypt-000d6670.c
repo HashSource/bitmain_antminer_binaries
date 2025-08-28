@@ -10,11 +10,11 @@ undefined4 cms_RecipientInfo_pwri_crypt(int param_1,int param_2,int param_3)
   uchar *out;
   uint uVar3;
   int extraout_r1;
-  char **ppcVar4;
+  long *plVar4;
   uint *puVar5;
   undefined4 uVar6;
   int iVar7;
-  ASN1_OBJECT **ppAVar8;
+  undefined4 *puVar8;
   uint uVar9;
   int iVar10;
   uint uVar11;
@@ -29,28 +29,29 @@ undefined4 cms_RecipientInfo_pwri_crypt(int param_1,int param_2,int param_3)
   local_bc = (uchar *)0x0;
   EVP_CIPHER_CTX_init(&EStack_b4);
   if (*(int *)(iVar7 + 0x10) == 0) {
-    ERR_put_error(0x2e,0xa7,0xb2,DAT_000d68e8,0x14f);
+    ERR_put_error(0x2e,0xa7,0xb2,"cms_pwri.c",0x14f);
     return 0;
   }
-  ppAVar8 = *(ASN1_OBJECT ***)(iVar7 + 8);
-  if ((ppAVar8 == (ASN1_OBJECT **)0x0) || (iVar1 = OBJ_obj2nid(*ppAVar8), iVar1 != 0x37d)) {
-    ERR_put_error(0x2e,0xa7,0xb3,DAT_000d68e8,0x156);
+  puVar8 = *(undefined4 **)(iVar7 + 8);
+  if ((puVar8 == (undefined4 *)0x0) || (iVar1 = OBJ_obj2nid((ASN1_OBJECT *)*puVar8), iVar1 != 0x37d)
+     ) {
+    ERR_put_error(0x2e,0xa7,0xb3,"cms_pwri.c",0x156);
     return 0;
   }
-  if (ppAVar8[1]->sn != (char *)0x10) {
+  if (*(int *)puVar8[1] != 0x10) {
 LAB_000d66c8:
-    ERR_put_error(0x2e,0xa7,0xb0,DAT_000d68e8,0x161);
+    ERR_put_error(0x2e,0xa7,0xb0,"cms_pwri.c",0x161);
     return 0;
   }
-  ppcVar4 = ppAVar8[1]->ln;
-  local_bc = (uchar *)ppcVar4[2];
-  a = d2i_X509_ALGOR((X509_ALGOR **)0x0,&local_bc,(long)*ppcVar4);
+  plVar4 = (long *)((int *)puVar8[1])[1];
+  local_bc = (uchar *)plVar4[2];
+  a = d2i_X509_ALGOR((X509_ALGOR **)0x0,&local_bc,*plVar4);
   if (a == (X509_ALGOR *)0x0) goto LAB_000d66c8;
   iVar1 = OBJ_obj2nid(a->algorithm);
   name = OBJ_nid2sn(iVar1);
   cipher = EVP_get_cipherbyname(name);
   if (cipher == (EVP_CIPHER *)0x0) {
-    ERR_put_error(0x2e,0xa7,0x94,DAT_000d68e8,0x168);
+    ERR_put_error(0x2e,0xa7,0x94,"cms_pwri.c",0x168);
     uVar6 = 0;
   }
   else {
@@ -64,18 +65,18 @@ LAB_000d6720:
       iVar1 = EVP_CIPHER_asn1_to_param(&EStack_b4,a->parameter);
       if (iVar1 < 0) {
         uVar6 = 0;
-        ERR_put_error(0x2e,0xa7,0x66,DAT_000d68e8,0x172);
+        ERR_put_error(0x2e,0xa7,0x66,"cms_pwri.c",0x172);
       }
       else {
-        iVar1 = EVP_PBE_CipherInit(**(ASN1_OBJECT ***)(iVar7 + 4),*(char **)(iVar7 + 0x10),
-                                   *(int *)(iVar7 + 0x14),
-                                   (ASN1_TYPE *)(*(ASN1_OBJECT ***)(iVar7 + 4))[1],&EStack_b4,
-                                   param_3);
+        iVar1 = EVP_PBE_CipherInit((ASN1_OBJECT *)**(undefined4 **)(iVar7 + 4),
+                                   *(char **)(iVar7 + 0x10),*(int *)(iVar7 + 0x14),
+                                   (ASN1_TYPE *)(*(undefined4 **)(iVar7 + 4))[1],&EStack_b4,param_3)
+        ;
         if (-1 < iVar1) {
           if (param_3 == 0) {
-            out = (uchar *)CRYPTO_malloc(**(int **)(iVar7 + 0xc),DAT_000d68e8,0x192);
+            out = (uchar *)CRYPTO_malloc(**(int **)(iVar7 + 0xc),"cms_pwri.c",0x192);
             if (out == (uchar *)0x0) {
-              ERR_put_error(0x2e,0xa7,0x41,DAT_000d69d8,0x195);
+              ERR_put_error(0x2e,0xa7,0x41,"cms_pwri.c",0x195);
               uVar6 = 0;
               goto LAB_000d6722;
             }
@@ -83,7 +84,7 @@ LAB_000d6720:
             in = (uchar *)(*(uint **)(iVar7 + 0xc))[2];
             iVar7 = EVP_CIPHER_CTX_block_size(&EStack_b4);
             if ((((uint)(iVar7 * 2) <= uVar9) && (__aeabi_uidivmod(uVar9,iVar7), extraout_r1 == 0))
-               && (pbVar12 = (byte *)CRYPTO_malloc(uVar9,DAT_000d69d8,0xe9), pbVar12 != (byte *)0x0)
+               && (pbVar12 = (byte *)CRYPTO_malloc(uVar9,"cms_pwri.c",0xe9), pbVar12 != (byte *)0x0)
                ) {
               iVar1 = uVar9 + iVar7 * -2;
               EVP_DecryptUpdate(&EStack_b4,pbVar12 + iVar1,&iStack_b8,in + iVar1,iVar7 * 2);
@@ -106,14 +107,14 @@ LAB_000d6720:
               OPENSSL_cleanse(pbVar12,uVar9);
               CRYPTO_free(pbVar12);
             }
-            ERR_put_error(0x2e,0xa7,0xb4,DAT_000d68e8,0x19b);
+            ERR_put_error(0x2e,0xa7,0xb4,"cms_pwri.c",0x19b);
           }
           else {
             uVar9 = *(uint *)(iVar10 + 0x14);
             iVar1 = EVP_CIPHER_CTX_block_size(&EStack_b4);
             iVar2 = __aeabi_uidiv(uVar9 + 3 + iVar1,iVar1);
             if ((((uint)(iVar1 * iVar2) < (uint)(iVar1 << 1)) || (0xff < uVar9)) ||
-               (out = (uchar *)CRYPTO_malloc(iVar1 * iVar2,DAT_000d68e8,0x188), out == (uchar *)0x0)
+               (out = (uchar *)CRYPTO_malloc(iVar1 * iVar2,"cms_pwri.c",0x188), out == (uchar *)0x0)
                ) goto LAB_000d6720;
             uVar9 = *(uint *)(iVar10 + 0x14);
             pbVar12 = *(byte **)(iVar10 + 0x10);
@@ -145,7 +146,7 @@ LAB_000d6720:
           goto LAB_000d6728;
         }
         uVar6 = 0;
-        ERR_put_error(0x2e,0xa7,6,DAT_000d68e8,0x17d);
+        ERR_put_error(0x2e,0xa7,6,"cms_pwri.c",0x17d);
       }
     }
   }

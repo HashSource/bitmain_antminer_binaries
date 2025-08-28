@@ -4,6 +4,6 @@
 EVP_MD * EVP_sha256(void)
 
 {
-  return DAT_000b1be4;
+  return (EVP_MD *)sha256_md;
 }
 

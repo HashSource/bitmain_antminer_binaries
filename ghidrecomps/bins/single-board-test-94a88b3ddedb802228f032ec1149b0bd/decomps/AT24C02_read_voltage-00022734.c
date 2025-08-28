@@ -1,5 +1,5 @@
 
-undefined4 AT24C02_read_voltage(undefined param_1)
+undefined4 AT24C02_read_voltage(undefined1 param_1)
 
 {
   undefined4 uVar1;

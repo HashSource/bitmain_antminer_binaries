@@ -37,7 +37,7 @@ undefined4 gost2001_keygen(EC_KEY *param_1)
     uVar2 = 0x1ca;
   }
 LAB_00112d7a:
-  ERR_GOST_error(0x6b,uVar3,DAT_00112da8,uVar2);
+  ERR_GOST_error(0x6b,uVar3,"gost2001.c",uVar2);
   BN_free(rnd);
   BN_free(order);
   return 0;

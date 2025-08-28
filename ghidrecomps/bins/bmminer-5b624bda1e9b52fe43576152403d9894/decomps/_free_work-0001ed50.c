@@ -9,7 +9,7 @@ void _free_work(work **workptr,char *file,char *func,int line)
   
   work_00 = *workptr;
   if (work_00 == (work *)0x0) {
-    if (((*DAT_0001ed8c != '\0') || (*DAT_0001ed90 != '\0')) || (2 < *DAT_0001ed94)) {
+    if (((use_syslog) || (opt_log_output)) || (2 < opt_log_level)) {
       _free_work((work **)file,func,(char *)line,line);
       return;
     }

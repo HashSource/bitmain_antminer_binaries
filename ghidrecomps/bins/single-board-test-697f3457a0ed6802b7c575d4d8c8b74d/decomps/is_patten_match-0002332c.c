@@ -12,7 +12,7 @@ int is_patten_match(int asic_index,uint8_t *nonce,uint8_t *sol)
   int ret;
   
   if (g_patten.cur_asic == asic_index) {
-    pthread_mutex_lock(DAT_0002350c);
+    pthread_mutex_lock((pthread_mutex_t *)&g_patten.patten_mutex);
     iVar1 = memcmp(g_patten.cur_work + g_patten.work_bin_len,nonce,g_patten.nonce_bin_len);
     iVar2 = memcmp(g_patten.cur_work + g_patten.nonce_bin_len + g_patten.work_bin_len,sol,
                    g_patten.sol_bin_len);
@@ -33,7 +33,7 @@ int is_patten_match(int asic_index,uint8_t *nonce,uint8_t *sol)
                g_patten.nonce_bin_len);
       ret = -1;
     }
-    pthread_mutex_unlock(DAT_0002350c);
+    pthread_mutex_unlock((pthread_mutex_t *)&g_patten.patten_mutex);
   }
   else {
     printf("asic is not match %d vs %d\n",asic_index,g_patten.cur_asic);

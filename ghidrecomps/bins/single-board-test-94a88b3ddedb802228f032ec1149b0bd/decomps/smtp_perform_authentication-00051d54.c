@@ -18,7 +18,7 @@ int smtp_perform_authentication(undefined4 *param_1)
         local_14[0] = 6;
       }
       if (!bVar2) {
-        Curl_infof(*param_1,DAT_00051da4);
+        Curl_infof(*param_1,"No known authentication mechanisms supported!\n");
         return 0x43;
       }
       param_1[0xfe] = local_14[0];

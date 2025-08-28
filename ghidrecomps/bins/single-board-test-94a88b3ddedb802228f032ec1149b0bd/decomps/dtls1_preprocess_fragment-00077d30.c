@@ -30,7 +30,7 @@ undefined4 dtls1_preprocess_fragment(int param_1,byte *param_2,uint param_3)
         *(undefined2 *)(*(int *)(param_1 + 0x5c) + 0x294) = uVar2;
         return 0;
       }
-      ERR_put_error(0x14,0x120,7,DAT_00077dcc,0x22f);
+      ERR_put_error(0x14,0x120,7,"d1_both.c",0x22f);
       return 0x50;
     }
     if (*(uint *)(*(int *)(param_1 + 0x5c) + 0x290) == uVar5) {
@@ -38,7 +38,7 @@ undefined4 dtls1_preprocess_fragment(int param_1,byte *param_2,uint param_3)
     }
     iVar3 = 0x23d;
   }
-  ERR_put_error(0x14,0x120,0x98,DAT_00077dcc,iVar3);
+  ERR_put_error(0x14,0x120,0x98,"d1_both.c",iVar3);
   return 0x2f;
 }
 

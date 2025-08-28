@@ -6,23 +6,23 @@ int EC_GROUP_set_generator(EC_GROUP *group,EC_POINT *generator,BIGNUM *order,BIG
   BIGNUM *pBVar2;
   BN_CTX *ctx;
   BN_MONT_CTX *mont;
-  int *ptr;
+  EC_POINT *ptr;
   code *pcVar3;
   
   if (generator == (EC_POINT *)0x0) {
-    ERR_put_error(0x10,0x6f,0x43,DAT_000a10a0,0x129);
+    ERR_put_error(0x10,0x6f,0x43,"ec_lib.c",0x129);
     return 0;
   }
-  ptr = *(int **)(group + 4);
-  if (ptr != (int *)0x0) {
+  ptr = *(EC_POINT **)(group + 4);
+  if (ptr != (EC_POINT *)0x0) {
 LAB_000a0f50:
-    pcVar3 = *(code **)(*ptr + 0x34);
+    pcVar3 = *(code **)(*(int *)ptr + 0x34);
     if (pcVar3 == (code *)0x0) {
-      ERR_put_error(0x10,0x72,0x42,DAT_000a10a0,0x2f5);
+      ERR_put_error(0x10,0x72,0x42,"ec_lib.c",0x2f5);
       return 0;
     }
-    if (*ptr == *(int *)generator) {
-      if (((int *)generator != ptr) && (iVar1 = (*pcVar3)(ptr,generator), iVar1 == 0)) {
+    if (*(int *)ptr == *(int *)generator) {
+      if ((generator != ptr) && (iVar1 = (*pcVar3)(ptr,generator), iVar1 == 0)) {
         return 0;
       }
       if (order == (BIGNUM *)0x0) {
@@ -66,23 +66,23 @@ LAB_000a0f50:
       BN_CTX_free(ctx);
       return 1;
     }
-    ERR_put_error(0x10,0x72,0x65,DAT_000a10a0,0x2f9);
+    ERR_put_error(0x10,0x72,0x65,"ec_lib.c",0x2f9);
     return 0;
   }
   if (*(int *)(*(int *)group + 0x28) == 0) {
-    ERR_put_error(0x10,0x79,0x42,DAT_000a10a0,0x2c7);
+    ERR_put_error(0x10,0x79,0x42,"ec_lib.c",0x2c7);
   }
   else {
-    ptr = (int *)CRYPTO_malloc(0x44,DAT_000a10a0,0x2cb);
-    if (ptr == (int *)0x0) {
-      ERR_put_error(0x10,0x79,0x41,DAT_000a10a0,0x2cd);
+    ptr = (EC_POINT *)CRYPTO_malloc(0x44,"ec_lib.c",0x2cb);
+    if (ptr == (EC_POINT *)0x0) {
+      ERR_put_error(0x10,0x79,0x41,"ec_lib.c",0x2cd);
     }
     else {
       iVar1 = *(int *)group;
-      *ptr = iVar1;
+      *(int *)ptr = iVar1;
       iVar1 = (**(code **)(iVar1 + 0x28))();
       if (iVar1 != 0) {
-        *(int **)(group + 4) = ptr;
+        *(EC_POINT **)(group + 4) = ptr;
         goto LAB_000a0f50;
       }
       CRYPTO_free(ptr);

@@ -7,10 +7,10 @@ int PKCS1_MGF1(uchar *mask,long len,uchar *seed,long seedlen,EVP_MD *dgst)
   int iVar3;
   int iVar4;
   int iVar5;
-  undefined local_84;
-  undefined local_83;
-  undefined local_82;
-  undefined local_81;
+  undefined1 local_84;
+  undefined1 local_83;
+  undefined1 local_82;
+  undefined1 local_81;
   EVP_MD_CTX EStack_80;
   uchar auStack_68 [68];
   
@@ -25,11 +25,11 @@ LAB_000fbc26:
       iVar4 = 0;
       iVar3 = 0;
       do {
-        local_81 = (undefined)iVar4;
-        local_84 = (undefined)((uint)iVar4 >> 0x18);
+        local_81 = (undefined1)iVar4;
+        local_84 = (undefined1)((uint)iVar4 >> 0x18);
         iVar5 = iVar3 + iVar1;
-        local_83 = (undefined)((uint)iVar4 >> 0x10);
-        local_82 = (undefined)((uint)iVar4 >> 8);
+        local_83 = (undefined1)((uint)iVar4 >> 0x10);
+        local_82 = (undefined1)((uint)iVar4 >> 8);
         iVar4 = iVar4 + 1;
         iVar2 = EVP_DigestInit_ex(&EStack_80,dgst,(ENGINE *)0x0);
         if (iVar2 == 0) goto LAB_000fbc26;

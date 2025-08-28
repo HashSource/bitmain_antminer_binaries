@@ -6,7 +6,7 @@ double strtod(char *__nptr,char **__endptr)
 {
   double dVar1;
   
-  dVar1 = (double)(*(code *)PTR_strtod_0007cfd4)();
+  dVar1 = strtod(__nptr,__endptr);
   return dVar1;
 }
 

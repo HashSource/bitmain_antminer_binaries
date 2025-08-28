@@ -4,8 +4,8 @@ void * tree_find_sk(_STACK *param_1,undefined4 param_2)
 {
   int iVar1;
   void *pvVar2;
-  undefined *local_24 [3];
-  undefined auStack_18 [4];
+  undefined1 *local_24 [3];
+  undefined1 auStack_18 [4];
   undefined4 local_14;
   
   local_24[0] = auStack_18;

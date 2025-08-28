@@ -7,7 +7,7 @@ int ASN1_item_print(BIO *out,ASN1_VALUE *ifld,int indent,ASN1_ITEM *it,ASN1_PCTX
   ASN1_VALUE *local_14 [2];
   
   if (pctx == (ASN1_PCTX *)0x0) {
-    pctx = (ASN1_PCTX *)DAT_00108800;
+    pctx = (ASN1_PCTX *)default_pctx;
   }
   if (*(int *)pctx << 0x17 < 0) {
     pcVar2 = (char *)0x0;

@@ -50,7 +50,7 @@ size_t ssl3_read_n(int param_1,size_t param_2,size_t param_3,int param_4)
       if ((((!bVar12 && __n != 4) && (int)uVar2 < 0 == bVar11) &&
           (pcVar1 = (char *)(iVar6 + (int)pvVar4), pvVar4 = (void *)(iVar6 + (int)pvVar4),
           *pcVar1 == '\x17')) &&
-         (0x7f < CONCAT11(*(undefined *)((int)pvVar4 + 3),*(undefined *)((int)pvVar4 + 4)))) {
+         (0x7f < CONCAT11(*(undefined1 *)((int)pvVar4 + 3),*(undefined1 *)((int)pvVar4 + 4)))) {
         memmove((void *)(iVar6 + uVar10),pvVar4,__n);
         iVar6 = *(int *)(iVar9 + 0xec);
         *(uint *)(iVar9 + 0xf4) = uVar10;
@@ -96,7 +96,7 @@ size_t ssl3_read_n(int param_1,size_t param_2,size_t param_3,int param_4)
     }
     sVar7 = *(int *)(iVar9 + 0xf0) - iVar5;
     if ((int)sVar7 < (int)param_2) {
-      ERR_put_error(0x14,0x95,0x44,DAT_0006bc20,0xe6);
+      ERR_put_error(0x14,0x95,0x44,"s3_pkt.c",0xe6);
       return 0xffffffff;
     }
     if ((*(int *)(param_1 + 0x60) != 0) ||
@@ -114,7 +114,7 @@ size_t ssl3_read_n(int param_1,size_t param_2,size_t param_3,int param_4)
       b = *(BIO **)(param_1 + 0xc);
       *piVar3 = 0;
       if (b == (BIO *)0x0) {
-        ERR_put_error(0x14,0x95,0xd3,DAT_0006bc20,0x101);
+        ERR_put_error(0x14,0x95,0xd3,"s3_pkt.c",0x101);
         sVar7 = 0xffffffff;
 LAB_0006bb7c:
         iVar5 = *(int *)(param_1 + 0x104);

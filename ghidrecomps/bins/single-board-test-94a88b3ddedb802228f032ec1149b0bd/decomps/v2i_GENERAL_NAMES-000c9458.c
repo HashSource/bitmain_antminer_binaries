@@ -11,7 +11,7 @@ v2i_GENERAL_NAMES(X509V3_EXT_METHOD *method,X509V3_CTX *ctx,stack_st_CONF_VALUE 
   
   st = sk_new_null();
   if (st == (_STACK *)0x0) {
-    ERR_put_error(0x22,0x76,0x41,DAT_000c94d0,0x197);
+    ERR_put_error(0x22,0x76,0x41,"v3_alt.c",0x197);
   }
   else {
     iVar2 = 0;
@@ -21,7 +21,7 @@ v2i_GENERAL_NAMES(X509V3_EXT_METHOD *method,X509V3_CTX *ctx,stack_st_CONF_VALUE 
       cnf = (CONF_VALUE *)sk_value(&nval->stack,iVar2);
       data = v2i_GENERAL_NAME_ex((GENERAL_NAME *)0x0,method,ctx,cnf,0);
       if (data == (GENERAL_NAME *)0x0) {
-        sk_pop_free(st,DAT_000c94cc);
+        sk_pop_free(st,(func *)0xc8821);
         return (GENERAL_NAMES *)0x0;
       }
       sk_push(st,data);

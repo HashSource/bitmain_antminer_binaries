@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void sweep_freq_send_work_and_check_result(void)
 

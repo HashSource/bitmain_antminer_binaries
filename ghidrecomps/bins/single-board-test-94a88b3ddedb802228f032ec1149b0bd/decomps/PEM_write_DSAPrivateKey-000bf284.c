@@ -5,7 +5,7 @@ int PEM_write_DSAPrivateKey
 {
   int iVar1;
   
-  iVar1 = PEM_ASN1_write(i2d_DSAPrivateKey + 1,"DSA PRIVATE KEY",fp,x,enc,kstr,klen,cb,u);
+  iVar1 = PEM_ASN1_write((undefined1 *)0xa47fd,"DSA PRIVATE KEY",fp,x,enc,kstr,klen,cb,u);
   return iVar1;
 }
 

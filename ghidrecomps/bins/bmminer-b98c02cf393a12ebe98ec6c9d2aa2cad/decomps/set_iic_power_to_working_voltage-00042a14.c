@@ -6,9 +6,10 @@ undefined4 set_iic_power_to_working_voltage(void)
   FILE *__stream;
   
   if (3 < log_level) {
-    __stream = fopen(log_file,(char *)&DAT_0005e760);
+    __stream = fopen(log_file,"a+");
     if (__stream != (FILE *)0x0) {
-      fprintf(__stream,"%s:%d:%s: setting to working voltage...\n","power.c",0x28e,DAT_00042a84);
+      fprintf(__stream,"%s:%d:%s: setting to working voltage...\n","power.c",0x28e,
+              "set_iic_power_to_working_voltage");
     }
     fclose(__stream);
   }

@@ -4,8 +4,6 @@ void slowly_set_iic_power_voltage_t11(int voltage_flag)
 {
   FILE *pFVar1;
   double dVar2;
-  undefined4 in_stack_ffffff58;
-  undefined4 in_stack_ffffff5c;
   int voltage_flag_local;
   int index [16];
   FILE *pFile_3;
@@ -23,6 +21,7 @@ void slowly_set_iic_power_voltage_t11(int voltage_flag)
   int i;
   
   memset(index,0,0x40);
+  voltage = 0.0;
   chain = 0;
   do {
     if (0xf < chain) {
@@ -134,8 +133,13 @@ LAB_0003cc54:
         }
         goto LAB_0003cc54;
       }
-      calc_power_iic_data_by_chain
-                (power_info + chain,(double)CONCAT44(in_stack_ffffff5c,in_stack_ffffff58));
+      if (voltage_flag == 1) {
+        voltage = power_info[chain].working_voltage;
+      }
+      else if (voltage_flag == 2) {
+        voltage = power_info[chain].higher_voltage;
+      }
+      calc_power_iic_data_by_chain(power_info + chain,voltage);
       index[chain] = (uint)power_info[chain].iic_data_index;
     }
     chain = chain + 1;

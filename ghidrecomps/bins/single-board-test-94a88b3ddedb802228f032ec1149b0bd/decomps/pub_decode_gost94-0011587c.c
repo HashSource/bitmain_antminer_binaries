@@ -25,7 +25,7 @@ undefined4 pub_decode_gost94(EVP_PKEY *param_1,X509_PUBKEY *param_2)
     if (iVar2 != 0) {
       a = d2i_ASN1_OCTET_STRING((ASN1_OCTET_STRING **)0x0,&local_24,local_1c[0]);
       if (a != (ASN1_OCTET_STRING *)0x0) {
-        s = (uchar *)CRYPTO_malloc(a->length,DAT_00115930,0x26b);
+        s = (uchar *)CRYPTO_malloc(a->length,"gost_ameth.c",0x26b);
         if (0 < a->length) {
           puVar5 = s + a->length;
           iVar2 = 0;
@@ -43,7 +43,7 @@ undefined4 pub_decode_gost94(EVP_PKEY *param_1,X509_PUBKEY *param_2)
         CRYPTO_free(s);
         return 1;
       }
-      ERR_GOST_error(0x86,0x41,DAT_00115930,0x268);
+      ERR_GOST_error(0x86,0x41,"gost_ameth.c",0x268);
       return 0;
     }
   }

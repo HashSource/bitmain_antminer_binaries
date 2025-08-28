@@ -11,9 +11,8 @@ undefined4 power_save_eeprom_data(byte param_1,int param_2,byte param_3)
   undefined4 local_120;
   undefined4 local_11c;
   undefined4 local_118;
-  byte local_114 [4];
-  byte local_110;
-  undefined auStack_10f [254];
+  byte local_114 [5];
+  undefined1 auStack_10f [254];
   char local_11;
   uint local_10;
   ushort local_c;
@@ -39,9 +38,9 @@ undefined4 power_save_eeprom_data(byte param_1,int param_2,byte param_3)
     local_114[1] = 0xaa;
     local_114[2] = param_3 + 5;
     local_114[3] = 0x86;
-    local_110 = param_1;
+    local_114[4] = param_1;
     for (local_c = 0; local_c < param_3; local_c = local_c + 1) {
-      auStack_10f[local_c] = *(undefined *)(param_2 + (uint)local_c);
+      auStack_10f[local_c] = *(undefined1 *)(param_2 + (uint)local_c);
     }
     for (local_c = 2; local_c < (ushort)(param_3 + 5); local_c = local_c + 1) {
       local_a = (ushort)local_114[local_c] + local_a;

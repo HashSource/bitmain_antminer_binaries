@@ -127,9 +127,9 @@ joined_r0x000aa018:
         pvVar3 = (void *)psVar7[2];
         pvVar9 = (void *)psVar7[5];
         if ((((int)sVar8 < 0x1001) || (*psVar7 == sVar8)) ||
-           (pvVar3 = CRYPTO_malloc(param_3,DAT_000aa0f4,0x171), pvVar3 != (void *)0x0)) {
+           (pvVar3 = CRYPTO_malloc(param_3,"bf_buff.c",0x171), pvVar3 != (void *)0x0)) {
           if ((((int)sVar2 < 0x1001) || (psVar7[1] == sVar2)) ||
-             (pvVar9 = CRYPTO_malloc(param_3,DAT_000aa0f4,0x176), pvVar9 != (void *)0x0)) {
+             (pvVar9 = CRYPTO_malloc(param_3,"bf_buff.c",0x176), pvVar9 != (void *)0x0)) {
             if ((void *)psVar7[2] != pvVar3) {
               CRYPTO_free((void *)psVar7[2]);
               psVar7[2] = (size_t)pvVar3;
@@ -152,12 +152,12 @@ joined_r0x000aa018:
           }
         }
 LAB_000aa0d4:
-        ERR_put_error(0x20,0x72,0x41,DAT_000aa0f4,0x1c1);
+        ERR_put_error(0x20,0x72,0x41,"bf_buff.c",0x1c1);
         return 0;
       }
       if (param_2 == 0x7a) {
         if ((int)*psVar7 < (int)param_3) {
-          pvVar3 = CRYPTO_malloc(param_3,DAT_000aa0f4,0x153);
+          pvVar3 = CRYPTO_malloc(param_3,"bf_buff.c",0x153);
           if (pvVar3 == (void *)0x0) goto LAB_000aa0d4;
           if ((void *)psVar7[2] != (void *)0x0) {
             CRYPTO_free((void *)psVar7[2]);

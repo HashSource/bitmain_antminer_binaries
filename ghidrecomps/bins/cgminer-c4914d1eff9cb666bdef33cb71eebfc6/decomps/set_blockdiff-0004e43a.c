@@ -4,10 +4,12 @@ void set_blockdiff(work *work)
 {
   double dVar1;
   uint uVar2;
-  double dVar3;
-  UDItype UVar4;
-  undefined4 in_stack_fffff7b8;
-  uint in_stack_fffff7bc;
+  undefined4 uVar3;
+  undefined4 extraout_r1;
+  undefined4 extraout_s0;
+  undefined4 extraout_s1;
+  double dVar4;
+  UDItype val;
   work *work_local;
   char tmp42 [2048];
   double ddiff;
@@ -21,18 +23,17 @@ void set_blockdiff(work *work)
     powdiff = 8;
   }
   uVar2 = __bswap_32(*(uint *)(work->data + 0x48));
-  dVar3 = (double)__floatundidf(0xffff << (powdiff & 0xffU),
-                                0 << (powdiff & 0xffU) | 0xffff << (powdiff - 0x20U & 0xff) |
-                                0xffffU >> (0x20U - powdiff & 0xff));
-  dVar3 = dVar3 / (double)(ulonglong)(uVar2 & 0xffffff);
+  uVar3 = __floatundidf(0xffff << (powdiff & 0xffU),
+                        0 << (powdiff & 0xffU) | 0xffff << (powdiff - 0x20U & 0xff) |
+                        0xffffU >> (0x20U - powdiff & 0xff));
+  dVar4 = (double)CONCAT44(extraout_r1,uVar3) / (double)(uVar2 & 0xffffff);
   dVar1 = (double)CONCAT44(current_diff._4_4_,current_diff._0_4_);
-  if (dVar3 != (double)CONCAT44(current_diff._4_4_,current_diff._0_4_)) {
-    UVar4 = __fixunsdfdi((DFtype)CONCAT44(in_stack_fffff7bc,in_stack_fffff7b8));
-    suffix_string((ulonglong)in_stack_fffff7bc << 0x20,(char *)UVar4,(size_t)(UVar4 >> 0x20),
-                  0x13d5150);
-    if (((use_syslog != false) || (opt_log_output != false)) || (dVar1 = dVar3, 4 < opt_log_level))
+  if (dVar4 != (double)CONCAT44(current_diff._4_4_,current_diff._0_4_)) {
+    val = __fixunsdfdi((DFtype)CONCAT44(extraout_s1,extraout_s0));
+    suffix_string(val,block_diff,8,0);
+    if (((use_syslog != false) || (opt_log_output != false)) || (dVar1 = dVar4, 4 < opt_log_level))
     {
-      current_diff = dVar3;
+      current_diff = dVar4;
       snprintf(tmp42,0x800,"Network diff set to %s",block_diff);
       _applog(5,tmp42,false);
       dVar1 = current_diff;

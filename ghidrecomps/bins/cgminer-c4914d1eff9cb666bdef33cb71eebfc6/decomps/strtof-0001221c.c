@@ -6,7 +6,7 @@ float strtof(char *__nptr,char **__endptr)
 {
   float fVar1;
   
-  fVar1 = (float)(*(code *)PTR_strtof_000a8108)();
+  fVar1 = strtof(__nptr,__endptr);
   return fVar1;
 }
 

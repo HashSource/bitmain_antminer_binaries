@@ -1,11 +1,11 @@
 
-undefined4 x509_cb(int param_1,int **param_2)
+undefined4 x509_cb(int param_1,undefined4 *param_2)
 
 {
   char *pcVar1;
   int *obj;
   
-  obj = *param_2;
+  obj = (int *)*param_2;
   if (param_1 == 3) {
     CRYPTO_free_ex_data(10,obj,(CRYPTO_EX_DATA *)(obj + 6));
     X509_CERT_AUX_free((X509_CERT_AUX *)obj[0x19]);

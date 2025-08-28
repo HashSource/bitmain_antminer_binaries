@@ -26,7 +26,7 @@ undefined4 pack_sign_cp(DSA_SIG *param_1,size_t param_2,void *param_3,size_t *pa
   }
   if (iVar3 >> 3 <= (int)param_2) {
     memset((void *)((int)param_3 + param_2),0,param_2);
-    BN_bn2bin(pBVar2,(uchar *)((int)(void *)((int)param_3 + param_2) + (param_2 - (iVar3 >> 3))));
+    BN_bn2bin(pBVar2,(uchar *)((int)((int)param_3 + param_2) + (param_2 - (iVar3 >> 3))));
   }
   DSA_SIG_free(param_1);
   return 1;

@@ -17,7 +17,7 @@ int BN_mod_exp_simple(BIGNUM *r,BIGNUM *a,BIGNUM *p,BIGNUM *m,BN_CTX *ctx)
   BIGNUM *local_a8 [33];
   
   if (p->flags << 0x1d < 0) {
-    ERR_put_error(3,0x7e,0x42,DAT_000f0928,0x514);
+    ERR_put_error(3,0x7e,0x42,"bn_exp.c",0x514);
     return -1;
   }
   local_b8 = BN_num_bits(p);

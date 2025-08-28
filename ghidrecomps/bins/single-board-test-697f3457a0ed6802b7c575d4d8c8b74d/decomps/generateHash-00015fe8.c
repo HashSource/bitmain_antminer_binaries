@@ -1,6 +1,4 @@
 
-/* WARNING: Variable defined which should be unmapped: hashLen-local */
-
 void generateHash(blake2b_state *S,uint32_t g,uint8_t *hash,size_t hashLen)
 
 {
@@ -13,7 +11,7 @@ void generateHash(blake2b_state *S,uint32_t g,uint8_t *hash,size_t hashLen)
   
   le_g = g;
   memcpy(&digest,S,0x168);
-  blake2b_update(&digest,(uint8_t *)&le_g,CONCAT44(hash,hashLen));
+  blake2b_update(&digest,(uint8_t *)&le_g,4);
   blake2b_final(&digest,hash,(uint8_t)hashLen);
   return;
 }

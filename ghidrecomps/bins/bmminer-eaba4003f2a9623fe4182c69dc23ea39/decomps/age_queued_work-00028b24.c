@@ -2,7 +2,6 @@
 int age_queued_work(cgpu_info *cgpu,double secs)
 
 {
-  double in_d0;
   double dVar1;
   double secs_local;
   cgpu_info *cgpu_local;
@@ -23,7 +22,7 @@ int age_queued_work(cgpu_info *cgpu,double secs)
   }
   while (work != (work *)0x0) {
     dVar1 = tdiff(&tv_now,&work->tv_work_start);
-    if (dVar1 != in_d0 && dVar1 < in_d0 == (NAN(dVar1) || NAN(in_d0))) {
+    if (secs < dVar1) {
       __work_completed(cgpu,work);
       _free_work(&work,"cgminer.c","age_queued_work",0x24f0);
       aged = aged + 1;

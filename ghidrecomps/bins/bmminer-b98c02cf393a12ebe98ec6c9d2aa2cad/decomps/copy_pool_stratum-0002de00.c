@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void copy_pool_stratum(undefined4 *param_1,undefined4 *param_2)
 
 {
@@ -18,19 +16,9 @@ void copy_pool_stratum(undefined4 *param_1,undefined4 *param_2)
   undefined4 uVar11;
   int iVar12;
   undefined4 uVar13;
-  undefined4 local_828;
-  undefined4 uStack_824;
-  undefined4 uStack_820;
-  undefined4 uStack_81c;
-  undefined4 local_818;
-  undefined4 uStack_814;
-  undefined4 uStack_810;
-  undefined4 uStack_80c;
-  undefined4 local_808;
-  undefined4 uStack_804;
-  undefined4 uStack_800;
-  undefined2 local_7fc;
-  undefined local_7fa;
+  char local_828 [44];
+  ushort local_7fc;
+  undefined1 local_7fa;
   
   if (param_2[0xa8] == 0) {
     return;
@@ -40,17 +28,17 @@ void copy_pool_stratum(undefined4 *param_1,undefined4 *param_2)
   iVar1 = pthread_mutex_lock((pthread_mutex_t *)(param_1 + 0x35));
   if (iVar1 != 0) {
     piVar5 = __errno_location();
-    snprintf((char *)&local_828,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,
-             "driver-btm-c5.c",DAT_0002e144,0x40b4);
-    _applog(3,&local_828,1);
+    snprintf(local_828,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,
+             "driver-btm-c5.c","copy_pool_stratum",0x40b4);
+    _applog(3,local_828,1);
     _quit(1);
   }
   iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)(param_1 + 0x3b));
   if (iVar1 != 0) {
     piVar5 = __errno_location();
-    snprintf((char *)&local_828,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,
-             "driver-btm-c5.c",DAT_0002e144,0x40b4);
-    _applog(3,&local_828,1);
+    snprintf(local_828,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,
+             "driver-btm-c5.c","copy_pool_stratum",0x40b4);
+    _applog(3,local_828,1);
     _quit(1);
   }
   free((void *)param_1[0xa8]);
@@ -62,52 +50,9 @@ void copy_pool_stratum(undefined4 *param_1,undefined4 *param_2)
   pvVar2 = calloc(__nmemb,1);
   param_1[0x188] = pvVar2;
   if (pvVar2 == (void *)0x0) {
-    local_828._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[0];
-    local_828._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[1];
-    local_828._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[2];
-    local_828._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[3];
-    uStack_824._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[4];
-    uStack_824._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[5];
-    uStack_824._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[6];
-    uStack_824._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[7];
-    uStack_820._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[8];
-    uStack_820._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[9];
-    uStack_820._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[10];
-    uStack_820._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[11];
-    uStack_81c._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[12];
-    uStack_81c._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[13];
-    uStack_81c._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[14];
-    uStack_81c._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[15];
-    local_818._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[16];
-    local_818._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[17];
-    local_818._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[18];
-    local_818._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[19];
-    uStack_814._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[20];
-    uStack_814._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[21];
-    uStack_814._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[22];
-    uStack_814._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[23];
-    uStack_810._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[24];
-    uStack_810._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[25];
-    uStack_810._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[26];
-    uStack_810._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[27];
-    uStack_80c._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[28];
-    uStack_80c._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[29];
-    uStack_80c._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[30];
-    uStack_80c._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[31];
-    local_808._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[32];
-    local_808._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[33];
-    local_808._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[34];
-    local_808._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[35];
-    uStack_804._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[36];
-    uStack_804._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[37];
-    uStack_804._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[38];
-    uStack_804._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[39];
-    uStack_800._0_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[40];
-    uStack_800._1_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[41];
-    uStack_800._2_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[42];
-    uStack_800._3_1_ = s_Failed_to_calloc_pool_stratum_co_000621d0[43];
-    local_7fc = CONCAT11(local_7fc._1_1_,(char)ram0x000621fc);
-    _applog(3,&local_828,1);
+    builtin_strncpy(local_828,"Failed to calloc pool_stratum coinbase in c5",0x2c);
+    local_7fc = local_7fc & 0xff00;
+    _applog(3,local_828,1);
     _quit(1);
     pvVar2 = (void *)param_1[0x188];
   }
@@ -131,53 +76,10 @@ void copy_pool_stratum(undefined4 *param_1,undefined4 *param_2)
         *(void **)((int)pvVar2 + iVar1 * 4) = pvVar4;
         puVar9 = *(undefined4 **)(param_1[0xa9] + iVar1 * 4);
         if (puVar9 == (undefined4 *)0x0) {
-          local_828._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[0];
-          local_828._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[1];
-          local_828._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[2];
-          local_828._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[3];
-          uStack_824._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[4];
-          uStack_824._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[5];
-          uStack_824._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[6];
-          uStack_824._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[7];
-          uStack_820._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[8];
-          uStack_820._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[9];
-          uStack_820._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[10];
-          uStack_820._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[11];
-          uStack_81c._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[12];
-          uStack_81c._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[13];
-          uStack_81c._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[14];
-          uStack_81c._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[15];
-          local_818._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[16];
-          local_818._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[17];
-          local_818._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[18];
-          local_818._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[19];
-          uStack_814._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[20];
-          uStack_814._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[21];
-          uStack_814._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[22];
-          uStack_814._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[23];
-          uStack_810._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[24];
-          uStack_810._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[25];
-          uStack_810._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[26];
-          uStack_810._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[27];
-          uStack_80c._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[28];
-          uStack_80c._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[29];
-          uStack_80c._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[30];
-          uStack_80c._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[31];
-          local_808._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[32];
-          local_808._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[33];
-          local_808._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[34];
-          local_808._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[35];
-          uStack_804._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[36];
-          uStack_804._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[37];
-          uStack_804._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[38];
-          uStack_804._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[39];
-          uStack_800._0_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[40];
-          uStack_800._1_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[41];
-          uStack_800._2_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[42];
-          uStack_800._3_1_ = s_Failed_to_malloc_pool_stratum_sw_00062200[43];
-          local_7fc = (undefined2)ram0x0006222c;
-          local_7fa = (undefined)((uint)ram0x0006222c >> 0x10);
-          _applog(3,&local_828,1);
+          builtin_strncpy(local_828,"Failed to malloc pool_stratum swork merkle_b",0x2c);
+          local_7fc = 0x6e69;
+          local_7fa = 0;
+          _applog(3,local_828,1);
           _quit(1);
           puVar9 = *(undefined4 **)(param_1[0xa9] + iVar1 * 4);
         }
@@ -226,21 +128,19 @@ void copy_pool_stratum(undefined4 *param_1,undefined4 *param_2)
   param_1[0x1c5] = uVar6;
   memcpy(param_1 + 0x18b,param_2 + 0x18b,0x80);
   iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)(param_1 + 0x3b));
-  uVar3 = DAT_0002e144;
   if (iVar1 != 0) {
     piVar5 = __errno_location();
-    snprintf((char *)&local_828,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,
-             "driver-btm-c5.c",uVar3,0x40da);
-    _applog(3,&local_828,1);
+    snprintf(local_828,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,
+             "driver-btm-c5.c","copy_pool_stratum",0x40da);
+    _applog(3,local_828,1);
     _quit(1);
   }
   iVar1 = pthread_mutex_unlock((pthread_mutex_t *)(param_1 + 0x35));
-  uVar3 = DAT_0002e144;
   if (iVar1 != 0) {
     piVar5 = __errno_location();
-    snprintf((char *)&local_828,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,
-             "driver-btm-c5.c",uVar3,0x40da);
-    _applog(3,&local_828,1);
+    snprintf(local_828,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,
+             "driver-btm-c5.c","copy_pool_stratum",0x40da);
+    _applog(3,local_828,1);
     _quit(1);
   }
   (*selective_yield)();

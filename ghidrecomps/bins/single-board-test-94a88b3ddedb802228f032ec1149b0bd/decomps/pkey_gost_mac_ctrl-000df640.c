@@ -20,7 +20,7 @@ undefined4 pkey_gost_mac_ctrl(EVP_PKEY_CTX *param_1,undefined4 param_2,int param
       piVar1[1] = (int)param_4;
       return 1;
     }
-    ERR_GOST_error(0x80,0x6c,DAT_000df744,0x1be);
+    ERR_GOST_error(0x80,0x6c,"gost_pmeth.c",0x1be);
     return 0;
   default:
     return 0xfffffffe;
@@ -47,7 +47,7 @@ undefined4 pkey_gost_mac_ctrl(EVP_PKEY_CTX *param_1,undefined4 param_2,int param
       *piVar1 = 1;
       return 1;
     }
-    ERR_GOST_error(0x80,0x6f,DAT_000df744,0x1d0);
+    ERR_GOST_error(0x80,0x6f,"gost_pmeth.c",0x1d0);
     return 0;
   case 7:
     break;
@@ -58,12 +58,12 @@ undefined4 pkey_gost_mac_ctrl(EVP_PKEY_CTX *param_1,undefined4 param_2,int param
   if (*piVar1 == 0) {
     pkey = EVP_PKEY_CTX_get0_pkey(param_1);
     if (pkey == (EVP_PKEY *)0x0) {
-      ERR_GOST_error(0x80,0x74,DAT_000df744,0x1df);
+      ERR_GOST_error(0x80,0x74,"gost_pmeth.c",0x1df);
       return 0;
     }
     piVar1 = (int *)EVP_PKEY_get0(pkey);
     if (piVar1 == (int *)0x0) {
-      ERR_GOST_error(0x80,0x74,DAT_000df744,0x1e5);
+      ERR_GOST_error(0x80,0x74,"gost_pmeth.c",0x1e5);
       return 0;
     }
   }

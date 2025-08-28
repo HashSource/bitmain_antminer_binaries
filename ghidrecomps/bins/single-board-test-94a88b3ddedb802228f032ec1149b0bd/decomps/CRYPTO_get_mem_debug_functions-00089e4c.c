@@ -3,19 +3,19 @@ void CRYPTO_get_mem_debug_functions(m **m,r **r,f **f,so **so,go **go)
 
 {
   if (m != (m **)0x0) {
-    *m = *DAT_00089e7c;
+    *m = malloc_debug_func;
   }
   if (r != (r **)0x0) {
-    *r = (r *)DAT_00089e7c[1];
+    *r = realloc_debug_func;
   }
   if (f != (f **)0x0) {
-    *f = (f *)DAT_00089e7c[2];
+    *f = free_debug_func;
   }
   if (so != (so **)0x0) {
-    *so = (so *)DAT_00089e7c[3];
+    *so = set_debug_options_func;
   }
   if (go != (go **)0x0) {
-    *go = (go *)DAT_00089e7c[4];
+    *go = get_debug_options_func;
   }
   return;
 }

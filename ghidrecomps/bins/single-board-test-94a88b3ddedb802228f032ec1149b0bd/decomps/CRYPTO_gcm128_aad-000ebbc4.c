@@ -15,7 +15,7 @@ undefined4 CRYPTO_gcm128_aad(int param_1,uint *param_2,uint param_3)
   uint *puVar11;
   bool bVar12;
   
-  if ((*(uint *)(param_1 + 0x38) | *(uint *)(param_1 + 0x3c)) != 0) {
+  if (*(int *)(param_1 + 0x38) != 0 || *(int *)(param_1 + 0x3c) != 0) {
     return 0xfffffffe;
   }
   iVar7 = *(uint *)(param_1 + 0x30) + param_3;
@@ -52,7 +52,7 @@ LAB_000ebc34:
       else {
         uVar8 = uVar8 & 1;
       }
-      *(byte *)(iVar7 + 0x40) = *(byte *)param_2 ^ *(byte *)(iVar7 + 0x40);
+      *(byte *)(iVar7 + 0x40) = (byte)*param_2 ^ *(byte *)(iVar7 + 0x40);
       param_2 = puVar4;
     } while (uVar8 != 0);
     if (uVar6 != 0) goto LAB_000ebc34;
@@ -67,7 +67,7 @@ LAB_000ebc34:
   if (param_3 != 0) {
     puVar10 = (uint *)(param_1 + 0x40);
     uVar6 = param_3 >> 2;
-    uVar8 = param_3 & 0xfffffffc;
+    uVar8 = uVar6 << 2;
     if (uVar6 == 0 ||
         (param_3 < 4 ||
         (((uint)puVar4 & 3) != 0 || puVar4 < (uint *)(param_1 + 0x44) && puVar10 < puVar4 + 1))) {

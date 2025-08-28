@@ -21,7 +21,7 @@ int SMIME_crlf_copy(BIO *in,BIO *out,int flags)
     }
     else {
       if (flags << 0x1f < 0) {
-        BIO_printf(b_00,DAT_00127d30);
+        BIO_printf(b_00,"Content-Type: text/plain\r\n\r\n");
       }
 LAB_00127c94:
       iVar3 = BIO_gets(in,acStack_421 + 1,0x400);
@@ -45,7 +45,7 @@ LAB_00127c94:
 LAB_00127cc4:
         if (bVar2) {
 LAB_00127cca:
-          BIO_write(b_00,DAT_00127d2c,2);
+          BIO_write(b_00,&DAT_0013c1d4,2);
         }
         goto LAB_00127c94;
       }

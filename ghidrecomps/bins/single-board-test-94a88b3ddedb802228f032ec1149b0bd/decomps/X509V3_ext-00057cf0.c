@@ -13,13 +13,14 @@ undefined4 X509V3_ext(undefined4 param_1,undefined4 param_2,_STACK *param_3)
   uint uVar4;
   uint uVar5;
   char *pcVar6;
-  uint uVar7;
-  int iVar8;
-  undefined *puVar9;
+  undefined *puVar7;
+  uint uVar8;
+  int iVar9;
+  undefined1 *puVar10;
   uint *local_2ac;
   char acStack_2a8 [128];
-  undefined auStack_228 [512];
-  undefined auStack_28 [4];
+  undefined1 auStack_228 [512];
+  undefined1 auStack_28 [4];
   
   iVar2 = sk_num(param_3);
   if (iVar2 < 1) {
@@ -27,11 +28,11 @@ LAB_00057df0:
     uVar3 = 1;
   }
   else {
-    iVar8 = 0;
+    iVar9 = 0;
     iVar2 = sk_num(param_3);
     if (0 < iVar2) {
       do {
-        ex = (X509_EXTENSION *)sk_value(param_3,iVar8);
+        ex = (X509_EXTENSION *)sk_value(param_3,iVar9);
         type = BIO_s_mem();
         out = BIO_new(type);
         if (out == (BIO *)0x0) goto LAB_00057df0;
@@ -45,42 +46,44 @@ LAB_00057df0:
         BIO_ctrl(out,0x73,0,&local_2ac);
         uVar4 = *local_2ac;
         if (uVar4 != 0) {
-          uVar7 = 0;
-          puVar9 = auStack_228;
+          uVar8 = 0;
+          puVar10 = auStack_228;
           do {
             while( true ) {
               uVar5 = local_2ac[1];
-              uVar3 = DAT_00057e00;
-              if (*(char *)(uVar5 + uVar7) == '\n') {
-                uVar7 = uVar7 + 1;
-                uVar3 = DAT_00057dfc;
+              if (*(char *)(uVar5 + uVar8) == '\n') {
+                uVar8 = uVar8 + 1;
+                puVar7 = &DAT_0013677c;
               }
-              if (uVar4 <= uVar7) break;
-              pcVar6 = (char *)(uVar5 + uVar7);
-              cVar1 = *(char *)(uVar5 + uVar7);
+              else {
+                puVar7 = &DAT_0013a6fc;
+              }
+              if (uVar4 <= uVar8) break;
+              pcVar6 = (char *)(uVar5 + uVar8);
+              cVar1 = *(char *)(uVar5 + uVar8);
               while (cVar1 == ' ') {
-                uVar7 = uVar7 + 1;
-                if (uVar4 <= uVar7) goto LAB_00057d92;
+                uVar8 = uVar8 + 1;
+                if (uVar4 <= uVar8) goto LAB_00057d92;
                 pcVar6 = pcVar6 + 1;
                 cVar1 = *pcVar6;
               }
-              uVar7 = uVar7 + 1;
-              iVar2 = curl_msnprintf(puVar9,auStack_28 + -(int)puVar9,DAT_00057e04,uVar3,cVar1);
-              puVar9 = puVar9 + iVar2;
+              uVar8 = uVar8 + 1;
+              iVar2 = curl_msnprintf(puVar10,auStack_28 + -(int)puVar10,&DAT_001386d8,puVar7,cVar1);
+              puVar10 = puVar10 + iVar2;
               uVar4 = *local_2ac;
-              if (uVar4 <= uVar7) goto LAB_00057d9c;
+              if (uVar4 <= uVar8) goto LAB_00057d9c;
             }
 LAB_00057d92:
-            uVar7 = uVar7 + 1;
+            uVar8 = uVar8 + 1;
             uVar4 = *local_2ac;
-          } while (uVar7 < uVar4);
+          } while (uVar8 < uVar4);
         }
 LAB_00057d9c:
         Curl_ssl_push_certinfo(param_1,param_2,acStack_2a8,auStack_228);
-        iVar8 = iVar8 + 1;
+        iVar9 = iVar9 + 1;
         BIO_free(out);
         iVar2 = sk_num(param_3);
-      } while (iVar8 < iVar2);
+      } while (iVar9 < iVar2);
     }
     uVar3 = 0;
   }

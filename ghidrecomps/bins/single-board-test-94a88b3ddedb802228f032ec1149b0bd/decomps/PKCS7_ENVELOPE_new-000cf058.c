@@ -6,7 +6,7 @@ PKCS7_ENVELOPE * PKCS7_ENVELOPE_new(void)
 {
   PKCS7_ENVELOPE *pPVar1;
   
-  pPVar1 = (PKCS7_ENVELOPE *)ASN1_item_new(DAT_000cf060);
+  pPVar1 = (PKCS7_ENVELOPE *)ASN1_item_new((ASN1_ITEM *)PKCS7_ENVELOPE_it);
   return pPVar1;
 }
 

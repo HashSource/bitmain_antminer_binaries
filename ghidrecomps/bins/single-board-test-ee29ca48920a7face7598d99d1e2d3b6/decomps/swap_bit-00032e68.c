@@ -2,8 +2,8 @@
 byte swap_bit(byte param_1)
 
 {
-  uint local_10;
-  byte local_9;
+  undefined4 local_10;
+  undefined1 local_9;
   
   local_9 = 0;
   for (local_10 = 0; (int)local_10 < 8; local_10 = local_10 + 1) {

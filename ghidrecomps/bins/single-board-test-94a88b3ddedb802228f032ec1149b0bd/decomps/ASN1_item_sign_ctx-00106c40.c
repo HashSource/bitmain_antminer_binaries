@@ -20,7 +20,7 @@ int ASN1_item_sign_ctx(ASN1_ITEM *it,X509_ALGOR *algor1,X509_ALGOR *algor2,
   md = EVP_MD_CTX_md(ctx);
   pkey = EVP_PKEY_CTX_get0_pkey(ctx->pctx);
   if (md == (EVP_MD *)0x0 || pkey == (EVP_PKEY *)0x0) {
-    ERR_put_error(0xd,0xdc,0xd9,DAT_00106e3c,0xf7);
+    ERR_put_error(0xd,0xdc,0xd9,"a_sign.c",0xf7);
     return 0;
   }
   pEVar5 = pkey->ameth;
@@ -31,7 +31,7 @@ LAB_00106da6:
       iVar1 = OBJ_find_sigid_by_algs(local_2c,iVar1,*(int *)pkey->ameth);
       if (iVar1 == 0) {
 LAB_00106e26:
-        ERR_put_error(0xd,0xdc,0xc6,DAT_00106e3c,0x114);
+        ERR_put_error(0xd,0xdc,0xc6,"a_sign.c",0x114);
         return 0;
       }
       pEVar5 = pkey->ameth;
@@ -65,7 +65,7 @@ LAB_00106dc6:
       goto LAB_00106d2e;
     }
     if (iVar1 < 1) {
-      ERR_put_error(0xd,0xdc,6,DAT_00106e3c,0x107);
+      ERR_put_error(0xd,0xdc,6,"a_sign.c",0x107);
       goto LAB_00106d2e;
     }
     if (iVar1 == 2) {
@@ -80,16 +80,16 @@ LAB_00106dc6:
   puVar2 = (uchar *)ASN1_item_i2d((ASN1_VALUE *)asn,&local_34,it);
   puVar3 = (uchar *)EVP_PKEY_size(pkey);
   local_30 = puVar3;
-  sigret = (uchar *)CRYPTO_malloc((int)puVar3,DAT_00106e3c,0x128);
+  sigret = (uchar *)CRYPTO_malloc((int)puVar3,"a_sign.c",0x128);
   if ((local_34 == (uchar *)0x0) || (sigret == (uchar *)0x0)) {
     local_30 = (uchar *)0x0;
-    ERR_put_error(0xd,0xdc,0x41,DAT_00106e3c,299);
+    ERR_put_error(0xd,0xdc,0x41,"a_sign.c",299);
   }
   else {
     iVar1 = EVP_DigestUpdate(ctx,local_34,(size_t)puVar2);
     if ((iVar1 == 0) || (iVar1 = EVP_DigestSignFinal(ctx,sigret,(size_t *)&local_30), iVar1 == 0)) {
       local_30 = (uchar *)0x0;
-      ERR_put_error(0xd,0xdc,6,DAT_00106e3c,0x132);
+      ERR_put_error(0xd,0xdc,6,"a_sign.c",0x132);
     }
     else {
       if (signature->data != (uchar *)0x0) {

@@ -4,7 +4,6 @@ uint8_t get_power_iic_value_from_voltage(double voltage)
 {
   _Bool _Var1;
   FILE *__stream;
-  double in_d0;
   double dVar2;
   uint8_t local_1c;
   double voltage_local;
@@ -14,12 +13,12 @@ uint8_t get_power_iic_value_from_voltage(double voltage)
   _Var1 = is_T11();
   if (_Var1) {
     if ((_g_minor_type == PKG_CE) || (_g_minor_type == PKG_B_BGM)) {
-      dVar2 = (DAT_0003b898 - in_d0 * DAT_0003b890) / (in_d0 * DAT_0003b8a0 - DAT_0003b8a8);
+      dVar2 = (1943.4048 - voltage * 174.9552) / (voltage * 5.74 - 44.244);
       local_1c = (0.0 < dVar2) * (char)(longlong)dVar2;
       iic_index = local_1c;
     }
     else {
-      dVar2 = (DAT_0003b8b8 - in_d0 * DAT_0003b8b0) / (in_d0 * DAT_0003b8c0 - DAT_0003b8c8);
+      dVar2 = (1899.7248 - voltage * 161.5872) / (voltage * 5.26 - 43.956);
       local_1c = (0.0 < dVar2) * (char)(longlong)dVar2;
       iic_index = local_1c;
     }
@@ -39,12 +38,12 @@ uint8_t get_power_iic_value_from_voltage(double voltage)
   else {
     _Var1 = power_is_support_cmd_package();
     if (_Var1) {
-      dVar2 = DAT_0003b8d8 - in_d0 * DAT_0003b8d0;
+      dVar2 = 1215.89444 - voltage * 59.931507;
       local_1c = (0.0 < dVar2) * (char)(longlong)dVar2;
       iic_index = local_1c;
     }
     else {
-      dVar2 = DAT_0003b8e8 - in_d0 * DAT_0003b8e0;
+      dVar2 = 1718.459125 - voltage * 85.509875;
       local_1c = (0.0 < dVar2) * (char)(longlong)dVar2;
       iic_index = local_1c;
     }

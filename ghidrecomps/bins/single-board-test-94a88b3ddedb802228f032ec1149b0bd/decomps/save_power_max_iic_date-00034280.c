@@ -1,8 +1,8 @@
 
-void save_power_max_iic_date(undefined param_1)
+void save_power_max_iic_date(undefined1 param_1)
 
 {
-  undefined local_10 [4];
+  undefined1 local_10 [4];
   FILE *local_c;
   
   local_c = fopen("/config/vol_iic_data","wb+");

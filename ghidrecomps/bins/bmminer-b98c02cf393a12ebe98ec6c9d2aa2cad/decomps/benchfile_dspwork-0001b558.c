@@ -5,7 +5,7 @@ void benchfile_dspwork(undefined4 param_1,uint param_2)
   int iVar1;
   uint uVar2;
   int iVar3;
-  undefined auStack_c08 [1024];
+  undefined1 auStack_c08 [1024];
   char acStack_808 [2048];
   
   iVar1 = 4;

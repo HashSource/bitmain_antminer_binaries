@@ -5,12 +5,11 @@ json_t * parse_json(lex_t *lex,size_t flags,json_error_t *error)
 
 {
   json_t *json;
-  json_t *result;
   size_t sVar1;
   
   lex_scan(lex,error);
   if (((flags & 4) == 0) && ((lex->token & 0xffffffdfU) != 0x5b)) {
-    error_set(error,lex,DAT_0003d410);
+    error_set(error,lex,"\'[\' or \'{\' expected");
     return (json_t *)0x0;
   }
   json = parse_value(lex,flags,error);
@@ -22,7 +21,7 @@ json_t * parse_json(lex_t *lex,size_t flags,json_error_t *error)
       error->position = (lex->stream).position;
       return json;
     }
-    error_set(error,lex,DAT_0003d40c);
+    error_set(error,lex,"end of file expected");
     if ((json->refcount != 0xffffffff) &&
        (sVar1 = json->refcount - 1, json->refcount = sVar1, sVar1 == 0)) {
       json_delete(json);

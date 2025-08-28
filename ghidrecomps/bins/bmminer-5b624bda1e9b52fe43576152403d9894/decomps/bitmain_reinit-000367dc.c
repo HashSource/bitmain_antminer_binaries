@@ -1,47 +1,34 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void bitmain_reinit(void)
 
 {
   byte bVar1;
-  char cVar2;
-  ushort frequency;
-  int iVar3;
-  uint *puVar4;
-  double dVar5;
-  double dVar6;
-  double dVar7;
-  double dVar8;
-  void **ppvVar9;
-  void **ppvVar10;
-  int *piVar11;
-  char *pcVar12;
-  uchar uVar13;
+  int iVar2;
+  uint *puVar3;
+  uint16_t frequency;
+  uchar uVar4;
+  int iVar5;
+  all_parameters *paVar6;
+  _Bool _Var7;
+  uint uVar8;
+  all_parameters *paVar9;
+  uint uVar10;
+  all_parameters *paVar11;
+  all_parameters *paVar12;
+  int iVar13;
   int iVar14;
-  void *pvVar15;
-  void *pvVar16;
-  uint uVar17;
-  void *pvVar18;
-  void *pvVar19;
-  int iVar20;
-  int iVar21;
-  int iVar22;
   uchar vol_pic;
-  uchar temp_voltage;
-  int iVar23;
-  uint uVar24;
-  double dVar25;
+  int iVar15;
+  double dVar16;
   char logstr [256];
   char tmp42 [2048];
   uchar chain;
   
-  iVar21 = DAT_00036a50;
-  ppvVar9 = DAT_00036a4c;
-  iVar22 = DAT_00036a48;
-  pthread_mutex_lock((pthread_mutex_t *)(DAT_00036a48 + 0x1e8));
-  memset(*ppvVar9,0,0x301c);
-  *(undefined4 *)*ppvVar9 = *(undefined4 *)(iVar22 + 0x208);
+  pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+  memset(dev,0,0x301c);
+  dev->current_job_start_address = job_start_address_1;
   set_reset_allhashboard(1);
   sleep(3);
   set_reset_allhashboard(0);
@@ -50,292 +37,275 @@ void bitmain_reinit(void)
   set_QN_write_data_command(0x8080800f);
   sleep(2);
   set_PWM('d');
-  pvVar19 = *ppvVar9;
-  **(undefined4 **)(DAT_00036a54 + 0x8d4) = 0x80000000;
-  *(undefined *)((int)pvVar19 + 0x2fea) = 0x1a;
-  set_nonce2_and_job_id_store_address(*(uint *)(iVar21 + 0x8c));
-  set_job_start_address(*(int *)(iVar21 + 0x8c) + 0x200000);
+  paVar12 = dev;
+  *axi_fpga_addr = 0x80000000;
+  paVar12->baud = '\x1a';
+  set_nonce2_and_job_id_store_address(PHY_MEM_NONCE2_JOBID_ADDRESS);
+  set_job_start_address(PHY_MEM_NONCE2_JOBID_ADDRESS + 0x200000);
   check_chain();
   set_reset_allhashboard(1);
-  iVar22 = 0;
+  iVar14 = 0;
   do {
-    while (*(int *)((int)*ppvVar9 + (iVar22 + 2) * 4) != 1) {
-      iVar22 = iVar22 + 1;
-      if (iVar22 == 0x10) goto LAB_0003689e;
+    while (dev->chain_exist[iVar14] != 1) {
+      iVar14 = iVar14 + 1;
+      if (iVar14 == 0x10) goto LAB_0003689e;
     }
-    reset_iic_pic((uchar)iVar22);
-    iVar21 = iVar22 + 1;
-    jump_to_app_CheckAndRestorePIC_T9_18(iVar22);
-    iVar22 = iVar21;
-  } while (iVar21 != 0x10);
+    reset_iic_pic((uchar)iVar14);
+    iVar13 = iVar14 + 1;
+    jump_to_app_CheckAndRestorePIC_T9_18(iVar14);
+    iVar14 = iVar13;
+  } while (iVar13 != 0x10);
 LAB_0003689e:
-  iVar22 = DAT_00036a68;
-  piVar11 = DAT_00036a58;
-  iVar21 = 0;
+  iVar14 = 0;
   sleep(1);
   do {
-    while (*(int *)((int)*ppvVar9 + (iVar21 + 2) * 4) != 1) {
-      iVar21 = iVar21 + 1;
-      if (iVar21 == 0x10) goto LAB_000368fa;
+    while (dev->chain_exist[iVar14] != 1) {
+      iVar14 = iVar14 + 1;
+      if (iVar14 == 0x10) goto LAB_000368fa;
     }
-    chain = (uchar)iVar21;
-    uVar13 = get_pic_voltage(chain);
-    iVar20 = *piVar11;
-    *(uchar *)(iVar22 + iVar21) = uVar13;
-    if (iVar20 < 0xe) {
-      if (iVar21 % 3 == 0) goto LAB_00036c54;
+    chain = (uchar)iVar14;
+    uVar4 = get_pic_voltage(chain);
+    iVar13 = fpga_version;
+    chain_voltage_pic[iVar14] = uVar4;
+    if (iVar13 < 0xe) {
+      if (iVar14 % 3 == 0) goto LAB_00036c54;
     }
-    else if (iVar21 - 1U < 3) {
+    else if (iVar14 - 1U < 3) {
 LAB_00036c54:
       set_voltage_T9_18_into_PIC(chain,'\x01');
     }
-    iVar21 = iVar21 + 1;
+    iVar14 = iVar14 + 1;
     disable_pic_dac(chain);
-  } while (iVar21 != 0x10);
+  } while (iVar14 != 0x10);
 LAB_000368fa:
-  iVar22 = DAT_00036a68;
   cgsleep_ms(1000);
-  dVar8 = DAT_00036a40;
-  dVar7 = DAT_00036a38;
-  dVar6 = DAT_00036a30;
-  dVar5 = DAT_00036a28;
-  iVar20 = 1;
-  pvVar19 = *ppvVar9;
-  iVar21 = 0;
+  iVar13 = 1;
+  iVar14 = 0;
+  paVar12 = dev;
   do {
-    while (*(int *)((int)pvVar19 + (iVar21 + 2) * 4) != 1) {
-      iVar21 = iVar21 + 1;
-      iVar20 = iVar20 + 1;
-      if (iVar21 == 0x10) goto LAB_000369a6;
+    while (paVar12->chain_exist[iVar14] != 1) {
+      iVar14 = iVar14 + 1;
+      iVar13 = iVar13 + 1;
+      if (iVar14 == 0x10) goto LAB_000369a6;
     }
-    uVar17 = (uint)*(byte *)(iVar22 + iVar21);
-    iVar3 = (int)(longlong)
-                 (((dVar6 / ((double)(longlong)(int)uVar17 + dVar5) + dVar7) * dVar8) / 4.75) / 10;
-    iVar23 = iVar3 * 10;
-    sprintf(logstr,DAT_00036a5c,iVar20,uVar17,iVar23);
+    iVar2 = (int)(longlong)
+                 (((364.0704 / ((double)(longlong)(int)(uint)chain_voltage_pic[iVar14] + 30.72) +
+                   32.79) * 100.0) / 4.75) / 10;
+    iVar15 = iVar2 * 10;
+    sprintf(logstr,"Chain[J%d] working voltage=%d value=%d\n",iVar13,(uint)chain_voltage_pic[iVar14]
+            ,iVar15);
     writeInitLogFile(logstr);
-    iVar14 = getChainPICMagicNumber(iVar21);
-    if ((iVar14 == 0x7d) &&
-       (iVar14 = *(int *)(DAT_00036dc8 + iVar21 * 4),
-       iVar14 != iVar23 && iVar14 + iVar3 * -10 < 0 == SBORROW4(iVar14,iVar23))) {
-      dVar25 = dVar6 / (((double)(longlong)iVar14 * 4.75) / dVar8 - dVar7) - dVar5;
-      uVar24 = (uint)(0.0 < dVar25) * (int)(longlong)dVar25;
-      uVar17 = uVar24 & 0xff;
-      sprintf(logstr,DAT_00036dcc,iVar20,iVar14,uVar17);
+    iVar5 = getChainPICMagicNumber(iVar14);
+    if ((iVar5 == 0x7d) &&
+       (iVar5 = chain_voltage_value[iVar14],
+       iVar5 != iVar15 && iVar5 + iVar2 * -10 < 0 == SBORROW4(iVar5,iVar15))) {
+      dVar16 = 364.0704 / (((double)(longlong)iVar5 * 4.75) / 100.0 - 32.79) - 30.72;
+      uVar10 = (uint)(0.0 < dVar16) * (int)(longlong)dVar16;
+      uVar8 = uVar10 & 0xff;
+      sprintf(logstr,"Chain[J%d] will use backup chain_voltage_pic=%d [%d]\n",iVar13,iVar5,uVar8);
       writeInitLogFile(logstr);
-      pcVar12 = DAT_00036dd0;
-      *(char *)(iVar21 + iVar22) = (char)uVar24;
-      sprintf(logstr,pcVar12,iVar20,uVar17);
+      chain_voltage_pic[iVar14] = (uchar)uVar10;
+      sprintf(logstr,"Chain[J%d] get working voltage=%d\n",iVar13,uVar8);
       writeInitLogFile(logstr);
     }
-    iVar21 = iVar21 + 1;
-    pvVar19 = *ppvVar9;
-    iVar20 = iVar20 + 1;
-  } while (iVar21 != 0x10);
+    iVar14 = iVar14 + 1;
+    iVar13 = iVar13 + 1;
+    paVar12 = dev;
+  } while (iVar14 != 0x10);
 LAB_000369a6:
-  iVar22 = 0;
+  iVar14 = 0;
   while( true ) {
-    puVar4 = DAT_00036a60;
-    if (*(int *)((int)pvVar19 + (iVar22 + 2) * 4) == 1) {
-      enable_pic_dac((uchar)iVar22);
-      puVar4 = DAT_00036a60;
+    puVar3 = paVar12->chain_exist;
+    paVar12 = dev;
+    if (puVar3[iVar14] == 1) {
+      enable_pic_dac((uchar)iVar14);
+      paVar12 = dev;
     }
-    DAT_00036a60 = puVar4;
-    if (iVar22 == 0xf) break;
-    iVar22 = iVar22 + 1;
-    pvVar19 = *ppvVar9;
+    dev = paVar12;
+    if (iVar14 == 0xf) break;
+    iVar14 = iVar14 + 1;
   }
   sleep(5);
-  pthread_mutex_unlock(DAT_00036a64);
+  pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
   cgsleep_ms(2000);
   set_reset_allhashboard(1);
   sleep(3);
   set_reset_allhashboard(0);
   sleep(1);
-  if (*puVar4 != 0) {
-    uVar17 = get_dhash_acc_control();
-    set_dhash_acc_control((*puVar4 & 0xf) << 8 | 0x8000 | uVar17 & 0xffff7fdf);
+  if (opt_multi_version != 0) {
+    uVar8 = get_dhash_acc_control();
+    set_dhash_acc_control((opt_multi_version & 0xfU) << 8 | 0x8000 | uVar8 & 0xffff7fdf);
   }
-  ppvVar10 = DAT_00036a4c;
   cgsleep_ms(10);
-  *(undefined *)((int)*ppvVar9 + 0x2fe7) = 0x72;
+  dev->corenum = 'r';
   check_asic_reg(0);
   cgsleep_ms(10);
-  iVar22 = 1;
+  iVar14 = 1;
   do {
-    while( true ) {
-      iVar21 = iVar22 + 1;
-      if (*(int *)((int)*ppvVar9 + iVar21 * 4) == 1) break;
+    while (iVar13 = iVar14 + 1, dev->chain_exist[iVar14 + -1] != 1) {
 LAB_00036a6c:
-      iVar22 = iVar21;
-      if (iVar21 == 0x11) goto LAB_00036ab6;
+      iVar14 = iVar13;
+      if (iVar13 == 0x11) goto LAB_00036ab6;
     }
-    sprintf(logstr,DAT_00036db0,iVar22,(uint)*(byte *)((int)*ppvVar9 + iVar22 + 0x2fa9));
+    sprintf(logstr,"Chain[J%d] has %d asic\n",iVar14,(uint)*(byte *)((int)dev->temp + iVar14 + 0x3f)
+           );
     writeInitLogFile(logstr);
-    if (*(char *)((int)*ppvVar10 + iVar22 + 0x2fa9) != '\0') goto LAB_00036a6c;
-    *(undefined4 *)((int)*ppvVar10 + iVar21 * 4) = 0;
-    iVar22 = iVar21;
-  } while (iVar21 != 0x11);
+    if (*(char *)((int)dev->temp + iVar14 + 0x3f) != '\0') goto LAB_00036a6c;
+    dev->chain_exist[iVar14 + -1] = 0;
+    iVar14 = iVar13;
+  } while (iVar13 != 0x11);
 LAB_00036ab6:
-  iVar22 = DAT_00036db4;
   software_set_address();
   cgsleep_ms(10);
-  if ((int)((uint)*(byte *)(iVar22 + 0x950) << 0x1c) < 0) {
-    frequency = *(ushort *)(iVar22 + 0x958);
-    *(ushort *)((int)*ppvVar9 + 0x2fee) = frequency;
+  frequency = config_parameter.frequency;
+  if ((int)((uint)(byte)config_parameter._4_1_ << 0x1c) < 0) {
+    dev->frequency = config_parameter.frequency;
     set_frequency(frequency);
-    sprintf((char *)((int)*ppvVar9 + 0x2ff0),DAT_00037024,(uint)*(ushort *)((int)*ppvVar9 + 0x2fee))
-    ;
+    sprintf(dev->frequency_t,"%u",(uint)dev->frequency);
   }
-  pcVar12 = DAT_00036dd4;
   cgsleep_ms(10);
-  pvVar19 = *ppvVar9;
-  bVar1 = *(byte *)(iVar22 + 0x956);
-  cVar2 = *pcVar12;
-  uVar17 = (uint)*(byte *)(iVar22 + 0x950) << 0x1e;
-  *(byte *)((int)pvVar19 + 0x2fec) = (byte)(uVar17 >> 0x1f);
-  *(byte *)((int)pvVar19 + 0x2fed) = bVar1;
-  if ((cVar2 != '\0') &&
-     (((*DAT_00036db8 != '\0' || (*DAT_00036dbc != '\0')) || (6 < *DAT_00037028)))) {
-    snprintf(tmp42,0x800,DAT_00036dc0,DAT_00036dc4,uVar17 >> 0x1f,(uint)bVar1);
+  paVar12 = dev;
+  uVar4 = config_parameter.fan_pwm_percent;
+  _Var7 = opt_debug;
+  uVar10 = (uint)(byte)config_parameter._4_1_;
+  uVar8 = (uint)config_parameter.fan_pwm_percent;
+  dev->fan_eft = (byte)((uVar10 << 0x1e) >> 0x1f);
+  paVar12->fan_pwm = uVar4;
+  if ((_Var7 != false) &&
+     (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: fan_eft : %d\tfan_pwm : %d\n","bitmain_reinit",
+             (uVar10 << 0x1e) >> 0x1f,uVar8);
     _applog(7,tmp42,false);
   }
-  if (((int)((uint)*(byte *)(iVar22 + 0x950) << 0x1e) < 0) &&
-     (*(byte *)(DAT_00036db4 + 0x956) < 0x65)) {
-    set_PWM(*(byte *)(DAT_00036db4 + 0x956));
+  if (((int)((uint)(byte)config_parameter._4_1_ << 0x1e) < 0) &&
+     (config_parameter.fan_pwm_percent < 0x65)) {
+    set_PWM(config_parameter.fan_pwm_percent);
   }
   else {
     set_PWM_according_to_temperature();
   }
-  if ((int)((uint)*(byte *)(iVar22 + 0x950) << 0x1d) < 0) {
-    if (*(short *)(DAT_00036db4 + 0x95e) == 0) {
-      iVar22 = calculate_core_number((uint)*(byte *)((int)*ppvVar9 + 0x2fe7));
-      pvVar19 = *ppvVar9;
-      iVar22 = __aeabi_idiv(0x1000000,iVar22);
-      iVar22 = __aeabi_idiv((uint)*(byte *)((int)pvVar19 + 0x2fe8) * iVar22,
-                            *(undefined2 *)((int)pvVar19 + 0x2fee));
-      cVar2 = *pcVar12;
-      uVar17 = (iVar22 * 0x5a) / 100;
-      *(uint *)((int)pvVar19 + 0x48) = uVar17;
-      if ((cVar2 != '\0') &&
-         (((*DAT_0003702c != '\0' || (*DAT_00037030 != '\0')) || (6 < *DAT_00037028)))) {
-        snprintf(tmp42,0x800,DAT_00037034);
+  paVar12 = dev;
+  if ((int)((uint)(byte)config_parameter._4_1_ << 0x1d) < 0) {
+    if (config_parameter._18_2_ == 0) {
+      iVar14 = calculate_core_number((uint)dev->corenum);
+      paVar12 = dev;
+      iVar14 = __aeabi_idiv(0x1000000,iVar14);
+      iVar14 = __aeabi_idiv((uint)paVar12->addrInterval * iVar14,paVar12->frequency);
+      _Var7 = opt_debug;
+      uVar8 = (iVar14 * 0x5a) / 100;
+      paVar12->timeout = uVar8;
+      if ((_Var7 != false) &&
+         (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+        snprintf(tmp42,0x800,"dev->timeout = %d\n");
         _applog(7,tmp42,false);
-        pvVar19 = *ppvVar9;
-        uVar17 = *(uint *)((int)pvVar19 + 0x48);
+        uVar8 = dev->timeout;
+        paVar12 = dev;
       }
     }
     else {
-      pvVar19 = *ppvVar9;
-      uVar17 = (uint)*(byte *)(DAT_00036db4 + 0x95e) * 1000 + (uint)*(byte *)(DAT_00036db4 + 0x95f);
-      *(uint *)((int)pvVar19 + 0x48) = uVar17;
+      uVar8 = (uint)config_parameter.timeout_data_integer * 1000 +
+              (uint)config_parameter.timeout_data_fractions;
+      dev->timeout = uVar8;
     }
-    if (0x1ffff < uVar17) {
-      *(undefined4 *)((int)pvVar19 + 0x48) = 0x1ffff;
+    if (0x1ffff < uVar8) {
+      paVar12->timeout = 0x1ffff;
     }
   }
   init_uart_baud();
-  iVar22 = 0;
+  iVar14 = 0;
   cgsleep_ms(10);
-  pvVar19 = *ppvVar9;
+  paVar12 = dev;
   do {
-    while ((*(int *)((int)pvVar19 + (iVar22 + 2) * 4) != 1 ||
-           (*(char *)((int)pvVar19 + iVar22 + 0x2faa) != '\x12'))) {
-      iVar22 = iVar22 + 1;
-      if (iVar22 == 0x10) goto LAB_00036bbc;
+    while ((paVar12->chain_exist[iVar14] != 1 || (paVar12->chain_asic_num[iVar14] != '\x12'))) {
+      iVar14 = iVar14 + 1;
+      if (iVar14 == 0x10) goto LAB_00036bbc;
     }
-    calibration_sensor_offset(0x98,iVar22);
-    iVar22 = iVar22 + 1;
+    calibration_sensor_offset(0x98,iVar14);
+    iVar14 = iVar14 + 1;
     cgsleep_ms(10);
-    pvVar19 = *ppvVar9;
-  } while (iVar22 != 0x10);
+    paVar12 = dev;
+  } while (iVar14 != 0x10);
 LAB_00036bbc:
-  iVar22 = *piVar11;
-  uVar17 = 0;
-  pvVar15 = pvVar19;
-  pvVar16 = pvVar19;
-  pvVar18 = pvVar19;
+  iVar14 = fpga_version;
+  uVar8 = 0;
+  paVar6 = paVar12;
+  paVar9 = paVar12;
+  paVar11 = paVar12;
   do {
-    if ((*(int *)((int)pvVar18 + 8) == 1) && (*(char *)((int)pvVar19 + uVar17 + 0x2faa) == '\x12'))
-    {
-      if (iVar22 < 0xe) {
-        iVar21 = ((int)uVar17 / 3) * 3;
-        if ((int)uVar17 % 3 != 1) {
-          *(undefined *)((int)pvVar15 + 0x458) = *(undefined *)((int)pvVar19 + iVar21 + 0x459);
-          *(undefined *)((int)pvVar16 + 0x4e8) = *(undefined *)((int)pvVar19 + (iVar21 + 0x9e) * 8);
-          *(undefined *)((int)pvVar16 + 0x4e9) =
-               *(undefined *)((int)pvVar19 + (iVar21 + 1) * 8 + 0x4e9);
+    if ((paVar11->chain_exist[0] == 1) && (paVar12->chain_asic_num[uVar8] == '\x12')) {
+      if (iVar14 < 0xe) {
+        iVar13 = (int)uVar8 / 3;
+        if ((int)uVar8 % 3 != 1) {
+          paVar6->chain_asic_temp_num[0] = paVar12->chain_asic_temp_num[iVar13 * 3 + 1];
+          paVar9->TempChipAddr[0][0] = paVar12->TempChipAddr[iVar13 * 3 + 1][0];
+          paVar9->TempChipAddr[0][1] = paVar12->TempChipAddr[iVar13 * 3 + 1][1];
         }
       }
-      else if (uVar17 < 0xe) {
-        uVar24 = 1 << (uVar17 & 0xff);
-        if ((uVar24 & 0x2008) == 0) {
-          if ((uVar24 & 0x804) == 0) {
-            if ((uVar24 & 0x202) != 0) {
-              *(undefined *)((int)pvVar15 + 0x458) = *(undefined *)((int)pvVar19 + 0x460);
-              *(undefined *)((int)pvVar16 + 0x4e8) = *(undefined *)((int)pvVar19 + 0x528);
-              *(undefined *)((int)pvVar16 + 0x4e9) = *(undefined *)((int)pvVar19 + 0x529);
+      else if (uVar8 < 0xe) {
+        uVar10 = 1 << (uVar8 & 0xff);
+        if ((uVar10 & 0x2008) == 0) {
+          if ((uVar10 & 0x804) == 0) {
+            if ((uVar10 & 0x202) != 0) {
+              paVar6->chain_asic_temp_num[0] = paVar12->chain_asic_temp_num[8];
+              paVar9->TempChipAddr[0][0] = paVar12->TempChipAddr[8][0];
+              paVar9->TempChipAddr[0][1] = paVar12->TempChipAddr[8][1];
             }
           }
           else {
-            *(undefined *)((int)pvVar15 + 0x458) = *(undefined *)((int)pvVar19 + 0x462);
-            *(undefined *)((int)pvVar16 + 0x4e8) = *(undefined *)((int)pvVar19 + 0x538);
-            *(undefined *)((int)pvVar16 + 0x4e9) = *(undefined *)((int)pvVar19 + 0x539);
+            paVar6->chain_asic_temp_num[0] = paVar12->chain_asic_temp_num[10];
+            paVar9->TempChipAddr[0][0] = paVar12->TempChipAddr[10][0];
+            paVar9->TempChipAddr[0][1] = paVar12->TempChipAddr[10][1];
           }
         }
         else {
-          *(undefined *)((int)pvVar15 + 0x458) = *(undefined *)((int)pvVar19 + 0x464);
-          *(undefined *)((int)pvVar16 + 0x4e8) = *(undefined *)((int)pvVar19 + 0x548);
-          *(undefined *)((int)pvVar16 + 0x4e9) = *(undefined *)((int)pvVar19 + 0x549);
+          paVar6->chain_asic_temp_num[0] = paVar12->chain_asic_temp_num[0xc];
+          paVar9->TempChipAddr[0][0] = paVar12->TempChipAddr[0xc][0];
+          paVar9->TempChipAddr[0][1] = paVar12->TempChipAddr[0xc][1];
         }
       }
     }
-    uVar17 = uVar17 + 1;
-    pvVar18 = (void *)((int)pvVar18 + 4);
-    pvVar15 = (void *)((int)pvVar15 + 1);
-    pvVar16 = (void *)((int)pvVar16 + 8);
-  } while (uVar17 != 0x10);
-  if (*puVar4 == 0) {
-    set_time_out_control(*(uint *)((int)pvVar19 + 0x48) & 0x1ffff | 0x80000000);
+    uVar8 = uVar8 + 1;
+    paVar11 = (all_parameters *)&paVar11->pwm_value;
+    paVar6 = (all_parameters *)((int)&paVar6->current_job_start_address + 1);
+    paVar9 = (all_parameters *)paVar9->chain_exist;
+  } while (uVar8 != 0x10);
+  if (opt_multi_version == 0) {
+    set_time_out_control(paVar12->timeout & 0x1ffff | 0x80000000);
   }
   else {
-    set_time_out_control(*(uint *)((int)pvVar19 + 0x48) * *puVar4 & 0x1ffff | 0x80000000);
+    set_time_out_control(paVar12->timeout * opt_multi_version & 0x1ffff | 0x80000000);
   }
-  dVar8 = DAT_00036da8;
-  dVar7 = DAT_00036da0;
-  dVar6 = DAT_00036d98;
-  dVar5 = DAT_00036d90;
-  iVar21 = 1;
-  iVar22 = 0;
+  iVar13 = 1;
+  iVar14 = 0;
   set_PWM('d');
   do {
-    if (*(int *)((int)*ppvVar9 + (iVar22 + 2) * 4) == 1) {
-      open_core_one_chain(iVar22,true);
+    if (dev->chain_exist[iVar14] == 1) {
+      open_core_one_chain(iVar14,true);
       sleep(1);
-      iVar20 = DAT_0003701c;
-      if (*piVar11 < 0xe) {
-        if (iVar22 % 3 == 2) {
-          pthread_mutex_lock(DAT_00037038);
-          set_pic_voltage((uchar)iVar22,*(uchar *)(iVar20 + iVar22));
-          pthread_mutex_unlock(DAT_00037038);
+      _Var7 = SUB41(iVar14,0);
+      if (fpga_version < 0xe) {
+        if (iVar14 % 3 == 2) {
+          pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+          set_pic_voltage(_Var7,chain_voltage_pic[iVar14]);
+          pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
         }
-        bVar1 = *(byte *)(iVar20 + iVar22);
+        bVar1 = chain_voltage_pic[iVar14];
       }
       else {
-        if (iVar22 == 1) {
-          open_core_one_chain(8,true);
+        if (iVar14 == 1) {
+          open_core_one_chain(8,_Var7);
           sleep(1);
-          open_core_one_chain(9,true);
+          open_core_one_chain(9,_Var7);
           sleep(1);
         }
-        else if (iVar22 == 2) {
+        else if (iVar14 == 2) {
           open_core_one_chain(10,true);
           sleep(1);
           open_core_one_chain(0xb,true);
           sleep(1);
         }
         else {
-          if (iVar22 != 3) {
+          if (iVar14 != 3) {
             return;
           }
           open_core_one_chain(0xc,true);
@@ -343,21 +313,20 @@ LAB_00036bbc:
           open_core_one_chain(0xd,true);
           sleep(1);
         }
-        iVar20 = DAT_0003701c;
-        pthread_mutex_lock(DAT_00037038);
-        set_pic_voltage((uchar)iVar22,*(uchar *)(iVar20 + iVar22));
-        pthread_mutex_unlock(DAT_00037038);
-        bVar1 = *(byte *)(iVar20 + iVar22);
+        pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+        set_pic_voltage(_Var7,chain_voltage_pic[iVar14]);
+        pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
+        bVar1 = chain_voltage_pic[iVar14];
       }
-      sprintf(logstr,DAT_00037020,iVar21,
+      sprintf(logstr,"Chain[J%d] set working voltage=%d [%d]\n",iVar13,
               ((int)(longlong)
-                    (((dVar6 / ((double)(longlong)(int)(uint)bVar1 + dVar5) + dVar7) * dVar8) / 4.75
-                    ) / 10) * 10,(uint)bVar1);
+                    (((364.0704 / ((double)(longlong)(int)(uint)bVar1 + 30.72) + 32.79) * 100.0) /
+                    4.75) / 10) * 10,(uint)bVar1);
       writeInitLogFile(logstr);
     }
-    iVar22 = iVar22 + 1;
-    iVar21 = iVar21 + 1;
-  } while (iVar22 != 0x10);
+    iVar14 = iVar14 + 1;
+    iVar13 = iVar13 + 1;
+  } while (iVar14 != 0x10);
   return;
 }
 

@@ -2,10 +2,11 @@
 void set_iic_power_to_working_voltage_part_2(void)
 
 {
-  double dVar1;
+  undefined4 uVar1;
+  undefined4 extraout_s1;
   
-  dVar1 = (double)get_avg_voltage();
-  if ((int)((uint)(dVar1 < DAT_00042000) << 0x1f) < 0) {
+  uVar1 = get_avg_voltage();
+  if ((int)((uint)((double)CONCAT44(extraout_s1,uVar1) < 9.7) << 0x1f) < 0) {
     stop_mining("power voltage too low\n");
   }
   return;

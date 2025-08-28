@@ -3,8 +3,8 @@
 
 undefined4
 RSA_padding_add_PKCS1_OAEP_mgf1
-          (undefined *param_1,int param_2,void *param_3,size_t param_4,void *param_5,size_t param_6,
-          EVP_MD *param_7,EVP_MD *param_8)
+          (undefined1 *param_1,int param_2,void *param_3,size_t param_4,void *param_5,size_t param_6
+          ,EVP_MD *param_7,EVP_MD *param_8)
 
 {
   byte *pbVar1;
@@ -36,11 +36,11 @@ RSA_padding_add_PKCS1_OAEP_mgf1
   }
   num = EVP_MD_size(param_7);
   if ((int)(num * -2 + param_2) <= (int)param_4) {
-    ERR_put_error(4,0xa0,0x6e,DAT_000fc464,0x3a);
+    ERR_put_error(4,0xa0,0x6e,"rsa_oaep.c",0x3a);
     return 0;
   }
   if (param_2 == num * 2 || (int)(param_2 + num * -2) < 0 != SBORROW4(param_2,num * 2)) {
-    ERR_put_error(4,0xa0,0x78,DAT_000fc464,0x40);
+    ERR_put_error(4,0xa0,0x78,"rsa_oaep.c",0x40);
     return 0;
   }
   puVar11 = param_1 + num + 1;
@@ -58,9 +58,9 @@ RSA_padding_add_PKCS1_OAEP_mgf1
     return 0;
   }
   uVar10 = param_2 - num;
-  mask = (uint *)CRYPTO_malloc(uVar10,DAT_000fc464,0x55);
+  mask = (uint *)CRYPTO_malloc(uVar10,"rsa_oaep.c",0x55);
   if (mask == (uint *)0x0) {
-    ERR_put_error(4,0xa0,0x41,DAT_000fc490,0x57);
+    ERR_put_error(4,0xa0,0x41,"rsa_oaep.c",0x57);
     return 0;
   }
   iVar6 = PKCS1_MGF1((uchar *)mask,uVar10,buf,num,param_8);
@@ -111,8 +111,8 @@ RSA_padding_add_PKCS1_OAEP_mgf1
              *(uint *)((int)puVar14 + iVar6) ^ *(uint *)((int)puVar12 + iVar6);
         iVar6 = iVar6 + 4;
       } while (uVar15 < uVar7);
-      uVar15 = uVar10 & 0xfffffffc;
-      if (uVar10 == (uVar10 & 0xfffffffc)) goto LAB_000fc312;
+      uVar15 = uVar7 << 2;
+      if (uVar10 == uVar7 << 2) goto LAB_000fc312;
     }
     do {
       puVar11[uVar15] = puVar11[uVar15] ^ *(byte *)((int)mask + uVar15);
@@ -126,7 +126,7 @@ LAB_000fc312:
   }
   if (0 < (int)num) {
     uVar15 = num >> 2;
-    uVar10 = num & 0xfffffffc;
+    uVar10 = uVar15 * 4;
     if (uVar15 == 0 || (num < 4 || ((uint)buf & 3) != 0)) {
       uVar10 = 0;
     }

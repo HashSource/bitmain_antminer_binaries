@@ -12,7 +12,7 @@ _Bool submit_nonce(thr_info *thr,work *work,uint nonce)
     regen_hash(work);
     if (*(int *)(work->hash + 0x1c) == 0) {
       submit_tested_work(thr,work);
-      if ((*(int *)(DAT_000298f4 + 0x448) != 0) && (*(char *)(DAT_000298f8 + 0xa60) != '\0')) {
+      if ((opt_benchfile != (char *)0x0) && (opt_benchfile_display != false)) {
         benchfile_dspwork(work,nonce);
         return true;
       }

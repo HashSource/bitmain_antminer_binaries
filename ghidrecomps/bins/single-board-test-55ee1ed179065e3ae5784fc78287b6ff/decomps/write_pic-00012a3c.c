@@ -1,10 +1,10 @@
 
-void write_pic(undefined param_1,undefined param_2,undefined param_3)
+void write_pic(undefined1 param_1,undefined1 param_2,undefined1 param_3)
 
 {
-  undefined local_b;
-  undefined local_a;
-  undefined local_9;
+  undefined1 local_b;
+  undefined1 local_a;
+  undefined1 local_9;
   
   local_b = param_3;
   local_a = param_2;

@@ -8,7 +8,7 @@ void ENGINE_register_all_DH(void)
   
   for (e = ENGINE_get_first(); e != (ENGINE *)0x0; e = ENGINE_get_next(e)) {
     if (*(int *)(e + 0x10) != 0) {
-      engine_table_register(DAT_000a7a04,DAT_000a79fc,e,DAT_000a7a00,1,0);
+      engine_table_register(&dh_table,0xa797d,e,&dummy_nid,1,0);
     }
   }
   return;

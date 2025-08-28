@@ -23,8 +23,8 @@ int Curl_sasl_decode_ntlm_type2_message(undefined4 param_1,char *param_2,int par
     }
     if (local_30 != (void *)0x0) {
       *(undefined4 *)(param_3 + 4) = 0;
-      if (((local_2c[0] < 0x20) || (iVar2 = memcmp(local_30,DAT_00054c50,8), iVar2 != 0)) ||
-         (iVar2 = memcmp((void *)((int)pvVar3 + 8),DAT_00054c5c,4), iVar2 != 0)) {
+      if (((local_2c[0] < 0x20) || (iVar2 = memcmp(local_30,"NTLMSSP",8), iVar2 != 0)) ||
+         (iVar2 = memcmp((void *)((int)pvVar3 + 8),&type2_marker_22960,4), iVar2 != 0)) {
         iVar2 = 0x3d;
         goto LAB_00054b98;
       }
@@ -43,14 +43,16 @@ int Curl_sasl_decode_ntlm_type2_message(undefined4 param_1,char *param_2,int par
           if (__n != 0) {
             if ((uVar1 < __n + uVar4) || (uVar4 < 0x30)) {
               iVar2 = 0x3d;
-              Curl_infof(param_1,DAT_00054c60);
+              Curl_infof(param_1,
+                         "NTLM handshake failure (bad type-2 message). Target Info Offset Len is set incorrect by the peer\n"
+                        );
               pvVar3 = local_30;
 LAB_00054b98:
-              (**DAT_00054c54)(pvVar3);
-              Curl_infof(param_1,DAT_00054c58);
+              (*Curl_cfree)(pvVar3);
+              Curl_infof(param_1,"NTLM handshake failure (bad type-2 message)\n");
               return iVar2;
             }
-            __dest = (void *)(**DAT_00054c64)(__n);
+            __dest = (void *)(*Curl_cmalloc)(__n);
             *(void **)(param_3 + 0x10) = __dest;
             if (__dest == (void *)0x0) {
               iVar2 = 0x1b;
@@ -63,11 +65,11 @@ LAB_00054b98:
         }
         *(size_t *)(param_3 + 0x14) = sVar6;
       }
-      (**DAT_00054c54)(local_30);
+      (*Curl_cfree)(local_30);
       return 0;
     }
   }
-  Curl_infof(param_1,DAT_00054c4c);
+  Curl_infof(param_1,"NTLM handshake failure (empty type-2 message)\n");
   return 0x3d;
 }
 

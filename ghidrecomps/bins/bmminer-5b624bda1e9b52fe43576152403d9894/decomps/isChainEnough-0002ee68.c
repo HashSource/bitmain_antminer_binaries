@@ -4,25 +4,25 @@
 _Bool isChainEnough(void)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   int iVar3;
   int iVar4;
   
-  iVar4 = 0;
   iVar2 = 0;
+  iVar3 = 0;
   do {
-    iVar3 = *DAT_0002ee8c + iVar4;
-    iVar4 = iVar4 + 4;
-    if (*(int *)(iVar3 + 8) == 1) {
+    iVar4 = iVar3 + 4;
+    if (*(int *)((int)dev->chain_exist + iVar3) == 1) {
       iVar2 = iVar2 + 1;
     }
+    iVar3 = iVar4;
   } while (iVar4 != 0x40);
-  iVar4 = iVar2;
+  iVar3 = iVar2;
   if (iVar2 < 9) {
-    iVar4 = 0;
+    iVar3 = 0;
   }
-  uVar1 = (undefined)iVar4;
+  uVar1 = (undefined1)iVar3;
   if (8 < iVar2) {
     uVar1 = 1;
   }

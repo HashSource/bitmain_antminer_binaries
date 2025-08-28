@@ -6,7 +6,7 @@ int X509_NAME_ENTRY_set_object(X509_NAME_ENTRY *ne,ASN1_OBJECT *obj)
   ASN1_OBJECT *pAVar2;
   
   if (ne == (X509_NAME_ENTRY *)0x0 || obj == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x73,0x43,DAT_000c2fb4,0x160);
+    ERR_put_error(0xb,0x73,0x43,"x509name.c",0x160);
     pAVar2 = (ASN1_OBJECT *)0x0;
   }
   else {

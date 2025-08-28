@@ -24,12 +24,12 @@ ecdsa_do_sign(uchar *param_1,int param_2,BIGNUM *param_3,BIGNUM *param_4,EC_KEY 
   group = EC_KEY_get0_group(param_5);
   a = EC_KEY_get0_private_key(param_5);
   if ((group == (EC_GROUP *)0x0 || a == (BIGNUM *)0x0) || (iVar1 == 0)) {
-    ERR_put_error(0x2a,0x65,0x43,DAT_00100330,0xfd);
+    ERR_put_error(0x2a,0x65,0x43,"ecs_ossl.c",0xfd);
     return (ECDSA_SIG *)0x0;
   }
   sig = ECDSA_SIG_new();
   if (sig == (ECDSA_SIG *)0x0) {
-    ERR_put_error(0x2a,0x65,0x41,DAT_00100330,0x103);
+    ERR_put_error(0x2a,0x65,0x41,"ecs_ossl.c",0x103);
     return (ECDSA_SIG *)0x0;
   }
   r_00 = sig->s;
@@ -38,7 +38,7 @@ ecdsa_do_sign(uchar *param_1,int param_2,BIGNUM *param_3,BIGNUM *param_4,EC_KEY 
     order = (BIGNUM *)0x0;
     r = (BIGNUM *)0x0;
 LAB_00100216:
-    ERR_put_error(0x2a,0x65,0x41,DAT_00100330,0x10a);
+    ERR_put_error(0x2a,0x65,0x41,"ecs_ossl.c",0x10a);
     ECDSA_SIG_free(sig);
     if (ctx == (ECDSA_SIG *)0x0) goto LAB_00100248;
     sig = (ECDSA_SIG *)0x0;
@@ -49,7 +49,7 @@ LAB_00100216:
     if ((r == (BIGNUM *)0x0) || (ret = BN_new(), ret == (BIGNUM *)0x0)) goto LAB_00100216;
     iVar1 = EC_GROUP_get_order(group,order,(BN_CTX *)ctx);
     if (iVar1 == 0) {
-      ERR_put_error(0x2a,0x65,0x10,DAT_00100330,0x10f);
+      ERR_put_error(0x2a,0x65,0x10,"ecs_ossl.c",0x10f);
     }
     else {
       uVar2 = BN_num_bits(order);
@@ -65,7 +65,7 @@ LAB_00100216:
       iVar1 = 0x119;
       if (pBVar3 == (BIGNUM *)0x0) {
 LAB_001002b0:
-        ERR_put_error(0x2a,0x65,3,DAT_00100330,iVar1);
+        ERR_put_error(0x2a,0x65,3,"ecs_ossl.c",iVar1);
       }
       else {
         if ((int)(uVar2 + local_40 * -8) < 0 != SBORROW4(uVar2,local_40 * 8)) {
@@ -85,7 +85,7 @@ LAB_001002b0:
             pBVar4 = BN_copy(sig->r,param_4);
             pBVar3 = param_3;
             if (pBVar4 == (BIGNUM *)0x0) {
-              ERR_put_error(0x2a,0x65,0x41,DAT_00100330,299);
+              ERR_put_error(0x2a,0x65,0x41,"ecs_ossl.c",299);
               goto LAB_0010027a;
             }
           }
@@ -93,7 +93,7 @@ LAB_001002b0:
             iVar1 = ECDSA_sign_setup(param_5,(BN_CTX *)ctx,local_2c,&sig->r);
             pBVar3 = local_2c[0];
             if (iVar1 == 0) {
-              ERR_put_error(0x2a,0x65,0x2a,DAT_00100330,0x124);
+              ERR_put_error(0x2a,0x65,0x2a,"ecs_ossl.c",0x124);
               goto LAB_0010027a;
             }
           }
@@ -114,7 +114,7 @@ LAB_001002b0:
           }
           if (r_00->top != 0) goto LAB_00100236;
         } while (param_3 == (BIGNUM *)0x0 || param_4 == (BIGNUM *)0x0);
-        ERR_put_error(0x2a,0x65,0x6a,DAT_00100330,0x143);
+        ERR_put_error(0x2a,0x65,0x6a,"ecs_ossl.c",0x143);
       }
     }
 LAB_0010027a:

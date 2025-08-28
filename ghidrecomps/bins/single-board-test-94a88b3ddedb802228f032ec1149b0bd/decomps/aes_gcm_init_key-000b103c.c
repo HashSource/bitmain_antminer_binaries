@@ -30,7 +30,7 @@ undefined4 aes_gcm_init_key(int param_1,uchar *param_2,void *param_3)
       return 1;
     }
     AES_set_encrypt_key(param_2,*(int *)(param_1 + 0x58) << 3,key);
-    CRYPTO_gcm128_init(key[1].rd_key + 3,key,DAT_000b10e0);
+    CRYPTO_gcm128_init(key[1].rd_key + 3,key,0xe2e3d);
     key[2].rd_key[0x29] = 0;
     if ((uVar1 == 0) ||
        ((key[1].rd_key[2] != 0 && (param_3 = (void *)key[2].rd_key[0x24], param_3 != (void *)0x0))))

@@ -2,43 +2,44 @@
 void get_netscape_format(int param_1)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
+  char *pcVar1;
+  undefined *puVar2;
   char *pcVar3;
-  char *pcVar4;
-  int iVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
+  undefined2 *puVar4;
+  char *pcVar5;
+  char *pcVar6;
   
-  uVar1 = DAT_0003e834;
+  puVar2 = &DAT_0013a6fc;
+  pcVar1 = "#HttpOnly_";
   if (*(char *)(param_1 + 0x32) == '\0') {
-    uVar1 = DAT_0003e830;
+    pcVar1 = "";
   }
-  uVar2 = DAT_0003e830;
   if (*(char *)(param_1 + 0x24) == '\0') {
     pcVar3 = *(char **)(param_1 + 0x14);
-    uVar6 = DAT_0003e848;
-    if (*(char **)(param_1 + 0x14) == (char *)0x0) {
-      pcVar3 = DAT_0003e844;
+    if (pcVar3 == (char *)0x0) {
+      pcVar3 = "unknown";
     }
+    pcVar5 = "FALSE";
   }
   else {
-    pcVar4 = *(char **)(param_1 + 0x14);
-    pcVar3 = DAT_0003e844;
-    uVar6 = DAT_0003e84c;
-    if ((pcVar4 != (char *)0x0) && (pcVar3 = pcVar4, *pcVar4 != '.')) {
-      uVar2 = DAT_0003e840;
+    pcVar3 = *(char **)(param_1 + 0x14);
+    if (pcVar3 == (char *)0x0) {
+      pcVar3 = "unknown";
     }
+    else if (*pcVar3 != '.') {
+      puVar2 = &DAT_00136984;
+    }
+    pcVar5 = "TRUE";
   }
-  iVar5 = *(int *)(param_1 + 0xc);
-  if (*(int *)(param_1 + 0xc) == 0) {
-    iVar5 = DAT_0003e838;
+  puVar4 = *(undefined2 **)(param_1 + 0xc);
+  if (puVar4 == (undefined2 *)0x0) {
+    puVar4 = &DAT_00135588;
   }
-  uVar7 = DAT_0003e848;
+  pcVar6 = "FALSE";
   if (*(char *)(param_1 + 0x30) != '\0') {
-    uVar7 = DAT_0003e84c;
+    pcVar6 = "TRUE";
   }
-  curl_maprintf(DAT_0003e83c,uVar1,uVar2,pcVar3,uVar6,iVar5,uVar7);
+  curl_maprintf("%s%s%s\t%s\t%s\t%s\t%lld\t%s\t%s",pcVar1,puVar2,pcVar3,pcVar5,puVar4,pcVar6);
   return;
 }
 

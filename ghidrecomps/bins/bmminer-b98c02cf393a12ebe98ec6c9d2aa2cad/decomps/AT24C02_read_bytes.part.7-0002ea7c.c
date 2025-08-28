@@ -1,8 +1,8 @@
 
-void AT24C02_read_bytes_part_7(uint param_1,undefined *param_2,undefined4 param_3,int param_4)
+void AT24C02_read_bytes_part_7(uint param_1,undefined1 *param_2,undefined4 param_3,int param_4)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint uVar2;
   uint uVar3;
   

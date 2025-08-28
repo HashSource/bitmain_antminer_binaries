@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void set_led(void)
 
@@ -17,7 +17,7 @@ void set_led(void)
     sprintf(cmd,"echo %d > %s",(uint)set_led::blink,"/sys/class/gpio/gpio942/value");
     system(cmd);
   }
-  else if ((SVar1 != STATUS_INIT) && (SVar1 < 6)) {
+  else if ((SVar1 != STATUS_INIT) && (SVar1 < (ERROR_FAN_LOST|ERROR_NETCONN_LOST))) {
     sprintf(cmd,"echo %d > %s",0,"/sys/class/gpio/gpio942/value");
     system(cmd);
     sprintf(cmd,"echo %d > %s",(uint)set_led::blink,"/sys/class/gpio/gpio941/value");

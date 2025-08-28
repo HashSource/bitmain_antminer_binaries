@@ -5,38 +5,37 @@ int restart_wait(thr_info *thr,uint mstime)
 
 {
   int iVar1;
-  timespec *__abstime;
+  int iVar2;
+  char *func;
+  char *func_00;
   int line;
-  uint line_00;
-  int rc;
+  int line_00;
   timeval now;
   timespec abstime;
   
   cgtime(&now);
-  __abstime = (timespec *)0xfff0bdc0;
   abstime.tv_sec = mstime / 1000 + now.tv_sec;
-  iVar1 = (mstime / 1000) * -1000000 + mstime * 1000 + now.tv_usec;
-  line = 1000;
-  if (999999 < iVar1) {
+  iVar2 = (mstime / 1000) * -1000000 + mstime * 1000 + now.tv_usec;
+  if (999999 < iVar2) {
     abstime.tv_sec = abstime.tv_sec + 1;
-    iVar1 = iVar1 + -1000000;
+    iVar2 = iVar2 + -1000000;
   }
-  abstime.tv_nsec = iVar1 * 1000;
-  iVar1 = pthread_mutex_lock(DAT_00020458);
+  abstime.tv_nsec = iVar2 * 1000;
+  iVar2 = pthread_mutex_lock((pthread_mutex_t *)&restart_lock);
+  if (iVar2 != 0) {
+    _mutex_lock((pthread_mutex_t *)"restart_wait",(char *)0x14c9,func,line);
+  }
+  iVar2 = 0;
+  if (thr->work_restart == false) {
+    iVar2 = pthread_cond_timedwait
+                      ((pthread_cond_t *)&restart_cond,(pthread_mutex_t *)&restart_lock,
+                       (timespec *)&abstime);
+  }
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&restart_lock);
   if (iVar1 != 0) {
-    _mutex_lock(DAT_00020464,(char *)0x14c9,(char *)__abstime,line);
+    _mutex_unlock_noyield((pthread_mutex_t *)"restart_wait",(char *)0x14d3,func_00,line_00);
   }
-  line_00 = (uint)thr->work_restart;
-  rc = 0;
-  if (line_00 == 0) {
-    __abstime = (timespec *)&abstime;
-    rc = pthread_cond_timedwait(DAT_0002045c,DAT_00020458,__abstime);
-  }
-  iVar1 = pthread_mutex_unlock(DAT_00020458);
-  if (iVar1 != 0) {
-    _mutex_unlock_noyield(DAT_00020464,(char *)0x14d3,(char *)__abstime,line_00);
-  }
-  (**DAT_00020460)();
-  return rc;
+  (*selective_yield)();
+  return iVar2;
 }
 

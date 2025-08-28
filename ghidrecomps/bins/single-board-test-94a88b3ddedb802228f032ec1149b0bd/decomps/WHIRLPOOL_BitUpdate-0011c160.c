@@ -25,7 +25,7 @@ void WHIRLPOOL_BitUpdate(WHIRLPOOL_CTX *c,void *inp,size_t bits)
       (sVar4 = c->bitlen[6] + 1, c->bitlen[6] = sVar4, sVar4 == 0)))) {
     c->bitlen[7] = c->bitlen[7] + 1;
   }
-  if ((uVar8 | uVar7) != 0) {
+  if (uVar8 != 0 || uVar7 != 0) {
     if (bits == 0) {
       return;
     }
@@ -83,7 +83,7 @@ void WHIRLPOOL_BitUpdate(WHIRLPOOL_CTX *c,void *inp,size_t bits)
                     /* WARNING: Load size is inaccurate */
         puVar5 = c->data + (uVar3 - 0x40);
         uVar8 = (uint)*inp << uVar8 & 0xff;
-        uVar9 = (uint)puVar5[0x40] | (int)uVar8 >> uVar7 & 0xffU;
+        uVar9 = (uint)(byte)*(uint *)(puVar5 + 0x40) | (int)uVar8 >> uVar7 & 0xffU;
       }
       uVar3 = uVar3 + 1;
       puVar5[0x40] = (char)uVar9;

@@ -3,7 +3,6 @@ _Bool eeprom_set_voltage(uint8_t chain,double voltage)
 
 {
   _Bool _Var1;
-  double in_d0;
   double dVar2;
   double voltage_local;
   uint8_t local_18;
@@ -15,7 +14,7 @@ _Bool eeprom_set_voltage(uint8_t chain,double voltage)
     _Var1 = false;
   }
   else {
-    dVar2 = (in_d0 * DAT_00011ce8) / 5.0 - DAT_00011cf0;
+    dVar2 = (voltage * 100.0) / 5.0 - 200.0;
     local_18 = (0.0 < dVar2) * (char)(longlong)dVar2;
     pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
     usleep(10000);

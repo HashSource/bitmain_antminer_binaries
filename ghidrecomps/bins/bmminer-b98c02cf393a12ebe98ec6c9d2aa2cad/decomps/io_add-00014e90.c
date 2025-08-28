@@ -12,7 +12,7 @@ undefined4 io_add(uint *param_1,char *param_2)
   
   sVar1 = strlen(param_2);
   __dest = (void *)param_1[2];
-  iVar4 = (int)__dest - (int)(void *)param_1[1];
+  iVar4 = (int)__dest - (int)param_1[1];
   uVar3 = iVar4 + 0xc + sVar1;
   if (*param_1 < uVar3) {
     __size = *param_1 + 0x20000;

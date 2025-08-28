@@ -6,7 +6,7 @@ int listen(int __fd,int __n)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_listen_001941ac)();
+  iVar1 = listen(__fd,__n);
   return iVar1;
 }
 

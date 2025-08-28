@@ -5,7 +5,7 @@ int PEM_write_bio_RSAPrivateKey
 {
   int iVar1;
   
-  iVar1 = PEM_ASN1_write_bio(i2d_RSAPrivateKey + 1,"RSA PRIVATE KEY",bp,x,enc,kstr,klen,cb,u);
+  iVar1 = PEM_ASN1_write_bio((undefined1 *)0xa44ad,"RSA PRIVATE KEY",bp,x,enc,kstr,klen,cb,u);
   return iVar1;
 }
 

@@ -1,5 +1,5 @@
 
-uchar * asn1_d2i_read_bio(BIO *param_1,BUF_MEM **param_2)
+uchar * asn1_d2i_read_bio(BIO *param_1,undefined4 *param_2)
 
 {
   BUF_MEM *str;
@@ -22,7 +22,7 @@ uchar * asn1_d2i_read_bio(BIO *param_1,BUF_MEM **param_2)
   
   str = BUF_MEM_new();
   if (str == (BUF_MEM *)0x0) {
-    ERR_put_error(0xd,0x6b,0x41,DAT_001061cc,0x9d);
+    ERR_put_error(0xd,0x6b,0x41,"a_d2i_fp.c",0x9d);
     puVar7 = (uchar *)0xffffffff;
   }
   else {
@@ -37,20 +37,20 @@ LAB_00106074:
       if ((puVar5 < puVar6) || (iVar1 = BUF_MEM_grow_clean(str,(size_t)puVar5), iVar1 == 0)) {
         iVar8 = 0xa7;
 LAB_00106182:
-        ERR_put_error(0xd,0x6b,0x41,DAT_001061cc,iVar8);
+        ERR_put_error(0xd,0x6b,0x41,"a_d2i_fp.c",iVar8);
         goto LAB_0010614c;
       }
       uVar2 = BIO_read(param_1,str->data + (int)puVar6,(int)puVar5 - (int)puVar6);
       if (((uint)(puVar6 == puVar7) & uVar2 >> 0x1f) != 0) {
         iVar8 = 0xac;
 LAB_0010613e:
-        ERR_put_error(0xd,0x6b,0x8e,DAT_001061cc,iVar8);
+        ERR_put_error(0xd,0x6b,0x8e,"a_d2i_fp.c",iVar8);
         goto LAB_0010614c;
       }
       if (0 < (int)uVar2) {
         bVar10 = CARRY4(uVar2,(uint)puVar6);
         puVar6 = puVar6 + uVar2;
-        if (bVar10 == false) {
+        if (!bVar10) {
           omax = (int)puVar6 - (int)puVar7;
           goto LAB_001060b2;
         }
@@ -99,7 +99,7 @@ LAB_001060b2:
     }
     bVar10 = CARRY4(local_3c[0],(uint)puVar7);
     puVar7 = puVar7 + local_3c[0];
-    if (bVar10 != false) {
+    if (bVar10) {
       iVar8 = 0xf6;
       goto LAB_00106198;
     }
@@ -108,7 +108,7 @@ LAB_001060f6:
     if ((int)puVar7 < 0) {
       iVar8 = 0x102;
 LAB_00106198:
-      ERR_put_error(0xd,0x6b,0x9b,DAT_001061cc,iVar8);
+      ERR_put_error(0xd,0x6b,0x9b,"a_d2i_fp.c",iVar8);
 LAB_0010614c:
       BUF_MEM_free(str);
       puVar7 = (uchar *)0xffffffff;

@@ -15,7 +15,7 @@ uchar * OPENSSL_asc2uni(char *asc,int asclen,uchar **uni,int *unilen)
     asclen = strlen(asc);
   }
   num = (asclen + 1U) * 2;
-  puVar2 = (uchar *)CRYPTO_malloc(num,DAT_000d22bc,0x4a);
+  puVar2 = (uchar *)CRYPTO_malloc(num,"p12_utl.c",0x4a);
   if (puVar2 != (uchar *)0x0) {
     if (0 < num + -2) {
       if (num < 0x23) {

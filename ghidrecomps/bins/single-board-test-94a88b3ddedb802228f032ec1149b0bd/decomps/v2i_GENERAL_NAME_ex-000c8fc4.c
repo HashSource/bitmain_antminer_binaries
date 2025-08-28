@@ -13,32 +13,32 @@ v2i_GENERAL_NAME_ex(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,
   value = cnf->value;
   name = cnf->name;
   if (value == (char *)0x0) {
-    ERR_put_error(0x22,0x75,0x7c,DAT_000c90a0,0x213);
+    ERR_put_error(0x22,0x75,0x7c,"v3_alt.c",0x213);
     pGVar3 = (GENERAL_NAME *)0x0;
   }
   else {
-    iVar1 = name_cmp(name,DAT_000c9084);
+    iVar1 = name_cmp(name,"email");
     if (iVar1 == 0) {
       iVar1 = 1;
     }
     else {
-      iVar2 = name_cmp(name,DAT_000c9088);
+      iVar2 = name_cmp(name,"URI");
       iVar1 = 6;
       if (iVar2 != 0) {
-        iVar2 = name_cmp(name,DAT_000c908c);
+        iVar2 = name_cmp(name,"DNS");
         iVar1 = 2;
         if (iVar2 != 0) {
-          iVar2 = name_cmp(name,DAT_000c9090);
+          iVar2 = name_cmp(name,"RID");
           iVar1 = 8;
           if (iVar2 != 0) {
-            iVar2 = name_cmp(name,DAT_000c9094);
+            iVar2 = name_cmp(name,"IP");
             iVar1 = 7;
             if (iVar2 != 0) {
-              iVar2 = name_cmp(name,DAT_000c9098);
+              iVar2 = name_cmp(name,"dirName");
               iVar1 = 4;
-              if ((iVar2 != 0) && (iVar1 = name_cmp(name,DAT_000c909c), iVar1 != 0)) {
-                ERR_put_error(0x22,0x75,0x75,DAT_000c90a0,0x226);
-                ERR_add_error_data(2,DAT_000c90a4,name);
+              if ((iVar2 != 0) && (iVar1 = name_cmp(name,"otherName"), iVar1 != 0)) {
+                ERR_put_error(0x22,0x75,0x75,"v3_alt.c",0x226);
+                ERR_add_error_data(2,"name=",name);
                 return (GENERAL_NAME *)0x0;
               }
             }

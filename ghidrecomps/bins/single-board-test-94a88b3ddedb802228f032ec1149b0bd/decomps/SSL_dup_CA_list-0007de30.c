@@ -18,7 +18,7 @@ stack_st_X509_NAME * SSL_dup_CA_list(stack_st_X509_NAME *sk)
     pXVar1 = X509_NAME_dup(pXVar1);
   } while ((pXVar1 != (X509_NAME *)0x0) &&
           (iVar2 = sk_push(st,pXVar1), iVar3 = iVar3 + 1, iVar2 != 0));
-  sk_pop_free(st,DAT_0007de78);
+  sk_pop_free(st,(func *)0xb7acd);
   return (stack_st_X509_NAME *)0x0;
 }
 

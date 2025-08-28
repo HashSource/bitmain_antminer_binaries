@@ -13,7 +13,7 @@ int pkey_rsa_decrypt(int param_1,uchar *param_2,int *param_3,uchar *param_4,int 
     to = *(uchar **)(iVar4 + 0x20);
     if (to == (uchar *)0x0) {
       iVar1 = EVP_PKEY_size(*(EVP_PKEY **)(param_1 + 8));
-      to = (uchar *)CRYPTO_malloc(iVar1,DAT_000fdce8,0x9c);
+      to = (uchar *)CRYPTO_malloc(iVar1,"rsa_pmeth.c",0x9c);
       *(uchar **)(iVar4 + 0x20) = to;
       if (to == (uchar *)0x0) {
         return -1;

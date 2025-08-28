@@ -1,5 +1,6 @@
 
-int asn1_template_ex_i2d_constprop_2(_STACK **param_1,uchar **param_2,uint *param_3,uint param_4)
+int asn1_template_ex_i2d_constprop_2
+              (ASN1_VALUE **param_1,uchar **param_2,uint *param_3,uint param_4)
 
 {
   int iVar1;
@@ -40,8 +41,7 @@ int asn1_template_ex_i2d_constprop_2(_STACK **param_1,uchar **param_2,uint *para
   }
   if ((local_38 & 6) == 0) {
     if (-1 < (int)(local_38 << 0x1b)) {
-      iVar5 = ASN1_item_ex_i2d((ASN1_VALUE **)param_1,param_2,(ASN1_ITEM *)param_3[4],tag,
-                               uVar4 | local_44);
+      iVar5 = ASN1_item_ex_i2d(param_1,param_2,(ASN1_ITEM *)param_3[4],tag,uVar4 | local_44);
       return iVar5;
     }
     iVar2 = ASN1_item_ex_i2d_constprop_0(param_1,param_3[4],uVar4);
@@ -59,7 +59,7 @@ int asn1_template_ex_i2d_constprop_2(_STACK **param_1,uchar **param_2,uint *para
     }
   }
   else {
-    p_Var3 = *param_1;
+    p_Var3 = (_STACK *)*param_1;
     if (p_Var3 == (_STACK *)0x0) {
       return 0;
     }

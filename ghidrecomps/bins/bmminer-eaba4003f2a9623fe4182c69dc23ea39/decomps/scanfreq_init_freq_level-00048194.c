@@ -20,9 +20,9 @@ int scanfreq_init_freq_level(void)
   scanfreq_info.scan_index[8] = 0;
   scanfreq_info.scan_index[9] = 0;
   scanfreq_info.scan_index[10] = 0;
-  scanfreq_info.scan_index[11] = 0;
-  scanfreq_info.scan_index[12] = 0;
-  scanfreq_info.scan_index[13] = 0;
+  scanfreq_info.scan_index[0xb] = 0;
+  scanfreq_info.scan_index[0xc] = 0;
+  scanfreq_info.scan_index[0xd] = 0;
   for (chain = 0; chain < 0x10; chain = chain + 1) {
     scanfreq_info.freq_index_max[chain] = scanfreq_info.MAX_INDEX;
     scanfreq_info.freq_index_min[chain] = scanfreq_info.MIN_INDEX;

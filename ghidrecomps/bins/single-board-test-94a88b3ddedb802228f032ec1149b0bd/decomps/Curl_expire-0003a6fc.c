@@ -20,7 +20,7 @@ void Curl_expire(int param_1,int param_2)
                           (*(undefined4 *)(iVar2 + 0x44),param_1 + 0x8654,
                            (undefined4 *)(iVar2 + 0x44));
         if (iVar2 != 0) {
-          Curl_infof(param_1,DAT_0003a814,iVar2);
+          Curl_infof(param_1,"Internal error clearing splay node = %d\n",iVar2);
         }
         while (*(int *)(iVar3 + 0xc) != 0) {
           Curl_llist_remove(iVar3,*(undefined4 *)(iVar3 + 4),0);
@@ -49,7 +49,7 @@ void Curl_expire(int param_1,int param_2)
                           (*(undefined4 *)(iVar2 + 0x44),param_1 + 0x8654,
                            (undefined4 *)(iVar2 + 0x44));
         if (iVar3 != 0) {
-          Curl_infof(param_1,DAT_0003a810,iVar3);
+          Curl_infof(param_1,"Internal error removing splay node = %d\n",iVar3);
         }
       }
       uVar1 = *(undefined4 *)(iVar2 + 0x44);

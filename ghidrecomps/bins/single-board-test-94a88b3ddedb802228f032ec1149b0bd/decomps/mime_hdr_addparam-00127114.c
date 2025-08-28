@@ -1,12 +1,12 @@
 
-byte ** mime_hdr_addparam(int param_1,char *param_2,byte **param_3)
+char * mime_hdr_addparam(int param_1,char *param_2,char *param_3)
 
 {
   byte *pbVar1;
   byte *pbVar2;
   ushort **ppuVar3;
   __int32_t **pp_Var4;
-  byte **data;
+  char *data;
   ushort uVar5;
   
   if (param_2 == (char *)0x0) {
@@ -15,7 +15,7 @@ byte ** mime_hdr_addparam(int param_1,char *param_2,byte **param_3)
   else {
     pbVar2 = (byte *)BUF_strdup(param_2);
     if (pbVar2 == (byte *)0x0) {
-      return (byte **)0x0;
+      return (char *)0x0;
     }
     uVar5 = (ushort)*pbVar2;
     if (uVar5 != 0) {
@@ -31,13 +31,12 @@ byte ** mime_hdr_addparam(int param_1,char *param_2,byte **param_3)
       } while (uVar5 != 0);
     }
   }
-  if (((param_3 == (byte **)0x0) ||
-      (data = (byte **)BUF_strdup((char *)param_3), param_3 = data, data != (byte **)0x0)) &&
-     (data = (byte **)CRYPTO_malloc(8,DAT_00127198,0x360), data != (byte **)0x0)) {
-    *data = pbVar2;
-    data[1] = (byte *)param_3;
+  if (((param_3 == (char *)0x0) || (data = BUF_strdup(param_3), param_3 = data, data != (char *)0x0)
+      ) && (data = (char *)CRYPTO_malloc(8,"asn_mime.c",0x360), data != (char *)0x0)) {
+    *(byte **)data = pbVar2;
+    *(char **)(data + 4) = param_3;
     sk_push(*(_STACK **)(param_1 + 8),data);
-    return (byte **)0x1;
+    return (char *)0x1;
   }
   return data;
 }

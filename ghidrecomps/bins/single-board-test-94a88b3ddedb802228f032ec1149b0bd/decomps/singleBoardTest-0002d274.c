@@ -36,7 +36,7 @@ void singleBoardTest(void)
   FILE *local_b8;
   FILE *local_b4;
   FILE *local_b0;
-  undefined local_a9;
+  undefined1 local_a9;
   FILE *local_a8;
   FILE *local_a4;
   undefined4 local_a0;
@@ -61,7 +61,7 @@ void singleBoardTest(void)
   FILE *local_54;
   FILE *local_50;
   FILE *local_4c;
-  undefined local_45;
+  undefined1 local_45;
   FILE *local_44;
   FILE *local_40;
   undefined4 local_3c;
@@ -781,7 +781,7 @@ void singleBoardTest(void)
         fclose(local_11c);
       }
       if ((conf._144_4_ != 0) && (cVar1 = check_fan(), cVar1 != '\x01')) {
-        search_failed_info._0_4_ = DAT_001320d4;
+        search_failed_info._0_4_ = 0x313a46;
         saveSearchFailedFlagInfo();
         searchStatus = 2;
         do {

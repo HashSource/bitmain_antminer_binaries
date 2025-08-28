@@ -6,7 +6,6 @@ char * __json_array_string(json_t *val,uint entry)
 {
   size_t sVar1;
   json_t *json;
-  json_t *arr_entry;
   char *pcVar2;
   
   if ((((val != (json_t *)0x0) && (val->type != JSON_NULL)) && (val->type == JSON_ARRAY)) &&

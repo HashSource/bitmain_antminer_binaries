@@ -1,14 +1,11 @@
 
-undefined4 def_init_default(int *param_1)
+undefined4 def_init_default(undefined4 *param_1)
 
 {
-  int iVar1;
-  
-  iVar1 = DAT_0010d99c;
-  if (param_1 != (int *)0x0) {
+  if (param_1 != (undefined4 *)0x0) {
     param_1[2] = 0;
-    *param_1 = iVar1;
-    param_1[1] = iVar1 + 0x28;
+    *param_1 = &default_method;
+    param_1[1] = CONF_type_default;
     return 1;
   }
   return 0;

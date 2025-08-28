@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void get_plldata_from_index(int index,uchar *vil_pll)
 
 {
@@ -22,34 +20,33 @@ void get_plldata_from_index(int index,uchar *vil_pll)
   plldivider1[8] = '\0';
   plldivider1[9] = '\0';
   plldivider1[10] = '\0';
-  plldivider1[11] = '\0';
-  plldivider1[12] = '\0';
-  plldivider1[13] = '\0';
-  plldivider1[14] = '\0';
-  plldivider1[15] = '\0';
-  plldivider1[16] = '\0';
-  plldivider1[17] = '\0';
-  plldivider1[18] = '\0';
-  plldivider1[19] = '\0';
-  plldivider1[20] = '\0';
-  plldivider1[21] = '\0';
-  plldivider1[22] = '\0';
-  plldivider1[23] = '\0';
-  plldivider1[24] = '\0';
-  plldivider1[25] = '\0';
-  plldivider1[26] = '\0';
-  plldivider1[27] = '\0';
-  plldivider1[28] = '\0';
-  plldivider1[29] = '\0';
-  plldivider1[30] = '\0';
-  plldivider1[31] = '\0';
+  plldivider1[0xb] = '\0';
+  plldivider1[0xc] = '\0';
+  plldivider1[0xd] = '\0';
+  plldivider1[0xe] = '\0';
+  plldivider1[0xf] = '\0';
+  plldivider1[0x10] = '\0';
+  plldivider1[0x11] = '\0';
+  plldivider1[0x12] = '\0';
+  plldivider1[0x13] = '\0';
+  plldivider1[0x14] = '\0';
+  plldivider1[0x15] = '\0';
+  plldivider1[0x16] = '\0';
+  plldivider1[0x17] = '\0';
+  plldivider1[0x18] = '\0';
+  plldivider1[0x19] = '\0';
+  plldivider1[0x1a] = '\0';
+  plldivider1[0x1b] = '\0';
+  plldivider1[0x1c] = '\0';
+  plldivider1[0x1d] = '\0';
+  plldivider1[0x1e] = '\0';
+  plldivider1[0x1f] = '\0';
   if (0xb2 < (uint)index) {
     if (((use_syslog) || (opt_log_output)) || (2 < opt_log_level)) {
-      tmp42._0_4_ = s_freq_set_error_00077eb0._0_4_;
-      tmp42._4_4_ = s_freq_set_error_00077eb0._4_4_;
-      tmp42._8_4_ = s_freq_set_error_00077eb0._8_4_;
-      tmp42._12_2_ = (undefined2)ram0x00077ebc;
-      tmp42[14] = (char)((uint)ram0x00077ebc >> 0x10);
+      builtin_strncpy(tmp42,"freq set err",0xc);
+      tmp42[0xc] = 'o';
+      tmp42[0xd] = 'r';
+      tmp42[0xe] = '\0';
       _applog(3,tmp42,false);
     }
                     /* WARNING: Subroutine does not return */

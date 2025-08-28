@@ -1,10 +1,10 @@
 
 undefined4
-write_dc_dc(undefined param_1,undefined param_2,byte param_3,undefined param_4,int param_5,
+write_dc_dc(undefined1 param_1,undefined1 param_2,byte param_3,undefined1 param_4,int param_5,
            int param_6)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined4 uVar2;
   uint uVar3;
   undefined4 local_40;
@@ -35,26 +35,27 @@ write_dc_dc(undefined param_1,undefined param_2,byte param_3,undefined param_4,i
   local_1d = (char)param_6 + 6;
   printf("%s dev addr = %02x\n","write_dc_dc",(uint)param_3);
   local_40 = CONCAT13(0x32,CONCAT12(local_1d,0xaa55));
+  local_3c._0_2_ = CONCAT11(param_4,param_3 << 1);
   for (local_18 = 0; local_18 < param_6; local_18 = local_18 + 1) {
-    *(undefined *)((int)&local_3c + local_18 + 2) = *(undefined *)(local_18 + param_5);
+    *(undefined1 *)((int)&local_3c + local_18 + 2) = *(undefined1 *)(local_18 + param_5);
   }
   for (local_1c = 2; local_1c < param_6 + 6; local_1c = local_1c + 1) {
     local_12 = local_12 + (ushort)*(byte *)((int)&local_40 + local_1c);
   }
-  local_20._0_1_ = (undefined)((ushort)local_12 >> 8);
-  local_20._1_1_ = (undefined)local_12;
-  *(undefined *)((int)&local_3c + param_6 + 2) = (undefined)local_20;
-  *(undefined *)((int)&local_3c + param_6 + 3) = local_20._1_1_;
+  local_20._0_1_ = (undefined1)((ushort)local_12 >> 8);
+  local_20._1_1_ = (undefined1)local_12;
+  *(undefined1 *)((int)&local_3c + param_6 + 2) = (undefined1)local_20;
+  *(undefined1 *)((int)&local_3c + param_6 + 3) = local_20._1_1_;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_13 = 0; (uint)local_13 < local_1d + 2; local_13 = local_13 + 1) {
-    write_pic(param_2,param_1,*(undefined *)((int)&local_40 + (uint)local_13));
+    write_pic(param_2,param_1,*(undefined1 *)((int)&local_40 + (uint)local_13));
   }
   usleep(100000);
   memset(&local_30,0,0x10);
   for (local_13 = 0; local_13 < 5; local_13 = local_13 + 1) {
     uVar3 = (uint)local_13;
     uVar1 = read_pic(param_2,param_1);
-    *(undefined *)((int)&local_30 + uVar3) = uVar1;
+    *(undefined1 *)((int)&local_30 + uVar3) = uVar1;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   if ((local_30._1_1_ == 0x32) && (local_30._2_1_ == 1)) {

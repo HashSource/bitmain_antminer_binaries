@@ -2,21 +2,15 @@
 undefined4 ubsec_destroy(void)
 
 {
-  void **ppvVar1;
-  int *piVar2;
-  
-  ppvVar1 = DAT_000de290;
-  if (*DAT_000de290 != (void *)0x0) {
-    CRYPTO_free(*DAT_000de290);
+  if (UBSEC_LIBNAME != (void *)0x0) {
+    CRYPTO_free(UBSEC_LIBNAME);
   }
-  piVar2 = DAT_000de294;
-  *ppvVar1 = (void *)0x0;
-  ppvVar1 = DAT_000de290;
-  if (*piVar2 == 0) {
-    ERR_unload_strings((int)DAT_000de290[1],(ERR_STRING_DATA *)(piVar2 + 1));
-    ERR_unload_strings((int)ppvVar1[1],(ERR_STRING_DATA *)(piVar2 + 0x1b));
-    ERR_unload_strings(0,(ERR_STRING_DATA *)(piVar2 + 0x2f));
-    *piVar2 = 1;
+  UBSEC_LIBNAME = (void *)0x0;
+  if (UBSEC_error_init == 0) {
+    ERR_unload_strings(UBSEC_lib_error_code,(ERR_STRING_DATA *)UBSEC_str_functs);
+    ERR_unload_strings(UBSEC_lib_error_code,(ERR_STRING_DATA *)UBSEC_str_reasons);
+    ERR_unload_strings(0,(ERR_STRING_DATA *)UBSEC_lib_name);
+    UBSEC_error_init = 1;
   }
   return 1;
 }

@@ -29,7 +29,7 @@ int BN_mod_exp_mont(BIGNUM *r,BIGNUM *a,BIGNUM *p,BIGNUM *m,BN_CTX *ctx,BN_MONT_
     return iVar5;
   }
   if ((m->top < 1) || (-1 < (int)(*m->d << 0x1f))) {
-    ERR_put_error(3,0x6d,0x66,DAT_000f0234,0x1a6);
+    ERR_put_error(3,0x6d,0x66,"bn_exp.c",0x1a6);
     return 0;
   }
   local_bc = BN_num_bits(p);

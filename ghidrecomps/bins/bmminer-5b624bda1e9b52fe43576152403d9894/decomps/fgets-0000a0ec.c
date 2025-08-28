@@ -6,9 +6,7 @@ char * fgets(char *__s,int __n,FILE *__stream)
 {
   char *pcVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a0f4. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pcVar1 = (char *)(*(code *)PTR_LAB_0005f194)();
+  pcVar1 = (char *)(*(code *)(undefined *)0x0)(__s);
   return pcVar1;
 }
 

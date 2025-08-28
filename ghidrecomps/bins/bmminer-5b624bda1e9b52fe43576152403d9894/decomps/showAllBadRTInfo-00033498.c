@@ -1,41 +1,35 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void showAllBadRTInfo(void)
 
 {
-  double dVar1;
-  int iVar2;
-  int *piVar3;
-  int iVar4;
-  double *pdVar5;
-  int iVar6;
-  double dVar7;
+  int iVar1;
+  double *pdVar2;
+  int iVar3;
+  double dVar4;
   char logstr [256];
   
-  piVar3 = DAT_0003352c;
-  iVar2 = DAT_00033520;
-  dVar1 = DAT_00033518;
-  iVar4 = 1;
+  iVar1 = 1;
   do {
-    iVar6 = iVar4 + 1;
-    if (*(int *)(*piVar3 + iVar6 * 4) == 1) {
-      sprintf(logstr,DAT_00033524,iVar4,0x12);
-      pdVar5 = (double *)(iVar2 + (iVar4 + -1) * 0x90);
+    iVar3 = iVar1 + 1;
+    if (dev->chain_exist[iVar1 + -1] == 1) {
+      sprintf(logstr,"Check Chain[J%d] ASIC RT error: (asic index start from 1-%d)\n",iVar1,0x12);
+      pdVar2 = chain_asic_RT[iVar1 + -1];
       writeLogFile(logstr);
-      iVar4 = 1;
+      iVar1 = 1;
       do {
-        dVar7 = *pdVar5;
-        pdVar5 = pdVar5 + 1;
-        if (dVar7 != dVar1 && dVar7 < dVar1 == (NAN(dVar7) || NAN(dVar1))) {
-          sprintf(logstr,DAT_00033528,iVar4);
+        dVar4 = *pdVar2;
+        pdVar2 = pdVar2 + 1;
+        if (100.0 < dVar4) {
+          sprintf(logstr,"Asic[%02d]=%f\n",iVar1);
           writeLogFile(logstr);
         }
-        iVar4 = iVar4 + 1;
-      } while (iVar4 != 0x13);
+        iVar1 = iVar1 + 1;
+      } while (iVar1 != 0x13);
     }
-    iVar4 = iVar6;
-  } while (iVar6 != 0x11);
+    iVar1 = iVar3;
+  } while (iVar3 != 0x11);
   return;
 }
 

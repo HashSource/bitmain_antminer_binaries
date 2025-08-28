@@ -6,7 +6,7 @@ void * malloc(size_t __size)
 {
   void *pvVar1;
   
-  pvVar1 = (void *)(*(code *)PTR_malloc_00023d20)();
+  pvVar1 = malloc(__size);
   return pvVar1;
 }
 

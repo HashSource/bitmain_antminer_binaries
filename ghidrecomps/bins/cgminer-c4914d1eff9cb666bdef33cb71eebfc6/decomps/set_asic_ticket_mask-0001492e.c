@@ -58,10 +58,9 @@ void set_asic_ticket_mask(uint ticket_mask)
         buf[1] = '\t';
         buf[2] = '\0';
         buf[3] = '\x14';
-        buf._4_2_ = CONCAT11(bit_swap_table[ticket_mask >> 0x10 & 0xff],
-                             bit_swap_table
-                             [CONCAT12(bVar1,(ushort)(byte)(ticket_mask >> 0x18)) & 0xff]);
-        buf._4_3_ = CONCAT12(bit_swap_table[bVar1],buf._4_2_);
+        buf[5] = bit_swap_table[ticket_mask >> 0x10 & 0xff];
+        buf[4] = bit_swap_table[CONCAT12(bVar1,(ushort)(byte)(ticket_mask >> 0x18)) & 0xff];
+        buf[6] = bit_swap_table[bVar1];
         buf[7] = bit_swap_table[ticket_mask & 0xff];
         buf[8] = CRC5(buf,'@');
         cmd_buf[0] = ((uint)buf._0_4_ >> 0x10 & 0xff) << 8 |

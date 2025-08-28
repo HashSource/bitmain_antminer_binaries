@@ -1,5 +1,5 @@
 
-undefined4 str_copy(CONF *param_1,byte *param_2,char **param_3,byte *param_4)
+undefined4 str_copy(CONF *param_1,byte *param_2,undefined4 *param_3,byte *param_4)
 
 {
   char cVar1;
@@ -78,8 +78,8 @@ LAB_0010dad4:
             if ((int)((uint)*(ushort *)((int)pvVar11 + uVar13 * 2) << 0x1c) < 0) {
 LAB_0010dcea:
               str->data[iVar6] = '\0';
-              if (*param_3 != (char *)0x0) {
-                CRYPTO_free(*param_3);
+              if ((void *)*param_3 != (void *)0x0) {
+                CRYPTO_free((void *)*param_3);
               }
               *param_3 = str->data;
               CRYPTO_free(str);
@@ -157,7 +157,7 @@ LAB_0010dcdc:
               param_4 = pbVar8;
               if (uVar14 != 0) {
                 if (uVar13 != uVar14) {
-                  ERR_put_error(0xe,0x65,0x66,DAT_0010dd44,0x235);
+                  ERR_put_error(0xe,0x65,0x66,"conf_def.c",0x235);
                   break;
                 }
                 param_4 = pbVar8 + 1;
@@ -168,14 +168,14 @@ LAB_0010dcdc:
               }
               *pbVar8 = (byte)uVar13;
               if (__s == (char *)0x0) {
-                ERR_put_error(0xe,0x65,0x68,DAT_0010dd44,0x249);
+                ERR_put_error(0xe,0x65,0x68,"conf_def.c",0x249);
                 break;
               }
               sVar5 = strlen(__s);
               iVar7 = BUF_MEM_grow_clean(str,(size_t)(pbVar15 + sVar5 + (str->length - (int)param_4)
                                                      ));
               if (iVar7 == 0) {
-                ERR_put_error(0xe,0x65,0x41,DAT_0010dd44,0x24e);
+                ERR_put_error(0xe,0x65,0x41,"conf_def.c",0x24e);
                 break;
               }
               cVar1 = *__s;

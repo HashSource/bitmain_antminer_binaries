@@ -13,7 +13,7 @@ undefined4 strbuffer_init(int *param_1)
     uVar2 = 0xffffffff;
   }
   else {
-    *(undefined *)*param_1 = 0;
+    *(undefined1 *)*param_1 = 0;
     uVar2 = 0;
   }
   return uVar2;

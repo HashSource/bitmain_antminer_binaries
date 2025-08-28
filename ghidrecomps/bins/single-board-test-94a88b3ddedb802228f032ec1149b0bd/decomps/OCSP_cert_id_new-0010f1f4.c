@@ -23,7 +23,7 @@ OCSP_cert_id_new(EVP_MD *dgst,X509_NAME *issuerName,ASN1_BIT_STRING *issuerKey,
   }
   iVar1 = EVP_MD_type(dgst);
   if (iVar1 == 0) {
-    ERR_put_error(0x27,0x65,0x78,DAT_0010f2d0,0x75);
+    ERR_put_error(0x27,0x65,0x78,"ocsp_lib.c",0x75);
   }
   else {
     pAVar2 = OBJ_nid2obj(iVar1);
@@ -35,7 +35,7 @@ OCSP_cert_id_new(EVP_MD *dgst,X509_NAME *issuerName,ASN1_BIT_STRING *issuerKey,
         pAVar3->type = 5;
         iVar1 = X509_NAME_digest(issuerName,dgst,auStack_60,&local_64);
         if (iVar1 == 0) {
-          ERR_put_error(0x27,0x65,0x66,DAT_0010f2d0,0x91);
+          ERR_put_error(0x27,0x65,0x66,"ocsp_lib.c",0x91);
           OCSP_CERTID_free(a);
           return (OCSP_CERTID *)0x0;
         }

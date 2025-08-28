@@ -36,7 +36,7 @@ void expandArray(int param_1,uint param_2,int param_3,int param_4,uint param_5,u
     if (param_5 <= local_c) {
       local_c = local_c - param_5;
       for (local_1c = 0; local_1c < param_6; local_1c = local_1c + 1) {
-        *(undefined *)(local_1c + local_14 + param_3) = 0;
+        *(undefined1 *)(local_1c + local_14 + param_3) = 0;
       }
       for (local_20 = param_6; local_20 < uVar2; local_20 = local_20 + 1) {
         *(byte *)(param_3 + local_20 + local_14) =

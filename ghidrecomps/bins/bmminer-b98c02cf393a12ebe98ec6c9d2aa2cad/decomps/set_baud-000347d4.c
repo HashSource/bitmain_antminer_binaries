@@ -9,7 +9,8 @@ void set_baud(uint param_1)
   uint uVar5;
   uint uVar6;
   undefined4 local_840;
-  undefined4 local_83c;
+  int3 local_83c;
+  undefined1 uStack_839;
   byte local_838;
   uint local_834;
   uint local_830;
@@ -20,7 +21,7 @@ void set_baud(uint param_1)
   uVar6 = uVar5 << 8 | 0x200080;
   iVar4 = 0;
   local_840 = 0;
-  local_83c = 0;
+  _local_83c = 0;
   local_838 = 0;
   local_834 = 0;
   local_830 = 0;
@@ -37,7 +38,7 @@ void set_baud(uint param_1)
       if ((opt_debug != '\0') &&
          (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
         snprintf(acStack_828,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
-                 DAT_000349a8,0x86,0x10,uVar5,uVar2);
+                 "set_baud",0x86,0x10,uVar5,uVar2);
         _applog(7,acStack_828,0);
       }
       local_834 = local_840 << 0x18 | (local_840 >> 8 & 0xff) << 0x10 |
@@ -45,8 +46,8 @@ void set_baud(uint param_1)
     }
     else {
       local_840 = 0x1c000958;
-      local_83c = CONCAT13(0x80,(uint3)(byte)uVar5 << 0x10);
-      local_83c = CONCAT22(local_83c._2_2_,0x2000);
+      _local_83c = CONCAT13(0x80,(uint3)(byte)uVar5 << 0x10);
+      _local_83c = CONCAT22(stack0xfffff7c6,0x2000);
       local_838 = CRC5(&local_840,0x40);
       local_82c = (uint)local_838 << 0x18;
       local_834 = 0x5809001c;
@@ -54,7 +55,7 @@ void set_baud(uint param_1)
       if ((opt_debug != '\0') &&
          (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
         snprintf(acStack_828,0x800,"%s: cmd_buf[0]=0x%x, cmd_buf[1]=0x%x, cmd_buf[2]=0x%x\n",
-                 DAT_000349a8,0x5809001c,uVar6,local_82c);
+                 "set_baud",0x5809001c,uVar6,local_82c);
         _applog(7,acStack_828,0);
       }
     }

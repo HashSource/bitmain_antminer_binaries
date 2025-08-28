@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable ret:int[r0:4] conflicts with parameter, skipped. */
 
 void nanosleep_abstime(timespec *ts_end)
 

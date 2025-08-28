@@ -44,8 +44,8 @@ _Bool process_status_value(void)
     has_disabled_hash_board_flag = disable_hash_board(status_value);
     break;
   case ERROR_NETWORK_LOST:
-    process_status_value::lexical_block_2::network_err_count =
-         process_status_value::lexical_block_2::network_err_count + 1;
+    process_status_value::lexical_block_4::network_err_count =
+         process_status_value::lexical_block_4::network_err_count + 1;
     if (1 < log_level) {
       print_crt_time_to_file(log_file,1);
       pFVar1 = fopen(log_file,"a+");
@@ -55,8 +55,8 @@ _Bool process_status_value(void)
       }
       fclose(pFVar1);
     }
-    if (0x3c < process_status_value::lexical_block_2::network_err_count) {
-      process_status_value::lexical_block_2::network_err_count = 0;
+    if (0x3c < process_status_value::lexical_block_4::network_err_count) {
+      process_status_value::lexical_block_4::network_err_count = 0;
       status_error = true;
       has_disabled_hash_board_flag = disable_hash_board(status_value);
       if (1 < log_level) {

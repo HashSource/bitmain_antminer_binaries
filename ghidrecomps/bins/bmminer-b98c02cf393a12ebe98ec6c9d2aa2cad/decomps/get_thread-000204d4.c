@@ -15,9 +15,9 @@ undefined4 get_thread(int param_1)
     }
   }
   else {
-    _rd_lock_part_39_constprop_80(DAT_00020528,0x24b);
+    _rd_lock_part_39_constprop_80("get_thread",0x24b);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_00020528,0x24d);
+  _rw_unlock_part_40_constprop_79("get_thread",0x24d);
 }
 

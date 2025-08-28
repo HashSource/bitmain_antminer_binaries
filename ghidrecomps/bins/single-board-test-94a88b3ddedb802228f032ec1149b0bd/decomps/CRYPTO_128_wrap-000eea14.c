@@ -13,14 +13,14 @@ int CRYPTO_128_wrap(undefined4 param_1,undefined4 *param_2,undefined4 *param_3,v
   undefined4 local_34;
   undefined4 local_30;
   undefined4 uStack_2c;
-  undefined auStack_28 [4];
+  undefined1 auStack_28 [4];
   
   if ((param_5 & 7) == 0) {
     if (param_5 - 8 < 0x7ffffff9) {
       memcpy(param_3 + 2,param_4,param_5);
       iVar3 = 6;
       if (param_2 == (undefined4 *)0x0) {
-        param_2 = DAT_000eeb00;
+        param_2 = &default_iv;
       }
       local_38 = *param_2;
       local_34 = param_2[1];

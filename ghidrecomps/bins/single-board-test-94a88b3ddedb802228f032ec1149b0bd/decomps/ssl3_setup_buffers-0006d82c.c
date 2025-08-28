@@ -49,14 +49,14 @@ int ssl3_setup_buffers(SSL *param_1)
     if (-1 < iVar6 << 0xe) {
       num = num + 0x400;
     }
-    CRYPTO_lock(9,0xc,DAT_0006d920,0x25b);
+    CRYPTO_lock(9,0xc,"s3_both.c",0x25b);
     psVar7 = *(size_t **)(p_Var8 + 0x160);
     if (((psVar7 == (size_t *)0x0) || (num != *psVar7)) ||
        (psVar5 = (size_t *)psVar7[2], psVar5 == (size_t *)0x0)) {
-      CRYPTO_lock(10,0xc,DAT_0006d920,0x265);
-      psVar5 = (size_t *)CRYPTO_malloc(num,DAT_0006d920,0x267);
+      CRYPTO_lock(10,0xc,"s3_both.c",0x265);
+      psVar5 = (size_t *)CRYPTO_malloc(num,"s3_both.c",0x267);
       if (psVar5 == (size_t *)0x0) {
-        ERR_put_error(0x14,0x9c,0x41,DAT_0006d920,0x2a9);
+        ERR_put_error(0x14,0x9c,0x41,"s3_both.c",0x2a9);
         return 0;
       }
     }
@@ -68,7 +68,7 @@ int ssl3_setup_buffers(SSL *param_1)
       if (sVar3 - 1 == 0) {
         *psVar7 = 0;
       }
-      CRYPTO_lock(10,0xc,DAT_0006d920,0x265);
+      CRYPTO_lock(10,0xc,"s3_both.c",0x265);
     }
     psVar4 = param_1->s3;
     (psVar4->rbuf).buf = (uchar *)psVar5;

@@ -1,5 +1,5 @@
 
-undefined4 get_pic_voltage(undefined param_1)
+undefined4 get_pic_voltage(undefined1 param_1)
 
 {
   undefined4 uVar1;

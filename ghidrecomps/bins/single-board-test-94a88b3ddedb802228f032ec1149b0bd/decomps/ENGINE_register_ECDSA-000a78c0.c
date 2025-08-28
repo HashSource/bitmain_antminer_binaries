@@ -8,7 +8,7 @@ int ENGINE_register_ECDSA(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a78e8,DAT_000a78e4,e,DAT_000a78ec,1,0);
+    iVar1 = engine_table_register(&ecdsa_table,0xa78a5,e,&dummy_nid,1,0);
   }
   return iVar1;
 }

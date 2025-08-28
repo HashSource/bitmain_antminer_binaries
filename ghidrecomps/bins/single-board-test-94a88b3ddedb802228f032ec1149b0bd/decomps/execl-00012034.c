@@ -6,7 +6,7 @@ int execl(char *__path,char *__arg,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_execl_0019422c)();
+  iVar1 = execl(__path,__arg);
   return iVar1;
 }
 

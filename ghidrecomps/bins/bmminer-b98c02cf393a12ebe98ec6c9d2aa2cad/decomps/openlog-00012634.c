@@ -4,7 +4,7 @@
 void openlog(char *__ident,int __option,int __facility)
 
 {
-  (*(code *)PTR_openlog_0007d048)();
+  openlog(__ident,__option,__facility);
   return;
 }
 

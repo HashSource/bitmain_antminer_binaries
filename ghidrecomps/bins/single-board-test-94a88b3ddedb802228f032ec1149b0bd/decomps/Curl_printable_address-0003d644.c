@@ -1,22 +1,22 @@
 
-undefined4 Curl_printable_address(int param_1,undefined4 param_2,undefined4 param_3)
+char * Curl_printable_address(int param_1,char *param_2,socklen_t param_3)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  char *pcVar1;
+  void *__cp;
+  int __af;
   
-  iVar3 = *(int *)(param_1 + 4);
-  if (iVar3 == 2) {
-    iVar2 = *(int *)(param_1 + 0x18) + 4;
+  __af = *(int *)(param_1 + 4);
+  if (__af == 2) {
+    __cp = (void *)(*(int *)(param_1 + 0x18) + 4);
   }
   else {
-    if (iVar3 != 10) {
-      return 0;
+    if (__af != 10) {
+      return (char *)0x0;
     }
-    iVar2 = *(int *)(param_1 + 0x18) + 8;
+    __cp = (void *)(*(int *)(param_1 + 0x18) + 8);
   }
-  uVar1 = (*(code *)PTR_inet_ntop_0019413c)(iVar3,iVar2,param_2,param_3);
-  return uVar1;
+  pcVar1 = inet_ntop(__af,__cp,param_2,param_3);
+  return pcVar1;
 }
 

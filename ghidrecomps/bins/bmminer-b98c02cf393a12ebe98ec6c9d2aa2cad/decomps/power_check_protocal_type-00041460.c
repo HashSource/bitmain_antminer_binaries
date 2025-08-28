@@ -17,7 +17,7 @@ void power_check_protocal_type(void)
         power_protocal_type = 2;
       }
       else {
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: power protocal %02x, using package cmd\n","power.c",0x94,
                   "power_check_protocal_type",0xf5);
@@ -30,7 +30,7 @@ void power_check_protocal_type(void)
     iVar3 = iVar3 + -1;
   } while (iVar3 != 0);
   if (3 < log_level) {
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
       fprintf(pFVar2,"%s:%d:%s: power protocal %02x, using simple cmd\n","power.c",0x99,
               "power_check_protocal_type",iVar1);
@@ -39,7 +39,7 @@ void power_check_protocal_type(void)
   }
   power_protocal_type = 1;
 LAB_00011f64:
-  (*(code *)PTR_pthread_mutex_unlock_0007ce1c)(iic_mutex);
+  pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
   return;
 }
 

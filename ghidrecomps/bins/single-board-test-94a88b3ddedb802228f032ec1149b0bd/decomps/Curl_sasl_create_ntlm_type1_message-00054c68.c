@@ -4,7 +4,7 @@ void Curl_sasl_create_ntlm_type1_message
                undefined4 param_5)
 
 {
-  undefined auStack_418 [1028];
+  undefined1 auStack_418 [1028];
   
   Curl_sasl_ntlm_cleanup(param_3);
   curl_msnprintf(auStack_418,0x400,&DAT_0013a560,0,0,0,0,6,0x82,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -9,7 +9,7 @@ EVP_PKEY * PEM_read_PrivateKey(FILE *fp,EVP_PKEY **x,undefined1 *cb,void *u)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(9,0x7c,7,DAT_000bfd20,0xdd);
+    ERR_put_error(9,0x7c,7,"pem_pkey.c",0xdd);
     pEVar1 = (EVP_PKEY *)0x0;
   }
   else {

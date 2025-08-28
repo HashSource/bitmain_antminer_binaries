@@ -42,7 +42,7 @@ undefined4 SSL_SRP_CTX_init(int param_1)
     *(BIGNUM **)(param_1 + 0x1a8) = pBVar4;
     if (pBVar4 != (BIGNUM *)0x0) goto LAB_00083d48;
 LAB_00083dd8:
-    ERR_put_error(0x14,0x139,3,DAT_00083e50,0xb0);
+    ERR_put_error(0x14,0x139,3,"tls_srp.c",0xb0);
 LAB_00083dea:
     CRYPTO_free(*(void **)(param_1 + 0x1a4));
     BN_free(*(BIGNUM **)(param_1 + 0x1a8));
@@ -95,7 +95,7 @@ LAB_00083d48:
     pcVar1 = BUF_strdup(*(char **)(iVar5 + 0x174));
     *(char **)(param_1 + 0x1a4) = pcVar1;
     if (pcVar1 == (char *)0x0) {
-      ERR_put_error(0x14,0x139,0x44,DAT_00083e50,0xb5);
+      ERR_put_error(0x14,0x139,0x44,"tls_srp.c",0xb5);
       goto LAB_00083dea;
     }
   }

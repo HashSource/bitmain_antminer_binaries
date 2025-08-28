@@ -4,6 +4,6 @@
 SSL_METHOD * TLSv1_method(void)
 
 {
-  return DAT_0006fe4c;
+  return (SSL_METHOD *)TLSv1_method_data_18479;
 }
 

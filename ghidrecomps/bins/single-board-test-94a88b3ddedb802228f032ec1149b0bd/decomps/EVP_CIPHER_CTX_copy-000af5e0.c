@@ -8,11 +8,11 @@ int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out,EVP_CIPHER_CTX *in)
   EVP_CIPHER *pEVar3;
   
   if ((in == (EVP_CIPHER_CTX *)0x0) || (in->cipher == (EVP_CIPHER *)0x0)) {
-    ERR_put_error(6,0xa3,0x6f,DAT_000af6c4,0x280);
+    ERR_put_error(6,0xa3,0x6f,"evp_enc.c",0x280);
     return 0;
   }
   if ((in->engine != (ENGINE *)0x0) && (iVar1 = ENGINE_init(in->engine), iVar1 == 0)) {
-    ERR_put_error(6,0xa3,0x26,DAT_000af6c4,0x286);
+    ERR_put_error(6,0xa3,0x26,"evp_enc.c",0x286);
     return 0;
   }
   if (out->cipher == (EVP_CIPHER *)0x0) {
@@ -40,10 +40,10 @@ LAB_000af622:
   if (in->cipher_data != (void *)0x0) {
     pEVar3 = in->cipher;
     if (pEVar3->ctx_size == 0) goto LAB_000af648;
-    __dest = CRYPTO_malloc(pEVar3->ctx_size,DAT_000af6c4,0x28f);
+    __dest = CRYPTO_malloc(pEVar3->ctx_size,"evp_enc.c",0x28f);
     out->cipher_data = __dest;
     if (__dest == (void *)0x0) {
-      ERR_put_error(6,0xa3,0x41,DAT_000af6c4,0x291);
+      ERR_put_error(6,0xa3,0x41,"evp_enc.c",0x291);
       return 0;
     }
     memcpy(__dest,in->cipher_data,in->cipher->ctx_size);

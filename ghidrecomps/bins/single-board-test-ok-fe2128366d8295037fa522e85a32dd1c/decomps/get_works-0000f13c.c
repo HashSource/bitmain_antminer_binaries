@@ -74,7 +74,7 @@ undefined4 get_works(void)
       for (; local_2c < (int)local_24; local_2c = local_2c + 1) {
         if (local_2c < 0x20) {
           if ((local_38 & 1) != 0) {
-            sprintf(acStack_8c,"%s%s%02i.txt",DAT_0000f564,DAT_0000f568,local_2c);
+            sprintf(acStack_8c,"%s%s%02i.txt",0x135268,0x1352a8,local_2c);
             local_2c = local_2c + 1;
             local_38 = local_38 >> 1;
             break;
@@ -84,7 +84,7 @@ undefined4 get_works(void)
         else if ((local_2c < 0x20) || (0x3f < local_2c)) {
           if ((local_2c < 0x40) || (0x5f < local_2c)) {
             if ((local_44 & 1) != 0) {
-              sprintf(acStack_8c,"%s%s%02i.txt",DAT_0000f564,DAT_0000f568,local_2c);
+              sprintf(acStack_8c,"%s%s%02i.txt",0x135268,0x1352a8,local_2c);
               local_2c = local_2c + 1;
               local_44 = local_44 >> 1;
               break;
@@ -93,7 +93,7 @@ undefined4 get_works(void)
           }
           else {
             if ((local_40 & 1) != 0) {
-              sprintf(acStack_8c,"%s%s%02i.txt",DAT_0000f564,DAT_0000f568,local_2c);
+              sprintf(acStack_8c,"%s%s%02i.txt",0x135268,0x1352a8,local_2c);
               local_2c = local_2c + 1;
               local_40 = local_40 >> 1;
               break;
@@ -103,7 +103,7 @@ undefined4 get_works(void)
         }
         else {
           if ((local_3c & 1) != 0) {
-            sprintf(acStack_8c,"%s%s%02i.txt",DAT_0000f564,DAT_0000f568,local_2c);
+            sprintf(acStack_8c,"%s%s%02i.txt",0x135268,0x1352a8,local_2c);
             local_2c = local_2c + 1;
             local_3c = local_3c >> 1;
             break;
@@ -131,7 +131,7 @@ undefined4 get_works(void)
         return 0xffffffff;
       }
       for (local_30 = 0; local_30 < local_24; local_30 = local_30 + 1) {
-        sprintf(acStack_8c,"%s%02i%s%02i.txt",DAT_0000f564,local_34,DAT_0000f568,local_30);
+        sprintf(acStack_8c,"%s%02i%s%02i.txt",0x135268,local_34,0x1352a8,local_30);
         iVar4 = local_34 * local_24 + local_30;
         pFVar1 = fopen(acStack_8c,"r");
         *(FILE **)(cgpu + iVar4 * 4) = pFVar1;

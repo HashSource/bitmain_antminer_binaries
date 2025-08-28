@@ -10,8 +10,8 @@ int multi_socket(int param_1,int param_2,int param_3,uint param_4,undefined4 *pa
   int local_14c;
   undefined4 local_148;
   undefined4 uStack_144;
-  undefined auStack_140 [144];
-  undefined auStack_b0 [148];
+  undefined1 auStack_140 [144];
+  undefined1 auStack_b0 [148];
   
   curlx_tvnow(&local_148);
   if (param_2 != 0) {
@@ -25,14 +25,14 @@ int multi_socket(int param_1,int param_2,int param_3,uint param_4,undefined4 *pa
     return iVar3;
   }
   if (param_3 == -1) {
-    *(undefined *)(param_1 + 0xbc) = 0;
-    *(undefined *)(param_1 + 0xbd) = 0;
-    *(undefined *)(param_1 + 0xbe) = 0;
-    *(undefined *)(param_1 + 0xbf) = 0;
-    *(undefined *)(param_1 + 0xc0) = 0;
-    *(undefined *)(param_1 + 0xc1) = 0;
-    *(undefined *)(param_1 + 0xc2) = 0;
-    *(undefined *)(param_1 + 0xc3) = 0;
+    *(undefined1 *)(param_1 + 0xbc) = 0;
+    *(undefined1 *)(param_1 + 0xbd) = 0;
+    *(undefined1 *)(param_1 + 0xbe) = 0;
+    *(undefined1 *)(param_1 + 0xbf) = 0;
+    *(undefined1 *)(param_1 + 0xc0) = 0;
+    *(undefined1 *)(param_1 + 0xc1) = 0;
+    *(undefined1 *)(param_1 + 0xc2) = 0;
+    *(undefined1 *)(param_1 + 0xc3) = 0;
     iVar3 = 0;
     goto LAB_0003b668;
   }
@@ -47,10 +47,10 @@ int multi_socket(int param_1,int param_2,int param_3,uint param_4,undefined4 *pa
   }
   iVar3 = *(int *)(iVar5 + 8);
   if (iVar3 != 0) {
-    if (((((param_4 & 2) != 0) && (*(int ***)(iVar3 + 600) != (int **)0x0)) &&
-        (piVar1 = **(int ***)(iVar3 + 600), piVar1 != (int *)0x0)) ||
-       ((((param_4 & 1) != 0 && (*(int ***)(iVar3 + 0x25c) != (int **)0x0)) &&
-        (piVar1 = **(int ***)(iVar3 + 0x25c), piVar1 != (int *)0x0)))) {
+    if (((((param_4 & 2) != 0) && (*(int **)(iVar3 + 600) != (int *)0x0)) &&
+        (piVar1 = (int *)**(int **)(iVar3 + 600), piVar1 != (int *)0x0)) ||
+       ((((param_4 & 1) != 0 && (*(int **)(iVar3 + 0x25c) != (int *)0x0)) &&
+        (piVar1 = (int *)**(int **)(iVar3 + 0x25c), piVar1 != (int *)0x0)))) {
       iVar5 = *piVar1;
       iVar3 = *(int *)(iVar5 + 8);
       if (iVar3 == 0) goto LAB_0003b71e;
@@ -60,7 +60,7 @@ int multi_socket(int param_1,int param_2,int param_3,uint param_4,undefined4 *pa
     }
   }
 LAB_0003b71e:
-  sigpipe_ignore_isra_2(*(undefined *)(iVar5 + 0x324),auStack_140);
+  sigpipe_ignore_isra_2(*(undefined1 *)(iVar5 + 0x324),auStack_140);
   iVar3 = multi_runsingle(param_1,local_148,uStack_144,iVar5);
   sigpipe_restore(auStack_140);
   iVar4 = *(int *)(iVar5 + 8);
@@ -80,7 +80,7 @@ LAB_0003b668:
     add_next_timeout(local_148,uStack_144,param_1,iVar5);
     if (local_14c == 0) break;
     if (iVar5 != 0) {
-      sigpipe_ignore_isra_2(*(undefined *)(iVar5 + 0x324),auStack_b0);
+      sigpipe_ignore_isra_2(*(undefined1 *)(iVar5 + 0x324),auStack_b0);
       iVar3 = multi_runsingle(param_1,local_148,uStack_144,iVar5);
       sigpipe_restore(auStack_b0);
       if (iVar3 < 1) {

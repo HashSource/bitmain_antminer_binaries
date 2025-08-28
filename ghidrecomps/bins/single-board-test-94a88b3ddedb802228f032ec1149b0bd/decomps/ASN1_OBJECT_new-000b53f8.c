@@ -6,9 +6,9 @@ ASN1_OBJECT * ASN1_OBJECT_new(void)
 {
   ASN1_OBJECT *pAVar1;
   
-  pAVar1 = (ASN1_OBJECT *)CRYPTO_malloc(0x18,DAT_000b5438,0x15a);
+  pAVar1 = (ASN1_OBJECT *)CRYPTO_malloc(0x18,"a_object.c",0x15a);
   if (pAVar1 == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xd,0x7b,0x41,DAT_000b5438,0x15c);
+    ERR_put_error(0xd,0x7b,0x41,"a_object.c",0x15c);
   }
   else {
     pAVar1->length = 0;

@@ -1,16 +1,16 @@
 
-int telnet_do(int *param_1,undefined *param_2)
+int telnet_do(int *param_1,undefined1 *param_2)
 
 {
   byte bVar1;
-  code **ppcVar2;
-  uint uVar3;
-  int iVar4;
+  uint uVar2;
+  int iVar3;
+  undefined4 *puVar4;
   undefined4 uVar5;
   int iVar6;
-  int **ppiVar7;
+  byte *pbVar7;
   int iVar8;
-  int **ppiVar9;
+  byte *pbVar9;
   uint uVar10;
   int *piVar11;
   uint uVar12;
@@ -24,7 +24,7 @@ int telnet_do(int *param_1,undefined *param_2)
   int iVar19;
   uint uVar20;
   int iVar21;
-  int **ppiVar22;
+  byte *pbVar22;
   bool bVar23;
   bool bVar24;
   undefined8 uVar25;
@@ -45,23 +45,22 @@ int telnet_do(int *param_1,undefined *param_2)
   undefined2 local_2c;
   ushort local_2a;
   
-  ppcVar2 = DAT_00049fa0;
   iVar14 = param_1[0x55];
   iVar21 = 0x1b;
   iVar19 = *param_1;
   *param_2 = 1;
-  iVar4 = (**ppcVar2)(1,0x1ebc);
-  if (iVar4 != 0) {
-    *(int *)(*param_1 + 0x14c) = iVar4;
-    *(undefined4 *)(iVar4 + 0x1eb8) = 0;
+  iVar3 = (*Curl_ccalloc)(1,0x1ebc);
+  if (iVar3 != 0) {
+    *(int *)(*param_1 + 0x14c) = iVar3;
+    *(undefined4 *)(iVar3 + 0x1eb8) = 0;
     piVar15 = *(int **)(iVar19 + 0x14c);
-    *(undefined4 *)(iVar4 + 0x814) = 1;
-    *(undefined4 *)(iVar4 + 0x808) = 1;
-    *(int *)(iVar4 + 0x1eb0) = iVar4 + 0x1cb0;
-    *(undefined4 *)(iVar4 + 0x1414) = 1;
-    *(undefined4 *)(iVar4 + 0x1408) = 1;
-    *(undefined4 *)(iVar4 + 0x140c) = 1;
-    *(undefined4 *)(iVar4 + 0x1884) = 1;
+    *(undefined4 *)(iVar3 + 0x814) = 1;
+    *(undefined4 *)(iVar3 + 0x808) = 1;
+    *(int *)(iVar3 + 0x1eb0) = iVar3 + 0x1cb0;
+    *(undefined4 *)(iVar3 + 0x1414) = 1;
+    *(undefined4 *)(iVar3 + 0x1408) = 1;
+    *(undefined4 *)(iVar3 + 0x140c) = 1;
+    *(undefined4 *)(iVar3 + 0x1884) = 1;
     iVar21 = check_telnet_options(param_1);
     if (iVar21 == 0) {
       local_34 = 1;
@@ -83,7 +82,7 @@ int telnet_do(int *param_1,undefined *param_2)
       __buf = (void *)(iVar19 + 0x59c);
       local_60 = 0;
       iStack_5c = 0;
-      iVar4 = 0;
+      iVar3 = 0;
 LAB_00049da8:
       iVar21 = Curl_poll(&local_38,local_88,local_84);
       if (iVar21 != -1) {
@@ -94,15 +93,15 @@ LAB_00049da8:
         }
         if (-1 < (int)((uint)local_32 << 0x1f)) goto LAB_0004a1c2;
         uVar25 = Curl_read(param_1,iVar14,__buf,0x3fff,&local_44);
-        iVar4 = (int)uVar25;
-        iVar21 = iVar4;
-        if (iVar4 == 0x51) goto LAB_0004a1d4;
-        if ((iVar4 != 0) || ((int)local_44 < 1)) goto LAB_0004a1f2;
+        iVar3 = (int)uVar25;
+        iVar21 = iVar3;
+        if (iVar3 == 0x51) goto LAB_0004a1d4;
+        if ((iVar3 != 0) || ((int)local_44 < 1)) goto LAB_0004a1f2;
         bVar23 = CARRY4(local_60,local_44);
         local_60 = local_60 + local_44;
         iStack_5c = iStack_5c + ((int)local_44 >> 0x1f) + (uint)bVar23;
         Curl_pgrsSetDownloadCounter(iVar19,(int)((ulonglong)uVar25 >> 0x20),local_60,iStack_5c);
-        uVar3 = local_44;
+        uVar2 = local_44;
         iVar16 = *param_1;
         puVar17 = *(undefined4 **)(iVar16 + 0x14c);
         if (local_44 == 0) {
@@ -158,10 +157,10 @@ LAB_0004a14e:
           }
           goto LAB_0004a1c2;
         }
-        ppiVar22 = (int **)(puVar17 + 0x7ac);
+        pbVar22 = (byte *)(puVar17 + 0x7ac);
         puVar18 = puVar17 + 0x7ae;
         uVar20 = 0xffffffff;
-        piVar11 = puVar17 + 0x72c;
+        puVar4 = puVar17 + 0x72c;
         uVar12 = 0;
 LAB_00049e42:
         do {
@@ -190,7 +189,7 @@ switchD_00049e4c_caseD_1:
             switch(uVar12) {
             case 0xfa:
               *puVar18 = 7;
-              *ppiVar22 = piVar11;
+              *(undefined4 **)pbVar22 = puVar4;
               break;
             case 0xfb:
               *puVar18 = 2;
@@ -209,11 +208,11 @@ switchD_00049e4c_caseD_1:
               goto LAB_0004a0e0;
             default:
               *puVar18 = 0;
-              printoption(iVar16,DAT_0004a294,0xff,uVar12);
+              printoption(iVar16,&DAT_0013745c,0xff,uVar12);
             }
             break;
           case 2:
-            printoption(iVar16,DAT_0004a294,0xfb,uVar12);
+            printoption(iVar16,&DAT_0013745c,0xfb,uVar12);
             iVar21 = uVar12 + 0x302;
             iVar8 = *(int *)(*param_1 + 0x14c);
             *puVar17 = 1;
@@ -250,9 +249,9 @@ LAB_0004a302:
               send_negotiation(param_1,uVar5,uVar12);
             }
             *puVar18 = 0;
-            break;
+            goto joined_r0x0004a028;
           case 3:
-            printoption(iVar16,DAT_0004a294,0xfc,uVar12);
+            printoption(iVar16,&DAT_0013745c,0xfc,uVar12);
             iVar21 = uVar12 + 0x302;
             iVar8 = *(int *)(*param_1 + 0x14c);
             *puVar17 = 1;
@@ -282,7 +281,7 @@ LAB_0004a378:
             }
             goto LAB_0004a020;
           case 4:
-            printoption(iVar16,DAT_00049fa4,0xfd,uVar12);
+            printoption(iVar16,&DAT_0013745c,0xfd,uVar12);
             iVar21 = uVar12 + 2;
             iVar8 = *(int *)(*param_1 + 0x14c);
             *puVar17 = 1;
@@ -332,7 +331,7 @@ joined_r0x0004a324:
             *puVar18 = 0;
             break;
           case 5:
-            printoption(iVar16,DAT_0004a294,0xfe,uVar12);
+            printoption(iVar16,&DAT_0013745c,0xfe,uVar12);
             iVar21 = uVar12 + 2;
             iVar8 = *(int *)(*param_1 + 0x14c);
             *puVar17 = 1;
@@ -359,7 +358,7 @@ LAB_0004a366:
             }
 LAB_0004a020:
             *puVar18 = 0;
-            break;
+            goto joined_r0x0004a028;
           case 6:
             *puVar18 = 0;
             if (uVar12 != 0) goto LAB_0004a0e0;
@@ -370,69 +369,68 @@ LAB_00049fd2:
             uVar20 = 0xffffffff;
 joined_r0x00049fda:
             uVar12 = uVar10 + 1;
-            if (uVar10 + 1 == uVar3) goto LAB_00049eea;
+            if (uVar10 + 1 == uVar2) goto LAB_00049eea;
             goto LAB_00049e42;
           case 7:
             if (uVar12 == 0xff) {
               *puVar18 = 8;
+              break;
             }
-            else {
-              ppiVar9 = (int **)*ppiVar22;
-              if (ppiVar9 < ppiVar22) {
-                *(byte *)ppiVar9 = bVar1;
-                *ppiVar22 = (int *)((int)ppiVar9 + 1);
-              }
+            pbVar9 = *(byte **)pbVar22;
+            if (pbVar9 < pbVar22) {
+              *pbVar9 = bVar1;
+              *(byte **)pbVar22 = pbVar9 + 1;
             }
-            break;
+            goto joined_r0x0004a028;
           case 8:
-            ppiVar9 = (int **)*ppiVar22;
+            pbVar9 = *(byte **)pbVar22;
             if (uVar12 == 0xf0) {
-              if (ppiVar9 < ppiVar22) {
-                ppiVar7 = (int **)((int)ppiVar9 + 1);
-                *(undefined *)ppiVar9 = 0xff;
-                *ppiVar22 = (int *)ppiVar7;
-                if (ppiVar22 <= ppiVar7) {
-                  ppiVar9 = ppiVar7;
+              if (pbVar9 < pbVar22) {
+                pbVar7 = pbVar9 + 1;
+                *pbVar9 = 0xff;
+                *(byte **)pbVar22 = pbVar7;
+                if (pbVar22 <= pbVar7) {
+                  pbVar9 = pbVar7;
                 }
-                if (ppiVar7 < ppiVar22) {
-                  *(byte *)((int)ppiVar9 + 1) = bVar1;
-                  ppiVar9 = (int **)((int)ppiVar9 + 2);
+                if (pbVar7 < pbVar22) {
+                  pbVar9[1] = bVar1;
+                  pbVar9 = pbVar9 + 2;
                 }
               }
-              puVar17[0x7ad] = (int)ppiVar9 + -2;
-              *ppiVar22 = piVar11;
+              puVar17[0x7ad] = pbVar9 + -2;
+              *(undefined4 **)pbVar22 = puVar4;
               suboption(param_1);
               goto LAB_0004a020;
             }
             if (uVar12 != 0xff) {
-              if (ppiVar9 < ppiVar22) {
-                ppiVar7 = (int **)((int)ppiVar9 + 1);
-                *(undefined *)ppiVar9 = 0xff;
-                *ppiVar22 = (int *)ppiVar7;
-                if (ppiVar22 <= ppiVar7) {
-                  ppiVar9 = ppiVar7;
+              if (pbVar9 < pbVar22) {
+                pbVar7 = pbVar9 + 1;
+                *pbVar9 = 0xff;
+                *(byte **)pbVar22 = pbVar7;
+                if (pbVar22 <= pbVar7) {
+                  pbVar9 = pbVar7;
                 }
-                if (ppiVar7 < ppiVar22) {
-                  *(byte *)((int)ppiVar9 + 1) = bVar1;
-                  ppiVar9 = (int **)((int)ppiVar9 + 2);
+                if (pbVar7 < pbVar22) {
+                  pbVar9[1] = bVar1;
+                  pbVar9 = pbVar9 + 2;
                 }
               }
-              uVar5 = DAT_00049fa8;
-              *ppiVar22 = piVar11;
-              puVar17[0x7ad] = (int)ppiVar9 + -2;
-              printoption(iVar16,uVar5,0xff,uVar12);
+              *(undefined4 **)pbVar22 = puVar4;
+              puVar17[0x7ad] = pbVar9 + -2;
+              printoption(iVar16,"In SUBOPTION processing, RCVD",0xff,uVar12);
               suboption(param_1);
               *puVar18 = 1;
               goto switchD_00049e4c_caseD_1;
             }
-            if (ppiVar9 < ppiVar22) {
-              *(byte *)ppiVar9 = bVar1;
-              *ppiVar22 = (int *)((int)ppiVar9 + 1);
+            if (pbVar9 < pbVar22) {
+              *pbVar9 = bVar1;
+              *(byte **)pbVar22 = pbVar9 + 1;
             }
             *puVar18 = 7;
           }
+joined_r0x0004a028:
           uVar12 = uVar10 + 1;
-        } while (uVar10 + 1 != uVar3);
+        } while (uVar10 + 1 != uVar2);
 LAB_00049eea:
         if ((uVar20 == 0xffffffff) ||
            (iVar21 = Curl_client_write(param_1,1,(int)__buf + uVar20,(uVar10 + 1) - uVar20),
@@ -449,7 +447,7 @@ LAB_0004a4b6:
   piVar15[1] = 1;
 LAB_0004a1c2:
   local_44 = 0;
-  iVar21 = iVar4;
+  iVar21 = iVar3;
   if (local_74 == 2) {
     if (-1 < (int)((uint)local_2a << 0x1f)) goto LAB_0004a1d4;
     local_44 = read(local_30,__buf,0x3fff);
@@ -463,7 +461,7 @@ LAB_0004a1f2:
     }
     uVar25 = send_telnet_data(param_1,__buf);
     iVar21 = (int)uVar25;
-    iVar4 = iVar21;
+    iVar3 = iVar21;
     if (iVar21 != 0) goto LAB_0004a1f2;
     bVar23 = true;
     bVar24 = CARRY4(local_70,local_44);
@@ -480,26 +478,26 @@ LAB_0004a1d4:
   }
 LAB_0004a1d6:
   iVar16 = *(int *)(iVar19 + 0x200);
-  iVar4 = iVar21;
+  iVar3 = iVar21;
 joined_r0x0004a1fa:
   if (iVar16 != 0) {
     curlx_tvnow(&local_40);
     iVar21 = curlx_tvdiff(local_40,uStack_3c,param_1[0x53],param_1[0x54]);
     if (*(int *)(iVar19 + 0x200) <= iVar21) {
       bVar23 = false;
-      iVar4 = 0x1c;
-      Curl_failf(iVar19,DAT_0004a298);
+      iVar3 = 0x1c;
+      Curl_failf(iVar19,"Time-out");
     }
   }
   iVar21 = Curl_pgrsUpdate(param_1);
   if (iVar21 != 0) {
-    iVar4 = 0x2a;
+    iVar3 = 0x2a;
     goto LAB_00049e66;
   }
   if (!bVar23) {
 LAB_00049e66:
     Curl_setup_transfer(param_1,0xffffffff,0xffffffff,0xffffffff,0,0,0xffffffff,0);
-    return iVar4;
+    return iVar3;
   }
   goto LAB_00049da8;
 }

@@ -9,7 +9,7 @@ dh_st * EVP_PKEY_get1_DH(EVP_PKEY *pkey)
     pdVar1 = (dh_st *)(pkey->pkey).ptr;
   }
   else {
-    ERR_put_error(6,0x77,0x80,DAT_000b21e4,0x155);
+    ERR_put_error(6,0x77,0x80,"p_lib.c",0x155);
     pdVar1 = (dh_st *)0x0;
   }
   return pdVar1;

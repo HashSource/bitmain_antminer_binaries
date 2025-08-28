@@ -6,14 +6,12 @@ int jsonp_strtod(strbuffer_t *strbuffer,double *out)
 {
   char cVar1;
   lconv *plVar2;
-  char **point;
   char *pcVar3;
-  char *pos;
   int *piVar4;
   int iVar5;
   char *__s;
   double dVar6;
-  char *end;
+  char *local_1c [2];
   
   plVar2 = localeconv();
   __s = strbuffer->value;
@@ -24,10 +22,10 @@ int jsonp_strtod(strbuffer_t *strbuffer,double *out)
   }
   piVar4 = __errno_location();
   *piVar4 = 0;
-  dVar6 = strtod(__s,&end);
-  if (end == strbuffer->value + strbuffer->length) {
-    if (((dVar6 == DAT_0003c718 || dVar6 < DAT_0003c718 != (NAN(dVar6) || NAN(DAT_0003c718))) &&
-        (-1 < (int)((uint)(dVar6 < DAT_0003c720) << 0x1f))) || (*piVar4 != 0x22)) {
+  dVar6 = strtod(__s,local_1c);
+  if (local_1c[0] == strbuffer->value + strbuffer->length) {
+    if (((dVar6 <= 1.79769313486232e+308) &&
+        (-1 < (int)((uint)(dVar6 < -1.79769313486232e+308) << 0x1f))) || (*piVar4 != 0x22)) {
       iVar5 = 0;
       *out = dVar6;
     }
@@ -37,6 +35,7 @@ int jsonp_strtod(strbuffer_t *strbuffer,double *out)
     return iVar5;
   }
                     /* WARNING: Subroutine does not return */
-  __assert_fail(DAT_0003c728,DAT_0003c72c,0x45,DAT_0003c730);
+  __assert_fail("end == strbuffer->value + strbuffer->length","compat/jansson-2.6/src/strconv.c",
+                0x45,"jsonp_strtod");
 }
 

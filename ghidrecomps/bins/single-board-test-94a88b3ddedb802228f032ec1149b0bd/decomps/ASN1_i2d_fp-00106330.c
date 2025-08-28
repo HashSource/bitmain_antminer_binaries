@@ -14,15 +14,15 @@ int ASN1_i2d_fp(undefined1 *i2d,FILE *out,void *x)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0xd,0x75,7,DAT_001063d4,0x49);
+    ERR_put_error(0xd,0x75,7,"a_i2d_fp.c",0x49);
     iVar1 = 0;
   }
   else {
     BIO_ctrl(bp,0x6a,0,out);
     iVar1 = (*(code *)i2d)(x,0);
-    ptr = CRYPTO_malloc(iVar1,DAT_001063d4,0x5a);
+    ptr = CRYPTO_malloc(iVar1,"a_i2d_fp.c",0x5a);
     if (ptr == (void *)0x0) {
-      ERR_put_error(0xd,0x74,0x41,DAT_001063d4,0x5c);
+      ERR_put_error(0xd,0x74,0x41,"a_i2d_fp.c",0x5c);
       iVar1 = 0;
     }
     else {

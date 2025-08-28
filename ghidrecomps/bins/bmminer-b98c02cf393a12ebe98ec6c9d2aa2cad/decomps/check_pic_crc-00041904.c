@@ -25,9 +25,9 @@ bool check_pic_crc(byte *param_1)
     bVar1 = param_1[uVar4 - 1];
     bVar2 = pbVar3[1];
     if (5 < log_level) {
-      __stream = fopen(log_file,(char *)&DAT_0005e760);
+      __stream = fopen(log_file,"a+");
       if (__stream != (FILE *)0x0) {
-        fprintf(__stream,"%s:%d:%s: sum1,sum2 = %d,%d\n","power.c",0x137,DAT_00041994,uVar6,
+        fprintf(__stream,"%s:%d:%s: sum1,sum2 = %d,%d\n","power.c",0x137,"check_pic_crc",uVar6,
                 (uint)CONCAT11(bVar2,bVar1));
       }
       fclose(__stream);

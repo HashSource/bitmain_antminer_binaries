@@ -45,26 +45,7 @@ void show_status(int if_quit)
     free(pcVar2);
   }
   if (if_quit != 0) {
-    tmp42[0] = s_HW_is_more_than_5___00078f10[0];
-    tmp42[1] = s_HW_is_more_than_5___00078f10[1];
-    tmp42[2] = s_HW_is_more_than_5___00078f10[2];
-    tmp42[3] = s_HW_is_more_than_5___00078f10[3];
-    tmp42[4] = s_HW_is_more_than_5___00078f10[4];
-    tmp42[5] = s_HW_is_more_than_5___00078f10[5];
-    tmp42[6] = s_HW_is_more_than_5___00078f10[6];
-    tmp42[7] = s_HW_is_more_than_5___00078f10[7];
-    tmp42[8] = s_HW_is_more_than_5___00078f10[8];
-    tmp42[9] = s_HW_is_more_than_5___00078f10[9];
-    tmp42[10] = s_HW_is_more_than_5___00078f10[10];
-    tmp42[11] = s_HW_is_more_than_5___00078f10[11];
-    tmp42[12] = s_HW_is_more_than_5___00078f10[12];
-    tmp42[13] = s_HW_is_more_than_5___00078f10[13];
-    tmp42[14] = s_HW_is_more_than_5___00078f10[14];
-    tmp42[15] = s_HW_is_more_than_5___00078f10[15];
-    tmp42[16] = s_HW_is_more_than_5___00078f10[16];
-    tmp42[17] = s_HW_is_more_than_5___00078f10[17];
-    tmp42[18] = s_HW_is_more_than_5___00078f10[18];
-    tmp42[19] = s_HW_is_more_than_5___00078f10[19];
+    builtin_strncpy(tmp42,"HW is more than 5!!",0x14);
     _applog(3,tmp42,true);
     _quit(1);
   }

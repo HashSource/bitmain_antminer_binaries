@@ -4,9 +4,9 @@ undefined4 single_BM1385_receive_func(byte *param_1)
 {
   int iVar1;
   undefined4 local_61c;
-  undefined local_618;
-  undefined auStack_614 [500];
-  undefined auStack_420 [1000];
+  undefined1 local_618;
+  undefined1 auStack_614 [500];
+  undefined1 auStack_420 [1000];
   int local_38;
   uint local_34;
   uint local_30;
@@ -64,7 +64,7 @@ LAB_0000aeec:
       for (local_1c = 0; local_1c < local_30; local_1c = local_1c + 1) {
         memset(&local_61c,0,5);
         for (local_20 = 0; local_20 < 5; local_20 = local_20 + 1) {
-          *(undefined *)((int)&local_61c + local_20) = auStack_614[local_14];
+          *(undefined1 *)((int)&local_61c + local_20) = auStack_614[local_14];
           local_14 = local_14 + 1;
         }
         iVar1 = BM1385_is_nonce_or_reg_value(local_618);

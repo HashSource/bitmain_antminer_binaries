@@ -13,9 +13,9 @@ int int_get_new_index(undefined4 param_1,undefined4 param_2,undefined4 param_3,u
     iVar3 = -1;
   }
   else {
-    ptr = (undefined4 *)CRYPTO_malloc(0x14,DAT_0008b0bc,0x162);
+    ptr = (undefined4 *)CRYPTO_malloc(0x14,"ex_data.c",0x162);
     if (ptr == (undefined4 *)0x0) {
-      ERR_put_error(0xf,0x68,0x41,DAT_0008b0bc,0x164);
+      ERR_put_error(0xf,0x68,0x41,"ex_data.c",0x164);
       iVar3 = -1;
     }
     else {
@@ -24,7 +24,7 @@ int int_get_new_index(undefined4 param_1,undefined4 param_2,undefined4 param_3,u
       ptr[4] = param_5;
       ptr[2] = param_4;
       ptr[3] = param_6;
-      CRYPTO_lock(9,2,DAT_0008b0bc,0x16c);
+      CRYPTO_lock(9,2,"ex_data.c",0x16c);
       do {
         iVar2 = sk_num(*(_STACK **)(iVar1 + 4));
         iVar3 = *(int *)(iVar1 + 8);
@@ -36,10 +36,10 @@ int int_get_new_index(undefined4 param_1,undefined4 param_2,undefined4 param_3,u
         iVar3 = sk_push(*(_STACK **)(iVar1 + 4),(void *)0x0);
       } while (iVar3 != 0);
       iVar3 = -1;
-      ERR_put_error(0xf,0x68,0x41,DAT_0008b0bc,0x16f);
+      ERR_put_error(0xf,0x68,0x41,"ex_data.c",0x16f);
       CRYPTO_free(ptr);
 LAB_0008b076:
-      CRYPTO_lock(10,2,DAT_0008b0bc,0x177);
+      CRYPTO_lock(10,2,"ex_data.c",0x177);
     }
   }
   return iVar3;

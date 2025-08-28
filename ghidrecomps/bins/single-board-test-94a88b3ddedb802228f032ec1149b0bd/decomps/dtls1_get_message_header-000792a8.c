@@ -1,5 +1,5 @@
 
-void dtls1_get_message_header(undefined *param_1,undefined *param_2)
+void dtls1_get_message_header(undefined1 *param_1,undefined1 *param_2)
 
 {
   memset(param_2,0,0x2c);

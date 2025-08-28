@@ -8,10 +8,6 @@ void gen_stratum_work(pool *pool,work *work)
   uint uVar3;
   int iVar4;
   undefined4 uVar5;
-  undefined4 in_stack_fffff758;
-  char *pcVar6;
-  undefined4 in_stack_fffff75c;
-  undefined4 uVar7;
   work *work_local;
   pool *pool_local;
   char tmp42 [2048];
@@ -25,10 +21,10 @@ void gen_stratum_work(pool *pool,work *work)
   int i;
   
   _cg_wlock(&pool->data_lock,"cgminer.c","gen_stratum_work",0x2081);
-  nonce2le = __uint64_identity(CONCAT44(in_stack_fffff75c,in_stack_fffff758));
+  nonce2le = __uint64_identity(pool->nonce2);
   _cg_memcpy(pool->coinbase + pool->nonce2_offset,&nonce2le,pool->n2size,"cgminer.c",
              "gen_stratum_work",0x2086);
-  uVar3 = *(uint *)&pool->nonce2;
+  uVar3 = (uint)pool->nonce2;
   iVar4 = *(int *)((int)&pool->nonce2 + 4);
   *(uint *)&pool->nonce2 = uVar3 + 1;
   *(uint *)((int)&pool->nonce2 + 4) = iVar4 + (uint)(0xfffffffe < uVar3);
@@ -46,8 +42,6 @@ void gen_stratum_work(pool *pool,work *work)
   }
   flip32(merkle_root,merkle_sha);
   _cg_memcpy(work,pool->header_bin,0x70,"cgminer.c","gen_stratum_work",0x209f);
-  uVar7 = 0x20a0;
-  pcVar6 = "gen_stratum_work";
   _cg_memcpy(work->data + 0x24,merkle_root,0x20,"cgminer.c","gen_stratum_work",0x20a0);
   uVar5 = *(undefined4 *)((int)&pool->sdiff + 4);
   *(undefined4 *)&work->sdiff = *(undefined4 *)&pool->sdiff;
@@ -74,17 +68,15 @@ void gen_stratum_work(pool *pool,work *work)
     }
     if ((opt_debug != false) &&
        (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-      pcVar6 = *(char **)&work->nonce2;
-      uVar7 = *(undefined4 *)((int)&work->nonce2 + 4);
-      snprintf(tmp42,0x800,"Work job_id %s nonce2 %llu ntime %s",work->job_id,pcVar6,uVar7,
-               work->ntime);
+      snprintf(tmp42,0x800,"Work job_id %s nonce2 %llu ntime %s",work->job_id,(int)work->nonce2,
+               *(undefined4 *)((int)&work->nonce2 + 4),work->ntime);
       _applog(7,tmp42,false);
     }
     free(pcVar1);
     free(__ptr);
   }
   calc_midstate(work);
-  set_target(work->target,(double)CONCAT44(uVar7,pcVar6));
+  set_target(work->target,work->sdiff);
   local_work = local_work + 1;
   tVar2 = time((time_t *)0x0);
   if (5 < tVar2 - local_work_lasttime) {
@@ -98,7 +90,7 @@ void gen_stratum_work(pool *pool,work *work)
   work->getwork_mode = 'S';
   work->work_block = work_block;
   work->drv_rolllimit = 0x3c;
-  calc_diff(work,(double)CONCAT44(uVar7,pcVar6));
+  calc_diff(work,work->sdiff);
   cgtime(&work->tv_staged);
   return;
 }

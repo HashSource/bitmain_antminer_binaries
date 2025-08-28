@@ -14,7 +14,7 @@ _Bool array_check_crc(uint8_t chain)
   _crc_ = 0;
   crc = CRC16(buf,0xfe);
   array_read_bytes(0xfe,(uint8_t *)&_crc_,chain,2);
-  if ((((crc & 0xff) * 0x100 == (_crc_ & 0xff00)) && ((_crc_ & 0xff) * 0x100 == (crc & 0xff00))) &&
+  if ((((uint16_t)(crc << 8) == (_crc_ & 0xff00)) && ((uint16_t)(_crc_ << 8) == (crc & 0xff00))) &&
      (3 < log_level)) {
     print_crt_time_to_file(log_file,3);
     pFile = (FILE *)fopen(log_file,"a+");

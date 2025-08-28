@@ -10,10 +10,10 @@ ECDH_KDF_X9_62(uchar *param_1,uint param_2,void *param_3,uint param_4,void *para
   int iVar3;
   bool bVar4;
   bool bVar5;
-  undefined local_84;
-  undefined local_83;
-  undefined local_82;
-  undefined local_81;
+  undefined1 local_84;
+  undefined1 local_83;
+  undefined1 local_82;
+  undefined1 local_81;
   EVP_MD_CTX EStack_80;
   uchar auStack_68 [68];
   
@@ -31,10 +31,10 @@ ECDH_KDF_X9_62(uchar *param_1,uint param_2,void *param_3,uint param_4,void *para
       EVP_MD_CTX_init(&EStack_80);
       do {
         EVP_DigestInit_ex(&EStack_80,param_7,(ENGINE *)0x0);
-        local_81 = (undefined)iVar3;
-        local_82 = (undefined)((uint)iVar3 >> 8);
-        local_83 = (undefined)((uint)iVar3 >> 0x10);
-        local_84 = (undefined)((uint)iVar3 >> 0x18);
+        local_81 = (undefined1)iVar3;
+        local_82 = (undefined1)((uint)iVar3 >> 8);
+        local_83 = (undefined1)((uint)iVar3 >> 0x10);
+        local_84 = (undefined1)((uint)iVar3 >> 0x18);
         iVar1 = EVP_DigestUpdate(&EStack_80,param_3,param_4);
         if (iVar1 == 0) {
 LAB_00101342:

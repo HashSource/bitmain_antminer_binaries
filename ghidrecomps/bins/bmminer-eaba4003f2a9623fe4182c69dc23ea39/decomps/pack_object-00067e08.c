@@ -20,17 +20,17 @@ json_t * pack_object(scanner_t *s,va_list *ap)
     if ((s->token).token == '\0') break;
     if ((s->token).token != 's') {
       set_error(s,"<format>","Expected format \'s\', got \'%c\'",(uint)(byte)(s->token).token);
-      goto error;
+      goto LAB_00067f06;
     }
     key = read_string(s,ap,"object key",&len,&ours);
-    if (key == (char *)0x0) goto error;
+    if (key == (char *)0x0) goto LAB_00067f06;
     next_token(s);
     value = pack(s,ap);
     if (value == (json_t *)0x0) {
       if (ours != 0) {
         jsonp_free(key);
       }
-      goto error;
+      goto LAB_00067f06;
     }
     iVar1 = json_object_set_new_nocheck(object,key,value);
     if (iVar1 != 0) {
@@ -38,7 +38,7 @@ json_t * pack_object(scanner_t *s,va_list *ap)
       if (ours != 0) {
         jsonp_free(key);
       }
-      goto error;
+      goto LAB_00067f06;
     }
     if (ours != 0) {
       jsonp_free(key);
@@ -46,7 +46,7 @@ json_t * pack_object(scanner_t *s,va_list *ap)
     next_token(s);
   }
   set_error(s,"<format>","Unexpected end of format string");
-error:
+LAB_00067f06:
   json_decref(object);
   return (json_t *)0x0;
 }

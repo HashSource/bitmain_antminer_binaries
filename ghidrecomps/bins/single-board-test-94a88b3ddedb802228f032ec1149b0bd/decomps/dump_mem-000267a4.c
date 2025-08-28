@@ -3,7 +3,7 @@ void dump_mem(int param_1,int param_2,int param_3)
 
 {
   uint uVar1;
-  undefined auStack_3c [20];
+  undefined1 auStack_3c [20];
   FILE *local_28;
   FILE *local_24;
   FILE *local_20;
@@ -57,7 +57,7 @@ void dump_mem(int param_1,int param_2,int param_3)
       if ((int)local_c < 1) {
         uVar1 = -(-local_c & 0xf);
       }
-      auStack_3c[uVar1] = *(undefined *)(local_c + local_10);
+      auStack_3c[uVar1] = *(undefined1 *)(local_c + local_10);
     }
     uVar1 = local_c & 0xf;
     if ((int)local_c < 1) {

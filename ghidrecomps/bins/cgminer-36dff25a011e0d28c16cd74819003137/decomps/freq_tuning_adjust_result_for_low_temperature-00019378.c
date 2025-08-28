@@ -11,28 +11,28 @@ void freq_tuning_adjust_result_for_low_temperature(freq_tuning_info *freq_info,i
   int chain;
   
   freq_diff = 5;
-  if (g_env_temp < 30.0 == NAN(g_env_temp)) {
-    freq_diff = 0x19;
-  }
-  else if (((double)g_env_temp < DAT_00019628 != (NAN((double)g_env_temp) || NAN(DAT_00019628))) ||
-          (30.0 <= g_env_temp)) {
-    if (((double)g_env_temp < DAT_00019630 != (NAN((double)g_env_temp) || NAN(DAT_00019630))) ||
-       (DAT_00019628 <= (double)g_env_temp)) {
-      if ((g_env_temp < 20.0 != NAN(g_env_temp)) || (DAT_00019630 <= (double)g_env_temp)) {
-        if (g_env_temp < 20.0) {
-          freq_diff = 5;
+  if (g_env_temp < 30.0) {
+    if ((g_env_temp < 26.6) || (30.0 <= g_env_temp)) {
+      if ((g_env_temp < 23.3) || (26.6 <= g_env_temp)) {
+        if ((g_env_temp < 20.0) || (23.3 <= g_env_temp)) {
+          if (g_env_temp < 20.0) {
+            freq_diff = 5;
+          }
+        }
+        else {
+          freq_diff = 10;
         }
       }
       else {
-        freq_diff = 10;
+        freq_diff = 0xf;
       }
     }
     else {
-      freq_diff = 0xf;
+      freq_diff = 0x14;
     }
   }
   else {
-    freq_diff = 0x14;
+    freq_diff = 0x19;
   }
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);

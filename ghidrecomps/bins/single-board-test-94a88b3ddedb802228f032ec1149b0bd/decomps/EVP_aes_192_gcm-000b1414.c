@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_aes_192_gcm(void)
 
 {
-  return DAT_000b1418;
+  return (EVP_CIPHER *)aes_192_gcm;
 }
 

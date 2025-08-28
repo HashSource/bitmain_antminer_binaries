@@ -4,160 +4,133 @@
 void * watchdog_thread(void *userdata)
 
 {
-  char cVar1;
-  char *pcVar2;
-  int *piVar3;
-  char *pcVar4;
-  int *piVar5;
-  int *piVar6;
-  _Bool _Var7;
-  thr_info *ptVar8;
-  thr_info *thr;
+  _Bool _Var1;
+  thr_info *ptVar2;
   cgpu_info *dev;
-  time_t tVar9;
+  time_t tVar3;
+  int iVar4;
+  thr_info **pptVar5;
+  char *func;
+  char *func_00;
+  alive aVar6;
+  int line;
+  thr_info **pptVar7;
+  int line_00;
+  int iVar9;
   int iVar10;
-  thr_info **pptVar11;
-  _Bool *func;
-  alive aVar12;
-  thr_info **line;
-  thr_info **pptVar13;
-  int iVar14;
-  int iVar15;
-  cgpu_info *cgpu;
-  thr_info *thr_1;
-  int in_stack_fffff7b8;
-  undefined4 in_stack_fffff7bc;
   timeval zero_tv;
   timeval now;
   char dev_str [8];
   char tmp42 [2048];
+  thr_info **pptVar8;
   
   pthread_setcanceltype(1,(int *)0x0);
-  RenameThread(DAT_000287a8);
+  RenameThread("Watchdog");
   set_lowprio();
-  piVar6 = DAT_000287e8;
-  cgtime(DAT_000287ac);
+  cgtime(&rotate_tv);
   do {
     sleep(2);
     discard_stale();
-    hashmeter(-1,CONCAT44(in_stack_fffff7bc,in_stack_fffff7b8));
+    hashmeter(-1,0);
     cgtime(&now);
     if (sched_paused == false) {
-      _Var7 = should_run();
-      if (_Var7) {
+      _Var1 = should_run();
+      if (_Var1) {
         if (sched_paused != false) goto LAB_00028526;
       }
       else {
-        if (((use_syslog != false) || (*DAT_00028988 != '\0')) || (3 < *DAT_0002898c)) {
-          in_stack_fffff7b8 = *(int *)(DAT_00028990 + 8);
-          snprintf(tmp42,0x800,DAT_00028994,*(undefined4 *)(DAT_00028990 + 0xc));
+        if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+          snprintf(tmp42,0x800,"Pausing execution as per stop time %02d:%02d scheduled",
+                   schedstop.tm.tm_hour,schedstop.tm.tm_min);
           _applog(4,tmp42,false);
         }
         if (schedstart.enable == false) {
-          tmp42._0_4_ = *DAT_000289a0;
-          tmp42._4_4_ = DAT_000289a0[1];
-          tmp42._8_4_ = DAT_000289a0[2];
-          tmp42._12_4_ = DAT_000289a0[3];
-          tmp42._16_4_ = DAT_000289a0[4];
-          tmp42._20_4_ = DAT_000289a0[5];
-          tmp42._24_4_ = DAT_000289a0[6];
-          tmp42._28_4_ = DAT_000289a0[7];
-          tmp42[32] = (char)DAT_000289a0[8];
+          builtin_strncpy(tmp42,"Terminating execution as planned",0x20);
+          tmp42[0x20] = '\0';
           _applog(3,tmp42,true);
           _quit(0);
           return (void *)0x0;
         }
-        if (((use_syslog != false) || (*DAT_00028988 != '\0')) || (3 < *DAT_0002898c)) {
-          in_stack_fffff7b8 = schedstart.tm.tm_min;
-          snprintf(tmp42,0x800,DAT_00028998,schedstart.tm.tm_hour);
+        if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+          snprintf(tmp42,0x800,"Will restart execution as scheduled at %02d:%02d",
+                   schedstart.tm.tm_hour,schedstart.tm.tm_min);
           _applog(4,tmp42,false);
         }
-        line = (thr_info **)0x1;
-        func = &sched_paused;
         sched_paused = true;
-        iVar14 = pthread_rwlock_rdlock(DAT_0002899c);
-        if (iVar14 != 0) {
-          _rd_lock(DAT_000289a4,(char *)0x2828,func,(int)line);
+        iVar9 = pthread_rwlock_rdlock((pthread_rwlock_t *)&mining_thr_lock);
+        if (iVar9 != 0) {
+          _rd_lock((pthread_rwlock_t *)"watchdog_thread",(char *)0x2828,func,line);
         }
-        if (0 < *piVar6) {
-          pptVar11 = mining_thr + *piVar6;
-          pptVar13 = mining_thr;
+        if (0 < mining_threads) {
+          pptVar5 = mining_thr + mining_threads;
+          pptVar7 = mining_thr;
           do {
-            line = pptVar13 + 1;
-            func = (_Bool *)*pptVar13;
-            *(_Bool *)((int)func + 0x3c) = true;
-            pptVar13 = line;
-          } while (line != pptVar11);
+            pptVar8 = pptVar7 + 1;
+            (*pptVar7)->pause = true;
+            pptVar7 = pptVar8;
+          } while (pptVar8 != pptVar5);
         }
-        iVar14 = pthread_rwlock_unlock(DAT_0002899c);
-        if (iVar14 != 0) {
-          _rw_unlock(DAT_000289a4,(char *)0x282f,func,(int)line);
+        iVar9 = pthread_rwlock_unlock((pthread_rwlock_t *)&mining_thr_lock);
+        if (iVar9 != 0) {
+          _rw_unlock((pthread_rwlock_t *)"watchdog_thread",(char *)0x282f,func_00,line_00);
         }
         (*selective_yield)();
       }
     }
     else {
 LAB_00028526:
-      _Var7 = should_run();
-      if (_Var7) {
-        if (((use_syslog != false) || (*DAT_000287b0 != '\0')) || (3 < *DAT_000287b4)) {
-          in_stack_fffff7b8 = schedstart.tm.tm_min;
-          snprintf(tmp42,0x800,DAT_000287b8,schedstart.tm.tm_hour);
+      _Var1 = should_run();
+      if (_Var1) {
+        if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+          snprintf(tmp42,0x800,"Restarting execution as per start time %02d:%02d scheduled",
+                   schedstart.tm.tm_hour,schedstart.tm.tm_min);
           _applog(4,tmp42,false);
         }
-        if ((*DAT_000287bc != '\0') &&
-           (((use_syslog != false || (*DAT_000287b0 != '\0')) || (3 < *DAT_000287b4)))) {
-          in_stack_fffff7b8 = *(int *)(DAT_000287bc + 8);
-          snprintf(tmp42,0x800,DAT_000287e4,*(undefined4 *)(DAT_000287bc + 0xc));
+        if ((schedstop.enable != false) &&
+           (((use_syslog != false || (opt_log_output != false)) || (3 < opt_log_level)))) {
+          snprintf(tmp42,0x800,"Will pause execution as scheduled at %02d:%02d",schedstop.tm.tm_hour
+                   ,schedstop.tm.tm_min);
           _applog(4,tmp42,false);
         }
-        pcVar4 = DAT_000287c0;
-        piVar3 = DAT_000287b4;
-        pcVar2 = DAT_000287b0;
-        iVar14 = 0;
+        iVar9 = 0;
         sched_paused = false;
-        if (0 < *piVar6) {
+        if (0 < mining_threads) {
           do {
-            iVar15 = iVar14 + 1;
-            ptVar8 = get_thread(iVar14);
-            if (ptVar8->cgpu->deven != DEV_DISABLED) {
-              cVar1 = *pcVar4;
-              ptVar8->pause = false;
-              if ((cVar1 != '\0') && (((use_syslog != false || (*pcVar2 != '\0')) || (6 < *piVar3)))
-                 ) {
-                snprintf(tmp42,0x800,DAT_000287c4,ptVar8->id);
+            iVar10 = iVar9 + 1;
+            ptVar2 = get_thread(iVar9);
+            _Var1 = opt_debug;
+            if (ptVar2->cgpu->deven != DEV_DISABLED) {
+              ptVar2->pause = false;
+              if ((_Var1 != false) &&
+                 (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+                snprintf(tmp42,0x800,"Pushing sem post to thread %d",ptVar2->id);
                 _applog(7,tmp42,false);
               }
-              _cgsem_post(&ptVar8->sem,DAT_000287c8,DAT_000287cc,0x284a);
+              _cgsem_post(&ptVar2->sem,"cgminer.c","watchdog_thread",0x284a);
             }
-            iVar14 = iVar15;
-          } while (iVar15 < *piVar6);
+            iVar9 = iVar10;
+          } while (iVar10 < mining_threads);
         }
       }
     }
-    iVar14 = DAT_000287ec;
-    piVar5 = DAT_000287d0;
-    piVar3 = DAT_000287b4;
-    pcVar2 = DAT_000287b0;
-    if (0 < *DAT_000287d0) {
-      iVar15 = 0;
+    if (0 < total_devices) {
+      iVar9 = 0;
       do {
-        dev = get_devices(iVar15);
-        ptVar8 = *dev->thr;
-        if (ptVar8 != (thr_info *)0x0) {
+        dev = get_devices(iVar9);
+        ptVar2 = *dev->thr;
+        if (ptVar2 != (thr_info *)0x0) {
           (*dev->drv->get_stats)(dev);
-          in_stack_fffff7b8 = dev->device_id;
-          snprintf(dev_str,8,DAT_000287dc,dev->drv->name);
-          _Var7 = use_syslog;
-          if ((ptVar8->getwork == false) && (dev->deven != DEV_DISABLED)) {
-            aVar12 = dev->status;
-            iVar10 = now.tv_sec - (ptVar8->last).tv_sec;
-            if (aVar12 == LIFE_WELL) {
-              if (iVar10 < 0x79) {
+          iVar10 = dev->device_id;
+          snprintf(dev_str,8,"%s %d",dev->drv->name,iVar10);
+          _Var1 = use_syslog;
+          if ((ptVar2->getwork == false) && (dev->deven != DEV_DISABLED)) {
+            aVar6 = dev->status;
+            iVar4 = now.tv_sec - (ptVar2->last).tv_sec;
+            if (aVar6 == LIFE_WELL) {
+              if (iVar4 < 0x79) {
 LAB_00028786:
-                if ((0x3c < now.tv_sec - (ptVar8->sick).tv_sec) &&
-                   ((aVar12 + ~LIFE_WELL < 2 &&
-                    (cgtime(&ptVar8->sick), *(char *)(iVar14 + 0x824) != '\0')))) {
+                if ((0x3c < now.tv_sec - (ptVar2->sick).tv_sec) &&
+                   ((aVar6 - LIFE_SICK < 2 && (cgtime(&ptVar2->sick), opt_restart != false)))) {
 LAB_000286c6:
                   reinit_device(dev);
                 }
@@ -165,45 +138,47 @@ LAB_000286c6:
               else {
                 dev->status = LIFE_SICK;
                 dev->rolling = 0.0;
-                if (((_Var7 != false) || (*pcVar2 != '\0')) || (2 < *piVar3)) {
-                  snprintf(tmp42,0x800,DAT_000287d4,dev_str);
+                if (((_Var1 != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
+                  snprintf(tmp42,0x800,"%s: Idle for more than 60 seconds, declaring SICK!",dev_str,
+                           iVar10);
                   _applog(3,tmp42,false);
                 }
-                cgtime(&ptVar8->sick);
+                cgtime(&ptVar2->sick);
                 dev_error(dev,REASON_DEV_SICK_IDLE_60);
-                if (*(char *)(iVar14 + 0x824) != '\0') {
-                  if (((use_syslog != false) || (*pcVar2 != '\0')) || (2 < *piVar3)) {
-                    snprintf(tmp42,0x800,DAT_000287d8,dev_str);
+                if (opt_restart != false) {
+                  if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
+                    snprintf(tmp42,0x800,"%s: Attempting to restart",dev_str,iVar10);
                     _applog(3,tmp42,false);
                   }
                   goto LAB_000286c6;
                 }
               }
             }
-            else if (iVar10 < 0x78) {
-              if ((aVar12 != LIFE_INIT) &&
-                 (((use_syslog != false || (*pcVar2 != '\0')) || (2 < *piVar3)))) {
-                snprintf(tmp42,0x800,DAT_000287e0,dev_str);
+            else if (iVar4 < 0x78) {
+              if ((aVar6 != LIFE_INIT) &&
+                 (((use_syslog != false || (opt_log_output != false)) || (2 < opt_log_level)))) {
+                snprintf(tmp42,0x800,"%s: Recovered, declaring WELL!",dev_str,iVar10);
                 _applog(3,tmp42,false);
               }
               dev->status = LIFE_WELL;
-              tVar9 = time((time_t *)0x0);
-              dev->device_last_well = tVar9;
+              tVar3 = time((time_t *)0x0);
+              dev->device_last_well = tVar3;
             }
             else {
-              if ((aVar12 != LIFE_SICK) || (iVar10 < 0x259)) goto LAB_00028786;
+              if ((aVar6 != LIFE_SICK) || (iVar4 < 0x259)) goto LAB_00028786;
               dev->status = LIFE_DEAD;
-              if (((_Var7 != false) || (*pcVar2 != '\0')) || (2 < *piVar3)) {
-                snprintf(tmp42,0x800,DAT_00028984,dev_str);
+              if (((_Var1 != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
+                snprintf(tmp42,0x800,"%s: Not responded for more than 10 minutes, declaring DEAD!",
+                         dev_str,iVar10);
                 _applog(3,tmp42,false);
               }
-              cgtime(&ptVar8->sick);
+              cgtime(&ptVar2->sick);
               dev_error(dev,REASON_DEV_DEAD_IDLE_600);
             }
           }
         }
-        iVar15 = iVar15 + 1;
-      } while (iVar15 < *piVar5);
+        iVar9 = iVar9 + 1;
+      } while (iVar9 < total_devices);
     }
   } while( true );
 }

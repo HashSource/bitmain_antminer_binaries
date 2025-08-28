@@ -13,13 +13,13 @@ stack_st_X509_NAME * SSL_load_client_CA_file(char *file)
   X509 *local_1c [2];
   
   local_1c[0] = (X509 *)0x0;
-  st = sk_new(DAT_0007e06c);
+  st = sk_new((cmp *)0x7c8e1);
   type = BIO_s_file();
   bp = BIO_new(type);
   if (st == (_STACK *)0x0 || bp == (BIO *)0x0) {
     iVar4 = 0x374;
 LAB_0007e012:
-    ERR_put_error(0x14,0xb9,0x41,DAT_0007e070,iVar4);
+    ERR_put_error(0x14,0xb9,0x41,"ssl_cert.c",iVar4);
 LAB_0007e020:
     st_00 = st;
     if (st == (_STACK *)0x0) goto LAB_0007e02c;
@@ -38,7 +38,7 @@ LAB_0007e020:
       pXVar3 = X509_get_subject_name(local_1c[0]);
       if ((pXVar3 == (X509_NAME *)0x0) ||
          (pXVar3 = X509_NAME_dup(pXVar3), pXVar3 == (X509_NAME *)0x0)) {
-        sk_pop_free(st_00,DAT_0007e074);
+        sk_pop_free(st_00,X509_NAME_free);
         sk_free(st);
         st_00 = (_STACK *)0x0;
         goto LAB_0007e02c;

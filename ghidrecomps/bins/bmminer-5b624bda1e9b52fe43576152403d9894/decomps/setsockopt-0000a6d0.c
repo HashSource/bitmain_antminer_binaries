@@ -6,9 +6,7 @@ int setsockopt(int __fd,int __level,int __optname,void *__optval,socklen_t __opt
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a6d8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f374)();
+  iVar1 = (*(code *)(undefined *)0x0)(__fd);
   return iVar1;
 }
 

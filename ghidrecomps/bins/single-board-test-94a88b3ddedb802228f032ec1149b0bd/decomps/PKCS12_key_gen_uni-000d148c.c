@@ -3,7 +3,7 @@ int PKCS12_key_gen_uni(uchar *pass,int passlen,uchar *salt,int saltlen,int id,in
                       uchar *out,EVP_MD *md_type)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint *puVar2;
   uint cnt;
   size_t cnt_00;
@@ -17,19 +17,19 @@ int PKCS12_key_gen_uni(uchar *pass,int passlen,uchar *salt,int saltlen,int id,in
   uint *puVar4;
   BIGNUM *pBVar5;
   uint uVar6;
+  uint uVar7;
   int extraout_r1;
   int extraout_r1_00;
   int extraout_r1_01;
-  void *pvVar7;
-  uint uVar8;
+  void *pvVar8;
   int iVar9;
   size_t __n;
   size_t cnt_01;
   uint uVar10;
   uint uVar11;
   uint uVar12;
-  uint uVar13;
   uchar *s_00;
+  uint uVar13;
   int local_5c;
   EVP_MD_CTX EStack_40;
   
@@ -39,9 +39,9 @@ int PKCS12_key_gen_uni(uchar *pass,int passlen,uchar *salt,int saltlen,int id,in
   if ((int)cnt_00 < 0) {
     return 0;
   }
-  d = CRYPTO_malloc(cnt,DAT_000d1798,0x8d);
-  md = (uchar *)CRYPTO_malloc(cnt_00,DAT_000d1798,0x8e);
-  s = (uchar *)CRYPTO_malloc(cnt + 1,DAT_000d1798,0x8f);
+  d = CRYPTO_malloc(cnt,"p12_key.c",0x8d);
+  md = (uchar *)CRYPTO_malloc(cnt_00,"p12_key.c",0x8e);
+  s = (uchar *)CRYPTO_malloc(cnt + 1,"p12_key.c",0x8f);
   iVar3 = __aeabi_idiv(saltlen + cnt + -1,cnt);
   iVar3 = cnt * iVar3;
   if (passlen == 0) {
@@ -52,163 +52,162 @@ int PKCS12_key_gen_uni(uchar *pass,int passlen,uchar *salt,int saltlen,int id,in
     local_5c = cnt * local_5c;
   }
   cnt_01 = iVar3 + local_5c;
-  d_00 = CRYPTO_malloc(cnt_01,DAT_000d1798,0x96);
+  d_00 = CRYPTO_malloc(cnt_01,"p12_key.c",0x96);
   ret = BN_new();
   ret_00 = BN_new();
   if (((d == (void *)0x0 || md == (uchar *)0x0) || (s == (uchar *)0x0 || d_00 == (void *)0x0)) ||
      (ret == (BIGNUM *)0x0 || ret_00 == (BIGNUM *)0x0)) goto LAB_000d17c8;
   uVar11 = 0;
   if (0 < (int)cnt) {
-    uVar13 = -(int)d & 3U;
+    uVar7 = -(int)d & 3U;
     if (cnt <= (-(int)d & 3U)) {
-      uVar13 = cnt;
+      uVar7 = cnt;
     }
     if (cnt < 4) {
-      uVar13 = cnt;
+      uVar7 = cnt;
     }
     uVar10 = id & 0xff;
-    uVar1 = (undefined)id;
-    if (uVar13 == 0) {
+    uVar1 = (undefined1)id;
+    if (uVar7 == 0) {
       uVar11 = 0;
     }
     else {
-      pvVar7 = d;
-      uVar8 = uVar11;
-      if (0x20 < uVar13) {
+      pvVar8 = d;
+      uVar13 = uVar11;
+      if (0x20 < uVar7) {
         do {
-          *(undefined *)((int)d + uVar8) = uVar1;
-          HintPreloadData((int)d + uVar8 + 0x22);
-          uVar11 = uVar8 + 0x20;
-          *(undefined *)((int)pvVar7 + 1) = uVar1;
-          uVar6 = uVar8 + 0x21;
-          *(undefined *)((int)pvVar7 + 2) = uVar1;
-          *(undefined *)((int)pvVar7 + 3) = uVar1;
-          *(undefined *)((int)pvVar7 + 4) = uVar1;
-          *(undefined *)((int)pvVar7 + 5) = uVar1;
-          *(undefined *)((int)pvVar7 + 6) = uVar1;
-          *(undefined *)((int)pvVar7 + 7) = uVar1;
-          *(undefined *)((int)pvVar7 + 8) = uVar1;
-          *(undefined *)((int)pvVar7 + 9) = uVar1;
-          *(undefined *)((int)pvVar7 + 10) = uVar1;
-          *(undefined *)((int)pvVar7 + 0xb) = uVar1;
-          *(undefined *)((int)pvVar7 + 0xc) = uVar1;
-          *(undefined *)((int)pvVar7 + 0xd) = uVar1;
-          *(undefined *)((int)pvVar7 + 0xe) = uVar1;
-          *(undefined *)((int)pvVar7 + 0xf) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x10) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x11) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x12) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x13) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x14) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x15) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x16) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x17) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x18) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x19) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x1a) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x1b) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x1c) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x1d) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x1e) = uVar1;
-          *(undefined *)((int)pvVar7 + 0x1f) = uVar1;
-          pvVar7 = (void *)((int)pvVar7 + 0x20);
-          uVar8 = uVar11;
-        } while (uVar6 < uVar13 - 0x1f);
+          *(undefined1 *)((int)d + uVar13) = uVar1;
+          HintPreloadData((int)d + uVar13 + 0x22);
+          uVar11 = uVar13 + 0x20;
+          *(undefined1 *)((int)pvVar8 + 1) = uVar1;
+          uVar6 = uVar13 + 0x21;
+          *(undefined1 *)((int)pvVar8 + 2) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 3) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 4) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 5) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 6) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 7) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 8) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 9) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 10) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0xb) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0xc) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0xd) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0xe) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0xf) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x10) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x11) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x12) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x13) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x14) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x15) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x16) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x17) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x18) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x19) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x1a) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x1b) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x1c) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x1d) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x1e) = uVar1;
+          *(undefined1 *)((int)pvVar8 + 0x1f) = uVar1;
+          pvVar8 = (void *)((int)pvVar8 + 0x20);
+          uVar13 = uVar11;
+        } while (uVar6 < uVar7 - 0x1f);
       }
       do {
-        *(undefined *)((int)d + uVar11) = uVar1;
+        *(undefined1 *)((int)d + uVar11) = uVar1;
         uVar11 = uVar11 + 1;
-      } while (uVar11 < uVar13);
-      if (cnt == uVar13) goto LAB_000d16ea;
+      } while (uVar11 < uVar7);
+      if (cnt == uVar7) goto LAB_000d16ea;
     }
-    uVar8 = cnt - uVar13;
-    uVar6 = uVar8 >> 2;
-    if (uVar6 != 0) {
-      puVar4 = (uint *)(uVar13 + (int)d);
-      uVar13 = uVar10 | uVar10 << 8 | uVar10 << 0x10 | uVar10 << 0x18;
-      if (uVar6 < 9) {
-        uVar10 = 0;
+    uVar13 = cnt - uVar7 >> 2;
+    if (uVar13 != 0) {
+      puVar4 = (uint *)(uVar7 + (int)d);
+      uVar10 = uVar10 | uVar10 << 8 | uVar10 << 0x10 | uVar10 << 0x18;
+      if (uVar13 < 9) {
+        uVar6 = 0;
       }
       else {
-        uVar10 = 0;
+        uVar6 = 0;
         puVar2 = puVar4;
         do {
           puVar4 = puVar2 + 8;
-          uVar12 = uVar10 + 9;
-          uVar10 = uVar10 + 8;
+          uVar12 = uVar6 + 9;
+          uVar6 = uVar6 + 8;
           HintPreloadData(puVar2 + 0x28);
-          *puVar2 = uVar13;
-          puVar2[1] = uVar13;
-          puVar2[2] = uVar13;
-          puVar2[3] = uVar13;
-          puVar2[4] = uVar13;
-          puVar2[5] = uVar13;
-          puVar2[6] = uVar13;
-          puVar2[7] = uVar13;
+          *puVar2 = uVar10;
+          puVar2[1] = uVar10;
+          puVar2[2] = uVar10;
+          puVar2[3] = uVar10;
+          puVar2[4] = uVar10;
+          puVar2[5] = uVar10;
+          puVar2[6] = uVar10;
+          puVar2[7] = uVar10;
           puVar2 = puVar4;
-        } while (uVar12 < uVar6 - 7);
+        } while (uVar12 < uVar13 - 7);
       }
       do {
-        uVar10 = uVar10 + 1;
-        *puVar4 = uVar13;
+        uVar6 = uVar6 + 1;
+        *puVar4 = uVar10;
         puVar4 = puVar4 + 1;
-      } while (uVar10 < uVar6);
-      uVar11 = uVar11 + (uVar8 & 0xfffffffc);
-      if (uVar8 == (uVar8 & 0xfffffffc)) goto LAB_000d16ea;
+      } while (uVar6 < uVar13);
+      uVar11 = uVar11 + uVar13 * 4;
+      if (cnt - uVar7 == uVar13 * 4) goto LAB_000d16ea;
     }
-    uVar13 = uVar11 + 1;
+    uVar7 = uVar11 + 1;
     if ((int)(uVar11 + 1) < (int)(cnt - 0x1f) && (int)uVar11 < (int)cnt) {
       iVar9 = (int)d + uVar11;
       uVar10 = uVar11;
       do {
-        *(undefined *)((int)d + uVar10) = uVar1;
+        *(undefined1 *)((int)d + uVar10) = uVar1;
         HintPreloadData((int)d + uVar10 + 0x28);
-        *(undefined *)(iVar9 + 1) = uVar1;
-        uVar13 = uVar10 + 0x21;
-        *(undefined *)(iVar9 + 2) = uVar1;
-        *(undefined *)(iVar9 + 3) = uVar1;
-        *(undefined *)(iVar9 + 4) = uVar1;
-        *(undefined *)(iVar9 + 5) = uVar1;
-        *(undefined *)(iVar9 + 6) = uVar1;
-        *(undefined *)(iVar9 + 7) = uVar1;
-        *(undefined *)(iVar9 + 8) = uVar1;
-        *(undefined *)(iVar9 + 9) = uVar1;
-        *(undefined *)(iVar9 + 10) = uVar1;
-        *(undefined *)(iVar9 + 0xb) = uVar1;
-        *(undefined *)(iVar9 + 0xc) = uVar1;
-        *(undefined *)(iVar9 + 0xd) = uVar1;
-        *(undefined *)(iVar9 + 0xe) = uVar1;
-        *(undefined *)(iVar9 + 0xf) = uVar1;
-        *(undefined *)(iVar9 + 0x10) = uVar1;
-        *(undefined *)(iVar9 + 0x11) = uVar1;
-        *(undefined *)(iVar9 + 0x12) = uVar1;
-        *(undefined *)(iVar9 + 0x13) = uVar1;
-        *(undefined *)(iVar9 + 0x14) = uVar1;
-        *(undefined *)(iVar9 + 0x15) = uVar1;
-        *(undefined *)(iVar9 + 0x16) = uVar1;
-        *(undefined *)(iVar9 + 0x17) = uVar1;
-        *(undefined *)(iVar9 + 0x18) = uVar1;
-        *(undefined *)(iVar9 + 0x19) = uVar1;
-        *(undefined *)(iVar9 + 0x1a) = uVar1;
-        *(undefined *)(iVar9 + 0x1b) = uVar1;
-        *(undefined *)(iVar9 + 0x1c) = uVar1;
-        *(undefined *)(iVar9 + 0x1d) = uVar1;
-        *(undefined *)(iVar9 + 0x1e) = uVar1;
-        *(undefined *)(iVar9 + 0x1f) = uVar1;
+        *(undefined1 *)(iVar9 + 1) = uVar1;
+        uVar7 = uVar10 + 0x21;
+        *(undefined1 *)(iVar9 + 2) = uVar1;
+        *(undefined1 *)(iVar9 + 3) = uVar1;
+        *(undefined1 *)(iVar9 + 4) = uVar1;
+        *(undefined1 *)(iVar9 + 5) = uVar1;
+        *(undefined1 *)(iVar9 + 6) = uVar1;
+        *(undefined1 *)(iVar9 + 7) = uVar1;
+        *(undefined1 *)(iVar9 + 8) = uVar1;
+        *(undefined1 *)(iVar9 + 9) = uVar1;
+        *(undefined1 *)(iVar9 + 10) = uVar1;
+        *(undefined1 *)(iVar9 + 0xb) = uVar1;
+        *(undefined1 *)(iVar9 + 0xc) = uVar1;
+        *(undefined1 *)(iVar9 + 0xd) = uVar1;
+        *(undefined1 *)(iVar9 + 0xe) = uVar1;
+        *(undefined1 *)(iVar9 + 0xf) = uVar1;
+        *(undefined1 *)(iVar9 + 0x10) = uVar1;
+        *(undefined1 *)(iVar9 + 0x11) = uVar1;
+        *(undefined1 *)(iVar9 + 0x12) = uVar1;
+        *(undefined1 *)(iVar9 + 0x13) = uVar1;
+        *(undefined1 *)(iVar9 + 0x14) = uVar1;
+        *(undefined1 *)(iVar9 + 0x15) = uVar1;
+        *(undefined1 *)(iVar9 + 0x16) = uVar1;
+        *(undefined1 *)(iVar9 + 0x17) = uVar1;
+        *(undefined1 *)(iVar9 + 0x18) = uVar1;
+        *(undefined1 *)(iVar9 + 0x19) = uVar1;
+        *(undefined1 *)(iVar9 + 0x1a) = uVar1;
+        *(undefined1 *)(iVar9 + 0x1b) = uVar1;
+        *(undefined1 *)(iVar9 + 0x1c) = uVar1;
+        *(undefined1 *)(iVar9 + 0x1d) = uVar1;
+        *(undefined1 *)(iVar9 + 0x1e) = uVar1;
+        *(undefined1 *)(iVar9 + 0x1f) = uVar1;
         iVar9 = iVar9 + 0x20;
         uVar11 = uVar10 + 0x20;
         uVar10 = uVar10 + 0x20;
-      } while ((int)uVar13 < (int)(cnt - 0x1f));
+      } while ((int)uVar7 < (int)(cnt - 0x1f));
     }
     do {
-      uVar10 = uVar13;
-      *(undefined *)((int)d + uVar11) = uVar1;
-      uVar13 = uVar10 + 1;
+      uVar10 = uVar7;
+      *(undefined1 *)((int)d + uVar11) = uVar1;
+      uVar7 = uVar10 + 1;
       uVar11 = uVar10;
     } while ((int)uVar10 < (int)cnt);
   }
 LAB_000d16ea:
-  pvVar7 = d_00;
+  pvVar8 = d_00;
   if (0 < iVar3) {
     iVar9 = 0;
     do {
@@ -216,13 +215,13 @@ LAB_000d16ea:
       *(uchar *)((int)d_00 + iVar9) = salt[extraout_r1];
       iVar9 = iVar9 + 1;
     } while (iVar9 != iVar3);
-    pvVar7 = (void *)(iVar9 + (int)d_00);
+    pvVar8 = (void *)(iVar9 + (int)d_00);
   }
   if (0 < local_5c) {
     iVar3 = 0;
     do {
       __aeabi_idivmod(iVar3,passlen);
-      *(uchar *)((int)pvVar7 + iVar3) = pass[extraout_r1_00];
+      *(uchar *)((int)pvVar8 + iVar3) = pass[extraout_r1_00];
       iVar3 = iVar3 + 1;
     } while (iVar3 != local_5c);
   }
@@ -294,7 +293,7 @@ LAB_000d16ea:
   }
 LAB_000d17c8:
   iVar3 = 0;
-  ERR_put_error(0x23,0x6f,0x41,DAT_000d1940,0xda);
+  ERR_put_error(0x23,0x6f,0x41,"p12_key.c",0xda);
 LAB_000d17da:
   CRYPTO_free(md);
   CRYPTO_free(s);

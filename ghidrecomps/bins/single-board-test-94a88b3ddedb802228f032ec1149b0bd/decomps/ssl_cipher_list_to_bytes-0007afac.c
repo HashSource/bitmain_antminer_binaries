@@ -40,7 +40,7 @@ int ssl_cipher_list_to_bytes(int param_1,_STACK *param_2,int param_3,code *param
   }
   if (iVar6 != param_3) {
     if (iVar7 == 0) {
-      iVar5 = (*param_4)(DAT_0007b054,iVar6);
+      iVar5 = (*param_4)(&scsv_21344,iVar6);
       iVar7 = *(int *)(param_1 + 0x104);
       iVar6 = iVar6 + iVar5;
     }
@@ -48,7 +48,7 @@ int ssl_cipher_list_to_bytes(int param_1,_STACK *param_2,int param_3,code *param
       iVar7 = *(int *)(param_1 + 0x104);
     }
     if (iVar7 << 0x18 < 0) {
-      iVar5 = (*param_4)(DAT_0007b058,iVar6);
+      iVar5 = (*param_4)(scsv_21345,iVar6);
       return (iVar6 + iVar5) - param_3;
     }
   }

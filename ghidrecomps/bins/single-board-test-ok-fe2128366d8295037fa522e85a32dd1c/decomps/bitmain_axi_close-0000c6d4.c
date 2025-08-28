@@ -1,8 +1,9 @@
 
-int bitmain_axi_close(void)
+undefined4 bitmain_axi_close(void)
 
 {
   int iVar1;
+  undefined4 extraout_r3;
   
   printf("\n\n--- %s\n","bitmain_axi_close");
   iVar1 = munmap(axi_fpga_addr,0x1200);
@@ -14,8 +15,7 @@ int bitmain_axi_close(void)
     puts("munmap failed!");
   }
   close(cgpu._65576_4_);
-  iVar1 = fd_fpga_mem;
   close(fd_fpga_mem);
-  return iVar1;
+  return extraout_r3;
 }
 

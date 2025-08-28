@@ -39,7 +39,7 @@ undefined4 ssl3_send_newsession_ticket(int param_1)
     if (0xff00 < (int)num) {
       uVar6 = uVar6 | 1;
     }
-    if ((uVar6 != 0) || (in = (uchar *)CRYPTO_malloc(num,DAT_00087ea4,0xd1a), in == (uchar *)0x0)) {
+    if ((uVar6 != 0) || (in = (uchar *)CRYPTO_malloc(num,"s3_srvr.c",0xd1a), in == (uchar *)0x0)) {
       *(undefined4 *)(param_1 + 0x34) = 5;
       return 0xffffffff;
     }

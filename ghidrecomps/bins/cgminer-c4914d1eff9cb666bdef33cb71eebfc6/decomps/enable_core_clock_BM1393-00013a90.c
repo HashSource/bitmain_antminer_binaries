@@ -23,7 +23,7 @@ void enable_core_clock_BM1393(uchar core_id,uchar mode,uchar chain)
   buf[2] = '\0';
   buf[3] = '<';
   buf._4_2_ = (ushort)core_id << 8;
-  buf._4_3_ = CONCAT12(0x84,buf._4_2_);
+  buf[6] = 0x84;
   buf[7] = 0xaa;
   buf[8] = CRC5(buf,'@');
   cmd_buf[0] = ((uint)buf._0_4_ >> 0x10 & 0xff) << 8 |

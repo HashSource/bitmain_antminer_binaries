@@ -44,7 +44,7 @@ int crl_extension_match(X509_CRL *param_1,X509_CRL *param_2,int param_3)
     uVar5 = 0;
   }
   if ((uVar4 & uVar5) == 0) {
-    if ((uVar4 | uVar5) != 0) {
+    if (uVar4 != 0 || uVar5 != 0) {
       return 0;
     }
     uVar4 = ASN1_OCTET_STRING_cmp(a,b);

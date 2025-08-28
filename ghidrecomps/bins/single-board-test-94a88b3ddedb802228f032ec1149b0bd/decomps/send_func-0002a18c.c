@@ -5,10 +5,10 @@ undefined4 send_func(uint param_1)
   uint local_134 [5];
   uint auStack_120 [8];
   uint auStack_100 [13];
-  undefined local_cc;
+  undefined1 local_cc;
   byte local_cb;
-  undefined local_ca;
-  undefined local_c9;
+  undefined1 local_ca;
+  undefined1 local_c9;
   int local_c8;
   byte abStack_c4 [96];
   byte local_64 [52];
@@ -27,7 +27,7 @@ undefined4 send_func(uint param_1)
   memset(local_64,0,0x34);
   local_64[0] = 0xff;
   memset(abStack_c4 + 0x2c,0,0x34);
-  abStack_c4[44] = 0xff;
+  abStack_c4[0x2c] = 0xff;
   memset(auStack_100,0,0x34);
   memset(local_134,0,0x34);
   local_1c = 0;

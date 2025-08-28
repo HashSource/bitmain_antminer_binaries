@@ -17,7 +17,7 @@ LAB_00040c26:
   }
   else {
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:\n",param_1);
       }
@@ -35,7 +35,7 @@ LAB_00040c26:
       if (uVar5 == 0) {
 LAB_00040bda:
         if (3 < log_level) {
-          pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
             fprintf(pFVar2,"  %04x ",uVar5);
           }
@@ -44,7 +44,7 @@ LAB_00040bda:
         }
       }
       else if (3 < log_level) {
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"  %s\n",abStack_3c);
         }
@@ -57,7 +57,7 @@ LAB_00040b4a:
     else {
 LAB_00040b88:
       if (log_level < 4) goto LAB_00040b4a;
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2," %02x",(uint)*param_2);
       }
@@ -82,7 +82,7 @@ LAB_00040b88:
   while (uVar6 != 0) {
     param_3 = param_3 + 1;
     if (3 < uVar5) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fwrite(&DAT_000659d0,1,3,pFVar2);
       }
@@ -93,7 +93,7 @@ LAB_00040b88:
   }
 LAB_00040c2c:
   if (3 < uVar5) {
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
       fprintf(pFVar2,"  %s\n",abStack_3c);
     }

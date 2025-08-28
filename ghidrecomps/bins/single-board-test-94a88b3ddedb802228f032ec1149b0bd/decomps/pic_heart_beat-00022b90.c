@@ -1,5 +1,5 @@
 
-bool pic_heart_beat(undefined param_1)
+bool pic_heart_beat(undefined1 param_1)
 
 {
   int iVar1;

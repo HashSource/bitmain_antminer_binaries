@@ -6,7 +6,7 @@ tm * gmtime_r(time_t *__timer,tm *__tp)
 {
   tm *ptVar1;
   
-  ptVar1 = (tm *)(*(code *)PTR_gmtime_r_001942dc)();
+  ptVar1 = gmtime_r(__timer,__tp);
   return ptVar1;
 }
 

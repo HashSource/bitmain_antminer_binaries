@@ -6,7 +6,7 @@ int sysinfo(sysinfo *__info)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sysinfo_000c0114)();
+  iVar1 = sysinfo(__info);
   return iVar1;
 }
 

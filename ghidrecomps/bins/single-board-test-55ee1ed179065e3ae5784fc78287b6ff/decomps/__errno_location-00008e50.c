@@ -6,9 +6,7 @@ int * __errno_location(void)
 {
   int *piVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x00008e58. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  piVar1 = (int *)(*(code *)PTR_LAB_000354c4)();
+  piVar1 = (int *)(*(code *)(undefined *)0x0)();
   return piVar1;
 }
 

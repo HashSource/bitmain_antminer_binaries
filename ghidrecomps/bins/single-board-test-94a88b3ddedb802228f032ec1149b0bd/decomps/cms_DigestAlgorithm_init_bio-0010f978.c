@@ -15,19 +15,19 @@ BIO * cms_DigestAlgorithm_init_bio(X509_ALGOR *param_1)
   name = OBJ_nid2sn(n);
   parg = EVP_get_digestbyname(name);
   if (parg == (EVP_MD *)0x0) {
-    ERR_put_error(0x2e,0x74,0x95,DAT_0010fa00,0x16a);
+    ERR_put_error(0x2e,0x74,0x95,"cms_lib.c",0x16a);
     bp = (BIO *)0x0;
   }
   else {
     type = BIO_f_md();
     bp = BIO_new(type);
     if (bp == (BIO *)0x0) {
-      ERR_put_error(0x2e,0x74,0x77,DAT_0010fa00,0x16f);
+      ERR_put_error(0x2e,0x74,0x77,"cms_lib.c",0x16f);
     }
     else {
       lVar1 = BIO_ctrl(bp,0x6f,0,parg);
       if (lVar1 == 0) {
-        ERR_put_error(0x2e,0x74,0x77,DAT_0010fa00,0x16f);
+        ERR_put_error(0x2e,0x74,0x77,"cms_lib.c",0x16f);
         BIO_free(bp);
         bp = (BIO *)0x0;
       }

@@ -60,7 +60,7 @@ void devdetails(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
   } while (local_2c[0] < total_devices);
 LAB_00017e40:
   if (iVar2 != 0) {
-    *(undefined *)(param_1 + 0xd) = 1;
+    *(undefined1 *)(param_1 + 0xd) = 1;
   }
   return;
 }

@@ -2,7 +2,7 @@
 void d2i_GOST_CLIENT_KEY_EXCHANGE_PARAMS(ASN1_VALUE **param_1,uchar **param_2,long param_3)
 
 {
-  ASN1_item_d2i(param_1,param_2,param_3,DAT_001167b8);
+  ASN1_item_d2i(param_1,param_2,param_3,(ASN1_ITEM *)GOST_CLIENT_KEY_EXCHANGE_PARAMS_it);
   return;
 }
 

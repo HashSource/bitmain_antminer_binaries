@@ -18,7 +18,7 @@ stack_st_X509 * CMS_get0_signers(CMS_ContentInfo *cms)
     }
   }
   else {
-    ERR_put_error(0x2e,0x85,0x6c,DAT_00110424,0x48);
+    ERR_put_error(0x2e,0x85,0x6c,"cms_sd.c",0x48);
     p_Var5 = (_STACK *)0x0;
   }
   st = (_STACK *)0x0;

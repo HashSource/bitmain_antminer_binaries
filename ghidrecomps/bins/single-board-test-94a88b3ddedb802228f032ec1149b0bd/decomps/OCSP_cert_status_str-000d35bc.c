@@ -2,15 +2,15 @@
 char * OCSP_cert_status_str(long s)
 
 {
-  int *piVar1;
+  undefined1 *puVar1;
   
-  piVar1 = DAT_000d35d8;
+  puVar1 = cstat_tbl_16210;
   do {
-    if (s == *piVar1) {
-      return (char *)piVar1[1];
+    if (s == *(int *)puVar1) {
+      return *(char **)((int)puVar1 + 4);
     }
-    piVar1 = piVar1 + 2;
-  } while (piVar1 < DAT_000d35d8 + 6);
-  return DAT_000d35dc;
+    puVar1 = (undefined1 *)((int)puVar1 + 8);
+  } while (puVar1 < reason_tbl_16214);
+  return "(UNKNOWN)";
 }
 

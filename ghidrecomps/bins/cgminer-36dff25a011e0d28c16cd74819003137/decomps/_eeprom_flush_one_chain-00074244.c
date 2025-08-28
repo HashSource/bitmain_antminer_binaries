@@ -15,8 +15,8 @@ int _eeprom_flush_one_chain(int chain,eeprom_layout_t *eeprom_buf)
   uint8_t *p_buf_tmp;
   uint8_t *p_buf;
   
-  *(undefined *)&eeprom_buf->cgminer_header = 0x97;
-  *(undefined *)((int)&eeprom_buf->cgminer_header + 1) = 0x13;
+  *(undefined1 *)&eeprom_buf->cgminer_header = 0x97;
+  *(undefined1 *)((int)&eeprom_buf->cgminer_header + 1) = 0x13;
   uVar1 = CRC16((uint8_t *)&eeprom_buf->cgminer_header,0xa4);
   eeprom_buf->crc_cgminer = uVar1;
   iVar2 = _eeprom_write_iic_bytes((uint8_t)chain,0x28,0xa6,(uint8_t *)&eeprom_buf->cgminer_header);

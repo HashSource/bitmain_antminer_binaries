@@ -1,8 +1,7 @@
 
-undefined4 extract_sockaddr(char *param_1,char **param_2,undefined4 *param_3)
+undefined4 extract_sockaddr(char *param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
-  undefined2 *__s;
   char cVar1;
   char *pcVar2;
   char *pcVar3;
@@ -12,7 +11,7 @@ undefined4 extract_sockaddr(char *param_1,char **param_2,undefined4 *param_3)
   int iVar7;
   size_t sVar8;
   undefined2 local_128;
-  undefined local_126;
+  undefined1 local_126;
   char acStack_120 [256];
   
   *param_2 = param_1;
@@ -50,26 +49,26 @@ undefined4 extract_sockaddr(char *param_1,char **param_2,undefined4 *param_3)
   }
   snprintf(acStack_120,0xfe,"%.*s",sVar8,param_1);
   if (iVar7 == 0) {
-    local_128 = (undefined2)DAT_00067180;
-    local_126 = (undefined)((uint)DAT_00067180 >> 0x10);
+    local_128 = 0x3038;
+    local_126 = 0;
   }
   else {
-    __s = &local_128;
-    snprintf((char *)__s,6,"%.*s",iVar7,pcVar2);
+    pcVar3 = (char *)&local_128;
+    snprintf(pcVar3,6,"%.*s",iVar7,pcVar2);
     cVar1 = (char)local_128;
     while (cVar1 != '\0') {
       if (cVar1 == '/' || cVar1 == '#') {
-        *(char *)__s = '\0';
+        *pcVar3 = '\0';
         break;
       }
-      __s = (undefined2 *)((int)__s + 1);
-      cVar1 = *(char *)__s;
+      pcVar3 = pcVar3 + 1;
+      cVar1 = *pcVar3;
     }
   }
   uVar6 = __strdup(&local_128);
   *param_3 = uVar6;
-  pcVar2 = (char *)__strdup(acStack_120);
-  *param_2 = pcVar2;
+  uVar6 = __strdup(acStack_120);
+  *param_2 = uVar6;
   return 1;
 }
 

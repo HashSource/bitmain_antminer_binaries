@@ -5,7 +5,6 @@ json_t * json_array(void)
 
 {
   json_t *pjVar1;
-  json_array_t *array;
   void *pvVar2;
   json_t *local_14 [2];
   

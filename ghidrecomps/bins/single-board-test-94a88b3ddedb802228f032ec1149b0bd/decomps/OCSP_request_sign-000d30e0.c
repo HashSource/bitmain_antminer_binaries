@@ -33,13 +33,13 @@ int OCSP_request_sign(OCSP_REQUEST *req,X509 *signer,EVP_PKEY *key,EVP_MD *dgst,
       if (key != (EVP_PKEY *)0x0) {
         iVar1 = X509_check_private_key(signer,key);
         if (iVar1 == 0) {
-          ERR_put_error(0x27,0x6e,0x6e,DAT_000d3224,0xa8);
+          ERR_put_error(0x27,0x6e,0x6e,"ocsp_cl.c",0xa8);
           a_00 = req->optionalSignature;
           goto LAB_000d3148;
         }
-        iVar1 = ASN1_item_sign(DAT_000d3228,req->optionalSignature->signatureAlgorithm,
-                               (X509_ALGOR *)0x0,req->optionalSignature->signature,req->tbsRequest,
-                               key,dgst);
+        iVar1 = ASN1_item_sign((ASN1_ITEM *)OCSP_REQINFO_it,
+                               req->optionalSignature->signatureAlgorithm,(X509_ALGOR *)0x0,
+                               req->optionalSignature->signature,req->tbsRequest,key,dgst);
         if (iVar1 == 0) goto LAB_000d315c;
       }
       if ((int)(flags << 0x1f) < 0) {
@@ -60,7 +60,7 @@ int OCSP_request_sign(OCSP_REQUEST *req,X509 *signer,EVP_PKEY *key,EVP_MD *dgst,
       }
       iVar1 = sk_push(p_Var2,signer);
       if (iVar1 != 0) {
-        CRYPTO_add_lock(&signer->references,1,3,DAT_000d3224,0x8c);
+        CRYPTO_add_lock(&signer->references,1,3,"ocsp_cl.c",0x8c);
 LAB_000d31aa:
         iVar1 = 0;
         do {
@@ -84,7 +84,7 @@ LAB_000d31aa:
             }
             iVar3 = sk_push(p_Var2,data);
             if (iVar3 == 0) break;
-            CRYPTO_add_lock((int *)((int)data + 0x10),1,3,DAT_000d3224,0x8c);
+            CRYPTO_add_lock((int *)((int)data + 0x10),1,3,"ocsp_cl.c",0x8c);
           }
           iVar1 = iVar1 + 1;
         } while( true );

@@ -5,58 +5,63 @@ K_LIST * _k_new_list(char *name,size_t siz,int allocate,int limit,_Bool do_tail,
                     char *func,int line)
 
 {
-  K_LIST *list_00;
   K_LIST *list;
-  cglock_t *__mutex;
+  pthread_mutex_t *__mutex;
   int iVar1;
   int *piVar2;
   char tmp42 [2048];
   
   if (allocate < 1) {
-    snprintf(tmp42,0x800,DAT_0000fc84,name,allocate,DAT_0000fc7c,DAT_0000fc80,100);
+    snprintf(tmp42,0x800,"Invalid new list %s with allocate %d must be > 0 in %s %s():%d",name,
+             allocate,"klist.c","_k_new_list",100);
     _applog(3,tmp42,true);
     _quit(1);
   }
   if (limit < 0) {
-    snprintf(tmp42,0x800,DAT_0000fc88,name,limit,DAT_0000fc7c,DAT_0000fc80,0x67);
+    snprintf(tmp42,0x800,"Invalid new list %s with limit %d must be >= 0 in %s %s():%d",name,limit,
+             "klist.c","_k_new_list",0x67);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  list_00 = (K_LIST *)calloc(1,0x40);
-  if (list_00 == (K_LIST *)0x0) {
-    snprintf(tmp42,0x800,DAT_0000fc90,name,DAT_0000fc7c,DAT_0000fc80,0x6b);
+  list = (K_LIST *)calloc(1,0x40);
+  if (list == (K_LIST *)0x0) {
+    snprintf(tmp42,0x800,"Failed to calloc list %s in %s %s():%d",name,"klist.c","_k_new_list",0x6b)
+    ;
     _applog(3,tmp42,true);
     _quit(1);
   }
-  list_00->is_store = false;
-  __mutex = (cglock_t *)calloc(1,0x38);
-  list_00->lock = __mutex;
-  if (__mutex == (cglock_t *)0x0) {
-    snprintf(tmp42,0x800,DAT_0000fc8c,name,DAT_0000fc7c,DAT_0000fc80,0x71);
+  list->is_store = false;
+  __mutex = (pthread_mutex_t *)calloc(1,0x38);
+  list->lock = (cglock_t *)__mutex;
+  if (__mutex == (pthread_mutex_t *)0x0) {
+    snprintf(tmp42,0x800,"Failed to calloc lock for list %s in %s %s():%d",name,"klist.c",
+             "_k_new_list",0x71);
     _applog(3,tmp42,true);
     _quit(1);
-    __mutex = list_00->lock;
+    __mutex = (pthread_mutex_t *)list->lock;
   }
-  iVar1 = pthread_mutex_init((pthread_mutex_t *)__mutex,(pthread_mutexattr_t *)0x0);
+  iVar1 = pthread_mutex_init(__mutex,(pthread_mutexattr_t *)0x0);
   if (iVar1 != 0) {
     piVar2 = __errno_location();
-    snprintf(tmp42,0x800,DAT_0000fc98,*piVar2,DAT_0000fc7c,DAT_0000fc80,0x73);
+    snprintf(tmp42,0x800,"Failed to pthread_mutex_init errno=%d in %s %s():%d",*piVar2,"klist.c",
+             "_k_new_list",0x73);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  iVar1 = pthread_rwlock_init((pthread_rwlock_t *)&__mutex->rwlock,(pthread_rwlockattr_t *)0x0);
+  iVar1 = pthread_rwlock_init((pthread_rwlock_t *)(__mutex + 1),(pthread_rwlockattr_t *)0x0);
   if (iVar1 != 0) {
     piVar2 = __errno_location();
-    snprintf(tmp42,0x800,DAT_0000fc94,*piVar2,DAT_0000fc7c,DAT_0000fc80,0x73);
+    snprintf(tmp42,0x800,"Failed to pthread_rwlock_init errno=%d in %s %s():%d",*piVar2,"klist.c",
+             "_k_new_list",0x73);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  list_00->name = name;
-  list_00->siz = siz;
-  list_00->allocate = allocate;
-  list_00->limit = limit;
-  list_00->do_tail = do_tail;
-  k_alloc_items(list_00,file,func,line);
-  return list_00;
+  list->name = name;
+  list->siz = siz;
+  list->allocate = allocate;
+  list->limit = limit;
+  list->do_tail = do_tail;
+  k_alloc_items(list,file,func,line);
+  return list;
 }
 

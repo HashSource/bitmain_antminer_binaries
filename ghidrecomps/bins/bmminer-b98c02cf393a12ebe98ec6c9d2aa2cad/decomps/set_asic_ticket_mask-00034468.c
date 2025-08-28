@@ -39,7 +39,7 @@ void set_asic_ticket_mask(uint param_1)
       if ((opt_debug != '\0') &&
          (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
         snprintf(acStack_828,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
-                 DAT_00034608,0x86,0x10,param_1 & 0x1f,uVar6);
+                 "set_asic_ticket_mask",0x86,0x10,param_1 & 0x1f,uVar6);
         _applog(7,acStack_828,0);
       }
       local_834 = local_840 << 0x18 | (local_840 >> 8 & 0xff) << 0x10 |

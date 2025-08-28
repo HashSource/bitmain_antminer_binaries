@@ -5,7 +5,6 @@ void opt_show_charp(char *buf,char **p)
 
 {
   size_t __n;
-  size_t len;
   
   __n = strlen(*p);
   *buf = '\"';

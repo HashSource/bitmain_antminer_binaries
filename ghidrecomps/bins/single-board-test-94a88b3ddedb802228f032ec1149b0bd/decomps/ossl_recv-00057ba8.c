@@ -32,7 +32,7 @@ uint ossl_recv(undefined4 *param_1,int param_2,void *param_3,int param_4,undefin
         pcVar2 = ERR_error_string(e,acStack_90);
         piVar3 = __errno_location();
         ret_code = 0xffffffff;
-        Curl_failf(uVar4,DAT_00057c58,pcVar2,*piVar3);
+        Curl_failf(uVar4,"SSL read: %s, errno %d",pcVar2,*piVar3);
         *param_5 = 0x38;
       }
       break;

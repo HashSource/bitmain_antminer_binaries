@@ -29,7 +29,7 @@ void get_mac(undefined4 *param_1,uint param_2,undefined4 *param_3)
   }
   else {
     uVar7 = uVar6 >> 2;
-    uVar3 = uVar6 & 0xfffffffc;
+    uVar3 = uVar7 << 2;
     if (uVar7 == 0 ||
         ((((uint)param_3 | (uint)param_1) & 3) != 0 ||
         (uVar6 < 4 || param_3 < param_1 + 1 && param_1 < param_3 + 1))) {
@@ -73,7 +73,7 @@ void get_mac(undefined4 *param_1,uint param_2,undefined4 *param_3)
       if (uVar6 == uVar3) goto LAB_0011498e;
     }
     do {
-      *(undefined *)((int)param_3 + uVar3) = *(undefined *)((int)param_1 + uVar3);
+      *(undefined1 *)((int)param_3 + uVar3) = *(undefined1 *)((int)param_1 + uVar3);
       uVar3 = uVar3 + 1;
     } while ((int)uVar3 < (int)uVar6);
   }

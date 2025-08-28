@@ -13,7 +13,7 @@ X509 * ssl2_set_certificate(int param_1,undefined4 param_2,long param_3,uchar *p
   local_1c = param_4;
   x = d2i_X509((X509 **)0x0,&local_1c,param_3);
   if (x == (X509 *)0x0) {
-    ERR_put_error(0x14,0x7e,0xb,DAT_00063c38,0x3f3);
+    ERR_put_error(0x14,0x7e,0xb,"s2_clnt.c",0x3f3);
     pXVar3 = (X509 *)0x0;
     pkey = (EVP_PKEY *)0x0;
     st = (_STACK *)0x0;
@@ -22,7 +22,7 @@ X509 * ssl2_set_certificate(int param_1,undefined4 param_2,long param_3,uchar *p
     st = sk_new_null();
     if ((st == (_STACK *)0x0) || (iVar1 = sk_push(st,x), iVar1 == 0)) {
       pkey = (EVP_PKEY *)0x0;
-      ERR_put_error(0x14,0x7e,0x41,DAT_00063c38,0x3f8);
+      ERR_put_error(0x14,0x7e,0x41,"s2_clnt.c",0x3f8);
       pXVar3 = (X509 *)0x0;
     }
     else {
@@ -42,11 +42,11 @@ X509 * ssl2_set_certificate(int param_1,undefined4 param_2,long param_3,uchar *p
             iVar2 = *(int *)(param_1 + 0xc0);
           }
           *(int *)(iVar2 + 0x98) = iVar1;
-          *(X509 **)(iVar1 + 0xc) = x;
-          *(X509 ***)(iVar1 + 8) = (X509 **)(iVar1 + 0xc);
+          *(undefined4 *)(iVar1 + 0xc) = x;
+          *(undefined4 **)(iVar1 + 8) = (undefined4 *)(iVar1 + 0xc);
           pkey = X509_get_pubkey(x);
           if (pkey == (EVP_PKEY *)0x0) {
-            ERR_put_error(0x14,0x7e,0xed,DAT_00063c38,0x416);
+            ERR_put_error(0x14,0x7e,0xed,"s2_clnt.c",0x416);
             x = (X509 *)0x0;
             pXVar3 = (X509 *)0x0;
           }
@@ -60,14 +60,14 @@ X509 * ssl2_set_certificate(int param_1,undefined4 param_2,long param_3,uchar *p
           }
           else {
             x = (X509 *)0x0;
-            ERR_put_error(0x14,0x7e,0xd2,DAT_00063c38,0x41a);
+            ERR_put_error(0x14,0x7e,0xd2,"s2_clnt.c",0x41a);
             pXVar3 = x;
           }
         }
       }
       else {
         pXVar3 = (X509 *)0x0;
-        ERR_put_error(0x14,0x7e,0x86,DAT_00063c38,0x3ff);
+        ERR_put_error(0x14,0x7e,0x86,"s2_clnt.c",0x3ff);
         pkey = (EVP_PKEY *)0x0;
       }
     }

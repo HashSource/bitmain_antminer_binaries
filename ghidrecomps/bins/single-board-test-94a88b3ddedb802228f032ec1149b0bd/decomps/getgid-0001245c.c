@@ -6,7 +6,7 @@ __gid_t getgid(void)
 {
   __gid_t _Var1;
   
-  _Var1 = (*(code *)PTR_getgid_00194384)();
+  _Var1 = getgid();
   return _Var1;
 }
 

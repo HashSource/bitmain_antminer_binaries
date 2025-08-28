@@ -13,9 +13,9 @@ tls1_export_keying_material
   undefined4 uVar3;
   undefined4 uVar4;
   
-  ptr = CRYPTO_malloc(param_3,DAT_00075258,0x4b2);
+  ptr = CRYPTO_malloc(param_3,"t1_enc.c",0x4b2);
   if (ptr == (void *)0x0) {
-    ERR_put_error(0x14,0x13a,0x41,DAT_00075258,0x4fc);
+    ERR_put_error(0x14,0x13a,0x41,"t1_enc.c",0x4fc);
     uVar1 = 0;
   }
   else {
@@ -23,9 +23,9 @@ tls1_export_keying_material
     if (param_8 != 0) {
       len = param_5 + 0x42 + param_7;
     }
-    __dest = CRYPTO_malloc(len,DAT_00075258,0x4c0);
+    __dest = CRYPTO_malloc(len,"t1_enc.c",0x4c0);
     if (__dest == (void *)0x0) {
-      ERR_put_error(0x14,0x13a,0x41,DAT_00075258,0x4fc);
+      ERR_put_error(0x14,0x13a,0x41,"t1_enc.c",0x4fc);
       CRYPTO_free(ptr);
       uVar1 = 0;
     }
@@ -68,12 +68,12 @@ tls1_export_keying_material
           memcpy((void *)((int)__dest + param_5 + 0x42),param_6,param_7);
         }
       }
-      iVar2 = memcmp(__dest,DAT_0007525c,0xf);
-      if ((((iVar2 == 0) || (iVar2 = memcmp(__dest,DAT_00075260,0xf), iVar2 == 0)) ||
-          (iVar2 = memcmp(__dest,DAT_00075264,0xd), iVar2 == 0)) ||
-         (iVar2 = memcmp(__dest,DAT_00075268,0xd), iVar2 == 0)) {
+      iVar2 = memcmp(__dest,"client finished",0xf);
+      if ((((iVar2 == 0) || (iVar2 = memcmp(__dest,"server finished",0xf), iVar2 == 0)) ||
+          (iVar2 = memcmp(__dest,"master secret",0xd), iVar2 == 0)) ||
+         (iVar2 = memcmp(__dest,"key expansion",0xd), iVar2 == 0)) {
         uVar1 = 0;
-        ERR_put_error(0x14,0x13a,0x16f,DAT_00075258,0x4f8);
+        ERR_put_error(0x14,0x13a,0x16f,"t1_enc.c",0x4f8);
       }
       else {
         uVar1 = ssl_get_algorithm2(param_1);

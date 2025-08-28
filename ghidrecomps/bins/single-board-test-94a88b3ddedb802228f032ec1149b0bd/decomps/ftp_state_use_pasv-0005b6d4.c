@@ -10,18 +10,18 @@ int ftp_state_use_pasv(undefined4 *param_1)
       iVar2 = 1;
     }
     else {
-      *(undefined *)((int)param_1 + 0x1fd) = 1;
+      *(undefined1 *)((int)param_1 + 0x1fd) = 1;
       iVar2 = 0;
     }
   }
   else {
     iVar2 = 0;
   }
-  iVar1 = Curl_pp_sendf(param_1 + 0xf0,DAT_0005b724,DAT_0005b720 + iVar2 * 5);
+  iVar1 = Curl_pp_sendf(param_1 + 0xf0,"%s",&mode_23574 + iVar2 * 5);
   if (iVar1 == 0) {
     param_1[0x107] = iVar2;
     param_1[0x10a] = 0x1e;
-    Curl_infof(*param_1,DAT_0005b728);
+    Curl_infof(*param_1,"Connect data stream passively\n");
   }
   return iVar1;
 }

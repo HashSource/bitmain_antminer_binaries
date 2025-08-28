@@ -1,5 +1,5 @@
 
-BIGNUM * bn_new(BIGNUM **param_1)
+BIGNUM * bn_new(undefined4 *param_1)
 
 {
   BIGNUM *pBVar1;

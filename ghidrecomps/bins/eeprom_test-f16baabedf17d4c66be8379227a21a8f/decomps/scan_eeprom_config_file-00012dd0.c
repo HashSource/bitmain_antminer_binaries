@@ -2,7 +2,9 @@
 _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9])
 
 {
+  FILE *__stream;
   size_t sVar1;
+  char *__s;
   char *pcVar2;
   uint16_t (*freq_data_local) [12] [9];
   char *conf_file_path_local;
@@ -22,8 +24,8 @@ _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9
   int freq_set_num;
   _Bool ret;
   
-  fp = (FILE *)fopen(conf_file_path,"r");
-  if (fp == (FILE *)0x0) {
+  __stream = fopen(conf_file_path,"r");
+  if (__stream == (FILE *)0x0) {
     printf("%s : dose not exist, will use default freq configure\n",conf_file_path);
     for (i = 0; i < 0x10; i = i + 1) {
       if (chain_list[i] != 0) {
@@ -35,16 +37,16 @@ _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9
     ret = true;
   }
   else {
-    fseek((FILE *)fp,0,2);
-    file_length = ftell((FILE *)fp);
-    fseek((FILE *)fp,0,0);
-    file_buf = (char *)malloc(file_length);
-    if (file_buf == (char *)0x0) {
+    fseek(__stream,0,2);
+    sVar1 = ftell(__stream);
+    fseek(__stream,0,0);
+    __s = (char *)malloc(sVar1);
+    if (__s == (char *)0x0) {
       perror("failed to allocate memory for file_buf!\n");
       ret = false;
     }
     else {
-      memset(file_buf,0,file_length);
+      memset(__s,0,sVar1);
       for (i_1 = 0; i_1 < 0x10; i_1 = i_1 + 1) {
         pcVar2 = (char *)malloc(0x400);
         chain_msg_ptr[i_1] = pcVar2;
@@ -54,10 +56,10 @@ _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9
         }
         memset(chain_msg_ptr[i_1],0,0x400);
       }
-      fread(file_buf,file_length,1,(FILE *)fp);
+      fread(__s,sVar1,1,__stream);
       j = 1;
-      for (i_2 = 0; i_2 < file_length; i_2 = i_2 + 1) {
-        if ((file_buf[i_2] == '\n') && (file_buf[i_2 + 1] == '\n')) {
+      for (i_2 = 0; i_2 < (int)sVar1; i_2 = i_2 + 1) {
+        if ((__s[i_2] == '\n') && (__s[i_2 + 1] == '\n')) {
           chain_msg_len[j] = i_2;
           j = j + 1;
           freq_set_num = j;
@@ -65,10 +67,10 @@ _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9
         }
       }
       chain_msg_len[0] = 0;
-      sVar1 = strlen(file_buf);
+      sVar1 = strlen(__s);
       chain_msg_len[freq_set_num] = sVar1;
       for (i_3 = 0; i_3 < freq_set_num; i_3 = i_3 + 1) {
-        strncpy(chain_msg_ptr[i_3],file_buf + chain_msg_len[i_3],
+        strncpy(chain_msg_ptr[i_3],__s + chain_msg_len[i_3],
                 chain_msg_len[i_3 + 1] - chain_msg_len[i_3]);
         pcVar2 = strstr(chain_msg_ptr[i_3],"\n\n");
         if (pcVar2 != (char *)0x0) {
@@ -85,8 +87,8 @@ _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9
           travel_array(freq_data[i_4]);
         }
       }
-      if (file_buf != (char *)0x0) {
-        free(file_buf);
+      if (__s != (char *)0x0) {
+        free(__s);
       }
       for (i_5 = 0; i_5 < 0x10; i_5 = i_5 + 1) {
         if (chain_msg_ptr[i_5] != (char *)0x0) {
@@ -94,7 +96,7 @@ _Bool scan_eeprom_config_file(char *conf_file_path,uint16_t (*freq_data) [12] [9
           chain_msg_ptr[i_5] = (char *)0x0;
         }
       }
-      fclose((FILE *)fp);
+      fclose(__stream);
     }
   }
   return ret;

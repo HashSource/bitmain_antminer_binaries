@@ -4,7 +4,7 @@ undefined4 Curl_gmtime(time_t param_1,tm *param_2)
 {
   tm *ptVar1;
   undefined4 uVar2;
-  time_t local_c [3];
+  time_t local_c [2];
   
   local_c[0] = param_1;
   ptVar1 = gmtime_r(local_c,param_2);

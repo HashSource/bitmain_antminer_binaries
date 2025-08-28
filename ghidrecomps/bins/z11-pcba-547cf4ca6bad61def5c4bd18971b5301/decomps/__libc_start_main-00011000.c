@@ -2,7 +2,7 @@
 void __libc_start_main(void)
 
 {
-  (*(code *)PTR___libc_start_main_00046e3c)();
+  __libc_start_main();
   return;
 }
 

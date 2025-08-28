@@ -1,5 +1,5 @@
 
-void AT24C02_write_bytes(byte param_1,int param_2,undefined param_3,uint param_4)
+void AT24C02_write_bytes(byte param_1,int param_2,undefined1 param_3,uint param_4)
 
 {
   uint local_c;
@@ -8,7 +8,8 @@ void AT24C02_write_bytes(byte param_1,int param_2,undefined param_3,uint param_4
   if (param_4 + param_1 < 0x101) {
     for (local_c = 0; local_c < param_4; local_c = local_c + 1) {
       AT24C02_write_one_byte
-                ((uint)param_1 + (local_c & 0xff) & 0xff,*(undefined *)(local_c + param_2),param_3);
+                ((uint)param_1 + (local_c & 0xff) & 0xff,*(undefined1 *)(local_c + param_2),param_3)
+      ;
       usleep(5000);
     }
   }

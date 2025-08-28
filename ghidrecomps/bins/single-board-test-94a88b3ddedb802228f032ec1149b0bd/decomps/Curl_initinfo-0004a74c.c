@@ -20,14 +20,14 @@ undefined4 Curl_initinfo(int param_1)
   *(undefined4 *)(param_1 + 0x86f4) = 0;
   *(undefined4 *)(param_1 + 0x86f8) = 0;
   *(undefined4 *)(param_1 + 0x86fc) = 0;
-  *(undefined *)(param_1 + 0x8704) = 0;
+  *(undefined1 *)(param_1 + 0x8704) = 0;
   (*Curl_cfree)(*(undefined4 *)(param_1 + 0x871c));
   *(undefined4 *)(param_1 + 0x871c) = 0;
   *(undefined4 *)(param_1 + 0x8708) = 0;
   *(undefined4 *)(param_1 + 0x870c) = 0;
   *(undefined4 *)(param_1 + 0x8718) = 0;
-  *(undefined *)(param_1 + 0x8724) = 0;
-  *(undefined *)(param_1 + 0x8758) = 0;
+  *(undefined1 *)(param_1 + 0x8724) = 0;
+  *(undefined1 *)(param_1 + 0x8758) = 0;
   *(undefined4 *)(param_1 + 0x8754) = 0;
   *(undefined4 *)(param_1 + 0x8788) = 0;
   return 0;

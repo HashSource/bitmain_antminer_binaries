@@ -3,7 +3,7 @@ int Curl_ossl_check_cxn(int param_1)
 
 {
   int iVar1;
-  undefined auStack_9 [9];
+  undefined1 auStack_9 [5];
   
   iVar1 = SSL_peek(*(SSL **)(param_1 + 0x188),auStack_9,1);
   if (iVar1 < 1) {

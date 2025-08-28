@@ -9,48 +9,41 @@ hwcrhk_load_privkey(ENGINE *param_1,undefined4 param_2,undefined4 param_3,undefi
   BIGNUM *pBVar2;
   EVP_PKEY *pkey;
   ulong *puVar3;
-  int iVar4;
-  uint uVar5;
+  uint uVar4;
   ulong *local_440;
   uint local_43c;
   ulong *local_438;
   uint local_434;
-  undefined *local_430;
+  undefined1 *local_430;
   undefined4 local_42c;
   undefined4 local_428;
   undefined4 local_424;
-  undefined auStack_420 [1024];
+  undefined1 auStack_420 [1024];
   
-  iVar4 = DAT_000dc9b4;
   local_430 = auStack_420;
   local_42c = 0x400;
-  if (*(int *)(DAT_000dc9b4 + 0x14) == 0) {
-    iVar1 = *(int *)(DAT_000dc9b4 + 0x1c);
-    if (iVar1 == 0) {
-      iVar1 = ERR_get_next_error_library();
-      *(int *)(iVar4 + 0x1c) = iVar1;
+  if (hwcrhk_context == 0) {
+    if (HWCRHK_lib_error_code == 0) {
+      HWCRHK_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar1,0x69,0x6a,DAT_000dc9b8,0x316);
+    ERR_put_error(HWCRHK_lib_error_code,0x69,0x6a,"e_chil.c",0x316);
   }
   else {
-    arg = (int *)CRYPTO_malloc(4,DAT_000dc9b8,0x31a);
+    arg = (int *)CRYPTO_malloc(4,"e_chil.c",0x31a);
     if (arg == (int *)0x0) {
-      iVar1 = *(int *)(iVar4 + 0x1c);
-      if (iVar1 == 0) {
-        iVar1 = ERR_get_next_error_library();
-        *(int *)(iVar4 + 0x1c) = iVar1;
+      if (HWCRHK_lib_error_code == 0) {
+        HWCRHK_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error(iVar1,0x69,0x41,DAT_000dc9b8,0x31c);
+      ERR_put_error(HWCRHK_lib_error_code,0x69,0x41,"e_chil.c",0x31c);
     }
     else {
       local_428 = param_3;
       local_424 = param_4;
-      iVar1 = (**(code **)(iVar4 + 0x30))
-                        (*(undefined4 *)(iVar4 + 0x14),param_2,arg,&local_430,&local_428);
+      iVar1 = (*p_hwcrhk_RSALoadKey)(hwcrhk_context,param_2,arg,&local_430,&local_428);
       if (iVar1 == 0) {
         if (*arg != 0) {
           r = RSA_new_method(param_1);
-          RSA_set_ex_data(r,*DAT_000dc9bc,arg);
+          RSA_set_ex_data(r,hndidx_rsa,arg);
           pBVar2 = BN_new();
           r->e = pBVar2;
           pBVar2 = BN_new();
@@ -61,7 +54,7 @@ hwcrhk_load_privkey(ENGINE *param_1,undefined4 param_2,undefined4 param_3,undefi
           r->n = pBVar2;
           local_43c = iVar1 << 2;
           r->flags = r->flags | 0x20;
-          iVar1 = (**(code **)(iVar4 + 0x34))(*arg,&local_438,&local_440,&local_430);
+          iVar1 = (*p_hwcrhk_RSAGetPublicKey)(*arg,&local_438,&local_440,&local_430);
           if (iVar1 == -3) {
             bn_expand2(r->e,local_43c >> 2);
             bn_expand2(r->n,local_434 >> 2);
@@ -69,80 +62,69 @@ hwcrhk_load_privkey(ENGINE *param_1,undefined4 param_2,undefined4 param_3,undefi
             local_438 = r->n->d;
             local_43c = r->e->dmax << 2;
             local_434 = r->n->dmax << 2;
-            iVar1 = (**(code **)(iVar4 + 0x34))(*arg,&local_438,&local_440,&local_430);
+            iVar1 = (*p_hwcrhk_RSAGetPublicKey)(*arg,&local_438,&local_440,&local_430);
             if (iVar1 == 0) {
               pBVar2 = r->e;
-              uVar5 = local_43c >> 2;
-              pBVar2->top = uVar5;
-              if (uVar5 != 0) {
-                puVar3 = pBVar2->d + (uVar5 - 1);
+              uVar4 = local_43c >> 2;
+              pBVar2->top = uVar4;
+              if (uVar4 != 0) {
+                puVar3 = pBVar2->d + (uVar4 - 1);
                 do {
                   if (*puVar3 != 0) break;
-                  uVar5 = uVar5 - 1;
+                  uVar4 = uVar4 - 1;
                   puVar3 = puVar3 + -1;
-                } while (uVar5 != 0);
-                pBVar2->top = uVar5;
+                } while (uVar4 != 0);
+                pBVar2->top = uVar4;
               }
               pBVar2 = r->n;
-              uVar5 = local_434 >> 2;
-              pBVar2->top = uVar5;
-              if (uVar5 != 0) {
-                puVar3 = pBVar2->d + (uVar5 - 1);
+              uVar4 = local_434 >> 2;
+              pBVar2->top = uVar4;
+              if (uVar4 != 0) {
+                puVar3 = pBVar2->d + (uVar4 - 1);
                 do {
                   if (*puVar3 != 0) break;
-                  uVar5 = uVar5 - 1;
+                  uVar4 = uVar4 - 1;
                   puVar3 = puVar3 + -1;
-                } while (uVar5 != 0);
-                pBVar2->top = uVar5;
+                } while (uVar4 != 0);
+                pBVar2->top = uVar4;
               }
               pkey = EVP_PKEY_new();
               EVP_PKEY_assign(pkey,6,r);
-              iVar1 = DAT_000dc9b4;
               if (pkey != (EVP_PKEY *)0x0) {
                 return pkey;
               }
-              iVar4 = *(int *)(iVar4 + 0x1c);
-              if (iVar4 == 0) {
-                iVar4 = ERR_get_next_error_library();
-                *(int *)(iVar1 + 0x1c) = iVar4;
+              if (HWCRHK_lib_error_code == 0) {
+                HWCRHK_lib_error_code = ERR_get_next_error_library();
               }
-              ERR_put_error(iVar4,0x69,0x6e,DAT_000dc9b8,0x34f);
+              ERR_put_error(HWCRHK_lib_error_code,0x69,0x6e,"e_chil.c",0x34f);
               return (EVP_PKEY *)0x0;
             }
-            iVar1 = *(int *)(iVar4 + 0x1c);
-            if (iVar1 == 0) {
-              iVar1 = ERR_get_next_error_library();
-              *(int *)(iVar4 + 0x1c) = iVar1;
+            if (HWCRHK_lib_error_code == 0) {
+              HWCRHK_lib_error_code = ERR_get_next_error_library();
             }
-            iVar4 = 0x340;
+            iVar1 = 0x340;
           }
           else {
-            iVar1 = *(int *)(iVar4 + 0x1c);
-            if (iVar1 == 0) {
-              iVar1 = ERR_get_next_error_library();
-              *(int *)(iVar4 + 0x1c) = iVar1;
+            if (HWCRHK_lib_error_code == 0) {
+              HWCRHK_lib_error_code = ERR_get_next_error_library();
             }
-            iVar4 = 0x335;
+            iVar1 = 0x335;
           }
-          ERR_put_error(iVar1,0x69,0x66,DAT_000dc9b8,iVar4);
+          ERR_put_error(HWCRHK_lib_error_code,0x69,0x66,"e_chil.c",iVar1);
           ERR_add_error_data(1,local_430);
           RSA_free(r);
           return (EVP_PKEY *)0x0;
         }
-        iVar1 = *(int *)(iVar4 + 0x1c);
-        if (iVar1 == 0) {
-          iVar1 = ERR_get_next_error_library();
-          *(int *)(iVar4 + 0x1c) = iVar1;
+        if (HWCRHK_lib_error_code == 0) {
+          HWCRHK_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error(iVar1,0x69,0x6d,DAT_000dc9b8,0x327);
+        ERR_put_error(HWCRHK_lib_error_code,0x69,0x6d,"e_chil.c",0x327);
       }
       else {
-        iVar1 = *(int *)(iVar4 + 0x1c);
-        if (iVar1 == 0) {
-          iVar1 = ERR_get_next_error_library();
-          *(int *)(iVar4 + 0x1c) = iVar1;
+        if (HWCRHK_lib_error_code == 0) {
+          HWCRHK_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error(iVar1,0x69,0x66,DAT_000dc9b8,0x322);
+        ERR_put_error(HWCRHK_lib_error_code,0x69,0x66,"e_chil.c",0x322);
         ERR_add_error_data(1,local_430);
       }
     }

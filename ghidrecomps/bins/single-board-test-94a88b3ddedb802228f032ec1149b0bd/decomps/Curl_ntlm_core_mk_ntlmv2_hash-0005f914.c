@@ -4,20 +4,20 @@ Curl_ntlm_core_mk_ntlmv2_hash
           (int param_1,int param_2,int param_3,int param_4,undefined4 param_5,undefined4 param_6)
 
 {
-  undefined uVar1;
-  undefined *puVar2;
+  undefined1 uVar1;
+  undefined1 *puVar2;
   __int32_t **pp_Var3;
   undefined4 uVar4;
-  undefined *puVar5;
-  undefined *puVar6;
+  undefined1 *puVar5;
+  undefined1 *puVar6;
   byte *pbVar7;
   __int32_t _Var8;
   int iVar9;
-  undefined *puVar10;
+  undefined1 *puVar10;
   
   iVar9 = (param_4 + param_2) * 2;
-  puVar2 = (undefined *)(**DAT_0005f9a8)(iVar9);
-  if (puVar2 == (undefined *)0x0) {
+  puVar2 = (undefined1 *)(*Curl_cmalloc)(iVar9);
+  if (puVar2 == (undefined1 *)0x0) {
     uVar4 = 0x1b;
   }
   else {
@@ -37,7 +37,7 @@ Curl_ntlm_core_mk_ntlmv2_hash
     puVar5 = puVar2 + param_2;
     if (param_4 != 0) {
       puVar10 = puVar5 + param_4 * 2;
-      puVar6 = (undefined *)(param_3 + -1);
+      puVar6 = (undefined1 *)(param_3 + -1);
       do {
         puVar6 = puVar6 + 1;
         uVar1 = *puVar6;
@@ -48,7 +48,7 @@ Curl_ntlm_core_mk_ntlmv2_hash
     }
     uVar4 = curlx_uztoui(iVar9);
     uVar4 = Curl_hmac_md5(param_5,0x10,puVar2,uVar4,param_6);
-    (**DAT_0005f9ac)(puVar2);
+    (*Curl_cfree)(puVar2);
   }
   return uVar4;
 }

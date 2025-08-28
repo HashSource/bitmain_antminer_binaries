@@ -3,7 +3,7 @@ void _mutex_lock_part_47_constprop_75(undefined4 param_1,undefined4 param_2)
 
 {
   int *piVar1;
-  char acStack_808 [2056];
+  char acStack_808 [2052];
   
   piVar1 = __errno_location();
   snprintf(acStack_808,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar1,"cgminer.c",

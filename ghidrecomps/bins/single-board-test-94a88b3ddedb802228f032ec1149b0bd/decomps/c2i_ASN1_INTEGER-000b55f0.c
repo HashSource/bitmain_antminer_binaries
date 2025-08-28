@@ -20,10 +20,10 @@ ASN1_INTEGER * c2i_ASN1_INTEGER(ASN1_INTEGER **a,uchar **pp,long length)
     a_00->type = 2;
   }
   __src = *pp;
-  __dest = (byte *)CRYPTO_malloc(length + 1,DAT_000b5740,0xd0);
+  __dest = (byte *)CRYPTO_malloc(length + 1,"a_int.c",0xd0);
   pbVar4 = __src + length;
   if (__dest == (byte *)0x0) {
-    ERR_put_error(0xd,0xc2,0x41,DAT_000b5740,0x10d);
+    ERR_put_error(0xd,0xc2,0x41,"a_int.c",0x10d);
     if ((a != (ASN1_INTEGER **)0x0) && (*a == a_00)) {
       return (ASN1_INTEGER *)0x0;
     }

@@ -56,7 +56,7 @@ SSL_CTX_add_server_custom_ext
       addr = *(ushort **)(iVar5 + 0x164);
       if (iVar3 == 0) {
 LAB_000755c2:
-        pvVar1 = CRYPTO_realloc(addr,(iVar3 + 1) * 0x18,DAT_00075628,0xe4);
+        pvVar1 = CRYPTO_realloc(addr,(iVar3 + 1) * 0x18,"t1_ext.c",0xe4);
         *(void **)(iVar5 + 0x164) = pvVar1;
         if (pvVar1 != (void *)0x0) {
           iVar4 = *(int *)(iVar5 + 0x168) * 0x18;

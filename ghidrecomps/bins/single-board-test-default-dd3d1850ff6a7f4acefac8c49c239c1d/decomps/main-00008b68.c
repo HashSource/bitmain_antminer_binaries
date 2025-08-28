@@ -3,7 +3,7 @@ int main(void)
 
 {
   char local_50 [64];
-  ssize_t local_10;
+  int local_10;
   undefined4 local_c;
   
   local_c = 0xffffffff;

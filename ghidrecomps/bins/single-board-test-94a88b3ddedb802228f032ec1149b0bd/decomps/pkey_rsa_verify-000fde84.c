@@ -17,7 +17,7 @@ int pkey_rsa_verify(int param_1,uchar *param_2,uint param_3,uchar *param_4,uint 
     puVar2 = *(uchar **)(iVar3 + 0x20);
     if (puVar2 == (uchar *)0x0) {
       iVar4 = EVP_PKEY_size(pkey);
-      puVar2 = (uchar *)CRYPTO_malloc(iVar4,DAT_000fdf80,0x9c);
+      puVar2 = (uchar *)CRYPTO_malloc(iVar4,"rsa_pmeth.c",0x9c);
       *(uchar **)(iVar3 + 0x20) = puVar2;
       if (puVar2 == (uchar *)0x0) {
         return -1;
@@ -42,7 +42,7 @@ int pkey_rsa_verify(int param_1,uchar *param_2,uint param_3,uchar *param_4,uint 
       puVar2 = *(uchar **)(iVar3 + 0x20);
       if (puVar2 == (uchar *)0x0) {
         iVar4 = EVP_PKEY_size(pkey);
-        puVar2 = (uchar *)CRYPTO_malloc(iVar4,DAT_000fdf80,0x9c);
+        puVar2 = (uchar *)CRYPTO_malloc(iVar4,"rsa_pmeth.c",0x9c);
         *(uchar **)(iVar3 + 0x20) = puVar2;
         if (puVar2 == (uchar *)0x0) {
           return -1;

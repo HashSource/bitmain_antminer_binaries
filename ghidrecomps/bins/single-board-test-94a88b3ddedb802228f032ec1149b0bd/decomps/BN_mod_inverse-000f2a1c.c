@@ -103,7 +103,7 @@ LAB_000f2ee2:
           if (pBVar6 != (BIGNUM *)0x0) goto LAB_000f2b7c;
         }
         else {
-          ERR_put_error(3,0x8b,0x6c,DAT_000f3038,0x2b2);
+          ERR_put_error(3,0x8b,0x6c,"bn_gcd.c",0x2b2);
         }
         goto joined_r0x000f2c5c;
       }
@@ -237,7 +237,7 @@ LAB_000f2d22:
           if (pBVar6 != (BIGNUM *)0x0) goto LAB_000f2b7c;
         }
         else {
-          ERR_put_error(3,0x6e,0x6c,DAT_000f3038,0x20d);
+          ERR_put_error(3,0x6e,0x6c,"bn_gcd.c",0x20d);
         }
       }
       else {

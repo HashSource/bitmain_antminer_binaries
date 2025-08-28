@@ -42,7 +42,7 @@ LAB_000dfff8:
   }
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0) {
-    ERR_GOST_error(0x70,0x41,DAT_000e0174,0x3d);
+    ERR_GOST_error(0x70,0x41,"gost_sign.c",0x3d);
     BN_free(a);
     a_00 = (DSA_SIG *)0x0;
   }
@@ -50,14 +50,14 @@ LAB_000dfff8:
     BN_CTX_start(ctx);
     a_00 = DSA_SIG_new();
     if (a_00 == (DSA_SIG *)0x0) {
-      ERR_GOST_error(0x70,0x76,DAT_000e0174,0x43);
+      ERR_GOST_error(0x70,0x76,"gost_sign.c",0x43);
     }
     else {
       rem = BN_CTX_get(ctx);
       rnd = BN_CTX_get(ctx);
       r = BN_CTX_get(ctx);
       if ((rem == (BIGNUM *)0x0 || rnd == (BIGNUM *)0x0) || (r == (BIGNUM *)0x0)) {
-        ERR_GOST_error(0x70,0x41,DAT_000e0174,0x4a);
+        ERR_GOST_error(0x70,0x41,"gost_sign.c",0x4a);
 LAB_000e00b0:
         BN_free(a);
         BN_CTX_end(ctx);
@@ -78,7 +78,7 @@ LAB_000e00b0:
             pBVar2 = BN_new();
             a_00->r = pBVar2;
             if (pBVar2 == (BIGNUM *)0x0) {
-              ERR_GOST_error(0x70,0x41,DAT_000e0174,0x5c);
+              ERR_GOST_error(0x70,0x41,"gost_sign.c",0x5c);
               goto LAB_000e00b0;
             }
           }
@@ -91,7 +91,7 @@ LAB_000e00b0:
           pBVar2 = BN_new();
           a_00->s = pBVar2;
           if (pBVar2 == (BIGNUM *)0x0) {
-            ERR_GOST_error(0x70,0x41,DAT_000e0174,0x69);
+            ERR_GOST_error(0x70,0x41,"gost_sign.c",0x69);
             goto LAB_000e00b0;
           }
         }

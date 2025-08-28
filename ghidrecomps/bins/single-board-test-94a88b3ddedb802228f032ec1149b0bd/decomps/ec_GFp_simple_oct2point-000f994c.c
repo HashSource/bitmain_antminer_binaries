@@ -15,7 +15,7 @@ uint ec_GFp_simple_oct2point
   BN_CTX *c;
   
   if (param_4 == 0) {
-    ERR_put_error(0x10,0x67,100,DAT_000f9b2c,0x152);
+    ERR_put_error(0x10,0x67,100,"ecp_oct.c",0x152);
     return 0;
   }
   bVar1 = *param_3;
@@ -24,12 +24,12 @@ uint ec_GFp_simple_oct2point
   if (((bVar1 & 0xfc) != 0) && ((uVar2 & 0xfffffffc) != 4)) {
     iVar5 = 0x15b;
 LAB_000f9a50:
-    ERR_put_error(0x10,0x67,0x66,DAT_000f9b2c,iVar5);
+    ERR_put_error(0x10,0x67,0x66,"ecp_oct.c",iVar5);
     return 0;
   }
   if ((bVar1 & 0xfa) == 0) {
     if ((bVar1 & 1) != 0) {
-      ERR_put_error(0x10,0x67,0x66,DAT_000f9b2c,0x15f);
+      ERR_put_error(0x10,0x67,0x66,"ecp_oct.c",0x15f);
       return uVar2 & 0xfffffffa;
     }
     if ((bVar1 & 0xfe) == 0) {
@@ -37,7 +37,7 @@ LAB_000f9a50:
         uVar2 = EC_POINT_set_to_infinity(param_1,param_2);
         return uVar2;
       }
-      ERR_put_error(0x10,0x67,0x66,DAT_000f9b2c,0x165);
+      ERR_put_error(0x10,0x67,0x66,"ecp_oct.c",0x165);
       return uVar6;
     }
   }
@@ -81,7 +81,7 @@ LAB_000f9a50:
       if (-1 < iVar5) {
         iVar5 = 0x191;
 LAB_000f9a28:
-        ERR_put_error(0x10,0x67,0x66,DAT_000f9b2c,iVar5);
+        ERR_put_error(0x10,0x67,0x66,"ecp_oct.c",iVar5);
         goto LAB_000f9a36;
       }
       if (uVar6 == 6) {
@@ -102,7 +102,7 @@ LAB_000f9a28:
       iVar5 = EC_POINT_is_on_curve(param_1,param_2,param_5);
       if (iVar5 < 1) {
         uVar2 = 0;
-        ERR_put_error(0x10,0x67,0x6b,DAT_000f9b2c,0x1a1);
+        ERR_put_error(0x10,0x67,0x6b,"ecp_oct.c",0x1a1);
       }
       else {
         uVar2 = 1;

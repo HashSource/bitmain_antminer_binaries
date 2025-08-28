@@ -14,7 +14,7 @@ EC_POINT * EC_POINT_bn2point(EC_GROUP *param_1,BIGNUM *param_2,EC_POINT *param_3
     iVar2 = iVar1 + 0xe;
   }
   len = iVar2 >> 3;
-  if ((len == 0) || (to = (uchar *)CRYPTO_malloc(len,DAT_00124908,0x5f), to == (uchar *)0x0)) {
+  if ((len == 0) || (to = (uchar *)CRYPTO_malloc(len,"ec_print.c",0x5f), to == (uchar *)0x0)) {
     return (EC_POINT *)0x0;
   }
   p = (EC_POINT *)BN_bn2bin(param_2,to);

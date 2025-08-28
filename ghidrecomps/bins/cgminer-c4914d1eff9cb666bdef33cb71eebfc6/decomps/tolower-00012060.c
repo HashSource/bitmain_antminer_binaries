@@ -6,7 +6,7 @@ int tolower(int __c)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_tolower_000a8074)();
+  iVar1 = tolower(__c);
   return iVar1;
 }
 

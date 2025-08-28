@@ -6,7 +6,7 @@ double log10(double __x)
 {
   double dVar1;
   
-  dVar1 = (double)(*(code *)PTR_log10_000c011c)();
+  dVar1 = log10(__x);
   return dVar1;
 }
 

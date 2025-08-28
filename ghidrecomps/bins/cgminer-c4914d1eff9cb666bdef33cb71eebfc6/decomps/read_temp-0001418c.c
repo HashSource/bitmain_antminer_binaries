@@ -22,8 +22,9 @@ void read_temp(uchar device,uint reg,uchar data,uchar write,uchar chip_addr,int 
     buf[0] = 'A';
     buf[1] = '\t';
     buf[3] = '\x1c';
-    buf._4_2_ = CONCAT11(write | device,'\x01');
-    buf._4_3_ = CONCAT12((uchar)reg,buf._4_2_);
+    buf[5] = write | device;
+    buf[4] = '\x01';
+    buf[6] = (uchar)reg;
     buf[7] = data;
     buf[8] = CRC5(buf,'@');
     cmd_buf[0] = ((uint)buf._0_4_ >> 0x10 & 0xff) << 8 |

@@ -5,9 +5,10 @@ void * watchpool_thread(void *userdata)
   double dVar1;
   _Bool _Var2;
   pool *ppVar3;
-  int iVar4;
-  uint uVar5;
-  int iVar6;
+  uint uVar4;
+  int iVar5;
+  uint uVar6;
+  int iVar7;
   void *userdata_local;
   char tmp42 [2048];
   timeval now;
@@ -35,12 +36,13 @@ void * watchpool_thread(void *userdata)
         prune_stratum_shares(ppVar3);
       }
       if (0x77 < intervals) {
-        uVar5 = ppVar3->last_shares;
-        dVar1 = (double)__aeabi_l2d(*(uint *)&ppVar3->diff1 - uVar5,
-                                    (*(int *)((int)&ppVar3->diff1 + 4) - ((int)uVar5 >> 0x1f)) -
-                                    (uint)(*(uint *)&ppVar3->diff1 < uVar5));
-        ppVar3->last_shares = *(int *)&ppVar3->diff1;
-        ppVar3->utility = (ppVar3->utility + dVar1 * DAT_00059ea0) / DAT_00059ea8;
+        uVar4 = (uint)ppVar3->diff1;
+        uVar6 = ppVar3->last_shares;
+        dVar1 = (double)__aeabi_l2d(uVar4 - uVar6,
+                                    (*(int *)((int)&ppVar3->diff1 + 4) - ((int)uVar6 >> 0x1f)) -
+                                    (uint)(uVar4 < uVar6));
+        ppVar3->last_shares = (int)ppVar3->diff1;
+        ppVar3->utility = (ppVar3->utility + dVar1 * 0.63) / 1.63;
         ppVar3->shares = (int)(longlong)ppVar3->utility;
       }
       if ((ppVar3->enabled != POOL_DISABLED) && (ppVar3->testing == false)) {
@@ -55,7 +57,7 @@ void * watchpool_thread(void *userdata)
           cgtime(&ppVar3->tv_idle);
         }
         if ((((ppVar3->idle != true) && (pool_strategy == POOL_FAILOVER)) &&
-            (iVar6 = ppVar3->prio, iVar4 = cp_prio(), iVar6 < iVar4)) &&
+            (iVar7 = ppVar3->prio, iVar5 = cp_prio(), iVar7 < iVar5)) &&
            (opt_pool_fallback < now.tv_sec - (ppVar3->tv_idle).tv_sec)) {
           if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
             snprintf(tmp42,0x800,"Pool %d %s stable for >%d seconds",ppVar3->pool_no,ppVar3->rpc_url
@@ -71,9 +73,9 @@ void * watchpool_thread(void *userdata)
       switch_pools((pool *)0x0);
     }
     if ((pool_strategy == POOL_ROTATE) &&
-       (iVar4 = now.tv_sec - rotate_tv.tv_sec,
-       iVar4 != opt_rotate_period * 0x3c &&
-       iVar4 + opt_rotate_period * -0x3c < 0 == SBORROW4(iVar4,opt_rotate_period * 0x3c))) {
+       (iVar5 = now.tv_sec - rotate_tv.tv_sec,
+       iVar5 != opt_rotate_period * 0x3c &&
+       iVar5 + opt_rotate_period * -0x3c < 0 == SBORROW4(iVar5,opt_rotate_period * 0x3c))) {
       cgtime(&rotate_tv);
       switch_pools((pool *)0x0);
     }

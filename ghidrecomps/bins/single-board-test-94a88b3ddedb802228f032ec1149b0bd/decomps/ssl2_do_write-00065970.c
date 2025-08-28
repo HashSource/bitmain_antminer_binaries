@@ -4,13 +4,13 @@ undefined4 ssl2_do_write(undefined4 *param_1)
 {
   int iVar1;
   undefined4 uVar2;
+  int extraout_r2;
   int iVar3;
   int unaff_r5;
   int iVar4;
   bool bVar5;
   
-  iVar3 = param_1[0x11];
-  iVar1 = ssl2_write(param_1,*(int *)(param_1[0xf] + 4) + param_1[0x12]);
+  iVar1 = ssl2_write(param_1,*(int *)(param_1[0xf] + 4) + param_1[0x12],param_1[0x11]);
   iVar4 = param_1[0x11];
   if (iVar4 == iVar1) {
     uVar2 = 1;
@@ -30,6 +30,7 @@ undefined4 ssl2_do_write(undefined4 *param_1)
     }
     else {
       uVar2 = 0xffffffff;
+      iVar3 = extraout_r2;
     }
     if (bVar5) {
       param_1[0x11] = unaff_r5;

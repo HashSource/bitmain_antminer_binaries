@@ -30,7 +30,7 @@ void Curl_persistconninfo(int *param_1)
   piVar1[4] = *piVar3;
   piVar1[5] = iVar6;
   piVar1[6] = iVar5;
-  *(undefined2 *)(piVar1 + 7) = *(undefined2 *)(piVar4 + 7);
+  *(short *)(piVar1 + 7) = (short)piVar4[7];
   piVar2 = param_1 + 0x3b;
   piVar3 = (int *)(*param_1 + 0x8758);
   do {
@@ -51,7 +51,7 @@ void Curl_persistconninfo(int *param_1)
   piVar4[6] = piVar1[6];
   piVar4[4] = iVar6;
   piVar4[5] = iVar5;
-  *(undefined2 *)(piVar4 + 7) = *(undefined2 *)(piVar1 + 7);
+  *(short *)(piVar4 + 7) = (short)piVar1[7];
   iVar6 = *param_1;
   iVar5 = param_1[0x47];
   *(int *)(iVar6 + 0x8754) = param_1[0x3a];

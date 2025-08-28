@@ -6,9 +6,7 @@ int pthread_rwlock_init(pthread_rwlock_t *__rwlock,pthread_rwlockattr_t *__attr)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a730. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f390)();
+  iVar1 = (*(code *)(undefined *)0x0)(__rwlock);
   return iVar1;
 }
 

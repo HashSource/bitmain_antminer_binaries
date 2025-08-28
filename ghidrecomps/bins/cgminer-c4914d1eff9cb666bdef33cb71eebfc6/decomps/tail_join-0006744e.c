@@ -6,12 +6,12 @@ void tail_join(io_data *io_data,_Bool isjson)
   io_data *io_data_local;
   
   if (io_data->close != false) {
-    io_add(io_data,(char *)&DAT_00092f40);
+    io_add(io_data,"]");
     io_data->close = false;
   }
   if (isjson) {
-    io_add(io_data,(char *)&DAT_000939a0);
-    io_add(io_data,(char *)&DAT_00092f40);
+    io_add(io_data,",\"id\":1}");
+    io_add(io_data,"]");
   }
   return;
 }

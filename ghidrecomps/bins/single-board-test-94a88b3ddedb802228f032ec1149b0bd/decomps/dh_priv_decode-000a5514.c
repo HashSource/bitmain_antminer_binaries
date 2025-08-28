@@ -22,7 +22,7 @@ undefined4 dh_priv_decode(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
      (ai = d2i_ASN1_INTEGER((ASN1_INTEGER **)0x0,&puStack_28,local_20), ai != (ASN1_INTEGER *)0x0))
   {
     local_24 = (uchar *)local_18[2];
-    if (param_1->ameth == DAT_000a55e0) {
+    if (param_1->ameth == (EVP_PKEY_ASN1_METHOD *)&dhx_asn1_meth) {
       dh = (DH *)d2i_DHxparams();
     }
     else {
@@ -32,7 +32,7 @@ undefined4 dh_priv_decode(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
       pBVar2 = ASN1_INTEGER_to_BN(ai,(BIGNUM *)0x0);
       dh->priv_key = pBVar2;
       if (pBVar2 == (BIGNUM *)0x0) {
-        ERR_put_error(5,0x6e,0x6a,DAT_000a55dc,0xec);
+        ERR_put_error(5,0x6e,0x6a,"dh_ameth.c",0xec);
       }
       else {
         iVar1 = DH_generate_key(dh);
@@ -49,7 +49,7 @@ undefined4 dh_priv_decode(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
     ai = (ASN1_INTEGER *)0x0;
   }
   dh = (DH *)0x0;
-  ERR_put_error(5,0x6e,0x72,DAT_000a55dc,0xfa);
+  ERR_put_error(5,0x6e,0x72,"dh_ameth.c",0xfa);
 LAB_000a5554:
   DH_free(dh);
   ASN1_STRING_clear_free(ai);

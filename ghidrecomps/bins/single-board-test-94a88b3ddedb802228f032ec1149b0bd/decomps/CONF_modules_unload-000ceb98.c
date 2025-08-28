@@ -2,66 +2,62 @@
 void CONF_modules_unload(int all)
 
 {
-  _STACK **pp_Var1;
-  _STACK **pp_Var2;
-  int *ptr;
-  void *ptr_00;
-  int iVar3;
-  DSO **ppDVar4;
-  bool bVar5;
+  void *ptr;
+  int iVar1;
+  undefined4 *ptr_00;
+  int *piVar2;
+  bool bVar3;
   
-  pp_Var1 = DAT_000cec7c;
-  while (iVar3 = sk_num(pp_Var1[1]), pp_Var2 = DAT_000cec7c, 0 < iVar3) {
-    ptr = (int *)sk_pop(pp_Var1[1]);
-    iVar3 = *ptr;
-    if (*(code **)(iVar3 + 0xc) != (code *)0x0) {
-      (**(code **)(iVar3 + 0xc))();
-      iVar3 = *ptr;
+  while (iVar1 = sk_num(initialized_modules), 0 < iVar1) {
+    piVar2 = (int *)sk_pop(initialized_modules);
+    iVar1 = *piVar2;
+    if (*(code **)(iVar1 + 0xc) != (code *)0x0) {
+      (**(code **)(iVar1 + 0xc))();
+      iVar1 = *piVar2;
     }
-    ptr_00 = (void *)ptr[1];
-    *(int *)(iVar3 + 0x10) = *(int *)(iVar3 + 0x10) + -1;
-    CRYPTO_free(ptr_00);
-    CRYPTO_free((void *)ptr[2]);
+    ptr = (void *)piVar2[1];
+    *(int *)(iVar1 + 0x10) = *(int *)(iVar1 + 0x10) + -1;
     CRYPTO_free(ptr);
+    CRYPTO_free((void *)piVar2[2]);
+    CRYPTO_free(piVar2);
   }
-  sk_free(DAT_000cec7c[1]);
-  pp_Var2[1] = (_STACK *)0x0;
-  iVar3 = sk_num(*pp_Var2);
-  iVar3 = iVar3 + -1;
-  if (-1 < iVar3) {
+  sk_free(initialized_modules);
+  initialized_modules = (_STACK *)0x0;
+  iVar1 = sk_num(supported_modules);
+  iVar1 = iVar1 + -1;
+  if (-1 < iVar1) {
     if (all == 0) {
       do {
-        ppDVar4 = (DSO **)sk_value(*pp_Var1,iVar3);
-        if (((int)ppDVar4[4] < 1) && (*ppDVar4 != (DSO *)0x0)) {
-          sk_delete(*pp_Var2,iVar3);
-          if (*ppDVar4 != (DSO *)0x0) {
-            DSO_free(*ppDVar4);
+        piVar2 = (int *)sk_value(supported_modules,iVar1);
+        if ((piVar2[4] < 1) && (*piVar2 != 0)) {
+          sk_delete(supported_modules,iVar1);
+          if ((DSO *)*piVar2 != (DSO *)0x0) {
+            DSO_free((DSO *)*piVar2);
           }
-          CRYPTO_free(ppDVar4[1]);
-          CRYPTO_free(ppDVar4);
+          CRYPTO_free((void *)piVar2[1]);
+          CRYPTO_free(piVar2);
         }
-        bVar5 = iVar3 != 0;
-        iVar3 = iVar3 + -1;
-      } while (bVar5);
+        bVar3 = iVar1 != 0;
+        iVar1 = iVar1 + -1;
+      } while (bVar3);
     }
     else {
       do {
-        ppDVar4 = (DSO **)sk_value(*pp_Var1,iVar3);
-        sk_delete(*pp_Var1,iVar3);
-        if (*ppDVar4 != (DSO *)0x0) {
-          DSO_free(*ppDVar4);
+        ptr_00 = (undefined4 *)sk_value(supported_modules,iVar1);
+        sk_delete(supported_modules,iVar1);
+        if ((DSO *)*ptr_00 != (DSO *)0x0) {
+          DSO_free((DSO *)*ptr_00);
         }
-        iVar3 = iVar3 + -1;
-        CRYPTO_free(ppDVar4[1]);
-        CRYPTO_free(ppDVar4);
-      } while (iVar3 != -1);
+        iVar1 = iVar1 + -1;
+        CRYPTO_free((void *)ptr_00[1]);
+        CRYPTO_free(ptr_00);
+      } while (iVar1 != -1);
     }
   }
-  iVar3 = sk_num(*pp_Var1);
-  pp_Var1 = DAT_000cec7c;
-  if (iVar3 == 0) {
-    sk_free(*DAT_000cec7c);
-    *pp_Var1 = (_STACK *)0x0;
+  iVar1 = sk_num(supported_modules);
+  if (iVar1 == 0) {
+    sk_free(supported_modules);
+    supported_modules = (_STACK *)0x0;
   }
   return;
 }

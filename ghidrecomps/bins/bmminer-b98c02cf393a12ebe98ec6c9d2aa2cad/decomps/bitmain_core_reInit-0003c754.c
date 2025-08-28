@@ -16,10 +16,10 @@ void bitmain_core_reInit(void)
   sleep(2);
   open_core(1);
   if (3 < log_level) {
-    __stream = fopen(log_file,(char *)&DAT_0005e760);
+    __stream = fopen(log_file,"a+");
     if (__stream != (FILE *)0x0) {
       fprintf(__stream,"%s:%d:%s: bitmain_core_reInit open_core over\n","driver-btm-c5.c",0x3ef0,
-              DAT_0003c870);
+              "bitmain_core_reInit");
     }
     fclose(__stream);
   }
@@ -32,12 +32,12 @@ void bitmain_core_reInit(void)
   uVar1 = get_nonce_fifo_interrupt();
   set_nonce_fifo_interrupt(uVar1 | 0x10000);
   doTestPatten = 0;
-  pthread_mutex_unlock(DAT_0003c864);
+  pthread_mutex_unlock((pthread_mutex_t *)reinit_mutex);
   if (last_job_buffer[0] != '\x17') {
     re_send_last_job_part_15();
   }
-  cgtime(DAT_0003c868);
-  cgtime(DAT_0003c86c);
+  cgtime(&tv_send_job);
+  cgtime(&tv_send);
   startCheckNetworkJob = 1;
   return;
 }

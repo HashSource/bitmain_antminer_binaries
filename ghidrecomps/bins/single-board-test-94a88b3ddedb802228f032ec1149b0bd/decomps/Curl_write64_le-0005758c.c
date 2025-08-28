@@ -1,5 +1,5 @@
 
-void Curl_write64_le(undefined4 param_1,undefined4 param_2,undefined *param_3)
+void Curl_write64_le(undefined4 param_1,undefined4 param_2,undefined1 *param_3)
 
 {
   *param_3 = (char)param_1;

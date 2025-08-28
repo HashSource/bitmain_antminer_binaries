@@ -9,7 +9,7 @@ int X509_VERIFY_PARAM_set1_policies(X509_VERIFY_PARAM *param,stack_st_ASN1_OBJEC
   
   if (param != (X509_VERIFY_PARAM *)0x0) {
     if (&param->policies->stack != (_STACK *)0x0) {
-      sk_pop_free(&param->policies->stack,DAT_000c62b8);
+      sk_pop_free(&param->policies->stack,ASN1_OBJECT_free);
     }
     if (policies == (stack_st_ASN1_OBJECT *)0x0) {
       param->policies = (stack_st_ASN1_OBJECT *)0x0;

@@ -6,7 +6,7 @@ char * strcpy(char *__dest,char *__src)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strcpy_000c00f0)();
+  pcVar1 = strcpy(__dest,__src);
   return pcVar1;
 }
 

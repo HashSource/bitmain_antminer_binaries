@@ -2,7 +2,7 @@
 int calculate_asic_number(int param_1)
 
 {
-  char acStack_808 [2056];
+  char acStack_808 [2052];
   
   if ((param_1 != 1) && (param_1 != 2)) {
     if (param_1 - 3U < 2) {

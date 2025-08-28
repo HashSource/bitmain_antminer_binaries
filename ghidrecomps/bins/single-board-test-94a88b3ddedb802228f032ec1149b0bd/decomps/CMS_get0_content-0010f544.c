@@ -35,7 +35,7 @@ LAB_0010f582:
       ppAVar2 = (ASN1_OCTET_STRING **)(*(int **)(cms + 4) + 1);
     }
     else {
-      ERR_put_error(0x2e,0x81,0x98,DAT_0010f5c0,0xea);
+      ERR_put_error(0x2e,0x81,0x98,"cms_lib.c",0xea);
       ppAVar2 = (ASN1_OCTET_STRING **)0x0;
     }
   }

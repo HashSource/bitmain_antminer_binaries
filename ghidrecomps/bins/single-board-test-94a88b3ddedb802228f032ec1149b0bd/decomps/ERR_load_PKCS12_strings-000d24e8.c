@@ -4,16 +4,14 @@
 void ERR_load_PKCS12_strings(void)
 
 {
-  ERR_STRING_DATA *str;
   char *pcVar1;
   
-  str = DAT_000d250c;
-  pcVar1 = ERR_func_error_string(DAT_000d250c->error);
+  pcVar1 = ERR_func_error_string(PKCS12_str_functs);
   if (pcVar1 != (char *)0x0) {
     return;
   }
-  ERR_load_strings(0,str);
-  ERR_load_strings(0,str + 0x1e);
+  ERR_load_strings(0,(ERR_STRING_DATA *)&PKCS12_str_functs);
+  ERR_load_strings(0,(ERR_STRING_DATA *)PKCS12_str_reasons);
   return;
 }
 

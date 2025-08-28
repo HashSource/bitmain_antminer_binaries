@@ -5,27 +5,27 @@ void sha256_update(sha256_ctx *ctx,uchar *message,uint len)
 
 {
   uint uVar1;
-  uint new_len;
   uchar *shifted_message;
-  uint rem_len;
+  uint __n;
   uint block_nb;
   
-  rem_len = 0x40 - ctx->len;
-  if (len < rem_len) {
-    rem_len = len;
+  __n = 0x40 - ctx->len;
+  if (len < __n) {
+    __n = len;
   }
-  memcpy(ctx->block + ctx->len,message,rem_len);
+  memcpy(ctx->block + ctx->len,message,__n);
   uVar1 = len + ctx->len;
   if (uVar1 < 0x40) {
     ctx->len = uVar1;
     return;
   }
-  uVar1 = len - rem_len;
+  block_nb = len - __n >> 6;
   sha256_transf(ctx,ctx->block,1);
-  sha256_transf(ctx,message + rem_len,uVar1 >> 6);
-  memcpy(ctx->block,message + rem_len + (uVar1 & 0xffffffc0),uVar1 & 0x3f);
-  ctx->len = uVar1 & 0x3f;
-  ctx->tot_len = ctx->tot_len + ((uVar1 >> 6) + 1) * 0x40;
+  uVar1 = len - __n & 0x3f;
+  sha256_transf(ctx,message + __n,block_nb);
+  memcpy(ctx->block,message + __n + block_nb * 0x40,uVar1);
+  ctx->len = uVar1;
+  ctx->tot_len = ctx->tot_len + (block_nb + 1) * 0x40;
   return;
 }
 

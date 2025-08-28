@@ -13,7 +13,7 @@ stack_st_CMS_RecipientInfo * CMS_get0_RecipientInfos(CMS_ContentInfo *cms)
     }
   }
   else {
-    ERR_put_error(0x2e,0x83,0x6b,DAT_000d5638,0x4f);
+    ERR_put_error(0x2e,0x83,0x6b,"cms_env.c",0x4f);
     psVar2 = (stack_st_CMS_RecipientInfo *)0x0;
   }
   return psVar2;

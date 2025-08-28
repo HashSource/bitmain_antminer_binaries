@@ -31,10 +31,12 @@ void lcddisplay(io_data *io_data,long c,char *param,_Bool isjson,char group)
   root = api_add_string(root,"GHS 5s",displayed_hash_rate,false);
   root = api_add_mhs(root,"GHSavg",&ghs,false);
   if (pool == (pool *)0x0) {
-    szuser._0_2_ = (undefined2)DAT_000adea4;
-    szuser[2] = (char)((uint)DAT_000adea4 >> 0x10);
-    szpool._0_2_ = szuser._0_2_;
-    szpool[2] = szuser[2];
+    szpool[0] = 'n';
+    szpool[1] = 'o';
+    szpool[2] = '\0';
+    szuser[0] = 'n';
+    szuser[1] = 'o';
+    szuser[2] = '\0';
     root = api_add_string(root,"pool",szpool,false);
     root = api_add_string(root,"user",szuser,false);
   }

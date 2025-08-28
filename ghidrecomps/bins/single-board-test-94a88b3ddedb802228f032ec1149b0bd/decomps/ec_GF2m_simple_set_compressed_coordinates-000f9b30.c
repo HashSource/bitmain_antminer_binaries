@@ -50,12 +50,12 @@ LAB_000f9bb4:
           if (iVar5 == 0) {
             uVar6 = ERR_peek_last_error();
             if ((uVar6 >> 0x18 != 3) || ((uVar6 & 0xfff) != 0x74)) {
-              ERR_put_error(0x10,0xa4,3,DAT_000f9cbc,0x90);
+              ERR_put_error(0x10,0xa4,3,"ec2_oct.c",0x90);
               iVar5 = 0;
               goto LAB_000f9b86;
             }
             ERR_clear_error();
-            ERR_put_error(0x10,0xa4,0x6e,DAT_000f9cbc,0x8d);
+            ERR_put_error(0x10,0xa4,0x6e,"ec2_oct.c",0x8d);
           }
           else {
             if (pBVar4->top < 1) {

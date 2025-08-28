@@ -6,7 +6,7 @@ ushort ** __ctype_b_loc(void)
 {
   ushort **ppuVar1;
   
-  ppuVar1 = (ushort **)(*(code *)PTR___ctype_b_loc_001942bc)();
+  ppuVar1 = __ctype_b_loc();
   return ppuVar1;
 }
 

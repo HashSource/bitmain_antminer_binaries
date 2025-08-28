@@ -11,10 +11,10 @@ void set_merkle_bin_number(uint param_1)
     get_merkle_bin_number();
     return;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
-    fprintf(__stream,"%s:%d:%s: set MERKLE_BIN_NUMBER is 0x%x\n","znyq7010.c",0x2df,DAT_0004d9e0,
-            param_1 & 0xffff);
+    fprintf(__stream,"%s:%d:%s: set MERKLE_BIN_NUMBER is 0x%x\n","znyq7010.c",0x2df,
+            "set_merkle_bin_number",param_1 & 0xffff);
   }
   fclose(__stream);
   get_merkle_bin_number();

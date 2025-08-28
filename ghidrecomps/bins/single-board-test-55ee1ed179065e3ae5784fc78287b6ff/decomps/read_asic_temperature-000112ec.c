@@ -10,16 +10,16 @@ void read_asic_temperature(byte param_1)
   uint local_14;
   
   local_18 = 0xffffffff;
-  *(undefined *)((int)&gNotReadOutTemp + (uint)param_1) = 0;
+  *(undefined1 *)((int)&gNotReadOutTemp + (uint)param_1) = 0;
   for (local_14 = 0; local_20 = 0, local_14 < 3; local_14 = local_14 + 1) {
     if (local_14 == 0) {
-      local_1c = (uint)Conf[208];
+      local_1c = (uint)Conf[0xd0];
     }
     if (local_14 == 1) {
-      local_1c = (uint)Conf[209];
+      local_1c = (uint)Conf[0xd1];
     }
     if (local_14 == 2) {
-      local_1c = (uint)Conf[210];
+      local_1c = (uint)Conf[0xd2];
     }
     if (local_1c != 0) {
       enable_read_temperature_from_asic_chain
@@ -32,7 +32,7 @@ void read_asic_temperature(byte param_1)
           local_18 = check_BM1725_asic_reg(param_1,gChain_Asic_Interval * (local_1c - 1),0x20,0);
         }
         local_20 = local_20 + 1;
-      } while (((local_18 & 0xc0000000) != 0) && (local_20 < read_loop));
+      } while (((local_18 & 0xc0000000) != 0) && (local_20 < 2));
       local_20 = 0;
       if (Conf._116_4_ == 0x6ba) {
         set_BM1722_asic_register(param_1,gChain_Asic_Interval * (local_1c - 1),0x20,0,0x1980100);
@@ -48,7 +48,7 @@ void read_asic_temperature(byte param_1)
           local_18 = check_BM1725_asic_reg(param_1,gChain_Asic_Interval * (local_1c - 1),0x20,0);
         }
         local_20 = local_20 + 1;
-      } while (((local_18 & 0xc0000000) != 0) && (local_20 < read_loop));
+      } while (((local_18 & 0xc0000000) != 0) && (local_20 < 2));
       local_20 = 0;
       if ((local_18 & 0xc0000000) == 0) {
         uVar2 = local_18 & 0xff;
@@ -62,11 +62,11 @@ void read_asic_temperature(byte param_1)
         if (local_14 == 2) {
           *(uint *)(Sensor3_temp + (uint)param_1 * 4) = uVar2;
         }
-        if (Conf[211] == local_1c) {
-          if (uVar2 < Conf[212]) {
+        if (Conf[0xd3] == local_1c) {
+          if (uVar2 < Conf[0xd4]) {
             if (*(char *)((int)&gStartTest + (uint)param_1) != '\x01') {
               printf("\nASIC %d temperature is %d, waiting it raise to start temperature %d\n\n",
-                     local_1c,uVar2,(uint)Conf[212]);
+                     local_1c,uVar2,(uint)Conf[0xd4]);
             }
           }
           else {
@@ -74,13 +74,13 @@ void read_asic_temperature(byte param_1)
               printf("\nBegin test!!! Start sensor is %d, ASIC temperature is %d\n\n",local_1c,uVar2
                     );
             }
-            *(undefined *)((int)&gStartTest + (uint)param_1) = 1;
+            *(undefined1 *)((int)&gStartTest + (uint)param_1) = 1;
           }
         }
       }
       else {
         printf("%s: do not read out ASIC %d temperature\n\n","read_asic_temperature",local_1c);
-        *(undefined *)((int)&gNotReadOutTemp + (uint)param_1) = 1;
+        *(undefined1 *)((int)&gNotReadOutTemp + (uint)param_1) = 1;
       }
       if (Conf._116_4_ == 0x6ba) {
         set_BM1722_asic_register(param_1,gChain_Asic_Interval * (local_1c - 1),0x20,0,0x1980000);
@@ -96,14 +96,14 @@ void read_asic_temperature(byte param_1)
           local_18 = check_BM1725_asic_reg(param_1,gChain_Asic_Interval * (local_1c - 1),0x20,0);
         }
         local_20 = local_20 + 1;
-      } while (((local_18 & 0xc0000000) != 0) && (local_20 < read_loop));
+      } while (((local_18 & 0xc0000000) != 0) && (local_20 < 2));
       if ((local_18 & 0xc0000000) == 0) {
         printf("ASIC %d Hash Board temperature is %d\n\n",local_1c,local_18 & 0xff);
       }
       else {
         printf("%s: do not read out ASIC %d Hash Board temperature\n\n","read_asic_temperature",
                local_1c);
-        *(undefined *)((int)&gNotReadOutTemp + (uint)param_1) = 1;
+        *(undefined1 *)((int)&gNotReadOutTemp + (uint)param_1) = 1;
       }
     }
   }
@@ -151,12 +151,12 @@ void read_asic_temperature(byte param_1)
          *(undefined4 *)(highest_temp + (uint)param_1 * 4);
   }
   printf("\ngGlobalHighestTemp is %d\n\n",*(undefined4 *)(gGlobalHighestTemp + (uint)param_1 * 4));
-  if ((int)(uint)Conf[214] < *(int *)(highest_temp + (uint)param_1 * 4)) {
-    *(undefined *)((int)&gHigherThanAlarmTemp + (uint)param_1) = 1;
+  if ((int)(uint)Conf[0xd6] < *(int *)(highest_temp + (uint)param_1 * 4)) {
+    *(undefined1 *)((int)&gHigherThanAlarmTemp + (uint)param_1) = 1;
   }
   uVar2 = *(int *)(highest_temp + (uint)param_1 * 4) - *(int *)(lowest_temp + (uint)param_1 * 4);
   if (((uint)Conf._220_4_ < uVar2) &&
-     (*(undefined *)((int)&gHigherThanMaxTempGap + (uint)param_1) = 1,
+     (*(undefined1 *)((int)&gHigherThanMaxTempGap + (uint)param_1) = 1,
      *(int *)(gMaxTempGap_value + (uint)param_1 * 4) < (int)uVar2)) {
     *(uint *)(gMaxTempGap_value + (uint)param_1 * 4) = uVar2;
     printf("gMaxTempGap_value is %d\n\n",*(undefined4 *)(gMaxTempGap_value + (uint)param_1 * 4));

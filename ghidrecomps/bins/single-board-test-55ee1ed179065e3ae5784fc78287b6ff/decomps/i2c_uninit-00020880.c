@@ -4,7 +4,7 @@ void i2c_uninit(undefined4 param_1)
 {
   int iVar1;
   undefined4 local_1c [2];
-  code **local_14;
+  undefined4 *local_14;
   int local_10;
   int local_c;
   
@@ -22,11 +22,11 @@ void i2c_uninit(undefined4 param_1)
       printf("%s:%d","i2c_uninit",0x45);
       printf("ctx(%d) is not inited\n",local_1c[0]);
     }
-    local_14 = (code **)new_iterator_c_map(i2c_ctx_map);
-    local_10 = (**local_14)(local_14);
+    local_14 = (undefined4 *)new_iterator_c_map(i2c_ctx_map);
+    local_10 = (*(code *)*local_14)(local_14);
     while (local_10 != 0) {
       local_c = local_c + 1;
-      local_10 = (**local_14)(local_14);
+      local_10 = (*(code *)*local_14)(local_14);
     }
     delete_iterator_c_map(local_14);
     pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);

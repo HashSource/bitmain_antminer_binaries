@@ -6,7 +6,7 @@ uchar getPICvoltageFromValue(int vol_value)
   int vol_value_local;
   uchar temp_voltage;
   
-  dVar1 = DAT_000321b0 - ((double)(longlong)vol_value * DAT_000321a0) / DAT_000321a8;
+  dVar1 = 1608.420446 - ((double)(longlong)vol_value * 170.423497) / 100.0;
   return (0.0 < dVar1) * (char)(longlong)dVar1;
 }
 

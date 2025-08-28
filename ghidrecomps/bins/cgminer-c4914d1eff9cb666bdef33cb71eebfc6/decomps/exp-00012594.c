@@ -6,7 +6,7 @@ double exp(double __x)
 {
   double dVar1;
   
-  dVar1 = (double)(*(code *)PTR_exp_000a8230)();
+  dVar1 = exp(__x);
   return dVar1;
 }
 

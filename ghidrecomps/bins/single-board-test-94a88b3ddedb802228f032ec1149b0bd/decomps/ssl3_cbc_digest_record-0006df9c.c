@@ -51,16 +51,17 @@ void ssl3_cbc_digest_record
   byte abStack_2d8 [4];
   undefined4 local_2d4;
   byte abStack_2d0 [16];
-  uint auStack_2c0 [16];
-  uint auStack_280 [32];
+  uint local_2c0 [16];
+  uint local_280 [32];
   undefined4 local_200;
   undefined4 uStack_1fc;
   undefined4 uStack_1f8;
-  undefined local_1f4;
-  undefined auStack_1f3 [115];
+  undefined1 local_1f4;
+  undefined1 auStack_1f3 [115];
   EVP_MD_CTX local_180;
   EVP_PKEY_CTX *pEStack_168;
-  _func_1230 *ap_Stack_164 [25];
+  _func_1230 *p_Stack_164;
+  EVP_MD_CTX aEStack_160 [4];
   SHA512_CTX SStack_100;
   
   if (param_7 < 0x100000) {
@@ -76,11 +77,11 @@ LAB_0006e336:
     cnt = 0x20;
     SHA256_Init((SHA256_CTX *)&SStack_100);
     bVar25 = true;
-    local_320 = DAT_0006e41c;
     local_2e8 = 0x28;
-    local_328 = DAT_0006e420;
+    local_320 = (code *)0x6dadd;
     local_350 = 8;
     local_34c = 0x40;
+    local_328 = (code *)0x910c1;
     if (param_10 == '\0') goto LAB_0006e378;
 LAB_0006e050:
     local_354 = param_9 + 0xb + local_2e8;
@@ -97,7 +98,7 @@ LAB_0006e050:
     cnt = uVar18;
   }
   else {
-    OpenSSLDie(DAT_0006e418,0x1c6,DAT_0006e414);
+    OpenSSLDie("s3_cbc.c",0x1c6,"data_plus_mac_plus_padding_size < 1024 * 1024");
     pEVar5 = EVP_MD_CTX_md(param_1);
     iVar6 = EVP_MD_type(pEVar5);
     bVar25 = iVar6 == 0x2a0;
@@ -113,13 +114,13 @@ LAB_0006dfce:
         iVar23 = 0x200;
         cnt = 0x10;
         local_2e8 = 0x30;
-        local_328 = DAT_0006e95c;
-        local_320 = DAT_0006e960;
+        local_328 = (code *)0x8e631;
+        local_320 = (code *)0x6da35;
       }
       else {
         if (iVar6 != 0x40) {
 LAB_0006dfdc:
-          OpenSSLDie(DAT_0006e270,0x202,DAT_0006e274);
+          OpenSSLDie("s3_cbc.c",0x202,"0");
           if (param_3 == (uint *)0x0) {
             return;
           }
@@ -131,10 +132,10 @@ LAB_0006dfdc:
         SHA1_Init((SHA_CTX *)&SStack_100);
         bVar25 = true;
         local_2e8 = 0x28;
-        local_328 = DAT_0006e954;
         cnt = 0x14;
-        local_320 = DAT_0006e958;
         local_350 = 8;
+        local_328 = (code *)0x8fd75;
+        local_320 = (code *)0x6da81;
         local_34c = 0x40;
       }
     }
@@ -147,8 +148,8 @@ LAB_0006dfdc:
       cnt = 0x40;
       local_350 = 0x10;
       local_34c = 0x80;
-      local_328 = DAT_0006e94c;
-      local_320 = DAT_0006e950;
+      local_328 = (code *)0x97231;
+      local_320 = (code *)0x6db71;
     }
     else if (iVar6 < 0x2a2) {
       local_348 = 0x73;
@@ -159,8 +160,8 @@ LAB_0006dfdc:
       cnt = 0x30;
       local_350 = 0x10;
       local_34c = 0x80;
-      local_328 = DAT_0006e424;
-      local_320 = DAT_0006e428;
+      local_328 = (code *)0x97231;
+      local_320 = (code *)0x6db71;
     }
     else {
       if (iVar6 != 0x2a3) goto LAB_0006dfdc;
@@ -172,8 +173,8 @@ LAB_0006dfdc:
       cnt = 0x1c;
       local_350 = 8;
       local_34c = 0x40;
-      local_328 = DAT_0006e278;
-      local_320 = DAT_0006e27c;
+      local_328 = (code *)0x910c1;
+      local_320 = (code *)0x6dadd;
     }
     iVar6 = iVar23;
     uVar18 = cnt;
@@ -201,32 +202,32 @@ LAB_0006e378:
     local_338 = 0;
   }
   if (param_10 == '\0') {
-    memset(auStack_280,0,local_34c);
+    memset(local_280,0,local_34c);
     param_6 = param_6 + iVar23;
     if (0x80 < param_9) {
-      OpenSSLDie(DAT_0006e964,0x26a,DAT_0006e968);
+      OpenSSLDie("s3_cbc.c",0x26a,"mac_secret_length <= sizeof(hmac_pad)");
     }
-    memcpy(auStack_280,param_8,param_9);
+    memcpy(local_280,param_8,param_9);
     sVar15 = local_34c;
     if (local_34c == 0) {
       sVar15 = 1;
     }
     uVar11 = sVar15 >> 2;
-    uVar18 = sVar15 & 0xfffffffc;
+    uVar18 = uVar11 * 4;
     if (uVar11 == 0) {
 LAB_0006e7e6:
       do {
-        *(byte *)((int)auStack_280 + uVar18) = *(byte *)((int)auStack_280 + uVar18) ^ 0x36;
+        *(byte *)((int)local_280 + uVar18) = *(byte *)((int)local_280 + uVar18) ^ 0x36;
         uVar18 = uVar18 + 1;
       } while (uVar18 < local_34c);
     }
     else {
       if (uVar11 < 9) {
         uVar24 = 0;
-        puVar8 = auStack_280;
+        puVar8 = local_280;
       }
       else {
-        puVar8 = auStack_280;
+        puVar8 = local_280;
         uVar19 = 0;
         do {
           puVar8 = puVar8 + 8;
@@ -253,7 +254,7 @@ LAB_0006e7e6:
       } while (uVar24 < uVar11);
       if (sVar15 != uVar18) goto LAB_0006e7e6;
     }
-    (*local_328)(local_334,auStack_280);
+    (*local_328)(local_334,local_280);
   }
   bVar2 = (byte)((uint)param_6 >> 8);
   bVar13 = (byte)((uint)param_6 >> 0x10);
@@ -277,7 +278,7 @@ LAB_0006e7e6:
       local_200 = *param_4;
       uStack_1fc = param_4[1];
       uStack_1f8 = param_4[2];
-      local_1f4 = *(undefined *)(param_4 + 3);
+      local_1f4 = *(undefined1 *)(param_4 + 3);
       memcpy(auStack_1f3,param_5,local_348);
       (*local_328)(local_334,&local_200);
       uVar18 = __aeabi_uidiv(local_338,local_34c);
@@ -312,9 +313,9 @@ LAB_0006e7e6:
       }
     }
   }
-  memset(auStack_2c0,0,0x40);
+  memset(local_2c0,0,0x40);
   uVar18 = local_33c + local_340;
-  if (CARRY4(local_33c,local_340) == false) {
+  if (!CARRY4(local_33c,local_340)) {
     uVar11 = cnt;
     if (cnt == 0) {
       uVar11 = 1;
@@ -328,7 +329,7 @@ LAB_0006e7e6:
     if (local_34c == 0) {
       sVar15 = 1;
     }
-    uVar19 = uVar11 & 0xfffffffc;
+    uVar19 = uVar24 << 2;
     if (iVar6 != 0) {
       uVar19 = 0;
     }
@@ -390,13 +391,13 @@ LAB_0006e7e6:
         uVar10 = CONCAT13(bVar2,CONCAT12(bVar2,CONCAT11(bVar2,bVar2)));
         if (uVar24 < 9) {
           uVar12 = 0;
-          puVar8 = auStack_2c0;
+          puVar8 = local_2c0;
           pEVar20 = &local_180;
         }
         else {
-          puVar8 = auStack_2c0;
+          puVar8 = local_2c0;
           uVar12 = 0;
-          pEVar4 = (EVP_MD_CTX *)(&pEStack_168 + 2);
+          pEVar4 = aEStack_160;
           do {
             pEVar20 = pEVar4;
             puVar8 = puVar8 + 8;
@@ -422,14 +423,14 @@ LAB_0006e7e6:
                uVar10 & *(uint *)((int)&pEVar20->digest + iVar23) | *(uint *)((int)puVar8 + iVar23);
           iVar23 = iVar23 + 4;
         } while (uVar12 < uVar24);
-        if (uVar11 != (uVar11 & 0xfffffffc)) goto LAB_0006e566;
+        if (uVar11 != uVar24 << 2) goto LAB_0006e566;
       }
       else {
 LAB_0006e566:
         do {
-          *(byte *)((int)auStack_2c0 + uVar9) =
-               bVar2 & *(byte *)((int)&local_180.digest + uVar9) |
-               *(byte *)((int)auStack_2c0 + uVar9);
+          *(byte *)((int)local_2c0 + uVar9) =
+               bVar2 & *(byte *)((int)&local_180.digest + uVar9) | *(byte *)((int)local_2c0 + uVar9)
+          ;
           uVar9 = uVar9 + 1;
         } while (uVar9 < cnt);
       }
@@ -445,15 +446,15 @@ LAB_0006e566:
       sVar15 = 1;
     }
     uVar21 = sVar15 >> 2;
-    uVar18 = sVar15 & 0xfffffffc;
+    uVar18 = uVar21 << 2;
     local_2e8 = local_34c;
     if (uVar21 != 0) {
       if (uVar21 < 9) {
-        puVar8 = auStack_280;
+        puVar8 = local_280;
         uVar11 = 0;
       }
       else {
-        puVar8 = auStack_280;
+        puVar8 = local_280;
         uVar24 = 0;
         do {
           puVar8 = puVar8 + 8;
@@ -481,17 +482,17 @@ LAB_0006e566:
       if (uVar18 == sVar15) goto LAB_0006e698;
     }
     do {
-      *(byte *)((int)auStack_280 + uVar18) = *(byte *)((int)auStack_280 + uVar18) ^ 0x6a;
+      *(byte *)((int)local_280 + uVar18) = *(byte *)((int)local_280 + uVar18) ^ 0x6a;
       uVar18 = uVar18 + 1;
     } while (uVar18 < local_34c);
   }
   else {
-    memset(auStack_280,0x5c,local_2e8);
+    memset(local_280,0x5c,local_2e8);
     EVP_DigestUpdate(&local_180,param_8,param_9);
   }
 LAB_0006e698:
-  EVP_DigestUpdate(&local_180,auStack_280,local_2e8);
-  EVP_DigestUpdate(&local_180,auStack_2c0,cnt);
+  EVP_DigestUpdate(&local_180,local_280,local_2e8);
+  EVP_DigestUpdate(&local_180,local_2c0,cnt);
   EVP_DigestFinal(&local_180,param_2,&local_2d4);
   if (param_3 != (uint *)0x0) {
     *param_3 = local_2d4;

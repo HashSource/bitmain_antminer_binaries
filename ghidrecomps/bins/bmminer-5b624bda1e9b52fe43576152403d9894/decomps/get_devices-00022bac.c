@@ -5,23 +5,22 @@ cgpu_info * get_devices(int id)
 
 {
   int iVar1;
-  char *in_r2;
-  int in_r3;
+  char *func;
+  char *func_00;
   int line;
+  int line_00;
   cgpu_info *pcVar2;
-  cgpu_info *cgpu;
   
-  iVar1 = pthread_rwlock_rdlock(DAT_00022bec);
+  iVar1 = pthread_rwlock_rdlock((pthread_rwlock_t *)&devices_lock);
   if (iVar1 != 0) {
-    _rd_lock(DAT_00022bf8,(char *)0x252,in_r2,in_r3);
+    _rd_lock((pthread_rwlock_t *)"get_devices",(char *)0x252,func,line);
   }
-  line = *DAT_00022bf0;
-  pcVar2 = *(cgpu_info **)(line + id * 4);
-  iVar1 = pthread_rwlock_unlock(DAT_00022bec);
+  pcVar2 = devices[id];
+  iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)&devices_lock);
   if (iVar1 != 0) {
-    _rw_unlock(DAT_00022bf8,(char *)0x254,in_r2,line);
+    _rw_unlock((pthread_rwlock_t *)"get_devices",(char *)0x254,func_00,line_00);
   }
-  (**DAT_00022bf4)();
+  (*selective_yield)();
   return pcVar2;
 }
 

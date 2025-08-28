@@ -24,7 +24,7 @@ long PKCS7_ctrl(PKCS7 *p7,int cmd,long larg,char *parg)
   }
   else {
     if (cmd != 2) {
-      ERR_put_error(0x21,0x68,0x6e,DAT_000cf20c,0x69);
+      ERR_put_error(0x21,0x68,0x6e,"pk7_lib.c",0x69);
       return 0;
     }
     if (iVar1 == 0x16) {
@@ -43,7 +43,7 @@ long PKCS7_ctrl(PKCS7 *p7,int cmd,long larg,char *parg)
     }
     iVar1 = 99;
   }
-  ERR_put_error(0x21,0x68,0x68,DAT_000cf20c,iVar1);
+  ERR_put_error(0x21,0x68,0x68,"pk7_lib.c",iVar1);
   return 0;
 }
 

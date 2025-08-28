@@ -2,111 +2,104 @@
 UDItype __udivmoddi4(UDItype n,UDItype d,UDItype *rp)
 
 {
-  uint uVar1;
-  UDItype *in_r1;
+  longlong lVar1;
   uint uVar2;
-  USItype lz2;
-  UDItype *in_r2;
-  UDItype *in_r3;
-  UDItype *pUVar3;
-  uint uVar4;
-  int iVar5;
+  uint uVar3;
+  int iVar4;
+  uint uVar5;
   uint uVar6;
-  USItype k;
-  USItype i;
-  USItype lz1;
   uint uVar7;
-  UDItype *pUVar8;
-  UDItype *pUVar9;
+  uint uVar8;
+  int iVar9;
   uint uVar10;
   uint uVar11;
-  bool bVar12;
+  uint uVar12;
+  uint uVar13;
+  uint uVar14;
+  bool bVar15;
   
-  bVar12 = in_r3 <= in_r1;
-  if (in_r1 == in_r3) {
-    bVar12 = in_r2 <= rp;
+  uVar5 = (uint)(d >> 0x20);
+  uVar13 = (uint)d;
+  uVar3 = (uint)(n >> 0x20);
+  uVar2 = (uint)n;
+  bVar15 = uVar5 <= uVar3;
+  if (uVar3 == uVar5) {
+    bVar15 = uVar13 <= uVar2;
   }
-  if (bVar12) {
-    iVar5 = LZCOUNT(in_r3);
-    if (in_r3 == (UDItype *)0x0) {
-      iVar5 = LZCOUNT(in_r2) + 0x20;
+  if (bVar15) {
+    iVar9 = LZCOUNT(uVar5);
+    if (uVar5 == 0) {
+      iVar9 = LZCOUNT(uVar13) + 0x20;
     }
-    lz2 = LZCOUNT(in_r1);
-    if (in_r1 == (UDItype *)0x0) {
-      lz2 = LZCOUNT(rp) + 0x20;
+    iVar4 = LZCOUNT(uVar3);
+    if (uVar3 == 0) {
+      iVar4 = LZCOUNT(uVar2) + 0x20;
     }
-    uVar6 = iVar5 - lz2;
-    uVar11 = uVar6 - 0x20;
-    uVar7 = 0x20 - uVar6;
-    pUVar8 = (UDItype *)((int)in_r2 << (uVar6 & 0xff));
-    pUVar9 = (UDItype *)
-             ((int)in_r3 << (uVar6 & 0xff) | (int)in_r2 << (uVar11 & 0xff) |
-             (uint)in_r2 >> (uVar7 & 0xff));
-    bVar12 = pUVar9 <= in_r1;
-    if (in_r1 == pUVar9) {
-      bVar12 = pUVar8 <= rp;
+    uVar10 = iVar9 - iVar4;
+    uVar14 = uVar10 - 0x20;
+    uVar11 = 0x20 - uVar10;
+    uVar12 = uVar13 << (uVar10 & 0xff);
+    uVar13 = uVar5 << (uVar10 & 0xff) | uVar13 << (uVar14 & 0xff) | uVar13 >> (uVar11 & 0xff);
+    bVar15 = uVar13 <= uVar3;
+    if (uVar3 == uVar13) {
+      bVar15 = uVar12 <= uVar2;
     }
-    if (bVar12) {
-      bVar12 = rp < pUVar8;
-      rp = (UDItype *)((int)rp - (int)pUVar8);
-      uVar1 = 1 << (uVar6 & 0xff);
-      uVar2 = 1 << (uVar11 & 0xff) | 1U >> (uVar7 & 0xff);
-      in_r1 = (UDItype *)((int)in_r1 + (-(uint)bVar12 - (int)pUVar9));
+    if (bVar15) {
+      uVar2 = 1 << (uVar10 & 0xff);
+      uVar3 = 1 << (uVar14 & 0xff) | 1U >> (uVar11 & 0xff);
+      n = n - CONCAT44(uVar13,uVar12);
     }
     else {
-      uVar1 = 0;
       uVar2 = 0;
+      uVar3 = 0;
     }
-    if (uVar6 != 0) {
-      pUVar3 = (UDItype *)((uint)pUVar9 >> 1);
-      pUVar8 = (UDItype *)((uint)(((uint)pUVar9 & 1) != 0) << 0x1f | (uint)pUVar8 >> 1);
-      uVar10 = uVar6;
+    if (uVar10 != 0) {
+      uVar6 = uVar13 >> 1;
+      uVar5 = (uint)((uVar13 & 1) != 0) << 0x1f | uVar12 >> 1;
+      uVar13 = uVar10;
       do {
         while( true ) {
-          bVar12 = pUVar3 <= in_r1;
-          if (in_r1 == pUVar3) {
-            bVar12 = pUVar8 <= rp;
+          uVar8 = (uint)(n >> 0x20);
+          uVar12 = (uint)n;
+          bVar15 = uVar6 <= uVar8;
+          if (uVar8 == uVar6) {
+            bVar15 = uVar5 <= uVar12;
           }
-          if (bVar12) break;
-          bVar12 = CARRY4((uint)rp,(uint)rp);
-          rp = (UDItype *)((int)rp * 2);
-          in_r1 = (UDItype *)((int)in_r1 * 2 + (uint)bVar12);
-          uVar10 = uVar10 - 1;
-          pUVar9 = in_r1;
-          if (uVar10 == 0) goto LAB_00057836;
+          if (bVar15) break;
+          uVar7 = uVar12 * 2;
+          uVar12 = uVar8 * 2 + (uint)CARRY4(uVar12,uVar12);
+          n = CONCAT44(uVar12,uVar7);
+          uVar13 = uVar13 - 1;
+          if (uVar13 == 0) goto LAB_00057836;
         }
-        bVar12 = rp < pUVar8;
-        uVar4 = (int)rp - (int)pUVar8;
-        rp = (UDItype *)(uVar4 * 2 + 1);
-        in_r1 = (UDItype *)
-                (((int)in_r1 + (-(uint)bVar12 - (int)pUVar3)) * 2 + (uint)CARRY4(uVar4,uVar4) +
-                (uint)(0xfffffffe < uVar4 * 2));
-        uVar10 = uVar10 - 1;
-        pUVar9 = in_r1;
-      } while (uVar10 != 0);
+        lVar1 = n - CONCAT44(uVar6,uVar5);
+        uVar12 = (uint)lVar1;
+        uVar7 = uVar12 * 2 + 1;
+        uVar12 = (int)((ulonglong)lVar1 >> 0x20) * 2 + (uint)CARRY4(uVar12,uVar12) +
+                 (uint)(0xfffffffe < uVar12 * 2);
+        n = CONCAT44(uVar12,uVar7);
+        uVar13 = uVar13 - 1;
+      } while (uVar13 != 0);
 LAB_00057836:
-      in_r1 = (UDItype *)((uint)pUVar9 >> (uVar6 & 0xff));
-      bVar12 = CARRY4(uVar1,(uint)rp);
-      uVar10 = uVar1 + (int)rp;
-      rp = (UDItype *)
-           ((uint)rp >> (uVar6 & 0xff) | (int)pUVar9 << (uVar7 & 0xff) |
-           (uint)pUVar9 >> (uVar11 & 0xff));
-      uVar7 = (int)rp << (uVar6 & 0xff);
-      uVar1 = uVar10 - uVar7;
-      uVar2 = (int)pUVar9 +
-              (((bVar12 + uVar2) -
-               ((int)in_r1 << (uVar6 & 0xff) | (int)rp << (uVar6 - 0x20 & 0xff) |
-               (uint)rp >> (0x20 - uVar6 & 0xff))) - (uint)(uVar10 < uVar7));
+      uVar6 = uVar12 >> (uVar10 & 0xff);
+      bVar15 = CARRY4(uVar2,uVar7);
+      uVar13 = uVar2 + uVar7;
+      uVar11 = uVar7 >> (uVar10 & 0xff) | uVar12 << (uVar11 & 0xff) | uVar12 >> (uVar14 & 0xff);
+      uVar5 = uVar11 << (uVar10 & 0xff);
+      uVar2 = uVar13 - uVar5;
+      n = CONCAT44(uVar6,uVar11);
+      uVar3 = ((uVar3 + uVar12 + (uint)bVar15) -
+              (uVar6 << (uVar10 & 0xff) | uVar11 << (uVar10 - 0x20 & 0xff) |
+              uVar11 >> (0x20 - uVar10 & 0xff))) - (uint)(uVar13 < uVar5);
     }
   }
   else {
-    uVar1 = 0;
     uVar2 = 0;
+    uVar3 = 0;
   }
-  if ((UDItype **)n != (UDItype **)0x0) {
-    *(UDItype **)n = rp;
-    ((UDItype **)n)[1] = in_r1;
+  if (rp != (UDItype *)0x0) {
+    *rp = n;
   }
-  return CONCAT44(uVar2,uVar1);
+  return CONCAT44(uVar3,uVar2);
 }
 

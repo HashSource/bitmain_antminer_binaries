@@ -27,13 +27,13 @@ void enable_device(int *param_1)
         return;
       }
                     /* WARNING: Subroutine does not return */
-      _rwlock_init_part_43_constprop_69(DAT_000298d8,0x2b82);
+      _rwlock_init_part_43_constprop_69("enable_device",0x2b82);
     }
   }
   else {
-    _wr_lock_part_54_constprop_73(DAT_000298d8,0x2b75);
+    _wr_lock_part_54_constprop_73("enable_device",0x2b75);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_000298d8,0x2b77);
+  _rw_unlock_part_40_constprop_79("enable_device",0x2b77);
 }
 

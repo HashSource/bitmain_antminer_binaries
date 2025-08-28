@@ -16,12 +16,12 @@ int DSA_verify(int type,uchar *dgst,int dgst_len,uchar *sigbuf,int siglen,DSA *d
     iVar2 = -1;
   }
   else {
-    pAVar1 = ASN1_item_d2i((ASN1_VALUE **)&local_24,&local_20,siglen,DAT_000a4914);
+    pAVar1 = ASN1_item_d2i((ASN1_VALUE **)&local_24,&local_20,siglen,(ASN1_ITEM *)&DSA_SIG_it);
     if (pAVar1 == (ASN1_VALUE *)0x0) {
       iVar2 = -1;
     }
     else {
-      __n = ASN1_item_i2d((ASN1_VALUE *)local_24,&local_1c,DAT_000a4914);
+      __n = ASN1_item_i2d((ASN1_VALUE *)local_24,&local_1c,(ASN1_ITEM *)&DSA_SIG_it);
       if ((siglen == __n) && (iVar2 = memcmp(sigbuf,local_1c,__n), iVar2 == 0)) {
         iVar2 = DSA_do_verify(dgst,dgst_len,local_24,dsa);
       }

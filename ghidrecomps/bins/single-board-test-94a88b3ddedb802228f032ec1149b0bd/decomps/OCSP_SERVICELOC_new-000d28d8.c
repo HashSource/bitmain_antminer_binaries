@@ -6,7 +6,7 @@ OCSP_SERVICELOC * OCSP_SERVICELOC_new(void)
 {
   OCSP_SERVICELOC *pOVar1;
   
-  pOVar1 = (OCSP_SERVICELOC *)ASN1_item_new(DAT_000d28e0);
+  pOVar1 = (OCSP_SERVICELOC *)ASN1_item_new((ASN1_ITEM *)OCSP_SERVICELOC_it);
   return pOVar1;
 }
 

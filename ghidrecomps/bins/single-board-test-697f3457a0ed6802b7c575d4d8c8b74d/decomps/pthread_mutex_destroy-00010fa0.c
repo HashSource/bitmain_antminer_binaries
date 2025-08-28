@@ -6,7 +6,7 @@ int pthread_mutex_destroy(pthread_mutex_t *__mutex)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_mutex_destroy_000478bc)();
+  iVar1 = pthread_mutex_destroy(__mutex);
   return iVar1;
 }
 

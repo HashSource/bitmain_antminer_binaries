@@ -6,7 +6,7 @@ PBKDF2PARAM * PBKDF2PARAM_new(void)
 {
   PBKDF2PARAM *pPVar1;
   
-  pPVar1 = (PBKDF2PARAM *)ASN1_item_new(DAT_000bd4e8);
+  pPVar1 = (PBKDF2PARAM *)ASN1_item_new((ASN1_ITEM *)PBKDF2PARAM_it);
   return pPVar1;
 }
 

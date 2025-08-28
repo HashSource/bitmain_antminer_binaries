@@ -24,15 +24,15 @@ int send_data_to_PIC16F1704(uint which_i2c,uchar which_chain,uchar *buf)
   send_data[8] = '\0';
   send_data[9] = '\0';
   send_data[10] = '\0';
-  send_data[11] = '\0';
-  send_data[12] = '\0';
-  send_data[13] = '\0';
-  send_data[14] = '\0';
-  send_data[15] = '\0';
-  send_data[16] = '\0';
-  send_data[17] = '\0';
-  send_data[18] = '\0';
-  send_data[19] = '\0';
+  send_data[0xb] = '\0';
+  send_data[0xc] = '\0';
+  send_data[0xd] = '\0';
+  send_data[0xe] = '\0';
+  send_data[0xf] = '\0';
+  send_data[0x10] = '\0';
+  send_data[0x11] = '\0';
+  send_data[0x12] = '\0';
+  send_data[0x13] = '\0';
   crc = 0x16;
   for (i = '\0'; i < 0x10; i = i + '\x01') {
     crc = crc + buf[i];
@@ -44,8 +44,8 @@ int send_data_to_PIC16F1704(uint which_i2c,uchar which_chain,uchar *buf)
   for (i = '\0'; i < 0x10; i = i + '\x01') {
     send_data[i + 4] = buf[i];
   }
-  send_data[21] = (uchar)crc;
-  send_data[20] = (uchar)(crc >> 8);
+  send_data[0x15] = (uchar)crc;
+  send_data[0x14] = (uchar)(crc >> 8);
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (i = '\0'; i < 0x16; i = i + '\x01') {
     write_pic((uchar)which_i2c,which_chain,send_data[i]);

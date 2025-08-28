@@ -4,8 +4,8 @@ void blake32_close(int param_1,byte param_2,uint param_3,int param_4,uint param_
 {
   byte abStack_64 [55];
   byte local_2d;
-  undefined auStack_2c [4];
-  undefined auStack_28 [4];
+  undefined1 auStack_2c [4];
+  undefined1 auStack_28 [4];
   int local_24;
   undefined4 local_20;
   int local_1c;

@@ -3,7 +3,7 @@ int get_ideal_rate_from_eeprom(void)
 
 {
   int iVar1;
-  undefined auStack_24 [4];
+  undefined1 auStack_24 [4];
   int local_20;
   int local_1c;
   undefined4 local_18;
@@ -22,9 +22,9 @@ int get_ideal_rate_from_eeprom(void)
           local_10 = *(int *)(local_14 + local_c * 0x80 + 0x1a3fbbe) + local_10;
         }
         else {
-          local_10 = (((byte)chain_pic_buf[local_c * 0x80 + 0x22] & 0xf) << 0xc |
+          local_10 = ((uint)(ushort)((ushort)(byte)chain_pic_buf[local_c * 0x80 + 0x22] << 0xc) |
                      (byte)chain_pic_buf[local_c * 0x80 + 0x1c] & 0xf |
-                     ((byte)chain_pic_buf[local_c * 0x80 + 0x1e] & 0xf) << 4 |
+                     (uint)(byte)(chain_pic_buf[local_c * 0x80 + 0x1e] << 4) |
                      ((byte)chain_pic_buf[local_c * 0x80 + 0x20] & 0xf) << 8) + local_10;
         }
       }

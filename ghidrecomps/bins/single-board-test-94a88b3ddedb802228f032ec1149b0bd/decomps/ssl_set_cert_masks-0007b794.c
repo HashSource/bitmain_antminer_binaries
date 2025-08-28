@@ -19,6 +19,9 @@ void ssl_set_cert_masks(int param_1,int param_2)
   uint uVar12;
   uint uVar13;
   uint in_r12;
+  uint extraout_r12;
+  uint extraout_r12_00;
+  uint extraout_r12_01;
   uint local_44;
   int local_40;
   int local_3c;
@@ -44,7 +47,7 @@ void ssl_set_cert_masks(int param_1,int param_2)
     if (local_38 != 0) goto LAB_0007b922;
   }
   else if ((*(int *)(param_1 + 0x20) == 0) &&
-          (iVar1 = RSA_size(*(RSA **)(param_1 + 0x1c)),
+          (iVar1 = RSA_size(*(RSA **)(param_1 + 0x1c)), in_r12 = extraout_r12,
           iVar5 + iVar1 * -8 < 0 != SBORROW4(iVar5,iVar1 * 8))) {
     local_34 = 1;
     local_38 = 0;
@@ -60,7 +63,7 @@ LAB_0007b922:
     if (local_44 != 0) goto LAB_0007b7e0;
   }
   else if ((*(int *)(param_1 + 0x28) == 0) &&
-          (iVar1 = DH_size(*(DH **)(param_1 + 0x24)),
+          (iVar1 = DH_size(*(DH **)(param_1 + 0x24)), in_r12 = extraout_r12_00,
           iVar5 + iVar1 * -8 < 0 != SBORROW4(iVar5,iVar1 * 8))) {
     local_44 = 1;
     local_3c = 0;
@@ -86,6 +89,7 @@ LAB_0007b7e0:
   else {
     iVar1 = EVP_PKEY_size(*(EVP_PKEY **)(param_1 + 0x40));
     bVar11 = iVar5 + iVar1 * -8 < 0 == SBORROW4(iVar5,iVar1 * 8);
+    in_r12 = extraout_r12_01;
   }
   uVar3 = *(uint *)(param_1 + 0x8c);
   uVar10 = *(uint *)(param_1 + 0xa8) & 1;
@@ -146,7 +150,7 @@ LAB_0007b882:
     uVar12 = 0;
   }
   else {
-    uVar12 = (uint)((uVar7 | uVar8) != 0);
+    uVar12 = (uint)(uVar7 != 0 || uVar8 != 0);
   }
   uVar7 = uVar7 | uVar8;
   if (local_3c != 0) {

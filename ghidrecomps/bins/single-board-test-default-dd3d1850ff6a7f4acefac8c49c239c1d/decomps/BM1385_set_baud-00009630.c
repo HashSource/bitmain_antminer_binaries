@@ -1,11 +1,11 @@
 
-void BM1385_set_baud(undefined param_1,undefined param_2,byte param_3,char param_4)
+void BM1385_set_baud(undefined1 param_1,undefined1 param_2,byte param_3,char param_4)
 
 {
   byte local_c;
-  undefined local_b;
+  undefined1 local_b;
   byte local_a;
-  undefined local_9;
+  undefined1 local_9;
   
   local_c = 0;
   local_9 = 0;

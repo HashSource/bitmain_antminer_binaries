@@ -6,7 +6,7 @@ void remove_dot_char(char *number)
 {
   char *pcVar1;
   size_t sVar2;
-  undefined *puVar3;
+  undefined1 *puVar3;
   uint uVar4;
   int iVar5;
   char tempStr [64];

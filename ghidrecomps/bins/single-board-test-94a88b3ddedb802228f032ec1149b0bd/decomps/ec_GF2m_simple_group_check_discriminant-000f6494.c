@@ -9,7 +9,7 @@ int ec_GF2m_simple_group_check_discriminant(int param_1,BN_CTX *param_2)
   c = (BN_CTX *)0x0;
   if ((param_2 == (BN_CTX *)0x0) && (param_2 = BN_CTX_new(), c = param_2, param_2 == (BN_CTX *)0x0))
   {
-    ERR_put_error(0x10,0x9f,0x41,DAT_000f6500,300);
+    ERR_put_error(0x10,0x9f,0x41,"ec2_smpl.c",300);
     iVar2 = 0;
   }
   else {

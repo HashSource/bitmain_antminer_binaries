@@ -4,6 +4,6 @@
 CONF_METHOD * NCONF_WIN32(void)
 
 {
-  return DAT_0010e4d4;
+  return (CONF_METHOD *)WIN32_method;
 }
 

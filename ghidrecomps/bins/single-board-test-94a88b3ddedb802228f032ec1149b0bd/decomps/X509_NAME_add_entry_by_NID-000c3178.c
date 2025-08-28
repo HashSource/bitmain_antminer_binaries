@@ -9,7 +9,7 @@ int X509_NAME_add_entry_by_NID
   
   obj = OBJ_nid2obj(nid);
   if (obj == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x72,0x6d,DAT_000c31d8,0x139);
+    ERR_put_error(0xb,0x72,0x6d,"x509name.c",0x139);
     pXVar1 = (X509_NAME_ENTRY *)0x0;
   }
   else {

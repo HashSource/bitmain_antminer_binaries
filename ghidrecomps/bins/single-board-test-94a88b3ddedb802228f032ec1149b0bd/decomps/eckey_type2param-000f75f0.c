@@ -19,7 +19,7 @@ EC_KEY * eckey_type2param(int param_1,ASN1_OBJECT *param_2)
     if (param_1 == 6) {
       pEVar1 = EC_KEY_new();
       if (pEVar1 == (EC_KEY *)0x0) {
-        ERR_put_error(0x10,0xdc,0x41,DAT_000f7680,0xa1);
+        ERR_put_error(0x10,0xdc,0x41,"ec_ameth.c",0xa1);
         return (EC_KEY *)0x0;
       }
       iVar2 = OBJ_obj2nid(param_2);
@@ -37,7 +37,7 @@ EC_KEY * eckey_type2param(int param_1,ASN1_OBJECT *param_2)
     }
     iVar2 = 0xac;
   }
-  ERR_put_error(0x10,0xdc,0x8e,DAT_000f7680,iVar2);
+  ERR_put_error(0x10,0xdc,0x8e,"ec_ameth.c",iVar2);
   return (EC_KEY *)0x0;
 }
 

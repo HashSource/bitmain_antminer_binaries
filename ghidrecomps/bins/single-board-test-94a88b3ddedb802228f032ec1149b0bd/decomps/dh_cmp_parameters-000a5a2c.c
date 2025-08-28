@@ -10,7 +10,7 @@ int dh_cmp_parameters(int param_1,int param_2)
   if ((iVar1 == 0) &&
      (iVar1 = BN_cmp(*(BIGNUM **)(*(int *)(param_1 + 0x14) + 0xc),
                      *(BIGNUM **)(*(int *)(param_2 + 0x14) + 0xc)), iVar1 == 0)) {
-    if (*(int *)(param_1 + 0xc) != DAT_000a5a78) {
+    if (*(undefined1 **)(param_1 + 0xc) != &dhx_asn1_meth) {
       return 1;
     }
     uVar2 = BN_cmp(*(BIGNUM **)(*(int *)(param_1 + 0x14) + 0x24),

@@ -6,7 +6,7 @@ int close(int __fd)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_close_000c0284)();
+  iVar1 = close(__fd);
   return iVar1;
 }
 

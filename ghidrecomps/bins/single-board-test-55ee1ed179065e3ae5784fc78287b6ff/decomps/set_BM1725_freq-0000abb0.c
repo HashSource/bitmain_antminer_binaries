@@ -1,5 +1,5 @@
 
-void set_BM1725_freq(float param_1,undefined param_2,undefined param_3,undefined param_4)
+void set_BM1725_freq(float param_1,undefined1 param_2,undefined1 param_3,undefined1 param_4)
 
 {
   float local_18;

@@ -60,10 +60,10 @@ LAB_0003e7f6:
           _applog(5,tmp42,false);
         }
         dev->chain_asic_temp_num[chain] = '\x04';
-        dev->TempChipAddr[chain][0] = (uchar)(((int)temp_offset[0] - 1U & 0xff) << 1);
-        dev->TempChipAddr[chain][1] = (uchar)(((int)temp_offset[2] - 1U & 0xff) << 1);
-        dev->TempChipAddr[chain][2] = (uchar)(((int)temp_offset[4] - 1U & 0xff) << 1);
-        dev->TempChipAddr[chain][3] = (uchar)(((int)temp_offset[6] - 1U & 0xff) << 1);
+        dev->TempChipAddr[chain][0] = (temp_offset[0] + -1) * '\x02';
+        dev->TempChipAddr[chain][1] = (temp_offset[2] + -1) * '\x02';
+        dev->TempChipAddr[chain][2] = (temp_offset[4] + -1) * '\x02';
+        dev->TempChipAddr[chain][3] = (temp_offset[6] + -1) * '\x02';
         for (i = 0; i < dev->chain_asic_temp_num[chain]; i = i + 1) {
           set_misc_control(chain_00,'\0',dev->TempChipAddr[chain][i],1);
           check_asic_reg_with_addr(0x18,dev->TempChipAddr[chain][i],chain,1);
@@ -85,8 +85,8 @@ LAB_0003e7f6:
       return '\0';
     }
     if (('\0' < temp_offset[i * 2]) && (temp_offset[i * 2] < 'l')) {
-      dev->TempChipAddr[chain][dev->chain_asic_temp_num[chain]] =
-           (uchar)(((int)temp_offset[i * 2] - 1U & 0xff) << 1);
+      dev->TempChipAddr[chain][dev->chain_asic_temp_num[chain]] = (temp_offset[i * 2] + -1) * '\x02'
+      ;
       middle_Offset[chain][dev->chain_asic_temp_num[chain]] = temp_offset[i * 2 + 1];
       set_misc_control(chain_00,'\0',dev->TempChipAddr[chain][dev->chain_asic_temp_num[chain]],1);
       check_asic_reg_with_addr

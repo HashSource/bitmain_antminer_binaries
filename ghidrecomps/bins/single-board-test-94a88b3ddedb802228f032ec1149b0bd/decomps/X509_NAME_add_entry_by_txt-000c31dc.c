@@ -9,8 +9,8 @@ int X509_NAME_add_entry_by_txt
   
   obj = OBJ_txt2obj(field,0);
   if (obj == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x83,0x77,DAT_000c324c,0x127);
-    ERR_add_error_data(2,DAT_000c3250,field);
+    ERR_put_error(0xb,0x83,0x77,"x509name.c",0x127);
+    ERR_add_error_data(2,"name=",field);
     pXVar1 = (X509_NAME_ENTRY *)0x0;
   }
   else {

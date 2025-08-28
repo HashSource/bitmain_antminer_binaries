@@ -20,7 +20,7 @@ int CMS_RecipientInfo_set0_password(CMS_RecipientInfo *ri,uchar *pass,ssize_t pa
     *(ssize_t *)(iVar3 + 0x14) = passlen;
   }
   else {
-    ERR_put_error(0x2e,0xa8,0xb1,DAT_000d641c,0x47);
+    ERR_put_error(0x2e,0xa8,0xb1,"cms_pwri.c",0x47);
     iVar1 = 0;
   }
   return iVar1;

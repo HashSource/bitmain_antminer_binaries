@@ -4,8 +4,6 @@
 _Bool isdupnonce(cgpu_info *cgpu,work *work,uint nonce)
 
 {
-  char *func;
-  char *file;
   int iVar1;
   K_ITEM *pKVar2;
   int *piVar3;
@@ -14,10 +12,8 @@ _Bool isdupnonce(cgpu_info *cgpu,work *work,uint nonce)
   dupdata *dup;
   int *piVar6;
   pthread_mutex_t *ppVar7;
-  K_ITEM *item;
   uint *puVar8;
   double dVar9;
-  double dVar10;
   timeval now;
   char tmp42 [2048];
   
@@ -31,14 +27,16 @@ _Bool isdupnonce(cgpu_info *cgpu,work *work,uint nonce)
     iVar1 = pthread_mutex_lock(ppVar7);
     if (iVar1 != 0) {
       piVar3 = __errno_location();
-      snprintf(tmp42,0x800,DAT_0003aa50,*piVar3,DAT_0003aa3c,DAT_0003aa38,0x46);
+      snprintf(tmp42,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar3,"noncedup.c",
+               "isdupnonce",0x46);
       _applog(3,tmp42,true);
       _quit(1);
     }
     iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar7 + 1));
     if (iVar1 != 0) {
       piVar3 = __errno_location();
-      snprintf(tmp42,0x800,DAT_0003aa4c,*piVar3,DAT_0003aa3c,DAT_0003aa38,0x46);
+      snprintf(tmp42,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar3,"noncedup.c",
+               "isdupnonce",0x46);
       _applog(3,tmp42,true);
       _quit(1);
     }
@@ -56,48 +54,47 @@ _Bool isdupnonce(cgpu_info *cgpu,work *work,uint nonce)
         iVar1 = *(int *)(iVar1 + 4);
       }
       uVar4 = 0;
-      if ((*DAT_0003aa54 != '\0') || ((*DAT_0003aa58 != '\0' || (3 < opt_log_level)))) break;
+      if ((use_syslog != false) || ((opt_log_output != false || (3 < opt_log_level)))) break;
       uVar4 = 0;
     }
-    snprintf(tmp42,0x800,DAT_0003aa34,cgpu->drv->name,cgpu->device_id,nonce);
+    snprintf(tmp42,0x800,"%s%d: Duplicate nonce %08x",cgpu->drv->name,cgpu->device_id,nonce);
     _applog(4,tmp42,false);
 LAB_0003a8a8:
     if (uVar4 != 0) {
-      pKVar2 = _k_unlink_head((K_LIST *)piVar6[1],DAT_0003aa3c,DAT_0003aa38,0x51);
-      file = DAT_0003aa3c;
-      func = DAT_0003aa38;
+      pKVar2 = _k_unlink_head((K_LIST *)piVar6[1],"noncedup.c","isdupnonce",0x51);
       puVar8 = (uint *)pKVar2->data;
       *puVar8 = work->id;
       puVar8[1] = nonce;
       puVar8[2] = now.tv_sec;
       puVar8[3] = now.tv_usec;
-      _k_add_head((K_LIST *)piVar6[2],pKVar2,file,func,0x55);
+      _k_add_head((K_LIST *)piVar6[2],pKVar2,"noncedup.c","isdupnonce",0x55);
     }
     iVar1 = *(int *)(piVar6[2] + 0x10);
-    while (iVar1 != 0) {
-      dVar9 = tdiff((timeval *)(*(int *)(iVar1 + 0xc) + 8),&now);
-      dVar10 = (double)(longlong)*piVar6;
-      if (dVar9 == dVar10 || dVar9 < dVar10 != (NAN(dVar9) || NAN(dVar10))) break;
-      pKVar2 = _k_unlink_tail((K_LIST *)piVar6[2],DAT_0003aa3c,DAT_0003aa38,0x59);
-      _k_add_head((K_LIST *)piVar6[1],pKVar2,DAT_0003aa3c,DAT_0003aa38,0x5a);
+    while ((iVar1 != 0 &&
+           (dVar9 = tdiff((timeval *)(*(int *)(iVar1 + 0xc) + 8),&now),
+           (double)(longlong)*piVar6 < dVar9))) {
+      pKVar2 = _k_unlink_tail((K_LIST *)piVar6[2],"noncedup.c","isdupnonce",0x59);
+      _k_add_head((K_LIST *)piVar6[1],pKVar2,"noncedup.c","isdupnonce",0x5a);
       iVar1 = *(int *)(piVar6[2] + 0x10);
     }
     ppVar7 = *(pthread_mutex_t **)(piVar6[1] + 8);
     iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)(ppVar7 + 1));
     if (iVar1 != 0) {
       piVar3 = __errno_location();
-      snprintf(tmp42,0x800,DAT_0003aa48,*piVar3,DAT_0003aa3c,DAT_0003aa38,0x5d);
+      snprintf(tmp42,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar3,"noncedup.c"
+               ,"isdupnonce",0x5d);
       _applog(3,tmp42,true);
       _quit(1);
     }
     iVar1 = pthread_mutex_unlock(ppVar7);
     if (iVar1 != 0) {
       piVar3 = __errno_location();
-      snprintf(tmp42,0x800,DAT_0003aa44,*piVar3,DAT_0003aa3c,DAT_0003aa38,0x5d);
+      snprintf(tmp42,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar3,"noncedup.c",
+               "isdupnonce",0x5d);
       _applog(3,tmp42,true);
       _quit(1);
     }
-    (**DAT_0003aa40)();
+    (*selective_yield)();
     if (uVar4 == 0) {
       uVar5 = piVar6[6];
       piVar6[6] = uVar5 + 1;

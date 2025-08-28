@@ -3,7 +3,7 @@ void sha2_update(uint *param_1,void *param_2,uint param_3)
 
 {
   size_t __n;
-  uint local_1c;
+  size_t local_1c;
   void *local_18;
   uint local_c;
   

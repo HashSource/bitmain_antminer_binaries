@@ -6,7 +6,7 @@ __uid_t getuid(void)
 {
   __uid_t _Var1;
   
-  _Var1 = (*(code *)PTR_getuid_001941f4)();
+  _Var1 = getuid();
   return _Var1;
 }
 

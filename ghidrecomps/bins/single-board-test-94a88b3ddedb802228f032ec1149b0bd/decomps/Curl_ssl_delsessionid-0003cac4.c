@@ -10,7 +10,7 @@ void Curl_ssl_delsessionid(int *param_1,int param_2)
   
   iVar5 = *param_1;
   if ((*(int **)(iVar5 + 0x48) != (int *)0x0) && (**(int **)(iVar5 + 0x48) << 0x1b < 0)) {
-    Curl_share_lock(iVar5,4);
+    Curl_share_lock(iVar5,4,2);
   }
   if (*(int *)(iVar5 + 0x2a8) != 0) {
     iVar3 = *(int *)(iVar5 + 0x85b0);

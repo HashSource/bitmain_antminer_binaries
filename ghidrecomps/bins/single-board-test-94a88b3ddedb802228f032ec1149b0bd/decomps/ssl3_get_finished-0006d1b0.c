@@ -12,7 +12,7 @@ size_t ssl3_get_finished(int param_1)
   if (local_14 != 0) {
     iVar2 = *(int *)(param_1 + 0x58);
     if (*(int *)(iVar2 + 0x180) == 0) {
-      ERR_put_error(0x14,0x8c,0x9a,DAT_0006d29c,0x101);
+      ERR_put_error(0x14,0x8c,0x9a,"s3_both.c",0x101);
       uVar3 = 10;
     }
     else {
@@ -23,7 +23,7 @@ size_t ssl3_get_finished(int param_1)
         if (iVar2 == 0) {
           if (*(int *)(param_1 + 4) != 0x2000) {
             if (0x40 < (int)len) {
-              OpenSSLDie(DAT_0006d29c,0x11d,DAT_0006d2a0);
+              OpenSSLDie("s3_both.c",0x11d,"i <= EVP_MAX_MD_SIZE");
             }
             memcpy((void *)(*(int *)(param_1 + 0x58) + 0x3d5),
                    (void *)(*(int *)(param_1 + 0x58) + 0x2b8),len);
@@ -31,18 +31,18 @@ size_t ssl3_get_finished(int param_1)
             return 1;
           }
           if (0x40 < (int)len) {
-            OpenSSLDie(DAT_0006d29c,0x119,DAT_0006d2a0);
+            OpenSSLDie("s3_both.c",0x119,"i <= EVP_MAX_MD_SIZE");
           }
           memcpy((void *)(*(int *)(param_1 + 0x58) + 0x394),
                  (void *)(*(int *)(param_1 + 0x58) + 0x2b8),len);
           *(char *)(*(int *)(param_1 + 0x58) + 0x3d4) = (char)len;
           return 1;
         }
-        ERR_put_error(0x14,0x8c,0x95,DAT_0006d29c,0x111);
+        ERR_put_error(0x14,0x8c,0x95,"s3_both.c",0x111);
         uVar3 = 0x33;
       }
       else {
-        ERR_put_error(0x14,0x8c,0x6f,DAT_0006d29c,0x10b);
+        ERR_put_error(0x14,0x8c,0x6f,"s3_both.c",0x10b);
         uVar3 = 0x32;
       }
     }

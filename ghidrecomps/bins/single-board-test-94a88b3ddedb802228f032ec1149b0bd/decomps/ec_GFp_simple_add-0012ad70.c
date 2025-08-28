@@ -1,5 +1,5 @@
 
-int ec_GFp_simple_add(int *param_1,EC_POINT *param_2,EC_POINT *param_3,EC_POINT *param_4,
+int ec_GFp_simple_add(EC_GROUP *param_1,EC_POINT *param_2,EC_POINT *param_3,EC_POINT *param_4,
                      BN_CTX *param_5)
 
 {
@@ -18,21 +18,21 @@ int ec_GFp_simple_add(int *param_1,EC_POINT *param_2,EC_POINT *param_3,EC_POINT 
   BN_CTX *c;
   
   if (param_3 == param_4) {
-    iVar1 = EC_POINT_dbl((EC_GROUP *)param_1,param_2,param_3,param_5);
+    iVar1 = EC_POINT_dbl(param_1,param_2,param_3,param_5);
     return iVar1;
   }
-  iVar1 = EC_POINT_is_at_infinity((EC_GROUP *)param_1,param_3);
+  iVar1 = EC_POINT_is_at_infinity(param_1,param_3);
   if (iVar1 != 0) {
     iVar1 = EC_POINT_copy(param_2,param_4);
     return iVar1;
   }
-  iVar1 = EC_POINT_is_at_infinity((EC_GROUP *)param_1,param_4);
+  iVar1 = EC_POINT_is_at_infinity(param_1,param_4);
   if (iVar1 != 0) {
     iVar1 = EC_POINT_copy(param_2,param_3);
     return iVar1;
   }
-  pcVar5 = *(code **)(*param_1 + 0x84);
-  pcVar4 = *(code **)(*param_1 + 0x88);
+  pcVar5 = *(code **)(*(int *)param_1 + 0x84);
+  pcVar4 = *(code **)(*(int *)param_1 + 0x88);
   if (param_5 == (BN_CTX *)0x0) {
     param_5 = BN_CTX_new();
     c = param_5;
@@ -81,7 +81,7 @@ LAB_0012ae1a:
        (pBVar2 = BN_copy(a_03,(BIGNUM *)(param_4 + 0x18)), pBVar2 == (BIGNUM *)0x0))
     goto LAB_0012aec2;
 LAB_0012ae3a:
-    pBVar2 = (BIGNUM *)(param_1 + 0x12);
+    pBVar2 = (BIGNUM *)(param_1 + 0x48);
     iVar1 = BN_mod_sub_quick(r,a_00,a_02,pBVar2);
     if ((iVar1 == 0) || (iVar1 = BN_mod_sub_quick(r_00,a_01,a_03,pBVar2), iVar1 == 0))
     goto LAB_0012aec2;
@@ -134,7 +134,7 @@ joined_r0x0012b0d6:
     }
     if (r_00->top == 0) {
       BN_CTX_end(param_5);
-      iVar1 = EC_POINT_dbl((EC_GROUP *)param_1,param_2,param_3,param_5);
+      iVar1 = EC_POINT_dbl(param_1,param_2,param_3,param_5);
       goto LAB_0012ae88;
     }
     iVar1 = 1;

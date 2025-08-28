@@ -5,7 +5,6 @@ void get_datestamp(char *f,size_t fsiz,timeval *tv)
 
 {
   tm *ptVar1;
-  tm *tm;
   int iVar2;
   int ms;
   __time_t local_1c [2];

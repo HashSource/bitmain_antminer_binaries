@@ -5,23 +5,16 @@ void __libc_csu_init(int argc,char **argv,char **envp)
 
 {
   int iVar1;
-  int iVar2;
-  code **ppcVar3;
-  int iVar4;
+  undefined **ppuVar2;
   
-  iVar1 = DAT_0007f808;
-  iVar4 = DAT_0007f804 + 0x7f7e2;
   _init((EVP_PKEY_CTX *)argc);
-  iVar4 = iVar4 - (int)(code **)(iVar1 + 0x7f7e8) >> 2;
-  if (iVar4 != 0) {
-    iVar2 = 0;
-    ppcVar3 = (code **)(iVar1 + 0x7f7e8);
-    do {
-      iVar2 = iVar2 + 1;
-      (**ppcVar3)(argc,argv,envp);
-      ppcVar3 = ppcVar3 + 1;
-    } while (iVar4 != iVar2);
-  }
+  iVar1 = 0;
+  ppuVar2 = &__frame_dummy_init_array_entry;
+  do {
+    iVar1 = iVar1 + 1;
+    (*(code *)*ppuVar2)(argc,argv,envp);
+    ppuVar2 = ppuVar2 + 1;
+  } while (iVar1 != 1);
   return;
 }
 

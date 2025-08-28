@@ -2,13 +2,13 @@
 void clearTempLogFile(void)
 
 {
-  FILE *pFVar1;
+  FILE *__stream;
   
-  pFVar1 = fopen("/tmp/temp","w");
-  if (pFVar1 == (FILE *)0x0) {
+  __stream = fopen("/tmp/temp","w");
+  if (__stream == (FILE *)0x0) {
     return;
   }
-  (*(code *)PTR_fclose_0007cfe8)();
+  fclose(__stream);
   return;
 }
 

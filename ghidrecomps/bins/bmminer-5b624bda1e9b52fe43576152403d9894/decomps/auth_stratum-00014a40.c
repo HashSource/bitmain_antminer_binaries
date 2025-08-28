@@ -4,121 +4,93 @@
 _Bool auth_stratum(pool *pool)
 
 {
-  int *piVar1;
-  int *piVar2;
-  undefined *puVar3;
-  _Bool _Var4;
-  size_t sVar5;
-  char *pcVar6;
+  int iVar1;
+  _Bool _Var2;
+  size_t sVar3;
+  char *pcVar4;
   json_t *json;
-  json_t *pjVar7;
-  json_t *res_val;
+  json_t *pjVar5;
   json_t *json_00;
-  json_t *err_val;
-  undefined4 *puVar8;
-  char *__retval;
-  undefined4 uVar9;
-  int iVar10;
-  undefined4 uVar11;
-  char *pcVar12;
-  size_t sVar13;
-  undefined4 uVar14;
-  char *pcVar15;
-  char *ss;
-  undefined4 uVar16;
+  char *pcVar6;
+  size_t sVar7;
   json_error_t err;
   char tmp42 [2048];
   char s [8192];
   
-  pcVar6 = DAT_00014c0c;
-  piVar1 = DAT_00014c08;
-  pcVar15 = pool->rpc_pass;
-  iVar10 = *DAT_00014c08;
-  pcVar12 = pool->rpc_user;
-  *DAT_00014c08 = iVar10 + 1;
-  sprintf(s,pcVar6,iVar10,pcVar12,pcVar15);
-  sVar5 = strlen(s);
-  _Var4 = stratum_send(pool,s,sVar5);
-  if (_Var4) {
-    while (pcVar6 = recv_line(pool), pcVar6 != (char *)0x0) {
-      _Var4 = parse_method(pool,pcVar6);
-      if (!_Var4) {
-        json = json_loads(pcVar6,0,&err);
-        free(pcVar6);
-        pjVar7 = json_object_get(json,DAT_00014c10);
-        json_00 = json_object_get(json,DAT_00014c14);
-        if ((pjVar7 == (json_t *)0x0) || (pjVar7->type == JSON_FALSE)) {
+  iVar1 = swork_id;
+  swork_id = swork_id + 1;
+  sprintf(s,"{\"id\": %d, \"method\": \"mining.authorize\", \"params\": [\"%s\", \"%s\"]}",iVar1,
+          pool->rpc_user,pool->rpc_pass);
+  sVar3 = strlen(s);
+  _Var2 = stratum_send(pool,s,sVar3);
+  if (_Var2) {
+    while (pcVar4 = recv_line(pool), pcVar4 != (char *)0x0) {
+      _Var2 = parse_method(pool,pcVar4);
+      if (!_Var2) {
+        json = json_loads(pcVar4,0,&err);
+        free(pcVar4);
+        pjVar5 = json_object_get(json,"result");
+        json_00 = json_object_get(json,"error");
+        if ((pjVar5 == (json_t *)0x0) || (pjVar5->type == JSON_FALSE)) {
           if (json_00 != (json_t *)0x0) goto LAB_00014ae8;
-          puVar8 = (undefined4 *)malloc(0x11);
-          ss = (char *)0x0;
-          if (puVar8 != (undefined4 *)0x0) {
-            uVar9 = DAT_00014c40[1];
-            uVar11 = DAT_00014c40[2];
-            uVar14 = DAT_00014c40[3];
-            uVar16 = DAT_00014c40[4];
-            *puVar8 = *DAT_00014c40;
-            puVar8[1] = uVar9;
-            puVar8[2] = uVar11;
-            puVar8[3] = uVar14;
-            *(char *)(puVar8 + 4) = (char)uVar16;
-            ss = (char *)puVar8;
+          pcVar6 = (char *)malloc(0x11);
+          pcVar4 = (char *)0x0;
+          if (pcVar6 != (char *)0x0) {
+            builtin_strncpy(pcVar6,"(unknown reason)",0x11);
+            pcVar4 = pcVar6;
           }
         }
         else {
           if ((json_00 == (json_t *)0x0) || (json_00->type == JSON_NULL)) {
-            if (((*DAT_00014c18 != '\0') || (*DAT_00014c1c != '\0')) || (5 < *DAT_00014c20)) {
-              snprintf(tmp42,0x800,DAT_00014c28,pool->pool_no);
+            if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
+              snprintf(tmp42,0x800,"Stratum authorisation success for pool %d",pool->pool_no);
               _applog(6,tmp42,false);
             }
-            puVar3 = DAT_00014c30;
-            piVar2 = DAT_00014c2c;
             pool->probed = true;
-            iVar10 = *piVar2;
-            *puVar3 = 1;
-            pcVar6 = DAT_00014c3c;
-            if (iVar10 != 0) {
-              *piVar1 = *piVar1 + 1;
-              sprintf(s,pcVar6);
-              sVar5 = strlen(s);
-              stratum_send(pool,s,sVar5);
+            successful_connect = true;
+            if (opt_suggest_diff != 0) {
+              swork_id = swork_id + 1;
+              sprintf(s,"{\"id\": %d, \"method\": \"mining.suggest_difficulty\", \"params\": [%d]}")
+              ;
+              sVar3 = strlen(s);
+              stratum_send(pool,s,sVar3);
             }
-            pcVar6 = DAT_00014c38;
-            _Var4 = true;
-            if (*DAT_00014c34 != 0) {
-              _Var4 = true;
-              *piVar1 = *piVar1 + 1;
-              sprintf(s,pcVar6);
-              sVar5 = strlen(s);
-              stratum_send(pool,s,sVar5);
+            _Var2 = true;
+            if (opt_multi_version != 0) {
+              _Var2 = true;
+              swork_id = swork_id + 1;
+              sprintf(s,"{\"id\": %d, \"method\": \"mining.multi_version\", \"params\": [%d]}");
+              sVar3 = strlen(s);
+              stratum_send(pool,s,sVar3);
             }
-            goto out;
+            goto LAB_00014b2e;
           }
 LAB_00014ae8:
-          ss = json_dumps(json_00,3);
+          pcVar4 = json_dumps(json_00,3);
         }
-        if (((*DAT_00014c18 != '\0') || (*DAT_00014c1c != '\0')) || (5 < *DAT_00014c20)) {
-          snprintf(tmp42,0x800,DAT_00014c24,pool->pool_no,ss);
+        if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
+          snprintf(tmp42,0x800,"pool %d JSON stratum auth failed: %s",pool->pool_no,pcVar4);
           _applog(6,tmp42,false);
         }
-        _Var4 = false;
-        free(ss);
+        _Var2 = false;
+        free(pcVar4);
         suspend_stratum(pool);
-out:
+LAB_00014b2e:
         if (json == (json_t *)0x0) {
-          return _Var4;
+          return _Var2;
         }
         if (json->refcount == 0xffffffff) {
-          return _Var4;
+          return _Var2;
         }
-        sVar13 = json->refcount - 1;
-        json->refcount = sVar13;
-        if (sVar13 != 0) {
-          return _Var4;
+        sVar7 = json->refcount - 1;
+        json->refcount = sVar7;
+        if (sVar7 != 0) {
+          return _Var2;
         }
         json_delete(json);
-        return _Var4;
+        return _Var2;
       }
-      free(pcVar6);
+      free(pcVar4);
     }
   }
   return false;

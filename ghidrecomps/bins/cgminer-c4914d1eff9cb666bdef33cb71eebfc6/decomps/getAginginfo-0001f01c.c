@@ -21,8 +21,8 @@ void getAginginfo(char *infoStr)
   else {
     puVar4 = &DAT_00081b3c;
   }
-  iVar1 = sprintf(infoStr,"finished: %s bad: %s from %s",puVar3,puVar4,DAT_0001f0f4);
-  iVar2 = sprintf(infoStr + iVar1 + -1," to %s",DAT_0001f0f8);
+  iVar1 = sprintf(infoStr,"finished: %s bad: %s from %s",puVar3,puVar4,0x23456c);
+  iVar2 = sprintf(infoStr + iVar1 + -1," to %s",0x2345ac);
   sprintf(infoStr + iVar1 + -1 + iVar2," inbalance_times %d %d %d",aging_info.inbalance_times[0],
           aging_info.inbalance_times[1],aging_info.inbalance_times[2]);
   return;

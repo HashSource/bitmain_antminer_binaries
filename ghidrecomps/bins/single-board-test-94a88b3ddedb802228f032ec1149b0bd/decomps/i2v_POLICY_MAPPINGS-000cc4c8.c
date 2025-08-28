@@ -3,7 +3,7 @@ stack_st_CONF_VALUE *
 i2v_POLICY_MAPPINGS(undefined4 param_1,_STACK *param_2,stack_st_CONF_VALUE *param_3)
 
 {
-  ASN1_OBJECT **ppAVar1;
+  undefined4 *puVar1;
   int iVar2;
   int iVar3;
   stack_st_CONF_VALUE *local_b4;
@@ -15,9 +15,9 @@ i2v_POLICY_MAPPINGS(undefined4 param_1,_STACK *param_2,stack_st_CONF_VALUE *para
   while( true ) {
     iVar2 = sk_num(param_2);
     if (iVar2 <= iVar3) break;
-    ppAVar1 = (ASN1_OBJECT **)sk_value(param_2,iVar3);
-    i2t_ASN1_OBJECT(acStack_b0,0x50,*ppAVar1);
-    i2t_ASN1_OBJECT(acStack_60,0x50,ppAVar1[1]);
+    puVar1 = (undefined4 *)sk_value(param_2,iVar3);
+    i2t_ASN1_OBJECT(acStack_b0,0x50,(ASN1_OBJECT *)*puVar1);
+    i2t_ASN1_OBJECT(acStack_60,0x50,(ASN1_OBJECT *)puVar1[1]);
     X509V3_add_value(acStack_b0,acStack_60,&local_b4);
     iVar3 = iVar3 + 1;
   }

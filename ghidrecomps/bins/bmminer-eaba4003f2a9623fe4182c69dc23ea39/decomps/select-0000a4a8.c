@@ -6,9 +6,7 @@ int select(int __nfds,fd_set *__readfds,fd_set *__writefds,fd_set *__exceptfds,t
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a4b0. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0008534c)();
+  iVar1 = (*(code *)(undefined *)0x0)(__nfds);
   return iVar1;
 }
 

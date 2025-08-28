@@ -8,7 +8,7 @@ file_setup_connection(int *param_1,undefined4 param_2,undefined4 param_3,undefin
   int iVar3;
   
   iVar3 = *param_1;
-  uVar1 = (**DAT_00059d24)(1,0xc,param_3,*DAT_00059d24,param_4);
+  uVar1 = (*Curl_ccalloc)(1,0xc,param_3,Curl_ccalloc,param_4);
   iVar2 = *param_1;
   *(undefined4 *)(iVar3 + 0x14c) = uVar1;
   if (*(int *)(iVar2 + 0x14c) == 0) {

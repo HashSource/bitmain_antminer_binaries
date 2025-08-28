@@ -33,7 +33,6 @@ double decode_an_voltage_buf(uchar *buf)
         }
         fclose(pFVar4);
       }
-      dVar5 = ((double)(longlong)(int)(uint)CONCAT11(uVar1,uVar2) * DAT_000388e8) / DAT_000388f0;
       if (5 < log_level) {
         print_crt_time_to_file(log_file,5);
         pFVar4 = fopen(log_file,"a+");
@@ -42,7 +41,7 @@ double decode_an_voltage_buf(uchar *buf)
         }
         fclose(pFVar4);
       }
-      dVar5 = dVar5 * DAT_000388f8;
+      dVar5 = (((double)CONCAT11(uVar1,uVar2) * 3.3) / 4096.0) * 7.599999904632568;
       if (5 < log_level) {
         print_crt_time_to_file(log_file,5);
         pFVar4 = fopen(log_file,"a+");

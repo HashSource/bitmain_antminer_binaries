@@ -15,7 +15,7 @@ undefined4 Curl_input_digest(int *param_1,int param_2,int param_3)
   else {
     iVar6 = *param_1 + 0x85fc;
   }
-  iVar1 = Curl_raw_nequal(DAT_0004d450,param_3,6);
+  iVar1 = Curl_raw_nequal("Digest",param_3,6);
   if (iVar1 == 0) {
     return 0x3d;
   }

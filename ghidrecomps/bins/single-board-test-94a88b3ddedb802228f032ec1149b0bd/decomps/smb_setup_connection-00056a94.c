@@ -10,7 +10,7 @@ int smb_setup_connection(int *param_1)
   char *local_14;
   
   iVar5 = *param_1;
-  iVar2 = (**DAT_00056b4c)(1,0x14);
+  iVar2 = (*Curl_ccalloc)(1,0x14);
   *(int *)(iVar5 + 0x14c) = iVar2;
   if (iVar2 == 0) {
     iVar2 = 0x1b;
@@ -24,17 +24,17 @@ int smb_setup_connection(int *param_1)
       if (*local_14 == '/' || *local_14 == '\\') {
         pcVar3 = local_14 + 1;
       }
-      pcVar3 = (char *)(**DAT_00056b50)(pcVar3);
+      pcVar3 = (char *)(*Curl_cstrdup)(pcVar3);
       *(char **)(iVar5 + 4) = pcVar3;
       if (pcVar3 == (char *)0x0) {
         iVar2 = 0x1b;
-        (**DAT_00056b54)(local_14);
+        (*Curl_cfree)(local_14);
       }
       else {
         pcVar4 = strchr(pcVar3,0x2f);
         if ((pcVar4 == (char *)0x0) && (pcVar4 = strchr(pcVar3,0x5c), pcVar4 == (char *)0x0)) {
           iVar2 = 3;
-          (**DAT_00056b54)(local_14);
+          (*Curl_cfree)(local_14);
         }
         else {
           *pcVar4 = '\0';
@@ -48,7 +48,7 @@ int smb_setup_connection(int *param_1)
             cVar1 = *pcVar3;
             pcVar3 = pcVar3 + 1;
           }
-          (**DAT_00056b54)(local_14);
+          (*Curl_cfree)(local_14);
         }
       }
     }

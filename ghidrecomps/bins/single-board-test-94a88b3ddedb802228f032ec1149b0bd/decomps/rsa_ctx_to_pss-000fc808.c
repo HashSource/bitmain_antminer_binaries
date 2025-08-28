@@ -11,7 +11,7 @@ ASN1_STRING * rsa_ctx_to_pss(EVP_PKEY_CTX *param_1)
   int iVar3;
   EVP_MD *local_20;
   undefined4 local_1c;
-  ASN1_STRING *local_18;
+  ASN1_OCTET_STRING *local_18;
   int local_14;
   
   local_18 = (ASN1_STRING *)0x0;
@@ -44,7 +44,7 @@ LAB_000fc89c:
     }
     iVar1 = rsa_md_to_mgf1(&a->maskGenAlgorithm,local_1c);
     if (iVar1 != 0) {
-      pAVar2 = ASN1_item_pack(a,DAT_000fc914,&local_18);
+      pAVar2 = ASN1_item_pack(a,(ASN1_ITEM *)&RSA_PSS_PARAMS_it,&local_18);
       RSA_PSS_PARAMS_free(a);
       if (pAVar2 != (ASN1_STRING *)0x0) {
         return local_18;

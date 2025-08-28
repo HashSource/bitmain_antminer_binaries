@@ -12,7 +12,7 @@ X509 * d2i_X509_AUX(X509 **a,uchar **pp,long length)
   if ((a != (X509 **)0x0) && (iVar3 = 1 - (int)*a, (X509 *)0x1 < *a)) {
     iVar3 = 0;
   }
-  val = (X509 *)ASN1_item_d2i((ASN1_VALUE **)a,pp,length,DAT_000b7cbc);
+  val = (X509 *)ASN1_item_d2i((ASN1_VALUE **)a,pp,length,(ASN1_ITEM *)X509_it);
   if (val != (X509 *)0x0) {
     if (puVar2 + (length - (int)*pp) == (uchar *)0x0) {
       return val;
@@ -22,7 +22,8 @@ X509 * d2i_X509_AUX(X509 **a,uchar **pp,long length)
     if (pXVar1 != (X509_CERT_AUX *)0x0) {
       return val;
     }
-    if ((iVar3 != 0) && (ASN1_item_free((ASN1_VALUE *)val,DAT_000b7cbc), a != (X509 **)0x0)) {
+    if ((iVar3 != 0) && (ASN1_item_free((ASN1_VALUE *)val,(ASN1_ITEM *)X509_it), a != (X509 **)0x0))
+    {
       *a = (X509 *)0x0;
       return (X509 *)0x0;
     }

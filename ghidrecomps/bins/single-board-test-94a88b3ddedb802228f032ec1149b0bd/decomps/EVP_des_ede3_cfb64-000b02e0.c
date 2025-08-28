@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_des_ede3_cfb64(void)
 
 {
-  return DAT_000b02e4;
+  return (EVP_CIPHER *)des_ede3_cfb64;
 }
 

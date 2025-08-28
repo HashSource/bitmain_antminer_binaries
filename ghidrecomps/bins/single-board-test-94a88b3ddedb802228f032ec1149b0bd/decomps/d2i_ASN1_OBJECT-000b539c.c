@@ -25,7 +25,7 @@ ASN1_OBJECT * d2i_ASN1_OBJECT(ASN1_OBJECT **a,uchar **pp,long length)
     }
     iVar1 = 0x74;
   }
-  ERR_put_error(0xd,0x93,iVar1,DAT_000b53f4,0x108);
+  ERR_put_error(0xd,0x93,iVar1,"a_object.c",0x108);
   return (ASN1_OBJECT *)0x0;
 }
 

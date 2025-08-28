@@ -11,9 +11,9 @@ int RSA_padding_check_PKCS1_type_2(uchar *to,int tlen,uchar *f,int fl,int rsa_le
   
   if (-1 < (tlen | fl)) {
     if ((fl <= rsa_len) && (10 < rsa_len)) {
-      __s = (byte *)CRYPTO_malloc(rsa_len,DAT_000fb934,0xce);
+      __s = (byte *)CRYPTO_malloc(rsa_len,"rsa_pk1.c",0xce);
       if (__s == (byte *)0x0) {
-        ERR_put_error(4,0x71,0x41,DAT_000fb934,0xd0);
+        ERR_put_error(4,0x71,0x41,"rsa_pk1.c",0xd0);
         return -1;
       }
       memset(__s,0,rsa_len);
@@ -43,7 +43,7 @@ int RSA_padding_check_PKCS1_type_2(uchar *to,int tlen,uchar *f,int fl,int rsa_le
         }
       }
     }
-    ERR_put_error(4,0x71,0x9f,DAT_000fb934,0x111);
+    ERR_put_error(4,0x71,0x9f,"rsa_pk1.c",0x111);
   }
   return -1;
 }

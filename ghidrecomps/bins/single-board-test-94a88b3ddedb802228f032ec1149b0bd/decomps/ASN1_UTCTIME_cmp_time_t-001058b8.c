@@ -6,8 +6,8 @@ int ASN1_UTCTIME_cmp_time_t(ASN1_UTCTIME *s,time_t t)
   time_t local_6c;
   int local_68;
   int local_64;
-  undefined auStack_60 [44];
-  undefined auStack_34 [52];
+  undefined1 auStack_60 [44];
+  undefined1 auStack_34 [48];
   
   if ((((s->type != 0x17) ||
        (local_6c = t, iVar1 = asn1_utctime_to_tm_part_0(auStack_60,s), iVar1 == 0)) ||

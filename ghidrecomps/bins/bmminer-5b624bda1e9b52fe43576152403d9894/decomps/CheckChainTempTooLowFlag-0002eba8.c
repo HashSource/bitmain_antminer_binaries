@@ -1,39 +1,37 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void CheckChainTempTooLowFlag(void)
 
 {
   int *piVar1;
-  int iVar2;
+  all_parameters *paVar2;
   bool bVar3;
   int iVar4;
-  int iVar5;
   
-  iVar2 = DAT_0002ebf0;
-  iVar5 = 0;
+  paVar2 = dev;
+  iVar4 = 0;
   bVar3 = false;
-  iVar4 = *DAT_0002ebec;
   do {
-    while (*(int *)(iVar4 + iVar5 + 8) == 1) {
-      piVar1 = (int *)(iVar5 + DAT_0002ebf0);
-      iVar5 = iVar5 + 4;
+    while (*(int *)((int)dev->chain_exist + iVar4) == 1) {
+      piVar1 = (int *)((int)chain_temp_toolow + iVar4);
+      iVar4 = iVar4 + 4;
       if (*piVar1 == 0) {
         bVar3 = true;
       }
-      if (iVar5 == 0x40) goto LAB_0002ebd2;
+      if (iVar4 == 0x40) goto LAB_0002ebd2;
     }
-    iVar5 = iVar5 + 4;
-  } while (iVar5 != 0x40);
+    iVar4 = iVar4 + 4;
+  } while (iVar4 != 0x40);
 LAB_0002ebd2:
   if (!bVar3) {
-    iVar5 = 0;
+    iVar4 = 0;
     do {
-      if (*(int *)(iVar4 + iVar5 + 8) == 1) {
-        *(undefined4 *)(iVar5 + iVar2) = 0;
+      if (*(int *)((int)paVar2->chain_exist + iVar4) == 1) {
+        *(undefined4 *)((int)chain_temp_toolow + iVar4) = 0;
       }
-      iVar5 = iVar5 + 4;
-    } while (iVar5 != 0x40);
+      iVar4 = iVar4 + 4;
+    } while (iVar4 != 0x40);
   }
   return;
 }

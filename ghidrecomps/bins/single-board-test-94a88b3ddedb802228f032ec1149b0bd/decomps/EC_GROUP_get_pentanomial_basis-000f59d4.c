@@ -25,7 +25,7 @@ EC_GROUP_get_pentanomial_basis
       }
       return 1;
     }
-    ERR_put_error(0x10,0xc1,0x42,DAT_000f5a40,0x77);
+    ERR_put_error(0x10,0xc1,0x42,"ec_asn1.c",0x77);
   }
   return 0;
 }

@@ -23,14 +23,7 @@ _Bool socks4_negotiate(pool *pool,int sockd,_Bool socks4a)
   iVar1 = atoi(pool->stratum_port);
   buf[2] = (char)((uint)iVar1 >> 8);
   buf[3] = (char)iVar1;
-  buf[8] = s_CGMINER_0009fe8c[0];
-  buf[9] = s_CGMINER_0009fe8c[1];
-  buf[10] = s_CGMINER_0009fe8c[2];
-  buf[11] = s_CGMINER_0009fe8c[3];
-  buf[12] = s_CGMINER_0009fe8c[4];
-  buf[13] = s_CGMINER_0009fe8c[5];
-  buf[14] = s_CGMINER_0009fe8c[6];
-  buf[15] = s_CGMINER_0009fe8c[7];
+  builtin_strncpy(buf + 8,"CGMINER",8);
   __netlong = inet_addr(pool->sockaddr_url);
   inp = ntohl(__netlong);
   if (inp == 0xffffffff) {
@@ -58,10 +51,8 @@ _Bool socks4_negotiate(pool *pool,int sockd,_Bool socks4a)
       len = 0xff;
     }
     _cg_memcpy(buf + 0x10,pool->sockaddr_url,len,"util.c","socks4_negotiate",0xb6b);
-    iVar1 = len + 0x10;
-    len = len + 0x11;
-    buf[iVar1] = '\0';
-    send(sockd,buf,len,0);
+    buf[len + 0x10] = '\0';
+    send(sockd,buf,len + 0x11,0);
   }
   else {
     if (inp == 0xffffffff) {

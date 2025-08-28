@@ -14,8 +14,8 @@ size_t RSA_eay_public_encrypt(int param_1,uchar *param_2,int param_3,int param_4
   BN_MONT_CTX *pBVar6;
   uint uVar7;
   uint uVar8;
-  uint uVar9;
-  size_t sVar10;
+  size_t sVar9;
+  uint uVar10;
   size_t len;
   uint uVar11;
   uint uVar12;
@@ -24,14 +24,14 @@ size_t RSA_eay_public_encrypt(int param_1,uchar *param_2,int param_3,int param_4
   
   iVar3 = BN_num_bits(*(BIGNUM **)(param_4 + 0x10));
   if (0x4000 < iVar3) {
-    ERR_put_error(4,0x68,0x69,DAT_000fae58,0xa4);
+    ERR_put_error(4,0x68,0x69,"rsa_eay.c",0xa4);
     return 0xffffffff;
   }
   iVar3 = BN_ucmp(*(BIGNUM **)(param_4 + 0x10),*(BIGNUM **)(param_4 + 0x14));
   if (iVar3 < 1) {
     iVar3 = 0xa9;
 LAB_000fab5a:
-    ERR_put_error(4,0x68,0x65,DAT_000fac68,iVar3);
+    ERR_put_error(4,0x68,0x65,"rsa_eay.c",iVar3);
     return 0xffffffff;
   }
   iVar3 = BN_num_bits(*(BIGNUM **)(param_4 + 0x10));
@@ -52,10 +52,10 @@ LAB_000fab5a:
     iVar3 = iVar4 + 7;
   }
   len = iVar3 >> 3;
-  to = (uchar *)CRYPTO_malloc(len,DAT_000fac68,0xbb);
+  to = (uchar *)CRYPTO_malloc(len,"rsa_eay.c",0xbb);
   if ((ret == (BIGNUM *)0x0 || a == (BIGNUM *)0x0) || (to == (uchar *)0x0)) {
-    sVar10 = 0xffffffff;
-    ERR_put_error(4,0x68,0x41,DAT_000fac68,0xbd);
+    sVar9 = 0xffffffff;
+    ERR_put_error(4,0x68,0x41,"rsa_eay.c",0xbd);
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     if (to == (uchar *)0x0) {
@@ -77,13 +77,13 @@ LAB_000fab5a:
     iVar3 = RSA_padding_add_PKCS1_OAEP(to,len,param_2,param_1,(uchar *)0x0,0);
     break;
   default:
-    ERR_put_error(4,0x68,0x76,DAT_000fac68,0xd1);
-    sVar10 = 0xffffffff;
+    ERR_put_error(4,0x68,0x76,"rsa_eay.c",0xd1);
+    sVar9 = 0xffffffff;
     goto LAB_000fabe8;
   }
   if ((iVar3 < 1) || (pBVar5 = BN_bin2bn(to,len,ret), pBVar5 == (BIGNUM *)0x0)) {
 LAB_000fac62:
-    sVar10 = 0xffffffff;
+    sVar9 = 0xffffffff;
   }
   else {
     iVar3 = BN_ucmp(ret,*(BIGNUM **)(param_4 + 0x10));
@@ -102,85 +102,84 @@ LAB_000fac62:
       }
       iVar3 = BN_bn2bin(a,(uchar *)((len - (iVar3 >> 3)) + param_3));
       uVar7 = len - iVar3;
-      sVar10 = len;
+      sVar9 = len;
       if (0 < (int)uVar7) {
-        uVar12 = -param_3 & 3U;
+        uVar10 = -param_3 & 3U;
         if (uVar7 < (-param_3 & 3U)) {
-          uVar12 = uVar7;
+          uVar10 = uVar7;
         }
         if (uVar7 < 4) {
-          uVar12 = uVar7;
+          uVar10 = uVar7;
         }
-        if (uVar12 == 0) {
-          uVar9 = 0;
+        if (uVar10 == 0) {
+          uVar8 = 0;
         }
         else {
-          if (uVar12 < 0x21) {
-            uVar9 = 0;
+          if (uVar10 < 0x21) {
+            uVar8 = 0;
           }
           else {
             iVar3 = param_3;
-            uVar8 = 0;
+            uVar11 = 0;
             do {
-              *(undefined *)(param_3 + uVar8) = 0;
-              HintPreloadData(param_3 + 0x22 + uVar8);
-              uVar9 = uVar8 + 0x20;
-              *(undefined *)(iVar3 + 1) = 0;
-              uVar13 = uVar8 + 0x21;
-              *(undefined *)(iVar3 + 2) = 0;
-              *(undefined *)(iVar3 + 3) = 0;
-              *(undefined *)(iVar3 + 4) = 0;
-              *(undefined *)(iVar3 + 5) = 0;
-              *(undefined *)(iVar3 + 6) = 0;
-              *(undefined *)(iVar3 + 7) = 0;
-              *(undefined *)(iVar3 + 8) = 0;
-              *(undefined *)(iVar3 + 9) = 0;
-              *(undefined *)(iVar3 + 10) = 0;
-              *(undefined *)(iVar3 + 0xb) = 0;
-              *(undefined *)(iVar3 + 0xc) = 0;
-              *(undefined *)(iVar3 + 0xd) = 0;
-              *(undefined *)(iVar3 + 0xe) = 0;
-              *(undefined *)(iVar3 + 0xf) = 0;
-              *(undefined *)(iVar3 + 0x10) = 0;
-              *(undefined *)(iVar3 + 0x11) = 0;
-              *(undefined *)(iVar3 + 0x12) = 0;
-              *(undefined *)(iVar3 + 0x13) = 0;
-              *(undefined *)(iVar3 + 0x14) = 0;
-              *(undefined *)(iVar3 + 0x15) = 0;
-              *(undefined *)(iVar3 + 0x16) = 0;
-              *(undefined *)(iVar3 + 0x17) = 0;
-              *(undefined *)(iVar3 + 0x18) = 0;
-              *(undefined *)(iVar3 + 0x19) = 0;
-              *(undefined *)(iVar3 + 0x1a) = 0;
-              *(undefined *)(iVar3 + 0x1b) = 0;
-              *(undefined *)(iVar3 + 0x1c) = 0;
-              *(undefined *)(iVar3 + 0x1d) = 0;
-              *(undefined *)(iVar3 + 0x1e) = 0;
-              *(undefined *)(iVar3 + 0x1f) = 0;
+              *(undefined1 *)(param_3 + uVar11) = 0;
+              HintPreloadData(param_3 + 0x22 + uVar11);
+              uVar8 = uVar11 + 0x20;
+              *(undefined1 *)(iVar3 + 1) = 0;
+              uVar13 = uVar11 + 0x21;
+              *(undefined1 *)(iVar3 + 2) = 0;
+              *(undefined1 *)(iVar3 + 3) = 0;
+              *(undefined1 *)(iVar3 + 4) = 0;
+              *(undefined1 *)(iVar3 + 5) = 0;
+              *(undefined1 *)(iVar3 + 6) = 0;
+              *(undefined1 *)(iVar3 + 7) = 0;
+              *(undefined1 *)(iVar3 + 8) = 0;
+              *(undefined1 *)(iVar3 + 9) = 0;
+              *(undefined1 *)(iVar3 + 10) = 0;
+              *(undefined1 *)(iVar3 + 0xb) = 0;
+              *(undefined1 *)(iVar3 + 0xc) = 0;
+              *(undefined1 *)(iVar3 + 0xd) = 0;
+              *(undefined1 *)(iVar3 + 0xe) = 0;
+              *(undefined1 *)(iVar3 + 0xf) = 0;
+              *(undefined1 *)(iVar3 + 0x10) = 0;
+              *(undefined1 *)(iVar3 + 0x11) = 0;
+              *(undefined1 *)(iVar3 + 0x12) = 0;
+              *(undefined1 *)(iVar3 + 0x13) = 0;
+              *(undefined1 *)(iVar3 + 0x14) = 0;
+              *(undefined1 *)(iVar3 + 0x15) = 0;
+              *(undefined1 *)(iVar3 + 0x16) = 0;
+              *(undefined1 *)(iVar3 + 0x17) = 0;
+              *(undefined1 *)(iVar3 + 0x18) = 0;
+              *(undefined1 *)(iVar3 + 0x19) = 0;
+              *(undefined1 *)(iVar3 + 0x1a) = 0;
+              *(undefined1 *)(iVar3 + 0x1b) = 0;
+              *(undefined1 *)(iVar3 + 0x1c) = 0;
+              *(undefined1 *)(iVar3 + 0x1d) = 0;
+              *(undefined1 *)(iVar3 + 0x1e) = 0;
+              *(undefined1 *)(iVar3 + 0x1f) = 0;
               iVar3 = iVar3 + 0x20;
-              uVar8 = uVar9;
-            } while (uVar13 < uVar12 - 0x1f);
+              uVar11 = uVar8;
+            } while (uVar13 < uVar10 - 0x1f);
           }
           do {
-            *(undefined *)(param_3 + uVar9) = 0;
-            uVar9 = uVar9 + 1;
-          } while (uVar9 < uVar12);
-          if (uVar7 == uVar12) goto LAB_000fabe8;
+            *(undefined1 *)(param_3 + uVar8) = 0;
+            uVar8 = uVar8 + 1;
+          } while (uVar8 < uVar10);
+          if (uVar7 == uVar10) goto LAB_000fabe8;
         }
-        uVar8 = uVar7 - uVar12;
-        uVar13 = uVar8 >> 2;
-        if (uVar13 != 0) {
-          puVar14 = (undefined4 *)(param_3 + uVar12);
-          if (uVar13 < 9) {
-            uVar12 = 0;
+        uVar11 = uVar7 - uVar10 >> 2;
+        if (uVar11 != 0) {
+          puVar14 = (undefined4 *)(param_3 + uVar10);
+          if (uVar11 < 9) {
+            uVar13 = 0;
           }
           else {
-            uVar12 = 0;
+            uVar13 = 0;
             puVar2 = puVar14;
             do {
               puVar14 = puVar2 + 8;
-              uVar11 = uVar12 + 9;
-              uVar12 = uVar12 + 8;
+              uVar12 = uVar13 + 9;
+              uVar13 = uVar13 + 8;
               HintPreloadData(puVar2 + 0x28);
               *puVar2 = 0;
               puVar2[1] = 0;
@@ -191,71 +190,71 @@ LAB_000fac62:
               puVar2[6] = 0;
               puVar2[7] = 0;
               puVar2 = puVar14;
-            } while (uVar11 < uVar13 - 7);
+            } while (uVar12 < uVar11 - 7);
           }
           do {
-            uVar12 = uVar12 + 1;
+            uVar13 = uVar13 + 1;
             *puVar14 = 0;
             puVar14 = puVar14 + 1;
-          } while (uVar12 < uVar13);
-          uVar9 = uVar9 + (uVar8 & 0xfffffffc);
-          if (uVar8 == (uVar8 & 0xfffffffc)) goto LAB_000fabe8;
+          } while (uVar13 < uVar11);
+          uVar8 = uVar8 + uVar11 * 4;
+          if (uVar7 - uVar10 == uVar11 * 4) goto LAB_000fabe8;
         }
-        uVar12 = uVar9 + 1;
-        if ((int)uVar12 < (int)(uVar7 - 0x1f) && (int)uVar9 < (int)uVar7) {
-          iVar3 = param_3 + uVar9;
-          uVar8 = uVar9;
+        uVar10 = uVar8 + 1;
+        if ((int)uVar10 < (int)(uVar7 - 0x1f) && (int)uVar8 < (int)uVar7) {
+          iVar3 = param_3 + uVar8;
+          uVar11 = uVar8;
           do {
-            *(undefined *)(param_3 + uVar8) = 0;
-            HintPreloadData(param_3 + 0x28 + uVar8);
-            uVar9 = uVar8 + 0x20;
-            *(undefined *)(iVar3 + 1) = 0;
-            uVar12 = uVar8 + 0x21;
-            *(undefined *)(iVar3 + 2) = 0;
-            *(undefined *)(iVar3 + 3) = 0;
-            *(undefined *)(iVar3 + 4) = 0;
-            *(undefined *)(iVar3 + 5) = 0;
-            *(undefined *)(iVar3 + 6) = 0;
-            *(undefined *)(iVar3 + 7) = 0;
-            *(undefined *)(iVar3 + 8) = 0;
-            *(undefined *)(iVar3 + 9) = 0;
-            *(undefined *)(iVar3 + 10) = 0;
-            *(undefined *)(iVar3 + 0xb) = 0;
-            *(undefined *)(iVar3 + 0xc) = 0;
-            *(undefined *)(iVar3 + 0xd) = 0;
-            *(undefined *)(iVar3 + 0xe) = 0;
-            *(undefined *)(iVar3 + 0xf) = 0;
-            *(undefined *)(iVar3 + 0x10) = 0;
-            *(undefined *)(iVar3 + 0x11) = 0;
-            *(undefined *)(iVar3 + 0x12) = 0;
-            *(undefined *)(iVar3 + 0x13) = 0;
-            *(undefined *)(iVar3 + 0x14) = 0;
-            *(undefined *)(iVar3 + 0x15) = 0;
-            *(undefined *)(iVar3 + 0x16) = 0;
-            *(undefined *)(iVar3 + 0x17) = 0;
-            *(undefined *)(iVar3 + 0x18) = 0;
-            *(undefined *)(iVar3 + 0x19) = 0;
-            *(undefined *)(iVar3 + 0x1a) = 0;
-            *(undefined *)(iVar3 + 0x1b) = 0;
-            *(undefined *)(iVar3 + 0x1c) = 0;
-            *(undefined *)(iVar3 + 0x1d) = 0;
-            *(undefined *)(iVar3 + 0x1e) = 0;
-            *(undefined *)(iVar3 + 0x1f) = 0;
+            *(undefined1 *)(param_3 + uVar11) = 0;
+            HintPreloadData(param_3 + 0x28 + uVar11);
+            uVar8 = uVar11 + 0x20;
+            *(undefined1 *)(iVar3 + 1) = 0;
+            uVar10 = uVar11 + 0x21;
+            *(undefined1 *)(iVar3 + 2) = 0;
+            *(undefined1 *)(iVar3 + 3) = 0;
+            *(undefined1 *)(iVar3 + 4) = 0;
+            *(undefined1 *)(iVar3 + 5) = 0;
+            *(undefined1 *)(iVar3 + 6) = 0;
+            *(undefined1 *)(iVar3 + 7) = 0;
+            *(undefined1 *)(iVar3 + 8) = 0;
+            *(undefined1 *)(iVar3 + 9) = 0;
+            *(undefined1 *)(iVar3 + 10) = 0;
+            *(undefined1 *)(iVar3 + 0xb) = 0;
+            *(undefined1 *)(iVar3 + 0xc) = 0;
+            *(undefined1 *)(iVar3 + 0xd) = 0;
+            *(undefined1 *)(iVar3 + 0xe) = 0;
+            *(undefined1 *)(iVar3 + 0xf) = 0;
+            *(undefined1 *)(iVar3 + 0x10) = 0;
+            *(undefined1 *)(iVar3 + 0x11) = 0;
+            *(undefined1 *)(iVar3 + 0x12) = 0;
+            *(undefined1 *)(iVar3 + 0x13) = 0;
+            *(undefined1 *)(iVar3 + 0x14) = 0;
+            *(undefined1 *)(iVar3 + 0x15) = 0;
+            *(undefined1 *)(iVar3 + 0x16) = 0;
+            *(undefined1 *)(iVar3 + 0x17) = 0;
+            *(undefined1 *)(iVar3 + 0x18) = 0;
+            *(undefined1 *)(iVar3 + 0x19) = 0;
+            *(undefined1 *)(iVar3 + 0x1a) = 0;
+            *(undefined1 *)(iVar3 + 0x1b) = 0;
+            *(undefined1 *)(iVar3 + 0x1c) = 0;
+            *(undefined1 *)(iVar3 + 0x1d) = 0;
+            *(undefined1 *)(iVar3 + 0x1e) = 0;
+            *(undefined1 *)(iVar3 + 0x1f) = 0;
             iVar3 = iVar3 + 0x20;
-            uVar8 = uVar9;
-          } while ((int)uVar12 < (int)(uVar7 - 0x1f));
+            uVar11 = uVar8;
+          } while ((int)uVar10 < (int)(uVar7 - 0x1f));
         }
         do {
-          *(undefined *)(param_3 + uVar9) = 0;
-          bVar1 = (int)uVar12 < (int)uVar7;
-          uVar9 = uVar12;
-          uVar12 = uVar12 + 1;
+          *(undefined1 *)(param_3 + uVar8) = 0;
+          bVar1 = (int)uVar10 < (int)uVar7;
+          uVar8 = uVar10;
+          uVar10 = uVar10 + 1;
         } while (bVar1);
       }
     }
     else {
-      ERR_put_error(4,0x68,0x84,DAT_000fac68,0xdd);
-      sVar10 = 0xffffffff;
+      ERR_put_error(4,0x68,0x84,"rsa_eay.c",0xdd);
+      sVar9 = 0xffffffff;
     }
   }
 LAB_000fabe8:
@@ -264,6 +263,6 @@ LAB_000fabe8:
 LAB_000fab90:
   OPENSSL_cleanse(to,len);
   CRYPTO_free(to);
-  return sVar10;
+  return sVar9;
 }
 

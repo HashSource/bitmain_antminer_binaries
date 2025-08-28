@@ -21,12 +21,12 @@ X509_PKEY * d2i_X509_PKEY(X509_PKEY **a,uchar **pp,long length)
   local_44.q = local_44.p;
   local_44.pp = pp;
   if ((a == (X509_PKEY **)0x0) || (ptr = *a, ptr == (X509_PKEY *)0x0)) {
-    ptr = (X509_PKEY *)CRYPTO_malloc(0x34,DAT_00108ff8,0x6d);
+    ptr = (X509_PKEY *)CRYPTO_malloc(0x34,"x_pkey.c",0x6d);
     if (ptr == (X509_PKEY *)0x0) {
-      ERR_put_error(0xd,0xad,0x41,DAT_00108ff8,0x6d);
+      ERR_put_error(0xd,0xad,0x41,"x_pkey.c",0x6d);
 LAB_00108fce:
       local_44.line = 0x4b;
-      ERR_put_error(0xd,0x9f,local_44.error,DAT_00108ff8,0x4b);
+      ERR_put_error(0xd,0x9f,local_44.error,"x_pkey.c",0x4b);
       asn1_add_error(*pp,(int)local_44.q - (int)*pp);
       return (X509_PKEY *)0x0;
     }
@@ -114,10 +114,10 @@ LAB_00108fce:
     }
   }
 LAB_00108e52:
-  ERR_put_error(0xd,0x9f,local_44.error,DAT_00108ff8,iVar2);
+  ERR_put_error(0xd,0x9f,local_44.error,"x_pkey.c",iVar2);
   asn1_add_error(*pp,(int)local_44.q - (int)*pp);
   if (((a == (X509_PKEY **)0x0) || (ptr != *a)) &&
-     (iVar2 = CRYPTO_add_lock(&ptr->references,-1,5,DAT_00108ff8,0x83), iVar2 < 1)) {
+     (iVar2 = CRYPTO_add_lock(&ptr->references,-1,5,"x_pkey.c",0x83), iVar2 < 1)) {
     if (ptr->enc_algor != (X509_ALGOR *)0x0) {
       X509_ALGOR_free(ptr->enc_algor);
     }

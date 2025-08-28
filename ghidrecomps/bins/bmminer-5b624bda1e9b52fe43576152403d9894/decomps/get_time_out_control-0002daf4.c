@@ -4,15 +4,14 @@
 int get_time_out_control(void)
 
 {
-  int iVar1;
+  uint uVar1;
   char tmp42 [2048];
   
-  iVar1 = *(int *)(*(int *)(DAT_0002db44 + 0x8d4) + 0x88);
-  if ((*DAT_0002db48 != '\0') &&
-     (((*DAT_0002db4c != '\0' || (*DAT_0002db50 != '\0')) || (6 < *DAT_0002db54)))) {
-    snprintf(tmp42,0x800,DAT_0002db58,DAT_0002db5c,iVar1);
+  uVar1 = axi_fpga_addr[0x22];
+  if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: TIME_OUT_CONTROL is 0x%x\n","get_time_out_control",uVar1);
     _applog(7,tmp42,false);
   }
-  return iVar1;
+  return uVar1;
 }
 

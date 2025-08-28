@@ -56,7 +56,7 @@ SSL * SSL_dup(SSL *ssl)
       memcpy(s->sid_ctx,ssl->sid_ctx,__n);
     }
     else {
-      ERR_put_error(0x14,0xda,0x111,DAT_0007c374,0x1bf);
+      ERR_put_error(0x14,0xda,0x111,"ssl_lib.c",0x1bf);
     }
   }
   else {
@@ -156,7 +156,7 @@ SSL * SSL_dup(SSL *ssl)
     }
   }
 LAB_0007c1e6:
-  iVar7 = CRYPTO_add_lock((int *)&s->client_CA,-1,0x10,DAT_0007c374,0x230);
+  iVar7 = CRYPTO_add_lock((int *)&s->client_CA,-1,0x10,"ssl_lib.c",0x230);
   if (0 < iVar7) {
     return (SSL *)0x0;
   }

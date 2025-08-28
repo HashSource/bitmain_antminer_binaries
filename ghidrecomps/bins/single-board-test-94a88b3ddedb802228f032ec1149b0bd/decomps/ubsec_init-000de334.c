@@ -1,11 +1,12 @@
 
+/* WARNING: Restarted to delay deadcode elimination for space: ram */
+
 undefined4 ubsec_init(void)
 
 {
-  char **ppcVar1;
-  char **ppcVar2;
-  char *pcVar3;
-  DSO *dso;
+  DSO_FUNC_TYPE pDVar1;
+  DSO_FUNC_TYPE pDVar2;
+  DSO_FUNC_TYPE pDVar3;
   DSO_FUNC_TYPE pDVar4;
   DSO_FUNC_TYPE pDVar5;
   DSO_FUNC_TYPE pDVar6;
@@ -16,115 +17,98 @@ undefined4 ubsec_init(void)
   DSO_FUNC_TYPE pDVar11;
   DSO_FUNC_TYPE pDVar12;
   DSO_FUNC_TYPE pDVar13;
-  DSO_FUNC_TYPE pDVar14;
-  DSO_FUNC_TYPE pDVar15;
-  DSO_FUNC_TYPE pDVar16;
-  int iVar17;
-  int iVar18;
+  int iVar14;
+  int iVar15;
+  char *filename;
   
-  ppcVar1 = DAT_000de508;
-  if (DAT_000de508[2] == (char *)0x0) {
-    pcVar3 = *DAT_000de508;
-    if (*DAT_000de508 == (char *)0x0) {
-      pcVar3 = DAT_000de510;
+  if (ubsec_dso == (DSO *)0x0) {
+    filename = UBSEC_LIBNAME;
+    if (UBSEC_LIBNAME == (char *)0x0) {
+      filename = "ubsec";
     }
-    dso = DSO_load((DSO *)0x0,pcVar3,(DSO_METHOD *)0x0,0);
-    ppcVar1[2] = (char *)dso;
-    if (dso == (DSO *)0x0) {
-      pcVar3 = ppcVar1[1];
-      if (pcVar3 == (char *)0x0) {
-        pcVar3 = (char *)ERR_get_next_error_library();
-        ppcVar1[1] = pcVar3;
+    ubsec_dso = DSO_load((DSO *)0x0,filename,(DSO_METHOD *)0x0,0);
+    if (ubsec_dso == (DSO *)0x0) {
+      if (UBSEC_lib_error_code == 0) {
+        UBSEC_lib_error_code = ERR_get_next_error_library();
       }
-      iVar17 = 0x19e;
+      iVar14 = 0x19e;
     }
     else {
-      pDVar4 = DSO_bind_func(dso,DAT_000de514);
-      if ((((((pDVar4 != (DSO_FUNC_TYPE)0x0) &&
-             (pDVar5 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de518), pDVar5 != (DSO_FUNC_TYPE)0x0))
-            && (pDVar6 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de51c), pDVar6 != (DSO_FUNC_TYPE)0x0
-               )) && (((pDVar7 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de520),
-                       pDVar7 != (DSO_FUNC_TYPE)0x0 &&
-                       (pDVar8 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de524),
-                       pDVar8 != (DSO_FUNC_TYPE)0x0)) &&
-                      ((pDVar9 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de528),
-                       pDVar9 != (DSO_FUNC_TYPE)0x0 &&
-                       ((pDVar10 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de52c),
-                        pDVar10 != (DSO_FUNC_TYPE)0x0 &&
-                        (pDVar11 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de530),
-                        pDVar11 != (DSO_FUNC_TYPE)0x0)))))))) &&
-          (pDVar12 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de534), pDVar12 != (DSO_FUNC_TYPE)0x0))
-         && ((((pDVar13 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000de538), ppcVar2 = DAT_000de508,
-               pDVar13 != (DSO_FUNC_TYPE)0x0 &&
-               (pDVar14 = DSO_bind_func((DSO *)DAT_000de508[2],DAT_000de53c),
-               pDVar14 != (DSO_FUNC_TYPE)0x0)) &&
-              (pDVar15 = DSO_bind_func((DSO *)ppcVar2[2],DAT_000de540),
-              pDVar15 != (DSO_FUNC_TYPE)0x0)) &&
-             (pDVar16 = DSO_bind_func((DSO *)ppcVar2[2],DAT_000de544), pDVar16 != (DSO_FUNC_TYPE)0x0
-             )))) {
-        ppcVar2[3] = (char *)pDVar4;
-        ppcVar2[4] = (char *)pDVar5;
-        ppcVar2[5] = (char *)pDVar6;
-        ppcVar2[9] = (char *)pDVar10;
-        ppcVar2[6] = (char *)pDVar7;
-        ppcVar2[7] = (char *)pDVar8;
-        ppcVar2[10] = (char *)pDVar11;
-        ppcVar2[8] = (char *)pDVar9;
-        ppcVar2[0xb] = (char *)pDVar12;
-        ppcVar2[0xc] = (char *)pDVar13;
-        ppcVar2[0xe] = (char *)pDVar15;
-        ppcVar2[0xf] = (char *)pDVar16;
-        ppcVar2[0xd] = (char *)pDVar14;
-        iVar17 = (*pDVar6)(DAT_000de548);
-        if ((0 < iVar17) && (iVar18 = (*(code *)ppcVar2[0xf])(iVar17,DAT_000de54c), iVar18 == 0)) {
-          (*(code *)ppcVar2[6])(iVar17);
+      pDVar1 = DSO_bind_func(ubsec_dso,"ubsec_bytes_to_bits");
+      if ((((((pDVar1 != (DSO_FUNC_TYPE)0x0) &&
+             (pDVar2 = DSO_bind_func(ubsec_dso,"ubsec_bits_to_bytes"), pDVar2 != (DSO_FUNC_TYPE)0x0)
+             ) && (pDVar3 = DSO_bind_func(ubsec_dso,"ubsec_open"), pDVar3 != (DSO_FUNC_TYPE)0x0)) &&
+           (((pDVar4 = DSO_bind_func(ubsec_dso,"ubsec_close"), pDVar4 != (DSO_FUNC_TYPE)0x0 &&
+             (pDVar5 = DSO_bind_func(ubsec_dso,"diffie_hellman_generate_ioctl"),
+             pDVar5 != (DSO_FUNC_TYPE)0x0)) &&
+            ((pDVar6 = DSO_bind_func(ubsec_dso,"diffie_hellman_agree_ioctl"),
+             pDVar6 != (DSO_FUNC_TYPE)0x0 &&
+             ((pDVar7 = DSO_bind_func(ubsec_dso,"rsa_mod_exp_ioctl"), pDVar7 != (DSO_FUNC_TYPE)0x0
+              && (pDVar8 = DSO_bind_func(ubsec_dso,"rsa_mod_exp_crt_ioctl"),
+                 pDVar8 != (DSO_FUNC_TYPE)0x0)))))))) &&
+          (pDVar9 = DSO_bind_func(ubsec_dso,"dsa_sign_ioctl"), pDVar9 != (DSO_FUNC_TYPE)0x0)) &&
+         ((((pDVar10 = DSO_bind_func(ubsec_dso,"dsa_verify_ioctl"), pDVar10 != (DSO_FUNC_TYPE)0x0 &&
+            (pDVar11 = DSO_bind_func(ubsec_dso,"math_accelerate_ioctl"),
+            pDVar11 != (DSO_FUNC_TYPE)0x0)) &&
+           (pDVar12 = DSO_bind_func(ubsec_dso,"rng_ioctl"), pDVar12 != (DSO_FUNC_TYPE)0x0)) &&
+          (pDVar13 = DSO_bind_func(ubsec_dso,"ubsec_max_key_len_ioctl"),
+          pDVar13 != (DSO_FUNC_TYPE)0x0)))) {
+        p_UBSEC_ubsec_bytes_to_bits = pDVar1;
+        p_UBSEC_ubsec_bits_to_bytes = pDVar2;
+        p_UBSEC_ubsec_open = pDVar3;
+        p_UBSEC_ubsec_close = pDVar4;
+        p_UBSEC_diffie_hellman_generate_ioctl = pDVar5;
+        p_UBSEC_diffie_hellman_agree_ioctl = pDVar6;
+        p_UBSEC_rsa_mod_exp_ioctl = pDVar7;
+        p_UBSEC_rsa_mod_exp_crt_ioctl = pDVar8;
+        p_UBSEC_dsa_sign_ioctl = pDVar9;
+        p_UBSEC_dsa_verify_ioctl = pDVar10;
+        p_UBSEC_math_accelerate_ioctl = pDVar11;
+        p_UBSEC_rng_ioctl = pDVar12;
+        p_UBSEC_max_key_len_ioctl = pDVar13;
+        iVar14 = (*pDVar3)("/dev/ubskey");
+        if ((0 < iVar14) &&
+           (iVar15 = (*p_UBSEC_max_key_len_ioctl)(iVar14,&max_key_len), iVar15 == 0)) {
+          (*p_UBSEC_ubsec_close)(iVar14);
           return 1;
         }
-        ppcVar2 = DAT_000de508;
-        pcVar3 = ppcVar1[1];
-        if (pcVar3 == (char *)0x0) {
-          pcVar3 = (char *)ERR_get_next_error_library();
-          ppcVar2[1] = pcVar3;
+        if (UBSEC_lib_error_code == 0) {
+          UBSEC_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error((int)pcVar3,0x69,0x6c,DAT_000de50c,0x1e1);
+        ERR_put_error(UBSEC_lib_error_code,0x69,0x6c,"e_ubsec.c",0x1e1);
         goto LAB_000de358;
       }
-      ppcVar2 = DAT_000de508;
-      pcVar3 = ppcVar1[1];
-      if (pcVar3 == (char *)0x0) {
-        pcVar3 = (char *)ERR_get_next_error_library();
-        ppcVar2[1] = pcVar3;
+      if (UBSEC_lib_error_code == 0) {
+        UBSEC_lib_error_code = ERR_get_next_error_library();
       }
-      iVar17 = 0x1c2;
+      iVar14 = 0x1c2;
     }
-    ERR_put_error((int)pcVar3,0x69,0x67,DAT_000de50c,iVar17);
+    ERR_put_error(UBSEC_lib_error_code,0x69,0x67,"e_ubsec.c",iVar14);
   }
   else {
-    pcVar3 = DAT_000de508[1];
-    if (pcVar3 == (char *)0x0) {
-      pcVar3 = (char *)ERR_get_next_error_library();
-      ppcVar1[1] = pcVar3;
+    if (UBSEC_lib_error_code == 0) {
+      UBSEC_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error((int)pcVar3,0x69,100,DAT_000de50c,0x196);
+    ERR_put_error(UBSEC_lib_error_code,0x69,100,"e_ubsec.c",0x196);
   }
 LAB_000de358:
-  if ((DSO *)ppcVar1[2] != (DSO *)0x0) {
-    DSO_free((DSO *)ppcVar1[2]);
+  if (ubsec_dso != (DSO *)0x0) {
+    DSO_free(ubsec_dso);
   }
-  ppcVar1[2] = (char *)0x0;
-  ppcVar1[3] = (char *)0x0;
-  ppcVar1[4] = (char *)0x0;
-  ppcVar1[5] = (char *)0x0;
-  ppcVar1[6] = (char *)0x0;
-  ppcVar1[7] = (char *)0x0;
-  ppcVar1[8] = (char *)0x0;
-  ppcVar1[9] = (char *)0x0;
-  ppcVar1[10] = (char *)0x0;
-  ppcVar1[0xb] = (char *)0x0;
-  ppcVar1[0xc] = (char *)0x0;
-  ppcVar1[0xd] = (char *)0x0;
-  ppcVar1[0xe] = (char *)0x0;
-  ppcVar1[0xf] = (char *)0x0;
+  p_UBSEC_max_key_len_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_rng_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_math_accelerate_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_dsa_verify_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_dsa_sign_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_rsa_mod_exp_crt_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_rsa_mod_exp_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_diffie_hellman_agree_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_diffie_hellman_generate_ioctl = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_ubsec_close = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_ubsec_open = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_ubsec_bits_to_bytes = (DSO_FUNC_TYPE)0x0;
+  p_UBSEC_ubsec_bytes_to_bits = (DSO_FUNC_TYPE)0x0;
+  ubsec_dso = (DSO *)0x0;
   return 0;
 }
 

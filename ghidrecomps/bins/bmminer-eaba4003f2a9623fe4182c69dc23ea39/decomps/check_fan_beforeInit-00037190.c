@@ -1,6 +1,5 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void check_fan_beforeInit(void)
 
@@ -51,51 +50,9 @@ void check_fan_beforeInit(void)
           }
           if ((99 < check_fan_beforeInit::print_num) &&
              (((use_syslog != false || (opt_log_output != false)) || (4 < opt_log_level)))) {
-            tmp42[0] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[0];
-            tmp42[1] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[1];
-            tmp42[2] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[2];
-            tmp42[3] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[3];
-            tmp42[4] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[4];
-            tmp42[5] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[5];
-            tmp42[6] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[6];
-            tmp42[7] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[7];
-            tmp42[8] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[8];
-            tmp42[9] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[9];
-            tmp42[10] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[10];
-            tmp42[11] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[11];
-            tmp42[12] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[12];
-            tmp42[13] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[13];
-            tmp42[14] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[14];
-            tmp42[15] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[15];
-            tmp42[16] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[16];
-            tmp42[17] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[17];
-            tmp42[18] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[18];
-            tmp42[19] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[19];
-            tmp42[20] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[20];
-            tmp42[21] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[21];
-            tmp42[22] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[22];
-            tmp42[23] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[23];
-            tmp42[24] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[24];
-            tmp42[25] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[25];
-            tmp42[26] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[26];
-            tmp42[27] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[27];
-            tmp42[28] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[28];
-            tmp42[29] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[29];
-            tmp42[30] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[30];
-            tmp42[31] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[31];
-            tmp42[32] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[32];
-            tmp42[33] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[33];
-            tmp42[34] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[34];
-            tmp42[35] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[35];
-            tmp42[36] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[36];
-            tmp42[37] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[37];
-            tmp42[38] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[38];
-            tmp42[39] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[39];
-            tmp42[40] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[40];
-            tmp42[41] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[41];
-            tmp42[42] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[42];
-            tmp42[43] = s_Fatal_Error__some_Fan_lost_or_Fa_00076a38[43];
-            tmp42._44_2_ = (undefined2)ram0x00076a64;
+            builtin_strncpy(tmp42,"Fatal Error: some Fan lost or Fan speed low!",0x2c);
+            tmp42[0x2c] = '\n';
+            tmp42[0x2d] = '\0';
             _applog(5,tmp42,false);
           }
         }

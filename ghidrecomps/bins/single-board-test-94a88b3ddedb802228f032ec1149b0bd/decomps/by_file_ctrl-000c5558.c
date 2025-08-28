@@ -17,7 +17,7 @@ int by_file_ctrl(X509_LOOKUP *param_1,int param_2,char *param_3,int param_4)
         iVar2 = 1;
       }
       if (iVar2 == 0) {
-        ERR_put_error(0xb,0x65,0x68,DAT_000c55c8,0x6f);
+        ERR_put_error(0xb,0x65,0x68,"by_file.c",0x6f);
       }
     }
     else if (param_4 == 1) {

@@ -1,15 +1,15 @@
 
 undefined4
-ssl_add_serverhello_renegotiate_ext(int param_1,undefined *param_2,int *param_3,int param_4)
+ssl_add_serverhello_renegotiate_ext(int param_1,undefined1 *param_2,int *param_3,int param_4)
 
 {
   int iVar1;
   
-  if (param_2 != (undefined *)0x0) {
+  if (param_2 != (undefined1 *)0x0) {
     iVar1 = (uint)*(byte *)(*(int *)(param_1 + 0x58) + 0x3d4) +
             (uint)*(byte *)(*(int *)(param_1 + 0x58) + 0x415);
     if (param_4 <= iVar1) {
-      ERR_put_error(0x14,299,0x14f,DAT_00083a90,0xca);
+      ERR_put_error(0x14,299,0x14f,"t1_reneg.c",0xca);
       return 0;
     }
     *param_2 = (char)iVar1;

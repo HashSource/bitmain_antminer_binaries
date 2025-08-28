@@ -5,7 +5,7 @@ _Bool scan_freq_is_all_chain_finished(void)
 
 {
   FILE *__stream;
-  undefined uVar1;
+  undefined1 uVar1;
   bool bVar2;
   FILE *pFile;
   int chain_num;
@@ -31,7 +31,7 @@ _Bool scan_freq_is_all_chain_finished(void)
   if (bVar2) {
     chain_num = 1;
   }
-  uVar1 = (undefined)chain_num;
+  uVar1 = (undefined1)chain_num;
   if (!bVar2) {
     uVar1 = 0;
   }

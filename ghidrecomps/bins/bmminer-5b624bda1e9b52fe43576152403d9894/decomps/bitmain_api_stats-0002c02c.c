@@ -4,377 +4,354 @@
 api_data * bitmain_api_stats(cgpu_info *cgpu)
 
 {
-  int *piVar1;
-  byte bVar2;
-  int *piVar3;
-  uint *puVar4;
-  api_data *paVar5;
-  int iVar6;
-  long lVar7;
+  longlong lVar1;
+  uint *puVar2;
+  byte bVar3;
+  _Bool *p_Var4;
+  long *plVar5;
+  undefined4 uVar6;
+  api_data *paVar7;
   int iVar8;
+  long lVar9;
   char (*__nptr) [32];
-  size_t sVar9;
-  char *pcVar10;
-  int extraout_r1;
-  size_t bufsiz;
-  int iVar11;
-  int new_T9_PLUS_chainIndex;
-  uint uVar12;
-  int new_T9_PLUS_chainIndex_1;
-  int new_T9_PLUS_chainIndex_2;
-  int new_T9_PLUS_chainIndex_3;
-  int iVar13;
-  uint uVar14;
-  int iVar15;
-  uint uVar16;
-  int iVar17;
+  int iVar10;
+  size_t sVar11;
+  undefined1 *puVar12;
+  undefined1 *extraout_r1;
+  char *pcVar13;
+  all_parameters *paVar14;
+  uint uVar15;
+  int iVar16;
+  uint64_t *puVar17;
   int iVar18;
-  uint *puVar19;
-  int iVar20;
+  int iVar19;
+  undefined1 *puVar20;
   int iVar21;
-  int iVar22;
-  int *piVar23;
-  undefined2 uVar24;
-  bool bVar25;
-  double dVar26;
+  int (*paiVar22) [256];
+  undefined1 *puVar23;
+  int *piVar24;
+  undefined2 uVar25;
+  bool bVar26;
   double dVar27;
-  undefined8 uVar28;
-  undefined4 in_stack_fffff764;
-  int local_890;
-  int local_88c;
-  int local_888;
-  int local_884;
+  undefined1 in_stack_fffff764;
+  undefined1 *local_890;
+  undefined1 *local_88c;
+  undefined1 *local_888;
+  undefined1 *local_884;
   api_data *local_880;
   api_data *local_87c;
   int16_t asic_num_total;
-  double dev_sum_freq_1;
+  double dev_sum_freq;
   char chain_xtime [16];
   char tmp [20];
   char fan_name [12];
   
-  piVar1 = DAT_0002c2e8;
-  paVar5 = api_add_uint8((api_data *)0x0,DAT_0002c2ec,(uchar *)(*DAT_0002c2e8 + 0x2fbc),true);
-  paVar5 = api_add_string(paVar5,DAT_0002c2f0,(char *)(*piVar1 + 0x2ff0),true);
-  paVar5 = api_add_uint8(paVar5,DAT_0002c2f4,(uchar *)(*piVar1 + 0x2fbd),true);
-  iVar22 = 0;
+  paVar7 = api_add_uint8((api_data *)0x0,"miner_count",&dev->chain_num,true);
+  paVar7 = api_add_string(paVar7,"frequency",dev->frequency_t,true);
+  paVar7 = api_add_uint8(paVar7,"fan_num",&dev->fan_num,true);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002c2f8,iVar20);
-    piVar23 = DAT_0002c2e8;
-    paVar5 = api_add_uint(paVar5,fan_name,(uint *)(*piVar1 + iVar22 * 4 + 0x2f4a),true);
-    iVar22 = iVar20;
-  } while (iVar20 != 8);
-  local_880 = api_add_uint8(paVar5,DAT_0002c2fc,(uchar *)(*piVar23 + 0x2fbc),true);
-  iVar22 = 0;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"fan%d",iVar18);
+    paVar7 = api_add_uint(paVar7,fan_name,dev->fan_speed_value + iVar19,true);
+    iVar19 = iVar18;
+  } while (iVar18 != 8);
+  local_880 = api_add_uint8(paVar7,"temp_num",&dev->chain_num,true);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002c300,iVar20);
-    local_880 = api_add_int16(local_880,fan_name,(uint16_t *)(*piVar1 + (iVar22 + 0x12d) * 8),true);
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  iVar22 = 0;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"temp%d",iVar18);
+    local_880 = api_add_int16(local_880,fan_name,(uint16_t *)(dev->chain_asic_maxtemp + iVar19),true
+                             );
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002c304,iVar20);
-    local_880 = api_add_int16(local_880,fan_name,(uint16_t *)(*piVar1 + iVar22 * 0x40 + 0x56a),true)
-    ;
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  iVar22 = 0;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"temp2_%d",iVar18);
+    local_880 = api_add_int16(local_880,fan_name,(uint16_t *)(dev->chain_asic_temp[iVar19][0] + 1),
+                              true);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002c308,iVar20);
-    local_880 = api_add_int16(local_880,fan_name,(uint16_t *)(*piVar1 + iVar22 * 0x40 + 0x572),true)
-    ;
-    dVar26 = DAT_0002c2e0;
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  local_884 = DAT_0002c30c + 0x34;
-  local_888 = DAT_0002c30c;
-  local_890 = DAT_0002c30c;
-  iVar22 = 0;
-  iVar20 = local_884;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"temp3_%d",iVar18);
+    local_880 = api_add_int16(local_880,fan_name,(uint16_t *)(dev->chain_asic_temp[iVar19][1] + 1),
+                              true);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  puVar20 = CSWTCH_825;
+  local_888 = CSWTCH_824;
+  local_884 = CSWTCH_825;
+  local_890 = CSWTCH_824;
+  iVar19 = 0;
   do {
-    iVar17 = iVar22 + 1;
-    dev_sum_freq_1 = 0.0;
-    sprintf(fan_name,DAT_0002c310,iVar17);
-    iVar13 = *piVar1;
-    if (*(int *)(iVar13 + (iVar22 + 2) * 4) == 1) {
-      iVar6 = getChainPICMagicNumber(iVar22);
-      iVar8 = DAT_0002c324;
-      iVar18 = DAT_0002c314;
-      if (iVar6 == 0x7d) {
-        if (*(char *)(iVar13 + iVar22 + 0x2faa) != '\0') {
-          uVar14 = iVar22 - 1;
-          iVar21 = 0;
-          iVar13 = (iVar22 % 3) * 0x1f;
-          iVar6 = iVar13 + (iVar22 / 3) * 0x180 + DAT_0002c314;
+    iVar18 = iVar19 + 1;
+    dev_sum_freq = 0.0;
+    sprintf(fan_name,"freq_avg%d",iVar18);
+    paVar14 = dev;
+    if (dev->chain_exist[iVar19] == 1) {
+      iVar8 = getChainPICMagicNumber(iVar19);
+      if (iVar8 == 0x7d) {
+        if (paVar14->chain_asic_num[iVar19] != '\0') {
+          iVar8 = 0;
+          puVar23 = (undefined1 *)((iVar19 % 3) * 0x1f);
+          puVar12 = puVar23;
           do {
             if (fpga_version < 0xe) {
-              bVar2 = *(byte *)(iVar6 + iVar21 + 0xdf);
+              bVar3 = chain_pic_buf[(iVar19 / 3) * 3][(int)(puVar23 + iVar8 + 0xb)];
             }
             else {
-              iVar15 = 0xb;
-              if (uVar14 < 0xd) {
-                iVar13 = local_890;
+              iVar21 = 0xb;
+              if (iVar19 - 1U < 0xd) {
+                puVar12 = local_890;
               }
-              iVar11 = 0;
-              if (uVar14 < 0xd) {
-                iVar11 = *(int *)(iVar13 + -4);
-                iVar15 = *(int *)(iVar20 + -4) * 0x1f;
+              iVar10 = 0;
+              if (iVar19 - 1U < 0xd) {
+                iVar10 = *(int *)(puVar12 + -4);
+                iVar21 = *(int *)(puVar20 + -4) * 0x1f + 0xb;
               }
-              if (uVar14 < 0xd) {
-                iVar15 = iVar15 + 0xb;
-              }
-              bVar2 = *(byte *)(iVar18 + iVar11 * 0x80 + iVar21 + iVar15 + 0xd4);
+              bVar3 = chain_pic_buf[iVar10][iVar21 + iVar8];
             }
-            iVar21 = iVar21 + 1;
-            lVar7 = strtol(*(char **)(iVar8 + (uint)bVar2 * 0x10 + 0x38),(char **)0x0,10);
-            dev_sum_freq_1 = (double)(longlong)lVar7 + dev_sum_freq_1;
-            uVar12 = (uint)*(byte *)(*piVar1 + iVar22 + 0x2faa);
-            iVar13 = extraout_r1;
-          } while (iVar21 < (int)uVar12);
-          if (uVar12 != 0) {
-            dev_sum_freq_1 = dev_sum_freq_1 / (double)(longlong)(int)uVar12;
+            iVar8 = iVar8 + 1;
+            lVar9 = strtol(freq_pll_1385[bVar3].freq,(char **)0x0,10);
+            dev_sum_freq = (double)(longlong)lVar9 + dev_sum_freq;
+            uVar15 = (uint)dev->chain_asic_num[iVar19];
+            puVar12 = extraout_r1;
+          } while (iVar8 < (int)uVar15);
+          if (uVar15 != 0) {
+            dev_sum_freq = dev_sum_freq / (double)(longlong)(int)uVar15;
           }
         }
-        dVar27 = dev_sum_freq_1 * dVar26;
+        dVar27 = dev_sum_freq * 100.0;
       }
       else {
-        dVar27 = dev_sum_freq_1 * dVar26;
+        dVar27 = dev_sum_freq * 100.0;
       }
     }
     else {
-      dVar27 = dev_sum_freq_1 * dVar26;
+      dVar27 = dev_sum_freq * 100.0;
     }
-    iVar20 = iVar20 + 4;
-    dev_sum_freq_1 = (double)(longlong)(int)(longlong)dVar27 / dVar26;
-    local_880 = api_add_mhs(local_880,fan_name,&dev_sum_freq_1,true);
-    iVar13 = DAT_0002c328;
-    piVar23 = DAT_0002c320;
+    puVar20 = puVar20 + 4;
+    dev_sum_freq = (double)(longlong)(int)(longlong)dVar27 / 100.0;
+    local_880 = api_add_mhs(local_880,fan_name,&dev_sum_freq,true);
     local_890 = local_890 + 4;
-    iVar22 = iVar17;
-  } while (iVar17 != 0x10);
-  fan_name._0_4_ = *DAT_0002c318;
-  fan_name._4_4_ = DAT_0002c318[1];
-  fan_name._8_4_ = DAT_0002c318[2];
-  local_88c = DAT_0002c31c + -0x34;
-  iVar17 = 0;
-  dev_sum_freq_1 = 0.0;
-  iVar22 = DAT_0002c31c;
-  iVar20 = DAT_0002c328;
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  puVar20 = CSWTCH_825;
+  iVar19 = 0;
+  local_88c = CSWTCH_824;
+  paiVar22 = chain_badcore_num;
+  dev_sum_freq = 0.0;
+  builtin_strncpy(fan_name,"total_rateid",0xc);
   do {
-    iVar18 = *piVar1;
-    if (((*(int *)(iVar18 + (iVar17 + 2) * 4) == 1) &&
-        (iVar8 = getChainPICMagicNumber(iVar17), iVar8 == 0x7d)) &&
-       (*(char *)(iVar18 + iVar17 + 0x2faa) != '\0')) {
-      iVar6 = 0;
+    paVar14 = dev;
+    if (((dev->chain_exist[iVar19] == 1) &&
+        (iVar18 = getChainPICMagicNumber(iVar19), iVar18 == 0x7d)) &&
+       (paVar14->chain_asic_num[iVar19] != '\0')) {
       iVar8 = 0;
-      iVar18 = iVar17 * 0x1f + (iVar17 / 3) * 0x123 + DAT_0002c7b0;
-      do {
-        if (*piVar23 < 0xe) {
-          bVar2 = *(byte *)(iVar18 + iVar8 + 0xb);
-        }
-        else {
-          iVar15 = 0xb;
-          iVar21 = 0;
-          if (iVar17 - 1U < 0xd) {
-            iVar21 = *(int *)(local_88c + -4);
-            iVar15 = *(int *)(iVar22 + -4) * 0x1f + 0xb;
-          }
-          bVar2 = chain_pic_buf[iVar21][iVar15 + iVar8];
-        }
-        iVar8 = iVar8 + 1;
-        lVar7 = strtol(freq_pll_1385[bVar2].freq,(char **)0x0,10);
-        piVar3 = (int *)(iVar20 + iVar6);
-        iVar6 = iVar6 + 4;
-        dev_sum_freq_1 = (double)(longlong)(lVar7 * (0x72 - *piVar3)) + dev_sum_freq_1;
-      } while (iVar8 < (int)(uint)*(byte *)(*piVar1 + iVar17 + 0x2faa));
-    }
-    iVar18 = DAT_0002c798;
-    iVar17 = iVar17 + 1;
-    iVar20 = iVar20 + 0x400;
-    iVar22 = iVar22 + 4;
-    local_88c = local_88c + 4;
-  } while (iVar17 != 0x10);
-  iVar20 = 0;
-  iVar22 = 0;
-  iVar17 = DAT_0002c798 + -0x34;
-  dev_sum_freq_1 =
-       (double)(longlong)(int)(longlong)((dev_sum_freq_1 / DAT_0002c788) * DAT_0002c790) /
-       DAT_0002c790;
-  paVar5 = api_add_mhs(local_880,fan_name,&dev_sum_freq_1,true);
-  fan_name._0_4_ = *DAT_0002c79c;
-  fan_name._4_4_ = DAT_0002c79c[1];
-  fan_name._8_4_ = DAT_0002c79c[2];
-  dev_sum_freq_1 = 0.0;
-  do {
-    while (((iVar8 = *piVar1, *(int *)(iVar8 + (iVar22 + 2) * 4) == 1 &&
-            (iVar6 = getChainPICMagicNumber(iVar22), iVar6 == 0x7d)) &&
-           (*(char *)(iVar8 + iVar22 + 0x2faa) != '\0'))) {
-      iVar6 = 0;
-      iVar8 = iVar22 * 0x1f + (iVar22 / 3) * 0x123 + DAT_0002c7b0;
+      iVar18 = 0;
       do {
         if (fpga_version < 0xe) {
-          bVar2 = *(byte *)(iVar8 + iVar6 + 0xb);
+          bVar3 = *(byte *)((int)chain_pic_buf + iVar19 * 0x1f + (iVar19 / 3) * 0x123 + iVar18 + 0xb
+                           );
         }
         else {
-          iVar15 = 0xb;
+          iVar10 = 0xb;
           iVar21 = 0;
-          if (iVar22 - 1U < 0xd) {
-            iVar21 = *(int *)(iVar17 + -4);
-            iVar15 = *(int *)(iVar18 + -4) * 0x1f + 0xb;
+          if (iVar19 - 1U < 0xd) {
+            iVar21 = *(int *)(local_88c + -4);
+            iVar10 = *(int *)(puVar20 + -4) * 0x1f + 0xb;
           }
-          bVar2 = chain_pic_buf[iVar21][iVar15 + iVar6];
+          bVar3 = chain_pic_buf[iVar21][iVar10 + iVar18];
         }
-        iVar6 = iVar6 + 1;
-        iVar20 = iVar20 + 1;
-        lVar7 = strtol(freq_pll_1385[bVar2].freq,(char **)0x0,10);
-        dev_sum_freq_1 = (double)(longlong)lVar7 + dev_sum_freq_1;
-      } while (iVar6 < (int)(uint)*(byte *)(*piVar1 + iVar22 + 0x2faa));
-      iVar22 = iVar22 + 1;
-      iVar17 = iVar17 + 4;
-      iVar18 = iVar18 + 4;
-      if (iVar22 == 0x10) goto LAB_0002c5e4;
+        iVar18 = iVar18 + 1;
+        lVar9 = strtol(freq_pll_1385[bVar3].freq,(char **)0x0,10);
+        piVar24 = (int *)((int)*paiVar22 + iVar8);
+        iVar8 = iVar8 + 4;
+        dev_sum_freq = (double)(longlong)(lVar9 * (0x72 - *piVar24)) + dev_sum_freq;
+      } while (iVar18 < (int)(uint)dev->chain_asic_num[iVar19]);
     }
-    iVar22 = iVar22 + 1;
-    iVar17 = iVar17 + 4;
-    iVar18 = iVar18 + 4;
-  } while (iVar22 != 0x10);
-LAB_0002c5e4:
-  dev_sum_freq_1 =
-       (double)(longlong)(int)(longlong)((dev_sum_freq_1 / (double)(longlong)iVar20) * DAT_0002c790)
-       / DAT_0002c790;
-  paVar5 = api_add_mhs(paVar5,fan_name,&dev_sum_freq_1,true);
-  asic_num_total = 0;
-  iVar20 = 0;
-  fan_name._0_4_ = *DAT_0002c7a0;
-  fan_name._4_4_ = DAT_0002c7a0[1];
-  iVar22 = *piVar1;
+    iVar19 = iVar19 + 1;
+    paiVar22 = paiVar22 + 1;
+    puVar20 = puVar20 + 4;
+    local_88c = local_88c + 4;
+  } while (iVar19 != 0x10);
+  iVar18 = 0;
+  iVar19 = 0;
+  puVar20 = CSWTCH_824;
+  dev_sum_freq = (double)(longlong)(int)(longlong)((dev_sum_freq / 1000.0) * 100.0) / 100.0;
+  paVar7 = api_add_mhs(local_880,fan_name,&dev_sum_freq,true);
+  local_87c = (api_data *)chain_badcore_num;
+  puVar23 = CSWTCH_825;
+  dev_sum_freq = 0.0;
+  builtin_strncpy(fan_name,"total_freqav",0xc);
   do {
-    iVar17 = *(int *)(iVar22 + 8);
-    iVar22 = iVar22 + 4;
-    bVar25 = iVar17 == 1;
-    if (bVar25) {
-      iVar17 = *piVar1 + iVar20;
-    }
-    iVar20 = iVar20 + 1;
-    if (bVar25) {
-      asic_num_total = (ushort)*(byte *)(iVar17 + 0x2faa) + asic_num_total;
-    }
-  } while (iVar20 != 0x10);
-  iVar22 = 0;
-  fan_name._8_2_ = (short)DAT_0002c7a0[2];
-  paVar5 = api_add_int16(paVar5,fan_name,(uint16_t *)&asic_num_total,true);
-  fan_name._0_4_ = *DAT_0002c7a4;
-  fan_name._4_4_ = DAT_0002c7a4[1];
-  dev_sum_freq_1 = 0.0;
-  fan_name._8_3_ = (undefined3)DAT_0002c7a4[2];
-  do {
-    while ((*(int *)(*piVar1 + (iVar22 + 2) * 4) == 1 &&
-           (__nptr = displayed_rate + iVar22, displayed_rate[iVar22][0] != '\0'))) {
-      iVar22 = iVar22 + 1;
-      dVar26 = strtod(*__nptr,(char **)0x0);
-      dev_sum_freq_1 = dev_sum_freq_1 + dVar26;
-      if (iVar22 == 0x10) goto LAB_0002c6cc;
-    }
-    iVar22 = iVar22 + 1;
-  } while (iVar22 != 0x10);
-LAB_0002c6cc:
-  dVar27 = DAT_0002c790;
-  dVar26 = DAT_0002c788;
-  dev_sum_freq_1 = (double)(longlong)(int)(longlong)(dev_sum_freq_1 * DAT_0002c790) / DAT_0002c790;
-  local_87c = api_add_mhs(paVar5,fan_name,&dev_sum_freq_1,true);
-  iVar22 = 0;
-  do {
-    iVar20 = iVar22 + 1;
-    dev_sum_freq_1 = 0.0;
-    sprintf(fan_name,DAT_0002c7a8,iVar20);
-    iVar17 = *piVar1;
-    if (((*(int *)(iVar17 + (iVar22 + 2) * 4) == 1) &&
-        (iVar8 = getChainPICMagicNumber(iVar22), piVar23 = DAT_0002c7b4, iVar18 = DAT_0002c7ac,
-        iVar8 == 0x7d)) && (*(char *)(iVar17 + iVar22 + 0x2faa) != '\0')) {
-      iVar6 = 0;
+    while (((paVar14 = dev, dev->chain_exist[iVar19] == 1 &&
+            (iVar8 = getChainPICMagicNumber(iVar19), iVar8 == 0x7d)) &&
+           (paVar14->chain_asic_num[iVar19] != '\0'))) {
       iVar8 = 0;
-      iVar17 = iVar22 * 0x1f + (iVar22 / 3) * 0x123 + DAT_0002c7b0;
       do {
-        if (*piVar23 < 0xe) {
-          bVar2 = *(byte *)(iVar17 + iVar8 + 0xb);
+        if (fpga_version < 0xe) {
+          bVar3 = *(byte *)((int)chain_pic_buf + iVar19 * 0x1f + (iVar19 / 3) * 0x123 + iVar8 + 0xb)
+          ;
         }
         else {
-          iVar21 = 0xb;
-          new_T9_PLUS_chainIndex_3 = 0;
-          if (iVar22 - 1U < 0xd) {
-            new_T9_PLUS_chainIndex_3 = *(int *)(local_888 + -4);
-            iVar21 = *(int *)(local_884 + -4) * 0x1f + 0xb;
+          iVar10 = 0xb;
+          iVar21 = 0;
+          if (iVar19 - 1U < 0xd) {
+            iVar21 = *(int *)(puVar20 + -4);
+            iVar10 = *(int *)(puVar23 + -4) * 0x1f + 0xb;
           }
-          bVar2 = chain_pic_buf[new_T9_PLUS_chainIndex_3][iVar21 + iVar8];
+          bVar3 = chain_pic_buf[iVar21][iVar10 + iVar8];
         }
         iVar8 = iVar8 + 1;
-        lVar7 = strtol(*(char **)(iVar18 + (uint)bVar2 * 0x10 + 0x38),(char **)0x0,10);
-        piVar3 = (int *)(iVar13 + iVar6);
-        iVar6 = iVar6 + 4;
-        dev_sum_freq_1 = (double)(longlong)(lVar7 * (0x72 - *piVar3)) + dev_sum_freq_1;
-      } while (iVar8 < (int)(uint)*(byte *)(*piVar1 + iVar22 + 0x2faa));
+        iVar18 = iVar18 + 1;
+        lVar9 = strtol(freq_pll_1385[bVar3].freq,(char **)0x0,10);
+        dev_sum_freq = (double)(longlong)lVar9 + dev_sum_freq;
+      } while (iVar8 < (int)(uint)dev->chain_asic_num[iVar19]);
+      iVar19 = iVar19 + 1;
+      puVar20 = puVar20 + 4;
+      puVar23 = puVar23 + 4;
+      if (iVar19 == 0x10) goto LAB_0002c5e4;
     }
-    iVar13 = iVar13 + 0x400;
-    dev_sum_freq_1 = (double)(longlong)(int)(longlong)((dev_sum_freq_1 / dVar26) * dVar27) / dVar27;
-    local_87c = api_add_mhs(local_87c,fan_name,&dev_sum_freq_1,true);
+    iVar19 = iVar19 + 1;
+    puVar20 = puVar20 + 4;
+    puVar23 = puVar23 + 4;
+  } while (iVar19 != 0x10);
+LAB_0002c5e4:
+  dev_sum_freq = (double)(longlong)
+                         (int)(longlong)((dev_sum_freq / (double)(longlong)iVar18) * 100.0) / 100.0;
+  paVar7 = api_add_mhs(paVar7,fan_name,&dev_sum_freq,true);
+  uVar6 = fan_name._8_4_;
+  asic_num_total = 0;
+  iVar19 = 0;
+  builtin_strncpy(fan_name,"total_acn",10);
+  fan_name._10_2_ = SUB42(uVar6,2);
+  paVar14 = dev;
+  do {
+    uVar15 = paVar14->chain_exist[0];
+    paVar14 = (all_parameters *)&paVar14->pwm_value;
+    bVar26 = uVar15 == 1;
+    if (bVar26) {
+      uVar15 = (int)dev->chain_exist + iVar19 + -8;
+    }
+    iVar19 = iVar19 + 1;
+    if (bVar26) {
+      asic_num_total = (ushort)*(byte *)(uVar15 + 0x2faa) + asic_num_total;
+    }
+  } while (iVar19 != 0x10);
+  iVar19 = 0;
+  paVar7 = api_add_int16(paVar7,fan_name,(uint16_t *)&asic_num_total,true);
+  dev_sum_freq = 0.0;
+  builtin_strncpy(fan_name,"total_ra",8);
+  fan_name[8] = 't';
+  fan_name[9] = 'e';
+  fan_name[10] = '\0';
+  do {
+    while ((dev->chain_exist[iVar19] == 1 &&
+           (__nptr = displayed_rate + iVar19, displayed_rate[iVar19][0] != '\0'))) {
+      iVar19 = iVar19 + 1;
+      dVar27 = strtod(*__nptr,(char **)0x0);
+      dev_sum_freq = dev_sum_freq + dVar27;
+      if (iVar19 == 0x10) goto LAB_0002c6cc;
+    }
+    iVar19 = iVar19 + 1;
+  } while (iVar19 != 0x10);
+LAB_0002c6cc:
+  dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * 100.0) / 100.0;
+  paVar7 = api_add_mhs(paVar7,fan_name,&dev_sum_freq,true);
+  iVar19 = 0;
+  paiVar22 = (int (*) [256])local_87c;
+  local_87c = paVar7;
+  do {
+    iVar18 = iVar19 + 1;
+    dev_sum_freq = 0.0;
+    sprintf(fan_name,"chain_rateideal%d",iVar18);
+    paVar14 = dev;
+    if (((dev->chain_exist[iVar19] == 1) && (iVar8 = getChainPICMagicNumber(iVar19), iVar8 == 0x7d))
+       && (paVar14->chain_asic_num[iVar19] != '\0')) {
+      iVar21 = 0;
+      iVar8 = 0;
+      do {
+        if (fpga_version < 0xe) {
+          bVar3 = *(byte *)((int)chain_pic_buf + iVar19 * 0x1f + (iVar19 / 3) * 0x123 + iVar8 + 0xb)
+          ;
+        }
+        else {
+          iVar10 = 0xb;
+          iVar16 = 0;
+          if (iVar19 - 1U < 0xd) {
+            iVar16 = *(int *)(local_888 + -4);
+            iVar10 = *(int *)(local_884 + -4) * 0x1f + 0xb;
+          }
+          bVar3 = chain_pic_buf[iVar16][iVar10 + iVar8];
+        }
+        iVar8 = iVar8 + 1;
+        lVar9 = strtol(freq_pll_1385[bVar3].freq,(char **)0x0,10);
+        piVar24 = (int *)((int)*paiVar22 + iVar21);
+        iVar21 = iVar21 + 4;
+        dev_sum_freq = (double)(longlong)(lVar9 * (0x72 - *piVar24)) + dev_sum_freq;
+      } while (iVar8 < (int)(uint)dev->chain_asic_num[iVar19]);
+    }
+    paiVar22 = paiVar22 + 1;
+    dev_sum_freq = (double)(longlong)(int)(longlong)((dev_sum_freq / 1000.0) * 100.0) / 100.0;
+    local_87c = api_add_mhs(local_87c,fan_name,&dev_sum_freq,true);
     local_888 = local_888 + 4;
     local_884 = local_884 + 4;
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  paVar5 = api_add_int(local_87c,DAT_0002cb54,(int *)(*piVar1 + 0x2fc7),true);
-  dVar26 = *DAT_0002cb5c + *DAT_0002cb58 + *DAT_0002cb60;
-  uVar28 = __aeabi_d2lz(SUB84(dVar26,0),(int)((ulonglong)dVar26 >> 0x20));
-  uVar14 = *DAT_0002cb64;
-  *DAT_0002cb68 = uVar28;
-  uVar12 = (uint)uVar28 + uVar14;
-  uVar16 = (int)((ulonglong)uVar28 >> 0x20) +
-           ((int)uVar14 >> 0x1f) + (uint)CARRY4((uint)uVar28,uVar14);
-  dVar26 = DAT_0002cc28;
-  if ((uVar12 | uVar16) != 0) {
-    dVar26 = (double)__aeabi_l2d(uVar12,uVar16);
-    dVar26 = (double)(longlong)(int)uVar14 / dVar26;
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  paVar7 = api_add_int(local_87c,"temp_max",dev->temp_top1 + 1,true);
+  dVar27 = total_diff_accepted + total_diff_rejected + total_diff_stale;
+  total_diff1 = __aeabi_d2lz(SUB84(dVar27,0),(int)((ulonglong)dVar27 >> 0x20));
+  iVar19 = (uint)total_diff1 + hw_errors;
+  iVar18 = (int)((ulonglong)total_diff1 >> 0x20) +
+           (hw_errors >> 0x1f) + (uint)CARRY4((uint)total_diff1,hw_errors);
+  if (iVar19 == 0 && iVar18 == 0) {
+    dev_sum_freq = 0.0;
   }
-  dev_sum_freq_1 = dVar26;
-  paVar5 = api_add_percent(paVar5,DAT_0002cb6c,&dev_sum_freq_1,true);
-  paVar5 = api_add_int(paVar5,DAT_0002cb70,(int *)DAT_0002cb64,true);
-  iVar22 = 0;
+  else {
+    lVar1 = (longlong)hw_errors;
+    dVar27 = (double)__aeabi_l2d(iVar19,iVar18);
+    dev_sum_freq = (double)lVar1 / dVar27;
+  }
+  paVar7 = api_add_percent(paVar7,"Device Hardware%",&dev_sum_freq,true);
+  paVar7 = api_add_int(paVar7,"no_matching_work",&hw_errors,true);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002cb74,iVar20);
-    paVar5 = api_add_uint8(paVar5,fan_name,(uchar *)(*piVar1 + iVar22 + 0x2faa),true);
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  iVar22 = 0;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"chain_acn%d",iVar18);
+    paVar7 = api_add_uint8(paVar7,fan_name,dev->chain_asic_num + iVar19,true);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002cb78,iVar20);
-    paVar5 = api_add_string(paVar5,fan_name,(char *)(*piVar1 + iVar22 * 0x48 + 0x2aba),true);
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  iVar22 = 0;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"chain_acs%d",iVar18);
+    paVar7 = api_add_string(paVar7,fan_name,dev->chain_asic_status_string[iVar19],true);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002cb7c,iVar20);
-    paVar5 = api_add_uint32(paVar5,fan_name,(uint *)(*piVar1 + iVar22 * 4 + 0xa7a),true);
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  iVar22 = 0;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"chain_hw%d",iVar18);
+    paVar7 = api_add_uint32(paVar7,fan_name,dev->chain_hw + iVar19,true);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  iVar19 = 0;
   do {
-    iVar20 = iVar22 + 1;
-    sprintf(fan_name,DAT_0002cb80,iVar20);
-    paVar5 = api_add_string(paVar5,fan_name,displayed_rate[iVar22],true);
-    iVar22 = iVar20;
-  } while (iVar20 != 0x10);
-  iVar20 = *piVar1;
-  iVar22 = 1;
+    iVar18 = iVar19 + 1;
+    sprintf(fan_name,"chain_rate%d",iVar18);
+    paVar7 = api_add_string(paVar7,fan_name,displayed_rate[iVar19],true);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x10);
+  paVar14 = dev;
+  iVar19 = 1;
   do {
     while( true ) {
-      iVar17 = iVar22 + 1;
-      iVar13 = iVar22 + -1;
-      if (*(int *)(iVar20 + iVar17 * 4) != 1) break;
+      iVar18 = iVar19 + 1;
+      if (paVar14->chain_exist[iVar19 + -1] != 1) break;
       fan_name[0] = '{';
       fan_name[1] = '\0';
       fan_name[2] = '\0';
@@ -387,117 +364,116 @@ LAB_0002c6cc:
       tmp[8] = '\0';
       tmp[9] = '\0';
       tmp[10] = '\0';
-      tmp[11] = '\0';
-      tmp[12] = '\0';
-      tmp[13] = '\0';
-      tmp[14] = '\0';
-      tmp[15] = '\0';
-      tmp[16] = '\0';
-      tmp[17] = '\0';
-      tmp[18] = '\0';
-      tmp[19] = '\0';
+      tmp[0xb] = '\0';
+      tmp[0xc] = '\0';
+      tmp[0xd] = '\0';
+      tmp[0xe] = '\0';
+      tmp[0xf] = '\0';
+      tmp[0x10] = '\0';
+      tmp[0x11] = '\0';
+      tmp[0x12] = '\0';
+      tmp[0x13] = '\0';
       tmp[0] = '\0';
       tmp[1] = '\0';
       tmp[2] = '\0';
       tmp[3] = '\0';
-      sprintf(chain_xtime,DAT_0002cb84,iVar22);
-      bVar25 = *(int *)(DAT_0002cb88 + iVar22 * 0x400 + -0x400) != 0;
-      if (bVar25) {
-        sprintf(tmp,DAT_0002cc3c,0);
+      sprintf(chain_xtime,"chain_xtime%d",iVar19);
+      bVar26 = chain_badcore_num[iVar19 + 0xf][0] != 0;
+      if (bVar26) {
+        sprintf(tmp,"X%d=%d",0);
         strcat(fan_name,tmp);
       }
-      bVar25 = !bVar25;
-      if (1 < *(byte *)(*piVar1 + iVar13 + 0x2faa)) {
-        iVar22 = 1;
-        piVar23 = (int *)(DAT_0002cb88 + iVar13 * 0x400);
+      bVar26 = !bVar26;
+      if (1 < *(byte *)((int)dev->temp + iVar19 + 0x3f)) {
+        iVar8 = 1;
+        piVar24 = x_time[iVar19 + -1];
         do {
-          piVar23 = piVar23 + 1;
-          if (*piVar23 != 0) {
-            pcVar10 = DAT_0002cb8c;
-            if (!bVar25) {
-              pcVar10 = DAT_0002cb90;
+          piVar24 = piVar24 + 1;
+          if (*piVar24 != 0) {
+            pcVar13 = "X%d=%d";
+            if (!bVar26) {
+              pcVar13 = ",X%d=%d";
             }
-            sprintf(tmp,pcVar10,iVar22,*piVar23);
+            sprintf(tmp,pcVar13,iVar8,*piVar24);
             strcat(fan_name,tmp);
-            bVar25 = false;
+            bVar26 = false;
           }
-          iVar22 = iVar22 + 1;
-        } while (iVar22 < (int)(uint)*(byte *)(*piVar1 + iVar13 + 0x2faa));
+          iVar8 = iVar8 + 1;
+        } while (iVar8 < (int)(uint)*(byte *)((int)dev->temp + iVar19 + 0x3f));
       }
-      sVar9 = strlen(fan_name);
-      *(undefined2 *)(fan_name + sVar9) = s___id____d___method____mining_sub_00045a48._68_2_;
-      paVar5 = api_add_string(paVar5,chain_xtime,fan_name,true);
-      iVar20 = *piVar1;
-      iVar22 = iVar17;
-      if (iVar17 == 0x11) goto LAB_0002caa0;
+      sVar11 = strlen(fan_name);
+      pcVar13 = fan_name + sVar11;
+      pcVar13[0] = '}';
+      pcVar13[1] = '\0';
+      paVar7 = api_add_string(paVar7,chain_xtime,fan_name,true);
+      paVar14 = dev;
+      iVar19 = iVar18;
+      if (iVar18 == 0x11) goto LAB_0002caa0;
     }
-    iVar22 = iVar17;
-  } while (iVar17 != 0x11);
+    iVar19 = iVar18;
+  } while (iVar18 != 0x11);
 LAB_0002caa0:
-  iVar22 = DAT_0002cba4;
-  iVar17 = 0;
-  iVar13 = 1;
+  iVar18 = 0;
+  iVar19 = 1;
   do {
-    while (*(int *)(iVar20 + (iVar17 + 2) * 4) != 1) {
-      iVar17 = iVar17 + 1;
-      iVar13 = iVar13 + 1;
-      if (iVar17 == 0x10) goto LAB_0002caea;
+    while (paVar14->chain_exist[iVar18] != 1) {
+      iVar18 = iVar18 + 1;
+      iVar19 = iVar19 + 1;
+      if (iVar18 == 0x10) goto LAB_0002caea;
     }
-    sprintf(tmp,DAT_0002cb94,iVar13);
-    iVar20 = iVar17 * 4;
-    iVar17 = iVar17 + 1;
-    sprintf(fan_name,DAT_0002cb98,*(undefined4 *)(iVar22 + iVar20));
-    paVar5 = api_add_string(paVar5,tmp,fan_name,true);
-    iVar20 = *piVar1;
-    iVar13 = iVar13 + 1;
-  } while (iVar17 != 0x10);
+    sprintf(tmp,"chain_offside_%d",iVar19);
+    piVar24 = temp_offside + iVar18;
+    iVar18 = iVar18 + 1;
+    sprintf(fan_name,"%d",*piVar24);
+    paVar7 = api_add_string(paVar7,tmp,fan_name,true);
+    paVar14 = dev;
+    iVar19 = iVar19 + 1;
+  } while (iVar18 != 0x10);
 LAB_0002caea:
-  iVar22 = DAT_0002cba8;
-  iVar17 = 0;
-  iVar13 = 1;
+  iVar18 = 0;
+  iVar19 = 1;
   do {
-    while (*(int *)(iVar20 + (iVar17 + 2) * 4) == 1) {
-      sprintf(tmp,DAT_0002cb9c,iVar13);
-      pcVar10 = (char *)(iVar17 + iVar22);
-      iVar17 = iVar17 + 1;
-      if (*pcVar10 == '\0') {
-        uVar24 = 0x30;
+    while (paVar14->chain_exist[iVar18] == 1) {
+      sprintf(tmp,"chain_opencore_%d",iVar19);
+      p_Var4 = isChainAllCoresOpened + iVar18;
+      iVar18 = iVar18 + 1;
+      if (*p_Var4 == false) {
+        uVar25 = 0x30;
       }
       else {
-        uVar24 = 0x31;
+        uVar25 = 0x31;
       }
-      fan_name[0] = (char)uVar24;
-      fan_name[1] = (char)((ushort)uVar24 >> 8);
-      paVar5 = api_add_string(paVar5,tmp,fan_name,true);
-      iVar20 = *piVar1;
-      iVar13 = iVar13 + 1;
-      if (iVar17 == 0x10) goto LAB_0002cb44;
+      fan_name[0] = (char)uVar25;
+      fan_name[1] = (char)((ushort)uVar25 >> 8);
+      paVar7 = api_add_string(paVar7,tmp,fan_name,true);
+      paVar14 = dev;
+      iVar19 = iVar19 + 1;
+      if (iVar18 == 0x10) goto LAB_0002cb44;
     }
-    iVar17 = iVar17 + 1;
-    iVar13 = iVar13 + 1;
-  } while (iVar17 != 0x10);
+    iVar18 = iVar18 + 1;
+    iVar19 = iVar19 + 1;
+  } while (iVar18 != 0x10);
 LAB_0002cb44:
-  pcVar10 = (char *)0x0;
-  bufsiz = 0;
-  puVar19 = DAT_0002cba0;
+  puVar17 = rate;
+  uVar15 = 0;
+  iVar19 = 0;
   do {
-    while (piVar1 = (int *)(iVar20 + 8), iVar20 = iVar20 + 4, *piVar1 == 1) {
-      uVar14 = *puVar19;
-      puVar4 = puVar19 + 1;
-      puVar19 = puVar19 + 2;
-      bVar25 = CARRY4((uint)pcVar10,uVar14);
-      pcVar10 = pcVar10 + uVar14;
-      bufsiz = bufsiz + *puVar4 + (uint)bVar25;
-      if (puVar19 == DAT_0002cba0 + 0x20) goto LAB_0002cbca;
+    while (puVar2 = paVar14->chain_exist, paVar14 = (all_parameters *)&paVar14->pwm_value,
+          *puVar2 == 1) {
+      piVar24 = &((__pthread_mutex_s *)puVar17)->__lock;
+      plVar5 = (long *)((int)puVar17 + 4);
+      puVar17 = (uint64_t *)((int)puVar17 + 8);
+      bVar26 = CARRY4(uVar15,*piVar24);
+      uVar15 = uVar15 + *piVar24;
+      iVar19 = iVar19 + *plVar5 + (uint)bVar26;
+      if ((pthread_mutex_t *)puVar17 == &iic_mutex) goto LAB_0002cbca;
     }
-    puVar19 = puVar19 + 2;
-  } while (puVar19 != DAT_0002cba0 + 0x20);
+    puVar17 = (uint64_t *)((int)puVar17 + 8);
+  } while ((pthread_mutex_t *)puVar17 != &iic_mutex);
 LAB_0002cbca:
-  suffix_string_c5(CONCAT44(in_stack_fffff764,7),pcVar10,bufsiz,DAT_0002cc30,true);
-  fan_name._0_4_ = *DAT_0002cc34;
-  fan_name._4_4_ = DAT_0002cc34[1];
-  fan_name._8_4_ = DAT_0002cc34[2];
-  paVar5 = api_add_string(paVar5,fan_name,DAT_0002cc38,true);
-  return paVar5;
+  suffix_string_c5(CONCAT44(iVar19,uVar15),displayed_hash_rate,0x10,7,(_Bool)in_stack_fffff764);
+  builtin_strncpy(fan_name,"miner_versio",0xc);
+  paVar7 = api_add_string(paVar7,fan_name,g_miner_version,true);
+  return paVar7;
 }
 

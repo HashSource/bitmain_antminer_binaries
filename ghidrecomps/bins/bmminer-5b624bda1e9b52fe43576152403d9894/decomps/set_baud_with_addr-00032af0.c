@@ -6,10 +6,8 @@ void set_baud_with_addr(uchar bauddiv,int mode,uchar chip_addr,int chain,int iic
 
 {
   uint uVar1;
-  uint i;
   uint uVar2;
   uint uVar3;
-  uint ret;
   uchar buf [9];
   uint cmd_buf [3];
   char tmp42 [2048];
@@ -24,19 +22,20 @@ void set_baud_with_addr(uchar bauddiv,int mode,uchar chip_addr,int chain,int iic
   cmd_buf[0] = 0;
   cmd_buf[1] = 0;
   cmd_buf[2] = 0;
-  if (*DAT_00032cb8 == 0) {
+  if (opt_multi_version == 0) {
     uVar3 = uVar3 & 0x1f;
     buf[0] = 0x86;
     buf[2] = (uchar)uVar3;
     buf[1] = '\x10';
     buf[3] = CRC5(buf,'\x1b');
     uVar1 = (uint)buf[3];
-    if ((*DAT_00032cbc == '\0') ||
-       (((*DAT_00032cc0 == '\0' && (*DAT_00032cc4 == '\0')) && (*DAT_00032cd0 < 7)))) {
+    if ((opt_debug == false) ||
+       (((use_syslog == false && (opt_log_output == false)) && (opt_log_level < 7)))) {
       uVar2 = 0x86100000;
     }
     else {
-      snprintf(tmp42,0x800,DAT_00032cc8,DAT_00032ccc,0x86,0x10,uVar3,uVar1);
+      snprintf(tmp42,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
+               "set_baud_with_addr",0x86,0x10,uVar3,uVar1);
       _applog(7,tmp42,false);
       uVar3 = (uint)buf[2];
       uVar1 = (uint)buf[3];

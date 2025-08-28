@@ -5,9 +5,7 @@ int hashtable_del(hashtable_t *hashtable,char *key)
 
 {
   size_t length;
-  uint32_t hash_00;
-  size_t hash;
-  pair_t *pair;
+  uint32_t hash;
   json_t *json;
   int iVar1;
   hashtable_list *phVar2;
@@ -22,11 +20,11 @@ int hashtable_del(hashtable_t *hashtable,char *key)
   pair_t *local_1c [2];
   
   length = strlen(key);
-  hash_00 = hashlittle(key,length,*DAT_0003e618);
+  hash = hashlittle(key,length,hashtable_seed);
   phVar7 = hashtable->buckets;
-  uVar6 = (1 << (hashtable->order & 0xff)) - 1U & hash_00;
+  uVar6 = (1 << (hashtable->order & 0xff)) - 1U & hash;
   bucket_00 = phVar7 + uVar6;
-  local_1c[0] = hashtable_find_pair(hashtable,bucket_00,key,hash_00);
+  local_1c[0] = hashtable_find_pair(hashtable,bucket_00,key,hash);
   if (local_1c[0] == (pair_t *)0x0) {
     iVar1 = -1;
   }

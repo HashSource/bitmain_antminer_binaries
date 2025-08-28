@@ -4,11 +4,10 @@
 void * get_hash_rate(void)
 
 {
-  uint32_t uVar1;
-  uint uVar2;
-  int iVar3;
-  double dVar4;
-  undefined8 uVar5;
+  uint uVar1;
+  int iVar2;
+  double dVar3;
+  undefined8 uVar4;
   int index [16];
   double each_chain_h [16] [10];
   timeval diff;
@@ -33,31 +32,31 @@ void * get_hash_rate(void)
       diff.tv_usec = diff.tv_usec + 1000000;
     }
     each_chain_h_all = 0.0;
-    for (which_chain = 0; uVar1 = which_chain, which_chain < 0x10; which_chain = which_chain + 1) {
+    for (which_chain = 0; which_chain < 0x10; which_chain = which_chain + 1) {
       if (dev->chain_exist[which_chain] != 0) {
-        uVar2 = *(uint *)(h_each_chain + which_chain);
-        iVar3 = index[which_chain];
-        uVar5 = __floatundidf(-uVar2,(uVar2 & 0xfffffffe) +
-                                     ((uint)(uVar2 * -0x80000000 < uVar2) * -2 -
+        uVar1 = (uint)h_each_chain[which_chain];
+        iVar2 = index[which_chain];
+        uVar4 = __floatundidf(-uVar1,(uVar1 & 0xfffffffe) +
+                                     ((uint)(uVar1 * -0x80000000 < uVar1) * -2 -
                                      *(int *)((int)h_each_chain + which_chain * 8 + 4)) +
-                                     (uint)CARRY4(uVar2 * 0x7fffffff,uVar2 * 0x7fffffff) +
-                                     (uint)CARRY4(uVar2 * -2,uVar2));
-        *(int *)(each_chain_h[which_chain] + iVar3) = (int)uVar5;
-        *(int *)((int)each_chain_h[uVar1] + iVar3 * 8 + 4) = (int)((ulonglong)uVar5 >> 0x20);
+                                     (uint)CARRY4(uVar1 * 0x7fffffff,uVar1 * 0x7fffffff) +
+                                     (uint)CARRY4(uVar1 * -2,uVar1));
+        *(int *)(each_chain_h[which_chain] + iVar2) = (int)uVar4;
+        *(int *)((int)each_chain_h[which_chain] + iVar2 * 8 + 4) = (int)((ulonglong)uVar4 >> 0x20);
         *(undefined4 *)(h_each_chain + which_chain) = 0;
         *(undefined4 *)((int)h_each_chain + which_chain * 8 + 4) = 0;
         each_chain_h[which_chain][index[which_chain]] =
              each_chain_h[which_chain][index[which_chain]] /
-             ((double)(longlong)diff.tv_sec + (double)(longlong)(diff.tv_usec + 1) / DAT_00023880);
+             ((double)(longlong)diff.tv_sec + (double)(longlong)(diff.tv_usec + 1) / 1000000.0);
         *(undefined4 *)(each_chain_h_avg + which_chain) = 0;
         *(undefined4 *)((int)each_chain_h_avg + which_chain * 8 + 4) = 0;
         for (i = 0; i < 10; i = i + 1) {
           each_chain_h_avg[which_chain] =
                each_chain_h_avg[which_chain] + each_chain_h[which_chain][i];
         }
-        dVar4 = (each_chain_h_avg[which_chain] / DAT_00023888) / 10.0;
-        sprintf(displayed_rate[which_chain],"%.2f",SUB84(dVar4,0),(int)((ulonglong)dVar4 >> 0x20));
-        each_chain_h_all = each_chain_h_all + (each_chain_h_avg[which_chain] / DAT_00023888) / 10.0;
+        dVar3 = (each_chain_h_avg[which_chain] / 1000000000.0) / 10.0;
+        sprintf(displayed_rate[which_chain],"%.2f",SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20));
+        each_chain_h_all = each_chain_h_all + (each_chain_h_avg[which_chain] / 1000000000.0) / 10.0;
         index[which_chain] = index[which_chain] + 1;
         if (9 < index[which_chain]) {
           index[which_chain] = 0;

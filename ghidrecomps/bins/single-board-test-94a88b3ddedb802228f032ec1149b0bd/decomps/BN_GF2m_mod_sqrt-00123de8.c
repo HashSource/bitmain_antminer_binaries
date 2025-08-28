@@ -18,7 +18,7 @@ BIGNUM * BN_GF2m_mod_sqrt(BIGNUM *param_1,undefined4 param_2,BIGNUM *param_3,BN_
   
   iVar1 = BN_num_bits(param_3);
   iVar1 = iVar1 + 1;
-  ptr = (int *)CRYPTO_malloc(iVar1 * 4,DAT_00123f04,0x446);
+  ptr = (int *)CRYPTO_malloc(iVar1 * 4,"bn_gf2m.c",0x446);
   if (ptr == (int *)0x0) {
     return (BIGNUM *)0x0;
   }
@@ -89,7 +89,7 @@ BIGNUM * BN_GF2m_mod_sqrt(BIGNUM *param_1,undefined4 param_2,BIGNUM *param_3,BN_
       goto LAB_00123ed8;
     }
   }
-  ERR_put_error(3,0x89,0x6a,DAT_00123f04,0x44a);
+  ERR_put_error(3,0x89,0x6a,"bn_gf2m.c",0x44a);
 LAB_00123ed8:
   CRYPTO_free(ptr);
   return pBVar6;

@@ -17,7 +17,7 @@ undefined4 ssl_cert_add1_chain_cert(int *param_1,void *param_2)
     }
     iVar1 = sk_push(st,param_2);
     if (iVar1 != 0) {
-      CRYPTO_add_lock((int *)((int)param_2 + 0x10),1,3,DAT_0007d9f4,0x242);
+      CRYPTO_add_lock((int *)((int)param_2 + 0x10),1,3,"ssl_cert.c",0x242);
       return 1;
     }
   }

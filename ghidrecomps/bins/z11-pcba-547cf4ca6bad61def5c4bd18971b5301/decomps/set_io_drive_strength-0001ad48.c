@@ -3,9 +3,9 @@ void set_io_drive_strength(void)
 
 {
   char acStack_418 [1024];
-  undefined local_18;
-  undefined local_17;
-  undefined local_16;
+  undefined1 local_18;
+  undefined1 local_17;
+  undefined1 local_16;
   uint local_14;
   uint local_10;
   char local_9;

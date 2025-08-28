@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable ret:char *[r0:4] conflicts with parameter, skipped. */
 
 char * jsonp_eolstrsteal(strbuffer_t *strbuff)
 

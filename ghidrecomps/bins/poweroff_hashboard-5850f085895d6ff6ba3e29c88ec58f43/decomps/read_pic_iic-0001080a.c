@@ -3,7 +3,7 @@ undefined4 read_pic_iic(byte param_1)
 
 {
   undefined4 uVar1;
-  byte local_11;
+  undefined1 local_11;
   
   if (param_1 == 1) {
     local_11 = 2;

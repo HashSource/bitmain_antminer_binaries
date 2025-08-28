@@ -18,8 +18,8 @@ int EVP_CIPHER_asn1_to_param(EVP_CIPHER_CTX *c,ASN1_TYPE *type)
       __n = type;
       if (type != (ASN1_TYPE *)0x0) {
         __n = (ASN1_TYPE *)pEVar2->iv_len;
-        if ((ASN1_TYPE *)0x10 < __n) {
-          OpenSSLDie(DAT_000b2b84,0x6b,DAT_000b2b88);
+        if ((ASN1_TYPE *)&DAT_00000010 < __n) {
+          OpenSSLDie("evp_lib.c",0x6b,"l <= sizeof(c->iv)");
         }
         pAVar1 = (ASN1_TYPE *)ASN1_TYPE_get_octetstring(type,c->oiv,(int)__n);
         if (__n != pAVar1) {

@@ -1,44 +1,36 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void kill_mining(void)
 
 {
-  int *piVar1;
   thr_info *thr;
-  thr_info *thr_00;
   int thr_id;
   char tmp42 [2048];
   
-  if ((*DAT_00022a0c != '\0') &&
-     (((*DAT_00022a10 != '\0' || (*DAT_00022a14 != '\0')) || (6 < *DAT_00022a20)))) {
-    tmp42._0_4_ = *DAT_00022a18;
-    tmp42._4_4_ = DAT_00022a18[1];
-    tmp42._8_4_ = DAT_00022a18[2];
-    tmp42._12_4_ = DAT_00022a18[3];
-    tmp42._16_4_ = DAT_00022a18[4];
-    tmp42._20_4_ = DAT_00022a18[5];
-    tmp42._24_2_ = (undefined2)DAT_00022a18[6];
-    tmp42[26] = (char)((uint)DAT_00022a18[6] >> 0x10);
+  if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
+    builtin_strncpy(tmp42,"Killing off mining threa",0x18);
+    tmp42[0x18] = 'd';
+    tmp42[0x19] = 's';
+    tmp42[0x1a] = '\0';
     _applog(7,tmp42,true);
   }
-  piVar1 = DAT_00022a1c;
-  if (0 < *DAT_00022a1c) {
+  if (0 < mining_threads) {
     thr_id = 0;
     do {
-      while ((thr_00 = get_thread(thr_id), thr_00 != (thr_info *)0x0 && (thr_00->pth != 0))) {
-        thr_info_cancel(thr_00);
-        if (thr_00->pth != 0) {
-          pthread_join(thr_00->pth,(void **)0x0);
+      while ((thr = get_thread(thr_id), thr != (thr_info *)0x0 && (thr->pth != 0))) {
+        thr_info_cancel(thr);
+        if (thr->pth != 0) {
+          pthread_join(thr->pth,(void **)0x0);
         }
         thr_id = thr_id + 1;
-        if (*piVar1 <= thr_id) {
+        if (mining_threads <= thr_id) {
           return;
         }
       }
       thr_id = thr_id + 1;
-      thr_info_cancel(thr_00);
-    } while (thr_id < *piVar1);
+      thr_info_cancel(thr);
+    } while (thr_id < mining_threads);
   }
   return;
 }

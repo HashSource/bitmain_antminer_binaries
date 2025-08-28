@@ -5,192 +5,149 @@ void submit_work_async(work *work)
 
 {
   char cVar1;
-  pthread_mutex_t *ppVar2;
-  char **ppcVar3;
-  double *pdVar4;
-  _Bool _Var5;
-  thr_info *ptVar6;
-  thr_info *thr;
-  int iVar7;
-  int iVar8;
-  char *in_r2;
-  char *pcVar9;
-  work *line;
-  uint uVar10;
+  undefined4 uVar2;
+  _Bool _Var3;
+  thr_info *ptVar4;
+  int iVar5;
+  char *func;
+  char *func_00;
+  char *__format;
+  char *func_01;
+  char *func_02;
+  int line;
+  int line_00;
+  int line_01;
+  int line_02;
+  uint uVar6;
   pool *pool;
-  pool *ppVar11;
+  pool *ppVar7;
   cgpu_info *cgpu;
-  cgpu_info *pcVar12;
-  char *pcVar13;
-  char *pcVar14;
-  double dVar15;
-  double dVar16;
-  double dVar17;
-  double dVar18;
+  cgpu_info *pcVar8;
+  bool bVar9;
+  double dVar10;
+  double dVar11;
+  double dVar12;
   work *local_82c [2];
   pthread_t submit_thread;
   char tmp42 [2048];
   
-  ppVar11 = work->pool;
+  ppVar7 = work->pool;
   local_82c[0] = work;
   cgtime(&work->tv_work_found);
-  if (*(char *)(DAT_000295a4 + 0x74d) != '\0') {
-    line = local_82c[0];
-    ptVar6 = get_thread(local_82c[0]->thr_id);
-    pcVar12 = ptVar6->cgpu;
-    iVar7 = pthread_mutex_lock(DAT_000295a8);
-    if (iVar7 != 0) {
-      _mutex_lock(DAT_00029704,(char *)0x2178,in_r2,(int)line);
+  if (opt_benchmark != false) {
+    ptVar4 = get_thread(local_82c[0]->thr_id);
+    pcVar8 = ptVar4->cgpu;
+    iVar5 = pthread_mutex_lock((pthread_mutex_t *)&stats_lock);
+    if (iVar5 != 0) {
+      _mutex_lock((pthread_mutex_t *)"submit_work_async",(char *)0x2178,func,line);
     }
-    pdVar4 = DAT_000295f0;
-    ppcVar3 = DAT_000295ac;
-    dVar15 = pcVar12->diff_accepted;
-    dVar18 = local_82c[0]->work_difficulty;
-    uVar10 = *(uint *)&ppVar11->accepted;
-    iVar7 = *(int *)((int)&ppVar11->accepted + 4);
-    dVar16 = ppVar11->diff_accepted;
-    pcVar13 = *DAT_000295ac;
-    pcVar14 = DAT_000295ac[1];
-    pcVar12->accepted = pcVar12->accepted + 1;
-    ppVar2 = DAT_000295a8;
-    pcVar9 = pcVar13 + 1;
-    dVar17 = *pdVar4;
-    pcVar14 = pcVar14 + ((char *)0xfffffffe < pcVar13);
-    *(uint *)&ppVar11->accepted = uVar10 + 1;
-    *(uint *)((int)&ppVar11->accepted + 4) = iVar7 + (uint)(0xfffffffe < uVar10);
-    pcVar12->diff_accepted = dVar15 + dVar18;
-    ppVar11->diff_accepted = dVar16 + dVar18;
-    *ppcVar3 = pcVar9;
-    ppcVar3[1] = pcVar14;
-    *pdVar4 = dVar18 + dVar17;
-    iVar7 = pthread_mutex_unlock(ppVar2);
-    if (iVar7 != 0) {
-      _mutex_unlock_noyield(DAT_00029704,(char *)0x217f,pcVar9,(int)pcVar14);
+    dVar10 = pcVar8->diff_accepted;
+    dVar12 = local_82c[0]->work_difficulty;
+    uVar6 = (uint)ppVar7->accepted;
+    iVar5 = *(int *)((int)&ppVar7->accepted + 4);
+    dVar11 = ppVar7->diff_accepted;
+    pcVar8->accepted = pcVar8->accepted + 1;
+    bVar9 = 0xfffffffe < (uint)total_accepted;
+    total_accepted._0_4_ = (uint)total_accepted + 1;
+    total_accepted._4_4_ = total_accepted._4_4_ + (uint)bVar9;
+    *(uint *)&ppVar7->accepted = uVar6 + 1;
+    *(uint *)((int)&ppVar7->accepted + 4) = iVar5 + (uint)(0xfffffffe < uVar6);
+    pcVar8->diff_accepted = dVar10 + dVar12;
+    ppVar7->diff_accepted = dVar11 + dVar12;
+    total_diff_accepted = dVar12 + total_diff_accepted;
+    iVar5 = pthread_mutex_unlock((pthread_mutex_t *)&stats_lock);
+    if (iVar5 != 0) {
+      _mutex_unlock_noyield((pthread_mutex_t *)"submit_work_async",(char *)0x217f,func_00,line_00);
     }
-    (**DAT_000295b0)();
-    if (((*DAT_000295b4 == '\0') && (*DAT_000295b8 == '\0')) && (*DAT_000295c8 < 5)) {
+    (*selective_yield)();
+    if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 5)) {
       return;
     }
-    snprintf(tmp42,0x800,DAT_000295bc,pcVar12->drv->name,pcVar12->device_id,
-             *(undefined4 *)(local_82c[0]->data + 0x4c));
+    snprintf(tmp42,0x800,"Accepted %s %d benchmark share nonce %08x",pcVar8->drv->name,
+             pcVar8->device_id,*(undefined4 *)(local_82c[0]->data + 0x4c));
     _applog(5,tmp42,false);
     return;
   }
-  _Var5 = stale_work(local_82c[0],true);
-  if (!_Var5) {
+  _Var3 = stale_work(local_82c[0],true);
+  if (!_Var3) {
     cVar1 = local_82c[0]->stratum;
-    pcVar9 = DAT_000295c0;
+    uVar2 = tmp42._32_4_;
     goto joined_r0x00029506;
   }
-  if (*(char *)(DAT_000295d8 + 0x825) == '\0') {
-    if (ppVar11->submit_old == false) {
-      if (((*DAT_000296dc != '\0') || (*DAT_000296e0 != '\0')) || (iVar7 = *DAT_000296e4, 4 < iVar7)
-         ) {
-        iVar7 = ppVar11->pool_no;
-        snprintf(tmp42,0x800,DAT_000296e8);
-        in_r2 = (char *)0x0;
+  if (opt_submit_stale == false) {
+    if (ppVar7->submit_old == false) {
+      if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+        snprintf(tmp42,0x800,"Pool %d stale share detected, discarding",ppVar7->pool_no);
         _applog(5,tmp42,false);
       }
-      sharelog(DAT_000296ec,local_82c[0]);
-      iVar8 = pthread_mutex_lock(DAT_000296f0);
-      if (iVar8 != 0) {
-        _mutex_lock(DAT_00029704,(char *)0x2194,in_r2,iVar7);
+      sharelog("discard",local_82c[0]);
+      iVar5 = pthread_mutex_lock((pthread_mutex_t *)&stats_lock);
+      if (iVar5 != 0) {
+        _mutex_lock((pthread_mutex_t *)"submit_work_async",(char *)0x2194,func_01,line_01);
       }
-      ppcVar3 = DAT_000296f8;
-      pdVar4 = DAT_000296f4;
-      dVar16 = local_82c[0]->work_difficulty;
-      dVar15 = *DAT_000296f4;
-      pcVar9 = *DAT_000296f8;
-      pcVar13 = DAT_000296f8[1];
-      pcVar14 = pcVar9 + 1;
-      ppVar11->stale_shares = ppVar11->stale_shares + 1;
-      ppVar2 = DAT_000296f0;
-      pcVar13 = pcVar13 + ((char *)0xfffffffe < pcVar9);
-      ppVar11->diff_stale = ppVar11->diff_stale + dVar16;
-      *pdVar4 = dVar16 + dVar15;
-      *ppcVar3 = pcVar14;
-      ppcVar3[1] = pcVar13;
-      iVar7 = pthread_mutex_unlock(ppVar2);
-      if (iVar7 != 0) {
-        _mutex_unlock_noyield(DAT_00029704,(char *)0x219b,pcVar14,(int)pcVar13);
+      dVar10 = local_82c[0]->work_difficulty;
+      total_diff_stale = dVar10 + total_diff_stale;
+      bVar9 = 0xfffffffe < (uint)total_stale;
+      total_stale._0_4_ = (uint)total_stale + 1;
+      ppVar7->stale_shares = ppVar7->stale_shares + 1;
+      total_stale._4_4_ = total_stale._4_4_ + (uint)bVar9;
+      ppVar7->diff_stale = ppVar7->diff_stale + dVar10;
+      iVar5 = pthread_mutex_unlock((pthread_mutex_t *)&stats_lock);
+      if (iVar5 != 0) {
+        _mutex_unlock_noyield((pthread_mutex_t *)"submit_work_async",(char *)0x219b,func_02,line_02)
+        ;
       }
-      (**DAT_000296fc)();
-      _free_work(local_82c,DAT_00029700,DAT_00029704->__size,0x219d);
+      (*selective_yield)();
+      _free_work(local_82c,"cgminer.c","submit_work_async",0x219d);
       return;
     }
-    pcVar9 = DAT_000295ec;
-    if ((*DAT_000295b4 == '\0') && (*DAT_000295b8 == '\0')) {
-      iVar7 = *DAT_000295c8;
-      goto joined_r0x00029598;
+    if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+      __format = "Pool %d stale share detected, submitting as pool requested";
+      goto LAB_000294e8;
     }
-LAB_000294e8:
-    snprintf(tmp42,0x800,pcVar9,ppVar11->pool_no);
-    _applog(5,tmp42,false);
   }
-  else {
-    pcVar9 = DAT_000295dc;
-    if ((*DAT_000295b4 != '\0') || (*DAT_000295b8 != '\0')) goto LAB_000294e8;
-    iVar7 = *DAT_000296e4;
-joined_r0x00029598:
-    if (4 < iVar7) goto LAB_000294e8;
+  else if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+    __format = "Pool %d stale share detected, submitting as user requested";
+LAB_000294e8:
+    snprintf(tmp42,0x800,__format,ppVar7->pool_no);
+    _applog(5,tmp42,false);
   }
   local_82c[0]->stale = true;
   cVar1 = local_82c[0]->stratum;
-  pcVar9 = DAT_000295c0;
+  uVar2 = tmp42._32_4_;
 joined_r0x00029506:
-  DAT_000295c0 = pcVar9;
+  tmp42._32_4_ = uVar2;
   if (cVar1 == '\0') {
-    if ((*pcVar9 != '\0') &&
-       (((*DAT_000295b4 != '\0' || (*DAT_000295b8 != '\0')) || (6 < *DAT_000296e4)))) {
-      tmp42._0_4_ = *DAT_000295e0;
-      tmp42._4_4_ = DAT_000295e0[1];
-      tmp42._8_4_ = DAT_000295e0[2];
-      tmp42._12_4_ = DAT_000295e0[3];
-      tmp42._16_4_ = DAT_000295e0[4];
-      tmp42._20_4_ = DAT_000295e0[5];
-      tmp42._24_4_ = DAT_000295e0[6];
-      tmp42._28_4_ = DAT_000295e0[7];
-      tmp42._32_3_ = (undefined3)DAT_000295e0[8];
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      builtin_strncpy(tmp42,"Pushing submit work to work thread",0x23);
+      tmp42[0x23] = SUB41(uVar2,3);
       _applog(7,tmp42,false);
     }
-    iVar7 = pthread_create(&submit_thread,(pthread_attr_t *)0x0,DAT_000295e4,local_82c[0]);
-    if (iVar7 != 0) {
-      tmp42._0_4_ = *DAT_000295e8;
-      tmp42._4_4_ = DAT_000295e8[1];
-      tmp42._8_4_ = DAT_000295e8[2];
-      tmp42._12_4_ = DAT_000295e8[3];
-      tmp42._16_4_ = DAT_000295e8[4];
-      tmp42._20_4_ = DAT_000295e8[5];
-      tmp42._24_4_ = DAT_000295e8[6];
-      tmp42._28_4_ = DAT_000295e8[7];
-      tmp42._32_4_ = DAT_000295e8[8];
+    iVar5 = pthread_create(&submit_thread,(pthread_attr_t *)0x0,(__start_routine *)0x1dc11,
+                           local_82c[0]);
+    if (iVar5 != 0) {
+      builtin_strncpy(tmp42,"Failed to create submit_work_thread",0x24);
       _applog(3,tmp42,true);
       _quit(1);
     }
   }
   else {
-    if ((*pcVar9 != '\0') &&
-       (((*DAT_000295b4 != '\0' || (*DAT_000295b8 != '\0')) || (6 < *DAT_000296e4)))) {
-      snprintf(tmp42,0x800,DAT_000295c4,ppVar11->pool_no);
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      snprintf(tmp42,0x800,"Pushing pool %d work to stratum queue",ppVar7->pool_no);
       _applog(7,tmp42,false);
     }
-    if ((ppVar11->stratum_q == (thread_q *)0x0) ||
-       (_Var5 = tq_push(ppVar11->stratum_q,local_82c[0]), !_Var5)) {
-      if ((*pcVar9 != '\0') &&
-         (((*DAT_000295b4 != '\0' || (*DAT_000295b8 != '\0')) || (6 < *DAT_000295c8)))) {
-        tmp42._0_4_ = *DAT_000295cc;
-        tmp42._4_4_ = DAT_000295cc[1];
-        tmp42._8_4_ = DAT_000295cc[2];
-        tmp42._12_4_ = DAT_000295cc[3];
-        tmp42._16_4_ = DAT_000295cc[4];
-        tmp42._20_4_ = DAT_000295cc[5];
-        tmp42._24_4_ = DAT_000295cc[6];
-        tmp42._28_4_ = DAT_000295cc[7];
-        tmp42[32] = (char)(short)DAT_000295cc[8];
-        tmp42[33] = (char)((ushort)(short)DAT_000295cc[8] >> 8);
+    if ((ppVar7->stratum_q == (thread_q *)0x0) ||
+       (_Var3 = tq_push(ppVar7->stratum_q,local_82c[0]), !_Var3)) {
+      uVar2 = tmp42._32_4_;
+      if ((opt_debug != false) &&
+         (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+        builtin_strncpy(tmp42,"Discarding work from removed pool",0x22);
+        tmp42._34_2_ = SUB42(uVar2,2);
         _applog(7,tmp42,false);
       }
-      _free_work(local_82c,DAT_000295d0,DAT_000295d4,0x21a9);
+      _free_work(local_82c,"cgminer.c","submit_work_async",0x21a9);
     }
   }
   return;

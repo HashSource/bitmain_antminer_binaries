@@ -4,9 +4,8 @@
 _Bool socket_full(pool *pool,int wait)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
-  long sock;
   int iVar3;
   __suseconds_t *p_Var4;
   timeval timeout;
@@ -30,7 +29,7 @@ _Bool socket_full(pool *pool,int wait)
   if (iVar3 < 1) {
     iVar2 = 0;
   }
-  uVar1 = (undefined)iVar2;
+  uVar1 = (undefined1)iVar2;
   if (0 < iVar3) {
     uVar1 = 1;
   }

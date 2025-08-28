@@ -1,5 +1,5 @@
 
-void enable_read_temperature_from_asic_chain(undefined param_1,undefined param_2)
+void enable_read_temperature_from_asic_chain(undefined1 param_1,undefined1 param_2)
 
 {
   if (Conf._116_4_ == 0x6ba) {

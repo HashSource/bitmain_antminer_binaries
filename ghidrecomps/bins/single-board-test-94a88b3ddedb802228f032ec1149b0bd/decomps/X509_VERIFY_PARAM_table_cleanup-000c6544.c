@@ -4,13 +4,10 @@
 void X509_VERIFY_PARAM_table_cleanup(void)
 
 {
-  _STACK **pp_Var1;
-  
-  pp_Var1 = DAT_000c6558;
-  if (*DAT_000c6558 != (_STACK *)0x0) {
-    sk_pop_free(*DAT_000c6558,DAT_000c655c);
+  if (param_table != (_STACK *)0x0) {
+    sk_pop_free(param_table,(func *)0xc5d8d);
   }
-  *pp_Var1 = (_STACK *)0x0;
+  param_table = (_STACK *)0x0;
   return;
 }
 

@@ -4,17 +4,14 @@
 CRYPTO_EX_DATA_IMPL * CRYPTO_get_ex_data_implementation(void)
 
 {
-  int iVar1;
-  
-  iVar1 = DAT_0008b664;
-  if (*(CRYPTO_EX_DATA_IMPL **)(DAT_0008b664 + 4) != (CRYPTO_EX_DATA_IMPL *)0x0) {
-    return *(CRYPTO_EX_DATA_IMPL **)(DAT_0008b664 + 4);
+  if ((CRYPTO_EX_DATA_IMPL *)impl != (CRYPTO_EX_DATA_IMPL *)0x0) {
+    return (CRYPTO_EX_DATA_IMPL *)impl;
   }
-  CRYPTO_lock(9,2,DAT_0008b668,0xc9);
-  if (*(int *)(iVar1 + 4) == 0) {
-    *(undefined4 *)(iVar1 + 4) = DAT_0008b66c;
+  CRYPTO_lock(9,2,"ex_data.c",0xc9);
+  if ((CRYPTO_EX_DATA_IMPL *)impl == (CRYPTO_EX_DATA_IMPL *)0x0) {
+    impl = impl_default;
   }
-  CRYPTO_lock(10,2,DAT_0008b668,0xcc);
-  return *(CRYPTO_EX_DATA_IMPL **)(iVar1 + 4);
+  CRYPTO_lock(10,2,"ex_data.c",0xcc);
+  return (CRYPTO_EX_DATA_IMPL *)impl;
 }
 

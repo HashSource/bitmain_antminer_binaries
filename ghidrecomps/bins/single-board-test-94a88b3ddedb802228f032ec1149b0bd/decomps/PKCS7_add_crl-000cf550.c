@@ -14,11 +14,11 @@ int PKCS7_add_crl(PKCS7 *p7,X509_CRL *x509)
       p_Var3 = sk_new_null();
       *ppsVar4 = (stack_st_X509_CRL *)p_Var3;
       if (p_Var3 == (_STACK *)0x0) {
-        ERR_put_error(0x21,0x65,0x41,DAT_000cf5d8,0x157);
+        ERR_put_error(0x21,0x65,0x41,"pk7_lib.c",0x157);
         return 0;
       }
     }
-    CRYPTO_add_lock(&x509->references,1,6,DAT_000cf5d8,0x15b);
+    CRYPTO_add_lock(&x509->references,1,6,"pk7_lib.c",0x15b);
     iVar2 = sk_push(&(*ppsVar4)->stack,x509);
     iVar1 = 1;
     if (iVar2 == 0) {
@@ -27,7 +27,7 @@ int PKCS7_add_crl(PKCS7 *p7,X509_CRL *x509)
     }
   }
   else {
-    ERR_put_error(0x21,0x65,0x71,DAT_000cf5d8,0x150);
+    ERR_put_error(0x21,0x65,0x71,"pk7_lib.c",0x150);
     iVar1 = 0;
   }
   return iVar1;

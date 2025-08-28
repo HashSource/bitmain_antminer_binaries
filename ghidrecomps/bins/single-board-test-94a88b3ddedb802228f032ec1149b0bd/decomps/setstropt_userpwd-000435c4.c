@@ -28,17 +28,17 @@ int * setstropt_userpwd(char *param_1,int *param_2,undefined4 *param_3)
   piVar2 = param_2;
   if (param_2 != (int *)0x0) {
     if ((((local_20 == 0) && (param_1 != (char *)0x0)) && (*param_1 == ':')) &&
-       (local_20 = (**DAT_0004364c)(DAT_00043650), local_20 == 0)) {
+       (local_20 = (*Curl_cstrdup)(&DAT_0013a6fc), local_20 == 0)) {
       piVar2 = (int *)0x1b;
     }
     else {
       piVar2 = (int *)0x0;
     }
-    (**DAT_00043648)(*param_2);
+    (*Curl_cfree)(*param_2);
     *param_2 = local_20;
   }
   if (param_3 != (undefined4 *)0x0) {
-    (**DAT_00043648)(*param_3);
+    (*Curl_cfree)(*param_3);
     *param_3 = local_1c[0];
   }
   return piVar2;

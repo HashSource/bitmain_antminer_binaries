@@ -1,6 +1,4 @@
 
-/* Local variable ret:int[r0:4] conflicts with parameter, skipped. */
-
 int json_unpack(json_t *root,char *fmt,...)
 
 {

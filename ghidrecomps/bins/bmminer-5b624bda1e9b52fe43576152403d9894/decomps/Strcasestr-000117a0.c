@@ -7,15 +7,10 @@ char * Strcasestr(char *haystack,char *needle)
   int iVar1;
   int iVar2;
   size_t sVar3;
-  int hlen;
   size_t sVar4;
-  int nlen;
   __int32_t **pp_Var5;
-  char *ret;
   __int32_t *p_Var6;
   char *pcVar7;
-  char *lowhay;
-  char *lowneedle;
   size_t sVar8;
   char acStack_28 [4];
   

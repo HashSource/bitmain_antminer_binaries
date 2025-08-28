@@ -7,7 +7,7 @@ undefined4 dtls1_new(int param_1)
   pqueue p_Var2;
   
   iVar1 = ssl3_new();
-  if ((iVar1 == 0) || (__s = CRYPTO_malloc(0x2ec,DAT_00075ffc,0x81), __s == (void *)0x0)) {
+  if ((iVar1 == 0) || (__s = CRYPTO_malloc(0x2ec,"d1_lib.c",0x81), __s == (void *)0x0)) {
     return 0;
   }
   memset(__s,0,0x2ec);

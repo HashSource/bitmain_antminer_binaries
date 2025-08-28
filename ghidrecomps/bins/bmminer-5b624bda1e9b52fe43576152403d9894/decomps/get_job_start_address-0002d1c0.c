@@ -4,15 +4,14 @@
 int get_job_start_address(void)
 
 {
-  int iVar1;
+  uint uVar1;
   char tmp42 [2048];
   
-  iVar1 = *(int *)(*(int *)(DAT_0002d210 + 0x8d4) + 0x118);
-  if ((*DAT_0002d214 != '\0') &&
-     (((*DAT_0002d218 != '\0' || (*DAT_0002d21c != '\0')) || (6 < *DAT_0002d220)))) {
-    snprintf(tmp42,0x800,DAT_0002d224,DAT_0002d228,iVar1);
+  uVar1 = axi_fpga_addr[0x46];
+  if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: JOB_START_ADDRESS is 0x%x\n","get_job_start_address",uVar1);
     _applog(7,tmp42,false);
   }
-  return iVar1;
+  return uVar1;
 }
 

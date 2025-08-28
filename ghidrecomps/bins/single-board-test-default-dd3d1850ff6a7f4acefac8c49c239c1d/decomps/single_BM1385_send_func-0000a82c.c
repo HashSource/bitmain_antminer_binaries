@@ -1,15 +1,15 @@
 
-undefined1 * single_BM1385_send_func(byte *param_1)
+undefined4 single_BM1385_send_func(byte *param_1)
 
 {
-  undefined1 *puVar1;
-  undefined local_94 [44];
-  undefined local_68;
-  undefined local_67;
-  undefined local_66;
-  undefined local_65;
-  undefined local_61;
-  undefined auStack_60 [12];
+  undefined4 extraout_r3;
+  undefined1 local_94 [44];
+  undefined1 local_68;
+  undefined1 local_67;
+  undefined1 local_66;
+  undefined1 local_65;
+  undefined1 local_61;
+  undefined1 auStack_60 [12];
   void *local_54;
   int local_50;
   undefined4 local_4c;
@@ -69,16 +69,16 @@ undefined1 * single_BM1385_send_func(byte *param_1)
       local_54 = (void *)(local_50 + local_14 * 0x74);
       memset(local_94,0,0x40);
       for (local_30 = 0; local_30 < 0x20; local_30 = local_30 + 1) {
-        local_94[local_30] = *(undefined *)((int)local_54 + local_30 + 0x14);
+        local_94[local_30] = *(undefined1 *)((int)local_54 + local_30 + 0x14);
       }
       local_4c = *(undefined4 *)((int)local_54 + 4);
-      local_68 = (undefined)((uint)local_4c >> 0x18);
-      local_67 = (undefined)((uint)local_4c >> 0x10);
-      local_66 = (undefined)((uint)local_4c >> 8);
-      local_65 = (undefined)local_4c;
-      local_61 = (undefined)local_14;
+      local_68 = (undefined1)((uint)local_4c >> 0x18);
+      local_67 = (undefined1)((uint)local_4c >> 0x10);
+      local_66 = (undefined1)((uint)local_4c >> 8);
+      local_65 = (undefined1)local_4c;
+      local_61 = (undefined1)local_14;
       for (local_30 = 0; local_30 < 0xc; local_30 = local_30 + 1) {
-        auStack_60[local_30] = *(undefined *)((int)local_54 + local_30 + 8);
+        auStack_60[local_30] = *(undefined1 *)((int)local_54 + local_30 + 8);
       }
       uart_send(local_35,local_94,0x40);
       pthread_mutex_lock((pthread_mutex_t *)(HW_check_mutex + (uint)local_35 * 0x18));
@@ -107,9 +107,8 @@ undefined1 * single_BM1385_send_func(byte *param_1)
   system("date");
   putchar(10);
   usleep(50000);
-  puVar1 = &start_receive;
   start_receive = 0;
   puts("to stop receive");
-  return puVar1;
+  return extraout_r3;
 }
 

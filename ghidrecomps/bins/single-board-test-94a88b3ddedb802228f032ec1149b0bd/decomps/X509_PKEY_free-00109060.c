@@ -5,7 +5,7 @@ void X509_PKEY_free(X509_PKEY *a)
   int iVar1;
   
   if (a != (X509_PKEY *)0x0) {
-    iVar1 = CRYPTO_add_lock(&a->references,-1,5,DAT_001090b4,0x83);
+    iVar1 = CRYPTO_add_lock(&a->references,-1,5,"x_pkey.c",0x83);
     if (iVar1 < 1) {
       if (a->enc_algor != (X509_ALGOR *)0x0) {
         X509_ALGOR_free(a->enc_algor);

@@ -4,7 +4,7 @@
 _Bool time_less(timeval *a,timeval *b)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   int iVar3;
   
@@ -25,7 +25,7 @@ _Bool time_less(timeval *a,timeval *b)
   if (b->tv_usec <= iVar3) {
     iVar2 = 0;
   }
-  uVar1 = (undefined)iVar2;
+  uVar1 = (undefined1)iVar2;
   if (iVar3 < b->tv_usec) {
     uVar1 = 1;
   }

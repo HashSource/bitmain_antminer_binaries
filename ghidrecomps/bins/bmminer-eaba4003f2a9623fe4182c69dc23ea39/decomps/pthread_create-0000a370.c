@@ -7,9 +7,7 @@ int pthread_create(pthread_t *__newthread,pthread_attr_t *__attr,__start_routine
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a378. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_000852e4)();
+  iVar1 = (*(code *)(undefined *)0x0)(__newthread);
   return iVar1;
 }
 

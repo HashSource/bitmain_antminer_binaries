@@ -43,15 +43,15 @@ void get_lastn_nonce_num(char *dest,int n)
       tmp[8] = '\0';
       tmp[9] = '\0';
       tmp[10] = '\0';
-      tmp[11] = '\0';
-      tmp[12] = '\0';
-      tmp[13] = '\0';
-      tmp[14] = '\0';
-      tmp[15] = '\0';
-      tmp[16] = '\0';
-      tmp[17] = '\0';
-      tmp[18] = '\0';
-      tmp[19] = '\0';
+      tmp[0xb] = '\0';
+      tmp[0xc] = '\0';
+      tmp[0xd] = '\0';
+      tmp[0xe] = '\0';
+      tmp[0xf] = '\0';
+      tmp[0x10] = '\0';
+      tmp[0x11] = '\0';
+      tmp[0x12] = '\0';
+      tmp[0x13] = '\0';
       uVar1 = snprintf(tmp,0x14,"Chain%d:{",i + 1);
       if ((0x14 < uVar1) && (3 < log_level)) {
         print_crt_time_to_file(log_file,3);

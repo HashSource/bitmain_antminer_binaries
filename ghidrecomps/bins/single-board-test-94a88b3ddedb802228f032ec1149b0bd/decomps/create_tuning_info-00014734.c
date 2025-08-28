@@ -21,7 +21,7 @@ undefined1 * create_tuning_info(void)
   memset(g_freq_info_all_vol_level,0,0x1b9d4c);
   scan_vol_level_num = 0;
   pattern_file_fd = 0;
-  g_freq_info[361944] = g_is_low_power_hashrate_scan;
+  g_freq_info[0x585d8] = g_is_low_power_hashrate_scan;
   g_freq_info._0_4_ = uVar1;
   g_freq_info._4_4_ = uVar2;
   memset(g_freq_info + 0x54008,0,0x40);

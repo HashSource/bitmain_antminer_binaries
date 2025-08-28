@@ -66,7 +66,7 @@ gost_mac_iv(undefined4 param_1,uint param_2,undefined4 *param_3,int param_4,uint
   }
   else {
     uVar10 = param_2 >> 2;
-    uVar7 = param_2 & 0xfffffffc;
+    uVar7 = uVar10 * 4;
     if (uVar10 == 0 || (param_2 < 4 || ((uint)param_6 & 3) != 0)) {
       uVar7 = 0;
     }
@@ -113,7 +113,7 @@ gost_mac_iv(undefined4 param_1,uint param_2,undefined4 *param_3,int param_4,uint
       if (param_2 == uVar7) goto LAB_00114c68;
     }
     do {
-      *(undefined *)((int)param_6 + uVar7) = *(undefined *)((int)&local_38 + uVar7);
+      *(undefined1 *)((int)param_6 + uVar7) = *(undefined1 *)((int)&local_38 + uVar7);
       uVar7 = uVar7 + 1;
     } while ((int)uVar7 < (int)param_2);
   }

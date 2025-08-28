@@ -5,27 +5,23 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
 
 {
   uchar uVar1;
-  FILE **ppFVar2;
   char *__ptr;
   char *__ptr_00;
   char *__ptr_01;
   char *__ptr_02;
   char *__ptr_03;
   char *__ptr_04;
-  undefined4 uVar3;
-  size_t sVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  undefined4 uVar2;
+  size_t sVar3;
+  undefined4 uVar4;
+  char *pcVar5;
+  uint uVar6;
   uint uVar7;
-  size_t i_1;
-  size_t i_2;
-  uint uVar8;
-  int iVar9;
-  size_t i;
-  uchar *puVar10;
-  int diffnum;
-  ulonglong uVar11;
-  uint64_t uVar12;
+  int iVar8;
+  uchar *puVar9;
+  ulonglong uVar10;
+  uint64_t uVar11;
+  undefined4 uVar12;
   uchar midstate_tmp [32];
   uchar data_tmp [32];
   uchar hash_tmp [32];
@@ -34,10 +30,10 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
   
   if (opt_logwork_path != (char *)0x0) {
     memset(szmsg,0,0x400);
-    data_tmp[12] = '\0';
-    data_tmp[13] = '\0';
-    data_tmp[14] = '\0';
-    data_tmp[15] = '\0';
+    data_tmp[0xc] = '\0';
+    data_tmp[0xd] = '\0';
+    data_tmp[0xe] = '\0';
+    data_tmp[0xf] = '\0';
     midstate_tmp._0_4_ = *(undefined4 *)work->midstate;
     midstate_tmp._4_4_ = *(undefined4 *)(work->midstate + 4);
     midstate_tmp._8_4_ = *(undefined4 *)(work->midstate + 8);
@@ -46,24 +42,24 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
     midstate_tmp._20_4_ = *(undefined4 *)(work->midstate + 0x14);
     midstate_tmp._24_4_ = *(undefined4 *)(work->midstate + 0x18);
     midstate_tmp._28_4_ = *(undefined4 *)(work->midstate + 0x1c);
-    data_tmp[16] = '\0';
-    data_tmp[17] = '\0';
-    data_tmp[18] = '\0';
-    data_tmp[19] = '\0';
-    data_tmp[20] = '\0';
-    data_tmp[21] = '\0';
-    data_tmp[22] = '\0';
-    data_tmp[23] = '\0';
-    iVar9 = 0;
-    data_tmp[24] = '\0';
-    data_tmp[25] = '\0';
-    data_tmp[26] = '\0';
-    data_tmp[27] = '\0';
+    data_tmp[0x10] = '\0';
+    data_tmp[0x11] = '\0';
+    data_tmp[0x12] = '\0';
+    data_tmp[0x13] = '\0';
+    data_tmp[0x14] = '\0';
+    data_tmp[0x15] = '\0';
+    data_tmp[0x16] = '\0';
+    data_tmp[0x17] = '\0';
+    iVar8 = 0;
+    data_tmp[0x18] = '\0';
+    data_tmp[0x19] = '\0';
+    data_tmp[0x1a] = '\0';
+    data_tmp[0x1b] = '\0';
     data_tmp._8_4_ = *(undefined4 *)(work->data + 0x48);
-    data_tmp[28] = '\0';
-    data_tmp[29] = '\0';
-    data_tmp[30] = '\0';
-    data_tmp[31] = '\0';
+    data_tmp[0x1c] = '\0';
+    data_tmp[0x1d] = '\0';
+    data_tmp[0x1e] = '\0';
+    data_tmp[0x1f] = '\0';
     data_tmp._0_4_ = *(undefined4 *)(work->data + 0x40);
     data_tmp._4_4_ = *(undefined4 *)(work->data + 0x44);
     hash_tmp._0_4_ = *(undefined4 *)work->hash;
@@ -74,115 +70,116 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
     hash_tmp._20_4_ = *(undefined4 *)(work->hash + 0x14);
     hash_tmp._24_4_ = *(undefined4 *)(work->hash + 0x18);
     hash_tmp._28_4_ = *(undefined4 *)(work->hash + 0x1c);
-    puVar10 = midstate_tmp;
+    puVar9 = midstate_tmp;
     do {
-      uVar1 = midstate_tmp[iVar9];
-      midstate_tmp[iVar9] = puVar10[0x1f];
-      iVar9 = iVar9 + 1;
-      puVar10[0x1f] = uVar1;
-      puVar10 = puVar10 + -1;
-    } while (iVar9 != 0x10);
-    iVar9 = 0;
-    puVar10 = data_tmp;
+      uVar1 = midstate_tmp[iVar8];
+      midstate_tmp[iVar8] = puVar9[0x1f];
+      iVar8 = iVar8 + 1;
+      puVar9[0x1f] = uVar1;
+      puVar9 = puVar9 + -1;
+    } while (iVar8 != 0x10);
+    iVar8 = 0;
+    puVar9 = data_tmp;
     do {
-      uVar1 = data_tmp[iVar9];
-      data_tmp[iVar9] = puVar10[0xb];
-      iVar9 = iVar9 + 1;
-      puVar10[0xb] = uVar1;
-      puVar10 = puVar10 + -1;
-    } while (iVar9 != 6);
-    iVar9 = 0;
-    puVar10 = hash_tmp;
+      uVar1 = data_tmp[iVar8];
+      data_tmp[iVar8] = puVar9[0xb];
+      iVar8 = iVar8 + 1;
+      puVar9[0xb] = uVar1;
+      puVar9 = puVar9 + -1;
+    } while (iVar8 != 6);
+    iVar8 = 0;
+    puVar9 = hash_tmp;
     do {
-      uVar1 = hash_tmp[iVar9];
-      hash_tmp[iVar9] = puVar10[0x1f];
-      iVar9 = iVar9 + 1;
-      puVar10[0x1f] = uVar1;
-      puVar10 = puVar10 + -1;
-    } while (iVar9 != 0x10);
+      uVar1 = hash_tmp[iVar8];
+      hash_tmp[iVar8] = puVar9[0x1f];
+      iVar8 = iVar8 + 1;
+      puVar9[0x1f] = uVar1;
+      puVar9 = puVar9 + -1;
+    } while (iVar8 != 0x10);
     __ptr = bin2hex(work->data,0x80);
     __ptr_00 = bin2hex(midstate_tmp,0x20);
     __ptr_01 = bin2hex(data_tmp,0xc);
     __ptr_02 = bin2hex(nonce_bin,4);
     __ptr_03 = bin2hex(nonce_bin,5);
     __ptr_04 = bin2hex(hash_tmp,0x20);
-    uVar11 = share_ndiff(work);
-    uVar5 = (undefined4)(uVar11 >> 0x20);
-    uVar3 = (undefined4)uVar11;
-    uVar6 = DAT_00015774;
+    uVar10 = share_ndiff(work);
+    uVar4 = (undefined4)(uVar10 >> 0x20);
+    uVar2 = (undefined4)uVar10;
+    pcVar5 = "o";
     if (!ok) {
-      uVar6 = DAT_000157a4;
+      pcVar5 = "x";
     }
-    uVar12 = uVar11;
-    sprintf(szmsg,DAT_00015778,uVar6,work->id,__ptr_00,__ptr_01,__ptr_03,__ptr_04,uVar3,uVar5);
-    iVar9 = strcmp(opt_logwork_path,DAT_0001577c);
-    if (iVar9 == 0) {
-      if (((*DAT_00015780 != '\0') || (*DAT_00015784 != '\0')) || (2 < *DAT_00015798)) {
+    uVar11 = uVar10;
+    sprintf(szmsg,"%s %08x midstate %s data %s nonce %s hash %s diff %I64d",pcVar5,work->id,__ptr_00
+            ,__ptr_01,__ptr_03,__ptr_04,uVar2,uVar4);
+    iVar8 = strcmp(opt_logwork_path,"screen");
+    if (iVar8 == 0) {
+      if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
         snprintf(tmp42,0x800,szmsg);
         _applog(3,tmp42,false);
       }
     }
     else {
-      if (((use_syslog != false) || (*DAT_00015784 != '\0')) || (2 < *DAT_00015798)) {
+      if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
         snprintf(tmp42,0x800,szmsg);
         _applog(3,tmp42,false);
       }
-      ppFVar2 = DAT_000157a8;
-      uVar6 = (undefined4)(uVar12 >> 0x20);
-      if (*DAT_000157a8 != (FILE *)0x0) {
+      uVar12 = (undefined4)(uVar11 >> 0x20);
+      if (g_logwork_file != (FILE *)0x0) {
         if (ok) {
-          sprintf(szmsg,DAT_00015788,DAT_00015774,work->id,__ptr,__ptr_00,__ptr_01,__ptr_03,__ptr_04
-                  ,uVar6,uVar3,uVar5);
-          sVar4 = strlen(szmsg);
-          fwrite(szmsg,sVar4,1,*ppFVar2);
-          fwrite(DAT_0001578c,1,1,*ppFVar2);
-          fflush(*ppFVar2);
+          sprintf(szmsg,"%s %08x work %s midstate %s data %s nonce %s hash %s diff %I64d",
+                  &DAT_00046508,work->id,__ptr,__ptr_00,__ptr_01,__ptr_03,__ptr_04,uVar12,uVar2,
+                  uVar4);
+          sVar3 = strlen(szmsg);
+          fwrite(szmsg,sVar3,1,(FILE *)g_logwork_file);
+          fwrite("\n",1,1,(FILE *)g_logwork_file);
+          fflush((FILE *)g_logwork_file);
           if (g_logwork_asicnum == 1) {
-            sprintf(szmsg,DAT_00015854,__ptr_00,__ptr_01,__ptr_02,__ptr_04);
-            ppFVar2 = DAT_0001585c;
-            sVar4 = strlen(szmsg);
-            fwrite(szmsg,sVar4,1,*ppFVar2);
-            fwrite(DAT_00015858,1,1,*ppFVar2);
-            fflush(*ppFVar2);
+            sprintf(szmsg,"midstate %s data %s nonce %s hash %s",__ptr_00,__ptr_01,__ptr_02,__ptr_04
+                   );
+            sVar3 = strlen(szmsg);
+            fwrite(szmsg,sVar3,1,(FILE *)g_logwork_files[0]);
+            fwrite("\n",1,1,(FILE *)g_logwork_files[0]);
+            fflush((FILE *)g_logwork_files[0]);
           }
           else if (g_logwork_asicnum == 0x20 || g_logwork_asicnum == 0x40) {
-            sprintf(szmsg,DAT_00015854,__ptr_00,__ptr_01,__ptr_02,__ptr_04);
-            ppFVar2 = DAT_0001585c;
-            iVar9 = check_asicnum(g_logwork_asicnum,*nonce_bin);
-            sVar4 = strlen(szmsg);
-            fwrite(szmsg,sVar4,1,ppFVar2[iVar9]);
-            fwrite(DAT_00015858,1,1,ppFVar2[iVar9]);
-            fflush(ppFVar2[iVar9]);
+            sprintf(szmsg,"midstate %s data %s nonce %s hash %s",__ptr_00,__ptr_01,__ptr_02,__ptr_04
+                   );
+            iVar8 = check_asicnum(g_logwork_asicnum,*nonce_bin);
+            sVar3 = strlen(szmsg);
+            fwrite(szmsg,sVar3,1,(FILE *)g_logwork_files[iVar8]);
+            fwrite("\n",1,1,(FILE *)g_logwork_files[iVar8]);
+            fflush((FILE *)g_logwork_files[iVar8]);
           }
-          if (*DAT_00015790 != '\0') {
-            diffnum = 0;
+          if (opt_logwork_diff != false) {
+            iVar8 = 0;
             do {
-              uVar8 = (uint)(uVar11 >> 0x21);
-              uVar7 = (uint)((uVar11 & 0x100000000) != 0) << 0x1f | (uint)uVar11 >> 1;
-              uVar11 = CONCAT44(uVar8,uVar7);
-              if ((uVar7 | uVar8) == 0) break;
-              diffnum = diffnum + 1;
-            } while (diffnum != 0x40);
-            if ((*DAT_00015794 != '\0') &&
-               (((use_syslog != false || (*DAT_00015784 != '\0')) || (6 < *DAT_00015798)))) {
-              snprintf(tmp42,0x800,DAT_0001579c,uVar3,uVar3,uVar5,diffnum);
+              uVar7 = (uint)(uVar10 >> 0x21);
+              uVar6 = (uint)((uVar10 & 0x100000000) != 0) << 0x1f | (uint)uVar10 >> 1;
+              uVar10 = CONCAT44(uVar7,uVar6);
+              if (uVar6 == 0 && uVar7 == 0) break;
+              iVar8 = iVar8 + 1;
+            } while (iVar8 != 0x40);
+            if ((opt_debug != false) &&
+               (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+              snprintf(tmp42,0x800,"work diff %I64d diffnum %d",uVar2,uVar2,uVar4,iVar8);
               _applog(7,tmp42,false);
             }
-            iVar9 = DAT_000157ac;
-            sprintf(szmsg,DAT_000157a0,__ptr_00,__ptr_01,__ptr_02,__ptr_04);
-            sVar4 = strlen(szmsg);
-            fwrite(szmsg,sVar4,1,*(FILE **)(iVar9 + diffnum * 4));
-            fwrite(DAT_0001578c,1,1,*(FILE **)(iVar9 + diffnum * 4));
-            fflush(*(FILE **)(iVar9 + diffnum * 4));
+            sprintf(szmsg,"midstate %s data %s nonce %s hash %s",__ptr_00,__ptr_01,__ptr_02,__ptr_04
+                   );
+            sVar3 = strlen(szmsg);
+            fwrite(szmsg,sVar3,1,(FILE *)g_logwork_diffs[iVar8]);
+            fwrite("\n",1,1,(FILE *)g_logwork_diffs[iVar8]);
+            fflush((FILE *)g_logwork_diffs[iVar8]);
           }
         }
         else {
-          sprintf(szmsg,DAT_00015788,DAT_000157a4,work->id,__ptr,__ptr_00,__ptr_01,__ptr_03,__ptr_04
-                  ,uVar6,uVar3,uVar5);
-          sVar4 = strlen(szmsg);
-          fwrite(szmsg,sVar4,1,*ppFVar2);
-          fwrite(DAT_0001578c,1,1,*ppFVar2);
-          fflush(*ppFVar2);
+          sprintf(szmsg,"%s %08x work %s midstate %s data %s nonce %s hash %s diff %I64d","x",
+                  work->id,__ptr,__ptr_00,__ptr_01,__ptr_03,__ptr_04,uVar12,uVar2,uVar4);
+          sVar3 = strlen(szmsg);
+          fwrite(szmsg,sVar3,1,(FILE *)g_logwork_file);
+          fwrite("\n",1,1,(FILE *)g_logwork_file);
+          fflush((FILE *)g_logwork_file);
         }
       }
     }

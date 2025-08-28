@@ -11,7 +11,8 @@ void dtls1_start_timer(SSL *param_1)
   iVar2._2_1_ = pdVar1->alert_fragment[0];
   iVar2._3_1_ = pdVar1->alert_fragment[1];
   if ((iVar2 == 0) && (pdVar1->alert_fragment_len == 0)) {
-    *(undefined2 *)pdVar1->handshake_fragment = 1;
+    pdVar1->handshake_fragment[0] = '\x01';
+    pdVar1->handshake_fragment[1] = '\0';
   }
   gettimeofday((timeval *)&pdVar1->timeout_duration,(__timezone_ptr_t)0x0);
   pdVar1 = param_1->d1;

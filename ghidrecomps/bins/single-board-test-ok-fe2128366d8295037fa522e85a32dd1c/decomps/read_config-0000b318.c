@@ -8,7 +8,7 @@ undefined4 read_config(void)
   char local_41b;
   FILE *local_1c;
   undefined4 local_18;
-  undefined1 *local_14;
+  char *local_14;
   int local_10;
   char *local_c;
   
@@ -453,16 +453,28 @@ undefined4 read_config(void)
       }
     }
     if ((*(int *)(local_14 + 0x6c) == 1) && (*(int *)(local_14 + 0x74) == 0x569)) {
-      strcpy(DAT_0000c378,Single_BM1385_WorkDataPathPrefix);
-      strcpy(DAT_0000c37c,BTC_WorkDataFilePrefix);
-      *(undefined4 *)(local_14 + 0x70) = 0x32;
+      strcpy(cgpu + 0x1002c,Single_BM1385_WorkDataPathPrefix);
+      strcpy(cgpu + 0x1006c,BTC_WorkDataFilePrefix);
+      local_14[0x70] = '2';
+      local_14[0x71] = '\0';
+      local_14[0x72] = '\0';
+      local_14[0x73] = '\0';
     }
     if (gHashBoard_V9 != '\0') {
-      strcpy(DAT_0000c378,V9_WorkDataPathPrefix);
-      strcpy(DAT_0000c37c,BTC_WorkDataFilePrefix);
-      *(undefined4 *)(local_14 + 0x6c) = 0x2d;
-      *(undefined4 *)(local_14 + 0x70) = 0x32;
-      *(undefined4 *)(local_14 + 0x74) = 0x569;
+      strcpy(cgpu + 0x1002c,V9_WorkDataPathPrefix);
+      strcpy(cgpu + 0x1006c,BTC_WorkDataFilePrefix);
+      local_14[0x6c] = '-';
+      local_14[0x6d] = '\0';
+      local_14[0x6e] = '\0';
+      local_14[0x6f] = '\0';
+      local_14[0x70] = '2';
+      local_14[0x71] = '\0';
+      local_14[0x72] = '\0';
+      local_14[0x73] = '\0';
+      local_14[0x74] = 'i';
+      local_14[0x75] = '\x05';
+      local_14[0x76] = '\0';
+      local_14[0x77] = '\0';
       gPic_addr_high_4_bit = 0xa00000;
       gChain_Asic_Interval = 4;
     }

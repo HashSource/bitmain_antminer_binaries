@@ -19,7 +19,7 @@ int BN_mod_exp_recp(BIGNUM *r,BIGNUM *a,BIGNUM *p,BIGNUM *m,BN_CTX *ctx)
   BIGNUM *local_a8 [33];
   
   if ((p->flags & 4U) != 0) {
-    ERR_put_error(3,0x7d,0x42,DAT_000ef9ec,0x11e);
+    ERR_put_error(3,0x7d,0x42,"bn_exp.c",0x11e);
     return -1;
   }
   local_ec = BN_num_bits(p);

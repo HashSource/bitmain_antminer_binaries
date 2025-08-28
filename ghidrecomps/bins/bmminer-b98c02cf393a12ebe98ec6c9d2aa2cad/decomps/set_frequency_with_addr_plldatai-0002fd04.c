@@ -7,7 +7,7 @@ void set_frequency_with_addr_plldatai(int param_1,int param_2,int param_3,int pa
   undefined4 uVar3;
   uint uVar4;
   undefined4 local_30;
-  uint local_2c;
+  undefined4 local_2c;
   byte local_28;
   uint local_24;
   uint local_20;
@@ -34,7 +34,7 @@ void set_frequency_with_addr_plldatai(int param_1,int param_2,int param_3,int pa
                         CONCAT12((char)((uint)uVar3 >> 8),
                                  CONCAT11((char)((uint)uVar3 >> 0x10),(char)((uint)uVar3 >> 0x18))))
     ;
-    local_30._0_2_ = CONCAT11(9,(undefined)local_30);
+    local_30._0_2_ = CONCAT11(9,(undefined1)local_30);
     local_28 = CRC5(&local_30,0x40);
     local_1c = (uint)local_28 << 0x18;
     local_24 = uVar2 | param_3 << 8;

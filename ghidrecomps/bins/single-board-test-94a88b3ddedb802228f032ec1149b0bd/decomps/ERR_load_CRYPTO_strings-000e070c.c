@@ -4,16 +4,14 @@
 void ERR_load_CRYPTO_strings(void)
 
 {
-  ERR_STRING_DATA *str;
   char *pcVar1;
   
-  str = DAT_000e0730;
-  pcVar1 = ERR_func_error_string(DAT_000e0730->error);
+  pcVar1 = ERR_func_error_string(CRYPTO_str_functs);
   if (pcVar1 != (char *)0x0) {
     return;
   }
-  ERR_load_strings(0,str);
-  ERR_load_strings(0,str + 0xb);
+  ERR_load_strings(0,(ERR_STRING_DATA *)&CRYPTO_str_functs);
+  ERR_load_strings(0,(ERR_STRING_DATA *)CRYPTO_str_reasons);
   return;
 }
 

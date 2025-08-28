@@ -8,7 +8,7 @@ int ENGINE_register_DSA(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7810,DAT_000a780c,e,DAT_000a7814,1,0);
+    iVar1 = engine_table_register(&dsa_table,0xa77cd,e,&dummy_nid,1,0);
   }
   return iVar1;
 }

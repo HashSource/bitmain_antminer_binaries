@@ -25,7 +25,8 @@ undefined4 rc4_hmac_md5_ctrl(int param_1,int param_2,size_t param_3,void *param_
   iVar2 = *(int *)(param_1 + 0x60);
   if (param_2 == 0x16) {
     if (param_3 == 0xd) {
-      uVar1 = (uint)CONCAT11(*(undefined *)((int)param_4 + 0xb),*(undefined *)((int)param_4 + 0xc));
+      uVar1 = (uint)CONCAT11(*(undefined1 *)((int)param_4 + 0xb),*(undefined1 *)((int)param_4 + 0xc)
+                            );
       if (*(int *)(param_1 + 8) == 0) {
         uVar1 = uVar1 - 0x10;
         *(char *)((int)param_4 + 0xc) = (char)uVar1;

@@ -15,7 +15,7 @@ bool ssl_get_server_cert_serverinfo(int param_1,int *param_2,undefined4 *param_3
     uVar1 = (uint)(*(int *)(*(int *)(param_1 + 0x98) + 0x3c) == 0);
   }
   else if (uVar1 == 0xffffffff) {
-    ERR_put_error(0x14,0x142,0x44,DAT_0007bd38,0x9d1);
+    ERR_put_error(0x14,0x142,0x44,"ssl_lib.c",0x9d1);
     return false;
   }
   iVar4 = iVar4 + uVar1 * 0x1c;

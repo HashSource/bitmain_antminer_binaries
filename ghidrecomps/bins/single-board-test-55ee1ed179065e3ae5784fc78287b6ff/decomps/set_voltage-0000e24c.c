@@ -1,9 +1,8 @@
 
-void set_voltage(undefined param_1,undefined param_2,char param_3)
+void set_voltage(undefined1 param_1,undefined1 param_2,char param_3)
 
 {
   byte bVar1;
-  double dVar2;
   uint local_14;
   undefined8 local_10;
   
@@ -45,14 +44,13 @@ void set_voltage(undefined param_1,undefined param_2,char param_3)
     local_14 = local_14 + Conf._228_4_;
   }
   if (Conf._116_4_ == 0x6ba) {
-    local_10 = DAT_0000e4c0 - ((double)(ulonglong)local_14 * DAT_0000e4b0) / DAT_0000e4b8;
+    local_10 = 1438.749 - ((double)local_14 * 129.4922) / 100.0;
   }
   else if (Conf._116_4_ == 0x6bd) {
-    local_10 = DAT_0000e4d0 - ((double)(ulonglong)local_14 * DAT_0000e4c8) / DAT_0000e4b8;
+    local_10 = 1582.352941 - ((double)local_14 * 166.666667) / 100.0;
   }
-  dVar2 = (double)CONCAT44(DAT_0000e4d8._4_4_,(undefined4)DAT_0000e4d8);
-  if (local_10 != dVar2 && local_10 < dVar2 == (NAN(local_10) || NAN(dVar2))) {
-    local_10 = (double)CONCAT44(DAT_0000e4d8._4_4_,(undefined4)DAT_0000e4d8);
+  if (255.0 < local_10) {
+    local_10 = 255.0;
   }
   if ((int)((uint)(local_10 < 0.0) << 0x1f) < 0) {
     local_10 = 0.0;

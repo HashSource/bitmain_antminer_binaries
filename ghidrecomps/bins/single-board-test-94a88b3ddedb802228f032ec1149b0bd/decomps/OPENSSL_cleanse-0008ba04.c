@@ -2,30 +2,28 @@
 void OPENSSL_cleanse(void *ptr,size_t len)
 
 {
-  byte *pbVar1;
-  void *pvVar2;
-  undefined *puVar3;
-  byte bVar5;
-  uint uVar6;
-  undefined *puVar4;
+  void *pvVar1;
+  undefined1 *puVar2;
+  char cVar4;
+  uint uVar5;
+  undefined1 *puVar3;
   
-  pbVar1 = DAT_0008ba34;
-  uVar6 = (uint)*DAT_0008ba34;
+  uVar5 = (uint)cleanse_ctr;
   if (len != 0) {
-    puVar4 = (undefined *)ptr;
+    puVar3 = (undefined1 *)ptr;
     do {
-      puVar3 = puVar4 + 1;
-      *puVar4 = (char)uVar6;
-      uVar6 = uVar6 + ((uint)puVar3 & 0xf) + 0x11;
-      puVar4 = puVar3;
-    } while (puVar3 != (undefined *)((int)ptr + len));
+      puVar2 = puVar3 + 1;
+      *puVar3 = (char)uVar5;
+      uVar5 = uVar5 + ((uint)puVar2 & 0xf) + 0x11;
+      puVar3 = puVar2;
+    } while (puVar2 != (undefined1 *)((int)ptr + len));
   }
-  bVar5 = (byte)uVar6;
-  pvVar2 = memchr(ptr,uVar6 & 0xff,len);
-  if (pvVar2 != (void *)0x0) {
-    bVar5 = (char)pvVar2 + bVar5 + 0x3f;
+  cVar4 = (char)uVar5;
+  pvVar1 = memchr(ptr,uVar5 & 0xff,len);
+  if (pvVar1 != (void *)0x0) {
+    cVar4 = (char)pvVar1 + cVar4 + '?';
   }
-  *pbVar1 = bVar5;
+  cleanse_ctr = cVar4;
   return;
 }
 

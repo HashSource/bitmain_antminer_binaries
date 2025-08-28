@@ -10,7 +10,7 @@ int MD4_Final(uchar *md,MD4_CTX *c)
   uVar2 = c->num;
   __s = c->data;
   uVar1 = uVar2 + 1;
-  *(undefined *)((int)__s + uVar2) = 0x80;
+  *(undefined1 *)((int)__s + uVar2) = 0x80;
   if (uVar1 < 0x39) {
     __n = 0x37 - uVar2;
   }

@@ -11,7 +11,7 @@ int get_pll_index(undefined4 param_1)
   sprintf(acStack_1c,"%d",param_1);
   iVar3 = 0;
   __s1 = &DAT_00062030;
-  puVar2 = DAT_0002feb4;
+  puVar2 = (undefined4 *)(freq_pll_1385 + 0x10);
   while( true ) {
     iVar1 = memcmp(__s1,acStack_1c,4);
     if (iVar1 == 0) {

@@ -5,7 +5,7 @@ int strbuffer_append_byte(strbuffer_t *strbuff,char byte)
 
 {
   int iVar1;
-  char local_9 [9];
+  char local_9 [5];
   
   local_9[0] = byte;
   iVar1 = strbuffer_append_bytes(strbuff,local_9,1);

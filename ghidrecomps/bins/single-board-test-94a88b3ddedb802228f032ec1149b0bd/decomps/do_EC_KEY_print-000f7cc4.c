@@ -14,7 +14,7 @@ undefined4 do_EC_KEY_print(BIO *param_1,EC_KEY *param_2,int param_3,int param_4)
   BIGNUM *buf;
   undefined4 uVar5;
   BIGNUM *a_00;
-  undefined4 local_2c;
+  char *local_2c;
   
   if ((param_2 == (EC_KEY *)0x0) || (group = EC_KEY_get0_group(param_2), group == (EC_GROUP *)0x0))
   {
@@ -36,7 +36,7 @@ undefined4 do_EC_KEY_print(BIO *param_1,EC_KEY *param_2,int param_3,int param_4)
       if (param_4 < 1) {
         a_00 = (BIGNUM *)0x0;
         a = (BIGNUM *)0x0;
-        local_2c = DAT_000f7e8c;
+        local_2c = "ECDSA-Parameters";
         buf = (BIGNUM *)0x0;
       }
       else {
@@ -73,24 +73,24 @@ undefined4 do_EC_KEY_print(BIO *param_1,EC_KEY *param_2,int param_3,int param_4)
               uVar4 = iVar3 >> 3;
             }
           }
-          order = (BIGNUM *)CRYPTO_malloc(uVar4 + 10,DAT_000f7e88,0x1c9);
+          order = (BIGNUM *)CRYPTO_malloc(uVar4 + 10,"ec_ameth.c",0x1c9);
           if (order == (BIGNUM *)0x0) goto LAB_000f7e7a;
-          local_2c = DAT_000f7e94;
+          local_2c = "Private-Key";
           buf = order;
         }
         else {
-          order = (BIGNUM *)CRYPTO_malloc(uVar4 + 10,DAT_000f7e88,0x1c9);
+          order = (BIGNUM *)CRYPTO_malloc(uVar4 + 10,"ec_ameth.c",0x1c9);
           if (order == (BIGNUM *)0x0) {
 LAB_000f7e7a:
             iVar3 = 0x41;
             buf = order;
             goto LAB_000f7d5e;
           }
+          local_2c = "ECDSA-Parameters";
           a_00 = (BIGNUM *)0x0;
           buf = order;
-          local_2c = DAT_000f7e8c;
           if (param_4 == 1) {
-            local_2c = DAT_000f7e90;
+            local_2c = "Public-Key";
           }
         }
       }
@@ -101,13 +101,12 @@ LAB_000f7e7a:
         if ((order != (BIGNUM *)0x0) &&
            (iVar3 = EC_GROUP_get_order(group,order,(BN_CTX *)0x0), iVar3 != 0)) {
           iVar3 = BN_num_bits(order);
-          iVar3 = BIO_printf(param_1,DAT_000f7e98,local_2c,iVar3);
+          iVar3 = BIO_printf(param_1,"%s: (%d bit)\n",local_2c,iVar3);
           if (((0 < iVar3) &&
               ((a_00 == (BIGNUM *)0x0 ||
-               (iVar3 = ASN1_bn_print(param_1,DAT_000f7e9c,a_00,(uchar *)buf,param_3), iVar3 != 0)))
-              ) && ((a == (BIGNUM *)0x0 ||
-                    (iVar3 = ASN1_bn_print(param_1,DAT_000f7ea0,a,(uchar *)buf,param_3), iVar3 != 0)
-                    ))) {
+               (iVar3 = ASN1_bn_print(param_1,"priv:",a_00,(uchar *)buf,param_3), iVar3 != 0)))) &&
+             ((a == (BIGNUM *)0x0 ||
+              (iVar3 = ASN1_bn_print(param_1,"pub: ",a,(uchar *)buf,param_3), iVar3 != 0)))) {
             uVar5 = 1;
             iVar3 = ECPKParameters_print(param_1,group,param_3);
             if (iVar3 != 0) goto LAB_000f7d72;
@@ -119,7 +118,7 @@ LAB_000f7e7a:
   }
 LAB_000f7d5e:
   uVar5 = 0;
-  ERR_put_error(0x10,0xdd,iVar3,DAT_000f7e88,0x1e9);
+  ERR_put_error(0x10,0xdd,iVar3,"ec_ameth.c",0x1e9);
 LAB_000f7d72:
   if (a != (BIGNUM *)0x0) {
     BN_free(a);

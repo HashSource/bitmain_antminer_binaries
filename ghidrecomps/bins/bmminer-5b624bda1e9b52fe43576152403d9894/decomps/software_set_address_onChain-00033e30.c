@@ -4,50 +4,47 @@
 void software_set_address_onChain(int chainIndex)
 
 {
-  int *piVar1;
-  uchar chain;
-  uint i;
-  uint uVar2;
-  char cVar3;
-  int iVar4;
-  int iVar5;
+  uchar uVar1;
+  int iVar2;
+  uint uVar3;
+  all_parameters *paVar4;
+  undefined1 *puVar5;
   uchar address;
   uint uVar6;
   char tmp42 [2048];
   
-  piVar1 = DAT_00033f14;
-  iVar4 = *DAT_00033f14;
-  cVar3 = *DAT_00033f18;
-  iVar5 = iVar4 + 0x2f80;
-  *(undefined *)(iVar4 + 0x2fba) = 0;
-  if ((cVar3 != '\0') &&
-     (((*DAT_00033f1c != '\0' || (*DAT_00033f20 != '\0')) || (cVar3 = '\0', 6 < *DAT_00033f2c)))) {
-    snprintf(tmp42,0x800,DAT_00033f28,DAT_00033f24);
+  paVar4 = dev;
+  uVar1 = opt_debug;
+  puVar5 = (undefined1 *)((int)dev->temp + 0x16);
+  dev->check_bit = '\0';
+  if (((bool)uVar1) &&
+     (((use_syslog != false || (opt_log_output != false)) || (uVar1 = '\0', 6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"--- %s\n","software_set_address_onChain");
     _applog(7,tmp42,false);
-    iVar4 = *piVar1;
-    iVar5 = iVar4 + 0x2f80;
-    cVar3 = *(char *)(iVar4 + 0x2fba);
+    puVar5 = (undefined1 *)((int)dev->temp + 0x16);
+    uVar1 = dev->check_bit;
+    paVar4 = dev;
   }
-  *(char *)(iVar5 + 0x3a) = cVar3 + '\x02';
-  *(undefined *)(iVar4 + 0x2fe8) = 4;
-  chain = (uchar)chainIndex;
-  chain_inactive(chain);
+  puVar5[0x3a] = uVar1 + '\x02';
+  paVar4->addrInterval = '\x04';
+  uVar1 = (uchar)chainIndex;
+  chain_inactive(uVar1);
   cgsleep_ms(0x1e);
-  chain_inactive(chain);
+  chain_inactive(uVar1);
   cgsleep_ms(0x1e);
-  chain_inactive(chain);
+  chain_inactive(uVar1);
   cgsleep_ms(0x1e);
-  iVar4 = __aeabi_idiv(0x100,*(undefined *)(*piVar1 + 0x2fe8));
-  if (iVar4 != 0) {
+  iVar2 = __aeabi_idiv(0x100,dev->addrInterval);
+  if (iVar2 != 0) {
     address = '\0';
     uVar6 = 0;
     do {
       uVar6 = uVar6 + 1;
-      set_address(chain,'\0',address);
-      address = address + *(char *)(*piVar1 + 0x2fe8);
+      set_address(uVar1,'\0',address);
+      address = address + dev->addrInterval;
       cgsleep_ms(0x1e);
-      uVar2 = __aeabi_idiv(0x100,*(undefined *)(*piVar1 + 0x2fe8));
-    } while (uVar6 < uVar2);
+      uVar3 = __aeabi_idiv(0x100,dev->addrInterval);
+    } while (uVar6 < uVar3);
   }
   return;
 }

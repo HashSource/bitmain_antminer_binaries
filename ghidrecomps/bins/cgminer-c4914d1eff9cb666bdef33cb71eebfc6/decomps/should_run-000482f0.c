@@ -15,7 +15,7 @@ _Bool should_run(void)
     tmp_time = tv.tv_sec;
     tm1 = localtime(&tmp_time);
     if (schedstart.enable == false) {
-      _Var1 = time_before((tm *)tm1,DAT_00048404);
+      _Var1 = time_before((tm *)tm1,&schedstop.tm);
       if (_Var1) {
         _Var1 = true;
       }
@@ -24,10 +24,10 @@ _Bool should_run(void)
       }
     }
     else if (schedstop.enable == true) {
-      _Var1 = time_before(DAT_00048400,DAT_00048404);
+      _Var1 = time_before(&schedstart.tm,&schedstop.tm);
       if (_Var1) {
-        _Var1 = time_before((tm *)tm1,DAT_00048404);
-        if ((!_Var1) || (_Var1 = time_before((tm *)tm1,DAT_00048400), _Var1)) {
+        _Var1 = time_before((tm *)tm1,&schedstop.tm);
+        if ((!_Var1) || (_Var1 = time_before((tm *)tm1,&schedstart.tm), _Var1)) {
           _Var1 = false;
         }
         else {
@@ -35,9 +35,9 @@ _Bool should_run(void)
         }
       }
       else {
-        _Var1 = time_before((tm *)tm1,DAT_00048400);
+        _Var1 = time_before((tm *)tm1,&schedstart.tm);
         if (_Var1) {
-          _Var1 = time_before((tm *)tm1,DAT_00048404);
+          _Var1 = time_before((tm *)tm1,&schedstop.tm);
           if (_Var1) {
             _Var1 = true;
           }
@@ -51,7 +51,7 @@ _Bool should_run(void)
       }
     }
     else {
-      _Var1 = time_before((tm *)tm1,DAT_00048400);
+      _Var1 = time_before((tm *)tm1,&schedstart.tm);
       if (_Var1) {
         _Var1 = false;
       }

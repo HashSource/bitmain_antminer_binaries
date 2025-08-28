@@ -3,8 +3,8 @@ int isip(char *param_1)
 
 {
   int iVar1;
-  undefined auStack_1c [4];
-  undefined auStack_18 [16];
+  undefined1 auStack_1c [4];
+  undefined1 auStack_18 [16];
   
   iVar1 = inet_pton(2,param_1,auStack_1c);
   if (iVar1 == 0) {

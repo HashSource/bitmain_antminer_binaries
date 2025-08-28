@@ -23,7 +23,7 @@ ASN1_INTEGER * d2i_ASN1_UINTEGER(ASN1_INTEGER **a,uchar **pp,long length)
     iVar1 = 0x66;
   }
   else if (local_20 == 2) {
-    __dest = (uchar *)CRYPTO_malloc(local_24 + 1,DAT_000b581c,0x13a);
+    __dest = (uchar *)CRYPTO_malloc(local_24 + 1,"a_int.c",0x13a);
     if (__dest != (uchar *)0x0) {
       a_00->type = 2;
       if (local_24 != 0) {
@@ -50,7 +50,7 @@ ASN1_INTEGER * d2i_ASN1_UINTEGER(ASN1_INTEGER **a,uchar **pp,long length)
   else {
     iVar1 = 0x73;
   }
-  ERR_put_error(0xd,0x96,iVar1,DAT_000b581c,0x152);
+  ERR_put_error(0xd,0x96,iVar1,"a_int.c",0x152);
   if ((a != (ASN1_INTEGER **)0x0) && (*a == a_00)) {
     return (ASN1_INTEGER *)0x0;
   }

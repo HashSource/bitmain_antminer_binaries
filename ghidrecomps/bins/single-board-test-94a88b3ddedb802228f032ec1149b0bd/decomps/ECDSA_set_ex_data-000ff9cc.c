@@ -2,20 +2,19 @@
 int ECDSA_set_ex_data(EC_KEY *d,int idx,void *arg)
 
 {
-  free_func *free_func;
   void *data;
   int iVar1;
   void *pvVar2;
   
-  free_func = DAT_000ffa44;
-  data = EC_KEY_get_key_method_data(d,DAT_000ffa48,DAT_000ffa44,(clear_free_func *)DAT_000ffa44);
+  data = EC_KEY_get_key_method_data
+                   (d,(dup_func *)0xff82d,(free_func *)0xff76d,(clear_free_func *)0xff76d);
   if (data == (void *)0x0) {
     data = (void *)ECDSA_DATA_new_method_constprop_0();
     if (data == (void *)0x0) {
       return 0;
     }
     pvVar2 = EC_KEY_insert_key_method_data
-                       (d,data,DAT_000ffa48,free_func,(clear_free_func *)free_func);
+                       (d,data,(dup_func *)0xff82d,(free_func *)0xff76d,(clear_free_func *)0xff76d);
     if (pvVar2 != (void *)0x0) {
       if (*(ENGINE **)((int)data + 4) != (ENGINE *)0x0) {
         ENGINE_finish(*(ENGINE **)((int)data + 4));

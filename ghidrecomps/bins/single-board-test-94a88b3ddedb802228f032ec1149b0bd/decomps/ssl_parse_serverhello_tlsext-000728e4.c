@@ -15,14 +15,14 @@ undefined4 ssl_parse_serverhello_tlsext(SSL *param_1,undefined4 *param_2,int par
   uint uVar10;
   ssl3_state_st *psVar11;
   SSL_SESSION *pSVar12;
-  undefined *puVar13;
+  undefined1 *puVar13;
   code *pcVar14;
   uint uVar15;
   SSL_SESSION *pSVar16;
   ssl3_state_st *psVar17;
-  undefined *puVar18;
-  undefined *puVar19;
-  undefined *puVar20;
+  undefined1 *puVar18;
+  undefined1 *puVar19;
+  undefined1 *puVar20;
   byte local_31;
   undefined4 local_30;
   void *local_2c [2];
@@ -33,7 +33,7 @@ LAB_00072900:
     uVar4 = 1;
   }
   else {
-    puVar18 = (undefined *)*param_2;
+    puVar18 = (undefined1 *)*param_2;
     pvVar5 = (void *)param_1->s3[1].delay_buf_pop_ret;
     param_1->s3->next_proto_neg_seen = 0;
     param_1->tlsext_ocsp_resplen = 0;
@@ -42,15 +42,15 @@ LAB_00072900:
       param_1->s3[1].delay_buf_pop_ret = 0;
     }
     param_1->srtp_profile = (SRTP_PROTECTION_PROFILE *)((uint)param_1->srtp_profile & 0xfffffffc);
-    if (puVar18 < (undefined *)(param_3 + param_4 + -2)) {
+    if (puVar18 < (undefined1 *)(param_3 + param_4 + -2)) {
       puVar20 = puVar18 + 2 + CONCAT11(*puVar18,puVar18[1]);
-      if (puVar20 == (undefined *)(param_3 + param_4)) {
+      if (puVar20 == (undefined1 *)(param_3 + param_4)) {
         bVar3 = false;
         bVar2 = false;
         puVar18 = puVar18 + 2;
 LAB_000729dc:
         puVar13 = puVar18;
-        if ((undefined *)(param_3 + param_4 + -4) < puVar13) {
+        if ((undefined1 *)(param_3 + param_4 + -4) < puVar13) {
           if (puVar20 != puVar13) goto LAB_00072954;
           if (((param_1->hit == 0) && (bVar2)) && ((char *)param_1->tlsext_debug_arg != (char *)0x0)
              ) {
@@ -89,12 +89,15 @@ LAB_00072c60:
           if (uVar15 != uVar9 - 1) goto LAB_00072954;
           if (param_1->hit == 0) {
             pSVar16 = param_1->session;
-            *(undefined4 *)(pSVar16->krb5_client_princ + 0x44) = 0;
+            pSVar16->krb5_client_princ[0x44] = '\0';
+            pSVar16->krb5_client_princ[0x45] = '\0';
+            pSVar16->krb5_client_princ[0x46] = '\0';
+            pSVar16->krb5_client_princ[0x47] = '\0';
             if (*(void **)(pSVar16->krb5_client_princ + 0x48) != (void *)0x0) {
               CRYPTO_free(*(void **)(pSVar16->krb5_client_princ + 0x48));
               pSVar16 = param_1->session;
             }
-            pvVar5 = CRYPTO_malloc(uVar15,DAT_00072c68,0xa17);
+            pvVar5 = CRYPTO_malloc(uVar15,"t1_lib.c",0xa17);
             *(void **)(pSVar16->krb5_client_princ + 0x48) = pvVar5;
             if (pvVar5 == (void *)0x0) {
 LAB_00072cba:
@@ -158,7 +161,7 @@ LAB_00072b6e:
           iVar6 = (*pcVar14)(param_1,local_2c,&local_31,puVar19,uVar9,
                              *(undefined4 *)(param_1->psk_server_callback + 0x1b0));
           if (iVar6 == 0) {
-            __dest = (SSL_CTX *)CRYPTO_malloc((uint)local_31,DAT_00072c68,0xa7e);
+            __dest = (SSL_CTX *)CRYPTO_malloc((uint)local_31,"t1_lib.c",0xa7e);
             param_1->initial_ctx = __dest;
             if (__dest != (SSL_CTX *)0x0) {
               memcpy(__dest,local_2c[0],(uint)local_31);
@@ -179,7 +182,7 @@ LAB_00072b6e:
             CRYPTO_free((void *)psVar17[1].delay_buf_pop_ret);
             psVar17 = param_1->s3;
           }
-          pvVar5 = CRYPTO_malloc(uVar15,DAT_00072c68,0xaa9);
+          pvVar5 = CRYPTO_malloc(uVar15,"t1_lib.c",0xaa9);
           psVar11 = param_1->s3;
           psVar17[1].delay_buf_pop_ret = (int)pvVar5;
           pvVar5 = (void *)psVar11[1].delay_buf_pop_ret;
@@ -223,13 +226,13 @@ LAB_00072980:
 LAB_0007298a:
         iVar6 = ssl_check_serverhello_tlsext(param_1);
         if (iVar6 < 1) {
-          ERR_put_error(0x14,0x12f,0x113,DAT_00072c68,0xc8f);
+          ERR_put_error(0x14,0x12f,0x113,"t1_lib.c",0xc8f);
           return 0;
         }
         goto LAB_00072900;
       }
       local_30 = 0x28;
-      ERR_put_error(0x14,0x141,0x152,DAT_00072c68,0xafb);
+      ERR_put_error(0x14,0x141,0x152,"t1_lib.c",0xafb);
     }
 LAB_00072958:
     ssl3_send_alert(param_1,2,local_30);

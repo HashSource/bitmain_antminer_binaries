@@ -5,9 +5,9 @@ undefined4 isMD5fileSame(char *param_1,char *param_2)
   int iVar1;
   undefined4 uVar2;
   char acStack_214 [32];
-  undefined local_1f4;
+  undefined1 local_1f4;
   char acStack_114 [32];
-  undefined local_f4;
+  undefined1 local_f4;
   FILE *local_14;
   size_t local_10;
   FILE *local_c;

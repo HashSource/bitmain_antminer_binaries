@@ -37,7 +37,7 @@ LAB_000bbabe:
       tt = (ASN1_TEMPLATE *)pAVar4->size;
     }
     if ((tt == (ASN1_TEMPLATE *)0x0) && (tt = (ASN1_TEMPLATE *)nullerr, nullerr != 0)) {
-      ERR_put_error(0xd,0x6e,0xa4,DAT_000bbaf4,0x111);
+      ERR_put_error(0xd,0x6e,0xa4,"tasn_utl.c",0x111);
       tt = (ASN1_TEMPLATE *)0x0;
     }
   }

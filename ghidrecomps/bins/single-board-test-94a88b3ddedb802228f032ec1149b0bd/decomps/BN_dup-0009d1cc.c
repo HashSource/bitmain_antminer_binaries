@@ -10,9 +10,9 @@ BIGNUM * BN_dup(BIGNUM *a)
     a_00 = (BIGNUM *)0x0;
   }
   else {
-    a_00 = (BIGNUM *)CRYPTO_malloc(0x14,DAT_0009d248,0x110);
+    a_00 = (BIGNUM *)CRYPTO_malloc(0x14,"bn_lib.c",0x110);
     if (a_00 == (BIGNUM *)0x0) {
-      ERR_put_error(3,0x71,0x41,DAT_0009d248,0x111);
+      ERR_put_error(3,0x71,0x41,"bn_lib.c",0x111);
     }
     else {
       a_00->flags = 1;

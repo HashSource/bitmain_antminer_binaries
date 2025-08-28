@@ -4,9 +4,6 @@ _Bool slowly_set_iic_power_to_custom_voltage_by_chain(uint8_t chain,double custo
 {
   _Bool _Var1;
   FILE *pFVar2;
-  undefined8 in_d0;
-  char *in_stack_ffffffb8;
-  uint in_stack_ffffffbc;
   double custom_voltage_local;
   uint8_t chain_local;
   FILE *pFile;
@@ -14,8 +11,8 @@ _Bool slowly_set_iic_power_to_custom_voltage_by_chain(uint8_t chain,double custo
   power_info_t *power;
   double target_vol;
   
-  custom_voltage_local._0_4_ = (undefined4)in_d0;
-  custom_voltage_local._4_4_ = (undefined4)((ulonglong)in_d0 >> 0x20);
+  custom_voltage_local._0_4_ = SUB84(custom_voltage,0);
+  custom_voltage_local._4_4_ = (undefined4)((ulonglong)custom_voltage >> 0x20);
   if (dev->chain_exist[chain] == 0) {
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);
@@ -33,16 +30,13 @@ _Bool slowly_set_iic_power_to_custom_voltage_by_chain(uint8_t chain,double custo
       print_crt_time_to_file(log_file,3);
       pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
-        in_stack_ffffffbc = (uint)chain;
-        in_stack_ffffffb8 = "slowly_set_iic_power_to_custom_voltage_by_chain";
         fprintf(pFVar2,"%s:%d:%s: chain[%d] slowly setting to voltage: %0.2f ...\n","power.c",0x3a7,
-                "slowly_set_iic_power_to_custom_voltage_by_chain",in_stack_ffffffbc,
+                "slowly_set_iic_power_to_custom_voltage_by_chain",(uint)chain,
                 custom_voltage_local._0_4_,custom_voltage_local._4_4_);
       }
       fclose(pFVar2);
     }
-    _Var1 = slowly_adapt_voltage
-                      (power_info + chain,(double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8),0);
+    _Var1 = slowly_adapt_voltage(power_info + chain,custom_voltage,0);
     if (_Var1) {
       _Var1 = true;
     }

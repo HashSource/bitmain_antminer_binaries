@@ -2,7 +2,6 @@
 undefined4 cms_RecipientInfo_kari_encrypt(int param_1,int *param_2)
 
 {
-  ASN1_ITEM *it;
   int iVar1;
   EVP_CIPHER *pEVar2;
   ulong uVar3;
@@ -19,7 +18,7 @@ undefined4 cms_RecipientInfo_kari_encrypt(int param_1,int *param_2)
   int local_24;
   
   if (*param_2 != 1) {
-    ERR_put_error(0x2e,0xb2,0xb5,DAT_000d6f58,0x1ab);
+    ERR_put_error(0x2e,0xb2,0xb5,"cms_kari.c",0x1ab);
     return 0;
   }
   iVar8 = param_2[1];
@@ -54,11 +53,10 @@ undefined4 cms_RecipientInfo_kari_encrypt(int param_1,int *param_2)
       return 0;
     }
   }
-  it = DAT_000d6f5c;
   piVar7 = *(int **)(iVar8 + 4);
   if (*piVar7 == -1) {
     *piVar7 = 2;
-    pAVar6 = ASN1_item_new(it);
+    pAVar6 = ASN1_item_new((ASN1_ITEM *)CMS_OriginatorPublicKey_it);
     piVar7[1] = (int)pAVar6;
     if (pAVar6 == (ASN1_VALUE *)0x0) {
       return 0;

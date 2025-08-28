@@ -1,8 +1,8 @@
 
-undefined4 get_PIC16F1704_voltage(undefined param_1,undefined param_2,byte *param_3)
+undefined4 get_PIC16F1704_voltage(undefined1 param_1,undefined1 param_2,byte *param_3)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined4 uVar2;
   uint uVar3;
   char acStack_428 [1024];
@@ -12,7 +12,7 @@ undefined4 get_PIC16F1704_voltage(undefined param_1,undefined param_2,byte *para
   byte local_1c;
   undefined2 local_18;
   ushort local_14;
-  undefined local_12;
+  undefined1 local_12;
   byte local_11;
   
   local_12 = 4;
@@ -24,13 +24,13 @@ undefined4 get_PIC16F1704_voltage(undefined param_1,undefined param_2,byte *para
   local_24 = 0x1c00;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_11 = 0; local_11 < 6; local_11 = local_11 + 1) {
-    write_pic(param_1,param_2,*(undefined *)((int)&local_28 + (uint)local_11));
+    write_pic(param_1,param_2,*(undefined1 *)((int)&local_28 + (uint)local_11));
   }
   usleep(200000);
   for (local_11 = 0; local_11 < 5; local_11 = local_11 + 1) {
     uVar3 = (uint)local_11;
     uVar1 = read_pic(param_1,param_2);
-    *(undefined *)((int)&local_20 + uVar3) = uVar1;
+    *(undefined1 *)((int)&local_20 + uVar3) = uVar1;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {

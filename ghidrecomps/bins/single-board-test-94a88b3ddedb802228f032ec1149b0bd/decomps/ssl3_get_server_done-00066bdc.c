@@ -12,7 +12,7 @@ int ssl3_get_server_done(int param_1)
     }
     else {
       ssl3_send_alert(param_1,2,0x32);
-      ERR_put_error(0x14,0x91,0x9f,DAT_00066c30,0x95b);
+      ERR_put_error(0x14,0x91,0x9f,"s3_clnt.c",0x95b);
       iVar1 = -1;
       *(undefined4 *)(param_1 + 0x34) = 5;
     }

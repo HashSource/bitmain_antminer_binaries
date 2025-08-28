@@ -4,8 +4,8 @@ undefined4 Curl_str2addr(char *param_1,undefined4 param_2)
 {
   int iVar1;
   undefined4 uVar2;
-  undefined auStack_24 [4];
-  undefined auStack_20 [20];
+  undefined1 auStack_24 [4];
+  undefined1 auStack_20 [20];
   
   iVar1 = inet_pton(2,param_1,auStack_24);
   if (iVar1 < 1) {

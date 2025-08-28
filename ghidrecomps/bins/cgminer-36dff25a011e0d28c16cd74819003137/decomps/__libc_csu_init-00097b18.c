@@ -1,26 +1,20 @@
 
+/* WARNING: Removing unreachable block (ram,0x00097b44) */
+
 void __libc_csu_init(EVP_PKEY_CTX *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   int iVar1;
-  int iVar2;
-  code **ppcVar3;
-  int iVar4;
+  undefined **ppuVar2;
   
-  iVar1 = DAT_00097b74;
-  iVar4 = DAT_00097b70 + 0x97b38;
   _init(param_1);
-  iVar4 = iVar4 - (int)(code **)(iVar1 + 0x97b40) >> 2;
-  if (iVar4 == 0) {
-    return;
-  }
-  iVar2 = 0;
-  ppcVar3 = (code **)(iVar1 + 0x97b40);
+  iVar1 = 0;
+  ppuVar2 = &__frame_dummy_init_array_entry;
   do {
-    iVar2 = iVar2 + 1;
-    (**ppcVar3)(param_1,param_2,param_3);
-    ppcVar3 = ppcVar3 + 1;
-  } while (iVar4 != iVar2);
+    iVar1 = iVar1 + 1;
+    (*(code *)*ppuVar2)(param_1,param_2,param_3);
+    ppuVar2 = ppuVar2 + 1;
+  } while (iVar1 != 1);
   return;
 }
 

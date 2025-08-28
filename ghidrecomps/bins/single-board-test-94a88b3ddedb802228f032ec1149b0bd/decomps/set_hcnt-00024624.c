@@ -5,8 +5,8 @@ void set_hcnt(undefined4 param_1)
   uint local_2c;
   uint local_28;
   int local_24;
-  uint local_20;
-  uint local_1c;
+  undefined4 local_20;
+  undefined4 local_1c;
   byte local_18;
   uint local_14;
   uint local_10;

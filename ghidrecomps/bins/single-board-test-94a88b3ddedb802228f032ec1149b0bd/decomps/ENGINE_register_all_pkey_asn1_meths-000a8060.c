@@ -11,7 +11,7 @@ void ENGINE_register_all_pkey_asn1_meths(void)
   for (e = ENGINE_get_first(); e != (ENGINE *)0x0; e = ENGINE_get_next(e)) {
     if ((*(code **)(e + 0x30) != (code *)0x0) &&
        (iVar1 = (**(code **)(e + 0x30))(e,0,&local_14,0), 0 < iVar1)) {
-      engine_table_register(DAT_000a80a4,DAT_000a80a0,e,local_14,iVar1,0);
+      engine_table_register(&pkey_asn1_meth_table,0xa7fa9,e,local_14,iVar1,0);
     }
   }
   return;

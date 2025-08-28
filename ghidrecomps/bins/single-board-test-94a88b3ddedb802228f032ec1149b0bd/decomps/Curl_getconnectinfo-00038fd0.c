@@ -4,7 +4,7 @@ int Curl_getconnectinfo(int param_1,int *param_2)
 {
   int iVar1;
   int iVar2;
-  undefined uStack_19;
+  undefined1 uStack_19;
   int local_18;
   char local_14;
   
@@ -14,7 +14,7 @@ int Curl_getconnectinfo(int param_1,int *param_2)
       (iVar1 = *(int *)(param_1 + 0x40), iVar1 != 0)))) {
     local_14 = '\0';
     local_18 = iVar2;
-    Curl_conncache_foreach(iVar1 + 0x68,&local_18,DAT_00039050);
+    Curl_conncache_foreach(iVar1 + 0x68,&local_18,0x38c59);
     if (local_14 == '\0') {
       *(undefined4 *)(param_1 + 0x590) = 0;
     }

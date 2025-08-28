@@ -5,7 +5,7 @@ _Bool add_pool_details(pool *pool,_Bool live,char *url,char *user,char *pass)
   char *pcVar1;
   size_t sVar2;
   size_t sVar3;
-  undefined uVar4;
+  undefined1 uVar4;
   uint32_t size;
   char *user_local;
   char *url_local;

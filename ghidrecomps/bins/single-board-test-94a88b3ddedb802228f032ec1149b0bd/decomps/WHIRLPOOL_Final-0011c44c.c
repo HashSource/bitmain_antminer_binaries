@@ -103,10 +103,10 @@ LAB_0011c4ac:
       uVar7 = *(undefined4 *)((int)&pWVar9->H + 0xc);
       pWVar10 = (WHIRLPOOL_CTX *)((int)&pWVar9->H + 0x10);
       *(undefined4 *)md = *(undefined4 *)&pWVar9->H;
-      *(undefined4 *)((int)md + 4) = uVar3;
-      *(undefined4 *)((int)md + 8) = uVar4;
-      *(undefined4 *)((int)md + 0xc) = uVar7;
-      md = (uchar *)((int)md + 0x10);
+      *(undefined4 *)(md + 4) = uVar3;
+      *(undefined4 *)(md + 8) = uVar4;
+      *(undefined4 *)(md + 0xc) = uVar7;
+      md = md + 0x10;
       pWVar9 = pWVar10;
     } while (pWVar10 != (WHIRLPOOL_CTX *)c->data);
     memset(c,0,0xa8);

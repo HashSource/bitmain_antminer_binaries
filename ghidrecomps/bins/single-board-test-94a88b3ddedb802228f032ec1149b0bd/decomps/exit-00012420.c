@@ -4,7 +4,7 @@
 void exit(int __status)
 
 {
-  (*(code *)PTR_exit_00194370)();
-  return;
+                    /* WARNING: Subroutine does not return */
+  exit(__status);
 }
 

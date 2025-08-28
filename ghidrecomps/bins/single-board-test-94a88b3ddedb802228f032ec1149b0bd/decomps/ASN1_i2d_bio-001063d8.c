@@ -10,9 +10,9 @@ int ASN1_i2d_bio(undefined1 *i2d,BIO *out,uchar *x)
   void *local_24 [2];
   
   iVar1 = (*(code *)i2d)(x,0);
-  ptr = CRYPTO_malloc(iVar1,DAT_00106448,0x5a);
+  ptr = CRYPTO_malloc(iVar1,"a_i2d_fp.c",0x5a);
   if (ptr == (void *)0x0) {
-    ERR_put_error(0xd,0x74,0x41,DAT_00106448,0x5c);
+    ERR_put_error(0xd,0x74,0x41,"a_i2d_fp.c",0x5c);
     iVar1 = 0;
   }
   else {

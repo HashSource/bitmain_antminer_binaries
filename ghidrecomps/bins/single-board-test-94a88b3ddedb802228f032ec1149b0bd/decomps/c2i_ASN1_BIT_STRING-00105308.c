@@ -10,7 +10,7 @@ ASN1_BIT_STRING * c2i_ASN1_BIT_STRING(ASN1_BIT_STRING **a,uchar **pp,long length
   byte *__src;
   
   if (length < 1) {
-    ERR_put_error(0xd,0xbd,0x98,DAT_001053e8,0xb3);
+    ERR_put_error(0xd,0xbd,0x98,"a_bitstr.c",0xb3);
     return (ASN1_BIT_STRING *)0x0;
   }
   if (((a != (ASN1_BIT_STRING **)0x0) && (a_00 = *a, a_00 != (ASN1_BIT_STRING *)0x0)) ||
@@ -35,7 +35,7 @@ LAB_001053a2:
         *pp = __src;
         return a_00;
       }
-      __dest = (uchar *)CRYPTO_malloc(__n,DAT_001053e8,0x9e);
+      __dest = (uchar *)CRYPTO_malloc(__n,"a_bitstr.c",0x9e);
       if (__dest != (uchar *)0x0) {
         memcpy(__dest,__src,__n);
         __src = __src + __n;
@@ -47,7 +47,7 @@ LAB_001053a2:
     else {
       reason = 0xdc;
     }
-    ERR_put_error(0xd,0xbd,reason,DAT_001053e8,0xb3);
+    ERR_put_error(0xd,0xbd,reason,"a_bitstr.c",0xb3);
     if ((a == (ASN1_BIT_STRING **)0x0) || (a_00 != *a)) {
       ASN1_STRING_free(a_00);
       return (ASN1_BIT_STRING *)0x0;

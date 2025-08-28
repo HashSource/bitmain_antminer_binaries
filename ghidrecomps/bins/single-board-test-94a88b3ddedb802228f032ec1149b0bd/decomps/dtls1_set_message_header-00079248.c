@@ -1,6 +1,6 @@
 
 int dtls1_set_message_header
-              (int param_1,int param_2,undefined param_3,undefined4 param_4,int param_5,
+              (int param_1,int param_2,undefined1 param_3,undefined4 param_4,int param_5,
               undefined4 param_6)
 
 {
@@ -11,7 +11,7 @@ int dtls1_set_message_header
     *(short *)(iVar1 + 0x224) = *(short *)(iVar1 + 0x226);
     *(short *)(iVar1 + 0x226) = *(short *)(iVar1 + 0x226) + 1;
   }
-  *(undefined *)(iVar1 + 0x260) = param_3;
+  *(undefined1 *)(iVar1 + 0x260) = param_3;
   *(undefined4 *)(iVar1 + 0x264) = param_4;
   *(int *)(iVar1 + 0x26c) = param_5;
   *(undefined4 *)(iVar1 + 0x270) = param_6;

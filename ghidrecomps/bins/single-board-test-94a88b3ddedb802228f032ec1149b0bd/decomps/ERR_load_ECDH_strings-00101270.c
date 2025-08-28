@@ -4,16 +4,14 @@
 void ERR_load_ECDH_strings(void)
 
 {
-  ERR_STRING_DATA *str;
   char *pcVar1;
   
-  str = DAT_00101294;
-  pcVar1 = ERR_func_error_string(DAT_00101294->error);
+  pcVar1 = ERR_func_error_string(ECDH_str_functs);
   if (pcVar1 != (char *)0x0) {
     return;
   }
-  ERR_load_strings(0,str);
-  ERR_load_strings(0,str + 4);
+  ERR_load_strings(0,(ERR_STRING_DATA *)&ECDH_str_functs);
+  ERR_load_strings(0,(ERR_STRING_DATA *)ECDH_str_reasons);
   return;
 }
 

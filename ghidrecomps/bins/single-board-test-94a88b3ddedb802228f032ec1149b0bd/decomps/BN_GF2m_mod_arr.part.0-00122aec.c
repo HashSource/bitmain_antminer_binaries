@@ -1,101 +1,101 @@
 
-undefined4 BN_GF2m_mod_arr_part_0(uint **param_1,uint *param_2)
+undefined4 BN_GF2m_mod_arr_part_0(undefined4 *param_1,uint *param_2)
 
 {
   int iVar1;
-  int iVar2;
-  uint uVar3;
+  uint uVar2;
+  int iVar3;
   uint *puVar4;
-  uint *puVar5;
+  uint uVar5;
   uint uVar6;
-  uint uVar7;
-  int iVar8;
+  int iVar7;
+  uint *puVar8;
   
-  uVar3 = *param_2;
-  uVar6 = uVar3 & ~((int)uVar3 >> 0x20);
-  if ((int)uVar3 < 0) {
-    uVar6 = uVar3 + 0x1f;
+  uVar2 = *param_2;
+  uVar5 = uVar2 & ~((int)uVar2 >> 0x20);
+  if ((int)uVar2 < 0) {
+    uVar5 = uVar2 + 0x1f;
   }
-  puVar5 = *param_1;
-  iVar1 = (int)uVar6 >> 5;
-  iVar8 = (int)param_1[1] + -1;
-  while (iVar1 < iVar8) {
-    while (uVar6 = puVar5[iVar8], uVar6 == 0) {
-      iVar8 = iVar8 + -1;
-      if (iVar8 <= iVar1) goto LAB_00122b22;
+  puVar4 = (uint *)*param_1;
+  iVar3 = (int)uVar5 >> 5;
+  iVar7 = param_1[1] + -1;
+  while (iVar3 < iVar7) {
+    while (uVar5 = puVar4[iVar7], uVar5 == 0) {
+      iVar7 = iVar7 + -1;
+      if (iVar7 <= iVar3) goto LAB_00122b22;
     }
-    puVar4 = param_2 + 1;
-    puVar5[iVar8] = 0;
-    uVar3 = param_2[1];
-    while (uVar3 != 0) {
-      uVar3 = *param_2 - uVar3;
-      uVar7 = uVar3 + 0x1f & (int)uVar3 >> 0x20;
-      if (((int)uVar3 >> 0x1e & 1U) == 0) {
-        uVar7 = uVar3;
+    puVar8 = param_2 + 1;
+    puVar4[iVar7] = 0;
+    uVar2 = param_2[1];
+    while (uVar2 != 0) {
+      uVar2 = *param_2 - uVar2;
+      uVar6 = uVar2 + 0x1f & (int)uVar2 >> 0x20;
+      if (((int)uVar2 >> 0x1e & 1U) == 0) {
+        uVar6 = uVar2;
       }
-      iVar2 = iVar8 - ((int)uVar7 >> 5);
-      uVar3 = (int)uVar3 % 0x20;
-      puVar5[iVar2] = puVar5[iVar2] ^ uVar6 >> (uVar3 & 0xff);
-      if (uVar3 != 0) {
-        puVar5[iVar2 + -1] = puVar5[iVar2 + -1] ^ uVar6 << (0x20 - uVar3 & 0xff);
+      iVar1 = iVar7 - ((int)uVar6 >> 5);
+      uVar2 = (int)uVar2 % 0x20;
+      puVar4[iVar1] = puVar4[iVar1] ^ uVar5 >> (uVar2 & 0xff);
+      if (uVar2 != 0) {
+        puVar4[iVar1 + -1] = puVar4[iVar1 + -1] ^ uVar5 << (0x20 - uVar2 & 0xff);
       }
-      puVar4 = puVar4 + 1;
-      uVar3 = *puVar4;
+      puVar8 = puVar8 + 1;
+      uVar2 = *puVar8;
     }
-    iVar2 = iVar8 - iVar1;
-    uVar3 = (int)*param_2 % 0x20;
-    puVar5[iVar2] = puVar5[iVar2] ^ uVar6 >> (uVar3 & 0xff);
-    if (uVar3 != 0) {
-      puVar5[iVar2 + -1] = puVar5[iVar2 + -1] ^ uVar6 << (0x20 - uVar3 & 0xff);
+    iVar1 = iVar7 - iVar3;
+    uVar2 = (int)*param_2 % 0x20;
+    puVar4[iVar1] = puVar4[iVar1] ^ uVar5 >> (uVar2 & 0xff);
+    if (uVar2 != 0) {
+      puVar4[iVar1 + -1] = puVar4[iVar1 + -1] ^ uVar5 << (0x20 - uVar2 & 0xff);
     }
   }
 LAB_00122b22:
-  if (iVar1 == iVar8) {
-    uVar3 = *param_2;
-    uVar6 = puVar5[iVar1];
+  if (iVar3 == iVar7) {
+    uVar2 = *param_2;
+    uVar5 = puVar4[iVar3];
     while( true ) {
-      uVar3 = (int)uVar3 % 0x20;
-      uVar7 = uVar6 >> (uVar3 & 0xff);
-      if (uVar7 == 0) break;
-      if (uVar3 != 0) {
-        uVar3 = (uVar6 << (0x20 - uVar3 & 0xff)) >> (0x20 - uVar3 & 0xff);
+      uVar2 = (int)uVar2 % 0x20;
+      uVar6 = uVar5 >> (uVar2 & 0xff);
+      if (uVar6 == 0) break;
+      if (uVar2 != 0) {
+        uVar2 = (uVar5 << (0x20 - uVar2 & 0xff)) >> (0x20 - uVar2 & 0xff);
       }
-      puVar5[iVar1] = uVar3;
-      *puVar5 = *puVar5 ^ uVar7;
-      uVar6 = param_2[1];
-      if (uVar6 != 0) {
-        puVar4 = param_2 + 1;
+      puVar4[iVar3] = uVar2;
+      *puVar4 = *puVar4 ^ uVar6;
+      uVar5 = param_2[1];
+      if (uVar5 != 0) {
+        puVar8 = param_2 + 1;
         do {
-          uVar3 = uVar6 + 0x1f & (int)uVar6 >> 0x20;
-          if (((int)uVar6 >> 0x1e & 1U) == 0) {
-            uVar3 = uVar6;
+          uVar2 = uVar5 + 0x1f & (int)uVar5 >> 0x20;
+          if (((int)uVar5 >> 0x1e & 1U) == 0) {
+            uVar2 = uVar5;
           }
-          iVar8 = (int)uVar3 >> 5;
-          uVar6 = (int)uVar6 % 0x20;
-          puVar5[iVar8] = puVar5[iVar8] ^ uVar7 << (uVar6 & 0xff);
-          if (uVar6 != 0) {
-            uVar6 = uVar7 >> (0x20 - uVar6 & 0xff);
-            if (uVar6 != 0) {
-              puVar5[iVar8 + 1] = puVar5[iVar8 + 1] ^ uVar6;
+          iVar7 = (int)uVar2 >> 5;
+          uVar5 = (int)uVar5 % 0x20;
+          puVar4[iVar7] = puVar4[iVar7] ^ uVar6 << (uVar5 & 0xff);
+          if (uVar5 != 0) {
+            uVar5 = uVar6 >> (0x20 - uVar5 & 0xff);
+            if (uVar5 != 0) {
+              puVar4[iVar7 + 1] = puVar4[iVar7 + 1] ^ uVar5;
             }
           }
-          puVar4 = puVar4 + 1;
-          uVar6 = *puVar4;
-        } while (uVar6 != 0);
+          puVar8 = puVar8 + 1;
+          uVar5 = *puVar8;
+        } while (uVar5 != 0);
       }
-      uVar3 = *param_2;
-      uVar6 = puVar5[iVar1];
+      uVar2 = *param_2;
+      uVar5 = puVar4[iVar3];
     }
   }
-  puVar4 = param_1[1];
-  if (0 < (int)puVar4) {
-    puVar5 = puVar5 + (int)puVar4 + -1;
+  iVar3 = param_1[1];
+  if (0 < iVar3) {
+    puVar4 = puVar4 + iVar3 + -1;
     do {
-      if (*puVar5 != 0) break;
-      puVar4 = (uint *)((int)puVar4 + -1);
-      puVar5 = puVar5 + -1;
-    } while (puVar4 != (uint *)0x0);
-    param_1[1] = puVar4;
+      if (*puVar4 != 0) break;
+      iVar3 = iVar3 + -1;
+      puVar4 = puVar4 + -1;
+    } while (iVar3 != 0);
+    param_1[1] = iVar3;
   }
   return 1;
 }

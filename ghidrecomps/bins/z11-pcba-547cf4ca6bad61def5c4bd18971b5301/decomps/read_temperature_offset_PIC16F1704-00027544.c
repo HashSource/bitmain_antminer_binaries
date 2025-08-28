@@ -1,8 +1,8 @@
 
-undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_2,int param_3)
+undefined4 read_temperature_offset_PIC16F1704(undefined1 param_1,undefined1 param_2,int param_3)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined4 uVar2;
   uint uVar3;
   char acStack_434 [1024];
@@ -13,7 +13,7 @@ undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_
   undefined4 local_24;
   undefined2 local_20;
   ushort local_1c;
-  undefined local_1a;
+  undefined1 local_1a;
   byte local_19;
   
   local_1a = 4;
@@ -27,13 +27,13 @@ undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_
   local_30 = 0x2700;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_19 = 0; local_19 < 6; local_19 = local_19 + 1) {
-    write_pic(param_1,param_2,*(undefined *)((int)&local_34 + (uint)local_19));
+    write_pic(param_1,param_2,*(undefined1 *)((int)&local_34 + (uint)local_19));
   }
   usleep(200000);
   for (local_19 = 0; local_19 < 0xc; local_19 = local_19 + 1) {
     uVar3 = (uint)local_19;
     uVar1 = read_pic(param_1,param_2);
-    *(undefined *)((int)&local_2c + uVar3) = uVar1;
+    *(undefined1 *)((int)&local_2c + uVar3) = uVar1;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
@@ -54,7 +54,7 @@ undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_
                (ushort)(byte)local_28 + (ushort)local_2c._3_1_ + local_2c._2_1_ + 0x2f;
     if (((char)(local_1c >> 8) == local_24._2_1_) && ((char)local_1c == local_24._3_1_)) {
       for (local_19 = 0; local_19 < 8; local_19 = local_19 + 1) {
-        *(undefined *)((uint)local_19 + param_3) = *(undefined *)((int)&local_2c + local_19 + 2);
+        *(undefined1 *)((uint)local_19 + param_3) = *(undefined1 *)((int)&local_2c + local_19 + 2);
       }
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
         snprintf(acStack_434,0x400,"--- %s ok\n\n","read_temperature_offset_PIC16F1704");

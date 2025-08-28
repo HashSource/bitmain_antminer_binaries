@@ -5,9 +5,9 @@ int * ssl_cert_new(void)
   int *__s;
   EVP_MD *pEVar1;
   
-  __s = (int *)CRYPTO_malloc(0x170,DAT_0007c9b8,0xcc);
+  __s = (int *)CRYPTO_malloc(0x170,"ssl_cert.c",0xcc);
   if (__s == (int *)0x0) {
-    ERR_put_error(0x14,0xa2,0x41,DAT_0007c9b8,0xce);
+    ERR_put_error(0x14,0xa2,0x41,"ssl_cert.c",0xce);
   }
   else {
     memset(__s,0,0x170);

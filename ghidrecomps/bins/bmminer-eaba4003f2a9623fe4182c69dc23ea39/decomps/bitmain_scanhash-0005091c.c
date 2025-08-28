@@ -44,7 +44,7 @@ void * bitmain_scanhash(void *arg)
             _cg_runlock(&info->update_lock,"driver-btm-soc.c","bitmain_scanhash",0x2fe3);
             pthread_mutex_unlock((pthread_mutex_t *)&nonce_mutex);
             cgsleep_ms(1);
-            if (((((uint)h | h._4_4_) != 0) && (opt_debug != false)) &&
+            if ((((int)h != 0 || h._4_4_ != 0) && (opt_debug != false)) &&
                ((use_syslog != false || ((opt_log_output != false || (6 < opt_log_level)))))) {
               lVar1 = (h & 0xffffffff) * 0xffffffff;
               snprintf(tmp42,0x800,"%s: hashes %u ...\n","bitmain_scanhash",(int)lVar1,
@@ -58,7 +58,7 @@ void * bitmain_scanhash(void *arg)
           }
           nonce3 = nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce3;
           job_id = nonce_read_out.nonce_buffer[nonce_read_out.p_rd].job_id;
-          nonce2._0_4_ = *(undefined4 *)&nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce2;
+          nonce2._0_4_ = (undefined4)nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce2;
           nonce2._4_4_ = *(undefined4 *)
                           ((int)&nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce2 + 4);
           chain_id = nonce_read_out.nonce_buffer[nonce_read_out.p_rd].chain_num;
@@ -79,27 +79,27 @@ void * bitmain_scanhash(void *arg)
           midstate[8] = '\0';
           midstate[9] = '\0';
           midstate[10] = '\0';
-          midstate[11] = '\0';
-          midstate[12] = '\0';
-          midstate[13] = '\0';
-          midstate[14] = '\0';
-          midstate[15] = '\0';
-          midstate[16] = '\0';
-          midstate[17] = '\0';
-          midstate[18] = '\0';
-          midstate[19] = '\0';
-          midstate[20] = '\0';
-          midstate[21] = '\0';
-          midstate[22] = '\0';
-          midstate[23] = '\0';
-          midstate[24] = '\0';
-          midstate[25] = '\0';
-          midstate[26] = '\0';
-          midstate[27] = '\0';
-          midstate[28] = '\0';
-          midstate[29] = '\0';
-          midstate[30] = '\0';
-          midstate[31] = '\0';
+          midstate[0xb] = '\0';
+          midstate[0xc] = '\0';
+          midstate[0xd] = '\0';
+          midstate[0xe] = '\0';
+          midstate[0xf] = '\0';
+          midstate[0x10] = '\0';
+          midstate[0x11] = '\0';
+          midstate[0x12] = '\0';
+          midstate[0x13] = '\0';
+          midstate[0x14] = '\0';
+          midstate[0x15] = '\0';
+          midstate[0x16] = '\0';
+          midstate[0x17] = '\0';
+          midstate[0x18] = '\0';
+          midstate[0x19] = '\0';
+          midstate[0x1a] = '\0';
+          midstate[0x1b] = '\0';
+          midstate[0x1c] = '\0';
+          midstate[0x1d] = '\0';
+          midstate[0x1e] = '\0';
+          midstate[0x1f] = '\0';
           for (i = 0; i < 0x20; i = i + 1) {
             iVar3 = i;
             if (i < 0) {

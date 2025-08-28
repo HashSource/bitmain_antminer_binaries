@@ -46,7 +46,7 @@ _Bool subscribe_extranonce(pool *pool)
             snprintf(tmp42,0x800,"Stratum extranonce subscribe for pool %d",pool->pool_no);
             _applog(6,tmp42,false);
           }
-          goto out;
+          goto LAB_0003fb8c;
         }
         if (val_00 == (json_t *)0x0) {
           ss = strdup("(unknown reason)");
@@ -65,7 +65,7 @@ _Bool subscribe_extranonce(pool *pool)
               _applog(6,tmp42,false);
             }
             ret = true;
-            goto out;
+            goto LAB_0003fb8c;
           }
           if ((ss != (char *)0x0) &&
              (iVar3 = strcmp(ss,"Unrecognized request provided"), iVar3 == 0)) {
@@ -75,7 +75,7 @@ _Bool subscribe_extranonce(pool *pool)
               _applog(6,tmp42,false);
             }
             ret = true;
-            goto out;
+            goto LAB_0003fb8c;
           }
           ss = json_dumps(val_00,3);
         }
@@ -84,68 +84,17 @@ _Bool subscribe_extranonce(pool *pool)
           _applog(6,tmp42,false);
         }
         free(ss);
-        goto out;
+        goto LAB_0003fb8c;
       }
       free(s_00);
     }
     if ((opt_debug != false) &&
        (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-      tmp42[0] = s_Timed_out_waiting_for_response_e_0009fa10[0];
-      tmp42[1] = s_Timed_out_waiting_for_response_e_0009fa10[1];
-      tmp42[2] = s_Timed_out_waiting_for_response_e_0009fa10[2];
-      tmp42[3] = s_Timed_out_waiting_for_response_e_0009fa10[3];
-      tmp42[4] = s_Timed_out_waiting_for_response_e_0009fa10[4];
-      tmp42[5] = s_Timed_out_waiting_for_response_e_0009fa10[5];
-      tmp42[6] = s_Timed_out_waiting_for_response_e_0009fa10[6];
-      tmp42[7] = s_Timed_out_waiting_for_response_e_0009fa10[7];
-      tmp42[8] = s_Timed_out_waiting_for_response_e_0009fa10[8];
-      tmp42[9] = s_Timed_out_waiting_for_response_e_0009fa10[9];
-      tmp42[10] = s_Timed_out_waiting_for_response_e_0009fa10[10];
-      tmp42[11] = s_Timed_out_waiting_for_response_e_0009fa10[11];
-      tmp42[12] = s_Timed_out_waiting_for_response_e_0009fa10[12];
-      tmp42[13] = s_Timed_out_waiting_for_response_e_0009fa10[13];
-      tmp42[14] = s_Timed_out_waiting_for_response_e_0009fa10[14];
-      tmp42[15] = s_Timed_out_waiting_for_response_e_0009fa10[15];
-      tmp42[16] = s_Timed_out_waiting_for_response_e_0009fa10[16];
-      tmp42[17] = s_Timed_out_waiting_for_response_e_0009fa10[17];
-      tmp42[18] = s_Timed_out_waiting_for_response_e_0009fa10[18];
-      tmp42[19] = s_Timed_out_waiting_for_response_e_0009fa10[19];
-      tmp42[20] = s_Timed_out_waiting_for_response_e_0009fa10[20];
-      tmp42[21] = s_Timed_out_waiting_for_response_e_0009fa10[21];
-      tmp42[22] = s_Timed_out_waiting_for_response_e_0009fa10[22];
-      tmp42[23] = s_Timed_out_waiting_for_response_e_0009fa10[23];
-      tmp42[24] = s_Timed_out_waiting_for_response_e_0009fa10[24];
-      tmp42[25] = s_Timed_out_waiting_for_response_e_0009fa10[25];
-      tmp42[26] = s_Timed_out_waiting_for_response_e_0009fa10[26];
-      tmp42[27] = s_Timed_out_waiting_for_response_e_0009fa10[27];
-      tmp42[28] = s_Timed_out_waiting_for_response_e_0009fa10[28];
-      tmp42[29] = s_Timed_out_waiting_for_response_e_0009fa10[29];
-      tmp42[30] = s_Timed_out_waiting_for_response_e_0009fa10[30];
-      tmp42[31] = s_Timed_out_waiting_for_response_e_0009fa10[31];
-      tmp42[32] = s_Timed_out_waiting_for_response_e_0009fa10[32];
-      tmp42[33] = s_Timed_out_waiting_for_response_e_0009fa10[33];
-      tmp42[34] = s_Timed_out_waiting_for_response_e_0009fa10[34];
-      tmp42[35] = s_Timed_out_waiting_for_response_e_0009fa10[35];
-      tmp42[36] = s_Timed_out_waiting_for_response_e_0009fa10[36];
-      tmp42[37] = s_Timed_out_waiting_for_response_e_0009fa10[37];
-      tmp42[38] = s_Timed_out_waiting_for_response_e_0009fa10[38];
-      tmp42[39] = s_Timed_out_waiting_for_response_e_0009fa10[39];
-      tmp42[40] = s_Timed_out_waiting_for_response_e_0009fa10[40];
-      tmp42[41] = s_Timed_out_waiting_for_response_e_0009fa10[41];
-      tmp42[42] = s_Timed_out_waiting_for_response_e_0009fa10[42];
-      tmp42[43] = s_Timed_out_waiting_for_response_e_0009fa10[43];
-      tmp42[44] = s_Timed_out_waiting_for_response_e_0009fa10[44];
-      tmp42[45] = s_Timed_out_waiting_for_response_e_0009fa10[45];
-      tmp42[46] = s_Timed_out_waiting_for_response_e_0009fa10[46];
-      tmp42[47] = s_Timed_out_waiting_for_response_e_0009fa10[47];
-      tmp42[48] = s_Timed_out_waiting_for_response_e_0009fa10[48];
-      tmp42[49] = s_Timed_out_waiting_for_response_e_0009fa10[49];
-      tmp42[50] = s_Timed_out_waiting_for_response_e_0009fa10[50];
-      tmp42[51] = s_Timed_out_waiting_for_response_e_0009fa10[51];
+      builtin_strncpy(tmp42,"Timed out waiting for response extranonce.subscribe",0x34);
       _applog(7,tmp42,false);
     }
     ret = true;
-out:
+LAB_0003fb8c:
     json_decref(val);
   }
   else {

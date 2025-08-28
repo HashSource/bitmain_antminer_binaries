@@ -2,50 +2,42 @@
 char * ubsec_ctrl(undefined4 param_1,int param_2,undefined4 param_3,char *param_4)
 
 {
-  char **ppcVar1;
-  char *pcVar2;
+  char *pcVar1;
   
-  ppcVar1 = DAT_000de32c;
   if (param_2 == 200) {
     if (param_4 == (char *)0x0) {
-      pcVar2 = DAT_000de32c[1];
-      if (pcVar2 == (char *)0x0) {
-        pcVar2 = (char *)ERR_get_next_error_library();
-        ppcVar1[1] = pcVar2;
+      if (UBSEC_lib_error_code == 0) {
+        UBSEC_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error((int)pcVar2,100,0x43,DAT_000de330,0x227);
-      pcVar2 = (char *)0x0;
+      ERR_put_error(UBSEC_lib_error_code,100,0x43,"e_ubsec.c",0x227);
+      pcVar1 = (char *)0x0;
     }
-    else if (DAT_000de32c[2] == (char *)0x0) {
-      if (*DAT_000de32c != (char *)0x0) {
-        CRYPTO_free(*DAT_000de32c);
+    else if (ubsec_dso == 0) {
+      if (UBSEC_LIBNAME != (char *)0x0) {
+        CRYPTO_free(UBSEC_LIBNAME);
       }
-      *ppcVar1 = (char *)0x0;
-      pcVar2 = BUF_strdup(param_4);
-      *ppcVar1 = pcVar2;
-      if (pcVar2 != (char *)0x0) {
-        pcVar2 = (char *)0x1;
+      UBSEC_LIBNAME = (char *)0x0;
+      UBSEC_LIBNAME = BUF_strdup(param_4);
+      pcVar1 = UBSEC_LIBNAME;
+      if (UBSEC_LIBNAME != (char *)0x0) {
+        pcVar1 = (char *)0x1;
       }
     }
     else {
-      pcVar2 = DAT_000de32c[1];
-      if (pcVar2 == (char *)0x0) {
-        pcVar2 = (char *)ERR_get_next_error_library();
-        ppcVar1[1] = pcVar2;
+      if (UBSEC_lib_error_code == 0) {
+        UBSEC_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error((int)pcVar2,100,100,DAT_000de330,0x22b);
-      pcVar2 = (char *)0x0;
+      ERR_put_error(UBSEC_lib_error_code,100,100,"e_ubsec.c",0x22b);
+      pcVar1 = (char *)0x0;
     }
   }
   else {
-    pcVar2 = DAT_000de32c[1];
-    if (pcVar2 == (char *)0x0) {
-      pcVar2 = (char *)ERR_get_next_error_library();
-      ppcVar1[1] = pcVar2;
+    if (UBSEC_lib_error_code == 0) {
+      UBSEC_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error((int)pcVar2,100,0x66,DAT_000de330,0x232);
-    pcVar2 = (char *)0x0;
+    ERR_put_error(UBSEC_lib_error_code,100,0x66,"e_ubsec.c",0x232);
+    pcVar1 = (char *)0x0;
   }
-  return pcVar2;
+  return pcVar1;
 }
 

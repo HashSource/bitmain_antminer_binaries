@@ -1,5 +1,5 @@
 
-undefined4 erase_pic_freq(undefined param_1)
+undefined4 erase_pic_freq(undefined1 param_1)
 
 {
   uint local_c;

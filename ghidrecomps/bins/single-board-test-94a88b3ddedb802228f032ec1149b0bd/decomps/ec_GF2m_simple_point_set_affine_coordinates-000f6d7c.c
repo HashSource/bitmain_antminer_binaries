@@ -7,7 +7,7 @@ ec_GF2m_simple_point_set_affine_coordinates
   BIGNUM *pBVar1;
   
   if (param_3 == (BIGNUM *)0x0 || param_4 == (BIGNUM *)0x0) {
-    ERR_put_error(0x10,0xa3,0x43,DAT_000f6dfc,0x18c);
+    ERR_put_error(0x10,0xa3,0x43,"ec2_smpl.c",0x18c);
   }
   else {
     pBVar1 = BN_copy((BIGNUM *)(param_2 + 4),param_3);

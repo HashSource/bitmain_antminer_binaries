@@ -3,7 +3,7 @@ int X509_NAME_get_text_by_OBJ(X509_NAME *name,ASN1_OBJECT *obj,char *buf,int len
 
 {
   int iVar1;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   int iVar3;
   void *pvVar4;
   size_t *psVar5;
@@ -18,8 +18,8 @@ int X509_NAME_get_text_by_OBJ(X509_NAME *name,ASN1_OBJECT *obj,char *buf,int len
     if (0 < iVar1) {
       iVar7 = 0;
       do {
-        ppAVar2 = (ASN1_OBJECT **)sk_value(p_Var8,iVar7);
-        iVar3 = OBJ_cmp(*ppAVar2,obj);
+        puVar2 = (undefined4 *)sk_value(p_Var8,iVar7);
+        iVar3 = OBJ_cmp((ASN1_OBJECT *)*puVar2,obj);
         if (iVar3 == 0) {
           iVar1 = sk_num(&name->entries->stack);
           if ((iVar7 < iVar1) &&

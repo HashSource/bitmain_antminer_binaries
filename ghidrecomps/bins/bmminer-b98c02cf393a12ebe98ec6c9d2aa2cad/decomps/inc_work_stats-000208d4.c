@@ -12,7 +12,7 @@ void inc_work_stats(int param_1,int param_2,uint param_3)
   iVar1 = pthread_mutex_lock((pthread_mutex_t *)stats_lock);
   if (iVar1 != 0) {
                     /* WARNING: Subroutine does not return */
-    _mutex_lock_part_47_constprop_75(DAT_00020974,0x2233);
+    _mutex_lock_part_47_constprop_75("inc_work_stats",0x2233);
   }
   iVar5 = *(int *)(param_1 + 0x24);
   iVar1 = (int)param_3 >> 0x1f;
@@ -44,6 +44,6 @@ void inc_work_stats(int param_1,int param_2,uint param_3)
     return;
   }
                     /* WARNING: Subroutine does not return */
-  _mutex_unlock_noyield_part_48_constprop_77(DAT_00020974,0x2241);
+  _mutex_unlock_noyield_part_48_constprop_77("inc_work_stats",0x2241);
 }
 

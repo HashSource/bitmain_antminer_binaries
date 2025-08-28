@@ -3,20 +3,21 @@ int ssl_build_cert_chain(undefined4 *param_1,X509_STORE *param_2,uint param_3)
 
 {
   int iVar1;
+  _STACK *st;
   X509_STORE *ctx;
   ulong uVar2;
   int iVar3;
   char *pcVar4;
+  stack_st_X509 *chain;
   X509 *pXVar5;
-  X509 *pXVar6;
-  int iVar7;
-  X509 **ppXVar8;
+  int iVar6;
+  int *piVar7;
   X509_STORE_CTX XStack_a8;
   
-  ppXVar8 = (X509 **)*param_1;
-  pXVar6 = *ppXVar8;
-  if (pXVar6 == (X509 *)0x0) {
-    ERR_put_error(0x14,0x14c,0xb3,DAT_0007e624,0x484);
+  piVar7 = (int *)*param_1;
+  pXVar5 = (X509 *)*piVar7;
+  if (pXVar5 == (X509 *)0x0) {
+    ERR_put_error(0x14,0x14c,0xb3,"ssl_cert.c",0x484);
     iVar1 = 0;
   }
   else {
@@ -26,10 +27,10 @@ int ssl_build_cert_chain(undefined4 *param_1,X509_STORE *param_2,uint param_3)
         ctx = param_2;
       }
       if ((int)(param_3 << 0x1f) < 0) {
-        pXVar5 = ppXVar8[3];
+        chain = (stack_st_X509 *)piVar7[3];
       }
       else {
-        pXVar5 = (X509 *)0x0;
+        chain = (stack_st_X509 *)0x0;
       }
     }
     else {
@@ -41,35 +42,35 @@ LAB_0007e582:
         return 0;
       }
       while( true ) {
-        iVar3 = sk_num((_STACK *)ppXVar8[3]);
-        iVar7 = iVar1 + 1;
+        iVar3 = sk_num((_STACK *)piVar7[3]);
+        iVar6 = iVar1 + 1;
         if (iVar3 <= iVar1) break;
-        pXVar6 = (X509 *)sk_value((_STACK *)ppXVar8[3],iVar1);
-        iVar3 = X509_STORE_add_cert(ctx,pXVar6);
-        iVar1 = iVar7;
+        pXVar5 = (X509 *)sk_value((_STACK *)piVar7[3],iVar1);
+        iVar3 = X509_STORE_add_cert(ctx,pXVar5);
+        iVar1 = iVar6;
         if (iVar3 == 0) {
           uVar2 = ERR_peek_last_error();
           if ((uVar2 >> 0x18 != 0xb) || ((uVar2 & 0xfff) != 0x65)) goto LAB_0007e582;
           ERR_clear_error();
         }
       }
-      iVar1 = X509_STORE_add_cert(ctx,*ppXVar8);
+      iVar1 = X509_STORE_add_cert(ctx,(X509 *)*piVar7);
       if (iVar1 == 0) {
         uVar2 = ERR_peek_last_error();
         if ((uVar2 >> 0x18 != 0xb) || ((uVar2 & 0xfff) != 0x65)) goto LAB_0007e582;
         ERR_clear_error();
-        pXVar6 = *ppXVar8;
-        pXVar5 = (X509 *)0x0;
+        pXVar5 = (X509 *)*piVar7;
+        chain = (stack_st_X509 *)0x0;
       }
       else {
-        pXVar6 = *ppXVar8;
-        pXVar5 = (X509 *)0x0;
+        pXVar5 = (X509 *)*piVar7;
+        chain = (stack_st_X509 *)0x0;
       }
     }
-    iVar1 = X509_STORE_CTX_init(&XStack_a8,ctx,pXVar6,(stack_st_X509 *)pXVar5);
+    iVar1 = X509_STORE_CTX_init(&XStack_a8,ctx,pXVar5,chain);
     param_2 = ctx;
     if (iVar1 == 0) {
-      ERR_put_error(0x14,0x14c,0xb,DAT_0007e624,0x4a8);
+      ERR_put_error(0x14,0x14c,0xb,"ssl_cert.c",0x4a8);
       iVar1 = 0;
     }
     else {
@@ -77,10 +78,10 @@ LAB_0007e582:
       iVar1 = X509_verify_cert(&XStack_a8);
       if (iVar1 < 1) {
         if ((param_3 & 8) == 0) {
-          ERR_put_error(0x14,0x14c,0x86,DAT_0007e624,0x4b9);
+          ERR_put_error(0x14,0x14c,0x86,"ssl_cert.c",0x4b9);
           iVar1 = X509_STORE_CTX_get_error(&XStack_a8);
           pcVar4 = X509_verify_cert_error_string(iVar1);
-          ERR_add_error_data(2,DAT_0007e628,pcVar4);
+          ERR_add_error_data(2,"Verify error:",pcVar4);
           X509_STORE_CTX_cleanup(&XStack_a8);
           iVar1 = 0;
           goto joined_r0x0007e4da;
@@ -96,26 +97,26 @@ LAB_0007e582:
       else {
         iVar1 = 0;
       }
-      pXVar6 = (X509 *)X509_STORE_CTX_get1_chain(&XStack_a8);
+      st = &X509_STORE_CTX_get1_chain(&XStack_a8)->stack;
       X509_STORE_CTX_cleanup(&XStack_a8);
-      if (ppXVar8[3] != (X509 *)0x0) {
-        sk_pop_free((_STACK *)ppXVar8[3],DAT_0007e620);
+      if ((_STACK *)piVar7[3] != (_STACK *)0x0) {
+        sk_pop_free((_STACK *)piVar7[3],X509_free);
       }
-      pXVar5 = (X509 *)sk_shift((_STACK *)pXVar6);
+      pXVar5 = (X509 *)sk_shift(st);
       X509_free(pXVar5);
-      if (((int)(param_3 << 0x1e) < 0) && (iVar3 = sk_num((_STACK *)pXVar6), 0 < iVar3)) {
-        iVar3 = sk_num((_STACK *)pXVar6);
-        pXVar5 = (X509 *)sk_value((_STACK *)pXVar6,iVar3 + -1);
+      if (((int)(param_3 << 0x1e) < 0) && (iVar3 = sk_num(st), 0 < iVar3)) {
+        iVar3 = sk_num(st);
+        pXVar5 = (X509 *)sk_value(st,iVar3 + -1);
         X509_check_purpose(pXVar5,-1,0);
         if ((int)(pXVar5->ex_flags << 0x12) < 0) {
-          pXVar5 = (X509 *)sk_pop((_STACK *)pXVar6);
+          pXVar5 = (X509 *)sk_pop(st);
           X509_free(pXVar5);
         }
       }
       if (iVar1 == 0) {
         iVar1 = 1;
       }
-      ppXVar8[3] = pXVar6;
+      piVar7[3] = (int)st;
     }
   }
 joined_r0x0007e4da:

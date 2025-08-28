@@ -1,164 +1,131 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void processTEST(void)
 
 {
-  int *piVar1;
-  undefined4 *puVar2;
-  undefined4 *puVar3;
-  uchar uVar4;
-  byte bVar5;
-  int iVar6;
-  int testID;
-  uchar temp_voltage_1;
-  int chainIndex;
-  int i;
-  uchar temp_voltage;
-  int iVar7;
-  int set_vol_value;
-  int iVar8;
-  int chainIndex_00;
-  uint uVar9;
-  double dVar10;
+  uchar uVar1;
+  byte bVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  uint uVar6;
+  double dVar7;
   char logstr [256];
   
-  iVar6 = readTestID();
-  puVar3 = DAT_00039a28;
-  puVar2 = DAT_00039a20;
-  piVar1 = DAT_000399fc;
-  if (iVar6 == 0xb) {
+  iVar3 = readTestID();
+  if (iVar3 == 0xb) {
     saveTestID(0);
-    sprintf(logstr,DAT_00039a1c,0xb);
+    sprintf(logstr,"get TEST ID=%d do 8xPatten test\n",0xb);
     writeInitLogFile(logstr);
     do8xPattenTest();
   }
-  else if (iVar6 == 0xc) {
+  else if (iVar3 == 0xc) {
     saveTestID(0);
-    sprintf(logstr,DAT_00039a24,0xc);
+    sprintf(logstr,"get TEST ID=%d do bitmain_core_reInit test\n",0xc);
     writeInitLogFile(logstr);
     bitmain_core_reInit();
     reCalculateAVG();
-    logstr._0_4_ = *puVar2;
-    logstr._4_4_ = puVar2[1];
-    logstr._8_4_ = puVar2[2];
-    logstr._12_4_ = puVar2[3];
-    logstr._16_4_ = puVar2[4];
-    logstr._20_4_ = puVar2[5];
-    logstr._24_4_ = puVar2[6];
-    logstr._28_2_ = (undefined2)puVar2[7];
-    logstr[30] = (char)((uint)puVar2[7] >> 0x10);
+    builtin_strncpy(logstr,"Done bitmain_core_reInit tes",0x1c);
+    logstr[0x1c] = 't';
+    logstr[0x1d] = '\n';
+    logstr[0x1e] = '\0';
     writeInitLogFile(logstr);
   }
-  else if (iVar6 == 0xd) {
+  else if (iVar3 == 0xd) {
     saveTestID(0);
-    sprintf(logstr,DAT_00039a2c,0xd);
+    sprintf(logstr,"get TEST ID=%d do doReInitTest test\n",0xd);
     writeInitLogFile(logstr);
     doReInitTest();
     reCalculateAVG();
-    logstr._0_4_ = *puVar3;
-    logstr._4_4_ = puVar3[1];
-    logstr._8_4_ = puVar3[2];
-    logstr._12_4_ = puVar3[3];
-    logstr._16_4_ = puVar3[4];
-    logstr._20_4_ = puVar3[5];
+    builtin_strncpy(logstr,"Done doReInitTest test\n",0x18);
     writeInitLogFile(logstr);
   }
-  else if (iVar6 == 0xe) {
+  else if (iVar3 == 0xe) {
     saveTestID(0);
-    sprintf(logstr,DAT_00039a10,0xe);
+    sprintf(logstr,"get TEST ID=%d do do get asicnum\n",0xe);
     writeInitLogFile(logstr);
-    iVar6 = 1;
+    iVar3 = 1;
     do {
       while( true ) {
-        iVar7 = *piVar1;
-        iVar8 = iVar6 + 1;
-        chainIndex_00 = iVar6 + -1;
-        if (*(int *)(iVar7 + iVar8 * 4) != 1) break;
-        *(undefined *)(iVar7 + chainIndex_00 + 0x2faa) = 0;
-        check_asic_reg_oneChain(chainIndex_00,0);
-        sprintf(logstr,DAT_00039a14,iVar6,(uint)*(byte *)(*piVar1 + chainIndex_00 + 0x2faa));
+        iVar4 = iVar3 + 1;
+        if (dev->chain_exist[iVar3 + -1] != 1) break;
+        *(undefined1 *)((int)dev->temp + iVar3 + 0x3f) = 0;
+        check_asic_reg_oneChain(iVar3 + -1,0);
+        sprintf(logstr,"Chain[J%d] has %d asic\n",iVar3,
+                (uint)*(byte *)((int)dev->temp + iVar3 + 0x3f));
         writeInitLogFile(logstr);
-        iVar6 = iVar8;
-        if (iVar8 == 0x11) goto LAB_0003992a;
+        iVar3 = iVar4;
+        if (iVar4 == 0x11) goto LAB_0003992a;
       }
-      iVar6 = iVar8;
-    } while (iVar8 != 0x11);
+      iVar3 = iVar4;
+    } while (iVar4 != 0x11);
 LAB_0003992a:
-    logstr._0_4_ = *DAT_00039a18;
-    logstr._4_4_ = DAT_00039a18[1];
-    logstr._8_4_ = DAT_00039a18[2];
-    logstr._12_4_ = DAT_00039a18[3];
-    logstr._16_4_ = DAT_00039a18[4];
-    logstr[20] = (char)DAT_00039a18[5];
+    builtin_strncpy(logstr,"Done do get asicnum\n",0x14);
+    logstr._20_4_ = logstr._20_4_ & 0xffffff00;
     writeInitLogFile(logstr);
   }
   else {
-    if (iVar6 - 0x65U < 0x10) {
+    if (iVar3 - 0x65U < 0x10) {
       saveTestID(0);
-      iVar7 = iVar6 % 100;
-      uVar4 = (char)iVar7 + 0xff;
-      sprintf(logstr,DAT_000399f8,iVar6,iVar7);
+      iVar4 = iVar3 % 100;
+      uVar1 = (char)iVar4 + 0xff;
+      sprintf(logstr,"get TEST ID=%d up voltage 0.1V on Chain[J%d]\n",iVar3,iVar4);
       writeInitLogFile(logstr);
-      if (*(int *)(*DAT_000399fc + (iVar7 + 1) * 4) == 1) {
-        bVar5 = get_pic_voltage(uVar4);
-        iVar6 = ((int)(longlong)
-                      (((DAT_00039b40 / ((double)(longlong)(int)(uint)bVar5 + DAT_00039b38) +
-                        DAT_00039b48) * DAT_00039b50) / 4.75) / 10) * 10;
-        if (iVar6 < 0x3a3) {
-          iVar8 = iVar6 + 10;
+      if (dev->chain_exist[iVar4 + -1] == 1) {
+        bVar2 = get_pic_voltage(uVar1);
+        iVar3 = ((int)(longlong)(((364.0704 / ((double)bVar2 + 30.72) + 32.79) * 100.0) / 4.75) / 10
+                ) * 10;
+        if (iVar3 < 0x3a3) {
+          iVar5 = iVar3 + 10;
         }
         else {
-          sprintf(logstr,DAT_00039b64,iVar7,iVar6);
-          iVar8 = 0x3ac;
+          sprintf(logstr,"Chain[J%d] current vol=%d , too high! will set to 940\n",iVar4,iVar3);
+          iVar5 = 0x3ac;
           writeInitLogFile(logstr);
         }
-        sprintf(logstr,DAT_00039b58,iVar7,iVar6,iVar8);
+        sprintf(logstr,"Try to up 0.1V on chain[J%d] from vol=%d to %d...\n",iVar4,iVar3,iVar5);
         writeInitLogFile(logstr);
-        dVar10 = DAT_00039b40 / (((double)(longlong)iVar8 * 4.75) / DAT_00039b50 - DAT_00039b48) -
-                 DAT_00039b38;
-        uVar9 = (uint)(0.0 < dVar10) * (int)(longlong)dVar10;
-        sprintf(logstr,DAT_00039b5c,uVar9 & 0xff,iVar7);
+        dVar7 = 364.0704 / (((double)(longlong)iVar5 * 4.75) / 100.0 - 32.79) - 30.72;
+        uVar6 = (uint)(0.0 < dVar7) * (int)(longlong)dVar7;
+        sprintf(logstr,"now set pic voltage=%d on chain[J%d]\n",uVar6 & 0xff,iVar4);
         writeInitLogFile(logstr);
-        set_pic_voltage(uVar4,(uchar)uVar9);
+        set_pic_voltage(uVar1,(uchar)uVar6);
         return;
       }
     }
     else {
-      if (0xf < iVar6 - 0xc9U) {
+      if (0xf < iVar3 - 0xc9U) {
         return;
       }
       saveTestID(0);
-      iVar7 = iVar6 % 100;
-      uVar4 = (char)iVar7 + 0xff;
-      sprintf(logstr,DAT_00039a04,iVar6,iVar7);
+      iVar4 = iVar3 % 100;
+      uVar1 = (char)iVar4 + 0xff;
+      sprintf(logstr,"get TEST ID=%d down voltage 0.1V on Chain[J%d]\n",iVar3,iVar4);
       writeInitLogFile(logstr);
-      if (*(int *)(*DAT_000399fc + (iVar7 + 1) * 4) == 1) {
-        bVar5 = get_pic_voltage(uVar4);
-        iVar6 = ((int)(longlong)
-                      (((DAT_000399e0 / ((double)(longlong)(int)(uint)bVar5 + DAT_000399d8) +
-                        DAT_000399e8) * DAT_000399f0) / 4.75) / 10) * 10;
-        if (iVar6 < 0x366) {
-          sprintf(logstr,DAT_00039b60,iVar7,iVar6);
-          set_vol_value = 0x35c;
+      if (dev->chain_exist[iVar4 + -1] == 1) {
+        bVar2 = get_pic_voltage(uVar1);
+        iVar3 = ((int)(longlong)(((364.0704 / ((double)bVar2 + 30.72) + 32.79) * 100.0) / 4.75) / 10
+                ) * 10;
+        if (iVar3 < 0x366) {
+          sprintf(logstr,"Chain[J%d] current vol=%d , too low! will set to 860\n",iVar4,iVar3);
+          iVar5 = 0x35c;
           writeInitLogFile(logstr);
         }
         else {
-          set_vol_value = iVar6 + -10;
+          iVar5 = iVar3 + -10;
         }
-        sprintf(logstr,DAT_00039a08,iVar7,iVar6,set_vol_value);
+        sprintf(logstr,"Try to down 0.1V on chain[J%d] from vol=%d to %d...\n",iVar4,iVar3,iVar5);
         writeInitLogFile(logstr);
-        dVar10 = DAT_000399e0 /
-                 (((double)(longlong)set_vol_value * 4.75) / DAT_000399f0 - DAT_000399e8) -
-                 DAT_000399d8;
-        uVar9 = (uint)(0.0 < dVar10) * (int)(longlong)dVar10;
-        sprintf(logstr,DAT_00039a0c,uVar9 & 0xff,iVar7);
+        dVar7 = 364.0704 / (((double)(longlong)iVar5 * 4.75) / 100.0 - 32.79) - 30.72;
+        uVar6 = (uint)(0.0 < dVar7) * (int)(longlong)dVar7;
+        sprintf(logstr,"now set pic voltage=%d on chain[J%d]\n",uVar6 & 0xff,iVar4);
         writeInitLogFile(logstr);
-        set_pic_voltage(uVar4,(uchar)uVar9);
+        set_pic_voltage(uVar1,(uchar)uVar6);
         return;
       }
     }
-    sprintf(logstr,DAT_00039a00,iVar6 % 100);
+    sprintf(logstr,"There is hashboard on Chain[J%d]\n",iVar3 % 100);
     writeInitLogFile(logstr);
   }
   return;

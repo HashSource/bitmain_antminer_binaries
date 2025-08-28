@@ -8,7 +8,7 @@ int RSA_padding_add_X931(uchar *to,int tlen,uchar *f,int fl)
   
   iVar1 = tlen - fl;
   if (iVar1 + -2 < 0) {
-    ERR_put_error(4,0x7f,0x6e,DAT_000fc514,0x51);
+    ERR_put_error(4,0x7f,0x6e,"rsa_x931.c",0x51);
     iVar1 = -1;
   }
   else {

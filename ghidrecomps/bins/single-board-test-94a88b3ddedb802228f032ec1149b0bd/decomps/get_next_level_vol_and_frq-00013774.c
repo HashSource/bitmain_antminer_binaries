@@ -28,12 +28,11 @@ undefined4 get_next_level_vol_and_frq(int param_1,undefined4 *param_2,uint *para
     if (5 < log_level) {
       pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
-        fprintf(pFVar1,"%s:%d: freq_pll_1385_num = %d\n","board_frq_tuning.c",0x19c,
-                lenghth_of_freq_pll_1385);
+        fprintf(pFVar1,"%s:%d: freq_pll_1385_num = %d\n","board_frq_tuning.c",0x19c,0x6a);
       }
       fclose(pFVar1);
     }
-    for (; local_14 < lenghth_of_freq_pll_1385; local_14 = local_14 + 1) {
+    for (; local_14 < 0x6a; local_14 = local_14 + 1) {
       iVar2 = atoi(*(char **)(freq_pll_1385 + local_14 * 0x10));
       iVar2 = (iVar2 * 0x2568) / 1000;
       if (param_1 <= iVar2) {

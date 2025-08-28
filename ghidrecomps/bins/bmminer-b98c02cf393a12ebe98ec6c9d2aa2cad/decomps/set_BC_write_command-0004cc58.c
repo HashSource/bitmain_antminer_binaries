@@ -23,12 +23,12 @@ void set_BC_write_command(int param_1)
   if (log_level < 6) {
     return;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
     fprintf(__stream,"%s:%d:%s: Error: set_BC_write_command wait buffer ready timeout!\n",
-            "znyq7010.c",0x1f1,DAT_0004cce0);
+            "znyq7010.c",0x1f1,"set_BC_write_command");
   }
-  (*(code *)PTR_fclose_0007cfe8)(__stream);
+  fclose(__stream);
   return;
 }
 

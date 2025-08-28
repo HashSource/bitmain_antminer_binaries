@@ -13,9 +13,9 @@ BIGNUM * BN_bin2bn(uchar *s,int len,BIGNUM *ret)
   
   ptr = (BIGNUM *)0x0;
   if (ret == (BIGNUM *)0x0) {
-    ptr = (BIGNUM *)CRYPTO_malloc(0x14,DAT_0009d4e8,0x110);
+    ptr = (BIGNUM *)CRYPTO_malloc(0x14,"bn_lib.c",0x110);
     if (ptr == (BIGNUM *)0x0) {
-      ERR_put_error(3,0x71,0x41,DAT_0009d4e8,0x111);
+      ERR_put_error(3,0x71,0x41,"bn_lib.c",0x111);
       return (BIGNUM *)0x0;
     }
     ptr->top = 0;

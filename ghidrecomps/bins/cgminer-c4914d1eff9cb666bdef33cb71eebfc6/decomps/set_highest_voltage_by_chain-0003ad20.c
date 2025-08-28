@@ -3,16 +3,12 @@ void set_highest_voltage_by_chain(uint8_t chain,double highest_voltage)
 
 {
   FILE *__stream;
-  undefined8 in_d0;
   double highest_voltage_local;
   uint8_t chain_local;
   FILE *pFile;
   
   if (dev->chain_exist[chain] == 1) {
-    highest_voltage_local._0_4_ = (undefined4)in_d0;
-    highest_voltage_local._4_4_ = (undefined4)((ulonglong)in_d0 >> 0x20);
-    *(undefined4 *)&power_info[chain].highest_voltage = highest_voltage_local._0_4_;
-    *(undefined4 *)((int)&power_info[chain].highest_voltage + 4) = highest_voltage_local._4_4_;
+    power_info[chain].highest_voltage = highest_voltage;
   }
   else if (3 < log_level) {
     print_crt_time_to_file(log_file,3);

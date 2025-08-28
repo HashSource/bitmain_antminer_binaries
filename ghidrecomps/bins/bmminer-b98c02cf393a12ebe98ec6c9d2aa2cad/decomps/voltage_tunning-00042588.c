@@ -19,24 +19,24 @@ uint voltage_tunning(int param_1,int *param_2)
   }
   dVar5 = ABS(in_d1 - in_d0);
   if (3 < log_level) {
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: last_iic_data = %d\n","power.c",0x172,DAT_00042820,uVar4);
+      fprintf(pFVar1,"%s:%d:%s: last_iic_data = %d\n","power.c",0x172,"voltage_tunning",uVar4);
     }
     fclose(pFVar1);
   }
-  if ((int)((uint)(dVar5 < DAT_000427f8) << 0x1f) < 0) {
+  if ((int)((uint)(dVar5 < 0.02) << 0x1f) < 0) {
     iVar2 = is7007_Board();
     if (iVar2 == 0) {
       if (3 < log_level) {
-        pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar1 = fopen(log_file,"a+");
         if (pFVar1 != (FILE *)0x0) {
           fprintf(pFVar1,"%s:%d:%s: It\'s very close to target voltage, stop tunning\n","power.c",
-                  0x17e,DAT_00042820);
+                  0x17e,"voltage_tunning");
         }
         fclose(pFVar1);
       }
-      *(undefined *)(param_2 + 1) = 1;
+      *(undefined1 *)(param_2 + 1) = 1;
       return uVar4;
     }
     iVar2 = param_2[9];
@@ -45,32 +45,30 @@ uint voltage_tunning(int param_1,int *param_2)
       return uVar4;
     }
     if (3 < log_level) {
-      pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,"%s:%d:%s: It\'s very close to target voltage, stop tunning\n","power.c",
-                0x178,DAT_00042820);
+                0x178,"voltage_tunning");
       }
       fclose(pFVar1);
     }
-    *(undefined *)(param_2 + 1) = 1;
+    *(undefined1 *)(param_2 + 1) = 1;
     param_2[9] = 0;
     return uVar4;
   }
   if (param_1 == 0) {
-    if (dVar5 == 0.25 || dVar5 < 0.25 != NAN(dVar5)) {
+    if (dVar5 <= 0.25) {
       iVar2 = *param_2;
-      if (dVar5 == DAT_00042800 || dVar5 < DAT_00042800 != (NAN(dVar5) || NAN(DAT_00042800))) {
+      if (dVar5 <= 0.13) {
 LAB_0004274a:
-        if (dVar5 == DAT_00042808 || dVar5 < DAT_00042808 != (NAN(dVar5) || NAN(DAT_00042808))) {
-          if (dVar5 == DAT_00042810 || dVar5 < DAT_00042810 != (NAN(dVar5) || NAN(DAT_00042810))) {
-            iVar3 = 1;
-          }
-          else {
-            iVar3 = 2;
-          }
+        if (0.07 < dVar5) {
+          iVar3 = 4;
+        }
+        else if (0.05 < dVar5) {
+          iVar3 = 2;
         }
         else {
-          iVar3 = 4;
+          iVar3 = 1;
         }
         goto LAB_000425e6;
       }
@@ -80,33 +78,30 @@ LAB_0004274a:
     else {
       iVar2 = *param_2;
       if (iVar2 != 2) {
-        if (dVar5 == DAT_00042800 || dVar5 < DAT_00042800 != (NAN(dVar5) || NAN(DAT_00042800)))
-        goto LAB_0004274a;
+        if (dVar5 <= 0.13) goto LAB_0004274a;
 LAB_0004263c:
-        if (dVar5 == DAT_00042808 || dVar5 < DAT_00042808 != (NAN(dVar5) || NAN(DAT_00042808))) {
-          if (dVar5 == DAT_00042810 || dVar5 < DAT_00042810 != (NAN(dVar5) || NAN(DAT_00042810))) {
-            iVar3 = 1;
-          }
-          else {
-            iVar3 = 2;
-          }
+        if (0.07 < dVar5) {
+          iVar3 = 4;
+        }
+        else if (0.05 < dVar5) {
+          iVar3 = 2;
         }
         else {
-          iVar3 = 4;
+          iVar3 = 1;
         }
         goto LAB_000425ec;
       }
       iVar3 = 0x10;
     }
 LAB_0004270a:
-    iVar2 = (uint)(dVar5 < DAT_00042818) << 0x1f;
+    iVar2 = (uint)(dVar5 < 0.03) << 0x1f;
     if (-1 < iVar2) {
       iVar3 = iVar3 << 1;
     }
     if (iVar2 < 0) {
       iVar3 = 1;
     }
-    if (in_d1 == in_d0 || in_d1 < in_d0 != (NAN(in_d1) || NAN(in_d0))) {
+    if (in_d1 <= in_d0) {
 LAB_000426ea:
       uVar4 = uVar4 + iVar3;
       if (0xfe < (int)uVar4) {
@@ -121,7 +116,7 @@ LAB_000426ea:
 LAB_000425e6:
     if (iVar2 == 2) goto LAB_0004270a;
 LAB_000425ec:
-    if (in_d1 == in_d0 || in_d1 < in_d0 != (NAN(in_d1) || NAN(in_d0))) {
+    if (in_d1 <= in_d0) {
       if (iVar2 == 1) goto LAB_000425fc;
       goto LAB_000426ea;
     }

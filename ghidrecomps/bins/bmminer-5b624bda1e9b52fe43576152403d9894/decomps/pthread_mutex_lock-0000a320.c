@@ -6,9 +6,7 @@ int pthread_mutex_lock(pthread_mutex_t *__mutex)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a328. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f248)();
+  iVar1 = (*(code *)(undefined *)0x0)(__mutex);
   return iVar1;
 }
 

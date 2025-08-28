@@ -4,10 +4,11 @@ void * watchpool_thread(void *userdata)
 {
   double dVar1;
   _Bool _Var2;
-  pool *ppVar3;
-  int iVar4;
-  uint uVar5;
-  int iVar6;
+  uint uVar3;
+  pool *ppVar4;
+  int iVar5;
+  uint uVar6;
+  int iVar7;
   void *userdata_local;
   char tmp42 [2048];
   timeval now;
@@ -29,37 +30,37 @@ void * watchpool_thread(void *userdata)
     }
     cgtime(&now);
     for (i = 0; i < total_pools; i = i + 1) {
-      ppVar3 = pools[i];
+      ppVar4 = pools[i];
       if ((opt_benchmark != true) && (opt_benchfile == (char *)0x0)) {
-        reap_curl(ppVar3);
-        prune_stratum_shares(ppVar3);
+        reap_curl(ppVar4);
+        prune_stratum_shares(ppVar4);
       }
       if (0x77 < intervals) {
-        uVar5 = ppVar3->last_shares;
-        dVar1 = (double)__aeabi_l2d(*(uint *)&ppVar3->diff1 - uVar5,
-                                    *(int *)((int)&ppVar3->diff1 + 4) -
-                                    (((int)uVar5 >> 0x1f) + (uint)(*(uint *)&ppVar3->diff1 < uVar5))
-                                   );
-        ppVar3->last_shares = *(int *)&ppVar3->diff1;
-        ppVar3->utility = (ppVar3->utility + dVar1 * DAT_0005f720) / DAT_0005f728;
-        ppVar3->shares = (int)(longlong)ppVar3->utility;
+        uVar3 = (uint)ppVar4->diff1;
+        uVar6 = ppVar4->last_shares;
+        dVar1 = (double)__aeabi_l2d(uVar3 - uVar6,
+                                    *(int *)((int)&ppVar4->diff1 + 4) -
+                                    (((int)uVar6 >> 0x1f) + (uint)(uVar3 < uVar6)));
+        ppVar4->last_shares = (int)ppVar4->diff1;
+        ppVar4->utility = (ppVar4->utility + dVar1 * 0.63) / 1.63;
+        ppVar4->shares = (int)(longlong)ppVar4->utility;
       }
-      if ((ppVar3->enabled != POOL_DISABLED) && (ppVar3->testing == false)) {
-        _Var2 = pool_active(ppVar3,true);
+      if ((ppVar4->enabled != POOL_DISABLED) && (ppVar4->testing == false)) {
+        _Var2 = pool_active(ppVar4,true);
         if (_Var2) {
-          _Var2 = pool_tclear(ppVar3,&ppVar3->idle);
+          _Var2 = pool_tclear(ppVar4,&ppVar4->idle);
           if (_Var2) {
-            pool_resus(ppVar3);
+            pool_resus(ppVar4);
           }
         }
         else {
-          cgtime(&ppVar3->tv_idle);
+          cgtime(&ppVar4->tv_idle);
         }
-        if ((((ppVar3->idle != true) && (pool_strategy == POOL_FAILOVER)) &&
-            (iVar6 = ppVar3->prio, iVar4 = cp_prio(), iVar6 < iVar4)) &&
-           (opt_pool_fallback < now.tv_sec - (ppVar3->tv_idle).tv_sec)) {
+        if ((((ppVar4->idle != true) && (pool_strategy == POOL_FAILOVER)) &&
+            (iVar7 = ppVar4->prio, iVar5 = cp_prio(), iVar7 < iVar5)) &&
+           (opt_pool_fallback < now.tv_sec - (ppVar4->tv_idle).tv_sec)) {
           if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
-            snprintf(tmp42,0x800,"Pool %d %s stable for >%d seconds",ppVar3->pool_no,ppVar3->rpc_url
+            snprintf(tmp42,0x800,"Pool %d %s stable for >%d seconds",ppVar4->pool_no,ppVar4->rpc_url
                      ,opt_pool_fallback);
             _applog(4,tmp42,false);
           }
@@ -67,14 +68,14 @@ void * watchpool_thread(void *userdata)
         }
       }
     }
-    ppVar3 = current_pool();
-    if (ppVar3->idle != false) {
+    ppVar4 = current_pool();
+    if (ppVar4->idle != false) {
       switch_pools((pool *)0x0);
     }
     if ((pool_strategy == POOL_ROTATE) &&
-       (iVar4 = now.tv_sec - rotate_tv.tv_sec,
-       iVar4 != opt_rotate_period * 0x3c &&
-       iVar4 + opt_rotate_period * -0x3c < 0 == SBORROW4(iVar4,opt_rotate_period * 0x3c))) {
+       (iVar5 = now.tv_sec - rotate_tv.tv_sec,
+       iVar5 != opt_rotate_period * 0x3c &&
+       iVar5 + opt_rotate_period * -0x3c < 0 == SBORROW4(iVar5,opt_rotate_period * 0x3c))) {
       cgtime(&rotate_tv);
       switch_pools((pool *)0x0);
     }

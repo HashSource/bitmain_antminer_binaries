@@ -1,5 +1,5 @@
 
-uint bn_add_part_words(ulong *param_1,ulong *param_2,ulong *param_3,int param_4,int param_5)
+ulong bn_add_part_words(ulong *param_1,ulong *param_2,ulong *param_3,int param_4,int param_5)
 
 {
   uint uVar1;
@@ -47,12 +47,12 @@ LAB_000f0bbc:
         return 0;
       }
       uVar2 = uVar1 + param_3[param_4];
-      uVar1 = (uint)(CARRY4(uVar1,param_3[param_4]) != false);
+      uVar1 = (uint)CARRY4(uVar1,param_3[param_4]);
       param_1[param_4] = uVar2;
       if (param_5 != -1) {
         uVar5 = puVar4[1];
         puVar7[1] = uVar1 + uVar5;
-        uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+        uVar1 = (uint)CARRY4(uVar1,uVar5);
         if (param_5 != -2) {
           iVar9 = (-param_5 - 3U & 0xfffffffc) + param_5;
           iVar8 = (-param_5 - 2U & 0xfffffffc) + param_5;
@@ -61,14 +61,14 @@ LAB_000f0bbc:
           do {
             uVar5 = puVar3[2];
             puVar6[2] = uVar1 + uVar5;
-            uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+            uVar1 = (uint)CARRY4(uVar1,uVar5);
             if (param_5 + 3 < 0 == SCARRY4(param_5,3)) {
               return uVar1;
             }
             uVar5 = puVar3[3];
             puVar4 = puVar3 + 4;
             puVar6[3] = uVar1 + uVar5;
-            uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+            uVar1 = (uint)CARRY4(uVar1,uVar5);
             param_5 = param_5 + 4;
             puVar7 = puVar6 + 4;
             if (param_5 == 0) {
@@ -83,7 +83,7 @@ LAB_000f0bbc:
             }
             uVar5 = puVar3[5];
             puVar6[5] = uVar1 + uVar5;
-            uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+            uVar1 = (uint)CARRY4(uVar1,uVar5);
             puVar3 = puVar4;
             puVar6 = puVar7;
           } while (param_5 != iVar9 + 4);
@@ -119,11 +119,11 @@ LAB_000f0ae6:
       }
       uVar5 = param_2[param_4];
       param_1[param_4] = uVar1 + uVar5;
-      uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+      uVar1 = (uint)CARRY4(uVar1,uVar5);
       if (param_5 != 1) {
         uVar5 = puVar4[1];
         puVar7[1] = uVar1 + uVar5;
-        uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+        uVar1 = (uint)CARRY4(uVar1,uVar5);
         if (param_5 != 2) {
           uVar5 = param_5 - 2;
           param_5 = param_5 + -4;
@@ -133,14 +133,14 @@ LAB_000f0ae6:
           do {
             uVar5 = puVar3[2];
             puVar6[2] = uVar1 + uVar5;
-            uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+            uVar1 = (uint)CARRY4(uVar1,uVar5);
             if (param_5 == -1) {
               return uVar1;
             }
             uVar5 = puVar3[3];
             puVar4 = puVar3 + 4;
             puVar6[3] = uVar1 + uVar5;
-            uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+            uVar1 = (uint)CARRY4(uVar1,uVar5);
             if (param_5 == 0) {
               return uVar1;
             }
@@ -161,7 +161,7 @@ LAB_000f0ae6:
             }
             uVar5 = puVar3[5];
             puVar6[5] = uVar1 + uVar5;
-            uVar1 = (uint)(CARRY4(uVar1,uVar5) != false);
+            uVar1 = (uint)CARRY4(uVar1,uVar5);
             puVar3 = puVar4;
             puVar6 = puVar7;
           } while (param_5 != -2);

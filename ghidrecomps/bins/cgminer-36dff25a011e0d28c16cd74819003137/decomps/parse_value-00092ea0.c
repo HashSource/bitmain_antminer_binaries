@@ -1,6 +1,4 @@
 
-/* WARNING: Variable defined which should be unmapped: error-local */
-
 json_t * parse_value(lex_t *lex,size_t flags,json_error_t *error)
 
 {
@@ -8,7 +6,6 @@ json_t * parse_value(lex_t *lex,size_t flags,json_error_t *error)
   int iVar2;
   char *value_00;
   size_t n;
-  undefined4 uStack_28;
   json_error_t *error_local;
   size_t flags_local;
   lex_t *lex_local;
@@ -23,7 +20,7 @@ json_t * parse_value(lex_t *lex,size_t flags,json_error_t *error)
   }
   iVar2 = lex->token;
   if (iVar2 == 0x101) {
-    json = json_integer(CONCAT44(error,uStack_28));
+    json = json_integer((lex->value).integer);
   }
   else if (iVar2 < 0x102) {
     if (iVar2 == 0x5b) {
@@ -62,7 +59,7 @@ LAB_000930b4:
     json = json_true();
   }
   else if (iVar2 < 0x103) {
-    json = json_real((double)CONCAT44(error,uStack_28));
+    json = json_real((lex->value).real);
   }
   else if (iVar2 == 0x104) {
     json = json_false();

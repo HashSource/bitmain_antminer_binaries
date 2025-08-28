@@ -38,14 +38,14 @@ void summary(io_data *io_data,long c,char *param,_Bool isjson,char group)
   if (total_secs == 0.0) {
     dVar4 = 1.0;
   }
-  utility = (dVar3 / dVar4) * DAT_0000e3a8;
+  utility = (dVar3 / dVar4) * 60.0;
   ghs = getAVGhashrate();
   dVar3 = (double)__aeabi_l2d((undefined4)total_diff1,total_diff1._4_4_);
   dVar4 = total_secs;
   if (total_secs == 0.0) {
     dVar4 = 1.0;
   }
-  work_utility = (dVar3 / dVar4) * DAT_0000e3a8;
+  work_utility = (dVar3 / dVar4) * 60.0;
   root = api_add_elapsed(root,"Elapsed",&total_secs,true);
   root = api_add_string(root,"GHS 5s",displayed_hash_rate,false);
   root = api_add_mhs(root,"GHS av",&ghs,false);
@@ -67,8 +67,10 @@ void summary(io_data *io_data,long c,char *param,_Bool isjson,char group)
   root = api_add_diff(root,"Difficulty Rejected",&total_diff_rejected,true);
   root = api_add_diff(root,"Difficulty Stale",&total_diff_stale,true);
   root = api_add_uint64(root,"Best Share",&best_diff,true);
-  hwp = DAT_0000e3b0;
-  if (total_diff1 + hw_errors != 0) {
+  if (total_diff1 + hw_errors == 0) {
+    hwp = 0.0;
+  }
+  else {
     lVar1 = (longlong)hw_errors;
     dVar4 = (double)__aeabi_l2d((int)(total_diff1 + hw_errors),
                                 (int)((ulonglong)(total_diff1 + hw_errors) >> 0x20));
@@ -76,19 +78,25 @@ void summary(io_data *io_data,long c,char *param,_Bool isjson,char group)
   }
   root = api_add_percent(root,"Device Hardware%",&hwp,false);
   dVar4 = total_diff_rejected;
-  rejp = DAT_0000e3b0;
-  if (total_diff1 != 0) {
+  if (total_diff1 == 0) {
+    rejp = 0.0;
+  }
+  else {
     dVar3 = (double)__aeabi_l2d((undefined4)total_diff1,total_diff1._4_4_);
     rejp = dVar4 / dVar3;
   }
   root = api_add_percent(root,"Device Rejected%",&rejp,false);
-  prejp = DAT_0000e3b0;
-  if (total_diff_accepted + total_diff_rejected + total_diff_stale != 0.0) {
+  if (total_diff_accepted + total_diff_rejected + total_diff_stale == 0.0) {
+    prejp = 0.0;
+  }
+  else {
     prejp = total_diff_rejected / (total_diff_accepted + total_diff_rejected + total_diff_stale);
   }
   root = api_add_percent(root,"Pool Rejected%",&prejp,false);
-  stalep = DAT_0000e3b0;
-  if (total_diff_accepted + total_diff_rejected + total_diff_stale != 0.0) {
+  if (total_diff_accepted + total_diff_rejected + total_diff_stale == 0.0) {
+    stalep = 0.0;
+  }
+  else {
     stalep = total_diff_stale / (total_diff_accepted + total_diff_rejected + total_diff_stale);
   }
   root = api_add_percent(root,"Pool Stale%",&stalep,false);

@@ -30,7 +30,7 @@ int PIC16F1704_i2c_forward_send
   recv_data[8] = '\0';
   recv_data[9] = '\0';
   recv_data[10] = '\0';
-  recv_data[11] = '\0';
+  recv_data[0xb] = '\0';
   crc = 0;
   send_data[0] = 'U';
   send_data[1] = 0xaa;

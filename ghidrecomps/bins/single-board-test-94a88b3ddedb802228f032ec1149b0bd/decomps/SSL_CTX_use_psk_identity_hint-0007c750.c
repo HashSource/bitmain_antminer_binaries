@@ -22,7 +22,7 @@ int SSL_CTX_use_psk_identity_hint(SSL_CTX *ctx,char *identity_hint)
     }
   }
   else {
-    ERR_put_error(0x14,0x110,0x92,DAT_0007c7a4,0xd39);
+    ERR_put_error(0x14,0x110,0x92,"ssl_lib.c",0xd39);
     pcVar2 = (char *)0x0;
   }
   return (int)pcVar2;

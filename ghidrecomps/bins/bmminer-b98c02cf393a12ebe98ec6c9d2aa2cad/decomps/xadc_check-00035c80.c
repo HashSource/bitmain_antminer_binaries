@@ -2,7 +2,7 @@
 void xadc_check(void)
 
 {
-  void **ppvVar1;
+  undefined4 *puVar1;
   dirent **ppdVar2;
   int iVar3;
   int iVar4;
@@ -35,9 +35,9 @@ LAB_00035ca4:
   }
   iVar4 = (iVar3 + -1) * 4;
   do {
-    ppvVar1 = (void **)((int)local_14[0] + iVar4);
+    puVar1 = (undefined4 *)((int)local_14[0] + iVar4);
     iVar4 = iVar4 + -4;
-    free(*ppvVar1);
+    free((void *)*puVar1);
     iVar3 = iVar3 + -1;
   } while (iVar3 != 0);
 LAB_00035cb8:

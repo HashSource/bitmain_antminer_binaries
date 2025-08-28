@@ -26,7 +26,7 @@ void switch_pools(pool *selected)
     }
     selected->prio = 0;
   }
-  if (pool_strategy < (POOL_ROUNDROBIN|POOL_BALANCE)) {
+  if (pool_strategy < (POOL_BALANCE|POOL_ROUNDROBIN)) {
     uVar3 = 1 << (pool_strategy & 0xff);
     if ((uVar3 & 0x19) == 0) {
       if ((uVar3 & 6) != 0) {

@@ -1,14 +1,14 @@
 
-void check_BM1385_asic_reg(byte param_1,undefined4 param_2,char param_3,undefined param_4)
+void check_BM1385_asic_reg(byte param_1,undefined4 param_2,char param_3,undefined1 param_4)
 
 {
   uint uVar1;
   undefined4 uVar2;
-  undefined local_1c;
-  undefined local_1b;
-  undefined local_1a;
-  undefined local_19;
-  undefined local_18;
+  undefined1 local_1c;
+  undefined1 local_1b;
+  undefined1 local_1a;
+  undefined1 local_19;
+  undefined1 local_18;
   uint local_14;
   uint local_10;
   uint local_c;
@@ -44,15 +44,15 @@ void check_BM1385_asic_reg(byte param_1,undefined4 param_2,char param_3,undefine
         pthread_mutex_lock((pthread_mutex_t *)reg_mutex);
         if (param_1 == *(byte *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 2) * 8 + 5)) {
           memset(&local_1c,0,5);
-          local_19 = (undefined)
+          local_19 = (undefined1)
                      *(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 2) * 8);
-          local_1a = (undefined)
+          local_1a = (undefined1)
                      ((uint)*(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 2) * 8)
                      >> 8);
-          local_1b = (undefined)
+          local_1b = (undefined1)
                      ((uint)*(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 2) * 8)
                      >> 0x10);
-          local_1c = (undefined)
+          local_1c = (undefined1)
                      ((uint)*(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 2) * 8)
                      >> 0x18);
           uVar1 = CRC5(&local_1c,0x23);

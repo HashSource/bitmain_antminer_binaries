@@ -52,6 +52,6 @@ undefined4 EC_curve_nid2nist(int param_1)
     }
     iVar1 = 0xe;
   }
-  return *(undefined4 *)(DAT_000a2fc4 + iVar1 * 8 + 0x510);
+  return *(undefined4 *)(nist_curves + iVar1 * 8);
 }
 

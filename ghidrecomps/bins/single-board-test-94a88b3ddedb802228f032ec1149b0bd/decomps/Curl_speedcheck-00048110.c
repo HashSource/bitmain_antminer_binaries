@@ -23,7 +23,9 @@ undefined4 Curl_speedcheck(int param_1,undefined4 param_2,undefined4 param_3)
                              *(undefined4 *)(param_1 + 0x58c));
         iVar1 = *(int *)(param_1 + 0x224) * 1000 - iVar1;
         if (iVar1 < 1) {
-          Curl_failf(param_1,DAT_000481b8,*(undefined4 *)(param_1 + 0x220));
+          Curl_failf(param_1,
+                     "Operation too slow. Less than %ld bytes/sec transferred the last %ld seconds",
+                     *(undefined4 *)(param_1 + 0x220));
           return 0x1c;
         }
         goto LAB_0004815c;

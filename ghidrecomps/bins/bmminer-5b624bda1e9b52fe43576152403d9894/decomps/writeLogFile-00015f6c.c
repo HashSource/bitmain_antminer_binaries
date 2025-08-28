@@ -4,7 +4,7 @@
 void writeLogFile(char *logstr)
 
 {
-  if (*DAT_00015f78 == '\0') {
+  if (!showLogToKernelLog) {
     return;
   }
   writeInitLogFile(logstr);

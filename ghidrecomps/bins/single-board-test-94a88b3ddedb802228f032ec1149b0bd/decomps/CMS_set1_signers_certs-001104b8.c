@@ -34,7 +34,7 @@ int CMS_set1_signers_certs(CMS_ContentInfo *cms,stack_st_X509 *certs,uint flags)
 joined_r0x0011054a:
               if (iVar4 == 0) {
                 if (pXVar5 != (X509 *)0x0) {
-                  CRYPTO_add_lock(&pXVar5->references,1,3,DAT_0011066c,0x1e9);
+                  CRYPTO_add_lock(&pXVar5->references,1,3,"cms_sd.c",0x1e9);
                   if (*(EVP_PKEY **)((int)pvVar3 + 0x20) != (EVP_PKEY *)0x0) {
                     EVP_PKEY_free(*(EVP_PKEY **)((int)pvVar3 + 0x20));
                   }
@@ -72,7 +72,7 @@ LAB_0011058c:
                   }
                   if (iVar4 == 0) {
                     if (pXVar5 != (X509 *)0x0) {
-                      CRYPTO_add_lock(&pXVar5->references,1,3,DAT_0011066c,0x1e9);
+                      CRYPTO_add_lock(&pXVar5->references,1,3,"cms_sd.c",0x1e9);
                       if (*(EVP_PKEY **)((int)pvVar3 + 0x20) != (EVP_PKEY *)0x0) {
                         EVP_PKEY_free(*(EVP_PKEY **)((int)pvVar3 + 0x20));
                       }
@@ -98,7 +98,7 @@ LAB_001104f2:
   }
   else {
     iVar1 = -1;
-    ERR_put_error(0x2e,0x85,0x6c,DAT_0011066c,0x48);
+    ERR_put_error(0x2e,0x85,0x6c,"cms_sd.c",0x48);
   }
   return iVar1;
 }

@@ -1,5 +1,5 @@
 
-int dsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,int param_4)
+int dsa_do_verify(uchar *param_1,int param_2,undefined4 *param_3,int param_4)
 
 {
   uint uVar1;
@@ -14,17 +14,17 @@ int dsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,int param_4)
   
   if (((*(int *)(param_4 + 0xc) == 0) || (*(BIGNUM **)(param_4 + 0x10) == (BIGNUM *)0x0)) ||
      (*(int *)(param_4 + 0x14) == 0)) {
-    ERR_put_error(10,0x71,0x65,DAT_000fe768,0x143);
+    ERR_put_error(10,0x71,0x65,"dsa_ossl.c",0x143);
     return -1;
   }
   uVar1 = BN_num_bits(*(BIGNUM **)(param_4 + 0x10));
   if (((uVar1 & 0xffffffbf) != 0xa0) && (uVar1 != 0x100)) {
-    ERR_put_error(10,0x71,0x66,DAT_000fe768,0x14a);
+    ERR_put_error(10,0x71,0x66,"dsa_ossl.c",0x14a);
     return -1;
   }
   iVar2 = BN_num_bits(*(BIGNUM **)(param_4 + 0xc));
   if (10000 < iVar2) {
-    ERR_put_error(10,0x71,0x67,DAT_000fe768,0x14f);
+    ERR_put_error(10,0x71,0x67,"dsa_ossl.c",0x14f);
     return -1;
   }
   BN_init(&BStack_5c);
@@ -32,19 +32,19 @@ int dsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,int param_4)
   BN_init(&BStack_34);
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0) {
-    ERR_put_error(10,0x71,3,DAT_000fe768,0x192);
+    ERR_put_error(10,0x71,3,"dsa_ossl.c",0x192);
     iVar2 = -1;
     goto LAB_000fe5e2;
   }
-  pBVar3 = *param_3;
+  pBVar3 = (BIGNUM *)*param_3;
   if (((pBVar3->top == 0) || (pBVar3->neg != 0)) ||
      ((iVar2 = BN_ucmp(pBVar3,*(BIGNUM **)(param_4 + 0x10)), -1 < iVar2 ||
-      (((pBVar3 = param_3[1], pBVar3->top == 0 || (pBVar3->neg != 0)) ||
+      (((pBVar3 = (BIGNUM *)param_3[1], pBVar3->top == 0 || (pBVar3->neg != 0)) ||
        (iVar2 = BN_ucmp(pBVar3,*(BIGNUM **)(param_4 + 0x10)), -1 < iVar2)))))) {
     iVar2 = 0;
   }
   else {
-    pBVar3 = BN_mod_inverse(&BStack_48,param_3[1],*(BIGNUM **)(param_4 + 0x10),ctx);
+    pBVar3 = BN_mod_inverse(&BStack_48,(BIGNUM *)param_3[1],*(BIGNUM **)(param_4 + 0x10),ctx);
     if (pBVar3 != (BIGNUM *)0x0) {
       iVar2 = (int)uVar1 >> 3;
       if (param_2 <= (int)uVar1 >> 3) {
@@ -54,8 +54,8 @@ int dsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,int param_4)
       if (((pBVar3 != (BIGNUM *)0x0) &&
           (iVar2 = BN_mod_mul(&BStack_5c,&BStack_5c,&BStack_48,*(BIGNUM **)(param_4 + 0x10),ctx),
           iVar2 != 0)) &&
-         (iVar2 = BN_mod_mul(&BStack_48,*param_3,&BStack_48,*(BIGNUM **)(param_4 + 0x10),ctx),
-         iVar2 != 0)) {
+         (iVar2 = BN_mod_mul(&BStack_48,(BIGNUM *)*param_3,&BStack_48,*(BIGNUM **)(param_4 + 0x10),
+                             ctx), iVar2 != 0)) {
         if ((*(uint *)(param_4 + 0x28) & 1) == 0) {
           m_ctx = (BN_MONT_CTX *)0x0;
         }
@@ -78,7 +78,7 @@ int dsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,int param_4)
         if ((iVar2 != 0) &&
            (iVar2 = BN_div((BIGNUM *)0x0,&BStack_5c,&BStack_34,*(BIGNUM **)(param_4 + 0x10),ctx),
            iVar2 != 0)) {
-          uVar1 = BN_ucmp(&BStack_5c,*param_3);
+          uVar1 = BN_ucmp(&BStack_5c,(BIGNUM *)*param_3);
           iVar2 = 1 - uVar1;
           if (1 < uVar1) {
             iVar2 = 0;
@@ -88,7 +88,7 @@ int dsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,int param_4)
       }
     }
 LAB_000fe656:
-    ERR_put_error(10,0x71,3,DAT_000fe768,0x192);
+    ERR_put_error(10,0x71,3,"dsa_ossl.c",0x192);
     iVar2 = -1;
   }
 LAB_000fe5dc:

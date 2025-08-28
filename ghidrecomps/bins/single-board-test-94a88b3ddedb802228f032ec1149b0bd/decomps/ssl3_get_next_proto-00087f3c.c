@@ -26,14 +26,14 @@ int ssl3_get_next_proto(int param_1)
         __n = (uint)bVar1;
         if (((int)(__n + 1) < *(int *)(param_1 + 0x44)) &&
            (*(int *)(param_1 + 0x44) == __n + pbVar3[__n + 1] + 2)) {
-          __dest = CRYPTO_malloc(__n,DAT_0008800c,0xdfe);
+          __dest = CRYPTO_malloc(__n,"s3_srvr.c",0xdfe);
           *(void **)(param_1 + 0x174) = __dest;
           if (__dest != (void *)0x0) {
             memcpy(__dest,pbVar3 + 1,__n);
             *(byte *)(param_1 + 0x178) = bVar1;
             return 1;
           }
-          ERR_put_error(0x14,0x132,0x41,DAT_0008800c,0xe00);
+          ERR_put_error(0x14,0x132,0x41,"s3_srvr.c",0xe00);
           *(undefined4 *)(param_1 + 0x34) = 5;
           return 0;
         }
@@ -44,7 +44,7 @@ int ssl3_get_next_proto(int param_1)
     line = 0xde0;
     iVar2 = 0x163;
   }
-  ERR_put_error(0x14,0x132,iVar2,DAT_0008800c,line);
+  ERR_put_error(0x14,0x132,iVar2,"s3_srvr.c",line);
   *(undefined4 *)(param_1 + 0x34) = 5;
   return -1;
 }

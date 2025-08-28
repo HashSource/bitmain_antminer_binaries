@@ -3,9 +3,9 @@ undefined4 dcr_uart_send(char param_1,void *param_2,size_t param_3)
 
 {
   undefined4 uVar1;
-  undefined local_20c;
-  undefined local_20b;
-  undefined auStack_20a [510];
+  undefined1 local_20c;
+  undefined1 local_20b;
+  undefined1 auStack_20a [510];
   undefined4 local_c;
   
   local_c = 0;

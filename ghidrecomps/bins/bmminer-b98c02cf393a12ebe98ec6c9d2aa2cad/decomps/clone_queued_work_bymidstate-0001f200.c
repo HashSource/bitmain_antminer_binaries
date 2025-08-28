@@ -26,9 +26,9 @@ clone_queued_work_bymidstate
     }
   }
   else {
-    _rd_lock_part_39_constprop_80(DAT_0001f278,0x24bb);
+    _rd_lock_part_39_constprop_80("clone_queued_work_bymidstate",0x24bb);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_0001f278,0x24bf);
+  _rw_unlock_part_40_constprop_79("clone_queued_work_bymidstate",0x24bf);
 }
 

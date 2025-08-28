@@ -8,7 +8,7 @@ int PKCS7_dataFinal(PKCS7 *p7,BIO *bio)
   int iVar3;
   uchar *md;
   ASN1_OBJECT *b;
-  ASN1_OBJECT **ppAVar4;
+  undefined4 *puVar4;
   void *pvVar5;
   BIO *pBVar6;
   long lVar7;
@@ -16,7 +16,7 @@ int PKCS7_dataFinal(PKCS7 *p7,BIO *bio)
   _STACK *p_Var9;
   pkcs7_st *ppVar10;
   _STACK *p_Var11;
-  ASN1_STRING *local_94;
+  ASN1_OCTET_STRING *local_94;
   EVP_MD_CTX *local_8c;
   void *local_88;
   uint local_84;
@@ -24,11 +24,11 @@ int PKCS7_dataFinal(PKCS7 *p7,BIO *bio)
   uchar auStack_68 [68];
   
   if (p7 == (PKCS7 *)0x0) {
-    ERR_put_error(0x21,0x80,0x8f,DAT_000d0b84,0x2f2);
+    ERR_put_error(0x21,0x80,0x8f,"pk7_doit.c",0x2f2);
     return 0;
   }
   if ((p7->d).ptr == (char *)0x0) {
-    ERR_put_error(0x21,0x80,0x7a,DAT_000d0a3c,0x2f7);
+    ERR_put_error(0x21,0x80,0x7a,"pk7_doit.c",0x2f7);
     return 0;
   }
   EVP_MD_CTX_init(&EStack_80);
@@ -54,7 +54,7 @@ int PKCS7_dataFinal(PKCS7 *p7,BIO *bio)
         local_94 = (ppVar10->d).data;
         if (local_94 != (ASN1_OCTET_STRING *)0x0) {
           if (local_94->length == 4) {
-            local_94 = (ASN1_STRING *)local_94->type;
+            local_94 = (ASN1_OCTET_STRING *)local_94->type;
           }
           else {
             local_94 = (ASN1_STRING *)0x0;
@@ -70,14 +70,14 @@ int PKCS7_dataFinal(PKCS7 *p7,BIO *bio)
     }
     goto LAB_000d07de;
   case 0x17:
-    local_94 = (ASN1_STRING *)(((p7->d).sign)->cert->stack).sorted;
+    local_94 = (ASN1_OCTET_STRING *)(((p7->d).sign)->cert->stack).sorted;
     if (local_94 == (ASN1_OCTET_STRING *)0x0) {
       local_94 = ASN1_STRING_type_new(4);
       if (local_94 == (ASN1_STRING *)0x0) {
         iVar2 = 0x316;
         local_94 = (ASN1_STRING *)0x0;
 LAB_000d0b6e:
-        ERR_put_error(0x21,0x80,0x41,DAT_000d0b84,iVar2);
+        ERR_put_error(0x21,0x80,0x41,"pk7_doit.c",iVar2);
         goto LAB_000d0778;
       }
       ((p7->d).enveloped)->enc_data->enc_data = local_94;
@@ -85,7 +85,7 @@ LAB_000d0b6e:
     break;
   case 0x18:
     p_Var11 = &((p7->d).sign)->signer_info->stack;
-    local_94 = (ASN1_STRING *)((p7->d).sign)->contents->state;
+    local_94 = (ASN1_OCTET_STRING *)((p7->d).sign)->contents->state;
     if (local_94 == (ASN1_OCTET_STRING *)0x0) {
       local_94 = ASN1_STRING_type_new(4);
       iVar2 = 0x30a;
@@ -119,14 +119,14 @@ LAB_000d08e2:
         iVar2 = sk_num(&si->auth_attr->stack);
         if (iVar2 < 1) {
           local_84 = EVP_PKEY_size(si->pkey);
-          md = (uchar *)CRYPTO_malloc(local_84,DAT_000d0a3c,0x358);
+          md = (uchar *)CRYPTO_malloc(local_84,"pk7_doit.c",0x358);
           if (md != (uchar *)0x0) {
             iVar2 = EVP_SignFinal(&EStack_80,md,&local_84,si->pkey);
             if (iVar2 != 0) {
               ASN1_STRING_set0(si->enc_digest,md,local_84);
               goto LAB_000d08e2;
             }
-            ERR_put_error(0x21,0x80,6,DAT_000d0b84,0x35d);
+            ERR_put_error(0x21,0x80,6,"pk7_doit.c",0x35d);
           }
           goto LAB_000d0852;
         }
@@ -138,24 +138,23 @@ LAB_000d094e:
           if (iVar2 != 0) goto LAB_000d095a;
           iVar1 = 0x2d0;
 LAB_000d09be:
-          ERR_put_error(0x21,0x88,0x41,DAT_000d0a3c,iVar1);
+          ERR_put_error(0x21,0x88,0x41,"pk7_doit.c",iVar1);
           goto LAB_000d0852;
         }
         iVar2 = 0;
         do {
           iVar3 = sk_num(p_Var9);
           if (iVar3 <= iVar2) goto LAB_000d094e;
-          ppAVar4 = (ASN1_OBJECT **)sk_value(p_Var9,iVar2);
-          iVar3 = OBJ_cmp(*ppAVar4,b);
+          puVar4 = (undefined4 *)sk_value(p_Var9,iVar2);
+          iVar3 = OBJ_cmp((ASN1_OBJECT *)*puVar4,b);
           iVar2 = iVar2 + 1;
         } while (iVar3 != 0);
-        if (((ppAVar4[1] != (ASN1_OBJECT *)0x0) ||
-            (iVar2 = sk_num((_STACK *)ppAVar4[2]), iVar2 == 0)) ||
-           (pvVar5 = sk_value((_STACK *)ppAVar4[2],0), pvVar5 == (void *)0x0)) goto LAB_000d094e;
+        if (((puVar4[1] != 0) || (iVar2 = sk_num((_STACK *)puVar4[2]), iVar2 == 0)) ||
+           (pvVar5 = sk_value((_STACK *)puVar4[2],0), pvVar5 == (void *)0x0)) goto LAB_000d094e;
 LAB_000d095a:
         iVar2 = EVP_DigestFinal_ex(&EStack_80,auStack_68,&local_84);
         if (iVar2 == 0) {
-          ERR_put_error(0x21,0x88,6,DAT_000d0a3c,0x2d7);
+          ERR_put_error(0x21,0x88,6,"pk7_doit.c",0x2d7);
           goto LAB_000d0852;
         }
         iVar2 = PKCS7_add1_attrib_digest(si,auStack_68,local_84);
@@ -184,7 +183,7 @@ LAB_000d095a:
         local_94 = (ppVar10->d).data;
         if (local_94 != (ASN1_OCTET_STRING *)0x0) {
           if (local_94->length == 4) {
-            local_94 = (ASN1_STRING *)local_94->type;
+            local_94 = (ASN1_OCTET_STRING *)local_94->type;
           }
           else {
             local_94 = (ASN1_STRING *)0x0;
@@ -200,7 +199,7 @@ LAB_000d095a:
     }
     break;
   default:
-    ERR_put_error(0x21,0x80,0x70,DAT_000d0a3c,0x332);
+    ERR_put_error(0x21,0x80,0x70,"pk7_doit.c",0x332);
     local_94 = (ASN1_STRING *)0x0;
     goto LAB_000d0778;
   }
@@ -221,7 +220,7 @@ LAB_000d095a:
       pBVar6 = BIO_next(pBVar6);
     }
 LAB_000d0840:
-    ERR_put_error(0x21,0x7f,0x6c,DAT_000d0a3c,0x2b9);
+    ERR_put_error(0x21,0x7f,0x6c,"pk7_doit.c",0x2b9);
 LAB_000d0852:
     local_94 = (ASN1_STRING *)0x0;
   }
@@ -233,7 +232,7 @@ LAB_000d0756:
       if ((local_94->flags & 0x10U) == 0) {
         pBVar6 = BIO_find_type(bio,0x401);
         if (pBVar6 == (BIO *)0x0) {
-          ERR_put_error(0x21,0x80,0x6b,DAT_000d0b84,0x37a);
+          ERR_put_error(0x21,0x80,0x6b,"pk7_doit.c",0x37a);
           local_94 = (ASN1_STRING *)0x0;
         }
         else {
@@ -252,7 +251,7 @@ LAB_000d0778:
   EVP_MD_CTX_cleanup(&EStack_80);
   return (int)local_94;
 LAB_000d08e6:
-  ERR_put_error(0x21,0x7f,0x44,DAT_000d0a3c,0x2be);
+  ERR_put_error(0x21,0x7f,0x44,"pk7_doit.c",0x2be);
   goto LAB_000d0852;
 }
 

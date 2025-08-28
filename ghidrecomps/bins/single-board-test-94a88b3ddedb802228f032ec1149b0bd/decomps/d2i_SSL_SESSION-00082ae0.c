@@ -33,7 +33,7 @@ SSL_SESSION * d2i_SSL_SESSION(SSL_SESSION **a,uchar **pp,long length)
     ses = SSL_SESSION_new();
     if (ses == (SSL_SESSION *)0x0) {
       local_44.line = 0x181;
-      ERR_put_error(0xd,0x67,local_44.error,DAT_00082c5c,0x181);
+      ERR_put_error(0xd,0x67,local_44.error,"ssl_asn1.c",0x181);
       asn1_add_error(*pp,(int)local_44.q - (int)*pp);
       return (SSL_SESSION *)0x0;
     }
@@ -110,7 +110,10 @@ SSL_SESSION * d2i_SSL_SESSION(SSL_SESSION **a,uchar **pp,long length)
     uVar7 = local_68.data[1] | 0x3000000 | (uint)*local_68.data << 8;
   }
   *(uint *)(ses->krb5_client_princ + 0x28) = uVar7;
-  *(undefined4 *)(ses->krb5_client_princ + 0x24) = 0;
+  ses->krb5_client_princ[0x24] = '\0';
+  ses->krb5_client_princ[0x25] = '\0';
+  ses->krb5_client_princ[0x26] = '\0';
+  ses->krb5_client_princ[0x27] = '\0';
   local_44.q = local_44.p;
   pAVar6 = d2i_ASN1_OCTET_STRING(&local_78,&local_44.p,local_44.slen);
   if (pAVar6 == (ASN1_OCTET_STRING *)0x0) {
@@ -238,7 +241,10 @@ LAB_000830ba:
   }
 LAB_00082d52:
   if (local_54.data == (uchar *)0x0) {
-    *(undefined4 *)(ses->krb5_client_princ + 0x18) = 3;
+    ses->krb5_client_princ[0x18] = '\x03';
+    ses->krb5_client_princ[0x19] = '\0';
+    ses->krb5_client_princ[0x1a] = '\0';
+    ses->krb5_client_princ[0x1b] = '\0';
   }
   else {
     lVar5 = ASN1_INTEGER_get(local_7c);
@@ -249,7 +255,10 @@ LAB_00082d52:
   }
   if (*(X509 **)(ses->krb5_client_princ + 0xc) != (X509 *)0x0) {
     X509_free(*(X509 **)(ses->krb5_client_princ + 0xc));
-    *(undefined4 *)(ses->krb5_client_princ + 0xc) = 0;
+    ses->krb5_client_princ[0xc] = '\0';
+    ses->krb5_client_princ[0xd] = '\0';
+    ses->krb5_client_princ[0xe] = '\0';
+    ses->krb5_client_princ[0xf] = '\0';
   }
   pbVar11 = (byte *)local_44.slen;
   pbVar2 = (byte *)local_44.slen;
@@ -366,7 +375,10 @@ LAB_00083480:
   }
 LAB_00082db8:
   if (local_54.data == (uchar *)0x0) {
-    *(undefined4 *)(ses->krb5_client_princ + 0x10) = 0;
+    ses->krb5_client_princ[0x10] = '\0';
+    ses->krb5_client_princ[0x11] = '\0';
+    ses->krb5_client_princ[0x12] = '\0';
+    ses->krb5_client_princ[0x13] = '\0';
   }
   else {
     lVar5 = ASN1_INTEGER_get(local_7c);
@@ -409,7 +421,10 @@ LAB_000832e2:
     goto LAB_00082b26;
   }
 LAB_00082de6:
-  *(undefined4 *)(ses->krb5_client_princ + 0x40) = 0;
+  ses->krb5_client_princ[0x40] = '\0';
+  ses->krb5_client_princ[0x41] = '\0';
+  ses->krb5_client_princ[0x42] = '\0';
+  ses->krb5_client_princ[0x43] = '\0';
 LAB_00082dec:
   local_68.length = 0;
   local_68.data = (byte *)0x0;
@@ -483,7 +498,10 @@ LAB_0008343a:
     goto LAB_00082b26;
   }
 LAB_00082e0a:
-  *(undefined4 *)ses->krb5_client_princ = 0;
+  ses->krb5_client_princ[0] = '\0';
+  ses->krb5_client_princ[1] = '\0';
+  ses->krb5_client_princ[2] = '\0';
+  ses->krb5_client_princ[3] = '\0';
 LAB_00082e10:
   local_54.length = 0;
   if (((byte *)local_44.slen != (byte *)0x0) && (*local_44.p == 0xa9)) {
@@ -516,10 +534,16 @@ LAB_00083528:
 LAB_00082e20:
   if (local_54.data == (uchar *)0x0) {
     if ((*(int *)(ses->krb5_client_princ + 0x58) == 0) || (ses->session_id_length == 0)) {
-      *(undefined4 *)(ses->krb5_client_princ + 0x5c) = 0;
+      ses->krb5_client_princ[0x5c] = '\0';
+      ses->krb5_client_princ[0x5d] = '\0';
+      ses->krb5_client_princ[0x5e] = '\0';
+      ses->krb5_client_princ[0x5f] = '\0';
     }
     else {
-      *(undefined4 *)(ses->krb5_client_princ + 0x5c) = 0xffffffff;
+      ses->krb5_client_princ[0x5c] = 0xff;
+      ses->krb5_client_princ[0x5d] = 0xff;
+      ses->krb5_client_princ[0x5e] = 0xff;
+      ses->krb5_client_princ[0x5f] = 0xff;
     }
   }
   else {
@@ -532,12 +556,18 @@ LAB_00082e20:
   local_68.length = 0;
   local_68.data = (byte *)0x0;
   if ((byte *)local_44.slen == (byte *)0x0) {
-    *(undefined4 *)(ses->krb5_client_princ + 0x54) = 0;
+    ses->krb5_client_princ[0x54] = '\0';
+    ses->krb5_client_princ[0x55] = '\0';
+    ses->krb5_client_princ[0x56] = '\0';
+    ses->krb5_client_princ[0x57] = '\0';
 LAB_00082f9a:
     local_68.length = 0;
     local_68.data = (byte *)0x0;
 LAB_00082e7a:
-    *(undefined4 *)(ses->krb5_client_princ + 0x60) = 0;
+    ses->krb5_client_princ[0x60] = '\0';
+    ses->krb5_client_princ[0x61] = '\0';
+    ses->krb5_client_princ[0x62] = '\0';
+    ses->krb5_client_princ[99] = '\0';
 LAB_00082e80:
     iVar3 = asn1_const_Finish(&local_44);
     if (iVar3 != 0) {
@@ -583,7 +613,10 @@ LAB_000833fc:
       local_44.line = 599;
       goto LAB_00082b26;
     }
-    *(undefined4 *)(ses->krb5_client_princ + 0x54) = 0;
+    ses->krb5_client_princ[0x54] = '\0';
+    ses->krb5_client_princ[0x55] = '\0';
+    ses->krb5_client_princ[0x56] = '\0';
+    ses->krb5_client_princ[0x57] = '\0';
 LAB_00082e62:
     local_68.data = (byte *)0x0;
     local_68.length = 0;
@@ -657,7 +690,7 @@ LAB_000834a4:
     local_44.line = 0x26e;
   }
 LAB_00082b26:
-  ERR_put_error(0xd,0x67,local_44.error,DAT_00082c5c,local_44.line);
+  ERR_put_error(0xd,0x67,local_44.error,"ssl_asn1.c",local_44.line);
   asn1_add_error(*pp,(int)local_44.q - (int)*pp);
   if ((a == (SSL_SESSION **)0x0) || (ses != *a)) {
     SSL_SESSION_free(ses);

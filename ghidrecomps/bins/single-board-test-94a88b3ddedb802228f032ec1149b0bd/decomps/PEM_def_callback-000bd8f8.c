@@ -2,39 +2,37 @@
 int PEM_def_callback(char *buf,int num,int w,void *key)
 
 {
-  FILE **ppFVar1;
-  size_t sVar2;
-  char *pcVar3;
-  size_t sVar4;
-  int iVar5;
+  size_t sVar1;
+  char *pcVar2;
+  size_t sVar3;
+  int iVar4;
   char *prompt;
   
-  prompt = DAT_000bd988;
   if (key == (void *)0x0) {
-    pcVar3 = EVP_get_pw_prompt();
-    ppFVar1 = DAT_000bd994;
-    if (pcVar3 != (char *)0x0) {
-      prompt = pcVar3;
+    pcVar2 = EVP_get_pw_prompt();
+    prompt = "Enter PEM pass phrase:";
+    if (pcVar2 != (char *)0x0) {
+      prompt = pcVar2;
     }
-    while (iVar5 = EVP_read_pw_string_min(buf,4,num,prompt,w), iVar5 == 0) {
-      sVar4 = strlen(buf);
-      if (3 < (int)sVar4) {
-        return sVar4;
+    while (iVar4 = EVP_read_pw_string_min(buf,4,num,prompt,w), iVar4 == 0) {
+      sVar3 = strlen(buf);
+      if (3 < (int)sVar3) {
+        return sVar3;
       }
-      fprintf(*ppFVar1,DAT_000bd98c,4);
+      fprintf(stderr,"phrase is too short, needs to be at least %d chars\n",4);
     }
-    ERR_put_error(9,100,0x6d,DAT_000bd990,0x6e);
-    sVar4 = 0xffffffff;
+    ERR_put_error(9,100,0x6d,"pem_lib.c",0x6e);
+    sVar3 = 0xffffffff;
     memset(buf,0,num);
   }
   else {
-    sVar2 = strlen((char *)key);
-    sVar4 = num;
-    if ((int)sVar2 < num) {
-      sVar4 = sVar2;
+    sVar1 = strlen((char *)key);
+    sVar3 = num;
+    if ((int)sVar1 < num) {
+      sVar3 = sVar1;
     }
-    memcpy(buf,key,sVar4);
+    memcpy(buf,key,sVar3);
   }
-  return sVar4;
+  return sVar3;
 }
 

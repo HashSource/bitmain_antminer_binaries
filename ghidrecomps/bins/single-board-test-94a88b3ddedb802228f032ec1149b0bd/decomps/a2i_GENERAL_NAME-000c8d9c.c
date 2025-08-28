@@ -18,12 +18,12 @@ a2i_GENERAL_NAME(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,int
   int line;
   
   if (value == (char *)0x0) {
-    ERR_put_error(0x22,0xa4,0x7c,DAT_000c8fb8,0x1b5);
+    ERR_put_error(0x22,0xa4,0x7c,"v3_alt.c",0x1b5);
     return (GENERAL_NAME *)0x0;
   }
   a = out;
   if ((out == (GENERAL_NAME *)0x0) && (a = GENERAL_NAME_new(), a == (GENERAL_NAME *)0x0)) {
-    ERR_put_error(0x22,0xa4,0x41,DAT_000c8fb8,0x1be);
+    ERR_put_error(0x22,0xa4,0x41,"v3_alt.c",0x1be);
     return (GENERAL_NAME *)0x0;
   }
   switch(gen_type) {
@@ -39,7 +39,7 @@ a2i_GENERAL_NAME(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,int
         pOVar3->value = pAVar4;
         if (pAVar4 != (ASN1_TYPE *)0x0) {
           sVar5 = (int)pcVar2 - (int)value;
-          pcVar2 = (char *)CRYPTO_malloc(sVar5 + 1,DAT_000c8fb8,0x23f);
+          pcVar2 = (char *)CRYPTO_malloc(sVar5 + 1,"v3_alt.c",0x23f);
           strncpy(pcVar2,value,sVar5);
           pcVar2[sVar5] = '\0';
           pOVar3 = (a->d).otherName;
@@ -50,7 +50,7 @@ a2i_GENERAL_NAME(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,int
         }
       }
     }
-    ERR_put_error(0x22,0xa4,0x93,DAT_000c8fb8,0x1eb);
+    ERR_put_error(0x22,0xa4,0x93,"v3_alt.c",0x1eb);
     break;
   case 1:
   case 2:
@@ -62,10 +62,10 @@ a2i_GENERAL_NAME(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,int
       iVar7 = ASN1_STRING_set(str,value,sVar5);
       if (iVar7 != 0) goto LAB_000c8dda;
     }
-    ERR_put_error(0x22,0xa4,0x41,DAT_000c8fb8,0x1f8);
+    ERR_put_error(0x22,0xa4,0x41,"v3_alt.c",0x1f8);
     break;
   default:
-    ERR_put_error(0x22,0xa4,0xa7,DAT_000c8fb8,0x1f0);
+    ERR_put_error(0x22,0xa4,0xa7,"v3_alt.c",0x1f0);
     break;
   case 4:
     nm = X509_NAME_new();
@@ -75,8 +75,8 @@ a2i_GENERAL_NAME(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,int
     else {
       dn_sk = X509V3_get_section(ctx,value);
       if (dn_sk == (stack_st_CONF_VALUE *)0x0) {
-        ERR_put_error(0x22,0x90,0x96,DAT_000c8fb8,0x252);
-        ERR_add_error_data(2,DAT_000c8fc0,value);
+        ERR_put_error(0x22,0x90,0x96,"v3_alt.c",0x252);
+        ERR_add_error_data(2,"section=",value);
       }
       else {
         iVar7 = X509V3_NAME_from_section(nm,dn_sk,0x1001);
@@ -89,7 +89,7 @@ a2i_GENERAL_NAME(GENERAL_NAME *out,X509V3_EXT_METHOD *method,X509V3_CTX *ctx,int
     }
     X509_NAME_free(nm);
     X509V3_section_free(ctx,dn_sk);
-    ERR_put_error(0x22,0xa4,0x95,DAT_000c8fb8,0x1e4);
+    ERR_put_error(0x22,0xa4,0x95,"v3_alt.c",0x1e4);
     break;
   case 7:
     if (is_nc == 0) {
@@ -117,8 +117,8 @@ LAB_000c8dda:
     line = 0x1ce;
     iVar7 = 0x77;
 LAB_000c8f18:
-    ERR_put_error(0x22,0xa4,iVar7,DAT_000c8fb8,line);
-    ERR_add_error_data(2,DAT_000c8fbc,value);
+    ERR_put_error(0x22,0xa4,iVar7,"v3_alt.c",line);
+    ERR_add_error_data(2,"value=",value);
   }
   if (out == (GENERAL_NAME *)0x0) {
     GENERAL_NAME_free(a);

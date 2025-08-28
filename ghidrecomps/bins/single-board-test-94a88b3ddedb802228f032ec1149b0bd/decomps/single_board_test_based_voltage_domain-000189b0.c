@@ -7,7 +7,7 @@ void single_board_test_based_voltage_domain(void)
   undefined4 uVar3;
   undefined4 uVar4;
   int iVar5;
-  undefined local_11;
+  undefined1 local_11;
   int local_10;
   int local_c;
   

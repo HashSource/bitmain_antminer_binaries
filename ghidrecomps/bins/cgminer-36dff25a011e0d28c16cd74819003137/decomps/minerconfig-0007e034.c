@@ -27,7 +27,7 @@ void minerconfig(io_data *io_data,long c,char *param,_Bool isjson,char group)
   root = api_add_int(root,"ASC Count",&asccount,false);
   root = api_add_int(root,"PGA Count",&pgacount,false);
   root = api_add_int(root,"Pool Count",&total_pools,false);
-  root = api_add_const(root,"Strategy",*(char **)(&strategies + pool_strategy * 4),false);
+  root = api_add_const(root,"Strategy",(&strategies)[pool_strategy],false);
   root = api_add_int(root,"Log Interval",&opt_log_interval,false);
   root = api_add_const(root,"Device Code",DEVICECODE,false);
   root = api_add_const(root,"OS",OSINFO,false);

@@ -2,13 +2,13 @@
 void ssl3_send_next_proto(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
-  undefined *puVar1;
+  undefined1 *puVar1;
   uint __n;
   size_t __n_00;
   
   if (*(int *)(param_1 + 0x34) == 0x1200) {
     __n = (uint)*(byte *)(param_1 + 0x178);
-    puVar1 = *(undefined **)(*(int *)(param_1 + 0x3c) + 4);
+    puVar1 = *(undefined1 **)(*(int *)(param_1 + 0x3c) + 4);
     __n_00 = 0x20 - (__n + 2 & 0x1f);
     puVar1[4] = *(byte *)(param_1 + 0x178);
     memcpy(puVar1 + 5,*(void **)(param_1 + 0x174),__n);

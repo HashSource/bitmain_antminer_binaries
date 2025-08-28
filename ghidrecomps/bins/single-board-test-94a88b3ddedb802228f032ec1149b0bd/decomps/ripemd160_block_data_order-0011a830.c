@@ -59,10 +59,10 @@ void ripemd160_block_data_order(int *param_1,int param_2,int param_3)
       HintPreloadData(param_2 + 0x43);
       uVar24 = (uint)*(byte *)(param_2 + 0x16) << 0x10 | (uint)*(byte *)(param_2 + 0x15) << 8 |
                (uint)*(byte *)(param_2 + 0x14) | (uint)*(byte *)(param_2 + 0x17) << 0x18;
-      iVar16 = CONCAT13(*(undefined *)(param_2 + 3),
-                        CONCAT12(*(undefined *)(param_2 + 2),
-                                 CONCAT11(*(undefined *)(param_2 + 1),
-                                          *(undefined *)(local_3c + -0x40))));
+      iVar16 = CONCAT13(*(undefined1 *)(param_2 + 3),
+                        CONCAT12(*(undefined1 *)(param_2 + 2),
+                                 CONCAT11(*(undefined1 *)(param_2 + 1),
+                                          *(undefined1 *)(local_3c + -0x40))));
       uVar17 = (uint)*(byte *)(param_2 + 6) << 0x10 | (uint)*(byte *)(param_2 + 5) << 8 |
                (uint)*(byte *)(param_2 + 4) | (uint)*(byte *)(param_2 + 7) << 0x18;
       uVar5 = local_40 + 0x50a28be6 + ((local_48 | ~local_68) ^ local_54) + uVar24;

@@ -8,7 +8,7 @@ int ENGINE_register_ECDH(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7a98,DAT_000a7a94,e,DAT_000a7a9c,1,0);
+    iVar1 = engine_table_register(&ecdh_table,0xa7a55,e,&dummy_nid,1,0);
   }
   return iVar1;
 }

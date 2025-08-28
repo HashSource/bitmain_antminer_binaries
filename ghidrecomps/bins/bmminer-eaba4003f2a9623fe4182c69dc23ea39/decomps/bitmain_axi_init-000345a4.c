@@ -1,5 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* WARNING: Unknown calling convention */
 
 int bitmain_axi_init(void)
@@ -97,31 +96,8 @@ int bitmain_axi_init(void)
           if (dev == (all_parameters *)0x0) {
             if ((opt_debug != false) &&
                (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-              tmp42[0] = s_kmalloc_for_dev_failed__0007633c[0];
-              tmp42[1] = s_kmalloc_for_dev_failed__0007633c[1];
-              tmp42[2] = s_kmalloc_for_dev_failed__0007633c[2];
-              tmp42[3] = s_kmalloc_for_dev_failed__0007633c[3];
-              tmp42[4] = s_kmalloc_for_dev_failed__0007633c[4];
-              tmp42[5] = s_kmalloc_for_dev_failed__0007633c[5];
-              tmp42[6] = s_kmalloc_for_dev_failed__0007633c[6];
-              tmp42[7] = s_kmalloc_for_dev_failed__0007633c[7];
-              tmp42[8] = s_kmalloc_for_dev_failed__0007633c[8];
-              tmp42[9] = s_kmalloc_for_dev_failed__0007633c[9];
-              tmp42[10] = s_kmalloc_for_dev_failed__0007633c[10];
-              tmp42[11] = s_kmalloc_for_dev_failed__0007633c[11];
-              tmp42[12] = s_kmalloc_for_dev_failed__0007633c[12];
-              tmp42[13] = s_kmalloc_for_dev_failed__0007633c[13];
-              tmp42[14] = s_kmalloc_for_dev_failed__0007633c[14];
-              tmp42[15] = s_kmalloc_for_dev_failed__0007633c[15];
-              tmp42[16] = s_kmalloc_for_dev_failed__0007633c[16];
-              tmp42[17] = s_kmalloc_for_dev_failed__0007633c[17];
-              tmp42[18] = s_kmalloc_for_dev_failed__0007633c[18];
-              tmp42[19] = s_kmalloc_for_dev_failed__0007633c[19];
-              tmp42[20] = s_kmalloc_for_dev_failed__0007633c[20];
-              tmp42[21] = s_kmalloc_for_dev_failed__0007633c[21];
-              tmp42[22] = s_kmalloc_for_dev_failed__0007633c[22];
-              tmp42[23] = s_kmalloc_for_dev_failed__0007633c[23];
-              tmp42[24] = (char)ram0x00076354;
+              builtin_strncpy(tmp42,"kmalloc for dev failed.\n",0x18);
+              tmp42._24_2_ = (ushort)(byte)tmp42[0x19] << 8;
               _applog(7,tmp42,false);
             }
             ret = -1;
@@ -130,31 +106,9 @@ int bitmain_axi_init(void)
             dev->current_job_start_address = job_start_address_1;
             if ((opt_debug != false) &&
                (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-              tmp42[0] = s_kmalloc_for_dev_success__00076358[0];
-              tmp42[1] = s_kmalloc_for_dev_success__00076358[1];
-              tmp42[2] = s_kmalloc_for_dev_success__00076358[2];
-              tmp42[3] = s_kmalloc_for_dev_success__00076358[3];
-              tmp42[4] = s_kmalloc_for_dev_success__00076358[4];
-              tmp42[5] = s_kmalloc_for_dev_success__00076358[5];
-              tmp42[6] = s_kmalloc_for_dev_success__00076358[6];
-              tmp42[7] = s_kmalloc_for_dev_success__00076358[7];
-              tmp42[8] = s_kmalloc_for_dev_success__00076358[8];
-              tmp42[9] = s_kmalloc_for_dev_success__00076358[9];
-              tmp42[10] = s_kmalloc_for_dev_success__00076358[10];
-              tmp42[11] = s_kmalloc_for_dev_success__00076358[11];
-              tmp42[12] = s_kmalloc_for_dev_success__00076358[12];
-              tmp42[13] = s_kmalloc_for_dev_success__00076358[13];
-              tmp42[14] = s_kmalloc_for_dev_success__00076358[14];
-              tmp42[15] = s_kmalloc_for_dev_success__00076358[15];
-              tmp42[16] = s_kmalloc_for_dev_success__00076358[16];
-              tmp42[17] = s_kmalloc_for_dev_success__00076358[17];
-              tmp42[18] = s_kmalloc_for_dev_success__00076358[18];
-              tmp42[19] = s_kmalloc_for_dev_success__00076358[19];
-              tmp42[20] = s_kmalloc_for_dev_success__00076358[20];
-              tmp42[21] = s_kmalloc_for_dev_success__00076358[21];
-              tmp42[22] = s_kmalloc_for_dev_success__00076358[22];
-              tmp42[23] = s_kmalloc_for_dev_success__00076358[23];
-              tmp42._24_2_ = (undefined2)ram0x00076370;
+              builtin_strncpy(tmp42,"kmalloc for dev success.",0x18);
+              tmp42[0x18] = '\n';
+              tmp42[0x19] = '\0';
               _applog(7,tmp42,false);
             }
           }

@@ -2,7 +2,7 @@
 void blake2b_hash(undefined4 *param_1,undefined4 param_2)
 
 {
-  undefined auStack_140 [256];
+  undefined1 auStack_140 [256];
   undefined4 local_40;
   undefined4 uStack_3c;
   undefined4 uStack_38;

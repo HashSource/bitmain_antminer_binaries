@@ -2,7 +2,7 @@
 void SSL_CTX_free_part_5(SSL_CTX *param_1)
 
 {
-  void **ppvVar1;
+  undefined4 *puVar1;
   _STACK *p_Var2;
   void *pvVar3;
   ssl3_buf_freelist_st *psVar4;
@@ -30,10 +30,10 @@ void SSL_CTX_free_part_5(SSL_CTX *param_1)
     ssl_cert_free();
   }
   if (&param_1->client_CA->stack != (_STACK *)0x0) {
-    sk_pop_free(&param_1->client_CA->stack,DAT_00079af0);
+    sk_pop_free(&param_1->client_CA->stack,(func *)0xb7acd);
   }
   if (&param_1->extra_certs->stack != (_STACK *)0x0) {
-    sk_pop_free(&param_1->extra_certs->stack,DAT_00079af4);
+    sk_pop_free(&param_1->extra_certs->stack,(func *)0xb7c0d);
   }
   p_Var2 = (_STACK *)param_1[1].stats.sess_connect_good;
   param_1->comp_methods = (stack_st_SSL_COMP *)0x0;
@@ -49,21 +49,21 @@ void SSL_CTX_free_part_5(SSL_CTX *param_1)
   }
   psVar4 = param_1->wbuf_freelist;
   if (psVar4 != (ssl3_buf_freelist_st *)0x0) {
-    ppvVar1 = (void **)*(void **)(psVar4 + 8);
-    while (ppvVar1 != (void **)0x0) {
-      pvVar3 = *ppvVar1;
-      CRYPTO_free(ppvVar1);
-      ppvVar1 = (void **)pvVar3;
+    puVar1 = (undefined4 *)*(void **)(psVar4 + 8);
+    while (puVar1 != (undefined4 *)0x0) {
+      pvVar3 = (void *)*puVar1;
+      CRYPTO_free(puVar1);
+      puVar1 = (undefined4 *)pvVar3;
     }
     CRYPTO_free(psVar4);
   }
   psVar4 = param_1->rbuf_freelist;
   if (psVar4 != (ssl3_buf_freelist_st *)0x0) {
-    ppvVar1 = (void **)*(void **)(psVar4 + 8);
-    while (ppvVar1 != (void **)0x0) {
-      pvVar3 = *ppvVar1;
-      CRYPTO_free(ppvVar1);
-      ppvVar1 = (void **)pvVar3;
+    puVar1 = (undefined4 *)*(void **)(psVar4 + 8);
+    while (puVar1 != (undefined4 *)0x0) {
+      pvVar3 = (void *)*puVar1;
+      CRYPTO_free(puVar1);
+      puVar1 = (undefined4 *)pvVar3;
     }
     CRYPTO_free(psVar4);
   }

@@ -59,7 +59,7 @@ int asn1_bio_write_part_0(BIO *param_1,void *param_2,int param_3)
       iVar1 = ASN1_object_size(0,param_3,puVar5[7]);
       puVar5[4] = iVar1 - param_3;
       if ((int)puVar5[2] < iVar1 - param_3) {
-        OpenSSLDie(DAT_0012c360,0xe8,DAT_0012c364);
+        OpenSSLDie("bio_asn1.c",0xe8,"ctx->buflen <= ctx->bufsize");
       }
       local_2c[0] = (uchar *)puVar5[1];
       ASN1_put_object(local_2c,0,param_3,puVar5[7],puVar5[6]);

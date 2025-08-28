@@ -14,7 +14,6 @@ int BN_is_prime_fasttest_ex(BIGNUM *p,int nchecks,BN_CTX *ctx,int do_trial_divis
   ulong uVar6;
   BN_CTX *ctx_00;
   ushort *puVar7;
-  ushort *puVar8;
   
   pBVar1 = BN_value_one();
   iVar2 = BN_cmp(p,pBVar1);
@@ -106,15 +105,14 @@ int BN_is_prime_fasttest_ex(BIGNUM *p,int nchecks,BN_CTX *ctx,int do_trial_divis
     return 1 - p->neg;
   }
   if (do_trial_division != 0) {
-    puVar8 = DAT_000f3da8 + 0x7ff;
-    puVar7 = DAT_000f3da8;
+    puVar7 = (ushort *)&primes;
     do {
       puVar7 = puVar7 + 1;
       uVar6 = BN_mod_word(p,(uint)*puVar7);
       if (uVar6 == 0) {
         return 0;
       }
-    } while (puVar7 != puVar8);
+    } while (puVar7 != (ushort *)&UNK_00170bc6);
     if (cb != (BN_GENCB *)0x0) {
       if (cb->ver == 1) {
         if ((cb->cb).cb_1 != (_func_556 *)0x0) {

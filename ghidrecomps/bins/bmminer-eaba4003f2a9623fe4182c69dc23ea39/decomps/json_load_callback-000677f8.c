@@ -22,7 +22,7 @@ json_t * json_load_callback(json_load_callback_t callback,void *arg,size_t flags
     pjVar2 = (json_t *)0x0;
   }
   else {
-    iVar1 = lex_init(&lex,callback_get + 1,flags,&stream_data);
+    iVar1 = lex_init(&lex,(get_func)0x67775,flags,&stream_data);
     if (iVar1 == 0) {
       pjVar2 = parse_json(&lex,flags,error);
       lex_close(&lex);

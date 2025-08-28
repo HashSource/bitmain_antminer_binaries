@@ -60,7 +60,7 @@ LAB_000bcac6:
 LAB_000bcafc:
               if ((int)(pbVar5 + (omax - (int)pbVar8)) < (int)uVar3) {
                 uVar2 = uVar2 | 0x80;
-                ERR_put_error(0xd,0x72,0x9b,DAT_000bcb70,0x93);
+                ERR_put_error(0xd,0x72,0x9b,"asn1_lib.c",0x93);
               }
               *pp = pbVar8;
               return uVar2 | uVar7;
@@ -95,7 +95,7 @@ LAB_000bcaf2:
     }
   }
 LAB_000bca7a:
-  ERR_put_error(0xd,0x72,0x7b,DAT_000bcb70,0x9d);
+  ERR_put_error(0xd,0x72,0x7b,"asn1_lib.c",0x9d);
   return 0x80;
 }
 

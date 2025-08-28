@@ -38,11 +38,11 @@ LAB_000b8d70:
       if (iVar2 != (int)pcVar1 - (int)data) {
 LAB_000b8dda:
         iVar2 = 0;
-        ERR_put_error(0xb,0x75,7,DAT_000b8e00,0x227);
+        ERR_put_error(0xb,0x75,7,"t_x509.c",0x227);
         goto LAB_000b8d98;
       }
       if (*pcVar3 == '\0') break;
-      iVar2 = BIO_write(bp,DAT_000b8dfc,2);
+      iVar2 = BIO_write(bp,&DAT_0013677c,2);
       if (iVar2 != 2) goto LAB_000b8dda;
       data = pcVar4;
     } while (*pcVar3 != '\0');

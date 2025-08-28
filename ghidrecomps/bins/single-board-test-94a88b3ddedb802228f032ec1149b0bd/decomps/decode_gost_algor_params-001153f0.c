@@ -3,7 +3,7 @@ int decode_gost_algor_params(EVP_PKEY *param_1,X509_ALGOR *param_2)
 
 {
   int iVar1;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   int iVar3;
   int iVar4;
   DSA *key;
@@ -17,18 +17,18 @@ int decode_gost_algor_params(EVP_PKEY *param_1,X509_ALGOR *param_2)
   local_24 = -1;
   X509_ALGOR_get0(&local_28,&local_24,&local_20,param_2);
   if (local_24 != 0x10) {
-    ERR_GOST_error(99,99,DAT_001154f4,0x68);
+    ERR_GOST_error(99,99,"gost_ameth.c",0x68);
     return 0;
   }
   local_1c[0] = local_20[2];
   iVar1 = OBJ_obj2nid(local_28);
-  ppAVar2 = (ASN1_OBJECT **)d2i_GOST_KEY_PARAMS(0,local_1c,*local_20);
-  if (ppAVar2 != (ASN1_OBJECT **)0x0) {
-    iVar3 = OBJ_obj2nid(*ppAVar2);
-    GOST_KEY_PARAMS_free(ppAVar2);
+  puVar2 = (undefined4 *)d2i_GOST_KEY_PARAMS(0,local_1c,*local_20);
+  if (puVar2 != (undefined4 *)0x0) {
+    iVar3 = OBJ_obj2nid((ASN1_OBJECT *)*puVar2);
+    GOST_KEY_PARAMS_free(puVar2);
     iVar4 = EVP_PKEY_set_type(param_1,iVar1);
     if (iVar4 == 0) {
-      ERR_GOST_error(99,0x44,DAT_001154f4,0x77);
+      ERR_GOST_error(99,0x44,"gost_ameth.c",0x77);
       return 0;
     }
     if (iVar1 == 0x32b) {
@@ -64,7 +64,7 @@ int decode_gost_algor_params(EVP_PKEY *param_1,X509_ALGOR *param_2)
     }
     return iVar1;
   }
-  ERR_GOST_error(99,100,DAT_001154f4,0x71);
+  ERR_GOST_error(99,100,"gost_ameth.c",0x71);
   return 0;
 }
 

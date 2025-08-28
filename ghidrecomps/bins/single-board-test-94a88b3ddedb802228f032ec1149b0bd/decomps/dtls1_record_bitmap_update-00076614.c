@@ -17,21 +17,21 @@ void dtls1_record_bitmap_update(int param_1,uint *param_2)
   if ((int)(uVar1 * 0x1000000) < 0) {
     uVar3 = ((int)uVar1 >> 8) + ((uint)*(byte *)(iVar2 + 0xe) - (uint)*(byte *)((int)param_2 + 10));
     uVar8 = ((uint)*(byte *)(iVar2 + 0xd) - (uint)*(byte *)((int)param_2 + 9)) + ((int)uVar3 >> 8);
-    uVar7 = ((uint)*(byte *)(iVar2 + 0xc) - (uint)*(byte *)(param_2 + 2)) + ((int)uVar8 >> 8);
+    uVar7 = ((uint)*(byte *)(iVar2 + 0xc) - (uint)(byte)param_2[2]) + ((int)uVar8 >> 8);
     uVar9 = ((uint)*(byte *)(iVar2 + 0xb) - (uint)*(byte *)((int)param_2 + 7)) + ((int)uVar7 >> 8);
     uVar6 = ((uint)*(byte *)(iVar2 + 10) - (uint)*(byte *)((int)param_2 + 6)) + ((int)uVar9 >> 8);
     uVar5 = ((uint)*(byte *)(iVar2 + 9) - (uint)*(byte *)((int)param_2 + 5)) + ((int)uVar6 >> 8);
-    uVar4 = ((uint)*(byte *)(iVar2 + 8) - (uint)*(byte *)(param_2 + 1)) + ((int)uVar5 >> 8);
+    uVar4 = ((uint)*(byte *)(iVar2 + 8) - (uint)(byte)param_2[1]) + ((int)uVar5 >> 8);
     uVar3 = ~uVar8 | ~uVar3 | ~uVar7 | ~uVar9 | ~uVar6 | ~uVar5 | ~uVar4;
   }
   else {
     uVar3 = ((int)uVar1 >> 8) + ((uint)*(byte *)(iVar2 + 0xe) - (uint)*(byte *)((int)param_2 + 10));
     uVar7 = ((uint)*(byte *)(iVar2 + 0xd) - (uint)*(byte *)((int)param_2 + 9)) + ((int)uVar3 >> 8);
-    uVar6 = ((uint)*(byte *)(iVar2 + 0xc) - (uint)*(byte *)(param_2 + 2)) + ((int)uVar7 >> 8);
+    uVar6 = ((uint)*(byte *)(iVar2 + 0xc) - (uint)(byte)param_2[2]) + ((int)uVar7 >> 8);
     uVar9 = ((uint)*(byte *)(iVar2 + 0xb) - (uint)*(byte *)((int)param_2 + 7)) + ((int)uVar6 >> 8);
     uVar5 = ((uint)*(byte *)(iVar2 + 10) - (uint)*(byte *)((int)param_2 + 6)) + ((int)uVar9 >> 8);
     uVar8 = ((uint)*(byte *)(iVar2 + 9) - (uint)*(byte *)((int)param_2 + 5)) + ((int)uVar5 >> 8);
-    uVar4 = ((uint)*(byte *)(iVar2 + 8) - (uint)*(byte *)(param_2 + 1)) + ((int)uVar8 >> 8);
+    uVar4 = ((uint)*(byte *)(iVar2 + 8) - (uint)(byte)param_2[1]) + ((int)uVar8 >> 8);
     uVar3 = uVar3 | uVar7 | uVar6 | uVar9 | uVar5 | uVar8 | uVar4;
   }
   uVar4 = ((int)uVar4 >> 8) * 0x100;

@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void get_plldata_from_index(int index,uint8_t *vil_pll)
 
 {
@@ -14,20 +12,10 @@ void get_plldata_from_index(int index,uint8_t *vil_pll)
   memset(plldivider1,0,0x20);
   if (0xb2 < (uint)index) {
     if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
-      tmp42[0] = s_freq_set_error_0009a704[0];
-      tmp42[1] = s_freq_set_error_0009a704[1];
-      tmp42[2] = s_freq_set_error_0009a704[2];
-      tmp42[3] = s_freq_set_error_0009a704[3];
-      tmp42[4] = s_freq_set_error_0009a704[4];
-      tmp42[5] = s_freq_set_error_0009a704[5];
-      tmp42[6] = s_freq_set_error_0009a704[6];
-      tmp42[7] = s_freq_set_error_0009a704[7];
-      tmp42[8] = s_freq_set_error_0009a704[8];
-      tmp42[9] = s_freq_set_error_0009a704[9];
-      tmp42[10] = s_freq_set_error_0009a704[10];
-      tmp42[11] = s_freq_set_error_0009a704[11];
-      tmp42._12_2_ = (undefined2)ram0x0009a710;
-      tmp42[14] = (char)((uint)ram0x0009a710 >> 0x10);
+      builtin_strncpy(tmp42,"freq set err",0xc);
+      tmp42[0xc] = 'o';
+      tmp42[0xd] = 'r';
+      tmp42[0xe] = '\0';
       _applog(3,tmp42,false);
     }
                     /* WARNING: Subroutine does not return */

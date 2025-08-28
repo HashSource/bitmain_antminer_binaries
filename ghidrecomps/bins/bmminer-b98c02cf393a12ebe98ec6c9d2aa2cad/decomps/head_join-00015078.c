@@ -32,9 +32,7 @@ LAB_000150b6:
   if (param_2 == iVar1) {
     return;
   }
-                    /* WARNING: Could not recover jumptable at 0x00012060. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_0007ce68)(iVar1);
+  (*(code *)(undefined *)0x0)(iVar1);
   return;
 }
 

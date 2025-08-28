@@ -12,7 +12,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
   
   uVar2 = c->num;
   uVar1 = uVar2 + 1;
-  *(undefined *)((int)c->h + uVar2 + 0x50) = 0x80;
+  *(undefined1 *)((int)c->h + uVar2 + 0x50) = 0x80;
   if (uVar1 < 0x71) {
     __n = 0x6f - uVar2;
   }
@@ -23,9 +23,9 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
     uVar1 = 0;
   }
   memset((void *)((int)c->h + uVar1 + 0x50),0,__n);
-  uVar6 = *(undefined4 *)&c->Nl;
+  uVar6 = (undefined4)c->Nl;
   uVar5 = *(undefined4 *)((int)&c->Nl + 4);
-  uVar4 = *(undefined4 *)&c->Nh;
+  uVar4 = (undefined4)c->Nh;
   uVar3 = *(undefined4 *)((int)&c->Nh + 4);
   (c->u).p[0x7f] = (uchar)uVar6;
   (c->u).p[0x7e] = (uchar)((uint)uVar6 >> 8);
@@ -46,7 +46,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
   sha512_block_data_order(c,&c->u,1);
   if (md != (uchar *)0x0) {
     if (c->md_len == 0x30) {
-      uVar3 = *(undefined4 *)c->h;
+      uVar3 = (undefined4)c->h[0];
       uVar4 = *(undefined4 *)((int)c->h + 4);
       md[7] = (uchar)uVar3;
       md[4] = (uchar)((uint)uVar3 >> 0x18);
@@ -57,7 +57,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[3] = (uchar)uVar4;
       md[6] = (uchar)((uint)uVar3 >> 8);
       uVar4 = *(undefined4 *)((int)c->h + 0xc);
-      uVar3 = *(undefined4 *)(c->h + 1);
+      uVar3 = (undefined4)c->h[1];
       md[0xb] = (uchar)uVar4;
       md[0xf] = (uchar)uVar3;
       md[0xc] = (uchar)((uint)uVar3 >> 0x18);
@@ -67,7 +67,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0xd] = (uchar)((uint)uVar3 >> 0x10);
       md[0xe] = (uchar)((uint)uVar3 >> 8);
       uVar4 = *(undefined4 *)((int)c->h + 0x14);
-      uVar3 = *(undefined4 *)(c->h + 2);
+      uVar3 = (undefined4)c->h[2];
       md[0x13] = (uchar)uVar4;
       md[0x17] = (uchar)uVar3;
       md[0x14] = (uchar)((uint)uVar3 >> 0x18);
@@ -77,7 +77,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x15] = (uchar)((uint)uVar3 >> 0x10);
       md[0x16] = (uchar)((uint)uVar3 >> 8);
       uVar3 = *(undefined4 *)((int)c->h + 0x1c);
-      uVar4 = *(undefined4 *)(c->h + 3);
+      uVar4 = (undefined4)c->h[3];
       md[0x18] = (uchar)((uint)uVar3 >> 0x18);
       md[0x19] = (uchar)((uint)uVar3 >> 0x10);
       md[0x1a] = (uchar)((uint)uVar3 >> 8);
@@ -87,7 +87,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x1b] = (uchar)uVar3;
       md[0x1f] = (uchar)uVar4;
       uVar4 = *(undefined4 *)((int)c->h + 0x24);
-      uVar3 = *(undefined4 *)(c->h + 4);
+      uVar3 = (undefined4)c->h[4];
       md[0x23] = (uchar)uVar4;
       md[0x27] = (uchar)uVar3;
       md[0x20] = (uchar)((uint)uVar4 >> 0x18);
@@ -96,7 +96,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x25] = (uchar)((uint)uVar3 >> 0x10);
       md[0x24] = (uchar)((uint)uVar3 >> 0x18);
       md[0x26] = (uchar)((uint)uVar3 >> 8);
-      uVar3 = *(undefined4 *)(c->h + 5);
+      uVar3 = (undefined4)c->h[5];
       uVar4 = *(undefined4 *)((int)c->h + 0x2c);
       md[0x2f] = (uchar)uVar3;
       md[0x2c] = (uchar)((uint)uVar3 >> 0x18);
@@ -109,7 +109,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       return 1;
     }
     if (c->md_len == 0x40) {
-      uVar3 = *(undefined4 *)c->h;
+      uVar3 = (undefined4)c->h[0];
       uVar4 = *(undefined4 *)((int)c->h + 4);
       md[7] = (uchar)uVar3;
       md[4] = (uchar)((uint)uVar3 >> 0x18);
@@ -120,7 +120,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[3] = (uchar)uVar4;
       md[6] = (uchar)((uint)uVar3 >> 8);
       uVar4 = *(undefined4 *)((int)c->h + 0xc);
-      uVar3 = *(undefined4 *)(c->h + 1);
+      uVar3 = (undefined4)c->h[1];
       md[0xb] = (uchar)uVar4;
       md[0xf] = (uchar)uVar3;
       md[0xc] = (uchar)((uint)uVar3 >> 0x18);
@@ -130,7 +130,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0xd] = (uchar)((uint)uVar3 >> 0x10);
       md[0xe] = (uchar)((uint)uVar3 >> 8);
       uVar4 = *(undefined4 *)((int)c->h + 0x14);
-      uVar3 = *(undefined4 *)(c->h + 2);
+      uVar3 = (undefined4)c->h[2];
       md[0x13] = (uchar)uVar4;
       md[0x17] = (uchar)uVar3;
       md[0x14] = (uchar)((uint)uVar3 >> 0x18);
@@ -140,7 +140,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x15] = (uchar)((uint)uVar3 >> 0x10);
       md[0x16] = (uchar)((uint)uVar3 >> 8);
       uVar3 = *(undefined4 *)((int)c->h + 0x1c);
-      uVar4 = *(undefined4 *)(c->h + 3);
+      uVar4 = (undefined4)c->h[3];
       md[0x18] = (uchar)((uint)uVar3 >> 0x18);
       md[0x19] = (uchar)((uint)uVar3 >> 0x10);
       md[0x1a] = (uchar)((uint)uVar3 >> 8);
@@ -150,7 +150,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x1b] = (uchar)uVar3;
       md[0x1f] = (uchar)uVar4;
       uVar4 = *(undefined4 *)((int)c->h + 0x24);
-      uVar3 = *(undefined4 *)(c->h + 4);
+      uVar3 = (undefined4)c->h[4];
       md[0x23] = (uchar)uVar4;
       md[0x27] = (uchar)uVar3;
       md[0x24] = (uchar)((uint)uVar3 >> 0x18);
@@ -160,7 +160,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x25] = (uchar)((uint)uVar3 >> 0x10);
       md[0x26] = (uchar)((uint)uVar3 >> 8);
       uVar4 = *(undefined4 *)((int)c->h + 0x2c);
-      uVar3 = *(undefined4 *)(c->h + 5);
+      uVar3 = (undefined4)c->h[5];
       md[0x2b] = (uchar)uVar4;
       md[0x2f] = (uchar)uVar3;
       md[0x2c] = (uchar)((uint)uVar3 >> 0x18);
@@ -169,7 +169,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x2a] = (uchar)((uint)uVar4 >> 8);
       md[0x2d] = (uchar)((uint)uVar3 >> 0x10);
       md[0x2e] = (uchar)((uint)uVar3 >> 8);
-      uVar4 = *(undefined4 *)(c->h + 6);
+      uVar4 = (undefined4)c->h[6];
       uVar3 = *(undefined4 *)((int)c->h + 0x34);
       md[0x33] = (uchar)uVar3;
       md[0x31] = (uchar)((uint)uVar3 >> 0x10);
@@ -179,7 +179,7 @@ int SHA384_Final(uchar *md,SHA512_CTX *c)
       md[0x35] = (uchar)((uint)uVar4 >> 0x10);
       md[0x36] = (uchar)((uint)uVar4 >> 8);
       md[0x37] = (uchar)uVar4;
-      uVar3 = *(undefined4 *)(c->h + 7);
+      uVar3 = (undefined4)c->h[7];
       uVar4 = *(undefined4 *)((int)c->h + 0x3c);
       md[0x3f] = (uchar)uVar3;
       md[0x3c] = (uchar)((uint)uVar3 >> 0x18);

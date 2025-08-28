@@ -4,33 +4,25 @@
 _Bool check_asic_reg_oneChain(int chainIndex,uint reg)
 
 {
-  byte bVar1;
-  char cVar2;
-  int *piVar3;
+  _Bool _Var1;
+  uint uVar2;
+  uint uVar3;
   uint uVar4;
-  uint uVar5;
+  int iVar5;
   uint uVar6;
-  int iVar7;
-  char **ppcVar8;
-  undefined4 *puVar9;
-  int iVar10;
-  int i;
-  uint uVar11;
-  uint uVar12;
-  int j;
-  bool bVar13;
-  int in_stack_fffff794;
+  bool bVar7;
+  undefined1 display;
+  undefined4 in_stack_fffff794;
+  char (*buf) [32];
   int local_854;
-  char *local_850;
-  char *pcStack_84c;
+  uint local_850;
+  int iStack_84c;
   uint local_848;
   uchar reg_buf [5];
   uchar rate_buf [10];
   char tmp42 [2048];
   
-  piVar3 = DAT_000324ac;
-  iVar7 = DAT_0003248c;
-  iVar10 = 0;
+  iVar5 = 0;
   reg_buf[0] = '\0';
   reg_buf[1] = '\0';
   reg_buf[2] = '\0';
@@ -38,158 +30,141 @@ _Bool check_asic_reg_oneChain(int chainIndex,uint reg)
   reg_buf[4] = '\0';
   while( true ) {
     clear_register_value_buf();
-    if (*(int *)(*piVar3 + (chainIndex + 2) * 4) != 1) {
+    if (dev->chain_exist[chainIndex] != 1) {
       return true;
     }
     read_asic_register((uchar)chainIndex,'\x01','\0',(uchar)reg);
+    display = (undefined1)in_stack_fffff794;
     if (reg == 0) {
       dev->chain_asic_num[chainIndex] = (uchar)reg;
     }
-    if (2 < iVar10) break;
+    if (2 < iVar5) break;
     local_854 = 0;
-    local_850 = (char *)0x0;
-    pcStack_84c = (char *)0x0;
+    local_850 = 0;
+    iStack_84c = 0;
     local_848 = 0;
     while( true ) {
       cgsleep_ms(300);
-      pthread_mutex_lock(DAT_00032490);
-      uVar11 = *(uint *)(iVar7 + 8);
-      if ((0x1fe < uVar11) || (0x1fe < *(uint *)(iVar7 + 4))) break;
-      if (uVar11 == 0) {
-        iVar10 = iVar10 + 1;
+      pthread_mutex_lock((pthread_mutex_t *)&reg_mutex);
+      uVar4 = reg_value_buf.reg_value_num;
+      if ((0x1fe < reg_value_buf.reg_value_num) || (0x1fe < reg_value_buf.p_rd)) break;
+      if (reg_value_buf.reg_value_num == 0) {
+        iVar5 = iVar5 + 1;
         cgsleep_ms(100);
-        pthread_mutex_unlock(DAT_000325e8);
-        if (iVar10 == 3) goto LAB_000324c8;
+        pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
+        display = (undefined1)in_stack_fffff794;
+        if (iVar5 == 3) goto LAB_000324c8;
       }
       else {
-        local_854 = local_854 + uVar11;
+        local_854 = local_854 + reg_value_buf.reg_value_num;
         if (600 < local_854) {
-          pthread_mutex_unlock(DAT_000325e8);
+          pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
           return false;
         }
-        uVar12 = 0;
-LAB_000322d0:
+        uVar6 = 0;
         do {
-          iVar10 = *(int *)(iVar7 + 4) + 1;
-          if (chainIndex == (uint)*(byte *)(iVar7 + (*(int *)(iVar7 + 4) + 1) * 8 + 9)) {
-            reg_buf[3] = (uchar)*(undefined4 *)(iVar7 + iVar10 * 8 + 4);
-            reg_buf[2] = (uchar)((uint)*(undefined4 *)(iVar7 + (*(int *)(iVar7 + 4) + 1) * 8 + 4) >>
-                                8);
-            reg_buf[1] = (uchar)((uint)*(undefined4 *)(iVar7 + (*(int *)(iVar7 + 4) + 1) * 8 + 4) >>
-                                0x10);
-            uVar4 = *(uint *)(iVar7 + (*(int *)(iVar7 + 4) + 1) * 8 + 4);
-            uVar5 = uVar4 >> 0x18;
-            *(int *)(iVar7 + 4) = *(int *)(iVar7 + 4) + 1;
-            reg_buf[0] = (uchar)(uVar4 >> 0x18);
-            *(int *)(iVar7 + 8) = *(int *)(iVar7 + 8) + -1;
-            uVar6 = *(uint *)(iVar7 + 4);
-            uVar4 = uVar6;
-            if (0x1fe < uVar6) {
-              uVar4 = 0;
+          while (uVar3 = reg_value_buf.p_rd + 1,
+                chainIndex != (uint)reg_value_buf.reg_buffer[reg_value_buf.p_rd].chain_number) {
+            reg_value_buf.reg_value_num = reg_value_buf.reg_value_num - 1;
+            reg_value_buf.p_rd = uVar3;
+            if (0x1fe < uVar3) {
+              reg_value_buf.p_rd = 0;
             }
-            if (0x1fe < uVar6) {
-              *(uint *)(iVar7 + 4) = uVar4;
-            }
-            if (reg == 0) {
-              uVar12 = uVar12 + 1;
-              *(char *)(*piVar3 + chainIndex + 0x2faa) =
-                   *(char *)(*piVar3 + chainIndex + 0x2faa) + '\x01';
-              if (uVar12 == uVar11) break;
-              goto LAB_000322d0;
-            }
+LAB_000322c8:
+            uVar6 = uVar6 + 1;
+            if (uVar6 == uVar4) goto LAB_00032352;
+          }
+          reg_buf[3] = (uchar)reg_value_buf.reg_buffer[reg_value_buf.p_rd].reg_value;
+          reg_buf[2] = (uchar)(reg_value_buf.reg_buffer[reg_value_buf.p_rd].reg_value >> 8);
+          reg_buf[1] = (uchar)(reg_value_buf.reg_buffer[reg_value_buf.p_rd].reg_value >> 0x10);
+          uVar3 = reg_value_buf.reg_buffer[reg_value_buf.p_rd].reg_value;
+          reg_value_buf.p_rd = reg_value_buf.p_rd + 1;
+          uVar2 = uVar3 >> 0x18;
+          reg_buf[0] = (uchar)(uVar3 >> 0x18);
+          reg_value_buf.reg_value_num = reg_value_buf.reg_value_num - 1;
+          if (0x1fe < reg_value_buf.p_rd) {
+            reg_value_buf.p_rd = 0;
+          }
+          if (reg != 0) {
             if (reg == 0xc) {
               if ((opt_debug != false) &&
-                 (((use_syslog != false || (*DAT_00032494 != '\0')) || (6 < *DAT_00032498)))) {
-                snprintf(tmp42,0x800,DAT_0003249c,DAT_000324a0,
-                         *(undefined4 *)(iVar7 + (*(int *)(iVar7 + 4) + 1) * 8 + 4));
+                 (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+                snprintf(tmp42,0x800,"%s: the asic freq is 0x%x\n","check_asic_reg_oneChain",
+                         reg_value_buf.reg_buffer[reg_value_buf.p_rd].reg_value);
                 _applog(7,tmp42,false);
               }
             }
             else if (reg == 8) {
-              iVar10 = 0;
+              iVar5 = 0;
               while( true ) {
-                sprintf((char *)(rate_buf + iVar10 * 2),DAT_000324a4,uVar5);
-                if (iVar10 + 1 == 4) break;
-                uVar5 = (uint)reg_buf[iVar10 + 1];
-                iVar10 = iVar10 + 1;
+                sprintf((char *)(rate_buf + iVar5 * 2),"%02x",uVar2);
+                if (iVar5 + 1 == 4) break;
+                uVar2 = (uint)reg_buf[iVar5 + 1];
+                iVar5 = iVar5 + 1;
               }
               if ((opt_debug != false) &&
-                 (((use_syslog != false || (*DAT_00032494 != '\0')) || (6 < *DAT_00032498)))) {
-                snprintf(tmp42,0x800,DAT_000324a8,DAT_000324a0,rate_buf);
+                 (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+                snprintf(tmp42,0x800,"%s: hashrate is %s\n","check_asic_reg_oneChain",rate_buf);
                 _applog(7,tmp42,false);
               }
               local_848 = local_848 + 1;
-              uVar4 = strtol((char *)rate_buf,(char **)0x0,0x10);
-              bVar13 = CARRY4((uint)local_850,uVar4 * 0x1000000);
-              local_850 = local_850 + uVar4 * 0x1000000;
-              pcStack_84c = pcStack_84c + (((int)uVar4 >> 0x1f) << 0x18 | uVar4 >> 8) + (uint)bVar13
-              ;
+              uVar3 = strtol((char *)rate_buf,(char **)0x0,0x10);
+              bVar7 = CARRY4(local_850,uVar3 * 0x1000000);
+              local_850 = local_850 + uVar3 * 0x1000000;
+              iStack_84c = iStack_84c + (((int)uVar3 >> 0x1f) << 0x18 | uVar3 >> 8) + (uint)bVar7;
             }
+            goto LAB_000322c8;
           }
-          else {
-            *(int *)(iVar7 + 4) = iVar10;
-            *(int *)(iVar7 + 8) = *(int *)(iVar7 + 8) + -1;
-            uVar5 = *(uint *)(iVar7 + 4);
-            uVar4 = uVar5;
-            if (0x1fe < uVar5) {
-              uVar4 = 0;
-            }
-            if (0x1fe < uVar5) {
-              *(uint *)(iVar7 + 4) = uVar4;
-            }
-          }
-          uVar12 = uVar12 + 1;
-        } while (uVar12 != uVar11);
-        if ((reg == 0) && (*(char *)(*piVar3 + chainIndex + 0x2faa) == '\x12')) {
-          pthread_mutex_unlock(DAT_00032490);
+          uVar6 = uVar6 + 1;
+          dev->chain_asic_num[chainIndex] = dev->chain_asic_num[chainIndex] + '\x01';
+        } while (uVar6 != uVar4);
+LAB_00032352:
+        display = (undefined1)in_stack_fffff794;
+        if ((reg == 0) && (dev->chain_asic_num[chainIndex] == '\x12')) {
+          pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
           goto LAB_0003253c;
         }
-        iVar10 = 0;
-        pthread_mutex_unlock(DAT_00032490);
+        iVar5 = 0;
+        pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
       }
     }
-    iVar10 = iVar10 + 1;
-    pthread_mutex_unlock(DAT_00032490);
+    iVar5 = iVar5 + 1;
+    pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
   }
-  local_850 = (char *)0x0;
-  pcStack_84c = (char *)0x0;
+  local_850 = 0;
+  iStack_84c = 0;
   local_848 = 0;
 LAB_000324c8:
   if (reg == 0) {
 LAB_0003253c:
-    iVar10 = *piVar3;
-    bVar1 = *(byte *)(iVar10 + chainIndex + 0x2faa);
-    uVar11 = (uint)bVar1;
-    if (*(byte *)(iVar10 + 0x2fe9) < uVar11) {
-      *(byte *)(iVar10 + 0x2fe9) = bVar1;
+    uVar4 = (uint)dev->chain_asic_num[chainIndex];
+    if (dev->max_asic_num_in_one_chain < uVar4) {
+      dev->max_asic_num_in_one_chain = dev->chain_asic_num[chainIndex];
     }
   }
   else {
-    uVar11 = (uint)*(byte *)(*piVar3 + chainIndex + 0x2faa);
+    uVar4 = (uint)dev->chain_asic_num[chainIndex];
   }
-  if (uVar11 == local_848) {
-    iVar10 = DAT_000325f8 + chainIndex * 0x20;
-    ppcVar8 = (char **)(DAT_000325f4 + chainIndex * 8);
-    *ppcVar8 = local_850;
-    ppcVar8[1] = pcStack_84c;
-    suffix_string_c5(CONCAT44(in_stack_fffff794,6),local_850,(size_t)pcStack_84c,iVar10,true);
-    cVar2 = *DAT_000325fc;
-    *(undefined4 *)(DAT_000325f0 + chainIndex * 4 + 0xdd8) = 0;
-    if ((cVar2 != '\0') &&
-       (((*DAT_00032600 != '\0' || (*DAT_00032604 != '\0')) || (6 < *DAT_00032608)))) {
-      snprintf(tmp42,0x800,DAT_0003260c,DAT_00032610,chainIndex);
+  if (uVar4 == local_848) {
+    buf = displayed_rate + chainIndex;
+    *(uint *)(rate + chainIndex) = local_850;
+    *(int *)((int)rate + chainIndex * 8 + 4) = iStack_84c;
+    suffix_string_c5(CONCAT44(iStack_84c,local_850),*buf,0x20,6,(_Bool)display);
+    _Var1 = opt_debug;
+    rate_error[chainIndex] = 0;
+    if ((_Var1 != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      snprintf(tmp42,0x800,"%s: chain %d hashrate is %s\n","check_asic_reg_oneChain",chainIndex);
+      display = SUB41(buf,0);
       _applog(7,tmp42,false);
-      in_stack_fffff794 = iVar10;
     }
   }
-  if (((local_848 == 0) || (*(char *)(DAT_000325ec + 8) != '\0')) &&
-     ((iVar10 = DAT_000325f0 + chainIndex * 4, iVar7 = *(int *)(iVar10 + 0xdd8) + 1,
-      *(int *)(iVar10 + 0xdd8) = iVar7, 3 < iVar7 || (*(char *)(DAT_000325ec + 8) != '\0')))) {
-    puVar9 = (undefined4 *)(DAT_000325f4 + chainIndex * 8);
-    iVar10 = DAT_000325f8 + chainIndex * 0x20;
-    *puVar9 = 0;
-    puVar9[1] = 0;
-    suffix_string_c5(CONCAT44(in_stack_fffff794,6),(char *)0x0,0,iVar10,true);
+  if (((local_848 == 0) || (status_error != false)) &&
+     ((iVar5 = rate_error[chainIndex], rate_error[chainIndex] = iVar5 + 1, 3 < iVar5 + 1 ||
+      (status_error != false)))) {
+    *(undefined4 *)(rate + chainIndex) = 0;
+    *(undefined4 *)((int)rate + chainIndex * 8 + 4) = 0;
+    suffix_string_c5(0,displayed_rate[chainIndex],0x20,6,(_Bool)display);
   }
   clear_register_value_buf();
   return true;

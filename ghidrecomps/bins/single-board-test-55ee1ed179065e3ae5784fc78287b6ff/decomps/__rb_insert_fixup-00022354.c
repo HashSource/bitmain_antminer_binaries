@@ -3,7 +3,7 @@ void __rb_insert_fixup(int *param_1,int param_2)
 
 {
   int iVar1;
-  int local_18;
+  undefined4 local_18;
   
   local_18 = param_2;
   while ((*param_1 != local_18 && (*(int *)(*(int *)(local_18 + 8) + 0xc) == 1))) {

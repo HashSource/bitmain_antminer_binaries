@@ -7,7 +7,7 @@ EVP_PKEY * PEM_read_bio_PrivateKey(BIO *bp,EVP_PKEY **x,undefined1 *cb,void *u)
   X509_SIG *a;
   PKCS8_PRIV_KEY_INFO *p8;
   EVP_PKEY *pEVar2;
-  int *piVar3;
+  EVP_PKEY_ASN1_METHOD *pEVar3;
   char *local_430;
   uchar *local_42c;
   uchar *local_428;
@@ -17,13 +17,13 @@ EVP_PKEY * PEM_read_bio_PrivateKey(BIO *bp,EVP_PKEY **x,undefined1 *cb,void *u)
   local_430 = (char *)0x0;
   local_42c = (uchar *)0x0;
   local_428 = (uchar *)0x0;
-  iVar1 = PEM_bytes_read_bio(&local_428,(long *)&local_424,&local_430,DAT_000bfb74,bp,cb,u);
+  iVar1 = PEM_bytes_read_bio(&local_428,(long *)&local_424,&local_430,"ANY PRIVATE KEY",bp,cb,u);
   __s1 = local_430;
   if (iVar1 == 0) {
     return (EVP_PKEY *)0x0;
   }
   local_42c = local_428;
-  iVar1 = strcmp(local_430,DAT_000bfb78);
+  iVar1 = strcmp(local_430,"PRIVATE KEY");
   if (iVar1 == 0) {
     p8 = d2i_PKCS8_PRIV_KEY_INFO((PKCS8_PRIV_KEY_INFO **)0x0,&local_42c,local_424);
 joined_r0x000bfb30:
@@ -41,7 +41,7 @@ LAB_000bfad6:
     }
   }
   else {
-    iVar1 = strcmp(__s1,DAT_000bfb7c);
+    iVar1 = strcmp(__s1,"ENCRYPTED PRIVATE KEY");
     if (iVar1 == 0) {
       a = d2i_X509_SIG((X509_SIG **)0x0,&local_42c,local_424);
       if (a != (X509_SIG *)0x0) {
@@ -52,7 +52,7 @@ LAB_000bfad6:
           iVar1 = (*(code *)cb)(acStack_420,0x400,0,u);
         }
         if (iVar1 < 1) {
-          ERR_put_error(9,0x7b,0x68,DAT_000bfb80,0x75);
+          ERR_put_error(9,0x7b,0x68,"pem_pkey.c",0x75);
           pEVar2 = (EVP_PKEY *)0x0;
           X509_SIG_free(a);
           goto LAB_000bfada;
@@ -63,17 +63,17 @@ LAB_000bfad6:
       }
     }
     else {
-      iVar1 = pem_check_suffix(__s1,DAT_000bfb78);
+      iVar1 = pem_check_suffix(__s1,"PRIVATE KEY");
       if (((0 < iVar1) &&
-          (piVar3 = (int *)EVP_PKEY_asn1_find_str((ENGINE **)0x0,local_430,iVar1),
-          piVar3 != (int *)0x0)) && (piVar3[0x17] != 0)) {
-        pEVar2 = d2i_PrivateKey(*piVar3,x,&local_42c,local_424);
+          (pEVar3 = EVP_PKEY_asn1_find_str((ENGINE **)0x0,local_430,iVar1),
+          pEVar3 != (EVP_PKEY_ASN1_METHOD *)0x0)) && (*(int *)(pEVar3 + 0x5c) != 0)) {
+        pEVar2 = d2i_PrivateKey(*(int *)pEVar3,x,&local_42c,local_424);
         goto LAB_000bfad6;
       }
     }
   }
   pEVar2 = (EVP_PKEY *)0x0;
-  ERR_put_error(9,0x7b,0xd,DAT_000bfb80,0x8d);
+  ERR_put_error(9,0x7b,0xd,"pem_pkey.c",0x8d);
 LAB_000bfada:
   CRYPTO_free(local_430);
   OPENSSL_cleanse(local_428,local_424);

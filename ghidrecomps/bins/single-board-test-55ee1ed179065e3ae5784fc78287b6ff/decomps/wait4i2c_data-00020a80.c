@@ -1,5 +1,5 @@
 
-undefined4 wait4i2c_data(undefined *param_1)
+undefined4 wait4i2c_data(undefined1 *param_1)
 
 {
   char cVar1;

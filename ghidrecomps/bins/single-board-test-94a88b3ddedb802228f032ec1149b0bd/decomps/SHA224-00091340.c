@@ -2,10 +2,10 @@
 uchar * SHA224(uchar *d,size_t n,uchar *md)
 
 {
-  uchar *md_00;
+  undefined1 *md_00;
   SHA256_CTX local_90;
   
-  md_00 = DAT_000913dc;
+  md_00 = m_6243;
   if (md != (uchar *)0x0) {
     md_00 = md;
   }

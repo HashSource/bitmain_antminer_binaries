@@ -33,7 +33,7 @@ undefined4 CRYPTO_gcm128_encrypt(int param_1,uint *param_2,uint *param_3,uint pa
   uint local_3c;
   uint *local_34;
   
-  puVar20 = (uint *)0xf;
+  puVar20 = (uint *)&DAT_0000000f;
   uVar15 = *(uint *)(param_1 + 0x38) + param_4;
   uVar17 = *(int *)(param_1 + 0x3c) + (uint)CARRY4(*(uint *)(param_1 + 0x38),param_4);
   pcVar22 = *(code **)(param_1 + 0x170);
@@ -74,7 +74,7 @@ LAB_000ebe78:
         uVar17 = 1;
       }
       param_4 = param_4 - 1;
-      bVar5 = *(byte *)param_2 ^ *(byte *)(iVar9 + 0x10);
+      bVar5 = (byte)*param_2 ^ *(byte *)(iVar9 + 0x10);
       puVar20 = (uint *)(uint)bVar5;
       if (param_4 == 0) {
         uVar17 = 0;
@@ -218,7 +218,7 @@ LAB_000ebf4c:
     }
     uVar15 = uVar15 ^ 1;
     *(char *)(param_1 + 0xf) = (char)iVar9;
-    uVar12 = local_44 & 0xfffffffc;
+    uVar12 = uVar17 * 4;
     local_3c = local_44 - 1;
     *(char *)(param_1 + 0xc) = (char)((uint)iVar9 >> 0x18);
     if (uVar17 == 0) {
@@ -301,7 +301,7 @@ LAB_000ebf4c:
         *(uint *)((int)puVar25 + iVar9) = uVar7 ^ uVar24;
         iVar9 = iVar9 + 4;
       } while (uVar15 < uVar17);
-      local_3c = local_3c - uVar12;
+      local_3c = local_3c + uVar17 * -4;
       if (local_44 == uVar12) goto LAB_000ec0ce;
     }
     else {

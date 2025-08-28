@@ -6,7 +6,7 @@ int getpeername(int __fd,sockaddr *__addr,socklen_t *__len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_getpeername_00194344)();
+  iVar1 = getpeername(__fd,__addr,__len);
   return iVar1;
 }
 

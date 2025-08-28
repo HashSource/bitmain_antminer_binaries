@@ -6,9 +6,7 @@ int sched_yield(void)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x00012274. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0007cf14)();
+  iVar1 = (*(code *)(undefined *)0x0)();
   return iVar1;
 }
 

@@ -1,12 +1,12 @@
 
-undefined2 CRC16(undefined *param_1,int param_2)
+undefined2 CRC16(undefined1 *param_1,int param_2)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   char cVar2;
   int iVar3;
   int local_18;
-  undefined *local_14;
+  undefined1 *local_14;
   undefined2 local_a;
   
   local_a = 0xffff;

@@ -6,7 +6,7 @@ int fflush(FILE *__stream)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_fflush_00046de0)();
+  iVar1 = fflush(__stream);
   return iVar1;
 }
 

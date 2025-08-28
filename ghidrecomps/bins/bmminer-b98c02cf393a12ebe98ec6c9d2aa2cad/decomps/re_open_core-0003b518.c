@@ -4,10 +4,9 @@
 void re_open_core(int param_1)
 
 {
-  pthread_mutex_t *__mutex;
   undefined2 uVar1;
   char cVar2;
-  undefined uVar3;
+  undefined1 uVar3;
   uint uVar4;
   FILE *pFVar5;
   undefined4 uVar6;
@@ -15,20 +14,19 @@ void re_open_core(int param_1)
   undefined4 extraout_r1_00;
   int iVar7;
   undefined4 *puVar8;
-  void *__dest;
-  void *pvVar9;
-  void *__src;
+  undefined1 *__dest;
+  undefined1 *puVar9;
+  undefined1 *__src;
   uint uVar10;
   int *piVar11;
   int iVar12;
-  void *pvVar13;
   int local_850;
   char acStack_828 [2052];
   
   if (3 < log_level) {
-    pFVar5 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar5 = fopen(log_file,"a+");
     if (pFVar5 != (FILE *)0x0) {
-      fprintf(pFVar5,"%s:%d:%s: re_open_core enter\n","driver-btm-c5.c",0x3d1a,DAT_0003bc44);
+      fprintf(pFVar5,"%s:%d:%s: re_open_core enter\n","driver-btm-c5.c",0x3d1a,"re_open_core");
     }
     fclose(pFVar5);
   }
@@ -37,36 +35,35 @@ void re_open_core(int param_1)
   doTestPatten = 1;
   pthread_mutex_lock((pthread_mutex_t *)reinit_mutex);
   puVar8 = dev;
-  __dest = DAT_0003b8b8;
-  *(undefined *)(dev + 0x14ff) = 0x14;
+  *(undefined1 *)(dev + 0x14ff) = 0x14;
   puVar8[1] = &DAT_000a0028;
   set_fan_control(&DAT_000a0028);
   uVar4 = get_dhash_acc_control();
-  __src = DAT_0003b8bc;
+  __src = show_last_freq;
   set_dhash_acc_control(uVar4 & 0xffffffbf);
-  pvVar13 = (void *)((int)__dest + 0x800);
   sleep(3);
   uVar4 = get_dhash_acc_control();
   set_dhash_acc_control(uVar4 & 0xffffffbf);
   sleep(2);
   piVar11 = dev + 1;
+  __dest = chain_pic_buf;
   do {
     while (piVar11 = piVar11 + 1, *piVar11 != 1) {
-      __dest = (void *)((int)__dest + 0x80);
-      __src = (void *)((int)__src + 0x100);
-      if (pvVar13 == __dest) goto LAB_0003b5f0;
+      __dest = __dest + 0x80;
+      __src = __src + 0x100;
+      if (__dest == nonce_mutex) goto LAB_0003b5f0;
     }
-    pvVar9 = (void *)((int)__dest + 0x80);
+    puVar9 = __dest + 0x80;
     memcpy(__dest,__src,0x80);
-    __src = (void *)((int)__src + 0x100);
-    __dest = pvVar9;
-  } while (pvVar13 != pvVar9);
+    __src = __src + 0x100;
+    __dest = puVar9;
+  } while (puVar9 != nonce_mutex);
 LAB_0003b5f0:
   uVar4 = 0;
   set_nonce2_and_job_id_store_address(PHY_MEM_NONCE2_JOBID_ADDRESS);
   set_job_start_address(PHY_MEM_NONCE2_JOBID_ADDRESS + 0x200000);
   doTestPatten = 0;
-  pthread_mutex_lock(DAT_0003b8c0);
+  pthread_mutex_lock((pthread_mutex_t *)iic_mutex);
   memset(dev,0,0x5470);
   *dev = job_start_address_1;
   set_reset_allhashboard(1);
@@ -77,11 +74,11 @@ LAB_0003b5f0:
   set_QN_write_data_command(0x8080800f);
   sleep(2);
   puVar8 = dev;
-  *(undefined *)(dev + 0x14ff) = 100;
+  *(undefined1 *)(dev + 0x14ff) = 100;
   puVar8[1] = 0x320000;
   set_fan_control(0x320000);
   set_reset_allhashboard(1);
-  *(undefined *)((int)dev + 0x542f) = 0x1a;
+  *(undefined1 *)((int)dev + 0x542f) = 0x1a;
   set_nonce2_and_job_id_store_address(PHY_MEM_NONCE2_JOBID_ADDRESS);
   set_job_start_address(PHY_MEM_NONCE2_JOBID_ADDRESS + 0x200000);
   check_chain();
@@ -95,7 +92,7 @@ LAB_0003b5f0:
     uVar4 = uVar4 + 1;
   } while (uVar4 != 0x10);
 LAB_0003b6da:
-  pthread_mutex_unlock(DAT_0003b8c0);
+  pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
   quickly_set_to_highest_voltage();
   sleep(1);
   set_reset_allhashboard(1);
@@ -106,9 +103,8 @@ LAB_0003b6da:
     uVar4 = get_dhash_acc_control();
     set_dhash_acc_control(uVar4 & 0xffff70df | 0x8100);
   }
-  __mutex = DAT_0003b8c0;
   cgsleep_ms(10);
-  *(undefined *)(dev + 0x150b) = 0x72;
+  *(undefined1 *)(dev + 0x150b) = 0x72;
   local_850 = 1;
   uVar4 = 0;
   check_asic_reg();
@@ -116,10 +112,10 @@ LAB_0003b6da:
   do {
     if (dev[uVar4 + 2] == 1) {
       if (3 < log_level) {
-        pFVar5 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar5 = fopen(log_file,"a+");
         if (pFVar5 != (FILE *)0x0) {
-          fprintf(pFVar5,"%s:%d:%s: Chain[J%d] has %d asic\n","driver-btm-c5.c",0x3dbb,DAT_0003bc44,
-                  local_850,(uint)*(byte *)((int)dev + uVar4 + 0x53ec));
+          fprintf(pFVar5,"%s:%d:%s: Chain[J%d] has %d asic\n","driver-btm-c5.c",0x3dbb,
+                  "re_open_core",local_850,(uint)*(byte *)((int)dev + uVar4 + 0x53ec));
         }
         fclose(pFVar5);
       }
@@ -134,35 +130,35 @@ LAB_0003b6da:
           break;
         }
         if (3 < log_level) {
-          pFVar5 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar5 = fopen(log_file,"a+");
           if (pFVar5 != (FILE *)0x0) {
             fprintf(pFVar5,"%s:%d:%s: i = %d, retry_count = %d, dev->chain_asic_num[i] = %d\n",
-                    "driver-btm-c5.c",0x3dbf,DAT_0003b8c4,uVar4,iVar12,
+                    "driver-btm-c5.c",0x3dbf,"re_open_core",uVar4,iVar12,
                     (uint)*(byte *)((int)dev + uVar4 + 0x53ec));
           }
           fclose(pFVar5);
           iVar7 = (int)dev + uVar4;
         }
-        *(undefined *)(iVar7 + 0x53ec) = 0;
+        *(undefined1 *)(iVar7 + 0x53ec) = 0;
         iVar12 = iVar12 + 1;
         set_reset_hashboard(uVar4);
         sleep(1);
-        pthread_mutex_lock(__mutex);
+        pthread_mutex_lock((pthread_mutex_t *)iic_mutex);
         disable_pic_dac(uVar4 & 0xff);
-        pthread_mutex_unlock(__mutex);
+        pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
         sleep(1);
-        pthread_mutex_lock(__mutex);
+        pthread_mutex_lock((pthread_mutex_t *)iic_mutex);
         enable_pic_dac(uVar4 & 0xff);
-        pthread_mutex_unlock(__mutex);
+        pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
         sleep(2);
         set_reset_hashboard(uVar4,0);
         sleep(2);
         check_asic_reg_oneChain(uVar4,0);
         if (3 < log_level) {
-          pFVar5 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar5 = fopen(log_file,"a+");
           if (pFVar5 != (FILE *)0x0) {
             fprintf(pFVar5,"%s:%d:%s: retry Chain[J%d] has %d asic\n","driver-btm-c5.c",0x3dd6,
-                    DAT_0003b8c4,local_850,(uint)*(byte *)((int)dev + uVar4 + 0x53ec));
+                    "re_open_core",local_850,(uint)*(byte *)((int)dev + uVar4 + 0x53ec));
           }
           fclose(pFVar5);
         }
@@ -184,10 +180,10 @@ LAB_0003b6da:
   uVar3 = config_parameter[10];
   uVar4 = (uint)config_parameter[4];
   *(byte *)((int)dev + 0x5441) = (byte)((uVar4 << 0x1e) >> 0x1f);
-  *(undefined *)((int)puVar8 + 0x5442) = uVar3;
+  *(undefined1 *)((int)puVar8 + 0x5442) = uVar3;
   if ((int)(uVar4 << 0x1d) < 0) {
     if (config_parameter._18_2_ == 0) {
-      uVar6 = calculate_core_number(*(undefined *)(puVar8 + 0x150b));
+      uVar6 = calculate_core_number(*(undefined1 *)(puVar8 + 0x150b));
       puVar8 = dev;
       iVar12 = __aeabi_idiv(0x1000000,uVar6);
       iVar12 = __aeabi_idiv((uint)*(byte *)((int)puVar8 + 0x542d) * iVar12,
@@ -204,7 +200,7 @@ LAB_0003b6da:
       }
     }
     else {
-      uVar4 = (uint)config_parameter[18] * 1000 + (uint)config_parameter[19];
+      uVar4 = (uint)config_parameter[0x12] * 1000 + (uint)config_parameter[0x13];
       puVar8[0x12] = uVar4;
     }
     if (0x1ffff < uVar4) {
@@ -233,7 +229,7 @@ LAB_0003b9ba:
             ((uint)((int)((ulonglong)(uint)puVar8[0x12] * 0xcccccccd >> 0x20) << 0xc) >> 0xf |
              0x80000000,uVar6,(int)((ulonglong)(uint)puVar8[0x12] * 0xcccccccd));
   puVar8 = dev;
-  *(undefined *)(dev + 0x14ff) = 100;
+  *(undefined1 *)(dev + 0x14ff) = 100;
   puVar8[1] = 0x320000;
   set_fan_control(0x320000);
   do {
@@ -265,10 +261,10 @@ LAB_0003ba14:
       uVar4 = 0;
       do {
         uVar10 = uVar4 + 1 & 0xff;
-        set_baud_with_addr(*(undefined *)((int)dev + 0x542f),0,
-                           *(undefined *)((int)dev + uVar4 + iVar12 * 8 + 0x4e8),iVar12,1,0,1);
+        set_baud_with_addr(*(undefined1 *)((int)dev + 0x542f),0,
+                           *(undefined1 *)((int)dev + uVar4 + iVar12 * 8 + 0x4e8),iVar12,1,0,1);
         check_asic_reg_with_addr
-                  (0x1c,*(undefined *)((int)dev + uVar4 + iVar12 * 8 + 0x4e8),iVar12,1);
+                  (0x1c,*(undefined1 *)((int)dev + uVar4 + iVar12 * 8 + 0x4e8),iVar12,1);
         uVar4 = uVar10;
       } while ((int)uVar10 < (int)*(char *)((int)dev + iVar12 + 0x458));
       iVar12 = iVar12 + 1;
@@ -278,15 +274,15 @@ LAB_0003ba14:
   } while (iVar12 != 0x10);
 LAB_0003bae8:
   doTestPatten = 0;
-  pthread_mutex_unlock(DAT_0003bc48);
+  pthread_mutex_unlock((pthread_mutex_t *)reinit_mutex);
   clear_nonce_fifo();
   if (last_job_buffer[0] != '\x17') {
     re_send_last_job_part_15();
   }
-  cgtime(DAT_0003bc4c);
-  cgtime(DAT_0003bc50);
+  cgtime(&tv_send_job);
+  cgtime(&tv_send);
   puVar8 = dev;
-  *(undefined *)(dev + 0x14ff) = 0x14;
+  *(undefined1 *)(dev + 0x14ff) = 0x14;
   puVar8[1] = &DAT_000a0028;
   startCheckNetworkJob = 1;
   enable_read_temp = 1;
@@ -299,9 +295,9 @@ LAB_0003bae8:
   }
   reCalculateAVG();
   if (3 < log_level) {
-    pFVar5 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar5 = fopen(log_file,"a+");
     if (pFVar5 != (FILE *)0x0) {
-      fprintf(pFVar5,"%s:%d:%s: reopen core end\n","driver-btm-c5.c",0x3ede,DAT_0003bc44);
+      fprintf(pFVar5,"%s:%d:%s: reopen core end\n","driver-btm-c5.c",0x3ede,"re_open_core");
     }
     fclose(pFVar5);
     return;

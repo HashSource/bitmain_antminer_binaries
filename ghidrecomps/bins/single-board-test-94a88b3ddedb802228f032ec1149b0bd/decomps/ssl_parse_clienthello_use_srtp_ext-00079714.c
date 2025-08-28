@@ -1,6 +1,6 @@
 
 undefined4
-ssl_parse_clienthello_use_srtp_ext(int param_1,undefined *param_2,int param_3,undefined4 *param_4)
+ssl_parse_clienthello_use_srtp_ext(int param_1,undefined1 *param_2,int param_3,undefined4 *param_4)
 
 {
   byte bVar1;
@@ -73,7 +73,7 @@ ssl_parse_clienthello_use_srtp_ext(int param_1,undefined *param_2,int param_3,un
       iVar4 = 0x161;
     }
   }
-  ERR_put_error(0x14,0x136,iVar4,DAT_00079828,iVar9);
+  ERR_put_error(0x14,0x136,iVar4,"d1_srtp.c",iVar9);
   *param_4 = 0x32;
   return 1;
 }

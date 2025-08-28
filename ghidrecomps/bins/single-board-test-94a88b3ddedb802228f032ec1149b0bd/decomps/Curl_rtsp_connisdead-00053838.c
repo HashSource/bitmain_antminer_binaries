@@ -4,7 +4,7 @@ uint Curl_rtsp_connisdead(int *param_1)
 {
   uint uVar1;
   int iVar2;
-  int *local_c [3];
+  int *local_c [2];
   
   local_c[0] = param_1;
   uVar1 = Curl_socket_check(param_1[0x55],0xffffffff,0xffffffff,0);

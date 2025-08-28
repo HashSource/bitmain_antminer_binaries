@@ -1,34 +1,34 @@
 
-uint rsa_sig_print(BIO *param_1,ASN1_OBJECT **param_2,ASN1_STRING *param_3,int param_4)
+uint rsa_sig_print(BIO *param_1,undefined4 *param_2,ASN1_STRING *param_3,int param_4)
 
 {
   int iVar1;
   uint uVar2;
   RSA_PSS_PARAMS *a;
-  ASN1_OBJECT *pAVar3;
+  int *piVar3;
   ASN1_STRING *pAVar4;
   bool bVar5;
   X509_ALGOR *pXVar6;
   uchar *local_28;
   uchar *local_24 [2];
   
-  iVar1 = OBJ_obj2nid(*param_2);
+  iVar1 = OBJ_obj2nid((ASN1_OBJECT *)*param_2);
   if (iVar1 != 0x390) {
     if (param_3 == (ASN1_STRING *)0x0) {
-      iVar1 = BIO_puts(param_1,DAT_000fce28);
+      iVar1 = BIO_puts(param_1,"\n");
       return (uint)(0 < iVar1);
     }
     goto LAB_000fcc1e;
   }
-  pAVar3 = param_2[1];
-  if ((pAVar3 == (ASN1_OBJECT *)0x0) || (pAVar3->sn != (char *)0x10)) {
+  piVar3 = (int *)param_2[1];
+  if ((piVar3 == (int *)0x0) || (*piVar3 != 0x10)) {
 LAB_000fccca:
-    iVar1 = BIO_puts(param_1,DAT_000fce2c);
+    iVar1 = BIO_puts(param_1," (INVALID PSS PARAMETERS)\n");
     bVar5 = 0 < iVar1;
   }
   else {
-    local_28 = (uchar *)pAVar3->ln[2];
-    a = d2i_RSA_PSS_PARAMS((RSA_PSS_PARAMS **)0x0,&local_28,(long)*pAVar3->ln);
+    local_28 = (uchar *)((long *)piVar3[1])[2];
+    a = d2i_RSA_PSS_PARAMS((RSA_PSS_PARAMS **)0x0,&local_28,*(long *)piVar3[1]);
     if (a == (RSA_PSS_PARAMS *)0x0) goto LAB_000fccca;
     pXVar6 = a->maskGenAlgorithm;
     if (((pXVar6 == (X509_ALGOR *)0x0) || (iVar1 = OBJ_obj2nid(pXVar6->algorithm), iVar1 != 0x38f))
@@ -40,60 +40,62 @@ LAB_000fccca:
       local_24[0] = pAVar4->data;
       pXVar6 = d2i_X509_ALGOR((X509_ALGOR **)0x0,local_24,pAVar4->length);
     }
-    iVar1 = BIO_puts(param_1,DAT_000fce28);
+    iVar1 = BIO_puts(param_1,"\n");
     if (((iVar1 < 1) || (iVar1 = BIO_indent(param_1,param_4,0x80), iVar1 == 0)) ||
-       (iVar1 = BIO_puts(param_1,DAT_000fce30), iVar1 < 1)) {
+       (iVar1 = BIO_puts(param_1,"Hash Algorithm: "), iVar1 < 1)) {
 LAB_000fcca6:
       bVar5 = false;
     }
     else {
       if (a->hashAlgorithm == (X509_ALGOR *)0x0) {
-        iVar1 = BIO_puts(param_1,DAT_000fce44);
+        iVar1 = BIO_puts(param_1,"sha1 (default)");
         if (0 < iVar1) goto LAB_000fcd1a;
         goto LAB_000fcca6;
       }
       iVar1 = i2a_ASN1_OBJECT(param_1,a->hashAlgorithm->algorithm);
       if (iVar1 < 1) goto LAB_000fcca6;
 LAB_000fcd1a:
-      iVar1 = BIO_puts(param_1,DAT_000fce28);
+      iVar1 = BIO_puts(param_1,"\n");
       if (((iVar1 < 1) || (iVar1 = BIO_indent(param_1,param_4,0x80), iVar1 == 0)) ||
-         (iVar1 = BIO_puts(param_1,DAT_000fce34), iVar1 < 1)) goto LAB_000fcca6;
+         (iVar1 = BIO_puts(param_1,"Mask Algorithm: "), iVar1 < 1)) goto LAB_000fcca6;
       if (a->maskGenAlgorithm == (X509_ALGOR *)0x0) {
-        iVar1 = BIO_puts(param_1,DAT_000fce48);
+        iVar1 = BIO_puts(param_1,"mgf1 with sha1 (default)");
       }
       else {
         iVar1 = i2a_ASN1_OBJECT(param_1,a->maskGenAlgorithm->algorithm);
-        if ((iVar1 < 1) || (iVar1 = BIO_puts(param_1,DAT_000fce38), iVar1 < 1)) goto LAB_000fcca6;
+        if ((iVar1 < 1) || (iVar1 = BIO_puts(param_1," with "), iVar1 < 1)) goto LAB_000fcca6;
         if (pXVar6 == (X509_ALGOR *)0x0) {
-          iVar1 = BIO_puts(param_1,DAT_000fce4c);
+          iVar1 = BIO_puts(param_1,"INVALID");
         }
         else {
           iVar1 = i2a_ASN1_OBJECT(param_1,pXVar6->algorithm);
         }
       }
       if (iVar1 < 1) goto LAB_000fcca6;
-      BIO_puts(param_1,DAT_000fce28);
+      BIO_puts(param_1,"\n");
       iVar1 = BIO_indent(param_1,param_4,0x80);
-      if ((iVar1 == 0) || (iVar1 = BIO_puts(param_1,DAT_000fce3c), iVar1 < 1)) goto LAB_000fcca6;
+      if ((iVar1 == 0) || (iVar1 = BIO_puts(param_1,"Salt Length: 0x"), iVar1 < 1))
+      goto LAB_000fcca6;
       if (a->saltLength == (ASN1_INTEGER *)0x0) {
-        iVar1 = BIO_puts(param_1,DAT_000fce54);
+        iVar1 = BIO_puts(param_1,"14 (default)");
         if (0 < iVar1) goto LAB_000fcda4;
         goto LAB_000fcca6;
       }
       iVar1 = i2a_ASN1_INTEGER(param_1,a->saltLength);
       if (iVar1 < 1) goto LAB_000fcca6;
 LAB_000fcda4:
-      BIO_puts(param_1,DAT_000fce28);
+      BIO_puts(param_1,"\n");
       iVar1 = BIO_indent(param_1,param_4,0x80);
-      if ((iVar1 == 0) || (iVar1 = BIO_puts(param_1,DAT_000fce40), iVar1 < 1)) goto LAB_000fcca6;
+      if ((iVar1 == 0) || (iVar1 = BIO_puts(param_1,"Trailer Field: 0x"), iVar1 < 1))
+      goto LAB_000fcca6;
       if (a->trailerField == (ASN1_INTEGER *)0x0) {
-        iVar1 = BIO_puts(param_1,DAT_000fce50);
+        iVar1 = BIO_puts(param_1,"BC (default)");
       }
       else {
         iVar1 = i2a_ASN1_INTEGER(param_1,a->trailerField);
       }
       if (iVar1 < 1) goto LAB_000fcca6;
-      BIO_puts(param_1,DAT_000fce28);
+      BIO_puts(param_1,"\n");
       bVar5 = true;
     }
     RSA_PSS_PARAMS_free(a);

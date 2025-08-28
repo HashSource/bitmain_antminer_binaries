@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void scanfreq_check_result(void)
 
@@ -12,7 +12,7 @@ void scanfreq_check_result(void)
   for (chain = 0; chain < 0x10; chain = chain + 1) {
     if ((dev->chain_exist[chain] != 0) && (scanfreq_info.scan_finished[chain] == false)) {
       fVar1 = ((float)(longlong)scanfreq_info.valid_nonce_num[chain] /
-              (float)(longlong)scanfreq_info.RequiredChainNonce) * DAT_0004c070;
+              (float)(longlong)scanfreq_info.RequiredChainNonce) * 100.0;
       if (fVar1 < scanfreq_info.PassNonceRate) {
         if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
           snprintf(tmp42,0x800,"********** Chain[%d] is failed, freq=%d, nonce_rate=%f **********\n"

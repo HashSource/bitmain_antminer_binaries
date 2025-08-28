@@ -6,14 +6,15 @@ void set_pt_result(undefined4 param_1,byte param_2)
   byte bVar2;
   char acStack_418 [1024];
   undefined4 local_18;
-  undefined local_14;
-  undefined local_13;
-  undefined local_12;
+  undefined1 local_14;
+  undefined1 local_13;
+  undefined1 local_12;
   undefined4 local_10;
   int local_c;
   
   bVar1 = (byte)local_18 & 0xfe;
   bVar2 = local_18._1_1_ & 0xf0;
+  local_18._0_2_ = CONCAT11(bVar2 | (byte)param_1 & 0xf,bVar1 | param_2 & 1);
   local_13 = 1;
   local_14 = 0;
   local_12 = 0x60;

@@ -9,7 +9,7 @@ int PEM_write(FILE *fp,char *name,char *hdr,uchar *data,long len)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(9,0x71,7,DAT_000be140,0x24d);
+    ERR_put_error(9,0x71,7,"pem_lib.c",0x24d);
     iVar1 = 0;
   }
   else {

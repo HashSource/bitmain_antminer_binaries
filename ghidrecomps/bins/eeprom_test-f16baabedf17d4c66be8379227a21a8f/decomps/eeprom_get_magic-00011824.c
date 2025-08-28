@@ -1,5 +1,5 @@
 
-/* WARNING: Variable defined which should be unmapped: magic_num-local */
+/* WARNING: Variable defined which should be unmapped: magic_num_local */
 
 _Bool eeprom_get_magic(uint8_t chain,uint8_t *magic_num)
 

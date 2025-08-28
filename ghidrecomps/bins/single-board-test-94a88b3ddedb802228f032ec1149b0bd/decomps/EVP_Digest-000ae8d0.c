@@ -18,7 +18,7 @@ int EVP_Digest(void *data,size_t count,uchar *md,uint *size,EVP_MD *type,ENGINE 
   }
   else {
     if (0x40 < (local_38.digest)->md_size) {
-      OpenSSLDie(DAT_000ae970,0x115,DAT_000ae974);
+      OpenSSLDie("digest.c",0x115,"ctx->digest->md_size <= EVP_MAX_MD_SIZE");
     }
     iVar1 = (*(local_38.digest)->final)(&local_38,md);
     if (size != (uint *)0x0) {

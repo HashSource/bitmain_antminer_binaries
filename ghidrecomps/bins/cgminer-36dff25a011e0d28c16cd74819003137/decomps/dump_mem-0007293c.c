@@ -24,7 +24,6 @@ void dump_mem(char *desc,void *addr,int len)
     }
     fclose(pFVar1);
   }
-  pc = (uchar *)addr;
   for (i = 0; i < len; i = i + 1) {
     if ((i & 0xfU) == 0) {
       if ((i != 0) && (3 < log_level)) {
@@ -45,11 +44,11 @@ void dump_mem(char *desc,void *addr,int len)
     if (3 < log_level) {
       pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
-        fprintf(pFVar1," %02x",(uint)pc[i]);
+        fprintf(pFVar1," %02x",(uint)*(byte *)((int)addr + i));
       }
       fclose(pFVar1);
     }
-    if ((pc[i] < 0x20) || (0x7e < pc[i])) {
+    if ((*(byte *)((int)addr + i) < 0x20) || (0x7e < *(byte *)((int)addr + i))) {
       uVar2 = i & 0xf;
       if (i < 1) {
         uVar2 = -(-i & 0xfU);
@@ -61,7 +60,7 @@ void dump_mem(char *desc,void *addr,int len)
       if (i < 1) {
         uVar2 = -(-i & 0xfU);
       }
-      buff[uVar2] = pc[i];
+      buff[uVar2] = *(uchar *)((int)addr + i);
     }
     uVar2 = i & 0xf;
     if (i < 1) {

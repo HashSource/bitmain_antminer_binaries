@@ -7,11 +7,11 @@ int i2d_ASN1_SET(stack_st_OPENSSL_BLOCK *a,uchar **pp,undefined1 *i2d,int ex_tag
   int iVar1;
   void *pvVar2;
   int iVar3;
-  uchar **__base;
+  int *__base;
   size_t __nmemb;
   uchar *__src;
   int iVar4;
-  uchar **ppuVar5;
+  int *piVar5;
   size_t __n;
   uchar *local_2c [2];
   
@@ -47,46 +47,46 @@ int i2d_ASN1_SET(stack_st_OPENSSL_BLOCK *a,uchar **pp,undefined1 *i2d,int ex_tag
       }
       else {
         iVar4 = sk_num(&a->stack);
-        __base = (uchar **)CRYPTO_malloc(iVar4 << 3,DAT_00126ca8,0x7c);
-        if (__base == (uchar **)0x0) {
-          ERR_put_error(0xd,0xbc,0x41,DAT_00126ca8,0x7e);
+        __base = (int *)CRYPTO_malloc(iVar4 << 3,"a_set.c",0x7c);
+        if (__base == (int *)0x0) {
+          ERR_put_error(0xd,0xbc,0x41,"a_set.c",0x7e);
           iVar1 = 0;
         }
         else {
-          ppuVar5 = __base;
+          piVar5 = __base;
           iVar4 = 0;
           while( true ) {
             iVar3 = sk_num(&a->stack);
-            HintPreloadData(ppuVar5 + 8);
+            HintPreloadData(piVar5 + 8);
             if (iVar3 <= iVar4) break;
-            *ppuVar5 = local_2c[0];
+            *piVar5 = (int)local_2c[0];
             pvVar2 = sk_value(&a->stack,iVar4);
             (*(code *)i2d)(pvVar2,local_2c);
-            ppuVar5[1] = local_2c[0] + -(int)*ppuVar5;
-            ppuVar5 = ppuVar5 + 2;
+            piVar5[1] = (int)local_2c[0] - *piVar5;
+            piVar5 = piVar5 + 2;
             iVar4 = iVar4 + 1;
           }
           *pp = local_2c[0];
           __n = (int)local_2c[0] - (int)__dest;
           __nmemb = sk_num(&a->stack);
-          qsort(__base,__nmemb,8,DAT_00126cac);
-          __src = (uchar *)CRYPTO_malloc(__n,DAT_00126ca8,0x90);
+          qsort(__base,__nmemb,8,(__compar_fn_t)0x126af1);
+          __src = (uchar *)CRYPTO_malloc(__n,"a_set.c",0x90);
           if (__src == (uchar *)0x0) {
-            ERR_put_error(0xd,0xbc,0x41,DAT_00126ca8,0x91);
+            ERR_put_error(0xd,0xbc,0x41,"a_set.c",0x91);
             iVar1 = 0;
           }
           else {
             iVar4 = 0;
-            ppuVar5 = __base;
+            piVar5 = __base;
             local_2c[0] = __src;
             while( true ) {
               iVar3 = sk_num(&a->stack);
-              HintPreloadData(ppuVar5 + 0xd);
+              HintPreloadData(piVar5 + 0xd);
               if (iVar3 <= iVar4) break;
-              memcpy(local_2c[0],*ppuVar5,(size_t)ppuVar5[1]);
-              local_2c[0] = local_2c[0] + (int)ppuVar5[1];
+              memcpy(local_2c[0],(void *)*piVar5,piVar5[1]);
+              local_2c[0] = local_2c[0] + piVar5[1];
               iVar4 = iVar4 + 1;
-              ppuVar5 = ppuVar5 + 2;
+              piVar5 = piVar5 + 2;
             }
             memcpy(__dest,__src,__n);
             CRYPTO_free(__src);

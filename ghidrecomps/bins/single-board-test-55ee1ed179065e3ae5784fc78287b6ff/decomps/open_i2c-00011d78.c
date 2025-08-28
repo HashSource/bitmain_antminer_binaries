@@ -4,15 +4,15 @@ undefined4 open_i2c(void)
 {
   uint local_20;
   undefined2 local_1c;
-  undefined local_1a;
+  undefined1 local_1a;
   byte local_19;
   uint local_18;
   undefined2 local_14;
-  undefined local_12;
-  undefined local_11;
+  undefined1 local_12;
+  undefined1 local_11;
   uint local_10;
   undefined2 local_c;
-  undefined local_a;
+  undefined1 local_a;
   byte local_9;
   
   local_10 = (uint)gChain;

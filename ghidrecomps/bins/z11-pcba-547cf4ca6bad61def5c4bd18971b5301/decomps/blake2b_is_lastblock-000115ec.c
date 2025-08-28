@@ -1,8 +1,8 @@
 
-undefined blake2b_is_lastblock(int param_1)
+undefined1 blake2b_is_lastblock(int param_1)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint uVar2;
   bool bVar3;
   
@@ -11,7 +11,7 @@ undefined blake2b_is_lastblock(int param_1)
   if (bVar3) {
     uVar2 = 1;
   }
-  uVar1 = (undefined)uVar2;
+  uVar1 = (undefined1)uVar2;
   if (!bVar3) {
     uVar1 = 0;
   }

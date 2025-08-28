@@ -36,11 +36,11 @@ undefined4 ssl3_client_hello(SSL *param_1)
     iVar1 = param_1->references;
     if (iVar1 << 4 < 0) {
       if ((*(uint *)(param_1->cert + 0x38) & 0x30000) != 0) {
-        ERR_put_error(0x14,0x83,0x183,DAT_00065d9c,0x2c4);
+        ERR_put_error(0x14,0x83,0x183,"s3_clnt.c",0x2c4);
         goto LAB_00065d28;
       }
       if (iVar1 << 5 < 0) {
-        ERR_put_error(0x14,0x83,0x10a,DAT_00065d9c,0x2cb);
+        ERR_put_error(0x14,0x83,0x10a,"s3_clnt.c",0x2cb);
         goto LAB_00065d28;
       }
       pSVar2 = DTLSv1_client_method();
@@ -121,7 +121,7 @@ LAB_00065ba8:
     psVar5 = SSL_get_ciphers(param_1);
     iVar1 = ssl_cipher_list_to_bytes(param_1,psVar5,pcVar15,0);
     if (iVar1 == 0) {
-      ERR_put_error(0x14,0x83,0xb5,DAT_00065d9c,0x340);
+      ERR_put_error(0x14,0x83,0xb5,"s3_clnt.c",0x340);
       goto LAB_00065d28;
     }
     pcVar9[1] = (char)iVar1;
@@ -151,7 +151,7 @@ LAB_00065ba8:
     *pcVar9 = '\0';
     iVar1 = ssl_prepare_clienthello_tlsext(param_1);
     if (iVar1 < 1) {
-      ERR_put_error(0x14,0x83,0xe2,DAT_00065d9c,0x365);
+      ERR_put_error(0x14,0x83,0xe2,"s3_clnt.c",0x365);
       goto LAB_00065d28;
     }
     iVar1 = ssl_add_clienthello_tlsext(param_1,pcVar9 + 1,pcVar18 + 0x4000,local_2c);
@@ -166,7 +166,7 @@ LAB_00065c90:
     iVar1 = 0x36c;
   }
 LAB_00065d36:
-  ERR_put_error(0x14,0x83,0x44,DAT_00065d9c,iVar1);
+  ERR_put_error(0x14,0x83,0x44,"s3_clnt.c",iVar1);
 LAB_00065d28:
   param_1->state = 5;
   return 0xffffffff;

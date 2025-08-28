@@ -6,8 +6,6 @@ void set_baud_one_chain(uchar bauddiv,int change_fpga_baud,uint8_t chain)
   byte bVar2;
   FILE *pFVar3;
   uint uVar4;
-  char *in_stack_ffffffa0;
-  uint in_stack_ffffffa4;
   int change_fpga_baud_local;
   uint8_t chain_local;
   uchar bauddiv_local;
@@ -40,10 +38,8 @@ void set_baud_one_chain(uchar bauddiv,int change_fpga_baud,uint8_t chain)
         print_crt_time_to_file(log_file,4);
         pFVar3 = fopen(log_file,"a+");
         if (pFVar3 != (FILE *)0x0) {
-          in_stack_ffffffa4 = buf._0_4_ & 0xff;
-          in_stack_ffffffa0 = "set_baud_one_chain";
           fprintf(pFVar3,"%s:%d:%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n","asic.c",
-                  0x44c,"set_baud_one_chain",in_stack_ffffffa4,(uint)buf._0_4_ >> 8 & 0xff,
+                  0x44c,"set_baud_one_chain",buf._0_4_ & 0xff,(uint)buf._0_4_ >> 8 & 0xff,
                   (uint)buf._0_4_ >> 0x10 & 0xff,(uint)buf._0_4_ >> 0x18);
         }
         fclose(pFVar3);
@@ -62,8 +58,9 @@ void set_baud_one_chain(uchar bauddiv,int change_fpga_baud,uint8_t chain)
       buf[1] = '\t';
       buf[2] = '\0';
       buf[3] = '\x18';
-      buf._4_2_ = CONCAT11((uchar)(uVar4 >> 0x10),(uchar)(uVar4 >> 0x18));
-      buf._4_3_ = CONCAT12((uchar)(gBM1393_MISC_CONTROL_reg >> 8),buf._4_2_);
+      buf[5] = (uchar)(uVar4 >> 0x10);
+      buf[4] = (uchar)(uVar4 >> 0x18);
+      buf[6] = (uchar)(gBM1393_MISC_CONTROL_reg >> 8);
       buf[7] = (uchar)uVar4;
       bVar2 = CRC5(buf,'@');
       buf[8] = bVar2;
@@ -78,8 +75,6 @@ void set_baud_one_chain(uchar bauddiv,int change_fpga_baud,uint8_t chain)
         print_crt_time_to_file(log_file,3);
         pFVar3 = fopen(log_file,"a+");
         if (pFVar3 != (FILE *)0x0) {
-          in_stack_ffffffa0 = "set_baud_one_chain";
-          in_stack_ffffffa4 = cmd_buf[0];
           fprintf(pFVar3,"%s:%d:%s: cmd_buf[0]=0x%x, cmd_buf[1]=0x%x, cmd_buf[2]=0x%x, misc=0x%x\n",
                   "asic.c",0x466,"set_baud_one_chain",cmd_buf[0],cmd_buf[1],cmd_buf[2],
                   gBM1393_MISC_CONTROL_reg);
@@ -91,7 +86,7 @@ void set_baud_one_chain(uchar bauddiv,int change_fpga_baud,uint8_t chain)
       set_BC_write_command(uVar4 & 0xfff0ffff | (uint)chain << 0x10 | 0x80800000);
     }
     if (change_fpga_baud != 0) {
-      cgsleep_us(CONCAT44(in_stack_ffffffa4,in_stack_ffffffa0));
+      cgsleep_us(50000);
       uVar4 = get_BC_write_command();
       if (3 < log_level) {
         print_crt_time_to_file(log_file,3);

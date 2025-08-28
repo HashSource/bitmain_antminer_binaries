@@ -27,20 +27,20 @@ int PEM_bytes_read_bio(uchar **pdata,long *plen,char **pnm,char *name,BIO *bp,un
     if (iVar1 == 0) {
       uVar5 = ERR_peek_error();
       if ((uVar5 & 0xfff) == 0x6c) {
-        ERR_add_error_data(2,DAT_000becd0,name);
+        ERR_add_error_data(2,"Expecting: ",name);
       }
       return 0;
     }
     iVar1 = strcmp(local_50,name);
     if (iVar1 == 0) break;
-    iVar1 = strcmp(name,DAT_000bec9c);
+    iVar1 = strcmp(name,"ANY PRIVATE KEY");
     if (iVar1 == 0) {
-      iVar1 = strcmp(__s1,DAT_000beca0);
-      if ((iVar1 == 0) || (iVar1 = strcmp(__s1,DAT_000beca4), iVar1 == 0)) break;
+      iVar1 = strcmp(__s1,"ENCRYPTED PRIVATE KEY");
+      if ((iVar1 == 0) || (iVar1 = strcmp(__s1,"PRIVATE KEY"), iVar1 == 0)) break;
       sVar2 = strlen(__s1);
       if (0xc < (int)sVar2) {
         pcVar7 = __s1 + (sVar2 - 0xb);
-        iVar1 = strcmp(pcVar7,DAT_000beca4);
+        iVar1 = strcmp(pcVar7,"PRIVATE KEY");
         if (((iVar1 == 0) && (pcVar7[-1] == ' ')) &&
            ((0 < (int)(pcVar7 + (-1 - (int)__s1)) &&
             (pEVar6 = EVP_PKEY_asn1_find_str((ENGINE **)0x0,__s1,(int)(pcVar7 + (-1 - (int)__s1))),
@@ -53,26 +53,26 @@ joined_r0x000beafe:
       }
     }
     else {
-      iVar1 = strcmp(name,DAT_000beca8);
+      iVar1 = strcmp(name,"PARAMETERS");
       if (iVar1 != 0) {
-        iVar1 = strcmp(__s1,DAT_000becac);
-        if ((((((iVar1 != 0) || (iVar1 = strcmp(name,DAT_000becb0), iVar1 != 0)) &&
-              ((iVar1 = strcmp(__s1,DAT_000becb4), iVar1 != 0 ||
-               (iVar3 = strcmp(name,DAT_000becb8), iVar3 != 0)))) &&
-             ((iVar3 = strcmp(__s1,DAT_000becbc), iVar3 != 0 ||
-              (iVar3 = strcmp(name,DAT_000becc0), iVar3 != 0)))) &&
-            ((iVar3 = strcmp(__s1,DAT_000becb8), iVar3 != 0 ||
-             (iVar4 = strcmp(name,DAT_000becc4), iVar4 != 0)))) &&
-           ((iVar1 != 0 || (iVar1 = strcmp(name,DAT_000becc4), iVar1 != 0)))) {
-          if ((iVar3 == 0) && (iVar1 = strcmp(name,DAT_000beccc), iVar1 == 0)) {
+        iVar1 = strcmp(__s1,"X9.42 DH PARAMETERS");
+        if ((((((iVar1 != 0) || (iVar1 = strcmp(name,"DH PARAMETERS"), iVar1 != 0)) &&
+              ((iVar1 = strcmp(__s1,"X509 CERTIFICATE"), iVar1 != 0 ||
+               (iVar3 = strcmp(name,"CERTIFICATE"), iVar3 != 0)))) &&
+             ((iVar3 = strcmp(__s1,"NEW CERTIFICATE REQUEST"), iVar3 != 0 ||
+              (iVar3 = strcmp(name,"CERTIFICATE REQUEST"), iVar3 != 0)))) &&
+            ((iVar3 = strcmp(__s1,"CERTIFICATE"), iVar3 != 0 ||
+             (iVar4 = strcmp(name,"TRUSTED CERTIFICATE"), iVar4 != 0)))) &&
+           ((iVar1 != 0 || (iVar1 = strcmp(name,"TRUSTED CERTIFICATE"), iVar1 != 0)))) {
+          if ((iVar3 == 0) && (iVar1 = strcmp(name,"PKCS7"), iVar1 == 0)) {
             iVar1 = PEM_get_EVP_CIPHER_INFO(local_4c,&EStack_3c);
             goto joined_r0x000bec30;
           }
-          iVar1 = strcmp(__s1,DAT_000becc8);
-          if ((((iVar1 != 0) || (iVar1 = strcmp(name,DAT_000beccc), iVar1 != 0)) &&
+          iVar1 = strcmp(__s1,"PKCS #7 SIGNED DATA");
+          if ((((iVar1 != 0) || (iVar1 = strcmp(name,"PKCS7"), iVar1 != 0)) &&
               ((iVar3 != 0 ||
                ((((*name != 'C' || (name[1] != 'M')) || (name[2] != 'S')) || (name[3] != '\0'))))))
-             && (((iVar1 = strcmp(__s1,DAT_000beccc), iVar1 != 0 || (*name != 'C')) ||
+             && (((iVar1 = strcmp(__s1,"PKCS7"), iVar1 != 0 || (*name != 'C')) ||
                  ((name[1] != 'M' || ((name[2] != 'S' || (name[3] != '\0')))))))) goto LAB_000bea94;
         }
         break;
@@ -80,7 +80,7 @@ joined_r0x000beafe:
       sVar2 = strlen(__s1);
       if (0xb < (int)sVar2) {
         pcVar7 = __s1 + (sVar2 - 10);
-        iVar1 = strcmp(pcVar7,DAT_000beca8);
+        iVar1 = strcmp(pcVar7,"PARAMETERS");
         if ((((iVar1 == 0) && (pcVar7[-1] == ' ')) && (0 < (int)(pcVar7 + (-1 - (int)__s1)))) &&
            (pEVar6 = EVP_PKEY_asn1_find_str(&local_40,__s1,(int)(pcVar7 + (-1 - (int)__s1))),
            __s1 = local_50, pEVar6 != (EVP_PKEY_ASN1_METHOD *)0x0)) {

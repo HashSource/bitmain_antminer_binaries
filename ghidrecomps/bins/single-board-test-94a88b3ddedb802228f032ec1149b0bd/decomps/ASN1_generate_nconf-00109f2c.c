@@ -14,7 +14,7 @@ ASN1_TYPE * ASN1_generate_nconf(char *str,CONF *nconf)
   }
   pAVar1 = (ASN1_TYPE *)generate_v3_constprop_2(str,nconf,&local_28);
   if (local_28 != (CONF *)0x0) {
-    ERR_put_error(0xd,0xb2,(int)local_28,DAT_00109f68,0x90);
+    ERR_put_error(0xd,0xb2,(int)local_28,"asn1_gen.c",0x90);
   }
   return pAVar1;
 }

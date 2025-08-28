@@ -6,7 +6,7 @@ PEM_read_bio_NETSCAPE_CERT_SEQUENCE(BIO *bp,NETSCAPE_CERT_SEQUENCE **x,undefined
   NETSCAPE_CERT_SEQUENCE *pNVar1;
   
   pNVar1 = (NETSCAPE_CERT_SEQUENCE *)
-           PEM_ASN1_read_bio(d2i_NETSCAPE_CERT_SEQUENCE + 1,"CERTIFICATE",bp,x,cb,u);
+           PEM_ASN1_read_bio((undefined1 *)0x107fb5,"CERTIFICATE",bp,x,cb,u);
   return pNVar1;
 }
 

@@ -15,7 +15,7 @@ undefined4 header_append(int param_1,int param_2,size_t param_3)
   }
   else {
     if (0x19000 < uVar4) {
-      Curl_failf(param_1,DAT_0003fec4,0x19000);
+      Curl_failf(param_1,"Avoided giant realloc for header (max is %d)!",0x19000);
       return 0x1b;
     }
     iVar5 = *(int *)(param_1 + 0x594);
@@ -25,9 +25,9 @@ undefined4 header_append(int param_1,int param_2,size_t param_3)
     if (uVar4 < uVar2) {
       uVar4 = uVar2;
     }
-    iVar1 = (**DAT_0003fec8)(iVar5,uVar4);
+    iVar1 = (*Curl_crealloc)(iVar5,uVar4);
     if (iVar1 == 0) {
-      Curl_failf(param_1,DAT_0003fecc);
+      Curl_failf(param_1,"Failed to alloc memory for big header!");
       return 0x1b;
     }
     __dest = (void *)(iVar1 + (iVar3 - iVar5));
@@ -39,7 +39,7 @@ undefined4 header_append(int param_1,int param_2,size_t param_3)
   iVar3 = *(int *)(param_2 + 0x54);
   *(size_t *)(param_2 + 0x54) = iVar3 + param_3;
   *(size_t *)(param_2 + 0x58) = *(int *)(param_2 + 0x58) + param_3;
-  *(undefined *)(iVar3 + param_3) = 0;
+  *(undefined1 *)(iVar3 + param_3) = 0;
   return 0;
 }
 

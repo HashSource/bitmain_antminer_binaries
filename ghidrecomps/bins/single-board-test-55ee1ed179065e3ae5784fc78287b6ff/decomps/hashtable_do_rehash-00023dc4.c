@@ -8,8 +8,8 @@ undefined4 hashtable_do_rehash(int param_1)
   int extraout_r1;
   int iVar4;
   int iVar5;
-  uint local_10;
-  int local_c;
+  undefined4 local_10;
+  undefined4 local_c;
   
   jsonp_free(*(undefined4 *)(param_1 + 4));
   *(int *)(param_1 + 8) = *(int *)(param_1 + 8) + 1;

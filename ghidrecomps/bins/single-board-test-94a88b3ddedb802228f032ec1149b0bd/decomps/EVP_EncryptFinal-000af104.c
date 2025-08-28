@@ -29,7 +29,7 @@ int EVP_EncryptFinal(EVP_CIPHER_CTX *ctx,uchar *out,int *outl)
       uVar3 = ctx->buf_len;
     }
     else {
-      OpenSSLDie(DAT_000af0fc,0x193,DAT_000af100);
+      OpenSSLDie("evp_enc.c",0x193,"b <= sizeof ctx->buf");
       uVar7 = ctx->flags;
       uVar3 = ctx->buf_len;
     }
@@ -55,8 +55,7 @@ int EVP_EncryptFinal(EVP_CIPHER_CTX *ctx,uchar *out,int *outl)
           } while (uVar10 - uVar3 < uVar6);
           if (uVar11 == uVar6) goto LAB_000af096;
         }
-        uVar11 = uVar11 - uVar6;
-        uVar8 = uVar11 >> 2;
+        uVar8 = uVar11 - uVar6 >> 2;
         if (uVar8 != 0) {
           ppvVar12 = (void **)(ctx->buf + uVar3 + uVar6);
           pvVar4 = (void *)(uVar13 | uVar13 << 8 | uVar13 << 0x10 | uVar13 << 0x18);
@@ -67,7 +66,7 @@ int EVP_EncryptFinal(EVP_CIPHER_CTX *ctx,uchar *out,int *outl)
             uVar3 = 0;
             ppvVar2 = ppvVar12;
             do {
-              uVar6 = uVar3 + 9;
+              uVar13 = uVar3 + 9;
               uVar3 = uVar3 + 8;
               HintPreloadData(ppvVar2 + 0x28);
               *ppvVar2 = pvVar4;
@@ -80,15 +79,15 @@ int EVP_EncryptFinal(EVP_CIPHER_CTX *ctx,uchar *out,int *outl)
               ppvVar2[7] = pvVar4;
               ppvVar12 = ppvVar2 + 8;
               ppvVar2 = ppvVar2 + 8;
-            } while (uVar6 < uVar8 - 7);
+            } while (uVar13 < uVar8 - 7);
           }
           do {
             uVar3 = uVar3 + 1;
             *ppvVar12 = pvVar4;
             ppvVar12 = ppvVar12 + 1;
           } while (uVar3 < uVar8);
-          uVar10 = uVar10 + (uVar11 & 0xfffffffc);
-          if (uVar11 == (uVar11 & 0xfffffffc)) goto LAB_000af096;
+          uVar10 = uVar10 + uVar8 * 4;
+          if (uVar11 - uVar6 == uVar8 * 4) goto LAB_000af096;
         }
         do {
           uVar3 = uVar10 + 1;
@@ -105,7 +104,7 @@ LAB_000af096:
       return iVar5;
     }
     if (uVar3 != 0) {
-      ERR_put_error(6,0x7f,0x8a,DAT_000af0fc,0x19c);
+      ERR_put_error(6,0x7f,0x8a,"evp_enc.c",0x19c);
       return 0;
     }
   }

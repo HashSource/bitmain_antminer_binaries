@@ -33,7 +33,7 @@ ulonglong __floatsidf(uint param_1)
     bVar7 = false;
     bVar8 = iVar4 + 1 == 0;
     uVar3 = uVar5;
-    if (!bVar8 && bVar9 == false) {
+    if (!bVar8 && !bVar9) {
       uVar1 = uVar2 << uVar5;
       uVar2 = uVar2 >> (0xcU - (iVar4 + 1) & 0xff);
       goto LAB_00097718;

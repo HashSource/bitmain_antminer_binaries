@@ -29,7 +29,7 @@ int SSL_use_psk_identity_hint(SSL *s,char *identity_hint)
       pSVar4->krb5_client_princ_len = 0;
       return 1;
     }
-    ERR_put_error(0x14,0x111,0x92,DAT_0007c818,0xd50);
+    ERR_put_error(0x14,0x111,0x92,"ssl_lib.c",0xd50);
   }
   return 0;
 }

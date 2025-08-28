@@ -6,7 +6,7 @@ char * fgets(char *__s,int __n,FILE *__stream)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_fgets_0004736c)();
+  pcVar1 = fgets(__s,__n,__stream);
   return pcVar1;
 }
 

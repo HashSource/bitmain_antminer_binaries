@@ -32,7 +32,7 @@ undefined4 hash_block(uint *param_1,void *param_2,uint param_3)
     puVar3 = param_1 + 0xc;
     do {
       iVar4 = iVar4 + 1;
-      iVar2 = iVar2 + (uint)*(byte *)(puVar3 + 8) + (uint)*(byte *)puVar3;
+      iVar2 = iVar2 + (uint)(byte)puVar3[8] + (uint)(byte)*puVar3;
       *(byte *)puVar3 = (byte)iVar2;
       iVar2 = iVar2 >> 8;
       puVar3 = (uint *)((int)puVar3 + 1);
@@ -53,7 +53,7 @@ undefined4 hash_block(uint *param_1,void *param_2,uint param_3)
       do {
         pbVar1 = (byte *)((int)pvVar7 + iVar4);
         iVar4 = iVar4 + 1;
-        iVar2 = iVar2 + (uint)*pbVar1 + (uint)*(byte *)puVar3;
+        iVar2 = iVar2 + (uint)*pbVar1 + (uint)(byte)*puVar3;
         *(byte *)puVar3 = (byte)iVar2;
         iVar2 = iVar2 >> 8;
         puVar3 = (uint *)((int)puVar3 + 1);

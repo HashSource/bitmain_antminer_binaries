@@ -5,7 +5,7 @@ int PEM_write_bio_ECPrivateKey
 {
   int iVar1;
   
-  iVar1 = PEM_ASN1_write_bio(i2d_ECPrivateKey + 1,"EC PRIVATE KEY",bp,x,enc,kstr,klen,cb,u);
+  iVar1 = PEM_ASN1_write_bio((undefined1 *)0xf5d89,"EC PRIVATE KEY",bp,x,enc,kstr,klen,cb,u);
   return iVar1;
 }
 

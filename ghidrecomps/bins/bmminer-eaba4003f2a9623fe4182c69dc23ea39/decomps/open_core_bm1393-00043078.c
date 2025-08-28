@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void open_core_bm1393(_Bool nullwork_enable)
 
 {
@@ -29,11 +27,8 @@ void open_core_bm1393(_Bool nullwork_enable)
   uint i;
   
   if (((use_syslog) || (opt_log_output)) || (4 < opt_log_level)) {
-    tmp42._0_4_ = open_core_bm1393::__FUNCTION__._0_4_;
-    tmp42._4_4_ = open_core_bm1393::__FUNCTION__._4_4_;
-    tmp42._8_4_ = open_core_bm1393::__FUNCTION__._8_4_;
-    tmp42._12_4_ = open_core_bm1393::__FUNCTION__._12_4_;
-    tmp42[16] = (char)ram0x000798cc;
+    builtin_strncpy(tmp42,"open_core_bm1393",0x10);
+    tmp42[0x10] = '\0';
     _applog(5,tmp42,false);
   }
   buf_vil_tw[0] = 0;
@@ -47,8 +42,8 @@ void open_core_bm1393(_Bool nullwork_enable)
   buf_vil_tw[8] = 0;
   buf_vil_tw[9] = 0;
   buf_vil_tw[10] = 0;
-  buf_vil_tw[11] = 0;
-  buf_vil_tw[12] = 0;
+  buf_vil_tw[0xb] = 0;
+  buf_vil_tw[0xc] = 0;
   if (opt_multi_version != 0) {
     uVar1 = get_dhash_acc_control();
     set_dhash_acc_control((opt_multi_version & 0xfU) << 8 | uVar1 & 0xffff7fdf | 0x8000);

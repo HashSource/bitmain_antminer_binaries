@@ -1,14 +1,14 @@
 
 undefined4
-pack_ioctl_pkg(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined *param_4)
+pack_ioctl_pkg(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined1 *param_4)
 
 {
   undefined4 uVar1;
   char acStack_420 [1024];
-  undefined *local_20;
-  undefined *local_1c;
-  undefined *local_18;
-  undefined *local_14;
+  undefined1 *local_20;
+  undefined1 *local_1c;
+  undefined1 *local_18;
+  undefined1 *local_14;
   
   switch(param_3) {
   case 0:

@@ -24,7 +24,7 @@ LAB_0010cc2c:
     pXVar4 = (X509_EXTENSION *)do_ext_nconf(&CStack_2c,ctx,ext_nid,uVar8,value);
   }
   else {
-    iVar2 = strncmp(value,DAT_0010cca0,9);
+    iVar2 = strncmp(value,"critical,",9);
     if (iVar2 == 0) {
       ppuVar3 = __ctype_b_loc();
       pbVar6 = (byte *)(value + 9);
@@ -38,13 +38,13 @@ LAB_0010cc2c:
     }
     uVar8 = 0;
 LAB_0010cc44:
-    iVar2 = strncmp(value,DAT_0010cca4,4);
+    iVar2 = strncmp(value,"DER:",4);
     if (iVar2 == 0) {
       pbVar6 = (byte *)value + 4;
       uVar9 = 1;
     }
     else {
-      if ((sVar1 == 4) || (iVar2 = strncmp(value,DAT_0010cca8,5), iVar2 != 0)) goto LAB_0010cc2c;
+      if ((sVar1 == 4) || (iVar2 = strncmp(value,"ASN1:",5), iVar2 != 0)) goto LAB_0010cc2c;
       pbVar6 = (byte *)value + 5;
       uVar9 = 2;
     }

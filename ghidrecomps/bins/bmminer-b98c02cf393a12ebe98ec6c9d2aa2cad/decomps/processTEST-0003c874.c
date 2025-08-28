@@ -16,10 +16,10 @@ void processTEST(void)
   if (iVar1 == 0xb) {
     saveTestID(0);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d do 8xPatten test\n","driver-btm-c5.c",0x1e42,
-                DAT_0003d004,0xb);
+                "processTEST",0xb);
       }
       fclose(pFVar2);
     }
@@ -29,10 +29,10 @@ void processTEST(void)
   if (iVar1 == 0xc) {
     saveTestID(0);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d do bitmain_core_reInit test\n","driver-btm-c5.c",
-                0x1e4b,DAT_0003d290,0xc);
+                0x1e4b,"processTEST",0xc);
       }
       fclose(pFVar2);
     }
@@ -41,19 +41,19 @@ void processTEST(void)
     if (log_level < 4) {
       return;
     }
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
       fprintf(pFVar2,"%s:%d:%s: Done bitmain_core_reInit test\n","driver-btm-c5.c",0x1e50,
-              DAT_0003ccb8);
+              "processTEST");
     }
   }
   else if (iVar1 == 0xd) {
     saveTestID(0);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d do doReInitTest test\n","driver-btm-c5.c",0x1e57,
-                DAT_0003d290,0xd);
+                "processTEST",0xd);
       }
       fclose(pFVar2);
     }
@@ -62,18 +62,18 @@ void processTEST(void)
     if (log_level < 4) {
       return;
     }
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      fprintf(pFVar2,"%s:%d:%s: Done doReInitTest test\n","driver-btm-c5.c",0x1e5c,DAT_0003d004);
+      fprintf(pFVar2,"%s:%d:%s: Done doReInitTest test\n","driver-btm-c5.c",0x1e5c,"processTEST");
     }
   }
   else if (iVar1 == 0xe) {
     saveTestID(0);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d do do get asicnum\n","driver-btm-c5.c",0x1e63,
-                DAT_0003d290,0xe);
+                "processTEST",0xe);
       }
       fclose(pFVar2);
     }
@@ -84,13 +84,13 @@ void processTEST(void)
       iVar4 = iVar1 + 1;
       iVar5 = iVar1 + -1;
       if (*(int *)(dev + iVar4 * 4) == 1) {
-        *(undefined *)(dev + iVar5 + 0x53ec) = 0;
+        *(undefined1 *)(dev + iVar5 + 0x53ec) = 0;
         check_asic_reg_oneChain_test(iVar5);
         if (3 < log_level) {
-          pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
             fprintf(pFVar2,"%s:%d:%s: Chain[J%d] has %d asic\n","driver-btm-c5.c",0x1e6f,
-                    DAT_0003d004,iVar1,(uint)*(byte *)(dev + iVar5 + 0x53ec));
+                    "processTEST",iVar1,(uint)*(byte *)(dev + iVar5 + 0x53ec));
           }
           fclose(pFVar2);
         }
@@ -98,11 +98,11 @@ void processTEST(void)
       iVar1 = iVar4;
     } while (iVar4 != 0x11);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         uVar3 = get_crc_count();
         fprintf(pFVar2,"%s:%d:%s: test asicnum CRC error counter=%d\n","driver-btm-c5.c",0x1e73,
-                DAT_0003d290,uVar3);
+                "processTEST",uVar3);
       }
       fclose(pFVar2);
     }
@@ -112,18 +112,18 @@ void processTEST(void)
       test_show_register = 0;
       return;
     }
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      fprintf(pFVar2,"%s:%d:%s: Done do get asicnum\n","driver-btm-c5.c",0x1e78,DAT_0003d004);
+      fprintf(pFVar2,"%s:%d:%s: Done do get asicnum\n","driver-btm-c5.c",0x1e78,"processTEST");
     }
   }
   else if (iVar1 == 0xf) {
     saveTestID(0);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d do reCalculateAVG test\n","driver-btm-c5.c",0x1e7f,
-                DAT_0003d290,0xf);
+                "processTEST",0xf);
       }
       fclose(pFVar2);
     }
@@ -131,19 +131,19 @@ void processTEST(void)
     if (log_level < 4) {
       return;
     }
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      fprintf(pFVar2,"%s:%d:%s: Done reCalculateAVG test\n","driver-btm-c5.c",0x1e83,DAT_0003ccb8);
+      fprintf(pFVar2,"%s:%d:%s: Done reCalculateAVG test\n","driver-btm-c5.c",0x1e83,"processTEST");
     }
   }
   else {
     if (iVar1 == 0x10) {
       saveTestID(0);
       if (3 < log_level) {
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d DUMP MODE : to show TM and HCN.\n",
-                  "driver-btm-c5.c",0x1e89,DAT_0003d004,0x10);
+                  "driver-btm-c5.c",0x1e89,"processTEST",0x10);
         }
         fclose(pFVar2);
       }
@@ -165,9 +165,9 @@ void processTEST(void)
       if (log_level < 2) {
         return;
       }
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
-        fprintf(pFVar2,"%s:%d:%s: log level set to %d\n","driver-btm-c5.c",0x1e9d,DAT_0003d004,
+        fprintf(pFVar2,"%s:%d:%s: log level set to %d\n","driver-btm-c5.c",0x1e9d,"processTEST",
                 log_level);
       }
     }
@@ -184,9 +184,9 @@ void processTEST(void)
       if (log_level < 2) {
         return;
       }
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
-        fprintf(pFVar2,"%s:%d:%s: ideal_hash set to %d\n","driver-btm-c5.c",0x1eae,DAT_0003d290,
+        fprintf(pFVar2,"%s:%d:%s: ideal_hash set to %d\n","driver-btm-c5.c",0x1eae,"processTEST",
                 ideal_total_hash_rate);
       }
     }
@@ -207,20 +207,20 @@ void processTEST(void)
           }
         }
         else {
-          pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
             fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d up voltage 0.1V on Chain[J%d]\n",
-                    "driver-btm-c5.c",0x1ecb,DAT_0003d004,iVar1,iVar4);
+                    "driver-btm-c5.c",0x1ecb,"processTEST",iVar1,iVar4);
           }
           fclose(pFVar2);
           if (*(int *)(dev + (iVar4 + 1) * 4) != 1) {
             if (log_level < 4) {
               return;
             }
-            pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+            pFVar2 = fopen(log_file,"a+");
             if (pFVar2 != (FILE *)0x0) {
               fprintf(pFVar2,"%s:%d:%s: There is hashboard on Chain[J%d]\n","driver-btm-c5.c",0x1edf
-                      ,DAT_0003d004,iVar4);
+                      ,"processTEST",iVar4);
             }
             goto LAB_0003ca9c;
           }
@@ -230,24 +230,23 @@ void processTEST(void)
           return;
         }
         iVar1 = ((int)(longlong)
-                      (((DAT_0003cca0 / ((double)(longlong)iVar1 + DAT_0003cc98) + DAT_0003cca8) *
-                       DAT_0003ccb0) / 4.75) / 10) * 10;
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+                      (((364.0704 / ((double)(longlong)iVar1 + 30.72) + 32.79) * 100.0) / 4.75) / 10
+                ) * 10;
+        pFVar2 = fopen(log_file,"a+");
         iVar5 = iVar1 + 10;
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: Try to up 0.1V on chain[J%d] from vol=%d to %d...\n",
-                  "driver-btm-c5.c",0x1ed6,DAT_0003ccb8,iVar4,iVar1,iVar5);
+                  "driver-btm-c5.c",0x1ed6,"processTEST",iVar4,iVar1,iVar5);
         }
         fclose(pFVar2);
-        dVar6 = DAT_0003cca0 / (((double)(longlong)iVar5 * 4.75) / DAT_0003ccb0 - DAT_0003cca8) -
-                DAT_0003cc98;
+        dVar6 = 364.0704 / (((double)(longlong)iVar5 * 4.75) / 100.0 - 32.79) - 30.72;
         if (log_level < 4) {
           return;
         }
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: now set pic voltage=%d on chain[J%d]\n","driver-btm-c5.c",0x1ed9
-                  ,DAT_0003ccb8,(uint)(0.0 < dVar6) * (int)(longlong)dVar6 & 0xff,iVar4);
+                  ,"processTEST",(uint)(0.0 < dVar6) * (int)(longlong)dVar6 & 0xff,iVar4);
         }
       }
       else {
@@ -262,20 +261,20 @@ void processTEST(void)
           }
         }
         else {
-          pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
             fprintf(pFVar2,"%s:%d:%s: get TEST ID=%d down voltage 0.1V on Chain[J%d]\n",
-                    "driver-btm-c5.c",0x1eea,DAT_0003d290,iVar1,iVar4);
+                    "driver-btm-c5.c",0x1eea,"processTEST",iVar1,iVar4);
           }
           fclose(pFVar2);
           if (*(int *)(dev + (iVar4 + 1) * 4) != 1) {
             if (log_level < 4) {
               return;
             }
-            pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+            pFVar2 = fopen(log_file,"a+");
             if (pFVar2 != (FILE *)0x0) {
               fprintf(pFVar2,"%s:%d:%s: There is no hashboard on Chain[J%d]\n","driver-btm-c5.c",
-                      0x1efe,DAT_0003d290,iVar4);
+                      0x1efe,"processTEST",iVar4);
             }
             goto LAB_0003ca9c;
           }
@@ -285,24 +284,23 @@ void processTEST(void)
           return;
         }
         iVar1 = ((int)(longlong)
-                      (((DAT_0003cca0 / ((double)(longlong)iVar1 + DAT_0003cc98) + DAT_0003cca8) *
-                       DAT_0003ccb0) / 4.75) / 10) * 10;
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+                      (((364.0704 / ((double)(longlong)iVar1 + 30.72) + 32.79) * 100.0) / 4.75) / 10
+                ) * 10;
+        pFVar2 = fopen(log_file,"a+");
         iVar5 = iVar1 + -10;
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: Try to down 0.1V on chain[J%d] from vol=%d to %d...\n",
-                  "driver-btm-c5.c",0x1ef5,DAT_0003ccb8,iVar4,iVar1,iVar5);
+                  "driver-btm-c5.c",0x1ef5,"processTEST",iVar4,iVar1,iVar5);
         }
         fclose(pFVar2);
-        dVar6 = DAT_0003cca0 / (((double)(longlong)iVar5 * 4.75) / DAT_0003ccb0 - DAT_0003cca8) -
-                DAT_0003cc98;
+        dVar6 = 364.0704 / (((double)(longlong)iVar5 * 4.75) / 100.0 - 32.79) - 30.72;
         if (log_level < 4) {
           return;
         }
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: now set pic voltage=%d on chain[J%d]\n","driver-btm-c5.c",0x1ef8
-                  ,DAT_0003ccb8,(uint)(0.0 < dVar6) * (int)(longlong)dVar6 & 0xff,iVar4);
+                  ,"processTEST",(uint)(0.0 < dVar6) * (int)(longlong)dVar6 & 0xff,iVar4);
         }
       }
     }

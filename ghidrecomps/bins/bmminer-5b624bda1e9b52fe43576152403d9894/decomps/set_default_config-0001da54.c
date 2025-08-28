@@ -4,7 +4,7 @@
 char * set_default_config(char *arg)
 
 {
-  opt_set_charp(arg,DAT_0001da60);
+  opt_set_charp(arg,&default_config);
   return (char *)0x0;
 }
 

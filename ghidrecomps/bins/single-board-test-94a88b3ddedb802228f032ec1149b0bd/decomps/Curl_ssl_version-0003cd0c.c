@@ -9,7 +9,7 @@ void Curl_ssl_version(undefined4 param_1,undefined4 param_2)
   uint uVar5;
   char cStack_1c;
   char cStack_1b;
-  undefined uStack_1a;
+  undefined1 uStack_1a;
   
   uVar5 = 0;
   uStack_1a = 0;
@@ -43,7 +43,7 @@ void Curl_ssl_version(undefined4 param_1,undefined4 param_2)
       cStack_1b = (char)iVar3 + (char)(iVar3 / 0x1a) * -0x1a + 'b';
     }
   }
-  curl_msnprintf(param_1,param_2,DAT_00059c80,DAT_00059c84,uVar2,uVar5,uVar4,&cStack_1c);
+  curl_msnprintf(param_1,param_2,"%s/%lx.%lx.%lx%s","OpenSSL",uVar2,uVar5,uVar4,&cStack_1c);
   return;
 }
 

@@ -4,7 +4,7 @@ undefined4 enc_new(int param_1)
 {
   undefined4 *puVar1;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0x10e4,DAT_00104c14,0x73);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0x10e4,"bio_enc.c",0x73);
   if (puVar1 != (undefined4 *)0x0) {
     EVP_CIPHER_CTX_init((EVP_CIPHER_CTX *)(puVar1 + 5));
     *puVar1 = 0;

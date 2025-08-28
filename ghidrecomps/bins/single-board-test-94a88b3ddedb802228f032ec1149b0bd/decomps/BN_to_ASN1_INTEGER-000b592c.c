@@ -9,7 +9,7 @@ ASN1_INTEGER * BN_to_ASN1_INTEGER(BIGNUM *bn,ASN1_INTEGER *ai)
   
   a = ai;
   if ((ai == (ASN1_INTEGER *)0x0) && (a = ASN1_STRING_type_new(2), a == (ASN1_STRING *)0x0)) {
-    ERR_put_error(0xd,0x8b,0x3a,DAT_000b59ec,0x1a5);
+    ERR_put_error(0xd,0x8b,0x3a,"a_int.c",0x1a5);
   }
   else {
     if (bn->neg == 0) {
@@ -39,9 +39,9 @@ ASN1_INTEGER * BN_to_ASN1_INTEGER(BIGNUM *bn,ASN1_INTEGER *ai)
       to = a->data;
     }
     else {
-      to = (uchar *)CRYPTO_realloc(a->data,iVar2 + 4,DAT_000b59ec,0x1af);
+      to = (uchar *)CRYPTO_realloc(a->data,iVar2 + 4,"a_int.c",0x1af);
       if (to == (uchar *)0x0) {
-        ERR_put_error(0xd,0x8b,0x41,DAT_000b59ec,0x1b1);
+        ERR_put_error(0xd,0x8b,0x41,"a_int.c",0x1b1);
         if (ai == a) {
           return (ASN1_INTEGER *)0x0;
         }

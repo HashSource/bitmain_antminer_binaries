@@ -1,8 +1,8 @@
 
-undefined4 heart_beat_PIC16F1704(undefined param_1,undefined param_2)
+undefined4 heart_beat_PIC16F1704(undefined1 param_1,undefined1 param_2)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined4 uVar2;
   uint uVar3;
   char acStack_428 [1024];
@@ -12,7 +12,7 @@ undefined4 heart_beat_PIC16F1704(undefined param_1,undefined param_2)
   undefined2 local_1c;
   undefined2 local_18;
   undefined2 local_14;
-  undefined local_12;
+  undefined1 local_12;
   byte local_11;
   
   local_12 = 4;
@@ -24,13 +24,13 @@ undefined4 heart_beat_PIC16F1704(undefined param_1,undefined param_2)
   local_24 = 0x1a00;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_11 = 0; local_11 < 6; local_11 = local_11 + 1) {
-    write_pic(param_2,param_1,*(undefined *)((int)&local_28 + (uint)local_11));
+    write_pic(param_2,param_1,*(undefined1 *)((int)&local_28 + (uint)local_11));
   }
   usleep(100000);
   for (local_11 = 0; local_11 < 6; local_11 = local_11 + 1) {
     uVar3 = (uint)local_11;
     uVar1 = read_pic(param_2,param_1);
-    *(undefined *)((int)&local_20 + uVar3) = uVar1;
+    *(undefined1 *)((int)&local_20 + uVar3) = uVar1;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   if ((local_20._1_1_ == '\x16') && (local_20._2_1_ == '\x01')) {

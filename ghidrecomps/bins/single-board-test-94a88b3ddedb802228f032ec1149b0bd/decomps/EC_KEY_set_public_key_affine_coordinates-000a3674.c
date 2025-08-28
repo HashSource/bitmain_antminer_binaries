@@ -12,7 +12,7 @@ int EC_KEY_set_public_key_affine_coordinates(EC_KEY *key,BIGNUM *x,BIGNUM *y)
   
   if (((key == (EC_KEY *)0x0) || (*(int *)(key + 4) == 0)) ||
      (x == (BIGNUM *)0x0 || y == (BIGNUM *)0x0)) {
-    ERR_put_error(0x10,0xe5,0x43,DAT_000a37a0,0x175);
+    ERR_put_error(0x10,0xe5,0x43,"ec_key.c",0x175);
     return 0;
   }
   c = BN_CTX_new();
@@ -48,7 +48,7 @@ joined_r0x000a3778:
       }
       goto LAB_000a36f2;
     }
-    ERR_put_error(0x10,0xe5,0x92,DAT_000a37a0,0x1a0);
+    ERR_put_error(0x10,0xe5,0x92,"ec_key.c",0x1a0);
   }
   else {
     x_00 = BN_CTX_get(c);

@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_seed_ofb(void)
 
 {
-  return DAT_000b17f4;
+  return (EVP_CIPHER *)seed_ofb;
 }
 

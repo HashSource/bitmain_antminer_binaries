@@ -24,8 +24,8 @@ void set_core_cmd_BM1393(core_cmd *core)
     if (core->core_mode != '\0') {
       buf[4] = 0x80;
     }
-    buf._4_2_ = CONCAT11(core->core_id,buf[4]);
-    buf._4_3_ = CONCAT12(core->cmd_type | core->rw_falg << 7,buf._4_2_);
+    buf[5] = core->core_id;
+    buf[6] = core->cmd_type | core->rw_falg << 7;
     buf[7] = (uchar)core->reg_data;
     buf[8] = '\0';
     buf[8] = CRC5(buf,'@');

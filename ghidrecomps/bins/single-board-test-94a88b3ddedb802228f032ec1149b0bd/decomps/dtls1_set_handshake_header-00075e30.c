@@ -1,5 +1,5 @@
 
-void dtls1_set_handshake_header(int param_1,undefined param_2,int param_3)
+void dtls1_set_handshake_header(int param_1,undefined1 param_2,int param_3)
 
 {
   dtls1_set_message_header

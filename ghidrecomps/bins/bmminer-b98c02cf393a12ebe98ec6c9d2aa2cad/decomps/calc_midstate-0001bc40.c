@@ -7,8 +7,8 @@ void calc_midstate(int param_1)
   uint uVar3;
   uint local_f4;
   uint local_f0 [16];
-  undefined auStack_b0 [136];
-  undefined auStack_28 [32];
+  undefined1 auStack_b0 [136];
+  undefined1 auStack_28 [32];
   
   puVar1 = (uint *)(param_1 + -4);
   puVar2 = &local_f4;
@@ -22,7 +22,7 @@ void calc_midstate(int param_1)
   sha256_init(auStack_b0);
   sha256_update(auStack_b0,local_f0,0x40);
   local_f4 = 0x894;
-  _cg_memcpy(param_1 + 0x80,auStack_28,0x20,"cgminer.c",DAT_0001bc8c);
+  _cg_memcpy(param_1 + 0x80,auStack_28,0x20,"cgminer.c","calc_midstate");
   return;
 }
 

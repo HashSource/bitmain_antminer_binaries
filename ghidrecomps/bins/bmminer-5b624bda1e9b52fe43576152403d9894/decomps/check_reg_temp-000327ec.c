@@ -5,7 +5,6 @@ uint check_reg_temp(uchar device,uint reg,uchar data,uchar write,uchar chip_addr
 
 {
   uint uVar1;
-  uint ret;
   uint chip_addr_00;
   int iVar2;
   

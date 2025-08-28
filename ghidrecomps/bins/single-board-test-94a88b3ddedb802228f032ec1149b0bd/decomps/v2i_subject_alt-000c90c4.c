@@ -14,24 +14,24 @@ _STACK * v2i_subject_alt(X509V3_EXT_METHOD *param_1,X509V3_CTX *param_2,_STACK *
   
   st = sk_new_null();
   if (st == (_STACK *)0x0) {
-    ERR_put_error(0x22,0x9a,0x41,DAT_000c9314,0x13c);
+    ERR_put_error(0x22,0x9a,0x41,"v3_alt.c",0x13c);
   }
   else {
     for (iVar7 = 0; iVar1 = sk_num(param_3), iVar7 < iVar1; iVar7 = iVar7 + 1) {
       cnf = (CONF_VALUE *)sk_value(param_3,iVar7);
-      iVar1 = name_cmp(cnf->name,DAT_000c9308);
+      iVar1 = name_cmp(cnf->name,"email");
       if (((iVar1 == 0) && (cnf->value != (char *)0x0)) &&
-         (iVar1 = strcmp(cnf->value,DAT_000c9310), iVar1 == 0)) {
+         (iVar1 = strcmp(cnf->value,"copy"), iVar1 == 0)) {
         if (param_2 == (X509V3_CTX *)0x0) {
 LAB_000c92c0:
           pGVar6 = (GENERAL_NAME *)0x0;
-          ERR_put_error(0x22,0x7a,0x7d,DAT_000c9314,0x164);
+          ERR_put_error(0x22,0x7a,0x7d,"v3_alt.c",0x164);
           pAVar5 = (ASN1_STRING *)0x0;
 LAB_000c91be:
           GENERAL_NAME_free(pGVar6);
           ASN1_STRING_free(pAVar5);
 LAB_000c91ca:
-          sk_pop_free(st,DAT_000c9318);
+          sk_pop_free(st,GENERAL_NAME_free);
           return (_STACK *)0x0;
         }
         if (param_2->flags != 1) {
@@ -50,14 +50,14 @@ LAB_000c91ca:
             if ((pAVar5 == (ASN1_STRING *)0x0) ||
                (pGVar6 = GENERAL_NAME_new(), pGVar6 == (GENERAL_NAME *)0x0)) {
               pGVar6 = (GENERAL_NAME *)0x0;
-              ERR_put_error(0x22,0x7a,0x41,DAT_000c9314,0x179);
+              ERR_put_error(0x22,0x7a,0x41,"v3_alt.c",0x179);
               goto LAB_000c91be;
             }
             pGVar6->type = 1;
             (pGVar6->d).otherName = (OTHERNAME *)pAVar5;
             iVar3 = sk_push(st,pGVar6);
             if (iVar3 == 0) {
-              ERR_put_error(0x22,0x7a,0x41,DAT_000c9314,0x180);
+              ERR_put_error(0x22,0x7a,0x41,"v3_alt.c",0x180);
               pAVar5 = (ASN1_STRING *)0x0;
               goto LAB_000c91be;
             }
@@ -65,13 +65,13 @@ LAB_000c91ca:
         }
       }
       else {
-        iVar1 = name_cmp(cnf->name,DAT_000c9308);
+        iVar1 = name_cmp(cnf->name,"email");
         if (((iVar1 == 0) && (cnf->value != (char *)0x0)) &&
-           (iVar1 = strcmp(cnf->value,DAT_000c930c), iVar1 == 0)) {
+           (iVar1 = strcmp(cnf->value,"move"), iVar1 == 0)) {
           if (param_2 == (X509V3_CTX *)0x0) {
 LAB_000c92d8:
             pGVar6 = (GENERAL_NAME *)0x0;
-            ERR_put_error(0x22,0x7a,0x7d,DAT_000c9314,0x164);
+            ERR_put_error(0x22,0x7a,0x7d,"v3_alt.c",0x164);
             pAVar5 = (ASN1_STRING *)0x0;
 LAB_000c9272:
             GENERAL_NAME_free(pGVar6);
@@ -99,14 +99,14 @@ LAB_000c9272:
               if ((pAVar5 == (ASN1_STRING *)0x0) ||
                  (pGVar6 = GENERAL_NAME_new(), pGVar6 == (GENERAL_NAME *)0x0)) {
                 pGVar6 = (GENERAL_NAME *)0x0;
-                ERR_put_error(0x22,0x7a,0x41,DAT_000c9314,0x179);
+                ERR_put_error(0x22,0x7a,0x41,"v3_alt.c",0x179);
                 goto LAB_000c9272;
               }
               (pGVar6->d).otherName = (OTHERNAME *)pAVar5;
               pGVar6->type = 1;
               iVar3 = sk_push(st,pGVar6);
               if (iVar3 == 0) {
-                ERR_put_error(0x22,0x7a,0x41,DAT_000c9314,0x180);
+                ERR_put_error(0x22,0x7a,0x41,"v3_alt.c",0x180);
                 pAVar5 = (ASN1_STRING *)0x0;
                 goto LAB_000c9272;
               }

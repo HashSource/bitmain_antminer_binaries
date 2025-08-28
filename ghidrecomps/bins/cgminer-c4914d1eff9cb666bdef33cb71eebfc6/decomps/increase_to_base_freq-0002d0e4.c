@@ -4,7 +4,6 @@ void increase_to_base_freq(float init_freq,float freq_step)
 {
   _Bool _Var1;
   FILE *pFVar2;
-  float fVar3;
   float freq_step_local;
   float init_freq_local;
   int final_freq [16];
@@ -42,8 +41,7 @@ void increase_to_base_freq(float init_freq,float freq_step)
       if (((dev->chain_exist[chain] != 0) && (scanfreq_info.test_done[chain] == false)) &&
          (i < steps[chain])) {
         freq_tmp = init_freq + (float)(longlong)(i + 1) * freq_step;
-        fVar3 = (float)(longlong)final_freq[chain];
-        if (freq_tmp != fVar3 && freq_tmp < fVar3 == (NAN(freq_tmp) || NAN(fVar3))) {
+        if ((float)(longlong)final_freq[chain] < freq_tmp) {
           freq_tmp = (float)(longlong)final_freq[chain];
         }
         if (3 < log_level) {

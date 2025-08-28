@@ -8,7 +8,7 @@ ASN1_GENERALIZEDTIME_adj(ASN1_GENERALIZEDTIME *s,time_t t,int offset_day,long of
   int iVar3;
   uchar *buf;
   time_t local_4c [2];
-  undefined auStack_44 [48];
+  undefined1 auStack_44 [48];
   
   local_4c[0] = t;
   if ((((s == (ASN1_GENERALIZEDTIME *)0x0) &&
@@ -21,9 +21,9 @@ ASN1_GENERALIZEDTIME_adj(ASN1_GENERALIZEDTIME *s,time_t t,int offset_day,long of
   else {
     buf = s->data;
     if ((buf == (uchar *)0x0) || ((uint)s->length < 0x14)) {
-      buf = (uchar *)CRYPTO_malloc(0x14,DAT_00105c84,0x125);
+      buf = (uchar *)CRYPTO_malloc(0x14,"a_gentm.c",0x125);
       if (buf == (uchar *)0x0) {
-        ERR_put_error(0xd,0xd8,0x41,DAT_00105c84,0x127);
+        ERR_put_error(0xd,0xd8,0x41,"a_gentm.c",0x127);
         return (ASN1_GENERALIZEDTIME *)0x0;
       }
       if (s->data != (uchar *)0x0) {
@@ -31,8 +31,8 @@ ASN1_GENERALIZEDTIME_adj(ASN1_GENERALIZEDTIME *s,time_t t,int offset_day,long of
       }
       s->data = buf;
     }
-    BIO_snprintf((char *)buf,0x14,DAT_00105c88,puVar1[5] + 0x76c,puVar1[4] + 1,puVar1[3],puVar1[2],
-                 puVar1[1],*puVar1);
+    BIO_snprintf((char *)buf,0x14,"%04d%02d%02d%02d%02d%02dZ",puVar1[5] + 0x76c,puVar1[4] + 1,
+                 puVar1[3],puVar1[2],puVar1[1],*puVar1);
     sVar2 = strlen((char *)buf);
     s->length = sVar2;
     s->type = 0x18;

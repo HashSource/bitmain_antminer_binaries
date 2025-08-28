@@ -9,11 +9,11 @@ int PEM_write_bio_ASN1_stream(BIO *out,ASN1_VALUE *val,BIO *in,int flags,char *h
   BIO *pBVar1;
   int iVar2;
   
-  BIO_printf(out,DAT_00127e70,hdr);
+  BIO_printf(out,"-----BEGIN %s-----\n",hdr);
   type = BIO_f_base64();
   b = BIO_new(type);
   if (b == (BIO *)0x0) {
-    ERR_put_error(0xd,0xd2,0x41,DAT_00127e78,0x9b);
+    ERR_put_error(0xd,0xd2,0x41,"asn_mime.c",0x9b);
     iVar2 = 0;
   }
   else {
@@ -25,7 +25,7 @@ int PEM_write_bio_ASN1_stream(BIO *out,ASN1_VALUE *val,BIO *in,int flags,char *h
     else {
       out_01 = BIO_new_NDEF(out_00,val,it);
       if (out_01 == (BIO *)0x0) {
-        ERR_put_error(0xd,0xd3,0x41,DAT_00127e78,0x7d);
+        ERR_put_error(0xd,0xd3,0x41,"asn_mime.c",0x7d);
         iVar2 = 0;
       }
       else {
@@ -43,7 +43,7 @@ int PEM_write_bio_ASN1_stream(BIO *out,ASN1_VALUE *val,BIO *in,int flags,char *h
     BIO_pop(out_00);
     BIO_free(b);
   }
-  BIO_printf(out,DAT_00127e74,hdr);
+  BIO_printf(out,"-----END %s-----\n",hdr);
   return iVar2;
 }
 

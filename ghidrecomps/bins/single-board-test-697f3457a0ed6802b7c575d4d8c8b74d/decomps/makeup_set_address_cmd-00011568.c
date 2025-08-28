@@ -24,7 +24,10 @@ int makeup_set_address_cmd(uint8_t *str,uint32_t str_len,uint8_t chip_addr)
     bVar1 = CRC5_v1((uchar *)&set_address_cmd,' ');
     *str = 'U';
     str[1] = 0xaa;
-    *(undefined4 *)(str + 2) = set_address_cmd._0_4_;
+    str[2] = set_address_cmd._0_1_;
+    str[3] = set_address_cmd.length;
+    str[4] = set_address_cmd.chip_addr;
+    str[5] = set_address_cmd.reserve1;
     str[6] = set_address_cmd._4_1_ & 0xe0 | bVar1 & 0x1f;
     iVar2 = 7;
   }

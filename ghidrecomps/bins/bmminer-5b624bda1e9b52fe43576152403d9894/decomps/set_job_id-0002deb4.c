@@ -4,14 +4,13 @@
 void set_job_id(uint value)
 
 {
-  char cVar1;
+  _Bool _Var1;
   char tmp42 [2048];
   
-  cVar1 = *DAT_0002df08;
-  *(uint *)(*(int *)(DAT_0002df04 + 0x8d4) + 0x124) = value;
-  if ((cVar1 != '\0') &&
-     (((*DAT_0002df0c != '\0' || (*DAT_0002df10 != '\0')) || (6 < *DAT_0002df14)))) {
-    snprintf(tmp42,0x800,DAT_0002df18,DAT_0002df1c,value);
+  _Var1 = opt_debug;
+  axi_fpga_addr[0x49] = value;
+  if ((_Var1) && (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: set JOB_ID is 0x%x\n","set_job_id",value);
     _applog(7,tmp42,false);
   }
   get_job_id();

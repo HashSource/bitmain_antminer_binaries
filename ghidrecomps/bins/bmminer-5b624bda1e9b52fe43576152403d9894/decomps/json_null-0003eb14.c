@@ -4,6 +4,6 @@
 json_t * json_null(void)
 
 {
-  return DAT_0003eb18;
+  return &json_null::the_null;
 }
 

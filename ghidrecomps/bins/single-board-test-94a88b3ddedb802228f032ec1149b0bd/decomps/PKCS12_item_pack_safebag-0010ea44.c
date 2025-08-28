@@ -10,7 +10,7 @@ PKCS12_SAFEBAG * PKCS12_item_pack_safebag(void *obj,ASN1_ITEM *it,int nid1,int n
   
   pXVar1 = (X509_SIG *)PKCS12_BAGS_new();
   if (pXVar1 == (X509_SIG *)0x0) {
-    ERR_put_error(0x23,0x75,0x41,DAT_0010eab8,0x48);
+    ERR_put_error(0x23,0x75,0x41,"p12_add.c",0x48);
     pAVar3 = (ASN1_STRING *)0x0;
   }
   else {
@@ -29,7 +29,7 @@ PKCS12_SAFEBAG * PKCS12_item_pack_safebag(void *obj,ASN1_ITEM *it,int nid1,int n
       line = 0x51;
       pAVar3 = (ASN1_STRING *)0x0;
     }
-    ERR_put_error(0x23,0x75,0x41,DAT_0010eab8,line);
+    ERR_put_error(0x23,0x75,0x41,"p12_add.c",line);
   }
   return (PKCS12_SAFEBAG *)pAVar3;
 }

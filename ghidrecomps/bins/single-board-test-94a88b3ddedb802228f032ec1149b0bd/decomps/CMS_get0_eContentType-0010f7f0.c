@@ -15,7 +15,7 @@ LAB_0010f83e:
       if (iVar1 == 0x16) goto LAB_0010f83e;
       if (iVar1 != 0x17) {
 LAB_0010f812:
-        ERR_put_error(0x2e,0x82,0x98,DAT_0010f850,0x10c);
+        ERR_put_error(0x2e,0x82,0x98,"cms_lib.c",0x10c);
         return (ASN1_OBJECT *)0x0;
       }
     }

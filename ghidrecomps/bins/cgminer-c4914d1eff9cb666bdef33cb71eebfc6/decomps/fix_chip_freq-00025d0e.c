@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void fix_chip_freq(void)
 
@@ -18,10 +18,7 @@ void fix_chip_freq(void)
   int chip;
   int chain;
   
-  step = 10;
-  step_rate = 0x7c;
   totalRate = get_current_total_rate();
-  fixed_totalRate = 0x4844;
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
     pFVar1 = fopen(log_file,"a+");
@@ -33,7 +30,7 @@ void fix_chip_freq(void)
   }
   memset(down_count,0,0x40);
   while( true ) {
-    if (totalRate < step_rate + fixed_totalRate) {
+    if (totalRate < 0x48c0) {
       return;
     }
     min_down_count = 1000;
@@ -47,7 +44,7 @@ void fix_chip_freq(void)
     if (fix_chain == -1) break;
     down_count[fix_chain] = down_count[fix_chain] + 1;
     for (chip = 0; chip < 0x3c; chip = chip + 1) {
-      scan_result[fix_chain].freq_eeprom[chip] = scan_result[fix_chain].freq_eeprom[chip] - step;
+      scan_result[fix_chain].freq_eeprom[chip] = scan_result[fix_chain].freq_eeprom[chip] - 10;
     }
     totalRate = get_current_total_rate();
     if (3 < log_level) {
@@ -55,7 +52,7 @@ void fix_chip_freq(void)
       pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,"%s:%d:%s: chain %d down a step of %dM, rate of %dG, total rate %dG\n",
-                "driver-btm-soc.c",0x16c3,"fix_chip_freq",fix_chain,step,step_rate,totalRate);
+                "driver-btm-soc.c",0x16c3,"fix_chip_freq",fix_chain,10,0x7c,totalRate);
       }
       fclose(pFVar1);
     }

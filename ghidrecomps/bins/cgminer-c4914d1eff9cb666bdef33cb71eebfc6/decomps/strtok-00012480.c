@@ -6,7 +6,7 @@ char * strtok(char *__s,char *__delim)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strtok_000a81d4)();
+  pcVar1 = strtok(__s,__delim);
   return pcVar1;
 }
 

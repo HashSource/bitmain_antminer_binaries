@@ -18,11 +18,11 @@ char * Curl_dedotdotify(char *param_1)
   char *pcVar9;
   
   sVar2 = strlen(param_1);
-  pcVar3 = (char *)(**DAT_00056864)(sVar2 + 1);
+  pcVar3 = (char *)(*Curl_cmalloc)(sVar2 + 1);
   if (pcVar3 != (char *)0x0) {
-    __s = (char *)(**DAT_00056868)(param_1);
+    __s = (char *)(*Curl_cstrdup)(param_1);
     if ((__s == (char *)0x0) || (*__s == '\0')) {
-      (**DAT_00056874)(pcVar3);
+      (*Curl_cfree)(pcVar3);
       pcVar3 = __s;
     }
     else {
@@ -34,20 +34,20 @@ char * Curl_dedotdotify(char *param_1)
       }
 LAB_000566fe:
       do {
-        iVar5 = strncmp(DAT_0005686c,__s2,2);
+        iVar5 = strncmp("./",__s2,2);
         if (iVar5 == 0) {
 LAB_00056750:
           cVar6 = __s2[2];
           pcVar7 = __s2 + 2;
         }
         else {
-          iVar5 = strncmp(DAT_00056870,__s2,3);
+          iVar5 = strncmp("../",__s2,3);
           if (iVar5 == 0) {
             cVar6 = __s2[3];
             pcVar7 = __s2 + 3;
           }
           else {
-            iVar5 = strncmp(DAT_00056878,__s2,3);
+            iVar5 = strncmp("/./",__s2,3);
             if (iVar5 == 0) goto LAB_00056750;
             cVar6 = *__s2;
             if (cVar6 == '/') {
@@ -57,7 +57,7 @@ LAB_00056750:
                 __s2 = __s2 + 1;
                 goto LAB_000566fe;
               }
-              iVar5 = strncmp(DAT_0005687c,__s2,4);
+              iVar5 = strncmp("/../",__s2,4);
               if (iVar5 == 0) goto LAB_00056830;
               pcVar9 = __dest;
               if (((cVar1 == '.') && (__s2[2] == '.')) && (__s2[3] == '\0')) {
@@ -77,7 +77,7 @@ LAB_00056750:
               }
             }
             else {
-              iVar5 = strncmp(DAT_0005687c,__s2,4);
+              iVar5 = strncmp("/../",__s2,4);
               if (iVar5 == 0) {
 LAB_00056830:
                 pcVar7 = __s2 + 3;
@@ -120,7 +120,7 @@ joined_r0x00056720:
         sVar2 = strlen(param_1 + ((int)pcVar4 - (int)__s));
         memcpy(__dest,param_1 + ((int)pcVar4 - (int)__s),sVar2 + 1);
       }
-      (**DAT_00056874)(__s);
+      (*Curl_cfree)(__s);
     }
   }
   return pcVar3;

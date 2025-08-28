@@ -2,85 +2,69 @@
 undefined4 cswift_init(void)
 
 {
-  char **ppcVar1;
-  char **ppcVar2;
-  char *pcVar3;
-  DSO *dso;
+  DSO_FUNC_TYPE pDVar1;
+  DSO_FUNC_TYPE pDVar2;
+  DSO_FUNC_TYPE pDVar3;
   DSO_FUNC_TYPE pDVar4;
-  DSO_FUNC_TYPE pDVar5;
-  DSO_FUNC_TYPE pDVar6;
-  DSO_FUNC_TYPE pDVar7;
-  int iVar8;
+  int iVar5;
+  char *filename;
   undefined4 local_1c [2];
   
-  ppcVar1 = DAT_000dac60;
-  if (DAT_000dac60[2] == (char *)0x0) {
-    pcVar3 = *DAT_000dac60;
-    if (*DAT_000dac60 == (char *)0x0) {
-      pcVar3 = DAT_000dac68;
+  if (cswift_dso == (DSO *)0x0) {
+    filename = CSWIFT_LIBNAME;
+    if (CSWIFT_LIBNAME == (char *)0x0) {
+      filename = "swift";
     }
-    dso = DSO_load((DSO *)0x0,pcVar3,(DSO_METHOD *)0x0,0);
-    ppcVar1[2] = (char *)dso;
-    if (dso == (DSO *)0x0) {
-      pcVar3 = ppcVar1[1];
-      if (pcVar3 == (char *)0x0) {
-        pcVar3 = (char *)ERR_get_next_error_library();
-        ppcVar1[1] = pcVar3;
+    cswift_dso = DSO_load((DSO *)0x0,filename,(DSO_METHOD *)0x0,0);
+    if (cswift_dso == (DSO *)0x0) {
+      if (CSWIFT_lib_error_code == 0) {
+        CSWIFT_lib_error_code = ERR_get_next_error_library();
       }
-      iVar8 = 0x195;
+      iVar5 = 0x195;
     }
     else {
-      pDVar4 = DSO_bind_func(dso,DAT_000dac6c);
-      if ((((pDVar4 != (DSO_FUNC_TYPE)0x0) &&
-           (pDVar5 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000dac70), pDVar5 != (DSO_FUNC_TYPE)0x0))
-          && (pDVar6 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000dac74), pDVar6 != (DSO_FUNC_TYPE)0x0))
-         && (pDVar7 = DSO_bind_func((DSO *)ppcVar1[2],DAT_000dac78), pDVar7 != (DSO_FUNC_TYPE)0x0))
-      {
-        ppcVar1[3] = (char *)pDVar4;
-        ppcVar1[4] = (char *)pDVar5;
-        ppcVar1[5] = (char *)pDVar6;
-        ppcVar1[6] = (char *)pDVar7;
-        iVar8 = (*pDVar4)(local_1c);
-        if (iVar8 == 0) {
-          (*(code *)ppcVar1[6])(local_1c[0]);
+      pDVar1 = DSO_bind_func(cswift_dso,"swAcquireAccContext");
+      if ((((pDVar1 != (DSO_FUNC_TYPE)0x0) &&
+           (pDVar2 = DSO_bind_func(cswift_dso,"swAttachKeyParam"), pDVar2 != (DSO_FUNC_TYPE)0x0)) &&
+          (pDVar3 = DSO_bind_func(cswift_dso,"swSimpleRequest"), pDVar3 != (DSO_FUNC_TYPE)0x0)) &&
+         (pDVar4 = DSO_bind_func(cswift_dso,"swReleaseAccContext"), pDVar4 != (DSO_FUNC_TYPE)0x0)) {
+        p_CSwift_AcquireAccContext = pDVar1;
+        p_CSwift_AttachKeyParam = pDVar2;
+        p_CSwift_SimpleRequest = pDVar3;
+        p_CSwift_ReleaseAccContext = pDVar4;
+        iVar5 = (*pDVar1)(local_1c);
+        if (iVar5 == 0) {
+          (*p_CSwift_ReleaseAccContext)(local_1c[0]);
           return 1;
         }
-        pcVar3 = ppcVar1[1];
-        if (pcVar3 == (char *)0x0) {
-          pcVar3 = (char *)ERR_get_next_error_library();
-          ppcVar1[1] = pcVar3;
+        if (CSWIFT_lib_error_code == 0) {
+          CSWIFT_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error((int)pcVar3,0x68,0x6c,DAT_000dac64,0x1ac);
+        ERR_put_error(CSWIFT_lib_error_code,0x68,0x6c,"e_cswift.c",0x1ac);
         goto LAB_000dab92;
       }
-      ppcVar2 = DAT_000dac60;
-      pcVar3 = ppcVar1[1];
-      if (pcVar3 == (char *)0x0) {
-        pcVar3 = (char *)ERR_get_next_error_library();
-        ppcVar2[1] = pcVar3;
+      if (CSWIFT_lib_error_code == 0) {
+        CSWIFT_lib_error_code = ERR_get_next_error_library();
       }
-      iVar8 = 0x1a0;
+      iVar5 = 0x1a0;
     }
-    ERR_put_error((int)pcVar3,0x68,0x6a,DAT_000dac64,iVar8);
+    ERR_put_error(CSWIFT_lib_error_code,0x68,0x6a,"e_cswift.c",iVar5);
   }
   else {
-    pcVar3 = DAT_000dac60[1];
-    if (pcVar3 == (char *)0x0) {
-      pcVar3 = (char *)ERR_get_next_error_library();
-      ppcVar1[1] = pcVar3;
+    if (CSWIFT_lib_error_code == 0) {
+      CSWIFT_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error((int)pcVar3,0x68,100,DAT_000dac64,399);
+    ERR_put_error(CSWIFT_lib_error_code,0x68,100,"e_cswift.c",399);
   }
 LAB_000dab92:
-  ppcVar2 = DAT_000dac60;
-  if ((DSO *)ppcVar1[2] != (DSO *)0x0) {
-    DSO_free((DSO *)ppcVar1[2]);
-    ppcVar2[2] = (char *)0x0;
+  if (cswift_dso != (DSO *)0x0) {
+    DSO_free(cswift_dso);
+    cswift_dso = (DSO *)0x0;
   }
-  ppcVar1[3] = (char *)0x0;
-  ppcVar1[4] = (char *)0x0;
-  ppcVar1[5] = (char *)0x0;
-  ppcVar1[6] = (char *)0x0;
+  p_CSwift_ReleaseAccContext = (DSO_FUNC_TYPE)0x0;
+  p_CSwift_SimpleRequest = (DSO_FUNC_TYPE)0x0;
+  p_CSwift_AttachKeyParam = (DSO_FUNC_TYPE)0x0;
+  p_CSwift_AcquireAccContext = (DSO_FUNC_TYPE)0x0;
   return 0;
 }
 

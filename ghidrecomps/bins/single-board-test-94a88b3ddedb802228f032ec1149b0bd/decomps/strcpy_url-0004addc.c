@@ -17,7 +17,7 @@ void strcpy_url(byte *param_1,byte *param_2)
         }
         else if ((int)((uint)bVar2 << 0x18) < 0) {
           param_1 = pbVar3 + 3;
-          curl_msnprintf(pbVar3,4,DAT_0004ae4c);
+          curl_msnprintf(pbVar3,4,"%%%02x");
           goto LAB_0004ae06;
         }
         param_1 = pbVar3 + 1;

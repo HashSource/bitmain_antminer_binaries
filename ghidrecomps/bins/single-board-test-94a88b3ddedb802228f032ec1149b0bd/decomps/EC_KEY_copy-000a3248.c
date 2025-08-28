@@ -14,7 +14,7 @@ EC_KEY * EC_KEY_copy(EC_KEY *dst,EC_KEY *src)
   int *piVar7;
   
   if (dst == (EC_KEY *)0x0 || src == (EC_KEY *)0x0) {
-    ERR_put_error(0x10,0xb2,0x43,DAT_000a3340,0x91);
+    ERR_put_error(0x10,0xb2,0x43,"ec_key.c",0x91);
     return (EC_KEY *)0x0;
   }
   if (*(EC_GROUP **)(src + 4) == (EC_GROUP *)0x0) {

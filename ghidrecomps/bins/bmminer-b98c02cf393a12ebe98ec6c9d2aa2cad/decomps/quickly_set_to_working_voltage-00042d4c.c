@@ -13,16 +13,18 @@ LAB_00042e0a:
     }
   }
   else {
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: setting to working voltage...\n","power.c",0x2d5,DAT_00042e14);
+      fprintf(pFVar1,"%s:%d:%s: setting to working voltage...\n","power.c",0x2d5,
+              "quickly_set_to_working_voltage");
     }
     fclose(pFVar1);
     if (DAT_0080b6ec == 0) goto LAB_00042e0a;
     if (3 < log_level) {
-      pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
-        fprintf(pFVar1,"%s:%d:%s: iic data set to %d\n","power.c",0x2db,DAT_00042e14,DAT_0080b6ec);
+        fprintf(pFVar1,"%s:%d:%s: iic data set to %d\n","power.c",0x2db,
+                "quickly_set_to_working_voltage",DAT_0080b6ec);
       }
       fclose(pFVar1);
     }

@@ -10,9 +10,10 @@ void Sha256_Final(CSha256 *p,uint8_t *digest)
   uint32_t curBufferPos;
   uint64_t lenInBits;
   
-  lenInBits._4_4_ = *(int *)((int)&p->count + 4) << 3 | *(uint *)&p->count >> 0x1d;
-  lenInBits._0_4_ = *(uint *)&p->count << 3;
-  uVar2 = *(uint *)&p->count & 0x3f;
+  uVar2 = (uint)p->count;
+  lenInBits._4_4_ = *(int *)((int)&p->count + 4) << 3 | uVar2 >> 0x1d;
+  lenInBits._0_4_ = uVar2 << 3;
+  uVar2 = (uint)p->count & 0x3f;
   p->buffer[uVar2] = 0x80;
   while (curBufferPos = uVar2 + 1, curBufferPos != 0x38) {
     uVar2 = curBufferPos & 0x3f;

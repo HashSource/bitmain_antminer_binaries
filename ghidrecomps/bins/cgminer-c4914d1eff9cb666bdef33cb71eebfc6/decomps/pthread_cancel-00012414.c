@@ -6,7 +6,7 @@ int pthread_cancel(pthread_t __th)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_cancel_000a81b0)();
+  iVar1 = pthread_cancel(__th);
   return iVar1;
 }
 

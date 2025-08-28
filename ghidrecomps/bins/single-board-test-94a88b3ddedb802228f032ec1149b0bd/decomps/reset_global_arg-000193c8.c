@@ -21,11 +21,11 @@ void reset_global_arg(void)
       cgpu[local_c + 0x271924] = 0;
     }
   }
-  cgpu[2562356] = 0x80;
-  cgpu[2562399] = conf[124];
-  cgpu[2562400] = conf[124];
-  cgpu[2562401] = conf[124];
-  cgpu[2562402] = conf[124];
+  cgpu[0x271934] = 0x80;
+  cgpu[0x27195f] = conf[0x7c];
+  cgpu[0x271960] = conf[0x7c];
+  cgpu[0x271961] = conf[0x7c];
+  cgpu[0x271962] = conf[0x7c];
   return;
 }
 

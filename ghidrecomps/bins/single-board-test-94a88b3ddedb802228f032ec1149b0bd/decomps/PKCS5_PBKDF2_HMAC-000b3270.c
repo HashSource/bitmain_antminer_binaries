@@ -21,9 +21,9 @@ int PKCS5_PBKDF2_HMAC(char *pass,int passlen,uchar *salt,int saltlen,int iter,EV
   int local_220;
   uint local_21c;
   uchar local_20c;
-  undefined local_20b;
-  undefined local_20a;
-  undefined local_209;
+  undefined1 local_20b;
+  undefined1 local_20a;
+  undefined1 local_209;
   uint auStack_208 [16];
   HMAC_CTX HStack_1c8;
   HMAC_CTX HStack_f8;
@@ -51,14 +51,14 @@ LAB_000b3500:
         local_21c = keylen;
         local_220 = 1;
         do {
-          local_209 = (undefined)local_220;
+          local_209 = (undefined1)local_220;
           local_20c = (uchar)((uint)local_220 >> 0x18);
-          local_20b = (undefined)((uint)local_220 >> 0x10);
+          local_20b = (undefined1)((uint)local_220 >> 0x10);
           __n = local_21c;
           if ((int)len <= (int)local_21c) {
             __n = len;
           }
-          local_20a = (undefined)((uint)local_220 >> 8);
+          local_20a = (undefined1)((uint)local_220 >> 8);
           iVar2 = HMAC_CTX_copy(&HStack_f8,&HStack_1c8);
           if (iVar2 == 0) goto LAB_000b3500;
           iVar2 = HMAC_Update(&HStack_f8,salt,saltlen);
@@ -74,7 +74,7 @@ LAB_000b34f0:
           if (1 < iter) {
             bVar10 = ((uint)out & 3) != 0;
             uVar9 = __n >> 2;
-            uVar7 = __n & 0xfffffffc;
+            uVar7 = uVar9 << 2;
             if (uVar9 == 0 || (__n < 4 || bVar10)) {
               uVar7 = 0;
             }
@@ -123,7 +123,7 @@ LAB_000b34f0:
                          *(uint *)((int)puVar3 + iVar2) ^ *(uint *)((int)puVar6 + iVar2);
                     iVar2 = iVar2 + 4;
                   } while (uVar4 < uVar9);
-                  if (__n == (__n & 0xfffffffc)) goto LAB_000b34b4;
+                  if (__n == uVar9 << 2) goto LAB_000b34b4;
                 }
                 do {
                   *(byte *)((int)out + uVar5) =

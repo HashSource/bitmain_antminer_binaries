@@ -6,9 +6,7 @@ int __isnan(double __value)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x00008ec4. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_000354e8)();
+  iVar1 = (*(code *)(undefined *)0x0)(SUB84(__value,0));
   return iVar1;
 }
 

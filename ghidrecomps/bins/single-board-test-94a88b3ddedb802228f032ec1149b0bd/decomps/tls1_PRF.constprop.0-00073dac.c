@@ -2,8 +2,8 @@
 undefined4
 tls1_PRF_constprop_0
           (uint param_1,void *param_2,size_t param_3,void *param_4,size_t param_5,void *param_6,
-          size_t param_7,void *param_8,size_t param_9,uchar *param_10,uint param_11,
-          uint *param_12_00,uint *param_13,uint param_12)
+          size_t param_7,void *param_8,size_t param_9,uchar *param_10,uint param_11,uint *param_12,
+          uint *param_13,uint param_14)
 
 {
   uint *puVar1;
@@ -46,20 +46,20 @@ tls1_PRF_constprop_0
     }
   }
   if (iVar10 == 0) {
-    ERR_put_error(0x14,0x11c,0x44,DAT_000741e0,0x109);
+    ERR_put_error(0x14,0x11c,0x44,"t1_enc.c",0x109);
     uVar5 = 0;
   }
   else {
     iVar3 = __aeabi_idiv(param_11,iVar10);
-    memset(param_12_00,0,param_12);
-    uVar13 = param_12 >> 2;
+    memset(param_12,0,param_14);
+    uVar13 = param_14 >> 2;
     if (iVar10 == 1) {
       param_11 = 0;
     }
-    bVar15 = (((uint)param_13 | (uint)param_12_00) & 3) != 0;
-    uVar8 = param_12 & 0xfffffffc;
+    bVar15 = (((uint)param_13 | (uint)param_12) & 3) != 0;
+    uVar8 = uVar13 << 2;
     if (uVar13 == 0 ||
-        (bVar15 || (param_12 < 4 || param_13 < param_12_00 + 1 && param_12_00 < param_13 + 1))) {
+        (bVar15 || (param_14 < 4 || param_13 < param_12 + 1 && param_12 < param_13 + 1))) {
       uVar8 = 0;
     }
     iVar10 = 0;
@@ -67,12 +67,12 @@ tls1_PRF_constprop_0
           iVar12 != 0) {
       if ((param_1 & local_c0 << 10) == 0) goto LAB_0007405c;
       if (local_bc == (EVP_MD *)0x0) {
-        ERR_put_error(0x14,0x11c,0x146,DAT_000741e0,0x114);
+        ERR_put_error(0x14,0x11c,0x146,"t1_enc.c",0x114);
         return 0;
       }
       iVar12 = EVP_MD_size(local_bc);
       if (iVar12 < 0) {
-        OpenSSLDie(DAT_000741e0,0xaa,DAT_000741e4);
+        OpenSSLDie("t1_enc.c",0xaa,"chunk >= 0");
       }
       EVP_MD_CTX_init(&EStack_b0);
       EVP_MD_CTX_init(&EStack_98);
@@ -101,7 +101,7 @@ LAB_00073ee4:
       }
       iVar4 = EVP_DigestSignFinal(&EStack_b0,auStack_68,&local_b4);
       puVar9 = param_13;
-      __n = param_12;
+      __n = param_14;
       while( true ) {
         if (((((iVar4 == 0) || (iVar4 = EVP_MD_CTX_copy_ex(&EStack_b0,&EStack_80), iVar4 == 0)) ||
              (iVar4 = EVP_DigestUpdate(&EStack_b0,auStack_68,local_b4), iVar4 == 0)) ||
@@ -131,20 +131,20 @@ LAB_00073ee4:
       EVP_MD_CTX_cleanup(&EStack_98);
       EVP_MD_CTX_cleanup(&EStack_80);
       OPENSSL_cleanse(auStack_68,0x40);
-      if (0 < (int)param_12) {
+      if (0 < (int)param_14) {
         uVar7 = uVar8;
         if (uVar13 != 0 &&
-            (!bVar15 &&
-            (param_12 >= 4 && (param_13 >= param_12_00 + 1 || param_12_00 >= param_13 + 1)))) {
+            (!bVar15 && (param_14 >= 4 && (param_13 >= param_12 + 1 || param_12 >= param_13 + 1))))
+        {
           if (uVar13 < 9) {
             uVar6 = 0;
-            puVar9 = param_12_00;
+            puVar9 = param_12;
             puVar14 = param_13;
           }
           else {
             uVar6 = 0;
             puVar1 = param_13;
-            puVar2 = param_12_00;
+            puVar2 = param_12;
             do {
               puVar9 = puVar2 + 8;
               puVar14 = puVar1 + 8;
@@ -170,13 +170,13 @@ LAB_00073ee4:
                  *(uint *)((int)puVar14 + iVar12) ^ *(uint *)((int)puVar9 + iVar12);
             iVar12 = iVar12 + 4;
           } while (uVar6 < uVar13);
-          if (param_12 == (param_12 & 0xfffffffc)) goto LAB_0007405c;
+          if (param_14 == uVar13 << 2) goto LAB_0007405c;
         }
         do {
-          *(byte *)((int)param_12_00 + uVar7) =
-               *(byte *)((int)param_12_00 + uVar7) ^ *(byte *)((int)param_13 + uVar7);
+          *(byte *)((int)param_12 + uVar7) =
+               *(byte *)((int)param_12 + uVar7) ^ *(byte *)((int)param_13 + uVar7);
           uVar7 = uVar7 + 1;
-        } while ((int)uVar7 < (int)param_12);
+        } while ((int)uVar7 < (int)param_14);
       }
 LAB_0007405c:
       iVar10 = iVar10 + 1;

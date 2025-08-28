@@ -6,7 +6,6 @@ char * opt_invalid_argument(char *arg)
 {
   size_t sVar1;
   char *__s;
-  char *str;
   
   sVar1 = strlen(arg);
   __s = (char *)malloc(sVar1 + 0x16);

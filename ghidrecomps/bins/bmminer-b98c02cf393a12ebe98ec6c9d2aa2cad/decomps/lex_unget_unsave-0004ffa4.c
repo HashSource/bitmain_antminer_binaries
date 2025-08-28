@@ -9,7 +9,7 @@ void lex_unget_unsave(int param_1,int param_2)
     iVar1 = strbuffer_pop(param_1 + 0x28);
     if (param_2 != iVar1) {
                     /* WARNING: Subroutine does not return */
-      __assert_fail("c == d","compat/jansson-2.9/src/load.c",0x11d,DAT_0004ffdc);
+      __assert_fail("c == d","compat/jansson-2.9/src/load.c",0x11d,"lex_unget_unsave");
     }
   }
   return;

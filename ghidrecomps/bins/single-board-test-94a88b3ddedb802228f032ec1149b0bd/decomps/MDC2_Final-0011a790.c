@@ -10,7 +10,7 @@ undefined4 MDC2_Final(int *param_1,int *param_2)
     iVar2 = iVar1;
     if (param_2[7] == 2) {
       iVar2 = iVar1 + 1;
-      *(undefined *)((int)param_2 + iVar1 + 4) = 0x80;
+      *(undefined1 *)((int)param_2 + iVar1 + 4) = 0x80;
     }
     memset((void *)((int)param_2 + iVar2 + 4),0,8 - iVar2);
     mdc2_body(param_2,param_2 + 1,8);

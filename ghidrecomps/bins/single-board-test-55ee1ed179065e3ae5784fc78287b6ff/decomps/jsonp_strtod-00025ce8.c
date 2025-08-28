@@ -1,5 +1,5 @@
 
-undefined4 jsonp_strtod(char **param_1,undefined4 *param_2)
+undefined4 jsonp_strtod(int *param_1,undefined4 *param_2)
 
 {
   int *piVar1;
@@ -10,8 +10,8 @@ undefined4 jsonp_strtod(char **param_1,undefined4 *param_2)
   to_locale(param_1);
   piVar1 = __errno_location();
   *piVar1 = 0;
-  local_10 = strtod(*param_1,&local_14);
-  if (*param_1 + (int)param_1[1] != local_14) {
+  local_10 = strtod((char *)*param_1,&local_14);
+  if ((char *)(*param_1 + param_1[1]) != local_14) {
                     /* WARNING: Subroutine does not return */
     __assert_fail("end == strbuffer->value + strbuffer->length","3rdparty/jansson-2.6/src/strconv.c"
                   ,0x46,"jsonp_strtod");

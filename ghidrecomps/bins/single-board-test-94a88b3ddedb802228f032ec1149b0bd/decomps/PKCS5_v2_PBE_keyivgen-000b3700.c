@@ -16,13 +16,13 @@ int PKCS5_v2_PBE_keyivgen
      (pAVar2 = (param->value).asn1_string, pAVar2 == (ASN1_STRING *)0x0)) {
     iVar3 = 0;
     a = (PBE2PARAM *)0x0;
-    ERR_put_error(6,0x76,0x72,DAT_000b380c,0xcb);
+    ERR_put_error(6,0x76,0x72,"p5_crpt2.c",0xcb);
   }
   else {
     local_1c = pAVar2->data;
     a = d2i_PBE2PARAM((PBE2PARAM **)0x0,&local_1c,pAVar2->length);
     if (a == (PBE2PARAM *)0x0) {
-      ERR_put_error(6,0x76,0x72,DAT_000b380c,0xd2);
+      ERR_put_error(6,0x76,0x72,"p5_crpt2.c",0xd2);
       iVar3 = 0;
     }
     else {
@@ -32,7 +32,7 @@ int PKCS5_v2_PBE_keyivgen
         name = OBJ_nid2sn(iVar3);
         cipher_00 = EVP_get_cipherbyname(name);
         if (cipher_00 == (EVP_CIPHER *)0x0) {
-          ERR_put_error(6,0x76,0x6b,DAT_000b380c,0xe5);
+          ERR_put_error(6,0x76,0x6b,"p5_crpt2.c",0xe5);
           iVar3 = 0;
         }
         else {
@@ -44,7 +44,7 @@ int PKCS5_v2_PBE_keyivgen
           else {
             iVar1 = EVP_CIPHER_asn1_to_param(ctx,a->encryption->parameter);
             if (iVar1 < 0) {
-              ERR_put_error(6,0x76,0x7a,DAT_000b380c,0xed);
+              ERR_put_error(6,0x76,0x7a,"p5_crpt2.c",0xed);
             }
             else {
               iVar3 = PKCS5_v2_PBKDF2_keyivgen
@@ -54,7 +54,7 @@ int PKCS5_v2_PBE_keyivgen
         }
       }
       else {
-        ERR_put_error(6,0x76,0x7c,DAT_000b380c,0xda);
+        ERR_put_error(6,0x76,0x7c,"p5_crpt2.c",0xda);
         iVar3 = 0;
       }
     }

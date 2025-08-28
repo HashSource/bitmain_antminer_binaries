@@ -4,7 +4,7 @@
 void __pthread_unregister_cancel(__pthread_unwind_buf_t *__buf)
 
 {
-  (*(code *)PTR___pthread_unregister_cancel_0007cfb8)();
+  __pthread_unregister_cancel(__buf);
   return;
 }
 

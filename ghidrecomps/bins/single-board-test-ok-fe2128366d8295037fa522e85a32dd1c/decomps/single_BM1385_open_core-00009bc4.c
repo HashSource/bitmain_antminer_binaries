@@ -2,8 +2,8 @@
 void single_BM1385_open_core(byte param_1)
 
 {
-  undefined local_74 [52];
-  undefined local_40;
+  undefined1 local_74 [52];
+  undefined1 local_40;
   undefined4 local_34;
   undefined4 local_30;
   undefined4 local_2c;

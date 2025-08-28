@@ -1,31 +1,32 @@
 
-undefined4 cms_set1_ias(ASN1_VALUE **param_1,X509 *param_2)
+undefined4 cms_set1_ias(undefined4 *param_1,X509 *param_2)
 
 {
-  X509_NAME **xn;
-  X509_NAME *pXVar1;
-  int iVar2;
+  ASN1_VALUE *val;
+  X509_NAME *name;
+  int iVar1;
   ASN1_INTEGER *str;
+  ASN1_STRING *dst;
   
-  xn = (X509_NAME **)ASN1_item_new(DAT_0010fea4);
-  if (xn != (X509_NAME **)0x0) {
-    pXVar1 = X509_get_issuer_name(param_2);
-    iVar2 = X509_NAME_set(xn,pXVar1);
-    if (iVar2 != 0) {
-      pXVar1 = xn[1];
+  val = ASN1_item_new((ASN1_ITEM *)CMS_IssuerAndSerialNumber_it);
+  if (val != (ASN1_VALUE *)0x0) {
+    name = X509_get_issuer_name(param_2);
+    iVar1 = X509_NAME_set((X509_NAME **)val,name);
+    if (iVar1 != 0) {
+      dst = *(ASN1_STRING **)(val + 4);
       str = X509_get_serialNumber(param_2);
-      iVar2 = ASN1_STRING_copy((ASN1_STRING *)pXVar1,str);
-      if (iVar2 != 0) {
-        if (*param_1 != (ASN1_VALUE *)0x0) {
-          ASN1_item_free(*param_1,DAT_0010fea4);
+      iVar1 = ASN1_STRING_copy(dst,str);
+      if (iVar1 != 0) {
+        if ((ASN1_VALUE *)*param_1 != (ASN1_VALUE *)0x0) {
+          ASN1_item_free((ASN1_VALUE *)*param_1,(ASN1_ITEM *)CMS_IssuerAndSerialNumber_it);
         }
-        *param_1 = (ASN1_VALUE *)xn;
+        *param_1 = val;
         return 1;
       }
     }
-    ASN1_item_free((ASN1_VALUE *)xn,DAT_0010fea4);
+    ASN1_item_free(val,(ASN1_ITEM *)CMS_IssuerAndSerialNumber_it);
   }
-  ERR_put_error(0x2e,0xb0,0x41,DAT_0010fea8,0x277);
+  ERR_put_error(0x2e,0xb0,0x41,"cms_lib.c",0x277);
   return 0;
 }
 

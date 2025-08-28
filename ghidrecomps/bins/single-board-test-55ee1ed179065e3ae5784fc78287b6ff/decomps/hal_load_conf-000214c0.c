@@ -5,7 +5,7 @@ undefined4 hal_load_conf(undefined4 param_1)
   uint uVar1;
   uint uVar2;
   undefined4 uVar3;
-  undefined auStack_140 [252];
+  undefined1 auStack_140 [252];
   undefined4 local_44;
   undefined4 local_40;
   undefined4 local_3c;

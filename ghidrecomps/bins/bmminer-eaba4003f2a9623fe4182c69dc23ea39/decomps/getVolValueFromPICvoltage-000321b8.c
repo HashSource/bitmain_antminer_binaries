@@ -6,7 +6,6 @@ int getVolValueFromPICvoltage(uchar vol_pic)
   int vol_value;
   
   return (int)(longlong)
-              (((double)(longlong)(int)(uint)vol_pic * DAT_00032210 + DAT_00032218) /
-              ((double)(longlong)(int)(uint)vol_pic * DAT_00032220 + DAT_00032228));
+              (((double)vol_pic * 218900.7 + 9332700.36) / ((double)vol_pic * 249.5 + 7664.64));
 }
 

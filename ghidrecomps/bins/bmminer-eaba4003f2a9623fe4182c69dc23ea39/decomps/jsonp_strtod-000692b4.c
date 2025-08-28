@@ -18,8 +18,8 @@ int jsonp_strtod(strbuffer_t *strbuffer,double *out)
     __assert_fail("end == strbuffer->value + strbuffer->length","compat/jansson-2.9/src/strconv.c",
                   0x50,"jsonp_strtod");
   }
-  if (((value == DAT_00069360 || value < DAT_00069360 != (NAN(value) || NAN(DAT_00069360))) &&
-      (-1 < (int)((uint)(value < DAT_00069368) << 0x1f))) ||
+  if (((value <= 1.79769313486232e+308) &&
+      (-1 < (int)((uint)(value < -1.79769313486232e+308) << 0x1f))) ||
      (piVar1 = __errno_location(), *piVar1 != 0x22)) {
     *(undefined4 *)out = value._0_4_;
     *(undefined4 *)((int)out + 4) = value._4_4_;

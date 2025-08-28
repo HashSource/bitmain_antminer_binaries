@@ -6,7 +6,7 @@ lldiv_t * lldiv(lldiv_t *__return_storage_ptr__,longlong __numer,longlong __deno
 {
   lldiv_t *plVar1;
   
-  plVar1 = (lldiv_t *)(*(code *)PTR_lldiv_000a8210)();
+  plVar1 = lldiv(__return_storage_ptr__,__numer,__denom);
   return plVar1;
 }
 

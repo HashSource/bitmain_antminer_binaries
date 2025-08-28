@@ -6,7 +6,7 @@ int ferror(FILE *__stream)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_ferror_00194340)();
+  iVar1 = ferror(__stream);
   return iVar1;
 }
 

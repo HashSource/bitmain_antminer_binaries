@@ -20,11 +20,11 @@ json_t * parse_array(lex_t *lex,size_t flags,json_error_t *error)
     if (lex->token != 0x5d) {
       while (lex->token != 0) {
         value = parse_value(lex,flags,error);
-        if (value == (json_t *)0x0) goto error;
+        if (value == (json_t *)0x0) goto LAB_00092e88;
         iVar1 = json_array_append(array_00,value);
         if (iVar1 != 0) {
           json_decref(value);
-          goto error;
+          goto LAB_00092e88;
         }
         json_decref(value);
         lex_scan(lex,error);
@@ -33,7 +33,7 @@ json_t * parse_array(lex_t *lex,size_t flags,json_error_t *error)
       }
       if (lex->token != 0x5d) {
         error_set(error,lex,"\']\' expected");
-error:
+LAB_00092e88:
         json_decref(array_00);
         array_00 = (json_t *)0x0;
       }

@@ -6,7 +6,7 @@ undefined4 json_loadb(int param_1,undefined4 param_2,undefined4 param_3,undefine
   int local_5c;
   undefined4 local_58;
   undefined4 local_54;
-  undefined auStack_50 [68];
+  undefined1 auStack_50 [68];
   undefined4 local_c;
   
   jsonp_error_init(param_4,"<buffer>");

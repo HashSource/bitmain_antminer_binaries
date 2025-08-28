@@ -6,7 +6,7 @@ char * UI_get0_result(UI *ui,int i)
   int *piVar2;
   
   if (i < 0) {
-    ERR_put_error(0x28,0x6b,0x67,DAT_000d4b30,0x1ba);
+    ERR_put_error(0x28,0x6b,0x67,"ui_lib.c",0x1ba);
     piVar2 = (int *)0x0;
   }
   else {
@@ -23,7 +23,7 @@ char * UI_get0_result(UI *ui,int i)
       }
     }
     else {
-      ERR_put_error(0x28,0x6b,0x66,DAT_000d4b30,0x1be);
+      ERR_put_error(0x28,0x6b,0x66,"ui_lib.c",0x1be);
       piVar2 = (int *)0x0;
     }
   }

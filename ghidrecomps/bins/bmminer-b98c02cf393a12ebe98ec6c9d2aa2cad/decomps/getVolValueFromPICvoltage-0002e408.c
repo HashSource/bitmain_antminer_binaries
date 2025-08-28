@@ -2,8 +2,7 @@
 int getVolValueFromPICvoltage(int param_1)
 
 {
-  return ((int)(longlong)
-               (((DAT_0002e468 / ((double)(longlong)param_1 + DAT_0002e460) + DAT_0002e470) *
-                DAT_0002e478) / 4.75) / 10) * 10;
+  return ((int)(longlong)(((364.0704 / ((double)(longlong)param_1 + 30.72) + 32.79) * 100.0) / 4.75)
+         / 10) * 10;
 }
 

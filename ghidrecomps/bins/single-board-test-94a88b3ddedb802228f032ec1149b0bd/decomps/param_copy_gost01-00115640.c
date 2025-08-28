@@ -14,30 +14,30 @@ undefined4 param_copy_gost01(EVP_PKEY *param_1,EVP_PKEY *param_2)
   iVar1 = EVP_PKEY_base_id(param_2);
   iVar2 = EVP_PKEY_base_id(param_1);
   if (iVar1 != iVar2) {
-    ERR_GOST_error(0x74,0x69,DAT_00115720,0x225);
+    ERR_GOST_error(0x74,0x69,"gost_ameth.c",0x225);
     return 0;
   }
   if (key_00 == (EC_KEY *)0x0) {
-    ERR_GOST_error(0x74,0x73,DAT_00115720,0x229);
+    ERR_GOST_error(0x74,0x73,"gost_ameth.c",0x229);
     return 0;
   }
   if (key == (EC_KEY *)0x0) {
     key = EC_KEY_new();
     if (key == (EC_KEY *)0x0) {
-      ERR_GOST_error(0x74,0x41,DAT_00115720,0x22f);
+      ERR_GOST_error(0x74,0x41,"gost_ameth.c",0x22f);
       return 0;
     }
     iVar1 = EVP_PKEY_base_id(param_2);
     iVar1 = EVP_PKEY_assign(param_1,iVar1,key);
     if (iVar1 == 0) {
-      ERR_GOST_error(0x74,0x44,DAT_00115720,0x233);
+      ERR_GOST_error(0x74,0x44,"gost_ameth.c",0x233);
       return 0;
     }
   }
   group = EC_KEY_get0_group(key_00);
   iVar1 = EC_KEY_set_group(key,group);
   if (iVar1 == 0) {
-    ERR_GOST_error(0x74,0x44,DAT_00115720,0x238);
+    ERR_GOST_error(0x74,0x44,"gost_ameth.c",0x238);
     return 0;
   }
   pBVar3 = EC_KEY_get0_private_key(key);

@@ -1,11 +1,11 @@
 
-void BM1385_chain_inactive(undefined param_1)
+void BM1385_chain_inactive(undefined1 param_1)
 
 {
-  undefined local_c;
-  undefined local_b;
-  undefined local_a;
-  undefined local_9;
+  undefined1 local_c;
+  undefined1 local_b;
+  undefined1 local_a;
+  undefined1 local_9;
   
   local_9 = 0;
   local_c = 0x85;

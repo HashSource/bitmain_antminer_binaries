@@ -21,7 +21,7 @@ ssize_t Curl_send_plain(int *param_1,int param_2,void *param_3,size_t param_4,un
   }
   iVar4 = *param_1;
   uVar3 = Curl_strerror(param_1,iVar5);
-  Curl_failf(iVar4,DAT_00043254,uVar3);
+  Curl_failf(iVar4,"Send failure: %s",uVar3);
   *(int *)(*param_1 + 0x85cc) = iVar5;
   *param_5 = 0x37;
   return -1;

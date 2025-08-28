@@ -167,7 +167,7 @@ int re_open_core(int fan_pwm)
   }
   else {
     uVar3 = increase_freq_by_eeprom_slowly((int)init_freq,(int)freq_step);
-    max_freq = (float)(ulonglong)uVar3;
+    max_freq = (float)uVar3;
   }
   set_timeout((int)max_freq,0x32);
   if (3 < log_level) {

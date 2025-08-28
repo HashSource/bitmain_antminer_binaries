@@ -1,6 +1,7 @@
 
 undefined4
-insert_c_rb(void **param_1,undefined4 param_2,undefined4 param_3,int param_4,undefined4 param_5)
+insert_c_rb(undefined4 *param_1,undefined4 param_2,undefined4 param_3,int param_4,undefined4 param_5
+           )
 
 {
   undefined4 uVar1;
@@ -10,20 +11,20 @@ insert_c_rb(void **param_1,undefined4 param_2,undefined4 param_3,int param_4,und
   void *local_24;
   int local_20;
   int local_1c;
-  undefined4 *local_18;
+  void *local_18;
   undefined4 local_14;
-  void **local_10;
-  void **local_c;
+  undefined4 *local_10;
+  undefined4 *local_c;
   
   local_14 = 0;
-  local_18 = (undefined4 *)malloc(0x18);
-  if (local_18 == (undefined4 *)0x0) {
+  local_18 = malloc(0x18);
+  if (local_18 == (void *)0x0) {
     local_14 = 2;
   }
   else {
-    *local_18 = param_1 + 1;
-    local_18[1] = param_1 + 1;
-    local_18[3] = 1;
+    *(undefined4 **)local_18 = param_1 + 1;
+    *(undefined4 **)((int)local_18 + 4) = param_1 + 1;
+    *(undefined4 *)((int)local_18 + 0xc) = 1;
     uVar1 = new_clib_object(param_2,param_3);
     *(undefined4 *)((int)local_18 + 0x10) = uVar1;
     if (param_4 == 0) {
@@ -33,8 +34,8 @@ insert_c_rb(void **param_1,undefined4 param_2,undefined4 param_3,int param_4,und
       uVar1 = new_clib_object(param_4,param_5);
       *(undefined4 *)((int)local_18 + 0x14) = uVar1;
     }
-    local_c = (void **)*param_1;
-    local_10 = (void **)0x0;
+    local_c = (undefined4 *)*param_1;
+    local_10 = (undefined4 *)0x0;
     while (param_1 + 1 != local_c) {
       local_1c = 0;
       get_raw_clib_object(local_c[4],&local_24);
@@ -47,14 +48,14 @@ insert_c_rb(void **param_1,undefined4 param_2,undefined4 param_3,int param_4,und
       }
       local_10 = local_c;
       if (local_1c < 0) {
-        local_c = (void **)*local_c;
+        local_c = (undefined4 *)*local_c;
       }
       else {
-        local_c = (void **)local_c[1];
+        local_c = (undefined4 *)local_c[1];
       }
     }
-    *(void ***)((int)local_18 + 8) = local_10;
-    if (local_10 == (void **)0x0) {
+    *(undefined4 **)((int)local_18 + 8) = local_10;
+    if (local_10 == (undefined4 *)0x0) {
       *param_1 = local_18;
     }
     else {

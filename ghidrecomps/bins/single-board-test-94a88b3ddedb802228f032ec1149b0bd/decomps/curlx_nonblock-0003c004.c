@@ -11,7 +11,7 @@ void curlx_nonblock(int param_1,int param_2,undefined4 param_3,undefined4 param_
   else {
     uVar1 = uVar1 | 0x800;
   }
-  (*(code *)PTR_fcntl_00194318)(param_1,4,uVar1,param_4);
+  fcntl(param_1,4,uVar1,param_4);
   return;
 }
 

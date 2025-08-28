@@ -1,9 +1,9 @@
 
-undefined4 ISL_read_reg_default(undefined param_1,undefined param_2,undefined param_3)
+undefined4 ISL_read_reg_default(undefined1 param_1,undefined1 param_2,undefined1 param_3)
 
 {
-  undefined local_c;
-  undefined local_b;
+  undefined1 local_c;
+  undefined1 local_b;
   
   local_c = 0;
   local_b = 0;

@@ -1,6 +1,5 @@
 
 /* WARNING: Variable defined which should be unmapped: ap */
-/* Local variable ret:int[r0:4] conflicts with parameter, skipped. */
 
 int json_unpack_ex(json_t *root,json_error_t *error,size_t flags,char *fmt,...)
 

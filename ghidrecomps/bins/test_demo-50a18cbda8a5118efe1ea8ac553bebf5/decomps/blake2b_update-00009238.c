@@ -1,13 +1,13 @@
 
-void blake2b_update(undefined *param_1,undefined *param_2,int param_3,undefined4 param_4)
+void blake2b_update(undefined1 *param_1,undefined1 *param_2,int param_3,undefined4 param_4)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   uint uVar3;
   int iVar4;
-  undefined *puVar5;
-  undefined *puVar6;
+  undefined1 *puVar5;
+  undefined1 *puVar6;
   bool bVar7;
   
   if (param_3 != 0) {

@@ -4,9 +4,9 @@ void * ssl_sess_cert_new(void)
 {
   void *__s;
   
-  __s = CRYPTO_malloc(0xfc,DAT_0007dc64,0x27e);
+  __s = CRYPTO_malloc(0xfc,"ssl_cert.c",0x27e);
   if (__s == (void *)0x0) {
-    ERR_put_error(0x14,0xe1,0x41,DAT_0007dc64,0x280);
+    ERR_put_error(0x14,0xe1,0x41,"ssl_cert.c",0x280);
   }
   else {
     memset(__s,0,0xfc);

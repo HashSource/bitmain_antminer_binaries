@@ -1,5 +1,5 @@
 
-int Curl_cookie_init(undefined4 param_1,char *param_2,int param_3,undefined param_4)
+int Curl_cookie_init(undefined4 param_1,char *param_2,int param_3,undefined1 param_4)
 
 {
   char cVar1;
@@ -7,21 +7,21 @@ int Curl_cookie_init(undefined4 param_1,char *param_2,int param_3,undefined para
   int iVar3;
   char *pcVar4;
   char *pcVar5;
-  int iVar6;
   FILE *__stream;
+  int iVar6;
   
   iVar6 = param_3;
   if (param_3 == 0) {
-    iVar6 = (**DAT_0003f794)(1,0x14);
+    iVar6 = (*Curl_ccalloc)(1,0x14);
     if (iVar6 != 0) {
-      pcVar4 = DAT_0003f79c;
+      pcVar4 = "none";
       if (param_2 != (char *)0x0) {
         pcVar4 = param_2;
       }
-      iVar3 = (**DAT_0003f798)(pcVar4);
+      iVar3 = (*Curl_cstrdup)(pcVar4);
       *(int *)(iVar6 + 4) = iVar3;
       if (iVar3 != 0) goto LAB_0003f654;
-      (**DAT_0003f790)();
+      (*Curl_cfree)();
       __stream = (FILE *)0x0;
       bVar2 = false;
 LAB_0003f766:
@@ -37,31 +37,29 @@ LAB_0003f728:
   else {
 LAB_0003f654:
     bVar2 = false;
-    *(undefined *)(iVar6 + 8) = 0;
+    *(undefined1 *)(iVar6 + 8) = 0;
     if (param_2 == (char *)0x0) {
 LAB_0003f6e8:
-      *(undefined *)(iVar6 + 0x10) = param_4;
+      *(undefined1 *)(iVar6 + 0x10) = param_4;
     }
     else {
-      iVar3 = curl_strequal(param_2,DAT_0003f77c);
+      iVar3 = curl_strequal(param_2,"-");
+      __stream = stdin;
       if (iVar3 == 0) {
         if (*param_2 == '\0') goto LAB_0003f6e8;
-        __stream = fopen64(param_2,DAT_0003f78c);
+        __stream = fopen64(param_2,"r");
         bVar2 = true;
       }
-      else {
-        __stream = *DAT_0003f780;
-      }
-      *(undefined *)(iVar6 + 0x10) = param_4;
+      *(undefined1 *)(iVar6 + 0x10) = param_4;
       if (__stream != (FILE *)0x0) {
-        pcVar4 = (char *)(**DAT_0003f784)(5000);
+        pcVar4 = (char *)(*Curl_cmalloc)(5000);
         if (pcVar4 == (char *)0x0) {
-          (**DAT_0003f790)();
+          (*Curl_cfree)();
           if (param_3 == 0) goto LAB_0003f766;
           goto LAB_0003f728;
         }
         while (pcVar5 = fgets(pcVar4,5000,__stream), pcVar5 != (char *)0x0) {
-          iVar3 = Curl_raw_nequal(DAT_0003f788,pcVar4,0xb);
+          iVar3 = Curl_raw_nequal("Set-Cookie:",pcVar4,0xb);
           pcVar5 = pcVar4 + 0xb;
           if (iVar3 == 0) {
             pcVar5 = pcVar4;
@@ -76,13 +74,13 @@ LAB_0003f6e8:
           }
           Curl_cookie_add(param_1,iVar6,iVar3 != 0,pcVar5,0,0);
         }
-        (**DAT_0003f790)(pcVar4);
+        (*Curl_cfree)(pcVar4);
         if (bVar2) {
           fclose(__stream);
         }
       }
     }
-    *(undefined *)(iVar6 + 8) = 1;
+    *(undefined1 *)(iVar6 + 8) = 1;
   }
   return iVar6;
 }

@@ -4,7 +4,8 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
 {
   uint uVar1;
   ulong uVar2;
-  long lVar3;
+  int iVar3;
+  long lVar4;
   
   if (ctx != (SSL_CTX *)0x0) {
     switch(cmd) {
@@ -12,8 +13,8 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
       ctx->msg_callback_arg = parg;
       return 1;
     default:
-      lVar3 = (*ctx->method->ssl_ctx_ctrl)(ctx,cmd,larg,parg);
-      return lVar3;
+      lVar4 = (*ctx->method->ssl_ctx_ctrl)(ctx,cmd,larg,parg);
+      return lVar4;
     case 0x14:
       uVar2 = lh_num_items((_LHASH *)ctx->sessions);
       return uVar2;
@@ -50,9 +51,9 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
     case 0x28:
       return ctx->read_ahead;
     case 0x29:
-      lVar3 = ctx->read_ahead;
+      iVar3 = ctx->read_ahead;
       ctx->read_ahead = larg;
-      return lVar3;
+      return iVar3;
     case 0x2a:
       uVar2 = ctx->session_cache_size;
       ctx->session_cache_size = larg;
@@ -60,17 +61,17 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
     case 0x2b:
       return ctx->session_cache_size;
     case 0x2c:
-      lVar3 = ctx->session_cache_mode;
+      iVar3 = ctx->session_cache_mode;
       ctx->session_cache_mode = larg;
-      return lVar3;
+      return iVar3;
     case 0x2d:
       return ctx->session_cache_mode;
     case 0x32:
       return ctx->max_cert_list;
     case 0x33:
-      lVar3 = ctx->max_cert_list;
+      lVar4 = ctx->max_cert_list;
       ctx->max_cert_list = larg;
-      return lVar3;
+      return lVar4;
     case 0x34:
       goto switchD_0007ac16_caseD_34;
     case 0x4d:
@@ -95,11 +96,11 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
     if (cmd != 0x5c) {
       return 0;
     }
-    lVar3 = tls1_set_curves_list(0,0,parg,parg);
-    return lVar3;
+    lVar4 = tls1_set_curves_list(0,0,parg,parg);
+    return lVar4;
   }
-  lVar3 = tls1_set_sigalgs_list(0,parg,0,parg);
-  return lVar3;
+  lVar4 = tls1_set_sigalgs_list(0,parg,0,parg);
+  return lVar4;
 switchD_0007ac16_caseD_34:
   if (larg - 0x200U < 0x3e01) {
     ctx->max_send_fragment = larg;

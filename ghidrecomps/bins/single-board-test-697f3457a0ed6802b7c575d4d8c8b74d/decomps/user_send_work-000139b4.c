@@ -1,6 +1,6 @@
 
-/* WARNING: Variable defined which should be unmapped: test_patten-local */
-/* WARNING: Variable defined which should be unmapped: sno_valid-local */
+/* WARNING: Variable defined which should be unmapped: test_patten_local */
+/* WARNING: Variable defined which should be unmapped: sno_valid_local */
 
 void user_send_work(runtime_base_t *runtime,uint8_t *header,int sno_valid,int test_patten)
 

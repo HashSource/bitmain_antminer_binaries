@@ -29,7 +29,7 @@ int OCSP_request_add1_cert(OCSP_REQUEST *req,X509 *cert)
   if (iVar1 == 0) {
     return 0;
   }
-  CRYPTO_add_lock(&cert->references,1,3,DAT_000d30dc,0x8c);
+  CRYPTO_add_lock(&cert->references,1,3,"ocsp_cl.c",0x8c);
   return 1;
 }
 

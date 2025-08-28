@@ -7,7 +7,7 @@ int blake2b_is_lastblock(blake2b_state *S)
   bool bVar3;
   blake2b_state *S_local;
   
-  uVar2 = *(uint *)S->f | *(uint *)((int)S->f + 4);
+  uVar2 = (uint)S->f[0] | *(uint *)((int)S->f + 4);
   bVar3 = uVar2 != 0;
   if (bVar3) {
     uVar2 = 1;

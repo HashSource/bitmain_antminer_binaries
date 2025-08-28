@@ -33,7 +33,7 @@ uint check_asic_reg_without_read(uint reg,uchar mode,uchar chip_addr,uint chain,
   last_get_num = 0;
   no_reg_time = 0;
   cc = 0;
-rerun:
+LAB_0002cc20:
   do {
     cgsleep_ms(0x50);
     while (not_reg_data_time < 5) {
@@ -52,7 +52,7 @@ rerun:
       if ((((0x1fe < uVar2) || (0x1fe < reg_value_buf.p_rd)) || (uVar2 == 0)) &&
          (not_reg_data_time < 5)) {
         not_reg_data_time = not_reg_data_time + 1;
-        goto rerun;
+        goto LAB_0002cc20;
       }
       if (4 < not_reg_data_time) {
         return 0;

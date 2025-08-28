@@ -43,7 +43,7 @@ void * test_pool_thread(void *arg)
   pool_resus((pool *)arg);
   switch_pools((pool *)0x0);
 LAB_0005ba2a:
-  *(undefined *)((int)arg + 0x11c) = 0;
+  *(undefined1 *)((int)arg + 0x11c) = 0;
   return (void *)0x0;
 }
 

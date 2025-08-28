@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int statusServiceThread(int param_1)
 
 {
@@ -9,15 +7,13 @@ int statusServiceThread(int param_1)
   int iVar3;
   size_t sVar4;
   int *piVar5;
-  undefined4 local_6064;
-  undefined local_6060;
+  char local_6064 [8];
   int local_605c;
   undefined2 local_6058;
-  undefined local_6056;
+  undefined1 local_6056;
   socklen_t local_6054;
   char acStack_6050 [10240];
-  undefined4 local_3850;
-  undefined4 uStack_384c;
+  char local_3850 [8];
   undefined2 local_3848;
   sockaddr sStack_2850;
   char local_2840 [4];
@@ -32,7 +28,7 @@ int statusServiceThread(int param_1)
   int local_24;
   int local_20;
   uint local_1c;
-  ssize_t local_18;
+  int local_18;
   char *local_14;
   
   local_40 = 3;
@@ -50,8 +46,7 @@ int statusServiceThread(int param_1)
   local_605c = -1;
   local_20 = 0;
   local_6058 = 0xa0d;
-  local_6060 = 0;
-  local_6064 = 0xa0d0a0d;
+  builtin_strncpy(local_6064,"\r\n\r\n",5);
   memset(local_2840,0,0x2800);
   do {
     if (ExitServer == '\x01') goto LAB_00031972;
@@ -68,7 +63,7 @@ int statusServiceThread(int param_1)
       return 0;
     }
     local_14 = local_2840 + local_28;
-    pcVar1 = strstr(local_2840,(char *)&local_6064);
+    pcVar1 = strstr(local_2840,local_6064);
   } while (pcVar1 == (char *)0x0);
   puts("find http request end flag!");
 LAB_00031972:
@@ -100,10 +95,10 @@ LAB_00031972:
       if (local_28 == 0) {
         if (local_20 == 1) {
           if (local_605c == 0x20b) {
-            getMinerInfo(&local_3850);
+            getMinerInfo(local_3850);
           }
           else {
-            sprintf((char *)&local_3850,"OK get test=%d",local_605c);
+            sprintf(local_3850,"OK get test=%d",local_605c);
           }
         }
         else {
@@ -113,50 +108,36 @@ LAB_00031972:
           }
           switch(searchStatus) {
           case 0:
-            local_3850._0_1_ = s_searching_00132440[0];
-            local_3850._1_1_ = s_searching_00132440[1];
-            local_3850._2_1_ = s_searching_00132440[2];
-            local_3850._3_1_ = s_searching_00132440[3];
-            uStack_384c._0_1_ = s_searching_00132440[4];
-            uStack_384c._1_1_ = s_searching_00132440[5];
-            uStack_384c._2_1_ = s_searching_00132440[6];
-            uStack_384c._3_1_ = s_searching_00132440[7];
-            local_3848 = (short)ram0x00132448;
+            builtin_strncpy(local_3850,"searchin",8);
+            local_3848 = 0x67;
             break;
           case 1:
             iVar3 = is_S11();
             if ((iVar3 == 0) || (iVar3 = is_working_in_low_power_mode(), iVar3 == 0)) {
               uVar2 = GetTotalRate();
               uVar2 = ConvirtTotalRate(uVar2);
-              sprintf((char *)&local_3850,"%d",uVar2);
+              sprintf(local_3850,"%d",uVar2);
             }
             else {
               local_38 = get_eco_mode_ideal_rate();
               uVar2 = ConvirtTotalRate(local_38);
-              sprintf((char *)&local_3850,"%d",uVar2);
+              sprintf(local_3850,"%d",uVar2);
             }
             break;
           case 2:
-            sprintf((char *)&local_3850,"searchfailed:%s",search_failed_info);
+            sprintf(local_3850,"searchfailed:%s",search_failed_info);
             break;
           case 3:
             uVar2 = GetTotalRate();
             uVar2 = ConvirtTotalRate(uVar2);
-            sprintf((char *)&local_3850,"%d",uVar2);
+            sprintf(local_3850,"%d",uVar2);
             break;
           default:
-            local_3850._0_1_ = s_searching_00132440[0];
-            local_3850._1_1_ = s_searching_00132440[1];
-            local_3850._2_1_ = s_searching_00132440[2];
-            local_3850._3_1_ = s_searching_00132440[3];
-            uStack_384c._0_1_ = s_searching_00132440[4];
-            uStack_384c._1_1_ = s_searching_00132440[5];
-            uStack_384c._2_1_ = s_searching_00132440[6];
-            uStack_384c._3_1_ = s_searching_00132440[7];
-            local_3848 = (short)ram0x00132448;
+            builtin_strncpy(local_3850,"searchin",8);
+            local_3848 = 0x67;
           }
         }
-        local_2c = strlen((char *)&local_3850);
+        local_2c = strlen(local_3850);
         local_28 = 0;
         iVar3 = sprintf(acStack_6050,"HTTP/1.0  200  OK%s",&local_6058);
         local_28 = local_28 + iVar3;
@@ -170,7 +151,7 @@ LAB_00031972:
         local_28 = local_28 + iVar3;
         iVar3 = sprintf(acStack_6050 + local_28,"Content-Length: %d%s",local_2c,&local_6058);
         local_28 = local_28 + iVar3;
-        iVar3 = sprintf(acStack_6050 + local_28,"Connection: Keep-Alive%s",&local_6064);
+        iVar3 = sprintf(acStack_6050 + local_28,"Connection: Keep-Alive%s",local_6064);
         local_28 = local_28 + iVar3;
         puts("send http response...");
         while (ExitServer != '\x01') {
@@ -199,7 +180,7 @@ LAB_00031972:
         puts("send http data...");
         local_1c = 0;
         while( true ) {
-          local_28 = send(local_24,(void *)((int)&local_3850 + local_1c),local_2c - local_1c,0);
+          local_28 = send(local_24,local_3850 + local_1c,local_2c - local_1c,0);
           printf("send http data ret=%d\n",local_28);
           if (local_28 < 1) break;
           local_1c = local_28 + local_1c;

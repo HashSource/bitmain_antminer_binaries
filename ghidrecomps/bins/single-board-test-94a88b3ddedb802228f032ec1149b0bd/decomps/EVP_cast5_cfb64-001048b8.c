@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_cast5_cfb64(void)
 
 {
-  return DAT_001048bc;
+  return (EVP_CIPHER *)cast5_cfb64;
 }
 

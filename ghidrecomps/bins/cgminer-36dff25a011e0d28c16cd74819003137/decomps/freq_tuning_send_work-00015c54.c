@@ -2,7 +2,8 @@
 void freq_tuning_send_work(freq_tuning_info *freq_info)
 
 {
-  FILE *pFVar1;
+  bool bVar1;
+  FILE *pFVar2;
   freq_tuning_info *freq_info_local;
   send_work_parameter param [16];
   pthread_t thread_id [16];
@@ -16,18 +17,18 @@ void freq_tuning_send_work(freq_tuning_info *freq_info)
   int waiting;
   int chain;
   
-  waiting = 1;
+  bVar1 = true;
   done_count = 0;
   chain_count = 0;
   cgtime(&start);
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
-    pFVar1 = fopen(log_file,"a+");
-    if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: Frequency tuning: send work start.\n","freq_tuning.c",0x3e4,
+    pFVar2 = fopen(log_file,"a+");
+    if (pFVar2 != (FILE *)0x0) {
+      fprintf(pFVar2,"%s:%d:%s: Frequency tuning: send work start.\n","freq_tuning.c",0x3e4,
               "freq_tuning_send_work");
     }
-    fclose(pFVar1);
+    fclose(pFVar2);
   }
   for (chain = 0; chain < 0x10; chain = chain + 1) {
     thread_id[chain] = 0;
@@ -41,7 +42,7 @@ void freq_tuning_send_work(freq_tuning_info *freq_info)
       pthread_detach(thread_id[chain]);
     }
   }
-  while (waiting != 0) {
+  while (bVar1) {
     for (chain = 0; chain < 0x10; chain = chain + 1) {
       if ((thread_id[chain] != 0) && (param[chain].done != 0)) {
         done_count = done_count + 1;
@@ -49,7 +50,7 @@ void freq_tuning_send_work(freq_tuning_info *freq_info)
       }
     }
     if (done_count == chain_count) {
-      waiting = 0;
+      bVar1 = false;
     }
     else {
       sleep(1);
@@ -62,12 +63,12 @@ void freq_tuning_send_work(freq_tuning_info *freq_info)
   }
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
-    pFVar1 = fopen(log_file,"a+");
-    if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: Frequency tuning: send work done, time cost %lds\n","freq_tuning.c",
+    pFVar2 = fopen(log_file,"a+");
+    if (pFVar2 != (FILE *)0x0) {
+      fprintf(pFVar2,"%s:%d:%s: Frequency tuning: send work done, time cost %lds\n","freq_tuning.c",
               0x416,"freq_tuning_send_work",diff.tv_sec);
     }
-    fclose(pFVar1);
+    fclose(pFVar2);
   }
   return;
 }

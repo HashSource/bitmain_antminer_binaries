@@ -5,14 +5,13 @@ void _copy_work(work *work,work *base_work,int noffset)
 
 {
   char *pcVar1;
-  uint *be32;
   uint id;
   uint uVar2;
   uchar bin [4];
   
   uVar2 = work->id;
   clean_work(work);
-  _cg_memcpy(work,base_work,0x1c0,DAT_0001ed4c,DAT_0001ed48,0x12f3);
+  _cg_memcpy(work,base_work,0x1c0,"cgminer.c","_copy_work",0x12f3);
   pcVar1 = base_work->job_id;
   work->id = uVar2;
   if (pcVar1 != (char *)0x0) {

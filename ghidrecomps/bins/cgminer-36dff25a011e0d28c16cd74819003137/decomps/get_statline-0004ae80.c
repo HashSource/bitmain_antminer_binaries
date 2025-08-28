@@ -2,6 +2,8 @@
 void get_statline(char *buf,size_t bufsiz,cgpu_info *cgpu)
 
 {
+  uint64_t val;
+  uint64_t val_00;
   size_t sVar1;
   size_t sVar2;
   int iVar3;
@@ -10,9 +12,6 @@ void get_statline(char *buf,size_t bufsiz,cgpu_info *cgpu)
   undefined4 uVar6;
   undefined4 uVar7;
   double dVar8;
-  undefined8 uVar9;
-  undefined8 uVar10;
-  undefined4 in_stack_fffff72c;
   cgpu_info *cgpu_local;
   size_t bufsiz_local;
   char *buf_local;
@@ -28,15 +27,13 @@ void get_statline(char *buf,size_t bufsiz,cgpu_info *cgpu)
   double dev_runtime;
   
   dVar8 = cgpu_runtime(cgpu);
-  __aeabi_l2d(*(undefined4 *)&cgpu->diff1,*(undefined4 *)((int)&cgpu->diff1 + 4));
-  dVar8 = (cgpu->total_mhashes / dVar8) * DAT_0004b0e8;
-  uVar9 = __fixunsdfdi(SUB84(dVar8,0),(int)((ulonglong)dVar8 >> 0x20));
-  dVar8 = cgpu->rolling * DAT_0004b0e8;
-  uVar10 = __fixunsdfdi(SUB84(dVar8,0),(int)((ulonglong)dVar8 >> 0x20));
-  suffix_string(CONCAT44(in_stack_fffff72c,4),(char *)uVar9,(size_t)((ulonglong)uVar9 >> 0x20),
-                (int)displayed_hashes);
-  suffix_string(CONCAT44(in_stack_fffff72c,4),(char *)uVar10,(size_t)((ulonglong)uVar10 >> 0x20),
-                (int)displayed_rolling);
+  __aeabi_l2d((int)cgpu->diff1,*(undefined4 *)((int)&cgpu->diff1 + 4));
+  dVar8 = (cgpu->total_mhashes / dVar8) * 1000000.0;
+  val_00 = __fixunsdfdi(SUB84(dVar8,0),(int)((ulonglong)dVar8 >> 0x20));
+  dVar8 = cgpu->rolling * 1000000.0;
+  val = __fixunsdfdi(SUB84(dVar8,0),(int)((ulonglong)dVar8 >> 0x20));
+  suffix_string(val_00,displayed_hashes,0x10,4);
+  suffix_string(val,displayed_rolling,0x10,4);
   snprintf(buf,bufsiz,"%s%d ",cgpu->drv->name,cgpu->device_id);
   (*cgpu->drv->get_statline_before)(buf,bufsiz,cgpu);
   sVar1 = strlen(buf);

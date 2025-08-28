@@ -1,5 +1,5 @@
 
-void send_pic_command(undefined param_1)
+void send_pic_command(undefined1 param_1)
 
 {
   pthread_mutex_lock((pthread_mutex_t *)iic_mutex);

@@ -14,8 +14,7 @@ ushort crc16(uchar *buffer,int len)
     pbVar2 = buffer;
     do {
       pbVar1 = pbVar2 + 1;
-      uVar3 = (uint)*(ushort *)(DAT_0000f58c + ((uint)*pbVar2 ^ uVar3 >> 8) * 4) ^
-              (uVar3 & 0xff) << 8;
+      uVar3 = (uint)(ushort)crc16_table[(uint)*pbVar2 ^ uVar3 >> 8] ^ (uVar3 & 0xff) << 8;
       pbVar2 = pbVar1;
     } while (pbVar1 != buffer + len);
   }

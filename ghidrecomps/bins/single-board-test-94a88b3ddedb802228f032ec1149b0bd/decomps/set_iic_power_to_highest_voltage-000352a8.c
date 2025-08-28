@@ -4,7 +4,8 @@ undefined4 set_iic_power_to_highest_voltage(void)
 {
   char cVar1;
   FILE *__stream;
-  double dVar2;
+  undefined4 uVar2;
+  undefined4 extraout_s1;
   
   if (3 < log_level) {
     __stream = fopen(log_file,"a+");
@@ -15,8 +16,8 @@ undefined4 set_iic_power_to_highest_voltage(void)
   }
   cVar1 = set_iic_power_voltage((int)DAT_003b0f58,&power_info,0);
   if (cVar1 != '\x01') {
-    dVar2 = (double)get_avg_voltage();
-    if ((int)((uint)(dVar2 < DAT_00035358) << 0x1f) < 0) {
+    uVar2 = get_avg_voltage();
+    if ((int)((uint)((double)CONCAT44(extraout_s1,uVar2) < 9.7) << 0x1f) < 0) {
       stop_mining("power voltage too low\n");
     }
   }

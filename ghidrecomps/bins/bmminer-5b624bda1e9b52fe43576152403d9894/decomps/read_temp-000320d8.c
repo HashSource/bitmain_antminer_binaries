@@ -1,11 +1,9 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable i:uint[Stack[0x4]:4] conflicts with parameter, skipped. */
 
 void read_temp(uchar device,uint reg,uchar data,uchar write,uchar chip_addr,int chain)
 
 {
-  uint ret;
   uint uVar1;
   uchar buf [9];
   uint cmd_buf [3];
@@ -22,8 +20,8 @@ void read_temp(uchar device,uint reg,uchar data,uchar write,uchar chip_addr,int 
   cmd_buf[0] = 0;
   cmd_buf[1] = 0;
   cmd_buf[2] = 0;
-  if (*DAT_000321b0 == 0) {
-    printf(DAT_000321b4);
+  if (opt_multi_version == 0) {
+    printf("fil mode do not support temp reading");
   }
   else {
     buf[6] = (uchar)reg;

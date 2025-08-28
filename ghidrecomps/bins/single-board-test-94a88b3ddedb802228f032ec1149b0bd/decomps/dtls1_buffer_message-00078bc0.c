@@ -2,10 +2,10 @@
 undefined4 dtls1_buffer_message(int *param_1,int param_2)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   ushort uVar2;
   undefined2 uVar3;
-  undefined *ptr;
+  undefined1 *ptr;
   pitem *item;
   int iVar4;
   int iVar5;
@@ -14,17 +14,17 @@ undefined4 dtls1_buffer_message(int *param_1,int param_2)
   undefined4 uVar7;
   int iVar8;
   int iVar9;
-  undefined4 local_28;
+  uchar local_28 [4];
   int local_24;
   
   if (param_1[0x12] != 0) {
-    OpenSSLDie(DAT_00078d28,0x45e,DAT_00078d34);
+    OpenSSLDie("d1_both.c",0x45e,"s->init_off == 0");
   }
   __dest = (void *)param_1[0x11];
-  ptr = (undefined *)CRYPTO_malloc(0x34,DAT_00078d28,0xb5);
-  if (ptr != (undefined *)0x0) {
+  ptr = (undefined1 *)CRYPTO_malloc(0x34,"d1_both.c",0xb5);
+  if (ptr != (undefined1 *)0x0) {
     if ((__dest == (void *)0x0) ||
-       (__dest = CRYPTO_malloc((int)__dest,DAT_00078d28,0xba), __dest != (void *)0x0)) {
+       (__dest = CRYPTO_malloc((int)__dest,"d1_both.c",0xba), __dest != (void *)0x0)) {
       iVar5 = param_1[0xf];
       *(undefined4 *)(ptr + 0x30) = 0;
       *(void **)(ptr + 0x2c) = __dest;
@@ -33,7 +33,9 @@ undefined4 dtls1_buffer_message(int *param_1,int param_2)
       if (param_2 == 0) {
         iVar4 = *(int *)(iVar5 + 0x264);
         if (iVar4 + 0xc != param_1[0x11]) {
-          OpenSSLDie(DAT_00078d28,0x46d,DAT_00078d2c);
+          OpenSSLDie("d1_both.c",0x46d,
+                     "s->d1->w_msg_hdr.msg_len + DTLS1_HM_HEADER_LENGTH == (unsigned int)s->init_num"
+                    );
           iVar5 = param_1[0x17];
           iVar4 = *(int *)(iVar5 + 0x264);
         }
@@ -47,16 +49,21 @@ undefined4 dtls1_buffer_message(int *param_1,int param_2)
           iVar6 = 1;
         }
         if (iVar6 + iVar4 != param_1[0x11]) {
-          OpenSSLDie(DAT_00078d28,0x46a,DAT_00078d30);
+          OpenSSLDie("d1_both.c",0x46a,
+                     "s->d1->w_msg_hdr.msg_len + ((s->version==DTLS1_BAD_VER)?3:DTLS1_CCS_HEADER_LENGTH) == (unsigned int)s->init_num"
+                    );
           iVar5 = param_1[0x17];
           iVar4 = *(int *)(iVar5 + 0x264);
         }
       }
-      uVar1 = *(undefined *)(iVar5 + 0x260);
+      uVar1 = *(undefined1 *)(iVar5 + 0x260);
       *(int *)(ptr + 4) = iVar4;
       uVar2 = *(ushort *)(iVar5 + 0x268);
       *ptr = uVar1;
-      local_28 = 0;
+      local_28[0] = '\0';
+      local_28[1] = '\0';
+      local_28[2] = '\0';
+      local_28[3] = '\0';
       iVar9 = (uint)uVar2 * 2 - param_2;
       uVar7 = *(undefined4 *)(param_1[0x17] + 0x264);
       uVar3 = *(undefined2 *)(param_1[0x17] + 0x20a);
@@ -74,7 +81,7 @@ undefined4 dtls1_buffer_message(int *param_1,int param_2)
       *(undefined2 *)(ptr + 0x28) = uVar3;
       *(int *)(ptr + 0x24) = iVar4;
       local_24 = (uint)CONCAT11((char)iVar9,(char)((uint)iVar9 >> 8)) << 0x10;
-      item = pitem_new((uchar *)&local_28,ptr);
+      item = pitem_new(local_28,ptr);
       if (item != (pitem *)0x0) {
         pqueue_insert(*(pqueue *)(param_1[0x17] + 0x248),item);
         return 1;

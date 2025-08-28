@@ -14,8 +14,8 @@ void power_get_firmware_version(void)
   undefined4 local_10;
   undefined2 local_c;
   
-  local_10 = DAT_0002b164;
-  local_c = DAT_0002b168;
+  local_10 = 0x104aa55;
+  local_c = 5;
   local_30 = 0;
   local_2c = 0;
   local_28 = 0;

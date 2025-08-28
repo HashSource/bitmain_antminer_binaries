@@ -12,7 +12,7 @@ int get_target_airout_pcb_temp(int airin_pcb_temp)
   _Var1 = is_T15();
   if (_Var1) {
     if (opt_bitmain_economic_mode == false) {
-      ptarget_temp_arg = DAT_0001e2e4;
+      ptarget_temp_arg = target_temp_arg[1];
     }
     else {
       ptarget_temp_arg = target_temp_arg[0];
@@ -23,12 +23,12 @@ int get_target_airout_pcb_temp(int airin_pcb_temp)
         if ((ptarget_temp_arg[i].target_airin_pcb_temp < airin_pcb_temp) &&
            (airin_pcb_temp <= ptarget_temp_arg[i + 1].target_airin_pcb_temp)) {
           return (int)((float)(longlong)(airin_pcb_temp - ptarget_temp_arg[i].target_airin_pcb_temp)
-                       * ((float)(longlong)
-                                 (ptarget_temp_arg[i + 1].target_airout_pcb_temp -
-                                 ptarget_temp_arg[i].target_airout_pcb_temp) /
-                         (float)(longlong)
-                                (ptarget_temp_arg[i + 1].target_airin_pcb_temp -
-                                ptarget_temp_arg[i].target_airin_pcb_temp)) +
+                       * (float)((double)(longlong)
+                                         (ptarget_temp_arg[i + 1].target_airout_pcb_temp -
+                                         ptarget_temp_arg[i].target_airout_pcb_temp) /
+                                (double)(longlong)
+                                        (ptarget_temp_arg[i + 1].target_airin_pcb_temp -
+                                        ptarget_temp_arg[i].target_airin_pcb_temp)) +
                       (float)(longlong)ptarget_temp_arg[i].target_airout_pcb_temp);
         }
       }

@@ -6,7 +6,7 @@ int fprintf(FILE *__stream,char *__format,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_fprintf_00047940)();
+  iVar1 = fprintf(__stream,__format);
   return iVar1;
 }
 

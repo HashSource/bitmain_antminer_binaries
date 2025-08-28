@@ -10,7 +10,7 @@ int RSA_padding_check_X931(uchar *to,int tlen,uchar *f,int fl,int rsa_len)
   int iVar4;
   
   if ((rsa_len != fl) || (1 < *f - 0x6a)) {
-    ERR_put_error(4,0x80,0x89,DAT_000fc5c0,0x70);
+    ERR_put_error(4,0x80,0x89,"rsa_x931.c",0x70);
     return -1;
   }
   if (*f != 0x6b) {
@@ -21,7 +21,7 @@ LAB_000fc536:
       memcpy(to,__src,__n);
       return __n;
     }
-    ERR_put_error(4,0x80,0x8b,DAT_000fc5c0,0x8b);
+    ERR_put_error(4,0x80,0x8b,"rsa_x931.c",0x8b);
     return -1;
   }
   iVar4 = rsa_len + -3;
@@ -52,7 +52,7 @@ LAB_000fc576:
 LAB_000fc57c:
   iVar4 = 0x83;
 LAB_000fc598:
-  ERR_put_error(4,0x80,0x8a,DAT_000fc5c0,iVar4);
+  ERR_put_error(4,0x80,0x8a,"rsa_x931.c",iVar4);
   return -1;
 }
 

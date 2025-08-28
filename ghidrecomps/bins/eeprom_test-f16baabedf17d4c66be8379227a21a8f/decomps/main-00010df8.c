@@ -3,6 +3,7 @@ int main(int argc,char **argv)
 
 {
   int iVar1;
+  int iVar2;
   char **argv_local;
   int argc_local;
   uint8_t buf [256];
@@ -24,89 +25,89 @@ int main(int argc,char **argv)
     print_usage();
   }
   else {
-    fd = open("/dev/axi_fpga_dev",2);
-    if (fd < 0) {
-      printf("/dev/axi_fpga_dev open failed. fd = %d\n",fd);
+    iVar1 = open("/dev/axi_fpga_dev",2);
+    if (iVar1 < 0) {
+      printf("/dev/axi_fpga_dev open failed. fd = %d\n",iVar1);
       perror("open");
       ret = -1;
     }
     else {
-      axi_fpga_addr = (uint *)mmap((void *)0x0,0x160,3,1,fd,0);
+      axi_fpga_addr = (uint *)mmap((void *)0x0,0x160,3,1,iVar1,0);
       if (axi_fpga_addr == (uint *)0x0) {
         printf("mmap axi_fpga_addr failed. axi_fpga_addr = 0x%lsx\n",0);
         ret = -1;
       }
       else {
         chain_num = check_chain_num();
-        iVar1 = strcmp(argv[1],"-d");
-        if (iVar1 == 0) {
+        iVar2 = strcmp(argv[1],"-d");
+        if (iVar2 == 0) {
           if (argc == 3) {
-            iVar1 = atoi(argv[2]);
-            chain = (uint8_t)iVar1;
+            iVar2 = atoi(argv[2]);
+            chain = (uint8_t)iVar2;
             option = 1;
           }
         }
         else {
-          iVar1 = strcmp(argv[1],"-l");
-          if (iVar1 == 0) {
+          iVar2 = strcmp(argv[1],"-l");
+          if (iVar2 == 0) {
             if (argc == 3) {
-              iVar1 = atoi(argv[2]);
-              chain = (uint8_t)iVar1;
+              iVar2 = atoi(argv[2]);
+              chain = (uint8_t)iVar2;
               option = 2;
             }
           }
           else {
-            iVar1 = strcmp(argv[1],"-i");
-            if (iVar1 == 0) {
+            iVar2 = strcmp(argv[1],"-i");
+            if (iVar2 == 0) {
               if (argc == 3) {
                 strcpy(path,argv[2]);
                 option = 3;
               }
             }
             else {
-              iVar1 = strcmp(argv[1],"-e");
-              if (iVar1 == 0) {
+              iVar2 = strcmp(argv[1],"-e");
+              if (iVar2 == 0) {
                 if (argc == 3) {
-                  iVar1 = atoi(argv[2]);
-                  chain = (uint8_t)iVar1;
+                  iVar2 = atoi(argv[2]);
+                  chain = (uint8_t)iVar2;
                   option = 4;
                 }
               }
               else {
-                iVar1 = strcmp(argv[1],"-w");
-                if (iVar1 == 0) {
+                iVar2 = strcmp(argv[1],"-w");
+                if (iVar2 == 0) {
                   if (3 < argc) {
-                    iVar1 = atoi(argv[2]);
-                    chain = (uint8_t)iVar1;
+                    iVar2 = atoi(argv[2]);
+                    chain = (uint8_t)iVar2;
                     addr = atoi(argv[3]);
                     len = argc + -4;
                     for (i = 0; i < len; i = i + 1) {
-                      iVar1 = atoi(argv[i + 4]);
-                      buf[i] = (uint8_t)iVar1;
+                      iVar2 = atoi(argv[i + 4]);
+                      buf[i] = (uint8_t)iVar2;
                     }
                     option = 5;
                   }
                 }
                 else {
-                  iVar1 = strcmp(argv[1],"-r");
-                  if (iVar1 == 0) {
+                  iVar2 = strcmp(argv[1],"-r");
+                  if (iVar2 == 0) {
                     if (argc == 5) {
-                      iVar1 = atoi(argv[2]);
-                      chain = (uint8_t)iVar1;
+                      iVar2 = atoi(argv[2]);
+                      chain = (uint8_t)iVar2;
                       addr = atoi(argv[3]);
                       len = atoi(argv[4]);
                       option = 6;
                     }
                   }
                   else {
-                    iVar1 = strcmp(argv[1],"-p");
-                    if ((iVar1 == 0) && (argc == 5)) {
-                      iVar1 = atoi(argv[2]);
-                      chain = (uint8_t)iVar1;
-                      iVar1 = atoi(argv[3]);
-                      pcb = (uint8_t)iVar1;
-                      iVar1 = atoi(argv[4]);
-                      bom = (uint8_t)iVar1;
+                    iVar2 = strcmp(argv[1],"-p");
+                    if ((iVar2 == 0) && (argc == 5)) {
+                      iVar2 = atoi(argv[2]);
+                      chain = (uint8_t)iVar2;
+                      iVar2 = atoi(argv[3]);
+                      pcb = (uint8_t)iVar2;
+                      iVar2 = atoi(argv[4]);
+                      bom = (uint8_t)iVar2;
                       option = 7;
                     }
                   }
@@ -147,7 +148,7 @@ int main(int argc,char **argv)
         }
         pthread_mutex_destroy((pthread_mutex_t *)&iic_mutex);
         munmap(axi_fpga_addr,0x160);
-        close(fd);
+        close(iVar1);
       }
     }
   }

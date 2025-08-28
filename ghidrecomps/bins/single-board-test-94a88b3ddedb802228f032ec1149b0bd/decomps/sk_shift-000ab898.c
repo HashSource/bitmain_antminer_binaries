@@ -2,7 +2,7 @@
 void * sk_shift(_STACK *st)
 
 {
-  char **ppcVar1;
+  undefined4 *puVar1;
   int in_r1;
   char **ppcVar2;
   int in_r3;
@@ -25,9 +25,9 @@ void * sk_shift(_STACK *st)
     pcVar4 = *ppcVar2;
     if (iVar3 != 0) {
       while( true ) {
-        ppcVar1 = (char **)((int)ppcVar2 + in_r1);
+        puVar1 = (undefined4 *)((int)ppcVar2 + in_r1);
         in_r1 = in_r1 + 4;
-        ppcVar2[in_r3] = *ppcVar1;
+        ppcVar2[in_r3] = (char *)*puVar1;
         in_r3 = in_r3 + 1;
         if (iVar3 <= in_r3) break;
         ppcVar2 = st->data;

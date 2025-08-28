@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void restart_threads(void)
 
@@ -7,8 +7,8 @@ void restart_threads(void)
   int iVar1;
   pthread_t rthread;
   
-  cgtime(DAT_0001fe48);
-  iVar1 = pthread_create(&rthread,(pthread_attr_t *)0x0,DAT_0001fe4c,(void *)0x0);
+  cgtime(&restart_tv_start);
+  iVar1 = pthread_create(&rthread,(pthread_attr_t *)0x0,(__start_routine *)0x283f1,(void *)0x0);
   if (iVar1 != 0) {
     restart_threads();
   }

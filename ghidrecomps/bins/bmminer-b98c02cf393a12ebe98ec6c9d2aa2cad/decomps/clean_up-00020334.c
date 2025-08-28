@@ -11,7 +11,7 @@ void clean_up(int param_1)
   iVar1 = sysinfo(&local_850);
   if (iVar1 == 0) {
     total_tv_end_sys = local_850.uptime;
-    cgtime(DAT_000203f4);
+    cgtime(&total_tv_end);
   }
   else {
     if (((use_syslog != '\0') || (opt_log_output != '\0')) || (5 < opt_log_level)) {
@@ -22,7 +22,7 @@ void clean_up(int param_1)
       _applog(6,acStack_810,0);
     }
     total_tv_end_sys = time((time_t *)0x0);
-    cgtime(DAT_000203f4);
+    cgtime(&total_tv_end);
   }
   if (((param_1 == 0) && (opt_realquiet == '\0')) && (successful_connect != '\0')) {
     print_summary();

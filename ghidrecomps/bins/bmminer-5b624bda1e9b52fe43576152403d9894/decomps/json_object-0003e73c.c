@@ -9,7 +9,7 @@ json_t * json_object(void)
   
   object = (json_object_t *)jsonp_malloc(0x24);
   if (object != (json_object_t *)0x0) {
-    if (*DAT_0003e784 == 0) {
+    if (hashtable_seed == 0) {
       json_object_seed(0);
     }
     (object->json).refcount = 1;

@@ -8,7 +8,7 @@ char * load_config(char *param_1)
   size_t sVar4;
   size_t sVar5;
   int iVar6;
-  undefined auStack_114 [92];
+  undefined1 auStack_114 [92];
   char acStack_b8 [164];
   
   pcVar2 = param_1;
@@ -32,7 +32,7 @@ char * load_config(char *param_1)
     sVar4 = strlen(param_1);
     sVar5 = strlen(acStack_b8);
     sVar4 = sVar5 + sVar4 + 0x23;
-    pcVar2 = (char *)_cgmalloc(sVar4,"cgminer.c",DAT_0001c2a4,0x810);
+    pcVar2 = (char *)_cgmalloc(sVar4,"cgminer.c","load_config",0x810);
     snprintf(pcVar2,sVar4,"JSON decode of file \'%s\' failed\n %s",param_1,acStack_b8);
     return pcVar2;
   }

@@ -23,13 +23,11 @@ int ssl3_connect(SSL *param_1)
   size_t __n;
   ssl3_enc_method *psVar16;
   bool bVar17;
-  undefined4 in_stack_ffffffb8;
-  undefined4 in_stack_ffffffbc;
   time_t local_30;
   int local_2c [2];
   
   local_30 = time((time_t *)0x0);
-  RAND_add(&local_30,4,(double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+  RAND_add(&local_30,4,0.0);
   ERR_clear_error();
   piVar1 = __errno_location();
   p_Var15 = param_1->info_callback;
@@ -97,7 +95,7 @@ LAB_00068f54:
             goto LAB_00068de4;
           }
           if (psVar10->change_cipher_spec == 0) goto LAB_00068f54;
-          ERR_put_error(0x14,0x153,0x85,DAT_00068d10,0xe4e);
+          ERR_put_error(0x14,0x153,0x85,"s3_clnt.c",0xe4e);
           ssl3_send_alert(param_1,2,10);
         }
 LAB_00068c0c:
@@ -141,7 +139,7 @@ LAB_00068c0c:
           }
           iVar3 = *(int *)(p_Var11 + 0x3c);
           val = 1;
-          param_1->handshake_func = DAT_00068ff0;
+          param_1->handshake_func = ssl3_connect;
           *(int *)(p_Var11 + 0x3c) = iVar3 + 1;
           if (p_Var15 != (_func_3294 *)0x0) {
             val = 1;
@@ -222,7 +220,7 @@ LAB_00068fca:
         else if (0 < val) {
           val = -1;
           ssl3_send_alert(param_1,2,0x32);
-          ERR_put_error(0x14,0x91,0x9f,DAT_00069268,0x95b);
+          ERR_put_error(0x14,0x91,0x9f,"s3_clnt.c",0x95b);
           param_1->state = 5;
           goto LAB_00068d3e;
         }
@@ -230,7 +228,7 @@ LAB_00068fca:
         if ((int)(((psVar10->tmp).new_cipher)->algorithm_mkey << 0x15) < 0) {
           val = SRP_Calc_A_param(param_1);
           if (val < 1) {
-            ERR_put_error(0x14,0x84,0x169,DAT_00069268,0x192);
+            ERR_put_error(0x14,0x84,0x169,"s3_clnt.c",0x192);
             ssl3_send_alert(param_1,2,0x50);
             param_1->state = 5;
             goto LAB_00068d3e;
@@ -263,7 +261,7 @@ LAB_00068fca:
     }
 LAB_00068d28:
     val = -1;
-    ERR_put_error(0x14,0x84,0xff,DAT_00068fec,0x281);
+    ERR_put_error(0x14,0x84,0xff,"s3_clnt.c",0x281);
   }
   else {
     val = ssl3_send_client_key_exchange(param_1);
@@ -415,7 +413,7 @@ LAB_00068d72:
               (*p_Var15)(param_1,0x10,1);
             }
             if ((param_1->version & 0xff00U) != 0x300) {
-              ERR_put_error(0x14,0x84,0x44,DAT_00069268,0xf0);
+              ERR_put_error(0x14,0x84,0x44,"s3_clnt.c",0xf0);
               val = -1;
               param_1->state = 5;
               goto LAB_00068d3e;

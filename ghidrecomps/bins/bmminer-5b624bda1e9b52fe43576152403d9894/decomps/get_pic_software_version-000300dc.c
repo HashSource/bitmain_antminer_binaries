@@ -6,12 +6,12 @@ void get_pic_software_version(uchar chain,uchar *version)
 {
   uchar which_iic;
   
-  if (*DAT_0003010c < 0xe) {
+  if (fpga_version < 0xe) {
     dsPIC33EP16GS202_get_pic_sw_version(chain / 3,version);
     return;
   }
   if (chain - 1 < 0xd) {
-    which_iic = *(uchar *)(DAT_00030110 + (chain - 1) * 4 + 0x9b8);
+    which_iic = CSWTCH_824[(chain - 1) * 4];
   }
   else {
     which_iic = '\0';

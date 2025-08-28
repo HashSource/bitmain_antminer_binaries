@@ -9,11 +9,11 @@ int InitiateTransfer(int *param_1)
   
   iVar3 = *param_1;
   puVar4 = *(undefined4 **)(iVar3 + 0x14c);
-  if (*(char *)(param_1 + 100) == '\0') {
+  if ((char)param_1[100] == '\0') {
     iVar2 = param_1[0x10b];
   }
   else {
-    Curl_infof(iVar3,DAT_0005bf80);
+    Curl_infof(iVar3,"Doing the SSL/TLS handshake on the data stream\n");
     iVar2 = Curl_ssl_connect(param_1,1);
     if (iVar2 != 0) {
       return iVar2;
@@ -32,7 +32,7 @@ int InitiateTransfer(int *param_1)
     Curl_setup_transfer(param_1,1,param_1[0x10c],param_1[0x10d],0,*puVar4,0xffffffff,0);
   }
   param_1[0x10a] = 0;
-  *(undefined *)(param_1 + 0xf4) = 1;
+  *(undefined1 *)(param_1 + 0xf4) = 1;
   return 0;
 }
 

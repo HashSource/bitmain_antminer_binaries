@@ -8,12 +8,10 @@ int ssl23_accept(SSL *param_1)
   BUF_MEM *str;
   int iVar4;
   _func_3294 *p_Var5;
-  undefined4 in_stack_ffffffc0;
-  undefined4 in_stack_ffffffc4;
   time_t local_2c [2];
   
   local_2c[0] = time((time_t *)0x0);
-  RAND_add(local_2c,4,(double)CONCAT44(in_stack_ffffffc4,in_stack_ffffffc0));
+  RAND_add(local_2c,4,0.0);
   ERR_clear_error();
   piVar1 = __errno_location();
   p_Var5 = param_1->info_callback;
@@ -43,7 +41,7 @@ int ssl23_accept(SSL *param_1)
     else if ((iVar3 != 0x4000) && (iVar3 != 0x6000)) {
 LAB_0006f08c:
       iVar3 = -1;
-      ERR_put_error(0x14,0x73,0xff,DAT_0006f150,0xd8);
+      ERR_put_error(0x14,0x73,0xff,"s23_srvr.c",0xd8);
       goto LAB_0006f0a0;
     }
     param_1->server = 1;

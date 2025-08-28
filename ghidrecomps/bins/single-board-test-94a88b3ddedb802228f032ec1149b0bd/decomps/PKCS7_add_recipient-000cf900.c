@@ -18,7 +18,7 @@ PKCS7_RECIP_INFO * PKCS7_add_recipient(PKCS7 *p7,X509 *x509)
     }
     else {
       if (iVar1 != 0x18) {
-        ERR_put_error(0x21,0x66,0x71,DAT_000cf960,0x1fb);
+        ERR_put_error(0x21,0x66,0x71,"pk7_lib.c",0x1fb);
         goto LAB_000cf918;
       }
       st = &((p7->d).signed_and_enveloped)->recipientinfo->stack;

@@ -11,7 +11,7 @@ PKCS8_encrypt(int pbe_nid,EVP_CIPHER *cipher,char *pass,int passlen,uchar *salt,
   
   a = X509_SIG_new();
   if (a == (X509_SIG *)0x0) {
-    ERR_put_error(0x23,0x7d,0x41,DAT_0010f1f0,0x49);
+    ERR_put_error(0x23,0x7d,0x41,"p12_p8e.c",0x49);
   }
   else {
     if (pbe_nid == -1) {
@@ -28,18 +28,19 @@ PKCS8_encrypt(int pbe_nid,EVP_CIPHER *cipher,char *pass,int passlen,uchar *salt,
       }
     }
     if (algor == (X509_ALGOR *)0x0) {
-      ERR_put_error(0x23,0x7d,0xd,DAT_0010f1f0,0x56);
+      ERR_put_error(0x23,0x7d,0xd,"p12_p8e.c",0x56);
     }
     else {
       X509_ALGOR_free(a->algor);
       a->algor = algor;
       ASN1_STRING_free(a->digest);
-      pAVar2 = PKCS12_item_i2d_encrypt(algor,DAT_0010f1ec,pass,passlen,p8,1);
+      pAVar2 = PKCS12_item_i2d_encrypt(algor,(ASN1_ITEM *)&PKCS8_PRIV_KEY_INFO_it,pass,passlen,p8,1)
+      ;
       a->digest = pAVar2;
       if (pAVar2 != (ASN1_OCTET_STRING *)0x0) {
         return a;
       }
-      ERR_put_error(0x23,0x7d,0x67,DAT_0010f1f0,0x60);
+      ERR_put_error(0x23,0x7d,0x67,"p12_p8e.c",0x60);
     }
   }
   X509_SIG_free(a);

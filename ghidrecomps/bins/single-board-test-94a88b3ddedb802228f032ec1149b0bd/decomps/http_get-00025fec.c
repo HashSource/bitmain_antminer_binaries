@@ -1,10 +1,10 @@
 
-int http_get(char *param_1,void **param_2)
+int http_get(char *param_1,int *param_2)
 
 {
   undefined4 uVar1;
   void *pvVar2;
-  void *local_438 [2];
+  int local_438 [2];
   char acStack_430 [1024];
   FILE *local_30;
   FILE *local_2c;
@@ -14,7 +14,7 @@ int http_get(char *param_1,void **param_2)
   FILE *local_1c;
   int local_18;
   undefined4 local_14;
-  void **local_10;
+  int *local_10;
   int local_c;
   
   local_c = 0xffffffff;
@@ -43,8 +43,8 @@ int http_get(char *param_1,void **param_2)
     local_28 = curl_fetch_url(local_18,acStack_430,local_10,0,0);
     curl_easy_cleanup(local_18);
     curl_slist_free_all(local_14);
-    if ((local_28 == 0) && (local_10[1] != (void *)0x0)) {
-      if (*local_10 == (void *)0x0) {
+    if ((local_28 == 0) && (local_10[1] != 0)) {
+      if (*local_10 == 0) {
         if (3 < log_level) {
           local_2c = fopen(log_file,"a+");
           if (local_2c != (FILE *)0x0) {
@@ -55,12 +55,12 @@ int http_get(char *param_1,void **param_2)
         local_c = -1;
       }
       else {
-        pvVar2 = malloc((int)local_10[1] + 1);
-        *param_2 = pvVar2;
-        memcpy(*param_2,*local_10,(size_t)local_10[1]);
-        *(undefined *)((int)local_10[1] + (int)*param_2) = 0;
-        local_c = (int)local_10[1] + 1;
-        free(*local_10);
+        pvVar2 = malloc(local_10[1] + 1);
+        *param_2 = (int)pvVar2;
+        memcpy((void *)*param_2,(void *)*local_10,local_10[1]);
+        *(undefined1 *)(local_10[1] + *param_2) = 0;
+        local_c = local_10[1] + 1;
+        free((void *)*local_10);
       }
     }
     else {

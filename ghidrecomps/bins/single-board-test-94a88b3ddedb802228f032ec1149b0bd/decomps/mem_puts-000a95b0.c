@@ -11,11 +11,11 @@ size_t mem_puts(BIO *param_1,char *param_2)
   __n = strlen(param_2);
   str = (BUF_MEM *)param_1->ptr;
   if (param_2 == (char *)0x0) {
-    ERR_put_error(0x20,0x75,0x73,DAT_000a9630,0xb3);
+    ERR_put_error(0x20,0x75,0x73,"bss_mem.c",0xb3);
     __n = 0xffffffff;
   }
   else if (param_1->flags << 0x16 < 0) {
-    ERR_put_error(0x20,0x75,0x7e,DAT_000a9630,0xb8);
+    ERR_put_error(0x20,0x75,0x7e,"bss_mem.c",0xb8);
     __n = 0xffffffff;
   }
   else {

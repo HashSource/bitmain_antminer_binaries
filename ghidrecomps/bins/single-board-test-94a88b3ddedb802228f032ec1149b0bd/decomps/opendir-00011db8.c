@@ -6,7 +6,7 @@ DIR * opendir(char *__name)
 {
   DIR *pDVar1;
   
-  pDVar1 = (DIR *)(*(code *)PTR_opendir_0019415c)();
+  pDVar1 = opendir(__name);
   return pDVar1;
 }
 

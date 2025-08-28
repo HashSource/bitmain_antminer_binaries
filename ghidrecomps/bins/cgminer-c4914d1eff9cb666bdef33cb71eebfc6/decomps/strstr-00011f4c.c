@@ -6,7 +6,7 @@ char * strstr(char *__haystack,char *__needle)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strstr_000a8018)();
+  pcVar1 = strstr(__haystack,__needle);
   return pcVar1;
 }
 

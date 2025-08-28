@@ -1,11 +1,10 @@
 
+/* WARNING: Removing unreachable block (ram,0x000111ac) */
+
 void call_weak_fn(void)
 
 {
-  if (*(int *)(DAT_000111b4 + 0x111a8 + DAT_000111b8) == 0) {
-    return;
-  }
-  (*(code *)PTR___gmon_start___00046e44)();
+  __gmon_start__();
   return;
 }
 

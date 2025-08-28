@@ -1,10 +1,10 @@
 
 undefined4
-ssl_parse_serverhello_use_srtp_ext(int param_1,undefined *param_2,int param_3,undefined4 *param_4)
+ssl_parse_serverhello_use_srtp_ext(int param_1,undefined1 *param_2,int param_3,undefined4 *param_4)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   void *pvVar3;
   int iVar4;
   int iVar5;
@@ -15,7 +15,7 @@ ssl_parse_serverhello_use_srtp_ext(int param_1,undefined *param_2,int param_3,un
       uVar1 = param_2[2];
       uVar2 = param_2[3];
       if (param_2[4] != '\0') {
-        ERR_put_error(0x14,0x137,0x160,DAT_00079980,0x19d);
+        ERR_put_error(0x14,0x137,0x160,"d1_srtp.c",0x19d);
         *param_4 = 0x2f;
         return 1;
       }
@@ -27,7 +27,7 @@ ssl_parse_serverhello_use_srtp_ext(int param_1,undefined *param_2,int param_3,un
         do {
           iVar4 = sk_num(p_Var6);
           if (iVar4 <= iVar5) {
-            ERR_put_error(0x14,0x137,0x161,DAT_00079980,0x1bb);
+            ERR_put_error(0x14,0x137,0x161,"d1_srtp.c",0x1bb);
             *param_4 = 0x32;
             return 1;
           }
@@ -49,7 +49,7 @@ ssl_parse_serverhello_use_srtp_ext(int param_1,undefined *param_2,int param_3,un
   }
   iVar4 = 0x161;
 LAB_00079924:
-  ERR_put_error(0x14,0x137,iVar4,DAT_00079980,iVar5);
+  ERR_put_error(0x14,0x137,iVar4,"d1_srtp.c",iVar5);
   *param_4 = 0x32;
   return 1;
 }

@@ -8,7 +8,7 @@ int X509_supported_extension(X509_EXTENSION *ex)
   o = X509_EXTENSION_get_object(ex);
   local_c = (void *)OBJ_obj2nid(o);
   if (local_c != (void *)0x0) {
-    local_c = OBJ_bsearch_(&local_c,DAT_000cbdbc,0xb,4,DAT_000cbdb8);
+    local_c = OBJ_bsearch_(&local_c,&supported_nids_16010,0xb,4,(cmp *)0xcb0cd);
     if (local_c != (void *)0x0) {
       local_c = (void *)0x1;
     }

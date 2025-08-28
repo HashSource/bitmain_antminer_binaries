@@ -2,7 +2,7 @@
 void open_core_one_chain(uint param_1,uint param_2)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   byte bVar2;
   int iVar3;
   uint uVar4;
@@ -16,7 +16,7 @@ void open_core_one_chain(uint param_1,uint param_2)
   int iVar11;
   int iVar12;
   uint *puVar13;
-  uint local_8e0;
+  undefined4 local_8e0;
   undefined4 local_8dc;
   undefined4 local_8d8;
   byte local_8d4;
@@ -24,23 +24,22 @@ void open_core_one_chain(uint param_1,uint param_2)
   uint local_8cc;
   int local_8c8;
   uint local_8c4 [3];
-  undefined local_8b8;
+  undefined1 local_8b8;
   int local_8a0;
   uint local_890;
-  uint local_88c;
-  uint local_888;
-  undefined local_884;
+  uint local_88c [2];
+  undefined1 local_884;
   undefined4 uStack_880;
   undefined4 local_87c [8];
   byte local_85c;
   byte local_85b;
   byte local_85a [38];
-  undefined local_834;
-  undefined local_829;
+  undefined1 local_834;
+  undefined1 local_829;
   byte local_828;
-  undefined local_827;
-  undefined local_826;
-  undefined local_825;
+  undefined1 local_827;
+  undefined1 local_826;
+  undefined1 local_825;
   uint local_824;
   byte local_820 [2044];
   
@@ -67,8 +66,8 @@ void open_core_one_chain(uint param_1,uint param_2)
     local_8c8 = (uint)local_8d4 << 0x18;
     local_8cc = uVar4 << 8 | 0x40200080;
     local_890 = 0;
-    local_88c = 0;
-    local_888 = 0;
+    local_88c[0] = 0;
+    local_88c[1] = 0;
     local_884 = 0;
     local_8d0 = 0x5809001c;
     memset(&local_828,0xff,0x34);
@@ -77,13 +76,13 @@ void open_core_one_chain(uint param_1,uint param_2)
       set_BC_write_command((uVar4 & 0xfff0ffff | param_1 << 0x10) & 0xffbfffff | 0x800000);
       cgsleep_us(1000,0);
       local_820[0] = 0xff;
-      local_820[11] = 0xff;
+      local_820[0xb] = 0xff;
       local_828 = 1;
       iVar11 = 0;
       local_826 = 0;
       local_825 = 0;
       local_824 = 0;
-      uVar1 = (undefined)(param_1 | 0xffffff80);
+      uVar1 = (undefined1)(param_1 | 0xffffff80);
       local_827 = uVar1;
       set_BC_command_buffer(&local_8d0);
       uVar4 = get_BC_write_command();
@@ -96,10 +95,10 @@ void open_core_one_chain(uint param_1,uint param_2)
           iVar12 = iVar12 + -1;
           if (iVar12 == 0) {
             if (3 < log_level) {
-              __stream = fopen(log_file,(char *)&DAT_0005e760);
+              __stream = fopen(log_file,"a+");
               if (__stream != (FILE *)0x0) {
                 fprintf(__stream,"%s:%d:%s: Error: send open core work Failed on Chain[%d]!\n",
-                        "driver-btm-c5.c",0x2bf3,DAT_00036ba0,param_1);
+                        "driver-btm-c5.c",0x2bf3,"open_core_one_chain",param_1);
               }
               fclose(__stream);
             }
@@ -114,11 +113,11 @@ void open_core_one_chain(uint param_1,uint param_2)
           local_890 = 0x1000000;
           local_828 = 1;
         }
-        puVar13 = &local_88c;
+        puVar13 = local_88c;
         local_827 = uVar1;
         local_890 = (uint)CONCAT11(local_826,local_825) | ((param_1 | 0xffffff80) & 0xff) << 0x10 |
                     local_890;
-        local_88c = local_824;
+        local_88c[0] = local_824;
         pbVar6 = &local_828;
         do {
           pbVar9 = pbVar6 + 4;
@@ -168,8 +167,8 @@ LAB_00036ae8:
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
     snprintf((char *)&local_828,0x800,
-             "%s: gateblk[0]=0x%x, gateblk[1]=0x%x, gateblk[2]=0x%x, gateblk[3]=0x%x\n",DAT_00036af4
-             ,0x86,0,uVar10,uVar4);
+             "%s: gateblk[0]=0x%x, gateblk[1]=0x%x, gateblk[2]=0x%x, gateblk[3]=0x%x\n",
+             "open_core_one_chain",0x86,0,uVar10,uVar4);
     _applog(7,&local_828,0);
     iVar11 = dev;
   }

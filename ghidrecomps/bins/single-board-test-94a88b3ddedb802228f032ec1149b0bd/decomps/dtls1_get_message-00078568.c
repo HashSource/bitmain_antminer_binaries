@@ -3,10 +3,10 @@ uint dtls1_get_message(int *param_1,undefined4 param_2,int param_3,int param_4,u
                       uint *param_6)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined2 uVar2;
-  undefined uVar3;
-  undefined uVar4;
+  undefined1 uVar3;
+  undefined1 uVar4;
   ushort uVar5;
   uint *puVar6;
   uint *puVar7;
@@ -17,20 +17,20 @@ uint dtls1_get_message(int *param_1,undefined4 param_2,int param_3,int param_4,u
   uint uVar10;
   int iVar11;
   uint uVar12;
-  undefined *puVar13;
+  undefined1 *puVar13;
   uint uVar14;
   uint *puVar15;
   void *pvVar16;
   uint uVar17;
   uint *puVar18;
-  undefined4 local_16c;
+  uchar local_16c [4];
   int local_168;
   byte local_164;
   byte local_163;
   byte local_162;
   byte local_161;
-  undefined local_160;
-  undefined local_15f;
+  undefined1 local_160;
+  undefined1 local_15f;
   byte local_15e;
   byte local_15d;
   byte local_15c;
@@ -41,7 +41,7 @@ uint dtls1_get_message(int *param_1,undefined4 param_2,int param_3,int param_4,u
   uint local_138;
   uint local_134;
   uint local_130;
-  undefined auStack_128 [260];
+  undefined1 auStack_128 [260];
   
   iVar9 = param_1[0x16];
   if (*(int *)(iVar9 + 0x354) != 0) {
@@ -57,7 +57,7 @@ uint dtls1_get_message(int *param_1,undefined4 param_2,int param_3,int param_4,u
       iVar9 = 0x1d7;
 LAB_00078a50:
       uVar14 = 0xffffffff;
-      ERR_put_error(0x14,0xfc,0xf4,DAT_00078b44,iVar9);
+      ERR_put_error(0x14,0xfc,0xf4,"d1_both.c",iVar9);
       ssl3_send_alert(param_1,2,10);
       *param_6 = 0;
     }
@@ -134,7 +134,7 @@ LAB_0007877e:
     local_134 = uVar12;
     local_130 = uVar12;
     if (*(uint *)(param_1[0x16] + 0x110) < uVar17) {
-      ERR_put_error(0x14,0xfd,0x10f,DAT_00078b44,0x37c);
+      ERR_put_error(0x14,0xfd,0x10f,"d1_both.c",0x37c);
       iVar11 = 0x2f;
       goto LAB_00078890;
     }
@@ -142,23 +142,26 @@ LAB_0007877e:
     if ((*(ushort *)(iVar11 + 0x228) != uVar5) && ((*(int *)(iVar11 + 0x254) == 0 || (uVar5 != 1))))
     {
       if (local_158[1] < uVar17 + uVar14) goto LAB_000788b0;
-      local_16c = 0;
+      local_16c[0] = '\0';
+      local_16c[1] = '\0';
+      local_16c[2] = '\0';
+      local_16c[3] = '\0';
       local_168 = (uint)CONCAT11(local_15f,local_160) << 0x10;
-      ppVar8 = pqueue_find(*(pqueue *)(iVar11 + 0x244),(uchar *)&local_16c);
+      ppVar8 = pqueue_find(*(pqueue *)(iVar11 + 0x244),local_16c);
       if ((ppVar8 != (pitem *)0x0) && (uVar17 != local_158[1])) {
         ppVar8 = (pitem *)0x0;
       }
       iVar11 = param_1[0x17];
       uVar14 = (uint)*(ushort *)(iVar11 + 0x228);
       if ((((uVar14 < (local_158[2] & 0xffff)) && ((local_158[2] & 0xffff) <= uVar14 + 10)) &&
-          (ppVar8 == (pitem *)0x0)) && ((uVar14 != 0 || ((char)local_158[0] != '\x14')))) {
+          (ppVar8 == (pitem *)0x0)) && ((uVar14 != 0 || ((local_158[0] & 0xff) != 0x14)))) {
         if (uVar17 != local_158[1]) goto LAB_000789f6;
         uVar14 = param_1[0x42];
         if (uVar14 < 0x454c) {
           uVar14 = 0x454c;
         }
         if ((uVar14 < uVar17) ||
-           (ptr = (uint *)CRYPTO_malloc(0x34,DAT_00078b44,0xb5), ptr == (uint *)0x0)) {
+           (ptr = (uint *)CRYPTO_malloc(0x34,"d1_both.c",0xb5), ptr == (uint *)0x0)) {
 LAB_000788b0:
           uVar12 = 2;
           uVar14 = 0xffffffff;
@@ -189,17 +192,17 @@ LAB_000788b0:
           puVar15[5] = uVar12;
           puVar15[6] = uVar17;
 LAB_00078966:
-          ppVar8 = pitem_new((uchar *)&local_16c,ptr);
+          ppVar8 = pitem_new(local_16c,ptr);
           if (ppVar8 != (pitem *)0x0) {
             ppVar8 = pqueue_insert(*(pqueue *)(param_1[0x17] + 0x244),ppVar8);
             if (ppVar8 != (pitem *)0x0) goto LAB_000785ce;
-            OpenSSLDie(DAT_00078b44,0x344,DAT_00078b48);
+            OpenSSLDie("d1_both.c",0x344,"item != NULL");
             iVar11 = param_1[0x17];
             goto LAB_000785d2;
           }
         }
         else {
-          pvVar16 = CRYPTO_malloc(uVar17,DAT_00078b44,0xba);
+          pvVar16 = CRYPTO_malloc(uVar17,"d1_both.c",0xba);
           if (pvVar16 == (void *)0x0) {
             CRYPTO_free(ptr);
             goto LAB_000788b0;
@@ -289,7 +292,7 @@ LAB_000789f6:
         }
       }
       if (uVar14 != uVar17) {
-        ERR_put_error(0x14,0xfd,0x2f,DAT_00078b44,0x3c1);
+        ERR_put_error(0x14,0xfd,0x2f,"d1_both.c",0x3c1);
         iVar11 = 0x2f;
         goto LAB_00078890;
       }
@@ -303,7 +306,7 @@ LAB_000789f6:
     iVar9 = 0x36b;
 LAB_00078880:
     iVar11 = 10;
-    ERR_put_error(0x14,0xfd,0xf4,DAT_00078b44,iVar9);
+    ERR_put_error(0x14,0xfd,0xf4,"d1_both.c",iVar9);
   }
 LAB_00078890:
   ssl3_send_alert(param_1,2,iVar11);
@@ -311,7 +314,11 @@ LAB_00078890:
   *param_6 = 0;
   return 0xffffffff;
 LAB_000789a4:
-  uVar14 = (**(code **)(param_1[2] + 0x34))(param_1,0x16,auStack_128);
+  uVar14 = uVar17;
+  if (0xff < uVar17) {
+    uVar14 = 0x100;
+  }
+  uVar14 = (**(code **)(param_1[2] + 0x34))(param_1,0x16,auStack_128,uVar14,0);
   if (0 < (int)uVar14) goto LAB_0007899e;
   uVar12 = uVar14 + 3;
 LAB_000788b6:
@@ -327,11 +334,11 @@ LAB_00078ab6:
     }
     if ((param_4 < 0) || (*(int *)(param_1[0x16] + 0x340) == param_4)) {
       iVar11 = *(int *)(iVar9 + 0x290);
-      uVar1 = *(undefined *)(iVar9 + 0x28c);
-      puVar13 = *(undefined **)(param_1[0xf] + 4);
-      uVar3 = (undefined)((uint)iVar11 >> 0x10);
+      uVar1 = *(undefined1 *)(iVar9 + 0x28c);
+      puVar13 = *(undefined1 **)(param_1[0xf] + 4);
+      uVar3 = (undefined1)((uint)iVar11 >> 0x10);
       puVar13[1] = uVar3;
-      uVar4 = (undefined)((uint)iVar11 >> 8);
+      uVar4 = (undefined1)((uint)iVar11 >> 8);
       puVar13[2] = uVar4;
       puVar13[3] = (char)iVar11;
       *puVar13 = uVar1;

@@ -5,7 +5,6 @@ work * make_clone(work *work)
 
 {
   work *pwVar1;
-  work *work_clone;
   int iVar2;
   
   pwVar1 = copy_work_noffset(work,0);

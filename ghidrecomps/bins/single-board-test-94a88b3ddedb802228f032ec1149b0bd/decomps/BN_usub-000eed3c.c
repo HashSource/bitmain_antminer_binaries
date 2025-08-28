@@ -25,7 +25,7 @@ int BN_usub(BIGNUM *r,BIGNUM *a,BIGNUM *b)
   words = a->top;
   local_38 = words - iVar10;
   if (local_38 < 0) {
-    ERR_put_error(3,0x73,100,DAT_000ef098,0xb7);
+    ERR_put_error(3,0x73,100,"bn_add.c",0xb7);
     return 0;
   }
   if ((r->dmax < words) && (pBVar7 = bn_expand2(r,words), pBVar7 == (BIGNUM *)0x0)) {

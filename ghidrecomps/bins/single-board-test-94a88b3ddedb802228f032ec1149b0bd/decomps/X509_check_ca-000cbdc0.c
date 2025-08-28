@@ -8,11 +8,11 @@ int X509_check_ca(X509 *x)
   
   uVar3 = x->ex_flags;
   if (-1 < (int)(uVar3 << 0x17)) {
-    CRYPTO_lock(9,3,DAT_000cbe3c,0x244);
+    CRYPTO_lock(9,3,"v3_purp.c",0x244);
     if (-1 < (int)(x->ex_flags << 0x17)) {
       x509v3_cache_extensions_part_7(x);
     }
-    CRYPTO_lock(10,3,DAT_000cbe3c,0x246);
+    CRYPTO_lock(10,3,"v3_purp.c",0x246);
     uVar3 = x->ex_flags;
   }
   if (((uVar3 & 2) == 0) || (uVar1 = x->ex_kusage & 4, uVar1 != 0)) {

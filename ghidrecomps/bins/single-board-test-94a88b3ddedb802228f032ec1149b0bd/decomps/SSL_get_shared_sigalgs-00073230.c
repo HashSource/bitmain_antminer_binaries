@@ -2,7 +2,7 @@
 undefined4
 SSL_get_shared_sigalgs
           (int param_1,int param_2,undefined4 *param_3,undefined4 *param_4,undefined4 *param_5,
-          undefined *param_6,undefined *param_7)
+          undefined1 *param_6,undefined1 *param_7)
 
 {
   undefined4 uVar1;
@@ -24,11 +24,11 @@ SSL_get_shared_sigalgs
     if (param_5 != (undefined4 *)0x0) {
       *param_5 = *(undefined4 *)(iVar3 + 8);
     }
-    if (param_6 != (undefined *)0x0) {
-      *param_6 = *(undefined *)(iVar3 + 0xc);
+    if (param_6 != (undefined1 *)0x0) {
+      *param_6 = *(undefined1 *)(iVar3 + 0xc);
     }
-    if (param_7 != (undefined *)0x0) {
-      *param_7 = *(undefined *)(iVar3 + 0xd);
+    if (param_7 != (undefined1 *)0x0) {
+      *param_7 = *(undefined1 *)(iVar3 + 0xd);
     }
     uVar1 = *(undefined4 *)(*(int *)(param_1 + 0x98) + 0x140);
   }

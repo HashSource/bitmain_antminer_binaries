@@ -1,6 +1,4 @@
 
-/* WARNING: Variable defined which should be unmapped: target_vol-local */
-
 _Bool slowly_adapt_voltage(power_info_t *power,double target_vol,uint32_t ms_delay)
 
 {
@@ -10,7 +8,6 @@ _Bool slowly_adapt_voltage(power_info_t *power,double target_vol,uint32_t ms_del
   byte target_data;
   _Bool _Var4;
   int iVar5;
-  double in_d0;
   double target_vol_local;
   uint32_t ms_delay_local;
   power_info_t *power_local;
@@ -28,23 +25,20 @@ _Bool slowly_adapt_voltage(power_info_t *power,double target_vol,uint32_t ms_del
   if (ms_delay == 0) {
     sleep_ms = 1000;
   }
-  if (power->current_voltage < in_d0) {
+  if (power->current_voltage < target_vol) {
     negate = -1;
   }
   else {
     negate = 1;
   }
-  temp_iic_data = get_power_iic_value_from_voltage(in_d0);
-  target_data = get_power_iic_value_from_voltage(in_d0);
+  temp_iic_data = get_power_iic_value_from_voltage(power->current_voltage);
+  target_data = get_power_iic_value_from_voltage(target_vol);
   uVar1 = (int)((uint)temp_iic_data - (uint)target_data) >> 0x1f;
   iVar5 = ((uint)temp_iic_data - (uint)target_data ^ uVar1) - uVar1;
   cVar2 = (char)((ulonglong)((longlong)iVar5 * 0x2aaaaaab) >> 0x20) - (char)(iVar5 >> 0x1f);
-  target_vol_local._0_4_ = SUB84(in_d0,0);
-  target_vol_local._4_4_ = (undefined4)((ulonglong)in_d0 >> 0x20);
   if (negate == -1) {
-    _Var4 = set_iic_power_by_voltage(in_d0,power);
-    *(undefined4 *)&power->current_voltage = target_vol_local._0_4_;
-    *(undefined4 *)((int)&power->current_voltage + 4) = target_vol_local._4_4_;
+    _Var4 = set_iic_power_by_voltage(target_vol,power);
+    power->current_voltage = target_vol;
     power->current_iic_data = target_data;
     return _Var4;
   }
@@ -103,8 +97,7 @@ _Bool slowly_adapt_voltage(power_info_t *power,double target_vol,uint32_t ms_del
     return false;
   }
   usleep(sleep_ms * 500);
-  *(undefined4 *)&power->current_voltage = target_vol_local._0_4_;
-  *(undefined4 *)((int)&power->current_voltage + 4) = target_vol_local._4_4_;
+  power->current_voltage = target_vol;
   power->current_iic_data = target_data;
   return _Var4;
 }

@@ -18,7 +18,6 @@ int write_data_to_PIC16F1704_flash(int which_chain,int which_i2c,uchar *buf,int 
   uchar i;
   ushort crc;
   
-  length = '\x06';
   read_back_data[4] = '\0';
   read_back_data[0] = 0xff;
   read_back_data[1] = '\0';
@@ -35,7 +34,7 @@ int write_data_to_PIC16F1704_flash(int which_chain,int which_i2c,uchar *buf,int 
   send_data[8] = '\0';
   send_data[9] = '\0';
   send_data[10] = '\0';
-  send_data[11] = '\0';
+  send_data[0xb] = '\0';
   if ((opt_debug) && (((use_syslog || (opt_log_output)) || (3 < opt_log_level)))) {
     snprintf(tmp42,0x400,"\n--- %s\n","write_data_to_PIC16F1704_flash");
     _applog(4,tmp42,false);
@@ -45,10 +44,9 @@ int write_data_to_PIC16F1704_flash(int which_chain,int which_i2c,uchar *buf,int 
     crc = crc + buf[i];
   }
   bVar1 = (byte)(crc >> 8);
-  crc_data[1] = (uchar)crc;
   if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
     snprintf(tmp42,0x400,"--- %s: crc_data[0] = 0x%x, crc_data[1] = 0x%x\n",
-             "write_data_to_PIC16F1704_flash",(uint)bVar1,(uint)crc_data[1]);
+             "write_data_to_PIC16F1704_flash",(uint)bVar1,(uint)(byte)crc);
     _applog(2,tmp42,false);
   }
   send_data[2] = (char)buf_len + '\x06';
@@ -58,13 +56,13 @@ int write_data_to_PIC16F1704_flash(int which_chain,int which_i2c,uchar *buf,int 
   send_data._4_4_ = (uint)CONCAT21(send_data._6_2_,(char)buf_len) << 8;
   memcpy(send_data + 6,buf,buf_len);
   send_data[buf_len + 6] = bVar1;
-  send_data[buf_len + 7] = crc_data[1];
+  send_data[buf_len + 7] = (byte)crc;
   for (i = '\0'; (int)(uint)i < buf_len + 8; i = i + '\x01') {
     printf("%02x ",(uint)send_data[i]);
   }
   putchar(10);
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
-  for (i = '\0'; (int)(uint)i < (int)(buf_len + length + 2); i = i + '\x01') {
+  for (i = '\0'; (int)(uint)i < buf_len + 8; i = i + '\x01') {
     write_pic((uchar)which_i2c,(uchar)which_chain,send_data[i]);
   }
   usleep(200000);

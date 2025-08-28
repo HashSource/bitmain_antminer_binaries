@@ -1,81 +1,80 @@
 
-void print_leak_doall_arg(BIO **param_1,BIO **param_2)
+void print_leak_doall_arg(int *param_1,int *param_2)
 
 {
-  int *piVar1;
-  int iVar2;
-  ulong uVar3;
-  size_t sVar4;
+  ulong uVar1;
+  size_t sVar2;
+  size_t sVar3;
+  tm *ptVar4;
   size_t sVar5;
-  tm *ptVar6;
-  size_t sVar7;
-  BIO *pBVar8;
-  char *pcVar9;
+  CRYPTO_THREADID *src;
+  int iVar6;
+  char *pcVar7;
   char *__s;
-  BIO *pBVar10;
+  int iVar8;
   CRYPTO_THREADID CStack_428;
   char acStack_420 [1024];
-  undefined auStack_20 [4];
+  undefined1 auStack_20 [4];
   
-  piVar1 = DAT_0008a37c;
   if (*param_1 != *param_2) {
-    if (*DAT_0008a37c << 0x1f < 0) {
-      ptVar6 = localtime((time_t *)(param_1 + 7));
-      BIO_snprintf(acStack_420,0x400,DAT_0008a390,ptVar6->tm_hour,ptVar6->tm_min,ptVar6->tm_sec);
-      sVar7 = strlen(acStack_420);
-      pcVar9 = acStack_420 + sVar7;
-      sVar7 = 0x400 - sVar7;
+    if (options << 0x1f < 0) {
+      ptVar4 = localtime(param_1 + 7);
+      BIO_snprintf(acStack_420,0x400,"[%02d:%02d:%02d] ",ptVar4->tm_hour,ptVar4->tm_min,
+                   ptVar4->tm_sec);
+      sVar5 = strlen(acStack_420);
+      pcVar7 = acStack_420 + sVar5;
+      sVar5 = 0x400 - sVar5;
     }
     else {
-      pcVar9 = acStack_420;
-      sVar7 = 0x400;
+      pcVar7 = acStack_420;
+      sVar5 = 0x400;
     }
-    pBVar10 = param_1[3];
-    pBVar8 = param_1[2];
-    BIO_snprintf(pcVar9,sVar7,DAT_0008a380,param_1[6],pBVar8,pBVar10);
-    sVar7 = strlen(pcVar9);
-    pcVar9 = pcVar9 + sVar7;
-    if (*piVar1 << 0x1e < 0) {
-      uVar3 = CRYPTO_THREADID_hash((CRYPTO_THREADID *)(param_1 + 4));
-      BIO_snprintf(pcVar9,(size_t)(auStack_20 + -(int)pcVar9),DAT_0008a394,uVar3,pBVar8,pBVar10);
-      sVar7 = strlen(pcVar9);
-      pcVar9 = pcVar9 + sVar7;
+    iVar8 = param_1[3];
+    iVar6 = param_1[2];
+    BIO_snprintf(pcVar7,sVar5,"%5lu file=%s, line=%d, ",param_1[6],iVar6,iVar8);
+    sVar5 = strlen(pcVar7);
+    pcVar7 = pcVar7 + sVar5;
+    if (options << 0x1e < 0) {
+      uVar1 = CRYPTO_THREADID_hash((CRYPTO_THREADID *)(param_1 + 4));
+      BIO_snprintf(pcVar7,(size_t)(auStack_20 + -(int)pcVar7),"thread=%lu, ",uVar1,iVar6,iVar8);
+      sVar5 = strlen(pcVar7);
+      pcVar7 = pcVar7 + sVar5;
     }
-    BIO_snprintf(pcVar9,(size_t)(auStack_20 + -(int)pcVar9),DAT_0008a384,param_1[1],*param_1,pBVar10
-                );
-    BIO_puts(*param_2,acStack_420);
-    pBVar8 = param_1[1];
-    pBVar10 = param_1[8];
-    param_2[1] = (BIO *)((int)&param_2[1]->method + 1);
-    param_2[2] = (BIO *)((int)&pBVar8->method + (int)&param_2[2]->method);
-    if (pBVar10 != (BIO *)0x0) {
-      sVar7 = 0;
-      CRYPTO_THREADID_cpy(&CStack_428,(CRYPTO_THREADID *)pBVar10);
+    BIO_snprintf(pcVar7,(size_t)(auStack_20 + -(int)pcVar7),"number=%d, address=%08lX\n",param_1[1],
+                 *param_1,iVar8);
+    BIO_puts((BIO *)*param_2,acStack_420);
+    iVar6 = param_1[1];
+    src = (CRYPTO_THREADID *)param_1[8];
+    param_2[1] = param_2[1] + 1;
+    param_2[2] = param_2[2] + iVar6;
+    if (src != (CRYPTO_THREADID *)0x0) {
+      sVar5 = 0;
+      CRYPTO_THREADID_cpy(&CStack_428,src);
       do {
-        sVar7 = sVar7 + 1;
-        memset(acStack_420,0x3e,sVar7);
-        uVar3 = CRYPTO_THREADID_hash((CRYPTO_THREADID *)pBVar10);
-        BIO_snprintf(acStack_420 + sVar7,0x400 - sVar7,DAT_0008a38c,uVar3,pBVar10->cb_arg,
-                     pBVar10->init);
-        sVar4 = strlen(acStack_420);
-        __s = (char *)pBVar10->shutdown;
-        sVar5 = strlen(__s);
-        pcVar9 = acStack_420 + sVar4;
-        if ((int)(0x7d - sVar4) < (int)sVar5) {
-          memcpy(pcVar9,__s,0x7d - sVar4);
-          sVar5 = 899;
-          sVar4 = 0x7d;
+        sVar5 = sVar5 + 1;
+        memset(acStack_420,0x3e,sVar5);
+        uVar1 = CRYPTO_THREADID_hash(src);
+        BIO_snprintf(acStack_420 + sVar5,0x400 - sVar5," thread=%lu, file=%s, line=%d, info=\"",
+                     uVar1,src[1].ptr,src[1].val);
+        sVar2 = strlen(acStack_420);
+        __s = (char *)src[2].ptr;
+        sVar3 = strlen(__s);
+        pcVar7 = acStack_420 + sVar2;
+        if ((int)(0x7d - sVar2) < (int)sVar3) {
+          memcpy(pcVar7,__s,0x7d - sVar2);
+          sVar3 = 899;
+          sVar2 = 0x7d;
         }
         else {
-          BUF_strlcpy(pcVar9,__s,0x400 - sVar4);
-          sVar4 = strlen(acStack_420);
-          sVar5 = 0x400 - sVar4;
+          BUF_strlcpy(pcVar7,__s,0x400 - sVar2);
+          sVar2 = strlen(acStack_420);
+          sVar3 = 0x400 - sVar2;
         }
-        BIO_snprintf(acStack_420 + sVar4,sVar5,DAT_0008a388);
-        BIO_puts(*param_2,acStack_420);
-        pBVar10 = (BIO *)pBVar10->flags;
-      } while ((pBVar10 != (BIO *)0x0) &&
-              (iVar2 = CRYPTO_THREADID_cmp((CRYPTO_THREADID *)pBVar10,&CStack_428), iVar2 == 0));
+        BIO_snprintf(acStack_420 + sVar2,sVar3,"\"\n");
+        BIO_puts((BIO *)*param_2,acStack_420);
+        src = (CRYPTO_THREADID *)src[2].val;
+      } while ((src != (CRYPTO_THREADID *)0x0) &&
+              (iVar6 = CRYPTO_THREADID_cmp(src,&CStack_428), iVar6 == 0));
     }
   }
   return;

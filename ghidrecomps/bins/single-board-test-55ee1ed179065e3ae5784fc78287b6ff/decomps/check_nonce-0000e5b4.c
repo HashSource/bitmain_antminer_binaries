@@ -1,5 +1,5 @@
 
-undefined4 check_nonce(byte param_1,int *param_2)
+undefined4 check_nonce(byte param_1,byte *param_2)
 
 {
   undefined4 uVar1;
@@ -18,16 +18,16 @@ undefined4 check_nonce(byte param_1,int *param_2)
   local_20 = 0;
   local_24 = 0;
   if (Conf._116_4_ == 0x6ba) {
-    local_20 = *param_2;
-    local_14 = __udivsi3(*(byte *)((int)param_2 + 3),gChain_Asic_Interval);
-    local_18 = *(byte *)param_2 & 0x7f;
-    local_1c = *(byte *)((int)param_2 + 5) & 0x7f;
+    local_20 = *(int *)param_2;
+    local_14 = __udivsi3(param_2[3],gChain_Asic_Interval);
+    local_18 = *param_2 & 0x7f;
+    local_1c = param_2[5] & 0x7f;
   }
   else if (Conf._116_4_ == 0x6bd) {
-    local_20 = *param_2;
-    local_14 = __udivsi3(*(byte *)(param_2 + 1),gChain_Asic_Interval);
-    local_18 = (uint)*(byte *)((int)param_2 + 3) | (*(byte *)((int)param_2 + 2) & 1) << 8;
-    local_1c = *(byte *)((int)param_2 + 6) & 0x7f;
+    local_20 = *(int *)param_2;
+    local_14 = __udivsi3(param_2[4],gChain_Asic_Interval);
+    local_18 = (uint)param_2[3] | (param_2[2] & 1) << 8;
+    local_1c = param_2[6] & 0x7f;
   }
   if (local_14 < (uint)Conf._108_4_) {
     if (local_18 < (uint)Conf._112_4_) {
@@ -60,7 +60,7 @@ undefined4 check_nonce(byte param_1,int *param_2)
           local_28 = 0;
           while ((local_28 < (int)(uint)*(byte *)((int)&gWork_Num_For_Hw_Check + (uint)param_1) &&
                  (local_24 = check_hw(gWorks_For_Hw_Check + (uint)param_1 * 0x7f8 + local_28 * 0xcc,
-                                      local_20,*(byte *)(param_2 + 1),0), local_24 != 0))) {
+                                      local_20,param_2[4],0), local_24 != 0))) {
             local_28 = local_28 + 1;
           }
           pthread_mutex_unlock((pthread_mutex_t *)(HW_check_mutex + (uint)param_1 * 0x18));
@@ -75,27 +75,22 @@ undefined4 check_nonce(byte param_1,int *param_2)
       }
       else {
         printf("%s: received work_id = %02d nonce. error!!!\t","check_nonce",local_1c);
-        printf(",received data is : 0x%02x%02x%02x%02x%02x%02x\n",(uint)*(byte *)param_2,
-               (uint)*(byte *)((int)param_2 + 1),(uint)*(byte *)((int)param_2 + 2),
-               (uint)*(byte *)((int)param_2 + 3),(uint)*(byte *)(param_2 + 1),
-               (uint)*(byte *)((int)param_2 + 5));
+        printf(",received data is : 0x%02x%02x%02x%02x%02x%02x\n",(uint)*param_2,(uint)param_2[1],
+               (uint)param_2[2],(uint)param_2[3],(uint)param_2[4],(uint)param_2[5]);
         uVar1 = 0xffffffff;
       }
     }
     else {
       printf("%s: received core%02d nonce. error!!!\t","check_nonce",local_18);
-      printf(",received data is : 0x%02x%02x%02x%02x%02x%02x\n",(uint)*(byte *)param_2,
-             (uint)*(byte *)((int)param_2 + 1),(uint)*(byte *)((int)param_2 + 2),
-             (uint)*(byte *)((int)param_2 + 3),(uint)*(byte *)(param_2 + 1),
-             (uint)*(byte *)((int)param_2 + 5));
+      printf(",received data is : 0x%02x%02x%02x%02x%02x%02x\n",(uint)*param_2,(uint)param_2[1],
+             (uint)param_2[2],(uint)param_2[3],(uint)param_2[4],(uint)param_2[5]);
       uVar1 = 0xffffffff;
     }
   }
   else {
     printf("%s: received ASIC%02d nonce. error!!!\t","check_nonce",local_14);
-    printf(",received data is : 0x%02x%02x%02x%02x%02x\n",(uint)*(byte *)param_2,
-           (uint)*(byte *)((int)param_2 + 1),(uint)*(byte *)((int)param_2 + 2),
-           (uint)*(byte *)((int)param_2 + 3),(uint)*(byte *)(param_2 + 1));
+    printf(",received data is : 0x%02x%02x%02x%02x%02x\n",(uint)*param_2,(uint)param_2[1],
+           (uint)param_2[2],(uint)param_2[3],(uint)param_2[4]);
     uVar1 = 0xffffffff;
   }
   return uVar1;

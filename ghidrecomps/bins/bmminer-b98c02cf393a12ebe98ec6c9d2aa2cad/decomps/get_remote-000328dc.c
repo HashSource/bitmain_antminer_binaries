@@ -6,8 +6,7 @@ int get_remote(short param_1)
   short local_814;
   char acStack_810 [2052];
   
-  dVar1 = ((double)(longlong)(int)(short)(param_1 + -0x40) * DAT_00032978 - DAT_00032980) /
-          DAT_00032988;
+  dVar1 = ((double)(longlong)(int)(short)(param_1 + -0x40) * 1.008 - 27.86130000000002) / 1.11;
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
     snprintf(acStack_810,0x800,"remote : %d temp : %f",(int)(short)(param_1 + -0x40),

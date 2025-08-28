@@ -1,10 +1,10 @@
 
-undefined write_EEPROM_iic(char param_1,char param_2,byte param_3,byte param_4,byte param_5)
+undefined1 write_EEPROM_iic(char param_1,char param_2,byte param_3,byte param_4,byte param_5)
 
 {
-  undefined uVar1;
-  uint local_18;
-  uint local_14;
+  undefined1 uVar1;
+  undefined4 local_18;
+  undefined4 local_14;
   
   local_14 = 0;
   local_18 = 0;

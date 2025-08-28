@@ -6,244 +6,234 @@ int Curl_sasl_create_digest_md5_message
               undefined4 param_6,undefined4 param_7)
 
 {
-  undefined *puVar1;
+  undefined1 *puVar1;
   char cVar2;
-  code **ppcVar3;
-  code **ppcVar4;
-  char *pcVar5;
-  size_t sVar6;
+  char *pcVar3;
+  size_t sVar4;
+  int iVar5;
+  char *pcVar6;
   int iVar7;
-  char *pcVar8;
-  int iVar9;
+  undefined4 uVar8;
+  undefined4 uVar9;
   undefined4 uVar10;
   undefined4 uVar11;
-  undefined4 uVar12;
-  undefined4 uVar13;
-  char *pcVar14;
-  char *pcVar15;
+  char *pcVar12;
+  char *pcVar13;
   int local_234;
   undefined4 local_230;
   undefined4 local_22c;
-  undefined local_228;
-  undefined4 local_224;
-  undefined4 uStack_220;
-  undefined local_21c;
-  undefined4 local_218;
-  undefined4 uStack_214;
-  undefined4 uStack_210;
-  undefined local_20c;
-  undefined local_208 [16];
-  undefined auStack_1f8 [36];
-  undefined auStack_1d4 [36];
-  undefined auStack_1b0 [36];
+  undefined1 local_228;
+  char local_224 [12];
+  char local_218 [16];
+  undefined1 local_208 [16];
+  undefined1 auStack_1f8 [36];
+  undefined1 auStack_1d4 [36];
+  undefined1 auStack_1b0 [36];
   char acStack_18c [36];
   char acStack_168 [64];
   char acStack_128 [64];
-  undefined auStack_e8 [64];
+  undefined1 auStack_e8 [64];
   char local_a8 [132];
   
-  local_224 = *DAT_00055510;
-  uStack_220 = DAT_00055510[1];
-  local_21c = (undefined)DAT_00055510[2];
-  local_218 = *DAT_00055534;
-  uStack_214 = DAT_00055534[1];
-  uStack_210 = DAT_00055534[2];
-  local_22c = *DAT_00055530;
-  local_20c = (undefined)DAT_00055534[3];
-  local_228 = (undefined)DAT_00055530[1];
+  builtin_strncpy(local_224,"00000001",8);
+  local_224[8] = 0;
+  builtin_strncpy(local_218,"AUTHENTICATE",0xc);
+  local_218[0xc] = 0;
+  local_22c = 0x68747561;
+  local_228 = 0;
   local_234 = 0;
   local_230 = 0;
-  sVar6 = strlen(param_2);
-  if (sVar6 != 0) {
+  sVar4 = strlen(param_2);
+  if (sVar4 != 0) {
     if (*param_2 == '=') {
       return 0x3d;
     }
-    iVar7 = Curl_base64_decode(param_2,&local_234,&local_230);
-    if (iVar7 != 0) {
-      return iVar7;
+    iVar5 = Curl_base64_decode(param_2,&local_234,&local_230);
+    if (iVar5 != 0) {
+      return iVar5;
     }
     if (local_234 != 0) {
-      iVar7 = sasl_digest_get_key_value(local_234,DAT_00055514,acStack_168,0x40,0x22);
-      if (iVar7 != 0) {
-        iVar7 = sasl_digest_get_key_value(local_234,DAT_0005551c,local_a8,0x80,0x22);
-        if (iVar7 == 0) {
+      iVar5 = sasl_digest_get_key_value(local_234,"nonce=\"",acStack_168,0x40,0x22);
+      if (iVar5 != 0) {
+        iVar5 = sasl_digest_get_key_value(local_234,"realm=\"",local_a8,0x80,0x22);
+        if (iVar5 == 0) {
           local_a8[0] = '\0';
         }
-        iVar7 = sasl_digest_get_key_value(local_234,DAT_00055520,acStack_128,0x40,0x2c);
-        if ((iVar7 != 0) &&
-           (iVar7 = sasl_digest_get_key_value(local_234,DAT_00055524,auStack_e8,0x40,0x22),
-           ppcVar3 = DAT_00055518, iVar7 != 0)) {
-          (**DAT_00055518)(local_234);
-          iVar7 = strcmp(acStack_128,DAT_00055528);
-          if (iVar7 != 0) {
+        iVar5 = sasl_digest_get_key_value(local_234,"algorithm=",acStack_128,0x40,0x2c);
+        if ((iVar5 != 0) &&
+           (iVar5 = sasl_digest_get_key_value(local_234,"qop=\"",auStack_e8,0x40,0x22), iVar5 != 0))
+        {
+          (*Curl_cfree)(local_234);
+          iVar5 = strcmp(acStack_128,"md5-sess");
+          if (iVar5 != 0) {
             return 0x3d;
           }
-          pcVar8 = (char *)(**DAT_0005552c)(auStack_e8);
-          if (pcVar8 == (char *)0x0) {
+          pcVar6 = (char *)(*Curl_cstrdup)(auStack_e8);
+          if (pcVar6 == (char *)0x0) {
             return 0x1b;
           }
-          cVar2 = *pcVar8;
-          pcVar14 = pcVar8;
+          cVar2 = *pcVar6;
+          pcVar12 = pcVar6;
           while (cVar2 == ',') {
-            pcVar14 = pcVar14 + 1;
-            cVar2 = *pcVar14;
+            pcVar12 = pcVar12 + 1;
+            cVar2 = *pcVar12;
           }
-          pcVar5 = pcVar14 + 1;
+          pcVar3 = pcVar12 + 1;
           if (cVar2 != '\0') {
             do {
-              pcVar15 = pcVar5;
-              if (*pcVar15 == '\0') goto LAB_0005554c;
-              pcVar5 = pcVar15 + 1;
-            } while (*pcVar15 != ',');
-            *pcVar15 = '\0';
-            pcVar15 = pcVar15 + 1;
+              pcVar13 = pcVar3;
+              if (*pcVar13 == '\0') goto LAB_0005554c;
+              pcVar3 = pcVar13 + 1;
+            } while (*pcVar13 != ',');
+            *pcVar13 = '\0';
+            pcVar13 = pcVar13 + 1;
 LAB_0005554c:
-            if (pcVar14 != (char *)0x0) {
-              iVar7 = 0;
-              iVar9 = Curl_raw_equal(pcVar14,DAT_00055808);
+            if (pcVar12 != (char *)0x0) {
+              iVar5 = 0;
+              iVar7 = Curl_raw_equal(pcVar12,&DAT_0013a788);
               while( true ) {
-                if (iVar9 == 0) {
-                  iVar9 = Curl_raw_equal(pcVar14,DAT_000558b0);
-                  if (iVar9 == 0) {
-                    Curl_raw_equal(pcVar14,DAT_000558b4);
+                if (iVar7 == 0) {
+                  iVar7 = Curl_raw_equal(pcVar12,"auth-int");
+                  if (iVar7 == 0) {
+                    Curl_raw_equal(pcVar12,"auth-conf");
                   }
                 }
                 else {
-                  iVar7 = 1;
+                  iVar5 = 1;
                 }
-                cVar2 = *pcVar15;
-                pcVar14 = pcVar15;
+                cVar2 = *pcVar13;
+                pcVar12 = pcVar13;
                 while (cVar2 == ',') {
-                  pcVar14 = pcVar14 + 1;
-                  cVar2 = *pcVar14;
+                  pcVar12 = pcVar12 + 1;
+                  cVar2 = *pcVar12;
                 }
                 if (cVar2 == '\0') break;
-                pcVar5 = pcVar14 + 1;
+                pcVar3 = pcVar12 + 1;
                 do {
-                  pcVar15 = pcVar5;
-                  if (*pcVar15 == '\0') goto LAB_00055858;
-                  pcVar5 = pcVar15 + 1;
-                } while (*pcVar15 != ',');
-                *pcVar15 = '\0';
-                pcVar15 = pcVar15 + 1;
+                  pcVar13 = pcVar3;
+                  if (*pcVar13 == '\0') goto LAB_00055858;
+                  pcVar3 = pcVar13 + 1;
+                } while (*pcVar13 != ',');
+                *pcVar13 = '\0';
+                pcVar13 = pcVar13 + 1;
 LAB_00055858:
-                if (pcVar14 == (char *)0x0) break;
-                iVar9 = Curl_raw_equal(pcVar14,DAT_000558ac);
+                if (pcVar12 == (char *)0x0) break;
+                iVar7 = Curl_raw_equal(pcVar12,&DAT_0013a788);
               }
-              (**ppcVar3)(pcVar8);
-              if (-1 < iVar7 << 0x1f) {
+              (*Curl_cfree)(pcVar6);
+              if (-1 < iVar5 << 0x1f) {
                 return 0x3d;
               }
+              uVar8 = Curl_rand(param_1);
+              uVar9 = Curl_rand(param_1);
               uVar10 = Curl_rand(param_1);
               uVar11 = Curl_rand(param_1);
-              uVar12 = Curl_rand(param_1);
-              uVar13 = Curl_rand(param_1);
-              curl_msnprintf(acStack_18c,0x21,DAT_0005580c,uVar10,uVar11,uVar12,uVar13);
-              iVar7 = Curl_MD5_init(DAT_00055810);
-              if (iVar7 != 0) {
+              curl_msnprintf(acStack_18c,0x21,"%08x%08x%08x%08x",uVar8,uVar9,uVar10,uVar11);
+              iVar5 = Curl_MD5_init(&Curl_DIGEST_MD5);
+              if (iVar5 != 0) {
                 strlen(param_3);
-                uVar10 = curlx_uztoui();
-                Curl_MD5_update(iVar7,param_3,uVar10);
-                Curl_MD5_update(iVar7,DAT_00055814,1);
+                uVar8 = curlx_uztoui();
+                Curl_MD5_update(iVar5,param_3,uVar8);
+                Curl_MD5_update(iVar5,":",1);
                 strlen(local_a8);
-                uVar10 = curlx_uztoui();
-                Curl_MD5_update(iVar7,local_a8,uVar10);
-                Curl_MD5_update(iVar7,DAT_00055814,1);
+                uVar8 = curlx_uztoui();
+                Curl_MD5_update(iVar5,local_a8,uVar8);
+                Curl_MD5_update(iVar5,":",1);
                 strlen(param_4);
-                uVar10 = curlx_uztoui();
-                Curl_MD5_update(iVar7,param_4,uVar10);
-                Curl_MD5_final(iVar7,local_208);
-                iVar7 = Curl_MD5_init(DAT_00055810);
-                if (iVar7 != 0) {
-                  Curl_MD5_update(iVar7,local_208,0x10);
-                  iVar9 = 0;
-                  Curl_MD5_update(iVar7,DAT_00055814,1);
+                uVar8 = curlx_uztoui();
+                Curl_MD5_update(iVar5,param_4,uVar8);
+                Curl_MD5_final(iVar5,local_208);
+                iVar5 = Curl_MD5_init(&Curl_DIGEST_MD5);
+                if (iVar5 != 0) {
+                  Curl_MD5_update(iVar5,local_208,0x10);
+                  iVar7 = 0;
+                  Curl_MD5_update(iVar5,":",1);
                   strlen(acStack_168);
-                  uVar10 = curlx_uztoui();
-                  Curl_MD5_update(iVar7,acStack_168,uVar10);
-                  Curl_MD5_update(iVar7,DAT_00055814,1);
+                  uVar8 = curlx_uztoui();
+                  Curl_MD5_update(iVar5,acStack_168,uVar8);
+                  Curl_MD5_update(iVar5,":",1);
                   strlen(acStack_18c);
-                  uVar10 = curlx_uztoui();
-                  Curl_MD5_update(iVar7,acStack_18c,uVar10);
-                  Curl_MD5_final(iVar7,local_208);
+                  uVar8 = curlx_uztoui();
+                  Curl_MD5_update(iVar5,acStack_18c,uVar8);
+                  Curl_MD5_final(iVar5,local_208);
                   do {
-                    iVar7 = iVar9 * 2;
-                    puVar1 = local_208 + iVar9;
-                    iVar9 = iVar9 + 1;
-                    curl_msnprintf(auStack_1f8 + iVar7,3,DAT_00055818,*puVar1);
-                  } while (iVar9 != 0x10);
-                  pcVar8 = (char *)Curl_sasl_build_spn(param_5,local_a8);
-                  if (pcVar8 != (char *)0x0) {
-                    iVar7 = Curl_MD5_init(DAT_00055810);
-                    if (iVar7 != 0) {
-                      iVar9 = 0;
-                      strlen((char *)&local_218);
-                      uVar10 = curlx_uztoui();
-                      Curl_MD5_update(iVar7,&local_218,uVar10);
-                      Curl_MD5_update(iVar7,DAT_00055814,1);
-                      strlen(pcVar8);
-                      uVar10 = curlx_uztoui();
-                      Curl_MD5_update(iVar7,pcVar8,uVar10);
-                      Curl_MD5_final(iVar7,local_208);
+                    iVar5 = iVar7 * 2;
+                    puVar1 = local_208 + iVar7;
+                    iVar7 = iVar7 + 1;
+                    curl_msnprintf(auStack_1f8 + iVar5,3,&DAT_001397a8,*puVar1);
+                  } while (iVar7 != 0x10);
+                  pcVar6 = (char *)Curl_sasl_build_spn(param_5,local_a8);
+                  if (pcVar6 != (char *)0x0) {
+                    iVar5 = Curl_MD5_init(&Curl_DIGEST_MD5);
+                    if (iVar5 != 0) {
+                      iVar7 = 0;
+                      strlen(local_218);
+                      uVar8 = curlx_uztoui();
+                      Curl_MD5_update(iVar5,local_218,uVar8);
+                      Curl_MD5_update(iVar5,":",1);
+                      strlen(pcVar6);
+                      uVar8 = curlx_uztoui();
+                      Curl_MD5_update(iVar5,pcVar6,uVar8);
+                      Curl_MD5_final(iVar5,local_208);
                       do {
-                        iVar7 = iVar9 * 2;
-                        puVar1 = local_208 + iVar9;
-                        iVar9 = iVar9 + 1;
-                        curl_msnprintf(auStack_1d4 + iVar7,3,DAT_00055818,*puVar1);
-                      } while (iVar9 != 0x10);
-                      iVar7 = Curl_MD5_init(DAT_00055810);
-                      if (iVar7 != 0) {
-                        Curl_MD5_update(iVar7,auStack_1f8,0x20);
-                        iVar9 = 0;
-                        Curl_MD5_update(iVar7,DAT_00055814,1);
+                        iVar5 = iVar7 * 2;
+                        puVar1 = local_208 + iVar7;
+                        iVar7 = iVar7 + 1;
+                        curl_msnprintf(auStack_1d4 + iVar5,3,&DAT_001397a8,*puVar1);
+                      } while (iVar7 != 0x10);
+                      iVar5 = Curl_MD5_init(&Curl_DIGEST_MD5);
+                      if (iVar5 != 0) {
+                        Curl_MD5_update(iVar5,auStack_1f8,0x20);
+                        iVar7 = 0;
+                        Curl_MD5_update(iVar5,":",1);
                         strlen(acStack_168);
-                        uVar10 = curlx_uztoui();
-                        Curl_MD5_update(iVar7,acStack_168,uVar10);
-                        Curl_MD5_update(iVar7,DAT_00055814,1);
-                        strlen((char *)&local_224);
-                        uVar10 = curlx_uztoui();
-                        Curl_MD5_update(iVar7,&local_224,uVar10);
-                        Curl_MD5_update(iVar7,DAT_00055814,1);
+                        uVar8 = curlx_uztoui();
+                        Curl_MD5_update(iVar5,acStack_168,uVar8);
+                        Curl_MD5_update(iVar5,":",1);
+                        strlen(local_224);
+                        uVar8 = curlx_uztoui();
+                        Curl_MD5_update(iVar5,local_224,uVar8);
+                        Curl_MD5_update(iVar5,":",1);
                         strlen(acStack_18c);
-                        uVar10 = curlx_uztoui();
-                        Curl_MD5_update(iVar7,acStack_18c,uVar10);
-                        Curl_MD5_update(iVar7,DAT_00055814,1);
+                        uVar8 = curlx_uztoui();
+                        Curl_MD5_update(iVar5,acStack_18c,uVar8);
+                        Curl_MD5_update(iVar5,":",1);
                         strlen((char *)&local_22c);
-                        uVar10 = curlx_uztoui();
-                        Curl_MD5_update(iVar7,&local_22c,uVar10);
-                        Curl_MD5_update(iVar7,DAT_00055814,1);
-                        Curl_MD5_update(iVar7,auStack_1d4,0x20);
-                        Curl_MD5_final(iVar7,local_208);
+                        uVar8 = curlx_uztoui();
+                        Curl_MD5_update(iVar5,&local_22c,uVar8);
+                        Curl_MD5_update(iVar5,":",1);
+                        Curl_MD5_update(iVar5,auStack_1d4,0x20);
+                        Curl_MD5_final(iVar5,local_208);
                         do {
-                          iVar7 = iVar9 * 2;
-                          puVar1 = local_208 + iVar9;
-                          iVar9 = iVar9 + 1;
-                          curl_msnprintf(auStack_1b0 + iVar7,3,DAT_00055818,*puVar1);
-                        } while (iVar9 != 0x10);
-                        iVar7 = curl_maprintf(DAT_0005581c,param_3,local_a8,acStack_168,acStack_18c,
-                                              &local_224,pcVar8,auStack_1b0,&local_22c);
-                        ppcVar4 = DAT_00055820;
-                        (**ppcVar3)(pcVar8);
-                        if (iVar7 == 0) {
+                          iVar5 = iVar7 * 2;
+                          puVar1 = local_208 + iVar7;
+                          iVar7 = iVar7 + 1;
+                          curl_msnprintf(auStack_1b0 + iVar5,3,&DAT_001397a8,*puVar1);
+                        } while (iVar7 != 0x10);
+                        iVar5 = curl_maprintf("username=\"%s\",realm=\"%s\",nonce=\"%s\",cnonce=\"%s\",nc=\"%s\",digest-uri=\"%s\",response=%s,qop=%s"
+                                              ,param_3,local_a8,acStack_168,acStack_18c,local_224,
+                                              pcVar6,auStack_1b0,&local_22c);
+                        (*Curl_cfree)(pcVar6);
+                        if (iVar5 == 0) {
                           return 0x1b;
                         }
-                        iVar9 = Curl_base64_encode(param_1,iVar7,0,param_6,param_7);
-                        (**ppcVar4)(iVar7);
-                        return iVar9;
+                        iVar7 = Curl_base64_encode(param_1,iVar5,0,param_6,param_7);
+                        (*Curl_cfree)(iVar5);
+                        return iVar7;
                       }
                     }
-                    (**ppcVar3)(pcVar8);
+                    (*Curl_cfree)(pcVar6);
                   }
                 }
               }
               return 0x1b;
             }
           }
-          (**ppcVar3)(pcVar8);
+          (*Curl_cfree)(pcVar6);
           return 0x3d;
         }
       }
-      (**DAT_00055518)(local_234);
+      (*Curl_cfree)(local_234);
       return 0x3d;
     }
   }

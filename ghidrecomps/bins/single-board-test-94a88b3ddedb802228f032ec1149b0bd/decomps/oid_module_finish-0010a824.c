@@ -4,23 +4,23 @@
 void oid_module_finish(void)
 
 {
-  int *piVar1;
+  _LHASH *p_Var1;
   _LHASH *lh;
   
-  piVar1 = DAT_0008c214;
-  if (*DAT_0008c214 == 0) {
-    lh = (_LHASH *)DAT_0008c214[1];
-    if (lh != (_LHASH *)0x0) {
-      lh->down_load = 0;
-      lh_doall(lh,DAT_0008c218);
-      lh_doall((_LHASH *)piVar1[1],DAT_0008c21c);
-      lh_doall((_LHASH *)piVar1[1],DAT_0008c220);
-      lh_free((_LHASH *)piVar1[1]);
-      piVar1[1] = 0;
+  lh = added;
+  p_Var1 = obj_cleanup_defer;
+  if (obj_cleanup_defer == (_LHASH *)0x0) {
+    if (added != (_LHASH *)0x0) {
+      added->down_load = 0;
+      lh_doall(lh,(LHASH_DOALL_FN_TYPE)0x8bfad);
+      lh_doall(added,(LHASH_DOALL_FN_TYPE)0x8bfbd);
+      lh_doall(added,(LHASH_DOALL_FN_TYPE)0x8bfc9);
+      lh_free(added);
+      added = p_Var1;
     }
     return;
   }
-  *DAT_0008c214 = 2;
+  obj_cleanup_defer = (_LHASH *)0x2;
   return;
 }
 

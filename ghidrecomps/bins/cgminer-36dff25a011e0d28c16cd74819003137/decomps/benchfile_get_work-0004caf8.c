@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 _Bool benchfile_get_work(work *work)
 
 {
@@ -24,15 +22,8 @@ _Bool benchfile_get_work(work *work)
   bVar1 = false;
   if (benchfile_in == (FILE *)0x0) {
     if (opt_benchfile == (char *)0x0) {
-      tmp42._0_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._0_4_;
-      tmp42._4_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._4_4_;
-      tmp42._8_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._8_4_;
-      tmp42._12_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._12_4_;
-      tmp42._16_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._16_4_;
-      tmp42._20_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._20_4_;
-      tmp42._24_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._24_4_;
-      tmp42._28_4_ = s_BENCHFILE_Invalid_benchfile_NULL_000a3834._28_4_;
-      tmp42[32] = (char)ram0x000a3854;
+      builtin_strncpy(tmp42,"BENCHFILE Invalid benchfile NULL",0x20);
+      tmp42[0x20] = '\0';
       _applog(3,tmp42,true);
       _quit(1);
     }

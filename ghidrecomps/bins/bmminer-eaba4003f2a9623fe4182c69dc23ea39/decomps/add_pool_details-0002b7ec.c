@@ -5,7 +5,7 @@ _Bool add_pool_details(pool *pool,_Bool live,char *url,char *user,char *pass)
   char *pcVar1;
   size_t sVar2;
   size_t sVar3;
-  undefined uVar4;
+  undefined1 uVar4;
   uint size;
   char *user_local;
   char *url_local;
@@ -27,7 +27,7 @@ _Bool add_pool_details(pool *pool,_Bool live,char *url,char *user,char *pass)
   pool->idle = true;
   pool->blocking = !live;
   enable_pool(pool);
-  pthread_create(&pool->test_thread,(pthread_attr_t *)0x0,test_pool_thread + 1,pool);
+  pthread_create(&pool->test_thread,(pthread_attr_t *)0x0,(__start_routine *)0x2b655,pool);
   if (live) {
     uVar4 = 1;
   }

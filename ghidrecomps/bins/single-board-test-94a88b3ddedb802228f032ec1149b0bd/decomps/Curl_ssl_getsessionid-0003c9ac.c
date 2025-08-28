@@ -2,70 +2,69 @@
 undefined4 Curl_ssl_getsessionid(int *param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
-  char cVar1;
-  uint uVar2;
-  int iVar3;
-  int *piVar4;
-  undefined4 uVar5;
-  int iVar6;
-  uint uVar7;
-  int iVar8;
-  int *piVar9;
-  int iVar10;
+  uint uVar1;
+  int iVar2;
+  int *piVar3;
+  undefined4 uVar4;
+  int iVar5;
+  uint uVar6;
+  int iVar7;
+  int *piVar8;
+  int iVar9;
   
-  cVar1 = *(char *)(param_1 + 0x77);
-  uVar5 = 1;
-  iVar8 = *param_1;
+  iVar5 = param_1[0x77];
+  uVar4 = 1;
+  iVar7 = *param_1;
   *param_2 = 0;
-  if (cVar1 != '\0') {
-    piVar4 = *(int **)(iVar8 + 0x48);
-    if ((piVar4 == (int *)0x0) || (-1 < *piVar4 << 0x1b)) {
-      piVar9 = (int *)(iVar8 + 0x85b4);
+  if ((char)iVar5 != '\0') {
+    piVar3 = *(int **)(iVar7 + 0x48);
+    if ((piVar3 == (int *)0x0) || (-1 < *piVar3 << 0x1b)) {
+      piVar8 = (int *)(iVar7 + 0x85b4);
     }
     else {
-      Curl_share_lock(iVar8,4,2);
-      piVar4 = *(int **)(iVar8 + 0x48);
-      piVar9 = piVar4 + 0xe;
+      Curl_share_lock(iVar7,4,2);
+      piVar3 = *(int **)(iVar7 + 0x48);
+      piVar8 = piVar3 + 0xe;
     }
-    uVar2 = *(uint *)(iVar8 + 0x2a8);
-    if (uVar2 != 0) {
-      iVar6 = 0;
-      uVar7 = 0;
+    uVar1 = *(uint *)(iVar7 + 0x2a8);
+    if (uVar1 != 0) {
+      iVar5 = 0;
+      uVar6 = 0;
       do {
-        iVar10 = *(int *)(iVar8 + 0x85b0) + iVar6;
-        if (*(int *)(iVar10 + 4) != 0) {
-          iVar3 = Curl_raw_equal(param_1[0x26],*(undefined4 *)(*(int *)(iVar8 + 0x85b0) + iVar6));
-          if (((iVar3 != 0) && (param_1[0x2d] == *(int *)(iVar10 + 0x10))) &&
-             (iVar3 = Curl_ssl_config_matches(param_1 + 0x6a,iVar10 + 0x14), iVar3 != 0)) {
-            iVar6 = *piVar9;
-            uVar5 = *(undefined4 *)(iVar10 + 4);
-            *piVar9 = iVar6 + 1;
-            *(int *)(iVar10 + 0xc) = iVar6 + 1;
-            *param_2 = uVar5;
+        iVar9 = *(int *)(iVar7 + 0x85b0) + iVar5;
+        if (*(int *)(iVar9 + 4) != 0) {
+          iVar2 = Curl_raw_equal(param_1[0x26],*(undefined4 *)(*(int *)(iVar7 + 0x85b0) + iVar5));
+          if (((iVar2 != 0) && (param_1[0x2d] == *(int *)(iVar9 + 0x10))) &&
+             (iVar2 = Curl_ssl_config_matches(param_1 + 0x6a,iVar9 + 0x14), iVar2 != 0)) {
+            iVar5 = *piVar8;
+            uVar4 = *(undefined4 *)(iVar9 + 4);
+            *piVar8 = iVar5 + 1;
+            *(int *)(iVar9 + 0xc) = iVar5 + 1;
+            *param_2 = uVar4;
             if (param_3 == (undefined4 *)0x0) {
-              piVar4 = *(int **)(iVar8 + 0x48);
-              uVar5 = 0;
+              piVar3 = *(int **)(iVar7 + 0x48);
+              uVar4 = 0;
             }
             else {
-              uVar5 = 0;
-              piVar4 = *(int **)(iVar8 + 0x48);
-              *param_3 = *(undefined4 *)(iVar10 + 8);
+              uVar4 = 0;
+              piVar3 = *(int **)(iVar7 + 0x48);
+              *param_3 = *(undefined4 *)(iVar9 + 8);
             }
             goto LAB_0003ca5e;
           }
-          uVar2 = *(uint *)(iVar8 + 0x2a8);
+          uVar1 = *(uint *)(iVar7 + 0x2a8);
         }
-        uVar7 = uVar7 + 1;
-        iVar6 = iVar6 + 0x58;
-      } while (uVar7 < uVar2);
-      piVar4 = *(int **)(iVar8 + 0x48);
+        uVar6 = uVar6 + 1;
+        iVar5 = iVar5 + 0x58;
+      } while (uVar6 < uVar1);
+      piVar3 = *(int **)(iVar7 + 0x48);
     }
-    uVar5 = 1;
+    uVar4 = 1;
 LAB_0003ca5e:
-    if ((piVar4 != (int *)0x0) && (*piVar4 << 0x1b < 0)) {
-      Curl_share_unlock(iVar8,4);
+    if ((piVar3 != (int *)0x0) && (*piVar3 << 0x1b < 0)) {
+      Curl_share_unlock(iVar7,4);
     }
   }
-  return uVar5;
+  return uVar4;
 }
 

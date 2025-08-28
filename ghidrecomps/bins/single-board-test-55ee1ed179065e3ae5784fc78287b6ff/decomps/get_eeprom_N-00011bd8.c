@@ -1,9 +1,9 @@
 
-bool get_eeprom_N(undefined param_1,undefined4 param_2)
+bool get_eeprom_N(undefined1 param_1,undefined4 param_2)
 
 {
   int iVar1;
-  undefined local_11 [5];
+  undefined1 local_11 [5];
   undefined4 local_c;
   
   local_c = 0;

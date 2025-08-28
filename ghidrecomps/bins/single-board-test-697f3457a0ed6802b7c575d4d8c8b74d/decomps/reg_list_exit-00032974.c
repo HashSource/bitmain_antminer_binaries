@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void reg_list_exit(void)
 
@@ -9,7 +9,7 @@ void reg_list_exit(void)
   pthread_cancel(rs.p_reg_list);
   pthread_join(rs.p_reg_list,(void **)0x0);
   free(rs.reg_list_items);
-  pthread_mutex_destroy(DAT_000329cc);
+  pthread_mutex_destroy((pthread_mutex_t *)&rs.reg_list_mutex);
   return;
 }
 

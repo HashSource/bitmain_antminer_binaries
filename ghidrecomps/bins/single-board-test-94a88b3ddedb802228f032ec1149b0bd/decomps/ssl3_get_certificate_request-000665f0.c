@@ -37,7 +37,7 @@ LAB_00066782:
     if (*(int *)(iVar3 + 0x340) == 0xd) {
       if ((*param_1 < 0x301) || (-1 < *(int *)(*(int *)(iVar3 + 0x344) + 0x10) << 0x1d)) {
         pbVar9 = (byte *)param_1[0x10];
-        st = sk_new(DAT_00066914);
+        st = sk_new((cmp *)0x659e5);
         if (st != (_STACK *)0x0) {
           iVar3 = param_1[0x26];
           __src = pbVar9 + 1;
@@ -53,7 +53,7 @@ LAB_00066782:
           }
           else {
             uVar8 = 9;
-            pvVar2 = CRYPTO_malloc(uVar6,DAT_00066910,0x82d);
+            pvVar2 = CRYPTO_malloc(uVar6,"s3_clnt.c",0x82d);
             iVar5 = param_1[0x26];
             *(void **)(iVar3 + 0x11c) = pvVar2;
             memcpy(*(void **)(iVar5 + 0x11c),__src,uVar6);
@@ -74,7 +74,7 @@ LAB_000666aa:
             uVar6 = (uint)CONCAT11(__src[*pbVar9],pbVar4[1]);
             if (pbVar1 < pbVar10 + (uVar6 - (int)pbVar9) + 2) {
               ssl3_send_alert(param_1,2,0x32);
-              ERR_put_error(0x14,0x87,0x92,DAT_00066910,0x83e);
+              ERR_put_error(0x14,0x87,0x92,"s3_clnt.c",0x83e);
               goto LAB_000667b8;
             }
             iVar3 = param_1[0x26];
@@ -97,7 +97,7 @@ LAB_000666aa:
             if (((int)(uVar6 << 0x1f) < 0) ||
                (iVar3 = tls1_save_sigalgs(param_1,pbVar10,uVar6), iVar3 == 0)) {
               ssl3_send_alert(param_1,2,0x32);
-              ERR_put_error(0x14,0x87,0x168,DAT_00066910,0x849);
+              ERR_put_error(0x14,0x87,0x168,"s3_clnt.c",0x849);
               goto LAB_000667b8;
             }
             iVar3 = tls1_process_sigalgs(param_1);
@@ -106,17 +106,17 @@ LAB_000666aa:
               ssl3_send_alert(param_1,2,0x50);
               iVar3 = 0x84e;
 LAB_0006675a:
-              ERR_put_error(0x14,0x87,0x41,DAT_00066910,iVar3);
+              ERR_put_error(0x14,0x87,0x41,"s3_clnt.c",iVar3);
               goto LAB_000667b8;
             }
           }
           uVar6 = (uint)CONCAT11(*pbVar4,pbVar4[1]);
           if (pbVar4 + uVar6 + (2 - (int)pbVar9) != pbVar1) {
             ssl3_send_alert(param_1,2,0x32);
-            ERR_put_error(0x14,0x87,0x9f,DAT_00066910,0x861);
+            ERR_put_error(0x14,0x87,0x9f,"s3_clnt.c",0x861);
 LAB_000667b8:
             param_1[0xd] = 5;
-            sk_pop_free(st,DAT_00066918);
+            sk_pop_free(st,(func *)0xb7acd);
             return (byte *)0x0;
           }
           if (uVar6 != 0) {
@@ -129,13 +129,13 @@ LAB_000667b8:
               if (data == (X509_NAME *)0x0) {
                 if (param_1[0x40] << 2 < 0) goto LAB_0006682c;
                 ssl3_send_alert(param_1,2,0x32);
-                ERR_put_error(0x14,0x87,0xd,DAT_00066960,0x877);
+                ERR_put_error(0x14,0x87,0xd,"s3_clnt.c",0x877);
                 goto LAB_000667b8;
               }
               pbVar1 = pbVar9 + 2;
               if (pbVar9 != local_2c[0]) {
                 ssl3_send_alert(param_1,2,0x32);
-                ERR_put_error(0x14,0x87,0x83,DAT_00066910,0x87f);
+                ERR_put_error(0x14,0x87,0x83,"s3_clnt.c",0x87f);
                 goto LAB_000667b8;
               }
               iVar3 = sk_push(st,data);
@@ -148,7 +148,7 @@ LAB_000667b8:
             }
             if (-1 < param_1[0x40] << 2) {
               ssl3_send_alert(param_1,2,0x32);
-              ERR_put_error(0x14,0x87,0x84,DAT_00066960,0x86b);
+              ERR_put_error(0x14,0x87,0x84,"s3_clnt.c",0x86b);
               goto LAB_000667b8;
             }
 LAB_0006682c:
@@ -159,22 +159,22 @@ LAB_00066830:
           *(uint *)(iVar3 + 0x35c) = uVar8;
           *(undefined4 *)(iVar3 + 0x358) = 1;
           if (*(_STACK **)(iVar3 + 0x36c) != (_STACK *)0x0) {
-            sk_pop_free(*(_STACK **)(iVar3 + 0x36c),DAT_00066918);
+            sk_pop_free(*(_STACK **)(iVar3 + 0x36c),(func *)0xb7acd);
             iVar3 = param_1[0x16];
           }
           *(_STACK **)(iVar3 + 0x36c) = st;
           goto LAB_00066782;
         }
-        ERR_put_error(0x14,0x87,0x41,DAT_00066910,0x821);
+        ERR_put_error(0x14,0x87,0x41,"s3_clnt.c",0x821);
       }
       else {
         ssl3_send_alert(param_1,2,10);
-        ERR_put_error(0x14,0x87,0xe8,DAT_00066910,0x819);
+        ERR_put_error(0x14,0x87,0xe8,"s3_clnt.c",0x819);
       }
     }
     else {
       ssl3_send_alert(param_1,2,10);
-      ERR_put_error(0x14,0x87,0x106,DAT_00066910,0x810);
+      ERR_put_error(0x14,0x87,0x106,"s3_clnt.c",0x810);
     }
 LAB_0006664e:
     pbVar1 = (byte *)0x0;

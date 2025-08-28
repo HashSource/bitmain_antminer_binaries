@@ -5,7 +5,7 @@ int BN_bntest_rand(BIGNUM *rnd,int bits,int top,int bottom)
   int iVar1;
   
   if ((bits < 0) || (bits == 1 && 0 < top)) {
-    ERR_put_error(3,0x7f,0x76,DAT_000f24e8,0x7d);
+    ERR_put_error(3,0x7f,0x76,"bn_rand.c",0x7d);
     iVar1 = 0;
   }
   else if (bits == 0) {

@@ -4,8 +4,11 @@ void * receive_func(byte *param_1)
 {
   byte bVar1;
   byte bVar2;
-  void *pvVar3;
-  int iVar4;
+  int iVar3;
+  void *extraout_r3;
+  void *extraout_r3_00;
+  void *extraout_r3_01;
+  void *extraout_r3_02;
   uint local_48;
   uint local_44;
   void *local_40;
@@ -40,28 +43,25 @@ void * receive_func(byte *param_1)
     local_20 = 10;
   }
   local_24 = param_1;
-  pvVar3 = malloc(local_20 * 200);
-  local_38 = pvVar3;
-  if (pvVar3 == (void *)0x0) {
+  local_38 = malloc(local_20 * 200);
+  if (local_38 == (void *)0x0) {
     printf("%s, malloc buffer error!\n","receive_func");
-    local_38 = pvVar3;
+    local_38 = extraout_r3;
   }
   else {
-    pvVar3 = malloc(local_20 * 100);
-    local_3c = pvVar3;
-    if (pvVar3 == (void *)0x0) {
+    local_3c = malloc(local_20 * 100);
+    if (local_3c == (void *)0x0) {
       printf("%s, malloc buffer error!\n","receive_func");
       free(local_38);
-      local_38 = pvVar3;
+      local_38 = extraout_r3_00;
     }
     else {
-      pvVar3 = malloc(local_20);
-      local_40 = pvVar3;
-      if (pvVar3 == (void *)0x0) {
+      local_40 = malloc(local_20);
+      if (local_40 == (void *)0x0) {
         printf("%s, malloc buffer error!\n","receive_func");
         free(local_3c);
         free(local_38);
-        local_38 = pvVar3;
+        local_38 = extraout_r3_01;
       }
       else {
         local_34 = local_20 * 100;
@@ -75,29 +75,29 @@ void * receive_func(byte *param_1)
           usleep(300);
           local_14 = uart_receive(local_25,local_38,local_20);
           for (local_1c = 0; local_1c < local_14; local_1c = local_1c + 1) {
-            *(undefined *)((int)local_3c + local_44) = *(undefined *)((int)local_38 + local_1c);
+            *(undefined1 *)((int)local_3c + local_44) = *(undefined1 *)((int)local_38 + local_1c);
             add_point(&local_44,local_34);
           }
           if (local_48 != local_44) {
             if (local_48 < local_44) {
-              iVar4 = -local_48;
+              iVar3 = -local_48;
             }
             else {
-              iVar4 = local_20 * 100 - local_48;
+              iVar3 = local_20 * 100 - local_48;
             }
-            local_14 = local_44 + iVar4;
+            local_14 = local_44 + iVar3;
             while (local_20 <= local_14) {
               if ((*(char *)((int)local_3c + local_48) == -0x56) &&
-                 (iVar4 = use_point_add_1(local_48,local_34),
-                 *(char *)((int)local_3c + iVar4) == 'U')) {
+                 (iVar3 = use_point_add_1(local_48,local_34),
+                 *(char *)((int)local_3c + iVar3) == 'U')) {
                 for (local_1c = 0; local_1c < local_20; local_1c = local_1c + 1) {
-                  *(undefined *)((int)local_40 + local_1c) =
-                       *(undefined *)((int)local_3c + local_48);
+                  *(undefined1 *)((int)local_40 + local_1c) =
+                       *(undefined1 *)((int)local_3c + local_48);
                   add_point(&local_48,local_34);
                 }
                 local_14 = local_14 - local_20;
-                iVar4 = is_nonce_or_reg_value(*(undefined *)((int)local_40 + (local_20 - 1)));
-                if (iVar4 == 0) {
+                iVar3 = is_nonce_or_reg_value(*(undefined1 *)((int)local_40 + (local_20 - 1)));
+                if (iVar3 == 0) {
                   local_30 = check_register_value(local_25,(int)local_40 + 2);
                   if (local_30 == -1) {
                     local_18 = local_18 + 1;
@@ -113,16 +113,16 @@ void * receive_func(byte *param_1)
                 local_1c = 0;
                 while ((local_1c < local_20 - 1 &&
                        ((*(char *)((int)local_3c + local_48) != -0x56 ||
-                        (iVar4 = use_point_add_1(local_48,local_34),
-                        *(char *)((int)local_3c + iVar4) != 'U'))))) {
+                        (iVar3 = use_point_add_1(local_48,local_34),
+                        *(char *)((int)local_3c + iVar3) != 'U'))))) {
                   add_point(&local_48,local_34);
-                  iVar4 = use_point_sub_1(local_48,local_34);
-                  bVar1 = *(byte *)((int)local_3c + iVar4);
+                  iVar3 = use_point_sub_1(local_48,local_34);
+                  bVar1 = *(byte *)((int)local_3c + iVar3);
                   bVar2 = *(byte *)((int)local_3c + local_48);
-                  iVar4 = use_point_add_1(local_48,local_34);
+                  iVar3 = use_point_add_1(local_48,local_34);
                   printf("%s: Headers are not corret! Header0 = 0x%02x, Header1 = 0x%02x, Header2 = 0x%02x rp = %d\n"
                          ,"receive_func",(uint)bVar1,(uint)bVar2,
-                         (uint)*(byte *)((int)local_3c + iVar4),local_48);
+                         (uint)*(byte *)((int)local_3c + iVar3),local_48);
                   local_1c = local_1c + 1;
                 }
                 local_14 = local_14 - local_1c;
@@ -138,6 +138,7 @@ void * receive_func(byte *param_1)
         }
         if (local_38 != (void *)0x0) {
           free(local_38);
+          local_38 = extraout_r3_02;
         }
       }
     }

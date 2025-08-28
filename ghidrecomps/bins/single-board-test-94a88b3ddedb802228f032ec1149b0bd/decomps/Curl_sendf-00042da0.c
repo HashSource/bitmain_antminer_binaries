@@ -37,7 +37,7 @@ int Curl_sendf(undefined4 param_1,int *param_2,undefined4 param_3,undefined4 par
       sVar1 = sVar1 - local_38;
     } while (bVar5);
 LAB_00042e1c:
-    (**DAT_00042e30)(__s);
+    (*Curl_cfree)(__s);
   }
   return iVar4;
 }

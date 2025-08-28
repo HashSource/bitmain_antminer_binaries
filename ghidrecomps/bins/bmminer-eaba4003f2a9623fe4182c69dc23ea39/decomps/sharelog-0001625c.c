@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void sharelog(char *disposition,work *work)
 
 {
@@ -44,33 +42,15 @@ void sharelog(char *disposition,work *work)
         if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 3)) {
           return;
         }
-        tmp42[0] = s_sharelog_printf_error_00071178[0];
-        tmp42[1] = s_sharelog_printf_error_00071178[1];
-        tmp42[2] = s_sharelog_printf_error_00071178[2];
-        tmp42[3] = s_sharelog_printf_error_00071178[3];
-        tmp42[4] = s_sharelog_printf_error_00071178[4];
-        tmp42[5] = s_sharelog_printf_error_00071178[5];
-        tmp42[6] = s_sharelog_printf_error_00071178[6];
-        tmp42[7] = s_sharelog_printf_error_00071178[7];
-        tmp42[8] = s_sharelog_printf_error_00071178[8];
-        tmp42[9] = s_sharelog_printf_error_00071178[9];
-        tmp42[10] = s_sharelog_printf_error_00071178[10];
-        tmp42[11] = s_sharelog_printf_error_00071178[11];
-        tmp42[12] = s_sharelog_printf_error_00071178[12];
-        tmp42[13] = s_sharelog_printf_error_00071178[13];
-        tmp42[14] = s_sharelog_printf_error_00071178[14];
-        tmp42[15] = s_sharelog_printf_error_00071178[15];
-        tmp42[16] = s_sharelog_printf_error_00071178[16];
-        tmp42[17] = s_sharelog_printf_error_00071178[17];
-        tmp42[18] = s_sharelog_printf_error_00071178[18];
-        tmp42[19] = s_sharelog_printf_error_00071178[19];
-        tmp42._20_2_ = (undefined2)ram0x0007118c;
+        builtin_strncpy(tmp42,"sharelog printf erro",0x14);
+        tmp42[0x14] = 'r';
+        tmp42[0x15] = '\0';
         _applog(3,tmp42,false);
         return;
       }
     }
     else {
-      s[1023] = '\0';
+      s[0x3ff] = '\0';
     }
     _mutex_lock(&sharelog_lock,"cgminer.c","sharelog",0x289);
     sVar2 = fwrite(s,sVar2,1,(FILE *)sharelog_file);
@@ -78,27 +58,9 @@ void sharelog(char *disposition,work *work)
     _mutex_unlock(&sharelog_lock,"cgminer.c","sharelog",0x28c);
     if ((sVar2 != 1) &&
        (((use_syslog != false || (opt_log_output != false)) || (2 < opt_log_level)))) {
-      tmp42[0] = s_sharelog_fwrite_error_00071190[0];
-      tmp42[1] = s_sharelog_fwrite_error_00071190[1];
-      tmp42[2] = s_sharelog_fwrite_error_00071190[2];
-      tmp42[3] = s_sharelog_fwrite_error_00071190[3];
-      tmp42[4] = s_sharelog_fwrite_error_00071190[4];
-      tmp42[5] = s_sharelog_fwrite_error_00071190[5];
-      tmp42[6] = s_sharelog_fwrite_error_00071190[6];
-      tmp42[7] = s_sharelog_fwrite_error_00071190[7];
-      tmp42[8] = s_sharelog_fwrite_error_00071190[8];
-      tmp42[9] = s_sharelog_fwrite_error_00071190[9];
-      tmp42[10] = s_sharelog_fwrite_error_00071190[10];
-      tmp42[11] = s_sharelog_fwrite_error_00071190[11];
-      tmp42[12] = s_sharelog_fwrite_error_00071190[12];
-      tmp42[13] = s_sharelog_fwrite_error_00071190[13];
-      tmp42[14] = s_sharelog_fwrite_error_00071190[14];
-      tmp42[15] = s_sharelog_fwrite_error_00071190[15];
-      tmp42[16] = s_sharelog_fwrite_error_00071190[16];
-      tmp42[17] = s_sharelog_fwrite_error_00071190[17];
-      tmp42[18] = s_sharelog_fwrite_error_00071190[18];
-      tmp42[19] = s_sharelog_fwrite_error_00071190[19];
-      tmp42._20_2_ = (undefined2)ram0x000711a4;
+      builtin_strncpy(tmp42,"sharelog fwrite erro",0x14);
+      tmp42[0x14] = 'r';
+      tmp42[0x15] = '\0';
       _applog(3,tmp42,false);
     }
   }

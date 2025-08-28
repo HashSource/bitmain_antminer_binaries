@@ -4,10 +4,12 @@ int EVP_PKEY_verify_init(EVP_PKEY_CTX *ctx)
 {
   int iVar1;
   code *pcVar2;
+  undefined4 extraout_r3;
+  undefined4 uVar3;
   
   if (((ctx == (EVP_PKEY_CTX *)0x0) || (iVar1 = *(int *)ctx, iVar1 == 0)) ||
      (*(int *)(iVar1 + 0x30) == 0)) {
-    ERR_put_error(6,0x8f,0x96,DAT_000b4058,0x7a);
+    ERR_put_error(6,0x8f,0x96,"pmeth_fn.c",0x7a);
     iVar1 = -2;
   }
   else {
@@ -18,11 +20,12 @@ int EVP_PKEY_verify_init(EVP_PKEY_CTX *ctx)
     }
     else {
       iVar1 = (*pcVar2)();
+      uVar3 = extraout_r3;
       if (iVar1 < 1) {
-        pcVar2 = (code *)0x0;
+        uVar3 = 0;
       }
       if (iVar1 < 1) {
-        *(code **)(ctx + 0x10) = pcVar2;
+        *(undefined4 *)(ctx + 0x10) = uVar3;
       }
     }
   }

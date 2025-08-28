@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable vol_value:int[r0:4] conflicts with parameter, skipped. */
 
 int getVoltageLimitedFromHashrate(int hashrate_GHz)
 

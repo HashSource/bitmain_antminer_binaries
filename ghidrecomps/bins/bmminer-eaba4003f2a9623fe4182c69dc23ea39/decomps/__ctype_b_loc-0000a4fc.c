@@ -6,9 +6,7 @@ ushort ** __ctype_b_loc(void)
 {
   ushort **ppuVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a504. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  ppuVar1 = (ushort **)(*(code *)PTR_LAB_00085368)();
+  ppuVar1 = (ushort **)(*(code *)(undefined *)0x0)();
   return ppuVar1;
 }
 

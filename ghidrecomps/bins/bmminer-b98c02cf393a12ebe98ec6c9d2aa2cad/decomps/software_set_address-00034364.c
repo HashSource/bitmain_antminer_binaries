@@ -12,12 +12,12 @@ void software_set_address(void)
   
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-    snprintf(acStack_820,0x800,"--- %s\n",DAT_00034464);
+    snprintf(acStack_820,0x800,"--- %s\n","software_set_address");
     _applog(7,acStack_820,0);
   }
   iVar3 = dev;
   uVar4 = 0;
-  *(undefined *)(dev + 0x542d) = 3;
+  *(undefined1 *)(dev + 0x542d) = 3;
   while( true ) {
     if ((*(int *)(iVar3 + (uVar4 + 2) * 4) == 1) && (*(char *)(iVar3 + uVar4 + 0x53ec) != '\0')) {
       uVar5 = uVar4 & 0xff;
@@ -34,7 +34,7 @@ void software_set_address(void)
         set_address(uVar5,0,cVar2);
         cVar2 = *(char *)(dev + 0x542d) + cVar2;
         cgsleep_ms(0x1e);
-        uVar1 = __aeabi_idiv(0x100,*(undefined *)(dev + 0x542d));
+        uVar1 = __aeabi_idiv(0x100,*(undefined1 *)(dev + 0x542d));
       } while (uVar6 < uVar1);
     }
     iVar3 = dev;

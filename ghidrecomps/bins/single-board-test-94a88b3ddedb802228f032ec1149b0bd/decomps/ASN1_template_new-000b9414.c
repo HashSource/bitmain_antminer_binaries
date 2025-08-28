@@ -15,7 +15,7 @@ int ASN1_template_new(ASN1_VALUE **pval,ASN1_TEMPLATE *tt)
       }
       p_Var2 = sk_new_null();
       if (p_Var2 == (_STACK *)0x0) {
-        ERR_put_error(0xd,0x85,0x41,DAT_000b9484,0x115);
+        ERR_put_error(0xd,0x85,0x41,"tasn_new.c",0x115);
         iVar1 = 0;
       }
       else {

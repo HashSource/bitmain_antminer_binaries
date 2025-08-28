@@ -14,7 +14,7 @@ int ASN1_item_i2d(ASN1_VALUE *val,uchar **out,ASN1_ITEM *it)
   else {
     num = ASN1_item_ex_i2d_constprop_0(&local_20,it,0);
     if (0 < num) {
-      puVar1 = (uchar *)CRYPTO_malloc(num,DAT_000ba560,0x6d);
+      puVar1 = (uchar *)CRYPTO_malloc(num,"tasn_enc.c",0x6d);
       if (puVar1 == (uchar *)0x0) {
         num = -1;
       }

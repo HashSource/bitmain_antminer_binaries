@@ -74,12 +74,12 @@ void freq_tuning_parameter_dump(freq_tuning_info *freq_info)
         pFVar1 = fopen(log_file,"a+");
         if (pFVar1 != (FILE *)0x0) {
           if (send_work_num[chain] == 0) {
+            dVar7 = 0.0;
             uVar2 = 0;
-            dVar7 = DAT_00013688;
           }
           else {
             uVar2 = send_work_num[chain];
-            dVar7 = (double)(longlong)valid_nonce_num[chain] / (double)(ulonglong)uVar2;
+            dVar7 = (double)(longlong)valid_nonce_num[chain] / (double)uVar2;
           }
           fprintf(pFVar1,"%-30s : %f\n","nonce_return_rate",uVar2,dVar7);
         }

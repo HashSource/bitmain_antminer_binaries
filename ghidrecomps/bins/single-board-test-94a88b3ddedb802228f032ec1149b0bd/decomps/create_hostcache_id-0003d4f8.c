@@ -7,7 +7,7 @@ byte * create_hostcache_id(undefined4 param_1,undefined4 param_2)
   uint uVar3;
   byte *pbVar4;
   
-  pbVar1 = (byte *)curl_maprintf(DAT_0003d530,param_1,param_2);
+  pbVar1 = (byte *)curl_maprintf("%s:%d",param_1,param_2);
   if ((pbVar1 != (byte *)0x0) && (uVar3 = (uint)*pbVar1, uVar3 != 0 && uVar3 != 0x3a)) {
     pbVar4 = pbVar1 + -1;
     do {

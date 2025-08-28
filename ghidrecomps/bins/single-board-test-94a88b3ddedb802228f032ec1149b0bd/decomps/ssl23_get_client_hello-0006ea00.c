@@ -14,7 +14,6 @@ int ssl23_get_client_hello(SSL *param_1)
   _func_3291 *p_Var10;
   byte *pbVar11;
   size_t __n;
-  undefined4 *__s2;
   size_t __n_00;
   uint uVar12;
   uint uVar13;
@@ -36,15 +35,15 @@ int ssl23_get_client_hello(SSL *param_1)
     if (iVar14 != 0xb) {
       return iVar14;
     }
-    __s2 = (undefined4 *)param_1->packet;
-    local_34 = *__s2;
-    uStack_30 = __s2[1];
-    local_2a = *(byte *)((int)__s2 + 10);
-    local_2c = *(undefined2 *)(__s2 + 2);
+    pbVar11 = param_1->packet;
+    local_34 = *(undefined4 *)pbVar11;
+    uStack_30 = *(undefined4 *)(pbVar11 + 4);
+    local_2a = pbVar11[10];
+    local_2c = *(undefined2 *)(pbVar11 + 8);
     __n_00 = 0xb;
-    if (((int)((uint)*(byte *)__s2 << 0x18) < 0) && (*(byte *)((int)__s2 + 2) == 1)) {
-      if (*(byte *)((int)__s2 + 3) == 0) {
-        if ((*(byte *)(__s2 + 1) == 2) && ((param_1->references & 0x1000000U) == 0)) {
+    if (((int)((uint)*pbVar11 << 0x18) < 0) && (pbVar11[2] == 1)) {
+      if (pbVar11[3] == 0) {
+        if ((pbVar11[4] == 2) && ((param_1->references & 0x1000000U) == 0)) {
           iVar14 = -1;
           iVar8 = param_1->version;
           __n = 0xb;
@@ -53,8 +52,8 @@ int ssl23_get_client_hello(SSL *param_1)
           goto LAB_0006ea24;
         }
       }
-      else if (*(byte *)((int)__s2 + 3) == 3) {
-        bVar7 = *(byte *)(__s2 + 1);
+      else if (pbVar11[3] == 3) {
+        bVar7 = pbVar11[4];
         if (bVar7 == 0) {
           uVar12 = param_1->references;
 LAB_0006ef1a:
@@ -114,39 +113,38 @@ LAB_0006ed42:
       iVar8 = param_1->version;
       goto LAB_0006ea24;
     }
-    if (((*(byte *)__s2 != 0x16) || (*(byte *)((int)__s2 + 1) != 3)) ||
-       (*(byte *)((int)__s2 + 5) != 1)) {
+    if (((*pbVar11 != 0x16) || (pbVar11[1] != 3)) || (pbVar11[5] != 1)) {
 LAB_0006ecf2:
-      iVar14 = strncmp(DAT_0006ed5c,(char *)__s2,4);
-      if (((iVar14 == 0) || (iVar14 = strncmp(DAT_0006ed60,(char *)__s2,5), iVar14 == 0)) ||
-         ((iVar14 = strncmp(DAT_0006ed64,(char *)__s2,5), iVar14 == 0 ||
-          (iVar14 = strncmp(DAT_0006ed68,(char *)__s2,4), iVar14 == 0)))) {
-        ERR_put_error(0x14,0x76,0x9c,DAT_0006eff0,0x18a);
+      iVar14 = strncmp("GET ",(char *)pbVar11,4);
+      if (((iVar14 == 0) || (iVar14 = strncmp("POST ",(char *)pbVar11,5), iVar14 == 0)) ||
+         ((iVar14 = strncmp("HEAD ",(char *)pbVar11,5), iVar14 == 0 ||
+          (iVar14 = strncmp("PUT ",(char *)pbVar11,4), iVar14 == 0)))) {
+        ERR_put_error(0x14,0x76,0x9c,"s23_srvr.c",0x18a);
         return -1;
       }
-      iVar14 = strncmp(DAT_0006ed6c,(char *)__s2,7);
+      iVar14 = strncmp("CONNECT",(char *)pbVar11,7);
       if (iVar14 == 0) {
-        ERR_put_error(0x14,0x76,0x9b,DAT_0006eff0,0x18d);
+        ERR_put_error(0x14,0x76,0x9b,"s23_srvr.c",0x18d);
         return -1;
       }
       goto LAB_0006ed42;
     }
-    if (*(byte *)((int)__s2 + 3) == 0) {
-      if (*(byte *)(__s2 + 1) < 5) {
+    if (pbVar11[3] == 0) {
+      if (pbVar11[4] < 5) {
 LAB_0006ef2c:
-        ERR_put_error(0x14,0x76,0x12a,DAT_0006eff0,0x15c);
+        ERR_put_error(0x14,0x76,0x12a,"s23_srvr.c",0x15c);
         return -1;
       }
-      bVar7 = *(byte *)((int)__s2 + 9);
+      bVar7 = pbVar11[9];
       if (bVar7 < 3) goto LAB_0006ecf2;
-      if (*(byte *)(__s2 + 1) < 6) goto LAB_0006ef2c;
+      if (pbVar11[4] < 6) goto LAB_0006ef2c;
     }
     else {
-      bVar7 = *(byte *)((int)__s2 + 9);
+      bVar7 = pbVar11[9];
       if (bVar7 < 3) goto LAB_0006ecf2;
     }
     if (bVar7 < 4) {
-      bVar7 = *(byte *)((int)__s2 + 10);
+      bVar7 = pbVar11[10];
       if (bVar7 == 0) {
         if (param_1->references << 6 < 0) {
           if (param_1->references << 5 < 0) goto LAB_0006ed42;
@@ -193,12 +191,12 @@ LAB_0006ee76:
     iVar14 = -2;
 LAB_0006ea24:
     if (0x303 < iVar8) {
-      OpenSSLDie(DAT_0006ed54,0x193,DAT_0006ed58);
+      OpenSSLDie("s23_srvr.c",0x193,"s->version <= TLS_MAX_VERSION");
       iVar8 = param_1->version;
     }
   }
   if ((iVar8 < 0x303) && ((*(uint *)(param_1->cert + 0x38) & 0x30000) != 0)) {
-    ERR_put_error(0x14,0x76,0x17b,DAT_0006ed54,0x197);
+    ERR_put_error(0x14,0x76,0x17b,"s23_srvr.c",0x197);
     return -1;
   }
   if (param_1->state == 0x2211) {
@@ -206,13 +204,13 @@ LAB_0006ea24:
     bVar7 = pbVar11[4];
     __n_00 = (uint)pbVar11[1] | (*pbVar11 & 0x7f) << 8;
     if (0x1000 < __n_00) {
-      ERR_put_error(0x14,0x76,0xd6,DAT_0006eff0,0x1bc);
+      ERR_put_error(0x14,0x76,0xd6,"s23_srvr.c",0x1bc);
       return -1;
     }
     if (__n_00 < 9) {
       iVar14 = 0x1c1;
 LAB_0006edda:
-      ERR_put_error(0x14,0x76,0xd5,DAT_0006eff0,iVar14);
+      ERR_put_error(0x14,0x76,0xd5,"s23_srvr.c",iVar14);
       return -1;
     }
     iVar14 = ssl23_read_bytes(param_1,__n_00 + 2);
@@ -368,7 +366,7 @@ LAB_0006edda:
     param_1->handshake_func = (_func_3291 *)param_1->method->ssl_accept;
 LAB_0006ea4a:
     if (2 < uVar12) {
-      ERR_put_error(0x14,0x76,0xfc,DAT_0006eff0,0x280);
+      ERR_put_error(0x14,0x76,0xfc,"s23_srvr.c",0x280);
       return -1;
     }
     param_1->init_num = 0;
@@ -376,7 +374,7 @@ LAB_0006ea4a:
     return iVar14;
   }
 LAB_0006ed94:
-  ERR_put_error(0x14,0x76,0x102,DAT_0006eff0,0x25a);
+  ERR_put_error(0x14,0x76,0x102,"s23_srvr.c",0x25a);
   return -1;
 }
 

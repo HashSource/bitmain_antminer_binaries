@@ -22,22 +22,10 @@ ulonglong __subdf3(uint param_1,uint param_2,uint param_3,uint param_4)
   uVar8 = param_4 ^ 0x80000000;
   uVar11 = param_2 << 1;
   param_4 = param_4 << 1;
-  bVar14 = uVar11 == param_4 && param_1 == param_3;
-  if (uVar11 != param_4 || param_1 != param_3) {
-    bVar14 = (uVar11 | param_1) == 0;
-  }
-  if (!bVar14) {
-    bVar14 = (param_4 | param_3) == 0;
-  }
   iVar10 = (int)uVar11 >> 0x15;
-  if (!bVar14) {
-    bVar14 = iVar10 == -1;
-  }
   iVar1 = (int)param_4 >> 0x15;
-  if (!bVar14) {
-    bVar14 = iVar1 == -1;
-  }
-  if (bVar14) {
+  if ((((uVar11 == param_4 && param_1 == param_3 || uVar11 == 0 && param_1 == 0) ||
+       param_4 == 0 && param_3 == 0) || iVar10 == -1) || iVar1 == -1) {
     if (iVar10 == -1 || iVar1 == -1) {
       uVar11 = uVar8;
       uVar12 = param_3;
@@ -49,20 +37,21 @@ ulonglong __subdf3(uint param_1,uint param_2,uint param_3,uint param_4)
         param_3 = uVar12;
         uVar8 = uVar11;
       }
-      bVar14 = (uVar12 | uVar11 << 0xc) == 0;
-      if (bVar14) {
-        bVar14 = (param_3 | uVar8 << 0xc) == 0;
+      bVar14 = (uVar11 & 0xfffff) == 0;
+      bVar15 = uVar12 == 0 && bVar14;
+      if (uVar12 == 0 && bVar14) {
+        bVar15 = param_3 == 0 && (uVar8 & 0xfffff) == 0;
       }
-      if (bVar14) {
-        bVar14 = uVar11 == uVar8;
+      if (bVar15) {
+        bVar15 = uVar11 == uVar8;
       }
-      if (!bVar14) {
+      if (!bVar15) {
         uVar11 = uVar11 | 0x80000;
       }
       return CONCAT44(uVar11,uVar12);
     }
     if (uVar11 != param_4 || param_1 != param_3) {
-      if ((uVar11 | param_1) == 0) {
+      if (uVar11 == 0 && param_1 == 0) {
         param_1 = param_3;
         param_2 = uVar8;
       }

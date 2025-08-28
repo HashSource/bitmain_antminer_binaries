@@ -4,7 +4,7 @@
 void setbuf(FILE *__stream,char *__buf)
 
 {
-  (*(code *)PTR_setbuf_00047348)();
+  setbuf(__stream,__buf);
   return;
 }
 

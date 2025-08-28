@@ -1,5 +1,5 @@
 
-uint check_BM1725_asic_reg(byte param_1,undefined param_2,char param_3,undefined param_4)
+uint check_BM1725_asic_reg(byte param_1,undefined1 param_2,char param_3,undefined1 param_4)
 
 {
   uint uVar1;

@@ -17,11 +17,11 @@ void * mining_mode(void *args)
       usleep(100000);
       iVar1 = read_last_line(line,0x1000,1);
     } while (iVar1 == 0);
-    pthread_mutex_lock(DAT_0001590c);
-    mining_parse_job(line,g_work_info.target,0x20,DAT_00015918,0x100,DAT_00015914,0x8c,DAT_00015910)
-    ;
-    user_send_work((runtime_base_t *)args,DAT_00015914,0,0);
-    pthread_mutex_unlock(DAT_0001590c);
+    pthread_mutex_lock((pthread_mutex_t *)&g_work_info.work_info_mutex);
+    mining_parse_job(line,g_work_info.target,0x20,g_work_info.job_id,0x100,g_work_info.header,0x8c,
+                     &g_work_info.fixed_nonce_bytes);
+    user_send_work((runtime_base_t *)args,g_work_info.header,0,0);
+    pthread_mutex_unlock((pthread_mutex_t *)&g_work_info.work_info_mutex);
   } while( true );
 }
 

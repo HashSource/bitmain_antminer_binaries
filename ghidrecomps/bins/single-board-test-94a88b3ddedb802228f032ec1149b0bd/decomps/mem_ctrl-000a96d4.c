@@ -1,5 +1,5 @@
 
-size_t mem_ctrl(int param_1,int param_2,undefined4 param_3,BUF_MEM **param_4)
+size_t mem_ctrl(int param_1,int param_2,undefined4 param_3,undefined4 *param_4)
 
 {
   size_t sVar1;
@@ -14,8 +14,8 @@ size_t mem_ctrl(int param_1,int param_2,undefined4 param_3,BUF_MEM **param_4)
   if (param_2 < 0xb) {
     if (param_2 == 3) {
       sVar1 = a->length;
-      if (param_4 != (BUF_MEM **)0x0) {
-        *param_4 = (BUF_MEM *)a->data;
+      if (param_4 != (undefined4 *)0x0) {
+        *param_4 = a->data;
         return sVar1;
       }
       return sVar1;
@@ -68,7 +68,7 @@ size_t mem_ctrl(int param_1,int param_2,undefined4 param_3,BUF_MEM **param_4)
         BUF_MEM_free(a);
       }
       *(undefined4 *)(param_1 + 0x10) = param_3;
-      *(BUF_MEM ***)(param_1 + 0x20) = param_4;
+      *(undefined4 **)(param_1 + 0x20) = param_4;
       return 1;
     }
     if (param_2 < 0x73) {
@@ -78,7 +78,7 @@ size_t mem_ctrl(int param_1,int param_2,undefined4 param_3,BUF_MEM **param_4)
     }
     else {
       if (param_2 == 0x73) {
-        if (param_4 == (BUF_MEM **)0x0) {
+        if (param_4 == (undefined4 *)0x0) {
           return 1;
         }
         *param_4 = a;

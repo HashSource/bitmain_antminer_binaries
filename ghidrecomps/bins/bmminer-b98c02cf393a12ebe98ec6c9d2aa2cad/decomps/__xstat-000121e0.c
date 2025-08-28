@@ -6,7 +6,7 @@ int __xstat(int __ver,char *__filename,stat *__stat_buf)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR___xstat_0007cee8)();
+  iVar1 = __xstat(__ver,__filename,__stat_buf);
   return iVar1;
 }
 

@@ -15,9 +15,9 @@ undefined4 get_queued(int param_1)
     }
   }
   else {
-    _wr_lock_part_54_constprop_73(DAT_00023db4,0x2478);
+    _wr_lock_part_54_constprop_73("get_queued",0x2478);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_00023db4,0x247a);
+  _rw_unlock_part_40_constprop_79("get_queued",0x247a);
 }
 

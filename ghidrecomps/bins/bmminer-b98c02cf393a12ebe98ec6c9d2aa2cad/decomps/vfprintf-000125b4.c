@@ -6,7 +6,7 @@ int vfprintf(FILE *__s,char *__format,__gnuc_va_list __arg)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_vfprintf_0007d020)();
+  iVar1 = vfprintf(__s,__format,__arg);
   return iVar1;
 }
 

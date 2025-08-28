@@ -8,7 +8,7 @@ BIGNUM * EC_POINT_point2bn(EC_GROUP *param_1,EC_POINT *param_2,point_conversion_
   BIGNUM *pBVar1;
   
   len = EC_POINT_point2oct(param_1,param_2,form,(uchar *)0x0,0,param_5);
-  if ((len == 0) || (buf = (uchar *)CRYPTO_malloc(len,DAT_0012486c,0x47), buf == (uchar *)0x0)) {
+  if ((len == 0) || (buf = (uchar *)CRYPTO_malloc(len,"ec_print.c",0x47), buf == (uchar *)0x0)) {
     pBVar1 = (BIGNUM *)0x0;
   }
   else {

@@ -9,7 +9,7 @@ custom_ext_add(int param_1,int param_2,undefined4 *param_3,int param_4,undefined
   uint uVar4;
   int iVar5;
   int iVar6;
-  undefined *__dest;
+  undefined1 *__dest;
   int *piVar7;
   code *pcVar8;
   void *local_30;
@@ -20,7 +20,7 @@ custom_ext_add(int param_1,int param_2,undefined4 *param_3,int param_4,undefined
     piVar7 = (int *)(*(int *)(param_1 + 0x98) + 0x15c);
   }
   uVar3 = piVar7[1];
-  __dest = (undefined *)*param_3;
+  __dest = (undefined1 *)*param_3;
   if (uVar3 != 0) {
     uVar4 = 0;
     do {
@@ -46,7 +46,7 @@ LAB_00075374:
           }
           uVar2 = *(ushort *)(iVar5 + 2);
           if ((int)((uint)uVar2 << 0x1e) < 0) {
-            OpenSSLDie(DAT_00075438,0xa8,DAT_0007543c);
+            OpenSSLDie("t1_ext.c",0xa8,"!(meth->ext_flags & SSL_EXT_FLAG_SENT)");
             uVar2 = *(ushort *)(iVar5 + 2);
           }
           *(ushort *)(iVar5 + 2) = uVar2 | 2;

@@ -17,18 +17,17 @@ void singlesocket(int param_1,int param_2)
   int *local_54;
   int local_44;
   int local_40;
-  int local_3c;
-  int local_38 [5];
+  int local_3c [6];
   
   iVar9 = param_1 + 0x48;
   local_54 = &local_40;
-  local_3c = -1;
+  local_3c[0] = -1;
   uVar6 = 0;
-  local_38[0] = 0xffffffff;
-  local_38[1] = 0xffffffff;
-  local_38[2] = 0xffffffff;
-  local_38[3] = 0xffffffff;
-  uVar2 = multi_getsock_constprop_6(param_2,&local_3c);
+  local_3c[1] = 0xffffffff;
+  local_3c[2] = 0xffffffff;
+  local_3c[3] = 0xffffffff;
+  local_3c[4] = 0xffffffff;
+  uVar2 = multi_getsock_constprop_6(param_2,local_3c);
   do {
     uVar7 = 1 << (uVar6 & 0xff);
     uVar11 = 1 << (uVar6 + 0x10 & 0xff);
@@ -55,7 +54,7 @@ void singlesocket(int param_1,int param_2)
         piVar3[2] = local_44;
         iVar8 = Curl_hash_add(iVar9,&local_44,4,piVar3);
         if (iVar8 == 0) {
-          (**DAT_00039f64)(piVar3);
+          (*Curl_cfree)(piVar3);
           return;
         }
       }
@@ -77,8 +76,8 @@ LAB_00039dfe:
     do {
       iVar8 = *(int *)(iVar9 + 0x20);
       if (uVar6 != 0) {
-        if (local_3c != iVar8) {
-          piVar3 = &local_3c;
+        if (local_3c[0] != iVar8) {
+          piVar3 = local_3c;
           uVar2 = 0;
           do {
             uVar2 = uVar2 + 1;
@@ -108,12 +107,12 @@ LAB_00039e92:
           else if (*piVar3 == param_2) {
             iVar4 = Curl_recvpipe_head(param_2,iVar5);
             if (iVar4 == 0) {
-              *piVar3 = ***(int ***)(iVar5 + 0x25c);
+              *piVar3 = *(int *)**(int **)(iVar5 + 0x25c);
               bVar1 = false;
             }
             else {
               bVar1 = false;
-              *piVar3 = *(int *)(**(int ***)(iVar5 + 0x25c))[2];
+              *piVar3 = **(int **)(**(int **)(iVar5 + 0x25c) + 8);
             }
           }
           else {
@@ -125,10 +124,10 @@ LAB_00039e92:
           else if (*piVar3 == param_2) {
             iVar8 = Curl_sendpipe_head(param_2,iVar5);
             if (iVar8 == 0) {
-              *piVar3 = ***(int ***)(iVar5 + 600);
+              *piVar3 = *(int *)**(undefined4 **)(iVar5 + 600);
             }
             else {
-              *piVar3 = *(int *)(**(int ***)(iVar5 + 600))[2];
+              *piVar3 = *(int *)((int *)**(undefined4 **)(iVar5 + 600))[2];
             }
           }
         }
@@ -137,7 +136,7 @@ LAB_00039e92:
       iVar9 = iVar9 + 4;
     } while (iVar10 < *(int *)(param_2 + 0x34));
   }
-  memcpy((void *)(param_2 + 0x20),&local_3c,__n);
+  memcpy((void *)(param_2 + 0x20),local_3c,__n);
   *(uint *)(param_2 + 0x34) = uVar6;
   return;
 }

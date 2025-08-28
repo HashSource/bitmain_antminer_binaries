@@ -30,7 +30,7 @@ int PKCS7_RECIP_INFO_set(PKCS7_RECIP_INFO *p7i,X509 *x509)
   }
   pkey = X509_get_pubkey(x509);
   if (pkey == (EVP_PKEY *)0x0) {
-    ERR_put_error(0x21,0x82,0x96,DAT_000cf8fc,0x217);
+    ERR_put_error(0x21,0x82,0x96,"pk7_lib.c",0x217);
     return 0;
   }
   if ((pkey->ameth == (EVP_PKEY_ASN1_METHOD *)0x0) ||
@@ -42,16 +42,16 @@ int PKCS7_RECIP_INFO_set(PKCS7_RECIP_INFO *p7i,X509 *x509)
     if (iVar1 != -2) {
       if (0 < iVar1) {
         EVP_PKEY_free(pkey);
-        CRYPTO_add_lock(&x509->references,1,3,DAT_000cf8fc,0x229);
+        CRYPTO_add_lock(&x509->references,1,3,"pk7_lib.c",0x229);
         p7i->cert = x509;
         return 1;
       }
-      ERR_put_error(0x21,0x82,0x95,DAT_000cf8fc,0x223);
+      ERR_put_error(0x21,0x82,0x95,"pk7_lib.c",0x223);
       goto LAB_000cf8ca;
     }
     iVar1 = 0x21e;
   }
-  ERR_put_error(0x21,0x82,0x96,DAT_000cf8fc,iVar1);
+  ERR_put_error(0x21,0x82,0x96,"pk7_lib.c",iVar1);
 LAB_000cf8ca:
   EVP_PKEY_free(pkey);
   return 0;

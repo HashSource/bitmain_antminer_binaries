@@ -4,7 +4,7 @@ int GENERAL_NAME_set0_othername(GENERAL_NAME *gen,ASN1_OBJECT *oid,ASN1_TYPE *va
 {
   OTHERNAME *pOVar1;
   
-  pOVar1 = (OTHERNAME *)ASN1_item_new(DAT_000c898c);
+  pOVar1 = (OTHERNAME *)ASN1_item_new((ASN1_ITEM *)OTHERNAME_it);
   if (pOVar1 != (OTHERNAME *)0x0) {
     pOVar1->type_id = oid;
     pOVar1->value = value;

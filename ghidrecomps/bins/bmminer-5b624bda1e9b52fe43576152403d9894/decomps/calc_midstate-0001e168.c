@@ -4,7 +4,6 @@
 void calc_midstate(work *work)
 
 {
-  uint *src;
   uint uVar1;
   int iVar2;
   uchar data [64];
@@ -19,7 +18,7 @@ void calc_midstate(work *work)
   } while (iVar2 != 0x40);
   sha256_init(&ctx);
   sha256_update(&ctx,data,0x40);
-  _cg_memcpy(work->midstate,ctx.h,0x20,DAT_0001e1b0,DAT_0001e1ac,0x87d);
+  _cg_memcpy(work->midstate,ctx.h,0x20,"cgminer.c","calc_midstate",0x87d);
   return;
 }
 

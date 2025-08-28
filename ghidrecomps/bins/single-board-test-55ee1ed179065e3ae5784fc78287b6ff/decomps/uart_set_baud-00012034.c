@@ -1,9 +1,9 @@
 
-void uart_set_baud(undefined param_1,undefined4 param_2)
+void uart_set_baud(undefined1 param_1,undefined4 param_2)
 
 {
   undefined4 local_10;
-  undefined local_9;
+  undefined1 local_9;
   
   local_10 = param_2;
   local_9 = param_1;

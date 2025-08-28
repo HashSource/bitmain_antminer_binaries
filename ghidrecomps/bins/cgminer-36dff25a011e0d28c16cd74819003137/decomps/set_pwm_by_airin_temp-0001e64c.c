@@ -21,19 +21,19 @@ int set_pwm_by_airin_temp(int air_in_lowest_temp)
     else {
       _Var1 = is_T15();
       if (_Var1) {
-        pfan_speed_temp_arg = DAT_0001ea58;
+        pfan_speed_temp_arg = fan_speed_temp_arg[1];
       }
     }
   }
   else {
     _Var1 = is_S15();
     if (_Var1) {
-      pfan_speed_temp_arg = DAT_0001ea5c;
+      pfan_speed_temp_arg = fan_speed_temp_arg[2];
     }
     else {
       _Var1 = is_T15();
       if (_Var1) {
-        pfan_speed_temp_arg = DAT_0001ea60;
+        pfan_speed_temp_arg = fan_speed_temp_arg[3];
       }
     }
   }
@@ -41,24 +41,25 @@ int set_pwm_by_airin_temp(int air_in_lowest_temp)
     for (i = 0; i < 5; i = i + 1) {
       if (pfan_speed_temp_arg[i + 1].temp == 100) {
         pwm_percent = (int)((float)(longlong)(air_in_lowest_temp - pfan_speed_temp_arg[i].temp) *
-                            ((float)(longlong)
-                                    (pfan_speed_temp_arg[i].fan_speed -
-                                    pfan_speed_temp_arg[i + 0x1fffffff].fan_speed) /
-                            (float)(longlong)
-                                   (pfan_speed_temp_arg[i].temp -
-                                   pfan_speed_temp_arg[i + 0x1fffffff].temp)) +
+                            (float)((double)(longlong)
+                                            (pfan_speed_temp_arg[i].fan_speed -
+                                            pfan_speed_temp_arg[i + 0x1fffffff].fan_speed) /
+                                   (double)(longlong)
+                                           (pfan_speed_temp_arg[i].temp -
+                                           pfan_speed_temp_arg[i + 0x1fffffff].temp)) +
                            (float)(longlong)pfan_speed_temp_arg[i].fan_speed);
         break;
       }
       if ((pfan_speed_temp_arg[i].temp < air_in_lowest_temp) &&
          (air_in_lowest_temp <= pfan_speed_temp_arg[i + 1].temp)) {
         pwm_percent = (int)((float)(longlong)(air_in_lowest_temp - pfan_speed_temp_arg[i].temp) *
-                            ((float)(longlong)
-                                    (pfan_speed_temp_arg[i + 1].fan_speed -
-                                    pfan_speed_temp_arg[i].fan_speed) /
-                            (float)(longlong)
-                                   (pfan_speed_temp_arg[i + 1].temp - pfan_speed_temp_arg[i].temp))
-                           + (float)(longlong)pfan_speed_temp_arg[i].fan_speed);
+                            (float)((double)(longlong)
+                                            (pfan_speed_temp_arg[i + 1].fan_speed -
+                                            pfan_speed_temp_arg[i].fan_speed) /
+                                   (double)(longlong)
+                                           (pfan_speed_temp_arg[i + 1].temp -
+                                           pfan_speed_temp_arg[i].temp)) +
+                           (float)(longlong)pfan_speed_temp_arg[i].fan_speed);
         break;
       }
     }

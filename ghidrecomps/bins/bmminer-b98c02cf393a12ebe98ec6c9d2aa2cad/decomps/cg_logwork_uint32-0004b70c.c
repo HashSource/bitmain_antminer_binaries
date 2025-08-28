@@ -3,7 +3,7 @@ void cg_logwork_uint32(undefined4 param_1,undefined4 param_2)
 
 {
   undefined4 local_10;
-  undefined local_c;
+  undefined1 local_c;
   
   if (opt_logwork_path != 0) {
     local_c = 0;

@@ -1,12 +1,12 @@
 
-int do_buf_constprop_5(byte *param_1,int param_2,uint param_3,uint param_4,undefined4 param_5,
+int do_buf_constprop_5(byte *param_1,int param_2,uint param_3,byte param_4,undefined4 param_5,
                       undefined4 param_6)
 
 {
   int iVar1;
   int iVar2;
   byte *pbVar3;
-  uint uVar4;
+  byte bVar4;
   byte *str;
   uchar *puVar5;
   int iVar7;
@@ -23,10 +23,10 @@ int do_buf_constprop_5(byte *param_1,int param_2,uint param_3,uint param_4,undef
     str = param_1;
     do {
       if (param_1 == str) {
-        uVar4 = (param_4 & 1) << 5;
+        bVar4 = (param_4 & 1) << 5;
       }
       else {
-        uVar4 = 0;
+        bVar4 = 0;
       }
       switch(param_3 & 7) {
       case 0:
@@ -52,7 +52,7 @@ int do_buf_constprop_5(byte *param_1,int param_2,uint param_3,uint param_4,undef
       }
       if (pbVar3 == str) {
         if ((param_4 & 1) != 0) {
-          uVar4 = 0x40;
+          bVar4 = 0x40;
         }
         if ((param_3 & 8) == 0) goto LAB_000b5e20;
 LAB_000b5dc0:
@@ -61,7 +61,7 @@ LAB_000b5dc0:
           puVar6 = auStack_30;
           do {
             puVar5 = puVar6 + 1;
-            iVar2 = do_esc_char_constprop_6(*puVar6,uVar4 | param_4 & 0xff,param_5,param_6);
+            iVar2 = do_esc_char_constprop_6(*puVar6,bVar4 | param_4,param_5,param_6);
             iVar7 = iVar7 + iVar2;
             if (iVar2 < 0) {
               return -1;
@@ -73,7 +73,7 @@ LAB_000b5dc0:
       else {
         if ((param_3 & 8) != 0) goto LAB_000b5dc0;
 LAB_000b5e20:
-        iVar1 = do_esc_char_constprop_6(local_38[0],uVar4 | param_4 & 0xff,param_5,param_6);
+        iVar1 = do_esc_char_constprop_6(local_38[0],bVar4 | param_4,param_5,param_6);
         if (iVar1 < 0) {
 LAB_000b5df8:
           return -1;

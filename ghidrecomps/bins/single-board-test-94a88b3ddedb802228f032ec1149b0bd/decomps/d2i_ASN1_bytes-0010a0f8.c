@@ -77,7 +77,7 @@ LAB_0010a1e4:
     iVar3 = asn1_const_Finish(&local_4c);
     if (iVar3 == 0) {
 LAB_0010a2ac:
-      ERR_put_error(0xd,0x69,local_4c.error,DAT_0010a2e4,300);
+      ERR_put_error(0xd,0x69,local_4c.error,"a_bytes.c",300);
       if (local_5c != (ASN1_STRING *)0x0) {
         ASN1_STRING_free(local_5c);
       }
@@ -115,14 +115,14 @@ LAB_0010a2ac:
         CRYPTO_free(a_00->data);
       }
 LAB_0010a292:
-      __dest = (uchar *)CRYPTO_malloc((int)(local_68 + 1),DAT_0010a2e4,0xcd);
+      __dest = (uchar *)CRYPTO_malloc((int)(local_68 + 1),"a_bytes.c",0xcd);
       if (__dest == (uchar *)0x0) {
         iVar4 = 0x41;
 LAB_0010a266:
         if ((a == (ASN1_STRING **)0x0) || (*a != a_00)) {
           ASN1_STRING_free(a_00);
         }
-        ERR_put_error(0xd,0x8f,iVar4,DAT_0010a2e4,0xe9);
+        ERR_put_error(0xd,0x8f,iVar4,"a_bytes.c",0xe9);
         return (ASN1_STRING *)0x0;
       }
     }

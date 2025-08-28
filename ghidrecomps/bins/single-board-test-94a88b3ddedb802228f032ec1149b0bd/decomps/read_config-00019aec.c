@@ -55,7 +55,7 @@ LAB_0001ab3c:
       }
       cgpu[local_10 + 0x261] = 0;
       local_10 = local_10 + 1;
-      printf("workdataPathPrefix:%s\n",DAT_0001a044);
+      printf("workdataPathPrefix:%s\n",0x13ca2d4);
       goto LAB_0001ab3c;
     }
     local_c = strstr(&local_428,"DataCount=");

@@ -1,83 +1,81 @@
 
-int ** Curl_splay(int param_1,int param_2,int **param_3)
+int * Curl_splay(int param_1,int param_2,int *param_3)
 
 {
   int iVar1;
-  int **ppiVar2;
-  int **ppiVar3;
-  int **ppiVar4;
-  int *piVar5;
-  int **ppiVar6;
-  int **ppiVar7;
-  int **ppiVar8;
-  int *local_28;
-  int *local_24;
+  int *piVar2;
+  int *piVar3;
+  int *piVar4;
+  int iVar5;
+  int *piVar6;
+  int *piVar7;
+  int *piVar8;
+  int local_28;
+  int local_24;
   
-  if (param_3 == (int **)0x0) {
-    return (int **)0x0;
+  if (param_3 == (int *)0x0) {
+    return (int *)0x0;
   }
-  ppiVar7 = &local_28;
-  local_28 = (int *)0x0;
-  local_24 = (int *)0x0;
-  ppiVar8 = ppiVar7;
+  piVar7 = &local_28;
+  local_28 = 0;
+  local_24 = 0;
+  piVar8 = piVar7;
   do {
-    piVar5 = param_3[3];
-    iVar1 = (int)piVar5 - param_1;
-    ppiVar4 = param_3;
-    while ((int)piVar5 <= param_1) {
-      if (iVar1 < 0 == SBORROW4((int)piVar5,param_1)) {
-        if ((int)ppiVar4[4] <= param_2) {
-          if ((int)ppiVar4[4] < param_2) goto LAB_0003bd06;
+    iVar5 = param_3[3];
+    iVar1 = iVar5 - param_1;
+    piVar4 = param_3;
+    while (iVar5 <= param_1) {
+      if (iVar1 < 0 == SBORROW4(iVar5,param_1)) {
+        if (piVar4[4] <= param_2) {
+          if (piVar4[4] < param_2) goto LAB_0003bd06;
 LAB_0003bd76:
-          ppiVar3 = (int **)*ppiVar4;
-          ppiVar6 = ppiVar4;
+          piVar3 = (int *)*piVar4;
+          piVar6 = piVar4;
           goto LAB_0003bd60;
         }
         break;
       }
 LAB_0003bd06:
-      ppiVar6 = (int **)ppiVar4[1];
-      if (ppiVar6 == (int **)0x0) goto LAB_0003bd76;
-      ppiVar2 = ppiVar4;
-      if (((int)ppiVar6[3] <= param_1) &&
-         (((int)ppiVar6[3] < param_1 || ((int)ppiVar6[4] < param_2)))) {
-        piVar5 = *ppiVar6;
-        *ppiVar6 = (int *)ppiVar4;
-        ppiVar4[1] = piVar5;
-        ppiVar3 = ppiVar4;
-        ppiVar2 = ppiVar6;
-        if (ppiVar6[1] == (int *)0x0) goto LAB_0003bd60;
+      piVar6 = (int *)piVar4[1];
+      if (piVar6 == (int *)0x0) goto LAB_0003bd76;
+      piVar2 = piVar4;
+      if ((piVar6[3] <= param_1) && ((piVar6[3] < param_1 || (piVar6[4] < param_2)))) {
+        iVar1 = *piVar6;
+        *piVar6 = (int)piVar4;
+        piVar4[1] = iVar1;
+        piVar3 = piVar4;
+        piVar2 = piVar6;
+        if (piVar6[1] == 0) goto LAB_0003bd60;
       }
-      ppiVar7[1] = (int *)ppiVar2;
-      ppiVar4 = (int **)ppiVar2[1];
-      piVar5 = ppiVar4[3];
-      iVar1 = (int)piVar5 - param_1;
-      ppiVar7 = ppiVar2;
+      piVar7[1] = (int)piVar2;
+      piVar4 = (int *)piVar2[1];
+      iVar5 = piVar4[3];
+      iVar1 = iVar5 - param_1;
+      piVar7 = piVar2;
     }
-    ppiVar2 = (int **)*ppiVar4;
-    ppiVar3 = ppiVar2;
-    ppiVar6 = ppiVar4;
-    if (ppiVar2 == (int **)0x0) goto LAB_0003bd60;
-    if ((param_1 < (int)ppiVar2[3]) || ((param_1 <= (int)ppiVar2[3] && (param_2 < (int)ppiVar2[4])))
-       ) {
-      piVar5 = ppiVar2[1];
-      ppiVar2[1] = (int *)ppiVar4;
-      *ppiVar4 = piVar5;
-      ppiVar4 = ppiVar2;
-      if (*ppiVar2 == (int *)0x0) {
-        ppiVar3 = (int **)0x0;
-        ppiVar6 = ppiVar2;
+    piVar2 = (int *)*piVar4;
+    piVar3 = piVar2;
+    piVar6 = piVar4;
+    if (piVar2 == (int *)0x0) goto LAB_0003bd60;
+    if ((param_1 < piVar2[3]) || ((param_1 <= piVar2[3] && (param_2 < piVar2[4])))) {
+      iVar1 = piVar2[1];
+      piVar2[1] = (int)piVar4;
+      *piVar4 = iVar1;
+      piVar4 = piVar2;
+      if (*piVar2 == 0) {
+        piVar3 = (int *)0x0;
+        piVar6 = piVar2;
 LAB_0003bd60:
-        ppiVar7[1] = (int *)ppiVar3;
-        *ppiVar8 = ppiVar6[1];
-        *ppiVar6 = local_24;
-        ppiVar6[1] = local_28;
-        return ppiVar6;
+        piVar7[1] = (int)piVar3;
+        *piVar8 = piVar6[1];
+        *piVar6 = local_24;
+        piVar6[1] = local_28;
+        return piVar6;
       }
     }
-    *ppiVar8 = (int *)ppiVar4;
-    param_3 = (int **)*ppiVar4;
-    ppiVar8 = ppiVar4;
+    *piVar8 = (int)piVar4;
+    param_3 = (int *)*piVar4;
+    piVar8 = piVar4;
   } while( true );
 }
 

@@ -28,12 +28,12 @@ void print_CONFIG(void)
   printf("OpenCoreNum4 = %ud = 0x%x\n",conf._104_4_,conf._104_4_);
   printf("GetTempFrom:%d\n",conf._112_4_);
   printf("TempSel:%d\n",conf._116_4_);
-  printf("TempSensor1:%d\n",(uint)conf[120]);
-  printf("TempSensor2:%d\n",(uint)conf[121]);
-  printf("TempSensor3:%d\n",(uint)conf[122]);
-  printf("TempSensor4:%d\n",(uint)conf[123]);
-  printf("DefaultTempOffset:%d\n",(int)conf[124]);
-  printf("StartTemp:%d\n",(int)conf[152]);
+  printf("TempSensor1:%d\n",(uint)conf[0x78]);
+  printf("TempSensor2:%d\n",(uint)conf[0x79]);
+  printf("TempSensor3:%d\n",(uint)conf[0x7a]);
+  printf("TempSensor4:%d\n",(uint)conf[0x7b]);
+  printf("DefaultTempOffset:%d\n",(int)conf[0x7c]);
+  printf("StartTemp:%d\n",(int)conf[0x98]);
   printf("year:%04d\n",conf._156_4_);
   printf("month:%02d\n",conf._160_4_);
   printf("date:%02d\n",conf._164_4_);

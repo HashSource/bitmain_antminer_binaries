@@ -46,7 +46,7 @@ _Bool parse_version_rolling_mask(pool *pool,char *sret)
           if ((pjVar1 == (json_t *)0x0) || (pjVar1->type != JSON_TRUE)) {
             pool->support_ab = false;
             pool->version_num = 1;
-            goto out;
+            goto LAB_00040fd2;
           }
           if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
             snprintf(tmp42,0x800,"POOL %d support ab mode!",pool->pool_no);
@@ -71,7 +71,7 @@ _Bool parse_version_rolling_mask(pool *pool,char *sret)
       ret = true;
     }
   }
-out:
+LAB_00040fd2:
   json_decref(json);
   return ret;
 }

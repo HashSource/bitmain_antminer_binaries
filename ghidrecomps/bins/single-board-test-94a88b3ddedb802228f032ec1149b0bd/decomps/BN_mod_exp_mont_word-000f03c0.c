@@ -16,11 +16,11 @@ int BN_mod_exp_mont_word(BIGNUM *r,ulong a,BIGNUM *p,BIGNUM *m,BN_CTX *ctx,BN_MO
   BN_MONT_CTX *local_38;
   
   if (p->flags << 0x1d < 0) {
-    ERR_put_error(3,0x75,0x42,DAT_000f069c,0x492);
+    ERR_put_error(3,0x75,0x42,"bn_exp.c",0x492);
     return -1;
   }
   if ((m->top < 1) || (-1 < (int)(*m->d << 0x1f))) {
-    ERR_put_error(3,0x75,0x66,DAT_000f069c,0x49a);
+    ERR_put_error(3,0x75,0x66,"bn_exp.c",0x49a);
     return 0;
   }
   if (m->top == 1) {

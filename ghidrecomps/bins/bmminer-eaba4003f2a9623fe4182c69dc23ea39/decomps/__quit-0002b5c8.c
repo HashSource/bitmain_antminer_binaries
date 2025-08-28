@@ -7,7 +7,7 @@ void __quit(int status,_Bool clean)
   int status_local;
   pthread_t killall_t;
   
-  iVar1 = pthread_create(&killall_t,(pthread_attr_t *)0x0,killall_thread + 1,(void *)0x0);
+  iVar1 = pthread_create(&killall_t,(pthread_attr_t *)0x0,(__start_routine *)0x2b5a1,(void *)0x0);
   if (iVar1 != 0) {
                     /* WARNING: Subroutine does not return */
     exit(1);

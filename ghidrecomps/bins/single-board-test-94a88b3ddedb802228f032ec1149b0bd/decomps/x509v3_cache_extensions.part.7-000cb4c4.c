@@ -3,7 +3,6 @@ void x509v3_cache_extensions_part_7(X509 *param_1)
 
 {
   byte bVar1;
-  cmp *cmp;
   EVP_MD *type;
   long lVar2;
   BASIC_CONSTRAINTS *a;
@@ -19,7 +18,7 @@ void x509v3_cache_extensions_part_7(X509 *param_1)
   stack_st_GENERAL_NAME *psVar11;
   NAME_CONSTRAINTS *pNVar12;
   int iVar13;
-  DIST_POINT_NAME **ppDVar14;
+  int *piVar14;
   int *piVar15;
   int iVar16;
   X509_EXTENSION *ex;
@@ -28,9 +27,11 @@ void x509v3_cache_extensions_part_7(X509 *param_1)
   ulong uVar19;
   int iVar20;
   uint uVar21;
-  DIST_POINT_NAME *pDVar22;
-  bool bVar23;
-  ulong local_20;
+  uint *puVar22;
+  uint uVar23;
+  ulong extraout_r3;
+  bool bVar24;
+  int local_20;
   int local_1c;
   
   type = EVP_sha1();
@@ -111,7 +112,7 @@ LAB_000cb552:
   if (p_Var5 != (_STACK *)0x0) {
     local_20 = 0;
     param_1->ex_flags = param_1->ex_flags | 4;
-    while (iVar20 = sk_num(p_Var5), (int)local_20 < iVar20) {
+    while (iVar20 = sk_num(p_Var5), local_20 < iVar20) {
       pAVar6 = (ASN1_OBJECT *)sk_value(p_Var5,local_20);
       iVar20 = OBJ_obj2nid(pAVar6);
       if (iVar20 == 0x85) {
@@ -149,7 +150,7 @@ LAB_000cb552:
       }
       local_20 = local_20 + 1;
     }
-    sk_pop_free(p_Var5,DAT_000cb8c4);
+    sk_pop_free(p_Var5,(func *)0xb543d);
   }
   pAVar4 = (ASN1_BIT_STRING *)X509_get_ext_d2i(param_1,0x47,(int *)0x0,(int *)0x0);
   if (pAVar4 != (ASN1_BIT_STRING *)0x0) {
@@ -189,10 +190,10 @@ LAB_000cb552:
         do {
           iVar13 = sk_num(p_Var5);
           if (iVar13 <= iVar20) goto LAB_000cb896;
-          piVar15 = (int *)sk_value(p_Var5,iVar20);
+          piVar14 = (int *)sk_value(p_Var5,iVar20);
           iVar20 = iVar20 + 1;
-        } while (*piVar15 != 4);
-        pXVar9 = (X509_NAME *)piVar15[1];
+        } while (*piVar14 != 4);
+        pXVar9 = (X509_NAME *)piVar14[1];
         if (pXVar9 != (X509_NAME *)0x0) {
           pXVar10 = X509_get_issuer_name(param_1);
           iVar20 = X509_NAME_cmp(pXVar9,pXVar10);
@@ -207,52 +208,51 @@ LAB_000cb896:
 LAB_000cb6b2:
   psVar11 = (stack_st_GENERAL_NAME *)X509_get_ext_d2i(param_1,0x55,(int *)0x0,(int *)0x0);
   param_1->altname = psVar11;
-  pNVar12 = (NAME_CONSTRAINTS *)X509_get_ext_d2i(param_1,0x29a,(int *)&local_20,(int *)0x0);
+  pNVar12 = (NAME_CONSTRAINTS *)X509_get_ext_d2i(param_1,0x29a,&local_20,(int *)0x0);
   param_1->nc = pNVar12;
   if (pNVar12 == (NAME_CONSTRAINTS *)0x0) {
     uVar19 = local_20 + 1;
-    bVar23 = uVar19 != 0;
-    if (bVar23) {
+    bVar24 = uVar19 != 0;
+    if (bVar24) {
       uVar19 = param_1->ex_flags | 0x80;
     }
-    if (bVar23) {
+    if (bVar24) {
       param_1->ex_flags = uVar19;
     }
   }
   p_Var5 = (_STACK *)X509_get_ext_d2i(param_1,0x67,(int *)0x0,(int *)0x0);
   param_1->crldp = (stack_st_DIST_POINT *)p_Var5;
-  for (iVar20 = 0; iVar13 = sk_num(p_Var5), cmp = DAT_000cb8c8, iVar20 < iVar13; iVar20 = iVar20 + 1
-      ) {
-    ppDVar14 = (DIST_POINT_NAME **)sk_value(&param_1->crldp->stack,iVar20);
-    pDVar22 = ppDVar14[1];
-    if (pDVar22 == (DIST_POINT_NAME *)0x0) {
-      ppDVar14[3] = (DIST_POINT_NAME *)0x807f;
+  for (iVar20 = 0; iVar13 = sk_num(p_Var5), iVar20 < iVar13; iVar20 = iVar20 + 1) {
+    piVar14 = (int *)sk_value(&param_1->crldp->stack,iVar20);
+    puVar22 = (uint *)piVar14[1];
+    if (puVar22 == (uint *)0x0) {
+      piVar14[3] = 0x807f;
     }
     else {
-      uVar21 = pDVar22->type;
+      uVar21 = *puVar22;
       if ((int)uVar21 < 1) {
-        pDVar22 = ppDVar14[3];
+        uVar23 = piVar14[3];
       }
       else {
-        pXVar9 = pDVar22->dpname;
-        bVar23 = uVar21 != 1;
-        pDVar22 = (DIST_POINT_NAME *)(uint)*(byte *)&pXVar9->entries;
-        ppDVar14[3] = pDVar22;
-        if (bVar23) {
-          uVar21 = (uint)*(byte *)((int)&pXVar9->entries + 1);
+        pbVar18 = (byte *)puVar22[2];
+        bVar24 = uVar21 != 1;
+        uVar23 = (uint)*pbVar18;
+        piVar14[3] = uVar23;
+        if (bVar24) {
+          uVar21 = (uint)pbVar18[1];
         }
-        if (bVar23) {
-          pDVar22 = (DIST_POINT_NAME *)((uint)pDVar22 | uVar21 << 8);
+        if (bVar24) {
+          uVar23 = uVar23 | uVar21 << 8;
         }
       }
-      ppDVar14[3] = (DIST_POINT_NAME *)((uint)pDVar22 & 0x807f);
+      piVar14[3] = uVar23 & 0x807f;
     }
-    if ((*ppDVar14 != (DIST_POINT_NAME *)0x0) && ((*ppDVar14)->type == 1)) {
+    if (((int *)*piVar14 != (int *)0x0) && (*(int *)*piVar14 == 1)) {
       iVar13 = 0;
       do {
-        iVar16 = sk_num((_STACK *)ppDVar14[2]);
+        iVar16 = sk_num((_STACK *)piVar14[2]);
         if (iVar16 <= iVar13) goto LAB_000cb758;
-        piVar15 = (int *)sk_value((_STACK *)ppDVar14[2],iVar13);
+        piVar15 = (int *)sk_value((_STACK *)piVar14[2],iVar13);
         iVar13 = iVar13 + 1;
       } while (*piVar15 != 4);
       pXVar9 = (X509_NAME *)piVar15[1];
@@ -260,23 +260,23 @@ LAB_000cb6b2:
 LAB_000cb758:
         pXVar9 = X509_get_issuer_name(param_1);
       }
-      DIST_POINT_set_dpname(*ppDVar14,pXVar9);
+      DIST_POINT_set_dpname((DIST_POINT_NAME *)*piVar14,pXVar9);
     }
     p_Var5 = &param_1->crldp->stack;
   }
   local_20 = 0;
   do {
     iVar20 = X509_get_ext_count(param_1);
-    if (iVar20 <= (int)local_20) {
+    if (iVar20 <= local_20) {
       uVar21 = param_1->ex_flags;
 LAB_000cb7d0:
       param_1->ex_flags = uVar21 | 0x100;
       return;
     }
-    uVar19 = local_20;
     ex = X509_get_ext(param_1,local_20);
     pAVar6 = X509_EXTENSION_get_object(ex);
     iVar20 = OBJ_obj2nid(pAVar6);
+    uVar19 = extraout_r3;
     if (iVar20 == 0x359) {
       uVar19 = param_1->ex_flags | 0x1000;
     }
@@ -288,7 +288,8 @@ LAB_000cb7d0:
       pAVar6 = X509_EXTENSION_get_object(ex);
       local_1c = OBJ_obj2nid(pAVar6);
       if ((local_1c == 0) ||
-         (pvVar17 = OBJ_bsearch_(&local_1c,DAT_000cb8cc,0xb,4,cmp), pvVar17 == (void *)0x0)) {
+         (pvVar17 = OBJ_bsearch_(&local_1c,&supported_nids_16010,0xb,4,(cmp *)0xcb0cd),
+         pvVar17 == (void *)0x0)) {
         uVar21 = param_1->ex_flags | 0x200;
         goto LAB_000cb7d0;
       }

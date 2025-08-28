@@ -22,18 +22,18 @@ int BN_nist_mod_256(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   ulong *puVar18;
   ulong *rp;
   int iVar19;
-  code *pcVar20;
-  undefined4 uVar21;
+  undefined4 uVar20;
+  code *local_94;
   uint local_68 [8];
-  undefined auStack_48 [36];
+  undefined1 auStack_48 [36];
   
   puVar18 = a->d;
   iVar19 = a->top;
-  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,DAT_00128c98), -1 < iVar2)) {
-    iVar19 = BN_nnmod(r,a,DAT_00128c9c,ctx);
+  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,(BIGNUM *)_bignum_nist_p_256_sqr_8315), -1 < iVar2)) {
+    iVar19 = BN_nnmod(r,a,(BIGNUM *)_bignum_nist_p_256,ctx);
     return iVar19;
   }
-  iVar2 = BN_ucmp(DAT_00128c9c,a);
+  iVar2 = BN_ucmp((BIGNUM *)_bignum_nist_p_256,a);
   if (iVar2 == 0) {
     BN_set_word(r,0);
     return 1;
@@ -63,7 +63,6 @@ int BN_nist_mod_256(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
     rp[6] = puVar18[6];
     rp[7] = puVar18[7];
   }
-  pcVar20 = DAT_00129118;
   iVar2 = iVar19 + -8;
   if (iVar2 < 1) {
     iVar2 = 0;
@@ -107,10 +106,11 @@ int BN_nist_mod_256(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
     iVar19 = iVar19 + 4;
   } while (iVar2 < 8);
 LAB_00128d70:
+  local_94 = bn_sub_words;
   uVar7 = local_68[0] + *rp;
   uVar8 = uVar7 + local_68[1];
   uVar9 = uVar8 - local_68[3];
-  uVar21 = 0;
+  uVar20 = 0;
   uVar10 = uVar9 - local_68[4];
   uVar11 = uVar10 - local_68[5];
   uVar9 = (((((uint)CARRY4(local_68[0],*rp) + (uint)CARRY4(uVar7,local_68[1])) -
@@ -207,16 +207,17 @@ LAB_00128d70:
       uVar7 = 0xffffffff;
     }
     else {
-      uVar17 = bn_add_words(rp,rp,(ulong *)(DAT_00129110 + ~uVar7 * 0x20),8);
+      uVar17 = bn_add_words(rp,rp,(ulong *)(_nist_p_256 + ~uVar7 * 0x20),8);
       uVar7 = -uVar17;
-      pcVar20 = (code *)(DAT_00129114 & ~uVar7 | uVar7 & (uint)pcVar20);
+      local_94 = (code *)(~uVar7 & 0x9f81d | uVar7 & 0x9fa9d);
     }
   }
   else {
-    uVar17 = bn_sub_words(rp,rp,(ulong *)(DAT_00129110 + (uVar7 - 1) * 0x20),8);
+    local_94 = bn_sub_words;
+    uVar17 = bn_sub_words(rp,rp,(ulong *)(_nist_p_256 + (uVar7 - 1) * 0x20),8);
     uVar7 = -uVar17;
   }
-  iVar19 = (*pcVar20)(auStack_48,rp,DAT_00129110,8,local_68[6],uVar21,uVar8,iVar19);
+  iVar19 = (*local_94)(auStack_48,rp,_nist_p_256,8,local_68[6],uVar20,uVar8,iVar19);
   puVar18 = r->d;
   puVar16 = (ulong *)((uint)auStack_48 & ~(-iVar19 & uVar7) | -iVar19 & uVar7 & (uint)rp);
   *rp = *puVar16;

@@ -9,11 +9,11 @@ size_t mem_write(BIO *param_1,void *param_2,size_t param_3)
   
   str = (BUF_MEM *)param_1->ptr;
   if (param_2 == (void *)0x0) {
-    ERR_put_error(0x20,0x75,0x73,DAT_000a95ac,0xb3);
+    ERR_put_error(0x20,0x75,0x73,"bss_mem.c",0xb3);
     param_3 = 0xffffffff;
   }
   else if (param_1->flags << 0x16 < 0) {
-    ERR_put_error(0x20,0x75,0x7e,DAT_000a95ac,0xb8);
+    ERR_put_error(0x20,0x75,0x7e,"bss_mem.c",0xb8);
     param_3 = 0xffffffff;
   }
   else {

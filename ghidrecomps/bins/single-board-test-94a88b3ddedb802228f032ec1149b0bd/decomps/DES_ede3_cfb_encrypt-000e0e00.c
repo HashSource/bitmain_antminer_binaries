@@ -208,44 +208,45 @@ joined_r0x000e1224:
           uVar18 = uVar18 ^ local_3c;
           puVar16 = local_68;
           switch(uVar24) {
-          case 1:
+          case 0:
+                    /* WARNING: This code block may not be properly labeled as switch case */
             goto LAB_000e11d0;
+          case 1:
+            goto switchD_000e118e_caseD_1;
           case 2:
-            goto switchD_000e118e_caseD_2;
-          case 3:
             goto LAB_000e11c0;
+          case 3:
+            goto switchD_000e118e_caseD_3;
           case 4:
-            goto switchD_000e118e_caseD_4;
-          case 5:
             break;
-          case 8:
+          case 7:
             local_68[-1] = (uchar)(uVar18 >> 0x18);
             local_68 = local_68 + -1;
-          case 7:
+          case 6:
             local_68[-1] = (uchar)(uVar18 >> 0x10);
             puVar16 = local_68 + -1;
-          case 6:
+          case 5:
             local_68 = puVar16 + -1;
             puVar16[-1] = (uchar)(uVar18 >> 8);
             break;
           default:
-            goto switchD_000e118e_caseD_8;
+            goto switchD_000e118e_default;
           }
           puVar16 = local_68 + -1;
           local_68[-1] = (uchar)uVar18;
-switchD_000e118e_caseD_4:
+switchD_000e118e_caseD_3:
           local_68 = puVar16 + -1;
           puVar16[-1] = (uchar)(uVar22 >> 0x18);
 LAB_000e11c0:
           puVar16 = local_68 + -1;
           local_68[-1] = (uchar)(uVar22 >> 0x10);
-switchD_000e118e_caseD_2:
+switchD_000e118e_caseD_1:
           local_68 = puVar16 + -1;
           puVar16[-1] = (uchar)(uVar22 >> 8);
 LAB_000e11d0:
           puVar16 = local_68 + -1;
           local_68[-1] = (uchar)uVar22;
-switchD_000e118e_caseD_8:
+switchD_000e118e_default:
           local_68 = puVar16 + uVar24;
           bVar1 = uVar24 <= uVar25;
           uVar13 = uVar20;
@@ -368,7 +369,7 @@ LAB_000e127a:
           puVar16[-1] = uVar5;
           break;
         default:
-          goto switchD_000e1296_caseD_8;
+          goto switchD_000e1296_default;
         }
         puVar16 = local_68 + -1;
         local_68[-1] = uVar3;
@@ -384,7 +385,7 @@ switchD_000e1296_caseD_1:
 LAB_000e12e6:
         puVar16 = local_68 + -1;
         local_68[-1] = bVar4;
-switchD_000e1296_caseD_8:
+switchD_000e1296_default:
         local_68 = puVar16 + uVar24;
         uVar20 = uVar22;
         uVar21 = uVar13;

@@ -10,7 +10,8 @@ void ssl_set_client_disabled(int param_1)
   int iVar6;
   undefined4 uVar7;
   uint uVar8;
-  int iVar9;
+  undefined4 *puVar9;
+  undefined1 *puVar10;
   
   iVar5 = *(int *)(param_1 + 0x98);
   iVar6 = *(int *)(*(int *)(param_1 + 8) + 100);
@@ -29,46 +30,46 @@ LAB_0007105a:
   *(undefined4 *)(iVar5 + 0x18) = uVar7;
   uVar8 = *(uint *)(iVar5 + 0x38) & 0x30000;
   if (uVar8 == 0x20000) {
+    puVar10 = (undefined1 *)0x196656;
     uVar8 = 2;
-    iVar6 = DAT_000710d0;
+  }
+  else if (uVar8 == 0x30000) {
+    puVar10 = (undefined1 *)&suiteb_sigalgs;
+    uVar8 = 4;
+  }
+  else if (uVar8 == 0x10000) {
+    puVar10 = (undefined1 *)&suiteb_sigalgs;
+    uVar8 = 2;
   }
   else {
-    iVar6 = DAT_000710cc;
-    if (uVar8 == 0x30000) {
-      uVar8 = 4;
-    }
-    else if (uVar8 == 0x10000) {
-      uVar8 = 2;
+    if ((*(int *)(param_1 + 0x24) == 0) ||
+       (puVar10 = *(undefined1 **)(iVar5 + 0x134), (undefined4 *)puVar10 == (undefined4 *)0x0)) {
+      puVar10 = *(undefined1 **)(iVar5 + 300);
+      if ((undefined4 *)puVar10 == (undefined4 *)0x0) {
+        puVar10 = tls12_sigalgs;
+        uVar8 = 0x1e;
+        goto LAB_00071062;
+      }
+      uVar8 = *(uint *)(iVar5 + 0x130);
     }
     else {
-      if ((*(int *)(param_1 + 0x24) == 0) || (iVar6 = *(int *)(iVar5 + 0x134), iVar6 == 0)) {
-        iVar6 = *(int *)(iVar5 + 300);
-        if (iVar6 == 0) {
-          uVar8 = 0x1e;
-          iVar6 = DAT_000710d4;
-          goto LAB_00071062;
-        }
-        uVar8 = *(uint *)(iVar5 + 0x130);
-      }
-      else {
-        uVar8 = *(uint *)(iVar5 + 0x138);
-      }
-      if (uVar8 == 0) {
-        *(undefined4 *)(iVar5 + 0xc) = 1;
-        *(undefined4 *)(iVar5 + 8) = 0x22;
-        bVar4 = false;
-        bVar3 = false;
-        goto LAB_00071002;
-      }
+      uVar8 = *(uint *)(iVar5 + 0x138);
+    }
+    if (uVar8 == 0) {
+      *(undefined4 *)(iVar5 + 0xc) = 1;
+      *(undefined4 *)(iVar5 + 8) = 0x22;
+      bVar4 = false;
+      bVar3 = false;
+      goto LAB_00071002;
     }
   }
 LAB_00071062:
   bVar4 = false;
   bVar3 = false;
   bVar2 = false;
-  iVar9 = iVar6;
+  puVar9 = (undefined4 *)puVar10;
   do {
-    cVar1 = *(char *)(iVar9 + 1);
+    cVar1 = *(char *)((int)puVar9 + 1);
     if (cVar1 == '\x02') {
       bVar3 = true;
     }
@@ -78,8 +79,8 @@ LAB_00071062:
     else if (cVar1 == '\x01') {
       bVar2 = true;
     }
-    iVar9 = iVar9 + 2;
-  } while ((uint)(iVar9 - iVar6) < uVar8);
+    puVar9 = (undefined4 *)((int)puVar9 + 2);
+  } while ((uint)((int)puVar9 - (int)puVar10) < uVar8);
   if (!bVar2) {
     *(undefined4 *)(iVar5 + 0xc) = 1;
     *(undefined4 *)(iVar5 + 8) = 0x22;

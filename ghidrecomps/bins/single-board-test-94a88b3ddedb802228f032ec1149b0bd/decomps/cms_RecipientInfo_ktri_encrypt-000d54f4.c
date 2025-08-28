@@ -32,15 +32,15 @@ LAB_000d5542:
         iVar1 = EVP_PKEY_CTX_ctrl(ctx,-1,0x100,9,0,param_2);
         if (iVar1 < 1) {
           uVar2 = 0;
-          ERR_put_error(0x2e,0x8d,0x6e,DAT_000d5604,0x17e);
+          ERR_put_error(0x2e,0x8d,0x6e,"cms_env.c",0x17e);
         }
         else {
           iVar1 = EVP_PKEY_encrypt(ctx,(uchar *)0x0,local_24,*(uchar **)(iVar4 + 0x10),
                                    *(size_t *)(iVar4 + 0x14));
           if (iVar1 < 1) goto LAB_000d55c2;
-          out = (uchar *)CRYPTO_malloc(local_24[0],DAT_000d5604,0x185);
+          out = (uchar *)CRYPTO_malloc(local_24[0],"cms_env.c",0x185);
           if (out == (uchar *)0x0) {
-            ERR_put_error(0x2e,0x8d,0x41,DAT_000d5604,0x188);
+            ERR_put_error(0x2e,0x8d,0x41,"cms_env.c",0x188);
             uVar2 = 0;
           }
           else {
@@ -62,7 +62,7 @@ LAB_000d5542:
     *(undefined4 *)(iVar3 + 0x18) = 0;
   }
   else {
-    ERR_put_error(0x2e,0x8d,0x7c,DAT_000d5604,0x168);
+    ERR_put_error(0x2e,0x8d,0x7c,"cms_env.c",0x168);
 LAB_000d55be:
     uVar2 = 0;
   }

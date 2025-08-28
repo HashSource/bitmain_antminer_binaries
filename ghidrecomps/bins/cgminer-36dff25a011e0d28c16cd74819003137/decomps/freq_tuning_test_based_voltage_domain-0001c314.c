@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void freq_tuning_test_based_voltage_domain(void)
 
@@ -29,7 +29,7 @@ void freq_tuning_test_based_voltage_domain(void)
       freq_tuning_init_freq_info(freq_info);
       sub_proj_index = 0;
       while( true ) {
-        if (g_BHB91602_proj.sub_proj_count <= sub_proj_index) goto DONE;
+        if (g_BHB91602_proj.sub_proj_count <= sub_proj_index) goto LAB_0001c6d0;
         g_init_freq = (int)init_freq;
         set_pwm((uchar)g_BHB91602_proj.conf_list[sub_proj_index].fan_pwm);
         freq_tuning_pattern_test(freq_info,sub_proj_index);
@@ -80,7 +80,7 @@ void freq_tuning_test_based_voltage_domain(void)
       fclose((FILE *)pFile_1);
     }
     freq_tuning_mark_unbalance_chain(freq_info);
-DONE:
+LAB_0001c6d0:
     eeprom_flush();
     freq_tuning_done_mark();
     free(freq_info);

@@ -4,96 +4,79 @@
 void debugstate(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  _Bool *p_Var1;
-  _Bool *p_Var2;
-  _Bool *p_Var3;
-  _Bool *p_Var4;
-  _Bool *p_Var5;
-  _Bool *p_Var6;
-  _Bool _Var7;
-  _Bool io_open;
-  __int32_t **pp_Var8;
-  api_data *paVar9;
-  char cVar10;
+  __int32_t _Var1;
+  _Bool _Var2;
+  __int32_t **pp_Var3;
+  api_data *paVar4;
   
   if (param == (char *)0x0) goto switchD_0001a2a2_caseD_65;
-  pp_Var8 = __ctype_tolower_loc();
-  cVar10 = *(char *)(*pp_Var8 + (byte)*param);
-  *param = cVar10;
-  p_Var6 = DAT_0001a46c;
-  p_Var5 = DAT_0001a464;
-  p_Var4 = DAT_0001a45c;
-  p_Var3 = DAT_0001a43c;
-  p_Var2 = DAT_0001a438;
-  p_Var1 = DAT_0001a434;
-  switch(cVar10) {
+  pp_Var3 = __ctype_tolower_loc();
+  _Var1 = (*pp_Var3)[(byte)*param];
+  *param = (char)_Var1;
+  switch((char)_Var1) {
   case 'd':
-    cVar10 = *DAT_0001a434 ^ 1;
-    *DAT_0001a434 = (_Bool)cVar10;
-    *p_Var2 = (_Bool)cVar10;
+    opt_debug = (_Bool)(opt_debug ^ 1);
+    opt_log_output = opt_debug;
     goto joined_r0x0001a42c;
   case 'n':
-    *DAT_0001a438 = false;
-    *p_Var1 = false;
-    *p_Var3 = false;
-    *p_Var4 = false;
-    *p_Var5 = false;
-    *p_Var6 = false;
+    opt_log_output = false;
+    opt_debug = false;
+    opt_quiet = false;
+    opt_protocol = false;
+    want_per_device_stats = false;
+    opt_worktime = false;
     break;
   case 'p':
-    _Var7 = *DAT_0001a464;
-    *DAT_0001a464 = (_Bool)(_Var7 ^ 1U);
-    *p_Var2 = (_Bool)(_Var7 ^ 1U);
+    opt_log_output = (_Bool)(want_per_device_stats ^ 1);
+    want_per_device_stats = opt_log_output;
     break;
   case 'q':
-    *DAT_0001a43c = (_Bool)(*DAT_0001a43c ^ 1);
+    opt_quiet = (_Bool)(opt_quiet ^ 1);
     break;
   case 'r':
-    _Var7 = *DAT_0001a45c;
-    *DAT_0001a45c = (_Bool)(_Var7 ^ 1U);
-    if ((_Bool)(_Var7 ^ 1U) == false) break;
+    opt_protocol = (_Bool)(opt_protocol ^ 1);
+    if (opt_protocol == false) break;
     goto LAB_0001a2de;
   case 's':
-    *DAT_0001a448 = true;
+    opt_realquiet = true;
     break;
   case 'v':
-    cVar10 = *DAT_0001a438 ^ 1;
-    *DAT_0001a438 = (_Bool)cVar10;
+    opt_log_output = (_Bool)(opt_log_output ^ 1);
 joined_r0x0001a42c:
-    if (cVar10 != '\0') {
+    if (opt_log_output != false) {
 LAB_0001a2de:
-      *DAT_0001a43c = false;
+      opt_quiet = false;
     }
     break;
   case 'w':
-    *DAT_0001a46c = (_Bool)(*DAT_0001a46c ^ 1);
+    opt_worktime = (_Bool)(opt_worktime ^ 1);
   }
 switchD_0001a2a2_caseD_65:
   message(io_data,0x4f,0,(char *)0x0,isjson);
   if (isjson) {
-    _Var7 = io_add(io_data,DAT_0001a440);
-    paVar9 = api_add_bool((api_data *)0x0,DAT_0001a444,DAT_0001a448,false);
-    paVar9 = api_add_bool(paVar9,DAT_0001a44c,DAT_0001a43c,false);
-    paVar9 = api_add_bool(paVar9,DAT_0001a450,DAT_0001a438,false);
-    paVar9 = api_add_bool(paVar9,DAT_0001a454,DAT_0001a434,false);
-    paVar9 = api_add_bool(paVar9,DAT_0001a458,DAT_0001a45c,false);
-    paVar9 = api_add_bool(paVar9,DAT_0001a460,DAT_0001a464,false);
-    paVar9 = api_add_bool(paVar9,DAT_0001a468,DAT_0001a46c,false);
-    print_data(io_data,paVar9,true,false);
-    if (_Var7) {
+    _Var2 = io_add(io_data,",\"DEBUG\":[");
+    paVar4 = api_add_bool((api_data *)0x0,"Silent",&opt_realquiet,false);
+    paVar4 = api_add_bool(paVar4,"Quiet",&opt_quiet,false);
+    paVar4 = api_add_bool(paVar4,"Verbose",&opt_log_output,false);
+    paVar4 = api_add_bool(paVar4,"Debug",&opt_debug,false);
+    paVar4 = api_add_bool(paVar4,"RPCProto",&opt_protocol,false);
+    paVar4 = api_add_bool(paVar4,"PerDevice",&want_per_device_stats,false);
+    paVar4 = api_add_bool(paVar4,"WorkTime",&opt_worktime,false);
+    print_data(io_data,paVar4,true,false);
+    if (_Var2) {
       io_data->close = true;
     }
     return;
   }
-  io_add(io_data,DAT_0001a470);
-  paVar9 = api_add_bool((api_data *)0x0,DAT_0001a444,DAT_0001a448,isjson);
-  paVar9 = api_add_bool(paVar9,DAT_0001a44c,DAT_0001a43c,isjson);
-  paVar9 = api_add_bool(paVar9,DAT_0001a450,DAT_0001a438,isjson);
-  paVar9 = api_add_bool(paVar9,DAT_0001a454,DAT_0001a434,isjson);
-  paVar9 = api_add_bool(paVar9,DAT_0001a458,DAT_0001a45c,isjson);
-  paVar9 = api_add_bool(paVar9,DAT_0001a460,DAT_0001a464,isjson);
-  paVar9 = api_add_bool(paVar9,DAT_0001a468,DAT_0001a46c,isjson);
-  print_data(io_data,paVar9,isjson,isjson);
+  io_add(io_data,"DEBUG,");
+  paVar4 = api_add_bool((api_data *)0x0,"Silent",&opt_realquiet,isjson);
+  paVar4 = api_add_bool(paVar4,"Quiet",&opt_quiet,isjson);
+  paVar4 = api_add_bool(paVar4,"Verbose",&opt_log_output,isjson);
+  paVar4 = api_add_bool(paVar4,"Debug",&opt_debug,isjson);
+  paVar4 = api_add_bool(paVar4,"RPCProto",&opt_protocol,isjson);
+  paVar4 = api_add_bool(paVar4,"PerDevice",&want_per_device_stats,isjson);
+  paVar4 = api_add_bool(paVar4,"WorkTime",&opt_worktime,isjson);
+  print_data(io_data,paVar4,isjson,isjson);
   return;
 }
 

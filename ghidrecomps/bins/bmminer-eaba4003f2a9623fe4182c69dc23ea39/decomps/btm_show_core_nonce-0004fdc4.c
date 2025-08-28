@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void btm_show_core_nonce(void)
 
@@ -42,7 +42,8 @@ void btm_show_core_nonce(void)
               iVar2 = sprintf(__s + len,"\tcore[%03d]=%d",j,asic_core_nonce_num_chain[k][i][j]);
               len = len + iVar2;
               if ((j & 7U) == 0) {
-                *(undefined2 *)(__s + len) = DAT_000792f4;
+                (__s + len)[0] = '\n';
+                (__s + len)[1] = '\0';
                 len = len + 1;
               }
             }

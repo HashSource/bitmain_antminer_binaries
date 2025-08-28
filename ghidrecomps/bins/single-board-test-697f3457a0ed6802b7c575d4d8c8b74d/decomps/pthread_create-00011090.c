@@ -7,7 +7,7 @@ int pthread_create(pthread_t *__newthread,pthread_attr_t *__attr,__start_routine
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_create_0004790c)();
+  iVar1 = pthread_create(__newthread,__attr,__start_routine,__arg);
   return iVar1;
 }
 

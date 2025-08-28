@@ -3,9 +3,9 @@ void set_ticket_mask(undefined4 param_1)
 
 {
   char acStack_414 [1024];
-  undefined local_14;
-  undefined local_13;
-  undefined local_12;
+  undefined1 local_14;
+  undefined1 local_13;
+  undefined1 local_12;
   undefined4 local_10;
   int local_c;
   

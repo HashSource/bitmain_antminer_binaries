@@ -17,8 +17,8 @@ void init_exist_chain_table(void)
   do {
     piVar5 = piVar5 + 1;
     if (*piVar5 != 0) {
+      piVar3 = (int *)&ENABLE_LIMIT_ON_SINGLE_BOARD;
       iVar4 = 0;
-      piVar3 = DAT_000384f8;
       do {
         piVar3 = piVar3 + 1;
         if (*piVar3 == 0) {
@@ -36,12 +36,12 @@ void init_exist_chain_table(void)
         total_exist_chain_num = iVar6;
       }
       if (3 < log_level) {
-        __stream = fopen(log_file,(char *)&DAT_0005e760);
+        __stream = fopen(log_file,"a+");
         if (__stream != (FILE *)0x0) {
           fprintf(__stream,"%s:%d:%s: total_exist_chain_num = %d\n","driver-btm-c5.c",0x2fad,
-                  DAT_000384fc,total_exist_chain_num);
+                  "init_exist_chain_table",total_exist_chain_num);
         }
-        (*(code *)PTR_fclose_0007cfe8)(__stream);
+        fclose(__stream);
         return;
       }
       return;

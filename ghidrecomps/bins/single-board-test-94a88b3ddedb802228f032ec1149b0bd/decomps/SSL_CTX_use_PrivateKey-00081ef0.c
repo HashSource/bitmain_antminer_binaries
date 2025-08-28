@@ -5,7 +5,7 @@ int SSL_CTX_use_PrivateKey(SSL_CTX *ctx,EVP_PKEY *pkey)
   int iVar1;
   
   if (pkey == (EVP_PKEY *)0x0) {
-    ERR_put_error(0x14,0xae,0x43,DAT_00081f40,0x24e);
+    ERR_put_error(0x14,0xae,0x43,"ssl_rsa.c",0x24e);
   }
   else {
     iVar1 = ssl_cert_inst(&ctx->cert);
@@ -13,7 +13,7 @@ int SSL_CTX_use_PrivateKey(SSL_CTX *ctx,EVP_PKEY *pkey)
       iVar1 = ssl_set_pkey(ctx->cert,pkey);
       return iVar1;
     }
-    ERR_put_error(0x14,0xae,0x41,DAT_00081f40,0x252);
+    ERR_put_error(0x14,0xae,0x41,"ssl_rsa.c",0x252);
   }
   return 0;
 }

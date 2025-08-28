@@ -6,9 +6,7 @@ int sem_init(sem_t *__sem,int __pshared,uint __value)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a194. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f1c8)();
+  iVar1 = (*(code *)(undefined *)0x0)(__sem);
   return iVar1;
 }
 

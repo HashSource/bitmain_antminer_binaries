@@ -1,5 +1,5 @@
 
-void notify(int param_1,undefined4 param_2,undefined4 param_3,int param_4,undefined param_5)
+void notify(int param_1,undefined4 param_2,undefined4 param_3,int param_4,undefined1 param_5)
 
 {
   undefined4 uVar1;
@@ -31,7 +31,7 @@ void notify(int param_1,undefined4 param_2,undefined4 param_3,int param_4,undefi
   } while (iVar4 < total_devices);
 LAB_00019c2e:
   if (iVar2 != 0) {
-    *(undefined *)(param_1 + 0xd) = 1;
+    *(undefined1 *)(param_1 + 0xd) = 1;
   }
   return;
 }

@@ -20,8 +20,9 @@ void set_hcnt(uint hcnt)
       buf[1] = '\t';
       buf[2] = '\0';
       buf[3] = '\x10';
-      buf._4_2_ = CONCAT11((uchar)(hcnt >> 0x10),(uchar)(hcnt >> 0x18));
-      buf._4_3_ = CONCAT12((uchar)(hcnt >> 8),buf._4_2_);
+      buf[5] = (uchar)(hcnt >> 0x10);
+      buf[4] = (uchar)(hcnt >> 0x18);
+      buf[6] = (uchar)(hcnt >> 8);
       buf[7] = (uchar)hcnt;
       buf[8] = CRC5(buf,'@');
       cmd_buf[0] = (uint)buf._0_4_ >> 0x18 |

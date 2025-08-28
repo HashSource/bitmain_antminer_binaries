@@ -89,7 +89,7 @@ int PKCS7_set_type(PKCS7 *p7,int type)
     }
     break;
   default:
-    ERR_put_error(0x21,0x6e,0x70,DAT_000cf374,0xde);
+    ERR_put_error(0x21,0x6e,0x70,"pk7_lib.c",0xde);
   }
   return 0;
 }

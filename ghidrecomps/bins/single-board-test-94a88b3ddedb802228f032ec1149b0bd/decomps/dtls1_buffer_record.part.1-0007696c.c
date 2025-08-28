@@ -14,7 +14,7 @@ undefined4 dtls1_buffer_record_part_1(int param_1,int param_2,uchar *param_3)
   undefined4 *puVar7;
   undefined4 uVar8;
   
-  data = (undefined4 *)CRYPTO_malloc(0x3c,DAT_00076a84,0xe6);
+  data = (undefined4 *)CRYPTO_malloc(0x3c,"d1_pkt.c",0xe6);
   item = pitem_new(param_3,data);
   if (data == (undefined4 *)0x0 || item == (pitem *)0x0) {
     if (data != (undefined4 *)0x0) {
@@ -23,7 +23,7 @@ undefined4 dtls1_buffer_record_part_1(int param_1,int param_2,uchar *param_3)
     if (item != (pitem *)0x0) {
       pitem_free(item);
     }
-    ERR_put_error(0x14,0xf7,0x44,DAT_00076a84,0xee);
+    ERR_put_error(0x14,0xf7,0x44,"d1_pkt.c",0xee);
   }
   else {
     iVar4 = *(int *)(param_1 + 0x58);
@@ -68,7 +68,7 @@ undefined4 dtls1_buffer_record_part_1(int param_1,int param_2,uchar *param_3)
       }
       line = 0x113;
     }
-    ERR_put_error(0x14,0xf7,0x44,DAT_00076a84,line);
+    ERR_put_error(0x14,0xf7,0x44,"d1_pkt.c",line);
     if ((void *)data[2] != (void *)0x0) {
       CRYPTO_free((void *)data[2]);
     }

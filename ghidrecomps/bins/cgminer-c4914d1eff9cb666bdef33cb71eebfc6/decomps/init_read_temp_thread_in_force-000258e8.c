@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void init_read_temp_thread_in_force(void)
 
@@ -9,8 +9,8 @@ void init_read_temp_thread_in_force(void)
   FILE *pFile;
   
   read_temp_id_in_force = (thr_info *)calloc(1,0x40);
-  iVar1 = thr_info_create(read_temp_id_in_force,(pthread_attr_t *)0x0,read_temp_func + 1,
-                          read_temp_id_in_force);
+  iVar1 = thr_info_create(read_temp_id_in_force,(pthread_attr_t *)0x0,
+                          (_func_void_ptr_void_ptr *)0x193ab,read_temp_id_in_force);
   if (iVar1 == 0) {
     pthread_detach(read_temp_id_in_force->pth);
   }

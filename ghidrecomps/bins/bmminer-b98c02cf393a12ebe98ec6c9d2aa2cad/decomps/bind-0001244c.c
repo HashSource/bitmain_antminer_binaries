@@ -6,7 +6,7 @@ int bind(int __fd,sockaddr *__addr,socklen_t __len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_bind_0007cfac)();
+  iVar1 = bind(__fd,__addr,__len);
   return iVar1;
 }
 

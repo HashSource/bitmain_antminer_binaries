@@ -1,9 +1,9 @@
 
-undefined http_should_fail(int *param_1)
+undefined1 http_should_fail(int *param_1)
 
 {
   char cVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   int iVar3;
   int iVar4;
   
@@ -25,7 +25,7 @@ joined_r0x0003fa4e:
       cVar1 = *(char *)((int)param_1 + 0x1f2);
       goto joined_r0x0003fa4e;
     }
-    uVar2 = *(undefined *)(iVar4 + 0x8640);
+    uVar2 = *(undefined1 *)(iVar4 + 0x8640);
   }
   else {
 LAB_0003fa50:

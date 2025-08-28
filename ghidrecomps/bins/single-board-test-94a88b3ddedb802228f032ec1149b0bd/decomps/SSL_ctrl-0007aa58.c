@@ -26,9 +26,9 @@ long SSL_ctrl(SSL *ssl,int cmd,long larg,void *parg)
   case 0x28:
     return ssl->read_ahead;
   case 0x29:
-    lVar2 = ssl->read_ahead;
+    iVar5 = ssl->read_ahead;
     ssl->read_ahead = larg;
-    return lVar2;
+    return iVar5;
   case 0x32:
     return ssl->mode;
   case 0x33:

@@ -15,7 +15,7 @@ PKCS7_SIGNER_INFO * PKCS7_add_signature(PKCS7 *p7,X509 *x509,EVP_PKEY *pkey,EVP_
     name = OBJ_nid2sn(local_1c);
     dgst = EVP_get_digestbyname(name);
     if (dgst == (EVP_MD *)0x0) {
-      ERR_put_error(0x21,0x83,0x97,DAT_000cf720,0x19c);
+      ERR_put_error(0x21,0x83,0x97,"pk7_lib.c",0x19c);
       return (PKCS7_SIGNER_INFO *)0x0;
     }
   }

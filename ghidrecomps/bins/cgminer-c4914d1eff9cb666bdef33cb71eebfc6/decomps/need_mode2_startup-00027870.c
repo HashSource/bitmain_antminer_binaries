@@ -28,8 +28,7 @@ _Bool need_mode2_startup(void)
         }
         fclose((FILE *)pFile);
       }
-      if ((int)((uint)(chain_rt_hash_rate < (float)(ulonglong)(chain_ideal_hash_rate >> 1)) << 0x1f)
-          < 0) {
+      if ((int)((uint)(chain_rt_hash_rate < (float)(chain_ideal_hash_rate >> 1)) << 0x1f) < 0) {
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
           pFile_1 = (FILE *)fopen(log_file,"a+");

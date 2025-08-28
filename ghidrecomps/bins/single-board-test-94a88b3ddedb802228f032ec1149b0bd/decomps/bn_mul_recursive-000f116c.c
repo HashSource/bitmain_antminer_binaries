@@ -131,8 +131,7 @@ void bn_mul_recursive(ulong *param_1,int param_2,int param_3,int param_4,uint pa
   if (-1 < (int)(param_5 + param_6)) {
     return;
   }
-  (*(code *)PTR_memset_001941c8)
-            (param_1 + param_5 + param_4 * 2 + param_6,0,(param_5 + param_6) * -4);
+  memset(param_1 + param_5 + param_4 * 2 + param_6,0,(param_5 + param_6) * -4);
   return;
 }
 

@@ -14,14 +14,17 @@ void _k_list_transfer_to_head(K_LIST *from,K_LIST *to,char *file,char *func,int 
   char tmp42 [2048];
   
   if (from->name != to->name) {
-    snprintf(tmp42,0x800,DAT_00010228,from->name,DAT_00010224,to->name,file,func,line,DAT_00010230,
-             DAT_00010224,0x152);
+    snprintf(tmp42,0x800,"List %s can\'t %s() to a %s list - from %s %s() line %d in %s %s():%d",
+             from->name,"_k_list_transfer_to_head",to->name,file,func,line,"klist.c",
+             "_k_list_transfer_to_head",0x152);
     _applog(3,tmp42,true);
     _quit(1);
   }
   if (from->do_tail == false) {
-    snprintf(tmp42,0x800,DAT_0001022c,from->name,DAT_00010224,file,func,line,DAT_00010230,
-             DAT_00010224,0x157);
+    snprintf(tmp42,0x800,
+             "List %s can\'t %s() - do_tail is false - from %s %s() line %d in %s %s():%d",
+             from->name,"_k_list_transfer_to_head",file,func,line,"klist.c",
+             "_k_list_transfer_to_head",0x157);
     _applog(3,tmp42,true);
     _quit(1);
   }

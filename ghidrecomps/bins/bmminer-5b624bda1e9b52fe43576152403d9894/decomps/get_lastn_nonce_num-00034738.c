@@ -6,32 +6,25 @@ void get_lastn_nonce_num(char *dest,int n)
 {
   byte bVar1;
   int iVar2;
-  int *piVar3;
-  int iVar4;
-  size_t sVar5;
-  char *__dest;
+  size_t sVar3;
+  char *pcVar4;
+  int iVar5;
   int iVar6;
   int iVar7;
   int iVar8;
-  int index;
   int iVar9;
-  int iVar10;
-  int iVar11;
-  uint uVar12;
-  uint uVar13;
+  uint uVar10;
+  uint uVar11;
   char tmp [20];
   char xtime [2048];
   
-  piVar3 = DAT_00034900;
-  iVar2 = DAT_000348fc;
-  iVar9 = DAT_000348fc + 0x680;
-  iVar6 = 1;
+  iVar5 = 1;
   do {
     while( true ) {
-      iVar4 = iVar6 + 1;
-      iVar10 = iVar6 + -1;
-      if (*(int *)(*piVar3 + iVar4 * 4) == 0) break;
-      iVar11 = 0;
+      iVar2 = iVar5 + 1;
+      iVar8 = iVar5 + -1;
+      if (dev->chain_exist[iVar5 + -1] == 0) break;
+      iVar9 = 0;
       xtime[0] = '{';
       xtime[1] = '\0';
       xtime[2] = '\0';
@@ -44,78 +37,81 @@ void get_lastn_nonce_num(char *dest,int n)
       tmp[8] = '\0';
       tmp[9] = '\0';
       tmp[10] = '\0';
-      tmp[11] = '\0';
-      tmp[12] = '\0';
-      tmp[13] = '\0';
-      tmp[14] = '\0';
-      tmp[15] = '\0';
-      tmp[16] = '\0';
-      tmp[17] = '\0';
-      tmp[18] = '\0';
-      tmp[19] = '\0';
+      tmp[0xb] = '\0';
+      tmp[0xc] = '\0';
+      tmp[0xd] = '\0';
+      tmp[0xe] = '\0';
+      tmp[0xf] = '\0';
+      tmp[0x10] = '\0';
+      tmp[0x11] = '\0';
+      tmp[0x12] = '\0';
+      tmp[0x13] = '\0';
       tmp[0] = '\0';
       tmp[1] = '\0';
       tmp[2] = '\0';
       tmp[3] = '\0';
-      sprintf(tmp,DAT_000348f0,iVar6);
-      sVar5 = strlen(xtime);
-      __dest = stpcpy(xtime + sVar5,tmp);
+      sprintf(tmp,"Chain%d:{",iVar5);
+      sVar3 = strlen(xtime);
+      pcVar4 = stpcpy(xtime + sVar3,tmp);
       if (0 < n) {
-        iVar11 = 0;
-        iVar8 = *(int *)(iVar2 + 0x678) % 0x3c + -1;
-        iVar6 = iVar8 - n;
+        iVar9 = 0;
+        iVar7 = nonce_times % 0x3c + -1;
+        iVar5 = iVar7 - n;
         do {
-          iVar7 = iVar8;
-          if (iVar8 < 0) {
-            iVar7 = iVar8 + 0x3c;
+          iVar6 = iVar7;
+          if (iVar7 < 0) {
+            iVar6 = iVar7 + 0x3c;
           }
-          iVar8 = iVar8 + -1;
-          iVar11 = iVar11 + *(int *)(iVar9 + (iVar7 + iVar10 * 0xf00) * 8);
-        } while (iVar8 != iVar6);
+          iVar7 = iVar7 + -1;
+          iVar9 = iVar9 + (int)nonce_num[iVar8][0][iVar6];
+        } while (iVar7 != iVar5);
       }
-      sprintf(tmp,DAT_000348f4,0,iVar11);
-      strcpy(__dest,tmp);
-      bVar1 = *(byte *)(*piVar3 + 0x2fe9);
+      sprintf(tmp,"N%d=%d",0,iVar9);
+      strcpy(pcVar4,tmp);
+      bVar1 = dev->max_asic_num_in_one_chain;
       if (1 < bVar1) {
-        iVar10 = iVar10 * 0xf;
+        iVar8 = iVar8 * 0xf;
       }
       if (1 < bVar1) {
-        uVar12 = (uint)(1 < bVar1);
+        uVar10 = (uint)(1 < bVar1);
         do {
           if (n < 1) {
-            iVar6 = 0;
+            iVar5 = 0;
           }
           else {
-            iVar6 = 0;
-            iVar11 = *(int *)(iVar2 + 0x678) % 0x3c + -1;
-            iVar8 = iVar11 - n;
+            iVar5 = 0;
+            iVar9 = nonce_times % 0x3c + -1;
+            iVar7 = iVar9 - n;
             do {
-              index = iVar11;
-              if (iVar11 < 0) {
-                index = iVar11 + 0x3c;
+              iVar6 = iVar9;
+              if (iVar9 < 0) {
+                iVar6 = iVar9 + 0x3c;
               }
-              iVar11 = iVar11 + -1;
-              iVar6 = iVar6 + *(int *)(iVar9 + (index + iVar10 * 0x100 + uVar12 * 0x3c) * 8);
-            } while (iVar11 != iVar8);
+              iVar9 = iVar9 + -1;
+              iVar5 = iVar5 + *(int *)((int)nonce_num[0] +
+                                      (iVar6 + iVar8 * 0x100 + uVar10 * 0x3c) * 8);
+            } while (iVar9 != iVar7);
           }
-          uVar13 = uVar12 + 1;
-          sprintf(tmp,DAT_000348f8,uVar12,iVar6);
+          uVar11 = uVar10 + 1;
+          sprintf(tmp,",N%d=%d",uVar10,iVar5);
           strcat(xtime,tmp);
-          uVar12 = uVar13;
-        } while ((int)uVar13 < (int)(uint)*(byte *)(*piVar3 + 0x2fe9));
+          uVar10 = uVar11;
+        } while ((int)uVar11 < (int)(uint)dev->max_asic_num_in_one_chain);
       }
-      sVar5 = strlen(xtime);
-      *(undefined2 *)(xtime + sVar5) = DAT_00052854;
-      xtime[sVar5 + 2] = DAT_00052856;
+      sVar3 = strlen(xtime);
+      pcVar4 = xtime + sVar3;
+      pcVar4[0] = '}';
+      pcVar4[1] = ',';
+      xtime[sVar3 + 2] = '\0';
       strcat(dest,xtime);
-      iVar6 = iVar4;
-      if (iVar4 == 0x11) goto LAB_000348cc;
+      iVar5 = iVar2;
+      if (iVar2 == 0x11) goto LAB_000348cc;
     }
-    iVar6 = iVar4;
-  } while (iVar4 != 0x11);
+    iVar5 = iVar2;
+  } while (iVar2 != 0x11);
 LAB_000348cc:
-  sVar5 = strlen(dest);
-  dest[sVar5 - 1] = '\0';
+  sVar3 = strlen(dest);
+  dest[sVar3 - 1] = '\0';
   return;
 }
 

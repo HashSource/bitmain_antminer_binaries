@@ -1,21 +1,20 @@
 
-int enc_ctrl(BIO *param_1,int param_2,long param_3,int **param_4)
+int enc_ctrl(BIO *param_1,int param_2,long param_3,int *param_4)
 
 {
   int iVar1;
   long lVar2;
-  int *piVar3;
   int *outl;
   
   outl = (int *)param_1->ptr;
   if (param_2 == 0xc) {
-    piVar3 = param_4[8];
-    EVP_CIPHER_CTX_init((EVP_CIPHER_CTX *)(piVar3 + 5));
-    iVar1 = EVP_CIPHER_CTX_copy((EVP_CIPHER_CTX *)(piVar3 + 5),(EVP_CIPHER_CTX *)(outl + 5));
+    iVar1 = param_4[8];
+    EVP_CIPHER_CTX_init((EVP_CIPHER_CTX *)(iVar1 + 0x14));
+    iVar1 = EVP_CIPHER_CTX_copy((EVP_CIPHER_CTX *)(iVar1 + 0x14),(EVP_CIPHER_CTX *)(outl + 5));
     if (iVar1 == 0) {
       return 0;
     }
-    param_4[3] = (int *)0x1;
+    param_4[3] = 1;
     return iVar1;
   }
   if (param_2 < 0xd) {
@@ -70,7 +69,7 @@ int enc_ctrl(BIO *param_1,int param_2,long param_3,int **param_4)
         return outl[4];
       }
       if (param_2 == 0x81) {
-        *param_4 = outl + 5;
+        *param_4 = (int)(outl + 5);
         param_1->init = 1;
         return 1;
       }

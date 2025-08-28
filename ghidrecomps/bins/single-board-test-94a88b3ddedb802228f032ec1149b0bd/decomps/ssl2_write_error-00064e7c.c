@@ -4,18 +4,18 @@ void ssl2_write_error(undefined4 *param_1)
 {
   int iVar1;
   uint uVar2;
-  undefined local_18;
-  undefined local_17;
-  undefined local_16;
-  undefined auStack_15 [5];
+  undefined1 local_18;
+  undefined1 local_17;
+  undefined1 local_16;
+  undefined1 auStack_15 [5];
   
   uVar2 = param_1[0x35];
-  local_16 = (undefined)param_1[0x36];
+  local_16 = (undefined1)param_1[0x36];
   local_18 = 0;
   param_1[0x35] = 0;
-  local_17 = (undefined)((uint)param_1[0x36] >> 8);
+  local_17 = (undefined1)((uint)param_1[0x36] >> 8);
   if (3 < uVar2) {
-    OpenSSLDie(DAT_00064eec,0x216,DAT_00064ef0);
+    OpenSSLDie("s2_lib.c",0x216,"error >= 0 && error <= (int)sizeof(buf)");
   }
   iVar1 = ssl2_write(param_1,auStack_15 + -uVar2,uVar2);
   if (iVar1 < 0) {

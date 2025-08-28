@@ -9,12 +9,12 @@ undefined4 ssl_set_cert(int *param_1,X509 *param_2)
   
   pkey = X509_get_pubkey(param_2);
   if (pkey == (EVP_PKEY *)0x0) {
-    ERR_put_error(0x14,0xbf,0x10c,DAT_00081570,0x183);
+    ERR_put_error(0x14,0xbf,0x10c,"ssl_rsa.c",0x183);
     return 0;
   }
   iVar1 = ssl_cert_type(param_2,pkey);
   if (iVar1 < 0) {
-    ERR_put_error(0x14,0xbf,0xf7,DAT_00081570,0x189);
+    ERR_put_error(0x14,0xbf,0xf7,"ssl_rsa.c",0x189);
     EVP_PKEY_free(pkey);
     return 0;
   }
@@ -39,7 +39,7 @@ LAB_000814cc:
   if ((X509 *)param_1[iVar1 * 7 + 0xf] != (X509 *)0x0) {
     X509_free((X509 *)param_1[iVar1 * 7 + 0xf]);
   }
-  CRYPTO_add_lock(&param_2->references,1,3,DAT_00081570,0x1ad);
+  CRYPTO_add_lock(&param_2->references,1,3,"ssl_rsa.c",0x1ad);
   param_1[iVar1 * 7 + 0xf] = (int)param_2;
   *param_1 = (int)(param_1 + iVar1 * 7 + 0xf);
   param_1[1] = 0;

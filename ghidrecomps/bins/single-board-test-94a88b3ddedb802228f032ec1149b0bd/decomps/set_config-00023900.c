@@ -1,13 +1,13 @@
 
-void set_config(int param_1,char param_2,undefined param_3,undefined param_4,undefined4 param_5)
+void set_config(int param_1,char param_2,undefined1 param_3,undefined1 param_4,undefined4 param_5)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint local_28;
   uint local_24;
   int local_20;
-  uint local_1c;
-  uint local_18;
+  undefined4 local_1c;
+  undefined4 local_18;
   byte local_14;
   uint local_10;
   uint local_c;

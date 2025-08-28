@@ -11,24 +11,18 @@ void sha2_process(sha2_context *ctx,uchar *data)
   uint uVar5;
   uint uVar6;
   uint uVar7;
-  uint G;
   uint uVar8;
   uint uVar9;
   uint uVar10;
-  uint F;
   int iVar11;
   uint uVar12;
   uint uVar13;
-  uint E;
   uint uVar14;
-  uint H;
   uint uVar15;
   uint uVar16;
   uint uVar17;
   uint uVar18;
   uint uVar19;
-  uint A;
-  uint temp1;
   uint uVar20;
   uint uVar21;
   uint uVar22;
@@ -36,12 +30,10 @@ void sha2_process(sha2_context *ctx,uchar *data)
   uint uVar24;
   uint uVar25;
   uint uVar26;
-  uint B;
   uint uVar27;
   uint uVar28;
   uint uVar29;
   uint uVar30;
-  uint C;
   uint uVar31;
   uint uVar32;
   uint uVar33;
@@ -62,7 +54,6 @@ void sha2_process(sha2_context *ctx,uchar *data)
   uint uVar48;
   uint uVar49;
   uint uVar50;
-  uint D;
   
   uVar1 = ctx->state[4];
   uVar8 = ctx->state[0];
@@ -207,8 +198,7 @@ void sha2_process(sha2_context *ctx,uchar *data)
            ((uVar39 >> 2 | uVar39 * 0x40000000) ^ (uVar39 >> 0xd | uVar39 * 0x80000) ^
            (uVar39 >> 0x16 | uVar39 * 0x400)) + iVar11;
   uVar10 = uVar41 | data[0x3f] | (uint)data[0x3e] << 8;
-  A = uVar43 ^ uVar18;
-  iVar11 = (A & uVar44 ^ uVar18) + uVar10 + 0xc19bf174 + uVar36 +
+  iVar11 = ((uVar43 ^ uVar18) & uVar44 ^ uVar18) + uVar10 + 0xc19bf174 + uVar36 +
            ((uVar44 >> 6 | uVar44 * 0x4000000) ^ (uVar44 >> 0xb | uVar44 * 0x200000) ^
            (uVar44 >> 0x19 | uVar44 * 0x80));
   uVar13 = iVar11 + uVar13;

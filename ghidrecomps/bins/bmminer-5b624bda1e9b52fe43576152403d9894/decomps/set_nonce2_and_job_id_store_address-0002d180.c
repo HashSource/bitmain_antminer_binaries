@@ -4,12 +4,11 @@
 void set_nonce2_and_job_id_store_address(uint value)
 
 {
-  char cVar1;
+  _Bool _Var1;
   
-  cVar1 = *DAT_0002d1b0;
-  *(uint *)(*(int *)(DAT_0002d1ac + 0x8d4) + 0x110) = value;
-  if ((cVar1 != '\0') &&
-     (((*DAT_0002d1b4 != '\0' || (*DAT_0002d1b8 != '\0')) || (6 < *DAT_0002d1bc)))) {
+  _Var1 = opt_debug;
+  axi_fpga_addr[0x44] = value;
+  if ((_Var1) && (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
     set_nonce2_and_job_id_store_address(value);
     return;
   }

@@ -12,14 +12,12 @@ double le256todouble(void *target)
   
   dVar1 = (double)__aeabi_ul2d(*(undefined4 *)((int)target + 0x18),
                                *(undefined4 *)((int)target + 0x1c));
-  dVar1 = dVar1 * bits192;
   dVar2 = (double)__aeabi_ul2d(*(undefined4 *)((int)target + 0x10),
                                *(undefined4 *)((int)target + 0x14));
-  dVar2 = dVar2 * bits128;
   dVar3 = (double)__aeabi_ul2d(*(undefined4 *)((int)target + 8),*(undefined4 *)((int)target + 0xc));
-  dVar3 = dVar3 * bits64;
                     /* WARNING: Load size is inaccurate */
   dVar4 = (double)__aeabi_ul2d(*target,*(undefined4 *)((int)target + 4));
-  return dVar1 + dVar2 + dVar3 + dVar4;
+  return dVar1 * 6.277101735386681e+57 + dVar2 * 3.402823669209385e+38 +
+         dVar3 * 1.8446744073709552e+19 + dVar4;
 }
 

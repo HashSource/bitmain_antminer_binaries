@@ -11,13 +11,13 @@ int curl_easy_send(int param_1,undefined4 param_2,undefined4 param_3,int *param_
     iVar1 = 0x2b;
   }
   else if (*(char *)(param_1 + 0x329) == '\0') {
-    Curl_failf(param_1,DAT_00038c50);
+    Curl_failf(param_1,"CONNECT_ONLY is required!");
     iVar1 = 1;
   }
   else {
     iVar1 = Curl_getconnectinfo(param_1,local_24);
     if (iVar1 == -1) {
-      Curl_failf(param_1,DAT_00038c54);
+      Curl_failf(param_1,"Failed to get recent socket");
       iVar1 = 1;
     }
     else {

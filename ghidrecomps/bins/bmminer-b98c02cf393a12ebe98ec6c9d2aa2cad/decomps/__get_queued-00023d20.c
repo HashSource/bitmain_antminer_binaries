@@ -12,7 +12,7 @@ int __get_queued(int param_1)
       __add_queued(param_1,local_c);
     }
     else {
-      _discard_work(&local_c,"cgminer.c",DAT_00023d6c,0x2463);
+      _discard_work(&local_c,"cgminer.c","__get_queued",0x2463);
       wake_gws();
     }
     *(undefined4 *)(param_1 + 0x164) = 0;

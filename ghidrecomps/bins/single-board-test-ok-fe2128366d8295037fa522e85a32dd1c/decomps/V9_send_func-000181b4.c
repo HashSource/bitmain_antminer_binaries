@@ -1,15 +1,15 @@
 
-undefined1 * V9_send_func(byte *param_1)
+undefined4 V9_send_func(byte *param_1)
 
 {
-  undefined1 *puVar1;
-  undefined local_7c [44];
-  undefined local_50;
-  undefined local_4f;
-  undefined local_4e;
-  undefined local_4d;
-  undefined local_49;
-  undefined auStack_48 [12];
+  undefined4 extraout_r3;
+  undefined1 local_7c [44];
+  undefined1 local_50;
+  undefined1 local_4f;
+  undefined1 local_4e;
+  undefined1 local_4d;
+  undefined1 local_49;
+  undefined1 auStack_48 [12];
   int local_3c;
   int local_38;
   undefined4 local_34;
@@ -40,16 +40,16 @@ undefined1 * V9_send_func(byte *param_1)
       for (local_1c = 0; local_1c < (uint)Conf._64_4_; local_1c = local_1c + 1) {
         local_3c = local_38 + (local_18 * Conf._64_4_ + local_1c) * 0x74;
         for (local_20 = 0; local_20 < 0x20; local_20 = local_20 + 1) {
-          local_7c[local_20] = *(undefined *)(local_3c + local_20 + 0x14);
+          local_7c[local_20] = *(undefined1 *)(local_3c + local_20 + 0x14);
         }
         local_34 = *(undefined4 *)(local_3c + 4);
-        local_50 = (undefined)((uint)local_34 >> 0x18);
-        local_4f = (undefined)((uint)local_34 >> 0x10);
-        local_4e = (undefined)((uint)local_34 >> 8);
-        local_4d = (undefined)local_34;
-        local_49 = (undefined)local_1c;
+        local_50 = (undefined1)((uint)local_34 >> 0x18);
+        local_4f = (undefined1)((uint)local_34 >> 0x10);
+        local_4e = (undefined1)((uint)local_34 >> 8);
+        local_4d = (undefined1)local_34;
+        local_49 = (undefined1)local_1c;
         for (local_20 = 0; local_20 < 0xc; local_20 = local_20 + 1) {
-          auStack_48[local_20] = *(undefined *)(local_3c + local_20 + 8);
+          auStack_48[local_20] = *(undefined1 *)(local_3c + local_20 + 8);
         }
         uart_send(local_2d,local_7c,0x40);
         *(int *)(gSend_Work_Num + (uint)local_2d * 4) =
@@ -77,9 +77,8 @@ undefined1 * V9_send_func(byte *param_1)
     if (2 < local_24) break;
     usleep(50000);
   }
-  puVar1 = &start_receive;
   start_receive = 0;
   puts("to stop receive");
-  return puVar1;
+  return extraout_r3;
 }
 

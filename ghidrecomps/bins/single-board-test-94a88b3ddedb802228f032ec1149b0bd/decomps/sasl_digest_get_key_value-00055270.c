@@ -34,7 +34,7 @@ sasl_digest_get_key_value(char *param_1,char *param_2,int param_3,int param_4,ch
       if ((cVar3 == '\0') || (cVar3 == param_5)) break;
     } while (iVar4 != param_4 + -1);
   }
-  *(undefined *)(param_3 + iVar4) = 0;
+  *(undefined1 *)(param_3 + iVar4) = 0;
   return 1;
 }
 

@@ -11,7 +11,7 @@ _STACK * v2i_EXTENDED_KEY_USAGE(undefined4 param_1,undefined4 param_2,_STACK *pa
   
   st = sk_new_null();
   if (st == (_STACK *)0x0) {
-    ERR_put_error(0x22,0x67,0x41,DAT_0010cdf8,0x81);
+    ERR_put_error(0x22,0x67,0x41,"v3_extku.c",0x81);
   }
   else {
     iVar3 = 0;
@@ -25,9 +25,9 @@ _STACK * v2i_EXTENDED_KEY_USAGE(undefined4 param_1,undefined4 param_2,_STACK *pa
       }
       data = OBJ_txt2obj(s,0);
       if (data == (ASN1_OBJECT *)0x0) {
-        sk_pop_free(st,DAT_0010cdfc);
-        ERR_put_error(0x22,0x67,0x6e,DAT_0010cdf8,0x8e);
-        ERR_add_error_data(6,DAT_0010ce04,*puVar2,DAT_0010ce08,puVar2[1],DAT_0010ce00,puVar2[2]);
+        sk_pop_free(st,(func *)0xb543d);
+        ERR_put_error(0x22,0x67,0x6e,"v3_extku.c",0x8e);
+        ERR_add_error_data(6,"section:",*puVar2,",name:",puVar2[1],",value:",puVar2[2]);
         return (_STACK *)0x0;
       }
       sk_push(st,data);

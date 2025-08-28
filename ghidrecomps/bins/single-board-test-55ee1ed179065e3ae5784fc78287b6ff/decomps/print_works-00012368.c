@@ -1,9 +1,12 @@
 
-uint print_works(void)
+undefined4 print_works(void)
 
 {
   int iVar1;
   int iVar2;
+  undefined4 extraout_r3;
+  undefined4 extraout_r3_00;
+  undefined4 uVar3;
   uint local_18;
   uint local_14;
   uint local_10;
@@ -27,6 +30,7 @@ uint print_works(void)
       local_14 = local_14 + 1;
     }
     printf("\n%s end\n\n","print_works");
+    uVar3 = extraout_r3;
   }
   else {
     local_10 = 0;
@@ -48,8 +52,8 @@ uint print_works(void)
       local_10 = local_10 + 1;
     }
     printf("\n%s end\n\n","print_works");
-    local_14 = local_10;
+    uVar3 = extraout_r3_00;
   }
-  return local_14;
+  return uVar3;
 }
 

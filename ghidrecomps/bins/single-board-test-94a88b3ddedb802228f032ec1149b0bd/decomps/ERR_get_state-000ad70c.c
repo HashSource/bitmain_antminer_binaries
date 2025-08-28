@@ -4,31 +4,27 @@
 ERR_STATE * ERR_get_state(void)
 
 {
-  int iVar1;
-  int iVar2;
-  ERR_STATE *pEVar3;
+  undefined1 *puVar1;
   ERR_STATE *dest;
   void *ptr;
-  char *pcVar4;
+  char *pcVar2;
   CRYPTO_THREADID CStack_1b0;
   CRYPTO_THREADID aCStack_1a8 [50];
   
-  iVar1 = DAT_000ad930;
-  if (*(int *)(DAT_000ad930 + 0x2f4) == 0) {
-    CRYPTO_lock(9,1,DAT_000ad934,0x127);
-    if (*(int *)(iVar1 + 0x2f4) == 0) {
-      *(undefined4 *)(iVar1 + 0x2f4) = DAT_000adbf4;
+  if (err_fns == (undefined **)0x0) {
+    CRYPTO_lock(9,1,"err.c",0x127);
+    if (err_fns == (undefined **)0x0) {
+      err_fns = &err_defaults;
     }
-    CRYPTO_lock(10,1,DAT_000ad934,0x12a);
+    CRYPTO_lock(10,1,"err.c",0x12a);
   }
-  iVar2 = DAT_000ad930;
   CRYPTO_THREADID_current(&CStack_1b0);
   CRYPTO_THREADID_cpy(aCStack_1a8,&CStack_1b0);
-  pEVar3 = (ERR_STATE *)(**(code **)(*(int *)(iVar1 + 0x2f4) + 0x1c))(aCStack_1a8);
-  if (pEVar3 == (ERR_STATE *)0x0) {
-    dest = (ERR_STATE *)CRYPTO_malloc(400,DAT_000ad934,0x403);
+  puVar1 = (undefined1 *)(*(code *)err_fns[7])(aCStack_1a8);
+  if ((ERR_STATE *)puVar1 == (ERR_STATE *)0x0) {
+    dest = (ERR_STATE *)CRYPTO_malloc(400,"err.c",0x403);
     if (dest == (ERR_STATE *)0x0) {
-      pEVar3 = (ERR_STATE *)(iVar2 + 0x3f8);
+      puVar1 = fallback_7707;
     }
     else {
       CRYPTO_THREADID_cpy((CRYPTO_THREADID *)dest,&CStack_1b0);
@@ -36,9 +32,9 @@ ERR_STATE * ERR_get_state(void)
       dest->bottom = 0;
       memset(dest->err_data,0,0x40);
       memset(dest->err_data_flags,0,0x40);
-      ptr = (void *)(**(code **)(*(int *)(iVar2 + 0x2f4) + 0x20))(dest);
-      pEVar3 = (ERR_STATE *)(**(code **)(*(int *)(iVar2 + 0x2f4) + 0x1c))(dest);
-      if (pEVar3 == dest) {
+      ptr = (void *)(*(code *)err_fns[8])(dest);
+      puVar1 = (undefined1 *)(*(code *)err_fns[7])(dest);
+      if ((ERR_STATE *)puVar1 == dest) {
         if (ptr != (void *)0x0) {
           if ((*(void **)((int)ptr + 0x88) != (void *)0x0) && (*(int *)((int)ptr + 200) << 0x1f < 0)
              ) {
@@ -144,102 +140,102 @@ ERR_STATE * ERR_get_state(void)
           CRYPTO_free(dest->err_data[0]);
           dest->err_data[0] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[1];
+        pcVar2 = dest->err_data[1];
         dest->err_data_flags[0] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[1] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[1] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[1] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[2];
+        pcVar2 = dest->err_data[2];
         dest->err_data_flags[1] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[2] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[2] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[2] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[3];
+        pcVar2 = dest->err_data[3];
         dest->err_data_flags[2] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[3] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[3] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[3] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[4];
+        pcVar2 = dest->err_data[4];
         dest->err_data_flags[3] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[4] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[4] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[4] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[5];
+        pcVar2 = dest->err_data[5];
         dest->err_data_flags[4] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[5] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[5] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[5] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[6];
+        pcVar2 = dest->err_data[6];
         dest->err_data_flags[5] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[6] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[6] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[6] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[7];
+        pcVar2 = dest->err_data[7];
         dest->err_data_flags[6] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[7] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[7] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[7] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[8];
+        pcVar2 = dest->err_data[8];
         dest->err_data_flags[7] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[8] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[8] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[8] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[9];
+        pcVar2 = dest->err_data[9];
         dest->err_data_flags[8] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[9] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[9] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[9] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[10];
+        pcVar2 = dest->err_data[10];
         dest->err_data_flags[9] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[10] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[10] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[10] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[0xb];
+        pcVar2 = dest->err_data[0xb];
         dest->err_data_flags[10] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[0xb] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[0xb] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[0xb] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[0xc];
+        pcVar2 = dest->err_data[0xc];
         dest->err_data_flags[0xb] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[0xc] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[0xc] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[0xc] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[0xd];
+        pcVar2 = dest->err_data[0xd];
         dest->err_data_flags[0xc] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[0xd] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[0xd] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[0xd] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[0xe];
+        pcVar2 = dest->err_data[0xe];
         dest->err_data_flags[0xd] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[0xe] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[0xe] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[0xe] = (char *)0x0;
         }
-        pcVar4 = dest->err_data[0xf];
+        pcVar2 = dest->err_data[0xf];
         dest->err_data_flags[0xe] = 0;
-        if ((pcVar4 != (char *)0x0) && (dest->err_data_flags[0xf] << 0x1f < 0)) {
-          CRYPTO_free(pcVar4);
+        if ((pcVar2 != (char *)0x0) && (dest->err_data_flags[0xf] << 0x1f < 0)) {
+          CRYPTO_free(pcVar2);
           dest->err_data[0xf] = (char *)0x0;
         }
         dest->err_data_flags[0xf] = 0;
         CRYPTO_free(dest);
-        pEVar3 = DAT_000ad938;
+        puVar1 = fallback_7707;
       }
     }
   }
-  return pEVar3;
+  return (ERR_STATE *)puVar1;
 }
 

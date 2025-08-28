@@ -7,30 +7,32 @@ char * SSL_get_version(SSL *s)
   
   iVar2 = s->version;
   if (iVar2 == 0x303) {
-    return DAT_0007c128;
+    return "TLSv1.2";
   }
   if (iVar2 == 0x302) {
-    return DAT_0007c12c;
+    return "TLSv1.1";
   }
   if (iVar2 == 0x301) {
-    return DAT_0007c130;
+    return "TLSv1";
   }
-  if (iVar2 != 0x300) {
-    if (iVar2 == 2) {
-      return DAT_0007c134;
-    }
-    if (iVar2 != 0x100) {
-      if (iVar2 != 0xfeff) {
-        pcVar1 = DAT_0007c11c;
-        if (iVar2 == 0xfefd) {
-          pcVar1 = DAT_0007c120;
-        }
-        return pcVar1;
-      }
-      return DAT_0007c13c;
-    }
-    return DAT_0007c138;
+  if (iVar2 == 0x300) {
+    return "SSLv3";
   }
-  return DAT_0007c124;
+  if (iVar2 == 2) {
+    return "SSLv2";
+  }
+  if (iVar2 == 0x100) {
+    return "DTLSv0.9";
+  }
+  if (iVar2 == 0xfeff) {
+    return "DTLSv1";
+  }
+  if (iVar2 == 0xfefd) {
+    pcVar1 = "DTLSv1.2";
+  }
+  else {
+    pcVar1 = "unknown";
+  }
+  return pcVar1;
 }
 

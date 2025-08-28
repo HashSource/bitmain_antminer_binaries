@@ -12,13 +12,13 @@ DH * PEM_read_bio_DHparams(BIO *bp,DH **x,undefined1 *cb,void *u)
   local_18 = (uchar *)0x0;
   local_20 = (char *)0x0;
   local_1c = (uchar *)0x0;
-  iVar1 = PEM_bytes_read_bio(&local_18,&local_14,&local_20,DAT_000bfe30,bp,cb,u);
+  iVar1 = PEM_bytes_read_bio(&local_18,&local_14,&local_20,"DH PARAMETERS",bp,cb,u);
   if (iVar1 == 0) {
     pDVar2 = (DH *)0x0;
   }
   else {
     local_1c = local_18;
-    iVar1 = strcmp(local_20,DAT_000bfe34);
+    iVar1 = strcmp(local_20,"X9.42 DH PARAMETERS");
     if (iVar1 == 0) {
       pDVar2 = (DH *)d2i_DHxparams(x,&local_1c,local_14);
     }
@@ -26,7 +26,7 @@ DH * PEM_read_bio_DHparams(BIO *bp,DH **x,undefined1 *cb,void *u)
       pDVar2 = d2i_DHparams(x,&local_1c,local_14);
     }
     if (pDVar2 == (DH *)0x0) {
-      ERR_put_error(9,0x8d,0xd,DAT_000bfe38,0x10e);
+      ERR_put_error(9,0x8d,0xd,"pem_pkey.c",0x10e);
     }
     CRYPTO_free(local_20);
     CRYPTO_free(local_18);

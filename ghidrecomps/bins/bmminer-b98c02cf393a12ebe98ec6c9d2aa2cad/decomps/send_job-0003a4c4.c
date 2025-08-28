@@ -4,7 +4,7 @@
 undefined4 send_job(byte *param_1)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   ushort uVar2;
   undefined4 uVar3;
   void *__dest;
@@ -34,7 +34,7 @@ undefined4 send_job(byte *param_1)
       iVar9 = *(int *)(param_1 + 4);
       if ((opt_debug != '\0') &&
          (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-        snprintf(acStack_828,0x800,"%s: len = 0x%x\n",DAT_0003a7b8,iVar9);
+        snprintf(acStack_828,0x800,"%s: len = 0x%x\n","send_job",iVar9);
         _applog(7,acStack_828,0);
       }
       sVar10 = iVar9 + 8;
@@ -45,7 +45,7 @@ undefined4 send_job(byte *param_1)
           uVar3 = 0xfffffffe;
         }
         else {
-          snprintf(acStack_828,0x800,"%s: malloc buffer failed.\n",DAT_0003a7b8);
+          snprintf(acStack_828,0x800,"%s: malloc buffer failed.\n","send_job");
           _applog(7,acStack_828,0);
           uVar3 = 0xfffffffe;
         }
@@ -62,7 +62,7 @@ undefined4 send_job(byte *param_1)
                (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
               snprintf(acStack_828,0x800,
                        "%s: dev->current_job_start_address = 0x%x, but job_start_address_1 = 0x%x, job_start_address_2 = 0x%x\n"
-                       ,DAT_0003ad78,iVar9,job_start_address_1,job_start_address_2);
+                       ,"send_job",iVar9,job_start_address_1,job_start_address_2);
               _applog(7,acStack_828,0);
             }
             free(__dest);
@@ -100,7 +100,7 @@ undefined4 send_job(byte *param_1)
         if (__ptr == (void *)0x0) {
           if ((opt_debug != '\0') &&
              (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-            snprintf(acStack_828,0x800,"%s: malloc coinbase_padding failed.\n",DAT_0003ad78);
+            snprintf(acStack_828,0x800,"%s: malloc coinbase_padding failed.\n","send_job");
             _applog(7,acStack_828,0);
           }
           free(__dest);
@@ -109,7 +109,7 @@ undefined4 send_job(byte *param_1)
         else {
           if ((opt_debug != '\0') &&
              (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-            snprintf(acStack_828,0x800,"%s: coinbase_padding = 0x%x",DAT_0003a7b8,__ptr);
+            snprintf(acStack_828,0x800,"%s: coinbase_padding = 0x%x","send_job",__ptr);
             _applog(7,acStack_828,0);
           }
           uVar7 = (uint)*(ushort *)((int)__dest + 0x42);
@@ -123,7 +123,7 @@ undefined4 send_job(byte *param_1)
             if (local_8ac == (void *)0x0) {
               if ((opt_debug != '\0') &&
                  (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-                snprintf(acStack_828,0x800,"%s: malloc merkles_bin failed.\n",DAT_0003ad78);
+                snprintf(acStack_828,0x800,"%s: malloc merkles_bin failed.\n","send_job");
                 _applog(7,acStack_828,0);
               }
               free(__dest);
@@ -132,14 +132,14 @@ undefined4 send_job(byte *param_1)
             }
             if ((opt_debug != '\0') &&
                (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-              snprintf(acStack_828,0x800,"%s: merkles_bin = 0x%x",DAT_0003a7b8,local_8ac);
+              snprintf(acStack_828,0x800,"%s: merkles_bin = 0x%x","send_job",local_8ac);
               _applog(7,acStack_828,0);
             }
           }
           pbVar15 = (byte *)((int)__ptr + -1);
           memset(__ptr,0,sVar10);
           memcpy(__ptr,param_1 + 0x58,uVar5);
-          *(undefined *)((int)__ptr + uVar5) = 0x80;
+          *(undefined1 *)((int)__ptr + uVar5) = 0x80;
           *(uint *)((int)__ptr + (sVar10 - 4)) =
                (uVar5 << 3 & 0xff00) << 8 | (uVar5 << 3 & 0xff0000) >> 8 | uVar5 << 0x1b;
           sVar8 = 0;
@@ -159,7 +159,7 @@ undefined4 send_job(byte *param_1)
                ((use_syslog != '\0' || ((opt_log_output != '\0' || (6 < opt_log_level)))))) {
               snprintf(acStack_828,0x800,
                        "%s: coinbase_padding_in_ddr[%d] = 0x%x, but *(coinbase_padding + %d) = 0x%x"
-                       ,DAT_0003ab70,sVar8,(uint)*(byte *)(*dev + sVar8),sVar8,(uint)*pbVar15);
+                       ,"send_job",sVar8,(uint)*(byte *)(*dev + sVar8),sVar8,(uint)*pbVar15);
               _applog(7,acStack_828,0);
             }
             sVar8 = sVar8 + 1;
@@ -169,7 +169,7 @@ undefined4 send_job(byte *param_1)
           if (uVar7 != 0) {
             if ((opt_debug != '\0') &&
                (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-              snprintf(acStack_828,0x800,"%s: copy merkle bin into memory ...\n",DAT_0003ab70);
+              snprintf(acStack_828,0x800,"%s: copy merkle bin into memory ...\n","send_job");
               _applog(7,acStack_828,0);
             }
             pvVar12 = local_8ac;
@@ -190,8 +190,8 @@ undefined4 send_job(byte *param_1)
               if (((uVar11 != *pbVar15) && (opt_debug != '\0')) &&
                  ((use_syslog != '\0' || ((opt_log_output != '\0' || (6 < opt_log_level)))))) {
                 snprintf(acStack_828,0x800,
-                         "%s: merkles_in_ddr[%d] = 0x%x, but *(merkles_bin + %d) =0x%x",DAT_0003ab70
-                         ,uVar5,uVar11,uVar5,(uint)*pbVar15);
+                         "%s: merkles_in_ddr[%d] = 0x%x, but *(merkles_bin + %d) =0x%x","send_job",
+                         uVar5,uVar11,uVar5,(uint)*pbVar15);
                 _applog(7,acStack_828,0);
               }
               uVar5 = uVar5 + 1;
@@ -213,9 +213,9 @@ undefined4 send_job(byte *param_1)
             set_job_start_address(PHY_MEM_NONCE2_JOBID_ADDRESS + 0x210000);
           }
           if ((int)((uint)*(byte *)((int)__dest + 9) << 0x1e) < 0) {
-            uVar1 = *(undefined *)((int)__dest + 10);
+            uVar1 = *(undefined1 *)((int)__dest + 10);
             set_ticket_mask(uVar1);
-            *(undefined *)(dev + 0x1510) = uVar1;
+            *(undefined1 *)(dev + 0x1510) = uVar1;
           }
           set_job_id(*(undefined4 *)((int)__dest + 0xc));
           uVar5 = *(uint *)((int)__dest + 0x10);
@@ -271,10 +271,10 @@ undefined4 send_job(byte *param_1)
           free(__dest);
           if ((opt_debug != '\0') &&
              (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-            snprintf(acStack_828,0x800,"--- %s end\n",DAT_0003ab70);
+            snprintf(acStack_828,0x800,"--- %s end\n","send_job");
             _applog(7,acStack_828,0);
           }
-          cgtime(DAT_0003ab74);
+          cgtime(&tv_send_job);
           cgsleep_ms(1);
           set_asic_ticket_mask(ticket_mask);
           set_sno(0);
@@ -288,7 +288,7 @@ undefined4 send_job(byte *param_1)
          (((use_syslog == '\0' && (opt_log_output == '\0')) && (opt_log_level < 7)))) {
         return 0xffffffff;
       }
-      snprintf(acStack_828,0x800,"%s: SEND_JOB_TYPE is wrong : 0x%x\n",DAT_0003a7b8,(uint)*param_1);
+      snprintf(acStack_828,0x800,"%s: SEND_JOB_TYPE is wrong : 0x%x\n","send_job",(uint)*param_1);
       _applog(7,acStack_828,0);
       uVar3 = 0xffffffff;
     }

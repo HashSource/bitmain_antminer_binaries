@@ -4,22 +4,18 @@
 int json_vunpack_ex(json_t *root,json_error_t *error,size_t flags,char *fmt,va_list ap)
 
 {
-  char *msg;
-  char *msg_00;
   int iVar1;
   void *in_stack_00000000;
   va_list ap_copy;
   scanner_t s;
   
-  msg_00 = DAT_0003c468;
-  msg = DAT_0003c45c;
   if (root == (json_t *)0x0) {
-    jsonp_error_init(error,DAT_0003c46c);
-    jsonp_error_set(error,-1,-1,0,msg_00);
+    jsonp_error_init(error,"<root>");
+    jsonp_error_set(error,-1,-1,0,"NULL root value");
   }
   else if ((fmt == (char *)0x0) || (*fmt == '\0')) {
-    jsonp_error_init(error,DAT_0003c460);
-    jsonp_error_set(error,-1,-1,0,msg);
+    jsonp_error_init(error,"<format>");
+    jsonp_error_set(error,-1,-1,0,"NULL or empty format string");
   }
   else {
     jsonp_error_init(error,(char *)0x0);
@@ -53,7 +49,7 @@ int json_vunpack_ex(json_t *root,json_error_t *error,size_t flags,char *fmt,va_l
       if ((s.token._12_4_ & 0xff) == 0) {
         return 0;
       }
-      set_error(&s,DAT_0003c460,DAT_0003c464);
+      set_error(&s,"<format>","Garbage after format string");
     }
   }
   return -1;

@@ -9,14 +9,14 @@ Curl_urldecode(undefined4 param_1,byte *param_2,int param_3,int *param_4,int *pa
   int iVar4;
   undefined4 uVar5;
   ushort **ppuVar6;
-  undefined uVar7;
+  undefined1 uVar7;
   uint uVar8;
   byte bVar9;
   int iVar10;
   uint uVar11;
   byte local_28;
   byte local_27;
-  undefined local_26;
+  undefined1 local_26;
   char *pcStack_24;
   
   iVar10 = param_3 + 1;
@@ -24,7 +24,7 @@ Curl_urldecode(undefined4 param_1,byte *param_2,int param_3,int *param_4,int *pa
     sVar3 = strlen((char *)param_2);
     iVar10 = sVar3 + 1;
   }
-  iVar4 = (**DAT_00048474)(iVar10);
+  iVar4 = (*Curl_cmalloc)(iVar10);
   uVar5 = 0x1b;
   if (iVar4 != 0) {
     uVar11 = iVar10 - 1;
@@ -43,9 +43,9 @@ Curl_urldecode(undefined4 param_1,byte *param_2,int param_3,int *param_4,int *pa
             bVar9 = 0;
           }
 joined_r0x0004845a:
-          uVar7 = (undefined)uVar8;
+          uVar7 = (undefined1)uVar8;
           if (bVar9 != 0) {
-            (**DAT_00048478)(iVar4);
+            (*Curl_cfree)(iVar4);
             return 3;
           }
         }
@@ -72,12 +72,12 @@ joined_r0x0004845a:
           }
         }
         uVar11 = uVar11 - 1;
-        *(undefined *)(iVar4 + iVar10) = uVar7;
+        *(undefined1 *)(iVar4 + iVar10) = uVar7;
         param_2 = param_2 + 1;
         iVar10 = iVar10 + 1;
       } while (uVar11 != 0);
     }
-    *(undefined *)(iVar4 + iVar10) = 0;
+    *(undefined1 *)(iVar4 + iVar10) = 0;
     if (param_5 != (int *)0x0) {
       *param_5 = iVar10;
     }

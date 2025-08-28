@@ -4,55 +4,52 @@
 void inc_work_stats(thr_info *thr,pool *pool,int diff1)
 
 {
-  uint *puVar1;
-  uint *puVar2;
-  int iVar3;
-  time_t tVar4;
-  pool *ppVar5;
-  uint uVar6;
-  char *pcVar7;
-  int in_r3;
-  int iVar8;
-  uint uVar9;
-  cgpu_info *pcVar10;
+  int iVar1;
+  time_t tVar2;
+  pool *ppVar3;
+  char *func;
+  uint uVar4;
+  char *func_00;
+  int line;
+  int line_00;
+  int iVar5;
+  cgpu_info *pcVar6;
+  bool bVar7;
   
-  pcVar7 = (char *)diff1;
-  iVar3 = pthread_mutex_lock(DAT_00025e94);
-  if (iVar3 != 0) {
-    _mutex_lock(DAT_00025ea0,(char *)0x2212,pcVar7,in_r3);
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&stats_lock);
+  if (iVar1 != 0) {
+    _mutex_lock((pthread_mutex_t *)"inc_work_stats",(char *)0x2212,func,line);
   }
-  puVar2 = DAT_00025e98;
-  pcVar10 = thr->cgpu;
-  iVar8 = diff1 >> 0x1f;
-  uVar9 = *DAT_00025e98;
-  puVar1 = DAT_00025e98 + 1;
-  uVar6 = *(uint *)&pcVar10->diff1;
-  iVar3 = *(int *)((int)&pcVar10->diff1 + 4);
-  *DAT_00025e98 = uVar9 + diff1;
-  puVar2[1] = *puVar1 + iVar8 + (uint)CARRY4(uVar9,diff1);
-  *(uint *)&pcVar10->diff1 = uVar6 + diff1;
-  *(uint *)((int)&pcVar10->diff1 + 4) = iVar3 + iVar8 + (uint)CARRY4(uVar6,diff1);
+  pcVar6 = thr->cgpu;
+  iVar5 = diff1 >> 0x1f;
+  uVar4 = (uint)pcVar6->diff1;
+  iVar1 = *(int *)((int)&pcVar6->diff1 + 4);
+  bVar7 = CARRY4((uint)total_diff1,diff1);
+  total_diff1._0_4_ = (uint)total_diff1 + diff1;
+  total_diff1._4_4_ = total_diff1._4_4_ + iVar5 + (uint)bVar7;
+  *(uint *)&pcVar6->diff1 = uVar4 + diff1;
+  *(uint *)((int)&pcVar6->diff1 + 4) = iVar1 + iVar5 + (uint)CARRY4(uVar4,diff1);
   if (pool == (pool *)0x0) {
-    ppVar5 = current_pool();
-    pcVar7 = *(char **)&ppVar5->diff1;
-    iVar3 = *(int *)((int)&ppVar5->diff1 + 4);
-    pcVar10 = thr->cgpu;
-    *(char **)&ppVar5->diff1 = pcVar7 + diff1;
-    *(uint *)((int)&ppVar5->diff1 + 4) = iVar8 + iVar3 + (uint)CARRY4(diff1,(uint)pcVar7);
+    ppVar3 = current_pool();
+    uVar4 = (uint)ppVar3->diff1;
+    iVar1 = *(int *)((int)&ppVar3->diff1 + 4);
+    pcVar6 = thr->cgpu;
+    *(uint *)&ppVar3->diff1 = diff1 + uVar4;
+    *(uint *)((int)&ppVar3->diff1 + 4) = iVar5 + iVar1 + (uint)CARRY4(diff1,uVar4);
   }
   else {
-    pcVar7 = *(char **)&pool->diff1;
-    iVar3 = *(int *)((int)&pool->diff1 + 4);
-    *(char **)&pool->diff1 = pcVar7 + diff1;
-    *(uint *)((int)&pool->diff1 + 4) = iVar8 + iVar3 + (uint)CARRY4(diff1,(uint)pcVar7);
+    uVar4 = (uint)pool->diff1;
+    iVar1 = *(int *)((int)&pool->diff1 + 4);
+    *(uint *)&pool->diff1 = diff1 + uVar4;
+    *(uint *)((int)&pool->diff1 + 4) = iVar5 + iVar1 + (uint)CARRY4(diff1,uVar4);
   }
-  tVar4 = time((time_t *)0x0);
-  pcVar10->last_device_valid_work = tVar4;
-  iVar8 = pthread_mutex_unlock(DAT_00025e94);
-  if (iVar8 != 0) {
-    _mutex_unlock_noyield(DAT_00025ea0,(char *)0x2220,pcVar7,iVar3);
+  tVar2 = time((time_t *)0x0);
+  pcVar6->last_device_valid_work = tVar2;
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&stats_lock);
+  if (iVar1 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"inc_work_stats",(char *)0x2220,func_00,line_00);
   }
-  (**DAT_00025e9c)();
+  (*selective_yield)();
   return;
 }
 

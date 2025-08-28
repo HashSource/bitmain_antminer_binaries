@@ -15,7 +15,7 @@ void Curl_client_write(int *param_1,uint param_2,char *param_3,size_t param_4)
     param_4 = strlen(param_3);
   }
   if (((((param_2 & 1) != 0) && ((*(uint *)(param_1[0x86] + 0x3c) & 0xc) != 0)) &&
-      (*(char *)(param_1 + 0x106) == 'A')) && (param_3 != (char *)0x0 && param_4 != 0)) {
+      ((char)param_1[0x106] == 'A')) && (param_3 != (char *)0x0 && param_4 != 0)) {
     if (*(char *)(iVar5 + 0x867e) != '\0') {
       if (*param_3 == '\n') {
         param_4 = param_4 - 1;
@@ -24,13 +24,13 @@ void Curl_client_write(int *param_1,uint param_2,char *param_3,size_t param_4)
         *(uint *)(iVar5 + 0x8680) = uVar2 + 1;
         *(uint *)(iVar5 + 0x8684) = *(int *)(iVar5 + 0x8684) + (uint)(0xfffffffe < uVar2);
       }
-      *(undefined *)(iVar5 + 0x867e) = 0;
+      *(undefined1 *)(iVar5 + 0x867e) = 0;
     }
     __s1 = (char *)memchr(param_3,0xd,param_4);
     if (__s1 != (char *)0x0) {
       pcVar4 = __s1;
       for (; __s1 < param_3 + (param_4 - 1); __s1 = __s1 + 1) {
-        iVar3 = memcmp(__s1,DAT_0004316c,2);
+        iVar3 = memcmp(__s1,&DAT_0013c1d4,2);
         if (iVar3 == 0) {
           pcVar6 = __s1 + 1;
           __s1 = __s1 + 1;
@@ -58,7 +58,7 @@ void Curl_client_write(int *param_1,uint param_2,char *param_3,size_t param_4)
         }
         pcVar4 = pcVar4 + 1;
         if (cVar1 == '\r') {
-          *(undefined *)(iVar5 + 0x867e) = 1;
+          *(undefined1 *)(iVar5 + 0x867e) = 1;
         }
       }
       param_4 = (int)pcVar4 - (int)param_3;

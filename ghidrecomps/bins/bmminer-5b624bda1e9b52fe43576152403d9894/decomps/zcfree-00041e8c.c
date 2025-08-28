@@ -2,9 +2,7 @@
 void zcfree(undefined4 param_1,undefined4 param_2)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x0000a260. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_0005f208)(param_2);
+  (*(code *)(undefined *)0x0)(param_2);
   return;
 }
 

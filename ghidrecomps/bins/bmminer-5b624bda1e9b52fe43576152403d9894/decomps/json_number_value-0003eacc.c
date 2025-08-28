@@ -15,6 +15,6 @@ double json_number_value(json_t *json)
       return (double)json[1];
     }
   }
-  return DAT_0003eaf8;
+  return 0.0;
 }
 

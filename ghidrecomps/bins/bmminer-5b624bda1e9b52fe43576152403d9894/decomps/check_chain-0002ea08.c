@@ -1,54 +1,51 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void check_chain(void)
 
 {
-  int *piVar1;
+  all_parameters *paVar1;
   int iVar2;
-  int iVar3;
-  int iVar4;
+  all_parameters *paVar3;
+  uint uVar4;
   uint uVar5;
-  uint uVar6;
-  int i;
-  int iVar7;
-  bool bVar8;
+  all_parameters *paVar6;
+  bool bVar7;
   
-  piVar1 = DAT_0002ea7c;
-  *(undefined *)(*DAT_0002ea7c + 0x2fbc) = 0;
+  dev->chain_num = '\0';
   iVar2 = get_hash_on_plug();
+  paVar1 = dev;
   if (iVar2 < 0) {
-    if ((*DAT_0002ea80 != '\0') &&
-       (((*DAT_0002ea84 != '\0' || (*DAT_0002ea88 != '\0')) || (6 < *DAT_0002ea8c)))) {
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
       check_chain();
       return;
     }
   }
   else {
-    iVar3 = *piVar1;
-    uVar6 = 0;
-    iVar4 = iVar3;
-    iVar7 = iVar3;
+    uVar5 = 0;
+    paVar3 = dev;
+    paVar6 = dev;
     do {
-      uVar5 = uVar6 & 0xff;
-      uVar6 = uVar6 + 1;
-      uVar5 = iVar2 >> uVar5 & 1;
-      bVar8 = uVar5 == 0;
-      if (!bVar8) {
-        *(undefined4 *)(iVar4 + 8) = 1;
+      uVar4 = uVar5 & 0xff;
+      uVar5 = uVar5 + 1;
+      uVar4 = iVar2 >> uVar4 & 1;
+      bVar7 = uVar4 == 0;
+      if (!bVar7) {
+        paVar3->chain_exist[0] = 1;
       }
-      iVar4 = iVar4 + 4;
-      if (!bVar8) {
-        uVar5 = (uint)*(byte *)(iVar3 + 0x2fbc);
+      paVar3 = (all_parameters *)&paVar3->pwm_value;
+      if (!bVar7) {
+        uVar4 = (uint)paVar1->chain_num;
       }
-      if (bVar8) {
-        *(uint *)(iVar7 + 8) = uVar5;
+      if (bVar7) {
+        paVar6->chain_exist[0] = uVar4;
       }
-      iVar7 = iVar7 + 4;
-      if (!bVar8) {
-        *(char *)(iVar3 + 0x2fbc) = (char)uVar5 + '\x01';
+      paVar6 = (all_parameters *)&paVar6->pwm_value;
+      if (!bVar7) {
+        paVar1->chain_num = (char)uVar4 + '\x01';
       }
-    } while (uVar6 != 0x10);
+    } while (uVar5 != 0x10);
   }
   return;
 }

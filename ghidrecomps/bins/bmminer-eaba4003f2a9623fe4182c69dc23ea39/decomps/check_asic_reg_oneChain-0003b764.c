@@ -32,7 +32,7 @@ _Bool check_asic_reg_oneChain(int chainIndex,uint reg)
   reg_buf[2] = '\0';
   reg_buf[3] = '\0';
   reg_buf[4] = '\0';
-rerun_all:
+LAB_0003b7d2:
   clear_register_value_buf();
   reg_processed_counter = 0;
   read_num = 0;
@@ -55,9 +55,7 @@ LAB_0003bcba:
       if ((uint)dev->chain_asic_num[chainIndex] == read_num) {
         *(uint *)(rate + chainIndex) = (uint)tmp_rate;
         *(int *)((int)rate + chainIndex * 8 + 4) = tmp_rate._4_4_;
-        suffix_string_soc(6,*(char **)(rate + chainIndex),
-                          *(size_t *)((int)rate + chainIndex * 8 + 4),
-                          (int)(::displayed_rate + chainIndex),true);
+        suffix_string_soc(rate[chainIndex],::displayed_rate[chainIndex],0x20,6,false);
         rate_error[chainIndex] = 0;
         if ((opt_debug != false) &&
            (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
@@ -71,9 +69,7 @@ LAB_0003bcba:
           (status_error != false)))) {
         *(undefined4 *)(rate + chainIndex) = 0;
         *(undefined4 *)((int)rate + chainIndex * 8 + 4) = 0;
-        suffix_string_soc(6,*(char **)(rate + chainIndex),
-                          *(size_t *)((int)rate + chainIndex * 8 + 4),
-                          (int)(::displayed_rate + chainIndex),true);
+        suffix_string_soc(rate[chainIndex],::displayed_rate[chainIndex],0x20,6,false);
       }
       clear_register_value_buf();
       return true;
@@ -153,6 +149,6 @@ LAB_0003bcba:
   } while( true );
   not_reg_data_time = not_reg_data_time + 1;
   pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
-  goto rerun_all;
+  goto LAB_0003b7d2;
 }
 

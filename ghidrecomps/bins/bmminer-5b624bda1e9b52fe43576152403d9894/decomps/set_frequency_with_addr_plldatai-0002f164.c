@@ -1,69 +1,53 @@
 
-/* WARNING: Variable defined which should be unmapped: buf */
 /* WARNING: Unknown calling convention */
 
 void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar chain)
 
 {
-  uchar uVar1;
-  uchar uVar2;
-  uchar uVar3;
-  uchar uVar4;
-  int i;
+  byte bVar1;
+  int iVar2;
+  byte bVar3;
+  uint uVar4;
   uint uVar5;
-  uint ret;
-  uint uVar6;
-  uint uVar7;
-  uint uVar8;
   uchar buf [9];
   uint cmd_buf [3];
   
-  uVar5 = *DAT_0002f2e4;
-  uVar6 = *(uint *)(DAT_0002f2e0 + pllindex * 0x10 + 0x44);
-  if (uVar5 == 0) {
-    buf[1] = '\0';
-    uVar1 = buf[1];
-    buf[2] = '\0';
-    uVar2 = buf[2];
-    buf[3] = '\0';
-    uVar3 = buf[3];
-    buf[4] = '\0';
-    uVar4 = buf[4];
+  iVar2 = opt_multi_version;
+  uVar4 = freq_pll_1385[pllindex].vilpll;
+  if (opt_multi_version == 0) {
+    buf._4_4_ = opt_multi_version;
     buf[0] = '\a';
-    uVar7 = (uint)chain << 0x10 | 0x80800000;
+    buf[1] = '\0';
+    buf[2] = '\0';
+    buf[3] = '\0';
+    uVar5 = (uint)chain << 0x10 | 0x80800000;
     buf[8] = '\0';
-    buf[5] = buf[1];
-    buf[6] = buf[2];
-    buf[7] = buf[3];
-    cmd_buf[0] = uVar5;
-    cmd_buf[1] = uVar5;
-    cmd_buf[2] = uVar5;
-    buf[3] = CRC5(buf,'\x1b');
-    cmd_buf[0] = buf[3] | 0x7000000;
+    cmd_buf[0] = opt_multi_version;
+    cmd_buf[1] = opt_multi_version;
+    cmd_buf[2] = opt_multi_version;
+    bVar3 = CRC5(buf,'\x1b');
+    cmd_buf[0] = bVar3 | 0x7000000;
+    buf[3] = bVar3;
     set_BC_command_buffer(cmd_buf);
-    uVar6 = get_BC_write_command();
-    set_BC_write_command(uVar6 & 0xfff0ffff | uVar7);
-    cgsleep_us(CONCAT17(buf[7],CONCAT16(buf[6],CONCAT15(buf[5],CONCAT14(buf[4],CONCAT13(buf[3],
-                                                  CONCAT12(buf[2],CONCAT11(buf[1],buf[0]))))))));
+    uVar4 = get_BC_write_command();
+    set_BC_write_command(uVar4 & 0xfff0ffff | uVar5);
+    cgsleep_us(3000);
+    buf._4_4_ = iVar2;
     buf[0] = 0x82;
+    buf[1] = '\0';
+    buf[2] = '\0';
+    buf[3] = '\0';
     buf[8] = '\0';
-    buf[1] = uVar1;
-    buf[2] = uVar2;
-    buf[3] = uVar3;
-    buf[4] = uVar4;
-    buf[5] = uVar1;
-    buf[6] = uVar2;
-    buf[7] = uVar3;
-    cmd_buf[0] = uVar5;
-    cmd_buf[1] = uVar5;
-    cmd_buf[2] = uVar5;
-    buf[3] = CRC5(buf,'\x1b');
-    cmd_buf[0] = buf[3] | 0x82000000;
+    cmd_buf[0] = iVar2;
+    cmd_buf[1] = iVar2;
+    cmd_buf[2] = iVar2;
+    bVar3 = CRC5(buf,'\x1b');
+    cmd_buf[0] = bVar3 | 0x82000000;
+    buf[3] = bVar3;
     set_BC_command_buffer(cmd_buf);
-    uVar5 = get_BC_write_command();
-    set_BC_write_command(uVar5 & 0xfff0ffff | uVar7);
-    cgsleep_us(CONCAT17(buf[7],CONCAT16(buf[6],CONCAT15(buf[5],CONCAT14(buf[4],CONCAT13(buf[3],
-                                                  CONCAT12(buf[2],CONCAT11(buf[1],buf[0]))))))));
+    uVar4 = get_BC_write_command();
+    set_BC_write_command(uVar4 & 0xfff0ffff | uVar5);
+    cgsleep_us(5000);
   }
   else {
     buf[8] = '\0';
@@ -73,32 +57,32 @@ void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar c
     if (mode == '\0') {
       uVar5 = 0x4809000c;
       buf[0] = 'H';
+      buf[1] = '\0';
     }
     else {
       buf[0] = 'X';
+      buf[1] = '\0';
       uVar5 = 0x5809000c;
     }
-    buf[7] = (uchar)uVar6;
-    buf[5] = (uchar)(uVar6 >> 0x10);
-    uVar8 = (uint)buf[5];
-    buf[4] = (uchar)(uVar6 >> 0x18);
-    buf[6] = (uchar)(uVar6 >> 8);
-    uVar7 = (uint)buf[6];
+    bVar3 = (byte)(uVar4 >> 0x10);
+    buf[5] = bVar3;
+    buf[4] = (char)(uVar4 >> 0x18);
+    bVar1 = (byte)(uVar4 >> 8);
+    buf[7] = (uchar)uVar4;
+    buf[6] = bVar1;
+    buf[2] = addr;
     buf[3] = '\f';
     buf[1] = '\t';
-    buf[2] = addr;
     buf[8] = CRC5(buf,'@');
     cmd_buf[2] = (uint)buf[8] << 0x18;
     cmd_buf[0] = uVar5 | (uint)addr << 8;
-    cmd_buf[1] = uVar8 << 0x10 | uVar6 & 0xff000000 | uVar6 & 0xff | uVar7 << 8;
-    while (uVar5 = get_BC_write_command(), (int)uVar5 < 0) {
-      cgsleep_us(CONCAT17(buf[7],CONCAT16(buf[6],CONCAT15(buf[5],CONCAT14(buf[4],CONCAT13(buf[3],
-                                                  CONCAT12(buf[2],CONCAT11(buf[1],buf[0]))))))));
+    cmd_buf[1] = (uint)bVar3 << 0x10 | uVar4 & 0xff000000 | uVar4 & 0xff | (uint)bVar1 << 8;
+    while (uVar4 = get_BC_write_command(), (int)uVar4 < 0) {
+      cgsleep_us(500);
     }
     set_BC_command_buffer(cmd_buf);
-    set_BC_write_command((uint)chain << 0x10 | 0x80800000 | uVar5 & 0xfff0ffff);
-    cgsleep_us(CONCAT17(buf[7],CONCAT16(buf[6],CONCAT15(buf[5],CONCAT14(buf[4],CONCAT13(buf[3],
-                                                  CONCAT12(buf[2],CONCAT11(buf[1],buf[0]))))))));
+    set_BC_write_command((uint)chain << 0x10 | 0x80800000 | uVar4 & 0xfff0ffff);
+    cgsleep_us(10000);
   }
   return;
 }

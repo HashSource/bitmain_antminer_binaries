@@ -10,7 +10,7 @@ int unpack_object(scanner_t *s,json_t *root,va_list *ap)
   size_t sVar6;
   char *pcVar7;
   undefined4 uVar8;
-  char **ppcVar9;
+  undefined4 *puVar9;
   bool bVar10;
   va_list *ap_local;
   json_t *root_local;
@@ -48,11 +48,11 @@ int unpack_object(scanner_t *s,json_t *root,va_list *ap)
         }
         set_error(s,"<format>","Expected \'}\' after \'%c\', got \'%c\'",uVar8,
                   (uint)(byte)(s->token).token);
-        goto out;
+        goto LAB_00068656;
       }
       if ((s->token).token == '\0') {
         set_error(s,"<format>","Unexpected end of format string");
-        goto out;
+        goto LAB_00068656;
       }
       if (((s->token).token == '!') || ((s->token).token == '*')) {
         if ((s->token).token == '!') {
@@ -66,14 +66,14 @@ int unpack_object(scanner_t *s,json_t *root,va_list *ap)
       else {
         if ((s->token).token != 's') {
           set_error(s,"<format>","Expected format \'s\', got \'%c\'",(uint)(byte)(s->token).token);
-          goto out;
+          goto LAB_00068656;
         }
-        ppcVar9 = (char **)ap->__ap;
-        ap->__ap = ppcVar9 + 1;
-        pcVar7 = *ppcVar9;
+        puVar9 = (undefined4 *)ap->__ap;
+        ap->__ap = puVar9 + 1;
+        pcVar7 = (char *)*puVar9;
         if (pcVar7 == (char *)0x0) {
           set_error(s,"<args>","NULL object key");
-          goto out;
+          goto LAB_00068656;
         }
         next_token(s);
         bVar10 = (s->token).token == '?';
@@ -88,11 +88,11 @@ int unpack_object(scanner_t *s,json_t *root,va_list *ap)
           value = json_object_get(root,pcVar7);
           if ((value == (json_t *)0x0) && (!bVar10)) {
             set_error(s,"<validation>","Object item not found: %s",pcVar7);
-            goto out;
+            goto LAB_00068656;
           }
         }
         iVar2 = unpack(s,value,ap);
-        if (iVar2 != 0) goto out;
+        if (iVar2 != 0) goto LAB_00068656;
         pjVar4 = json_null();
         hashtable_set(&key_set,pcVar7,pjVar4);
         next_token(s);
@@ -161,7 +161,7 @@ int unpack_object(scanner_t *s,json_t *root,va_list *ap)
         pcVar7 = strbuffer_value(&unrecognized_keys);
         set_error(s,"<validation>","%li object item(s) left unpacked: %s",unpacked,pcVar7);
         strbuffer_close(&unrecognized_keys);
-        goto out;
+        goto LAB_00068656;
       }
     }
     ret = 0;
@@ -169,7 +169,7 @@ int unpack_object(scanner_t *s,json_t *root,va_list *ap)
   else {
     set_error(s,"<validation>","Expected object, got %s",type_names[root->type]);
   }
-out:
+LAB_00068656:
   hashtable_close(&key_set);
   return ret;
 }

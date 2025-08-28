@@ -8,7 +8,7 @@ int ENGINE_set_default_DH(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7a2c,DAT_000a7a30,e,DAT_000a7a34,1,1);
+    iVar1 = engine_table_register(&dh_table,0xa797d,e,&dummy_nid,1,1);
   }
   return iVar1;
 }

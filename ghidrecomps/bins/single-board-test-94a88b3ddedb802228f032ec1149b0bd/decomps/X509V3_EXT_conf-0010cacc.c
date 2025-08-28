@@ -22,12 +22,12 @@ LAB_0010cb22:
     iVar2 = OBJ_sn2nid(name);
     pXVar4 = (X509_EXTENSION *)do_ext_nconf(&CStack_2c,ctx,iVar2,uVar7,value);
     if (pXVar4 == (X509_EXTENSION *)0x0) {
-      ERR_put_error(0x22,0x98,0x80,DAT_0010cbcc,0x5f);
-      ERR_add_error_data(4,DAT_0010cbd0,name,DAT_0010cbd4,value);
+      ERR_put_error(0x22,0x98,0x80,"v3_conf.c",0x5f);
+      ERR_add_error_data(4,"name=",name,", value=",value);
     }
   }
   else {
-    iVar2 = strncmp(value,DAT_0010cbc0,9);
+    iVar2 = strncmp(value,"critical,",9);
     if (iVar2 == 0) {
       ppuVar3 = __ctype_b_loc();
       pbVar5 = (byte *)(value + 9);
@@ -41,13 +41,13 @@ LAB_0010cb22:
     }
     uVar7 = 0;
 LAB_0010cb48:
-    iVar2 = strncmp(value,DAT_0010cbc4,4);
+    iVar2 = strncmp(value,"DER:",4);
     if (iVar2 == 0) {
       pbVar5 = (byte *)value + 4;
       uVar8 = 1;
     }
     else {
-      if ((sVar1 == 4) || (iVar2 = strncmp(value,DAT_0010cbc8,5), iVar2 != 0)) goto LAB_0010cb22;
+      if ((sVar1 == 4) || (iVar2 = strncmp(value,"ASN1:",5), iVar2 != 0)) goto LAB_0010cb22;
       pbVar5 = (byte *)value + 5;
       uVar8 = 2;
     }

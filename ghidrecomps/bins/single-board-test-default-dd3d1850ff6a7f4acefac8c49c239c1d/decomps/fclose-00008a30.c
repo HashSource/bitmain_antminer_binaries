@@ -6,9 +6,7 @@ int fclose(FILE *__stream)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x00008a38. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_00025180)();
+  iVar1 = (*(code *)(undefined *)0x0)(__stream);
   return iVar1;
 }
 

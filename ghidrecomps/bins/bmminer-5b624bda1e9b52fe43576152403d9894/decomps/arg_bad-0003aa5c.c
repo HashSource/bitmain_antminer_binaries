@@ -7,7 +7,6 @@ char * arg_bad(char *fmt,char *arg)
   size_t sVar1;
   size_t sVar2;
   char *__s;
-  char *str;
   
   sVar1 = strlen(fmt);
   sVar2 = strlen(arg);

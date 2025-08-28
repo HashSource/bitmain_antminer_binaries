@@ -4,18 +4,15 @@
 json_t * json_vpack_ex(json_error_t *error,size_t flags,char *fmt,va_list ap)
 
 {
-  char *msg;
   json_t *json;
-  json_t *value;
   size_t sVar1;
   va_list ap_copy;
   scanner_t s;
   
-  msg = DAT_0003c344;
   if ((fmt == (char *)0x0) || (*fmt == '\0')) {
-    jsonp_error_init(error,DAT_0003c348);
+    jsonp_error_init(error,"<format>");
     json = (json_t *)0x0;
-    jsonp_error_set(error,-1,-1,0,msg);
+    jsonp_error_set(error,-1,-1,0,"NULL or empty format string");
   }
   else {
     jsonp_error_init(error,(char *)0x0);
@@ -50,7 +47,7 @@ json_t * json_vpack_ex(json_error_t *error,size_t flags,char *fmt,va_list ap)
         json_delete(json);
       }
       json = (json_t *)0x0;
-      set_error(&s,DAT_0003c348,DAT_0003c34c);
+      set_error(&s,"<format>","Garbage after format string");
     }
   }
   return json;

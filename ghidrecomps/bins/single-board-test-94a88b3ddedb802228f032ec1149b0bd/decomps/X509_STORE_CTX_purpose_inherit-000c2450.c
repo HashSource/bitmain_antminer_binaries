@@ -16,7 +16,7 @@ LAB_000c247c:
     if (iVar1 == -1) {
       iVar3 = 0x897;
 LAB_000c24c8:
-      ERR_put_error(0xb,0x86,0x79,DAT_000c24f0,iVar3);
+      ERR_put_error(0xb,0x86,0x79,"x509_vfy.c",iVar3);
       return 0;
     }
     pXVar2 = X509_PURPOSE_get0(iVar1);
@@ -36,7 +36,7 @@ LAB_000c24c8:
   }
   iVar3 = X509_TRUST_get_by_id(trust);
   if (iVar3 == -1) {
-    ERR_put_error(0xb,0x86,0x78,DAT_000c24f0,0x8ac);
+    ERR_put_error(0xb,0x86,0x78,"x509_vfy.c",0x8ac);
     return 0;
   }
 LAB_000c247e:

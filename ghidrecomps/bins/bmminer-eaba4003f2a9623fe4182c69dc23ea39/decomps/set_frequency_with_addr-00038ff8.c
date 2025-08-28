@@ -9,8 +9,6 @@ int set_frequency_with_addr(uint frequency,uchar mode,uchar addr,uchar chain)
   int iVar5;
   uint uVar6;
   uint uVar7;
-  uint *vil_data;
-  undefined4 in_stack_fffff7a4;
   uchar chain_local;
   uchar addr_local;
   uchar mode_local;
@@ -54,8 +52,7 @@ int set_frequency_with_addr(uint frequency,uchar mode,uchar addr,uchar chain)
   }
   get_pll_index(uVar7);
   uVar7 = freq_high_pll_1393[iVar5].freq;
-  vil_data = &reg_data_vil;
-  get_plldata(0x571,uVar7,&reg_data_pll,&reg_data_pll2,vil_data);
+  get_plldata(0x571,uVar7,&reg_data_pll,&reg_data_pll2,&reg_data_vil);
   uVar3 = (ushort)uVar7;
   if (opt_multi_version == 0) {
     memset(buf,0,9);
@@ -71,7 +68,7 @@ int set_frequency_with_addr(uint frequency,uchar mode,uchar addr,uchar chain)
     set_BC_command_buffer(cmd_buf);
     uVar7 = get_BC_write_command();
     set_BC_write_command(uVar7 & 0xfff0ffff | uVar6 << 0x10 | 0x80800000);
-    cgsleep_us(CONCAT44(in_stack_fffff7a4,vil_data));
+    cgsleep_us(3000);
     memset(buf,0,9);
     memset(cmd_buf,0,0xc);
     buf[0] = 0x82;
@@ -86,7 +83,7 @@ int set_frequency_with_addr(uint frequency,uchar mode,uchar addr,uchar chain)
     uVar7 = get_BC_write_command();
     set_BC_write_command(uVar7 & 0xfff0ffff | uVar6 << 0x10 | 0x80800000);
     dev->freq[uVar6] = uVar3;
-    cgsleep_us(CONCAT44(in_stack_fffff7a4,vil_data));
+    cgsleep_us(5000);
   }
   else {
     memset(buf,0,9);
@@ -112,7 +109,7 @@ int set_frequency_with_addr(uint frequency,uchar mode,uchar addr,uchar chain)
     uVar7 = get_BC_write_command();
     set_BC_write_command(uVar7 & 0xfff0ffff | uVar6 << 0x10 | 0x80800000);
     dev->freq[uVar6] = uVar3;
-    cgsleep_us(CONCAT44(in_stack_fffff7a4,vil_data));
+    cgsleep_us(10000);
   }
   return (uint)bVar1;
 }

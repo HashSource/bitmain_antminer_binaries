@@ -1,5 +1,5 @@
 
-undefined4 makeup_set_address_cmd(undefined *param_1,uint param_2,undefined param_3)
+undefined4 makeup_set_address_cmd(undefined1 *param_1,uint param_2,undefined1 param_3)
 
 {
   byte bVar1;
@@ -18,6 +18,7 @@ undefined4 makeup_set_address_cmd(undefined *param_1,uint param_2,undefined para
   }
   else {
     memset(&local_10,0,5);
+    local_10._0_3_ = CONCAT12(param_3,0x540);
     bVar1 = CRC5_v1(&local_10,0x20);
     *param_1 = 0x55;
     param_1[1] = 0xaa;

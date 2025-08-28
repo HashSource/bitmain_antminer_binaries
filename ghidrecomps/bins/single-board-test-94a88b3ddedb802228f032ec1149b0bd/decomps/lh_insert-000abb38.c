@@ -2,74 +2,74 @@
 void * lh_insert(_LHASH *lh,void *data)
 
 {
-  void **ppvVar1;
-  uint uVar2;
-  ulong uVar3;
-  void *pvVar4;
-  int iVar5;
-  LHASH_NODE **ppLVar6;
-  lhash_node_st *plVar7;
+  uint uVar1;
+  ulong uVar2;
+  void *pvVar3;
+  int iVar4;
+  lhash_node_st *plVar5;
   uint extraout_r1;
   uint extraout_r1_00;
   uint extraout_r1_01;
-  ulong uVar8;
+  ulong uVar6;
+  LHASH_NODE **ppLVar7;
+  LHASH_NODE *extraout_r2;
+  LHASH_NODE *pLVar8;
   ulong uVar9;
   LHASH_NODE **ppLVar10;
   LHASH_NODE *pLVar11;
-  LHASH_NODE *pLVar12;
-  uint uVar13;
-  LHASH_COMP_FN_TYPE pLVar14;
-  uint uVar15;
-  lhash_node_st **pplVar16;
-  uint uVar17;
+  uint uVar12;
+  LHASH_COMP_FN_TYPE pLVar13;
+  uint uVar14;
+  lhash_node_st **pplVar15;
+  uint uVar16;
   
-  uVar13 = lh->num_nodes;
+  uVar12 = lh->num_nodes;
   lh->error = 0;
-  uVar2 = __aeabi_uidiv(lh->num_items << 8,uVar13);
-  if (lh->up_load <= uVar2) {
-    uVar15 = lh->p;
-    uVar17 = lh->pmax;
-    pLVar11 = (LHASH_NODE *)lh->b;
-    iVar5 = uVar17 + uVar15;
+  uVar1 = __aeabi_uidiv(lh->num_items << 8,uVar12);
+  if (lh->up_load <= uVar1) {
+    uVar14 = lh->p;
+    uVar16 = lh->pmax;
+    ppLVar7 = lh->b;
+    iVar4 = uVar16 + uVar14;
     lh->num_expands = lh->num_expands + 1;
-    ppvVar1 = &pLVar11->data;
-    lh->num_nodes = uVar13 + 1;
-    pplVar16 = (lhash_node_st **)(&pLVar11->data + uVar15);
-    uVar2 = lh->num_alloc_nodes;
-    lh->p = uVar15 + 1;
-    (&pLVar11->data)[iVar5] = (void *)0x0;
-    pLVar12 = (LHASH_NODE *)(&pLVar11->data)[uVar15];
-    while (pLVar12 != (LHASH_NODE *)0x0) {
-      __aeabi_uidivmod(pLVar12->hash,uVar2);
-      if (uVar15 != extraout_r1_01) {
-        *pplVar16 = pLVar12->next;
-        pLVar11 = (LHASH_NODE *)ppvVar1[iVar5];
+    lh->num_nodes = uVar12 + 1;
+    pplVar15 = ppLVar7 + uVar14;
+    uVar1 = lh->num_alloc_nodes;
+    lh->p = uVar14 + 1;
+    ppLVar7[iVar4] = (LHASH_NODE *)0x0;
+    pLVar11 = ppLVar7[uVar14];
+    while (pLVar11 != (LHASH_NODE *)0x0) {
+      __aeabi_uidivmod(pLVar11->hash,uVar1);
+      if (uVar14 != extraout_r1_01) {
+        *pplVar15 = pLVar11->next;
+        pLVar8 = ppLVar7[iVar4];
       }
       else {
-        pplVar16 = &pLVar12->next;
+        pplVar15 = &pLVar11->next;
+        pLVar8 = extraout_r2;
       }
-      if (uVar15 != extraout_r1_01) {
-        pLVar12->next = pLVar11;
-        ppvVar1[iVar5] = pLVar12;
+      if (uVar14 != extraout_r1_01) {
+        pLVar11->next = pLVar8;
+        ppLVar7[iVar4] = pLVar11;
       }
-      pLVar12 = *pplVar16;
+      pLVar11 = *pplVar15;
     }
-    if (uVar17 <= uVar15 + 1) {
-      ppLVar6 = (LHASH_NODE **)CRYPTO_realloc(lh->b,uVar2 << 3,DAT_000abcfc,0x150);
-      uVar2 = uVar2 * 2;
-      if (ppLVar6 == (LHASH_NODE **)0x0) {
+    if (uVar16 <= uVar14 + 1) {
+      ppLVar7 = (LHASH_NODE **)CRYPTO_realloc(lh->b,uVar1 << 3,"lhash.c",0x150);
+      uVar1 = uVar1 * 2;
+      if (ppLVar7 == (LHASH_NODE **)0x0) {
         lh->p = 0;
         lh->error = lh->error + 1;
       }
       else {
-        uVar13 = lh->num_alloc_nodes;
-        if (uVar13 < uVar2) {
-          uVar15 = uVar13;
-          if (6 < uVar2 && uVar13 + 1 < uVar2 - 7) {
-            ppLVar10 = ppLVar6 + uVar13;
+        uVar12 = lh->num_alloc_nodes;
+        if (uVar12 < uVar1) {
+          uVar14 = uVar12;
+          if (6 < uVar1 && uVar12 + 1 < uVar1 - 7) {
+            ppLVar10 = ppLVar7 + uVar12;
             do {
-              uVar17 = uVar15 + 9;
-              uVar15 = uVar15 + 8;
+              uVar16 = uVar14 + 9;
+              uVar14 = uVar14 + 8;
               HintPreloadData(ppLVar10 + 0x22);
               *ppLVar10 = (LHASH_NODE *)0x0;
               ppLVar10[1] = (LHASH_NODE *)0x0;
@@ -80,72 +80,72 @@ void * lh_insert(_LHASH *lh,void *data)
               ppLVar10[6] = (LHASH_NODE *)0x0;
               ppLVar10[7] = (LHASH_NODE *)0x0;
               ppLVar10 = ppLVar10 + 8;
-            } while (uVar17 < uVar2 - 7);
+            } while (uVar16 < uVar1 - 7);
           }
-          ppLVar10 = ppLVar6 + (uVar15 - 1);
+          ppLVar10 = ppLVar7 + (uVar14 - 1);
           do {
-            uVar15 = uVar15 + 1;
+            uVar14 = uVar14 + 1;
             ppLVar10 = ppLVar10 + 1;
             *ppLVar10 = (LHASH_NODE *)0x0;
-          } while (uVar15 < uVar2);
+          } while (uVar14 < uVar1);
         }
-        lh->pmax = uVar13;
-        lh->num_alloc_nodes = uVar2;
-        lh->b = ppLVar6;
+        lh->pmax = uVar12;
+        lh->num_alloc_nodes = uVar1;
+        lh->b = ppLVar7;
         lh->num_expand_reallocs = lh->num_expand_reallocs + 1;
         lh->p = 0;
       }
     }
   }
-  uVar3 = (*lh->hash)(data);
+  uVar2 = (*lh->hash)(data);
   lh->num_hash_calls = lh->num_hash_calls + 1;
-  __aeabi_uidivmod(uVar3,lh->pmax);
-  uVar2 = extraout_r1;
+  __aeabi_uidivmod(uVar2,lh->pmax);
+  uVar1 = extraout_r1;
   if (extraout_r1 < lh->p) {
-    __aeabi_uidivmod(uVar3,lh->num_alloc_nodes);
-    uVar2 = extraout_r1_00;
+    __aeabi_uidivmod(uVar2,lh->num_alloc_nodes);
+    uVar1 = extraout_r1_00;
   }
-  pLVar14 = lh->comp;
-  pLVar11 = lh->b[uVar2];
-  pplVar16 = lh->b + uVar2;
+  pLVar13 = lh->comp;
+  pLVar11 = lh->b[uVar1];
+  pplVar15 = lh->b + uVar1;
   do {
     if (pLVar11 == (LHASH_NODE *)0x0) {
 LAB_000abcba:
-      plVar7 = (lhash_node_st *)CRYPTO_malloc(0xc,DAT_000abcfc,0xbf);
-      if (plVar7 == (lhash_node_st *)0x0) {
+      plVar5 = (lhash_node_st *)CRYPTO_malloc(0xc,"lhash.c",0xbf);
+      if (plVar5 == (lhash_node_st *)0x0) {
         lh->error = lh->error + 1;
       }
       else {
-        uVar8 = lh->num_insert;
+        uVar6 = lh->num_insert;
         uVar9 = lh->num_items;
-        plVar7->data = data;
-        plVar7->hash = uVar3;
-        plVar7->next = (lhash_node_st *)0x0;
-        *pplVar16 = plVar7;
-        lh->num_insert = uVar8 + 1;
+        plVar5->data = data;
+        plVar5->hash = uVar2;
+        plVar5->next = (lhash_node_st *)0x0;
+        *pplVar15 = plVar5;
+        lh->num_insert = uVar6 + 1;
         lh->num_items = uVar9 + 1;
       }
       return (void *)0x0;
     }
-    uVar8 = pLVar11->hash;
+    uVar6 = pLVar11->hash;
     lh->num_hash_comps = lh->num_hash_comps + 1;
-    if (uVar3 == uVar8) {
-      pvVar4 = pLVar11->data;
+    if (uVar2 == uVar6) {
+      pvVar3 = pLVar11->data;
       lh->num_comp_calls = lh->num_comp_calls + 1;
-      iVar5 = (*pLVar14)(pvVar4,data);
-      if (iVar5 == 0) {
-        plVar7 = *pplVar16;
-        if (plVar7 != (lhash_node_st *)0x0) {
-          uVar3 = lh->num_replace;
-          pvVar4 = plVar7->data;
-          plVar7->data = data;
-          lh->num_replace = uVar3 + 1;
-          return pvVar4;
+      iVar4 = (*pLVar13)(pvVar3,data);
+      if (iVar4 == 0) {
+        plVar5 = *pplVar15;
+        if (plVar5 != (lhash_node_st *)0x0) {
+          uVar2 = lh->num_replace;
+          pvVar3 = plVar5->data;
+          plVar5->data = data;
+          lh->num_replace = uVar2 + 1;
+          return pvVar3;
         }
         goto LAB_000abcba;
       }
     }
-    pplVar16 = &pLVar11->next;
+    pplVar15 = &pLVar11->next;
     pLVar11 = pLVar11->next;
   } while( true );
 }

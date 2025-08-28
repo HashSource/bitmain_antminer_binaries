@@ -21,7 +21,7 @@ int EVP_DecryptUpdate(EVP_CIPHER_CTX *ctx,uchar *out,int *outl,uchar *in,int inl
       }
       __n = pEVar3->block_size;
       if (0x20 < __n) {
-        OpenSSLDie(DAT_000af1e0,0x1c7,DAT_000af1e4);
+        OpenSSLDie("evp_enc.c",0x1c7,"b <= sizeof ctx->final");
       }
       iVar2 = ctx->final_used;
       out_00 = out;

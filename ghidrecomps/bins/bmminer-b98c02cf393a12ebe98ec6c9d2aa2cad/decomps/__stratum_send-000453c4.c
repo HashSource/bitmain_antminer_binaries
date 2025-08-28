@@ -26,7 +26,8 @@ undefined4 __stratum_send(int param_1,char *param_2,int param_3)
   }
   local_840 = param_3 + 1;
   sVar1 = strlen(param_2);
-  *(undefined2 *)(param_2 + sVar1) = DAT_00065a34;
+  (param_2 + sVar1)[0] = '\n';
+  (param_2 + sVar1)[1] = '\0';
   if ((int)local_840 < 1) {
     local_844 = 0;
     iVar7 = 0;

@@ -2,7 +2,7 @@
 int check_crl(X509_STORE_CTX *param_1,X509_CRL *param_2)
 
 {
-  _STACK *p_Var1;
+  stack_st_X509 *psVar1;
   int iVar2;
   ASN1_TIME *s;
   EVP_PKEY *r;
@@ -64,13 +64,13 @@ LAB_000c2758:
           XStack_a0.param = pXVar5;
           XStack_a0.parent = param_1;
           iVar2 = X509_verify_cert(&XStack_a0);
-          p_Var1 = &(XStack_a0.chain)->stack;
+          psVar1 = XStack_a0.chain;
           if (0 < iVar2) {
             p_Var6 = &param_1->chain->stack;
             iVar2 = sk_num(p_Var6);
             a = (X509 *)sk_value(p_Var6,iVar2 + -1);
-            iVar2 = sk_num(p_Var1);
-            b = (X509 *)sk_value(p_Var1,iVar2 + -1);
+            iVar2 = sk_num(&psVar1->stack);
+            b = (X509 *)sk_value(&psVar1->stack,iVar2 + -1);
             uVar3 = X509_cmp(a,b);
             iVar2 = 1 - uVar3;
             if (1 < uVar3) {
@@ -91,7 +91,7 @@ LAB_000c2758:
             XStack_a0.tree = (X509_POLICY_TREE *)0x0;
           }
           if (&(XStack_a0.chain)->stack != (_STACK *)0x0) {
-            sk_pop_free(&(XStack_a0.chain)->stack,DAT_000c29ac);
+            sk_pop_free(&(XStack_a0.chain)->stack,(func *)0xb7c0d);
             XStack_a0.chain = (stack_st_X509 *)0x0;
           }
           CRYPTO_free_ex_data(5,&XStack_a0,&XStack_a0.ex_data);

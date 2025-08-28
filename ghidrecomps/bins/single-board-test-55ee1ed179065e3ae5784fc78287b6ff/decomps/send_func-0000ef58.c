@@ -1,14 +1,14 @@
 
-undefined4 * send_func(byte *param_1)
+undefined4 send_func(byte *param_1)
 
 {
   byte bVar1;
-  undefined4 *puVar2;
-  undefined local_f4;
+  undefined4 extraout_r3;
+  undefined1 local_f4;
   byte local_f3;
-  undefined auStack_f2 [180];
-  undefined local_3e;
-  undefined local_3d;
+  undefined1 auStack_f2 [180];
+  undefined1 local_3e;
+  undefined1 local_3d;
   undefined2 local_3a;
   void *local_38;
   int local_34;
@@ -42,12 +42,12 @@ undefined4 * send_func(byte *param_1)
         }
         local_f3 = bVar1;
         for (local_20 = 0; local_20 < 0xb4; local_20 = local_20 + 1) {
-          auStack_f2[local_20] = *(undefined *)((int)local_38 + local_20 + 8);
+          auStack_f2[local_20] = *(undefined1 *)((int)local_38 + local_20 + 8);
         }
-        auStack_f2[144] = 0;
+        auStack_f2[0x90] = 0;
         local_3a = CRC16(&local_f4,0xb6);
-        local_3e = (undefined)((ushort)local_3a >> 8);
-        local_3d = (undefined)local_3a;
+        local_3e = (undefined1)((ushort)local_3a >> 8);
+        local_3d = (undefined1)local_3a;
         dcr_uart_send(local_25,&local_f4,0xb8);
         pthread_mutex_lock((pthread_mutex_t *)(HW_check_mutex + (uint)local_25 * 0x18));
         for (local_20 = 8; -1 < local_20; local_20 = local_20 + -1) {
@@ -57,7 +57,7 @@ undefined4 * send_func(byte *param_1)
         *(char *)((int)&gWork_Num_For_Hw_Check + (uint)local_25) =
              *(char *)((int)&gWork_Num_For_Hw_Check + (uint)local_25) + '\x01';
         if (8 < *(byte *)((int)&gWork_Num_For_Hw_Check + (uint)local_25)) {
-          *(undefined *)((int)&gWork_Num_For_Hw_Check + (uint)local_25) = 9;
+          *(undefined1 *)((int)&gWork_Num_For_Hw_Check + (uint)local_25) = 9;
         }
         memcpy(gWorks_For_Hw_Check + (uint)local_25 * 0x7f8,local_38,0xcc);
         pthread_mutex_unlock((pthread_mutex_t *)(HW_check_mutex + (uint)local_25 * 0x18));
@@ -77,9 +77,8 @@ undefined4 * send_func(byte *param_1)
   puts("\nsend test pattern done");
   system("date");
   putchar(10);
-  puVar2 = &start_receive;
-  *(undefined *)((int)&start_receive + (uint)local_25) = 0;
+  *(undefined1 *)((int)&start_receive + (uint)local_25) = 0;
   puts("to stop receive");
-  return puVar2;
+  return extraout_r3;
 }
 

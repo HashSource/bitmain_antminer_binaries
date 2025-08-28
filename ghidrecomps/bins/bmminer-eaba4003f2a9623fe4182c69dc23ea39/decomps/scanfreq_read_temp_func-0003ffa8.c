@@ -1,5 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* WARNING: Unknown calling convention */
 
 void * scanfreq_read_temp_func(void)
@@ -158,27 +157,9 @@ void * scanfreq_read_temp_func(void)
     pthread_mutex_unlock((pthread_mutex_t *)&opencore_readtemp_mutex);
     if ((opt_debug != false) &&
        (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-      tmp42[0] = s_read_temp_func_Done__000778f4[0];
-      tmp42[1] = s_read_temp_func_Done__000778f4[1];
-      tmp42[2] = s_read_temp_func_Done__000778f4[2];
-      tmp42[3] = s_read_temp_func_Done__000778f4[3];
-      tmp42[4] = s_read_temp_func_Done__000778f4[4];
-      tmp42[5] = s_read_temp_func_Done__000778f4[5];
-      tmp42[6] = s_read_temp_func_Done__000778f4[6];
-      tmp42[7] = s_read_temp_func_Done__000778f4[7];
-      tmp42[8] = s_read_temp_func_Done__000778f4[8];
-      tmp42[9] = s_read_temp_func_Done__000778f4[9];
-      tmp42[10] = s_read_temp_func_Done__000778f4[10];
-      tmp42[11] = s_read_temp_func_Done__000778f4[11];
-      tmp42[12] = s_read_temp_func_Done__000778f4[12];
-      tmp42[13] = s_read_temp_func_Done__000778f4[13];
-      tmp42[14] = s_read_temp_func_Done__000778f4[14];
-      tmp42[15] = s_read_temp_func_Done__000778f4[15];
-      tmp42[16] = s_read_temp_func_Done__000778f4[16];
-      tmp42[17] = s_read_temp_func_Done__000778f4[17];
-      tmp42[18] = s_read_temp_func_Done__000778f4[18];
-      tmp42[19] = s_read_temp_func_Done__000778f4[19];
-      tmp42._20_2_ = (undefined2)ram0x00077908;
+      builtin_strncpy(tmp42,"read_temp_func Done!",0x14);
+      tmp42[0x14] = '\n';
+      tmp42[0x15] = '\0';
       _applog(7,tmp42,false);
     }
     if ((opt_debug != false) &&

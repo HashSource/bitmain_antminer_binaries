@@ -1,5 +1,5 @@
 
-undefined4 multi_split(BIO *param_1,char *param_2,_STACK **param_3)
+undefined4 multi_split(BIO *param_1,char *param_2,undefined4 *param_3)
 
 {
   bool bVar1;
@@ -35,9 +35,9 @@ undefined4 multi_split(BIO *param_1,char *param_2,_STACK **param_3)
         if (sVar5 == 0xffffffff) {
           __n = strlen(param_2);
         }
-        if (((iVar6 <= (int)(__n + 1)) || (iVar7 = strncmp(acStack_428,DAT_0012730c,2), iVar7 != 0))
-           || (iVar7 = strncmp(acStack_426,param_2,__n), iVar7 != 0)) break;
-        iVar6 = strncmp(acStack_426 + __n,DAT_0012730c,2);
+        if (((iVar6 <= (int)(__n + 1)) || (iVar7 = strncmp(acStack_428,"--",2), iVar7 != 0)) ||
+           (iVar7 = strncmp(acStack_426,param_2,__n), iVar7 != 0)) break;
+        iVar6 = strncmp(acStack_426 + __n,"--",2);
         if (iVar6 == 0) {
           sk_push(local_42c,b);
           return 1;
@@ -66,7 +66,7 @@ LAB_0012729a:
       BIO_ctrl(b,0x82,0,(void *)0x0);
     }
     else if (bVar1) {
-      BIO_write(b,DAT_00127310,2);
+      BIO_write(b,&DAT_0013c1d4,2);
     }
     bVar1 = bVar2;
     if (iVar6 == 0) {

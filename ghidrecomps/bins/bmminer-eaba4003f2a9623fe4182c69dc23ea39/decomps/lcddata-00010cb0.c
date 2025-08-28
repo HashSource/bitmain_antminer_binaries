@@ -42,9 +42,9 @@ void lcddata(io_data *io_data,long c,char *param,_Bool isjson,char group)
   root = api_add_elapsed(root,"Elapsed",&total_secs,true);
   ghs = getAVGhashrate();
   root = api_add_mhs(root,"GHS av",&ghs,true);
-  ghs = rolling5 / DAT_00010ff8;
+  ghs = rolling5 / 1000.0;
   root = api_add_mhs(root,"GHS 5m",&ghs,true);
-  ghs = total_rolling / DAT_00010ff8;
+  ghs = total_rolling / 1000.0;
   root = api_add_mhs(root,"GHS 5s",&ghs,true);
   _mutex_unlock(&hash_lock,"api-btm.c","lcddata",0x10b5);
   temp = 0.0;

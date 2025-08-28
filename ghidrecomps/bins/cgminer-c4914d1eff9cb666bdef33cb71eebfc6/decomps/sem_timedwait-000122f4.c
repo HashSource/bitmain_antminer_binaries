@@ -6,7 +6,7 @@ int sem_timedwait(sem_t *__sem,timespec *__abstime)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sem_timedwait_000a8150)();
+  iVar1 = sem_timedwait(__sem,__abstime);
   return iVar1;
 }
 

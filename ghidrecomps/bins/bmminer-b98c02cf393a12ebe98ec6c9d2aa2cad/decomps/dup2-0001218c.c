@@ -6,7 +6,7 @@ int dup2(int __fd,int __fd2)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_dup2_0007cecc)();
+  iVar1 = dup2(__fd,__fd2);
   return iVar1;
 }
 

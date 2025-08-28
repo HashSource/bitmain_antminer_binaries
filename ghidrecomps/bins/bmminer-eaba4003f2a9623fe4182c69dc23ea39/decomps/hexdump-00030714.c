@@ -2,6 +2,8 @@
 void hexdump(uchar *p,uint len)
 
 {
+  byte bVar1;
+  int iVar2;
   uint len_local;
   uchar *p_local;
   char tmp42 [2048];
@@ -12,30 +14,29 @@ void hexdump(uchar *p,uint len)
   uint addr;
   uint i;
   
-  wordlen = 4;
   for (addr = 0; addr < len; addr = addr + 0x10) {
     for (i = 0; i < 0x50; i = i + 1) {
-      if (((wordlen + 0x1a) * 2 - i == 0) || (wordlen * 2 + 0x45 == i)) {
+      if ((i == 0x3c) || (i == 0x4d)) {
         line[i] = '|';
       }
-      else if ((wordlen + 0x23) * 2 - i == 0) {
-        line[i] = '\0';
+      else if (i == 0x4e) {
+        line[0x4e] = '\0';
       }
       else {
         line[i] = ' ';
       }
     }
-    for (i = 0; i <= wordlen * 2 && wordlen * 2 - i != 0; i = i + 1) {
-      line[i] = nibble[addr >> (((wordlen * 2 - i) + 0x3fffffff) * 4 & 0xff) & 0xf];
+    for (i = 0; i < 8; i = i + 1) {
+      line[i] = nibble[addr >> ((0x40000007 - i) * 4 & 0xff) & 0xf];
     }
-    for (i = 0; (i < 0x10 && (pos = wordlen * 2 + (i >> 3) + 3, addr + i < len)); i = i + 1) {
-      v = p[addr + i];
-      line[i * 3 + pos] = nibble[v >> 4];
-      line[i * 3 + pos + 1] = nibble[v & 0xf];
-      if ((v < 0x20) || (0x7e < v)) {
-        v = '.';
+    for (i = 0; (i < 0x10 && (iVar2 = (i >> 3) + 0xb, addr + i < len)); i = i + 1) {
+      bVar1 = p[addr + i];
+      line[i * 3 + iVar2] = nibble[bVar1 >> 4];
+      line[i * 3 + iVar2 + 1] = nibble[bVar1 & 0xf];
+      if ((bVar1 < 0x20) || (0x7e < bVar1)) {
+        bVar1 = 0x2e;
       }
-      line[wordlen * 2 + i + 0x35] = v;
+      line[i + 0x3d] = bVar1;
     }
     if ((opt_debug != false) &&
        (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {

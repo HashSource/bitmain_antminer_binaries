@@ -1,11 +1,8 @@
 
-/* WARNING: Variable defined which should be unmapped: key-local */
-
 int blake2b_init_key(blake2b_state *S,uint8_t outlen,void *key,uint8_t keylen)
 
 {
   int iVar1;
-  undefined4 uStack_d8;
   void *key_local;
   uint8_t keylen_local;
   uint8_t outlen_local;
@@ -25,7 +22,7 @@ int blake2b_init_key(blake2b_state *S,uint8_t outlen,void *key,uint8_t keylen)
     P[0].digest_length = outlen;
     P[0].key_length = keylen;
     store32(&P[0].leaf_length,0);
-    store64(&P[0].node_offset,CONCAT44(key,uStack_d8));
+    store64(&P[0].node_offset,0);
     P[0].node_depth = '\0';
     P[0].inner_length = '\0';
     memset(P[0].reserved,0,0xe);
@@ -38,7 +35,7 @@ int blake2b_init_key(blake2b_state *S,uint8_t outlen,void *key,uint8_t keylen)
     else {
       memset(block,0,0x80);
       memcpy(block,key,(uint)keylen);
-      blake2b_update(S,block,CONCAT44(key,uStack_d8));
+      blake2b_update(S,block,0x80);
       secure_zero_memory(block,0x80);
       iVar1 = 0;
     }

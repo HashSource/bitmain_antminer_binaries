@@ -4,39 +4,24 @@
 uchar set_pic_iic(uint data)
 
 {
-  char cVar1;
-  int *piVar2;
-  char *pcVar3;
-  char *pcVar4;
-  char *pcVar5;
-  uint uVar6;
-  uint in_stack_fffff7e0;
-  undefined4 in_stack_fffff7e4;
+  _Bool _Var1;
+  uint uVar2;
   char tmp42 [2048];
   
-  pcVar5 = DAT_0002bc40;
-  uVar6 = data & 0x7fffffff;
-  cVar1 = *DAT_0002bc40;
-  *(uint *)(*(int *)(DAT_0002bc3c + 0x8d4) + 0x30) = uVar6;
-  piVar2 = DAT_0002bc58;
-  pcVar3 = DAT_0002bc48;
-  pcVar4 = DAT_0002bc44;
-  if ((cVar1 != '\0') &&
-     (((*DAT_0002bc44 != '\0' || (*DAT_0002bc48 != '\0')) || (6 < *DAT_0002bc58)))) {
-    snprintf(tmp42,0x800,DAT_0002bc4c,DAT_0002bc50);
+  _Var1 = opt_debug;
+  axi_fpga_addr[0xc] = data & 0x7fffffff;
+  if ((_Var1) && (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: set IIC_COMMAND is 0x%x\n","set_pic_iic",data & 0x7fffffff);
     _applog(7,tmp42,false);
-    in_stack_fffff7e0 = uVar6;
-    piVar2 = DAT_0002bc58;
-    pcVar3 = DAT_0002bc48;
-    pcVar4 = DAT_0002bc44;
   }
-  while (uVar6 = get_pic_iic(), -1 < (int)uVar6) {
-    if ((*pcVar5 != '\0') && (((*pcVar4 != '\0' || (*pcVar3 != '\0')) || (6 < *piVar2)))) {
-      snprintf(tmp42,0x800,DAT_0002bc54,DAT_0002bc50);
+  while (uVar2 = get_pic_iic(), -1 < (int)uVar2) {
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      snprintf(tmp42,0x800,"%s: waiting write pic iic\n","set_pic_iic");
       _applog(7,tmp42,false);
     }
-    cgsleep_us(CONCAT44(in_stack_fffff7e4,in_stack_fffff7e0));
+    cgsleep_us(1000);
   }
-  return (uchar)uVar6;
+  return (uchar)uVar2;
 }
 

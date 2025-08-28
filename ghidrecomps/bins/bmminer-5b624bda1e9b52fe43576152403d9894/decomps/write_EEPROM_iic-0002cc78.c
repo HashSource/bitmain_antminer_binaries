@@ -22,7 +22,7 @@ uchar write_EEPROM_iic(_Bool read,_Bool reg_addr_valid,uchar reg_addr,uchar whic
   if (reg_addr_valid) {
     uVar2 = uVar2 | (uint)reg_addr << 8 | 0x1000000;
   }
-  if (*DAT_0002cce4 - 0xeU < 2) {
+  if (fpga_version - 0xeU < 2) {
     uVar3 = uVar3 - 1 & 0xff;
   }
   uVar1 = set_iic(uVar2 | data | 0xa00000 | (uVar3 & 3) << 0x1a);

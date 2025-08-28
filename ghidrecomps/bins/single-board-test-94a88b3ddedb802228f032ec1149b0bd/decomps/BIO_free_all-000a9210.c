@@ -12,7 +12,7 @@ void BIO_free_all(BIO *a)
     do {
       iVar4 = a->references;
       pbVar5 = a->next_bio;
-      iVar1 = CRYPTO_add_lock(&a->references,-1,0x15,DAT_000a9294,0x72);
+      iVar1 = CRYPTO_add_lock(&a->references,-1,0x15,"bio_lib.c",0x72);
       if ((iVar1 < 1) &&
          ((a->callback == (_func_745 *)0x0 ||
           (lVar2 = (*a->callback)(a,1,(char *)0x0,0,0,1), 0 < lVar2)))) {

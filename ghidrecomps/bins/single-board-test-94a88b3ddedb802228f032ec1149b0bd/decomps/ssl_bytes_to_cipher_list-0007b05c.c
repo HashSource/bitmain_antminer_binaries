@@ -1,5 +1,5 @@
 
-_STACK * ssl_bytes_to_cipher_list(int param_1,char *param_2,size_t param_3,_STACK **param_4)
+_STACK * ssl_bytes_to_cipher_list(int param_1,char *param_2,size_t param_3,int *param_4)
 
 {
   int iVar1;
@@ -16,14 +16,14 @@ _STACK * ssl_bytes_to_cipher_list(int param_1,char *param_2,size_t param_3,_STAC
   }
   iVar1 = (**(code **)(*(int *)(param_1 + 8) + 0x4c))(0,0);
   if ((iVar1 == 0) || (__aeabi_idivmod(param_3,iVar1), extraout_r1 != 0)) {
-    ERR_put_error(0x14,0xa1,0x97,DAT_0007b24c,0x5e6);
+    ERR_put_error(0x14,0xa1,0x97,"ssl_lib.c",0x5e6);
     p_Var6 = (_STACK *)0x0;
   }
   else {
-    if ((param_4 == (_STACK **)0x0) || (st = *param_4, st == (_STACK *)0x0)) {
+    if ((param_4 == (int *)0x0) || (st = (_STACK *)*param_4, st == (_STACK *)0x0)) {
       st = sk_new_null();
       if (st == (_STACK *)0x0) {
-        ERR_put_error(0x14,0xa1,0x41,DAT_0007b24c,0x5ec);
+        ERR_put_error(0x14,0xa1,0x41,"ssl_lib.c",0x5ec);
         return (_STACK *)0x0;
       }
     }
@@ -41,9 +41,9 @@ _STACK * ssl_bytes_to_cipher_list(int param_1,char *param_2,size_t param_3,_STAC
     if (*(int *)(iVar3 + 0x154) == 0) {
       iVar1 = 0x5f8;
 LAB_0007b22a:
-      ERR_put_error(0x14,0xa1,0x41,DAT_0007b24c,iVar1);
+      ERR_put_error(0x14,0xa1,0x41,"ssl_lib.c",iVar1);
 LAB_0007b1c8:
-      if ((param_4 == (_STACK **)0x0) || (*param_4 == (_STACK *)0x0)) {
+      if ((param_4 == (int *)0x0) || (*param_4 == 0)) {
         p_Var6 = (_STACK *)0x0;
         sk_free(st);
       }
@@ -64,7 +64,7 @@ LAB_0007b1c8:
             pcVar5 = param_2 + iVar1;
             if ((pcVar5[-2] != '\0') || (pcVar5[-1] != -1)) break;
             if (*(int *)(param_1 + 400) != 0) {
-              ERR_put_error(0x14,0xa1,0x159,DAT_0007b24c,0x605);
+              ERR_put_error(0x14,0xa1,0x159,"ssl_lib.c",0x605);
               ssl3_send_alert(param_1,2,0x28);
               goto LAB_0007b1c8;
             }
@@ -85,7 +85,7 @@ LAB_0007b106:
           }
           iVar3 = (**(code **)(*(int *)(param_1 + 8) + 0x40))(param_1,0x77,0,0);
           if (iVar3 == 0) {
-            ERR_put_error(0x14,0xa1,0x175,DAT_0007b24c,0x61c);
+            ERR_put_error(0x14,0xa1,0x175,"ssl_lib.c",0x61c);
             if (*(int *)(param_1 + 0x58) != 0) {
               ssl3_send_alert(param_1,2,0x56);
             }
@@ -97,8 +97,8 @@ LAB_0007b106:
       }
 LAB_0007b160:
       p_Var6 = st;
-      if (param_4 != (_STACK **)0x0) {
-        *param_4 = st;
+      if (param_4 != (int *)0x0) {
+        *param_4 = (int)st;
       }
     }
   }

@@ -8,7 +8,9 @@ int RAND_query_egd_bytes(char *path,uchar *buf,int bytes)
   ssize_t sVar3;
   int *piVar4;
   uint *puVar5;
+  uint extraout_r3;
   uint num;
+  uint extraout_r3_00;
   int iVar6;
   uint uVar7;
   uchar *puVar8;
@@ -23,11 +25,11 @@ int RAND_query_egd_bytes(char *path,uchar *buf,int bytes)
     BUF_strlcpy(local_190[0].sa_data,path,0x6c);
     sVar1 = strlen(path);
     __fd = socket(1,1,0);
-    num = __fd + 1;
-    if (num != 0) {
+    if (__fd != -1) {
 LAB_000ac3f6:
       do {
         iVar2 = connect(__fd,local_190,sVar1 + 2);
+        num = extraout_r3;
         if (iVar2 == 0) {
 LAB_000ac404:
           iVar2 = 0;
@@ -76,6 +78,7 @@ LAB_000ac44c:
     bytes = bytes - num;
     if (buf == (uchar *)0x0) {
       RAND_seed(auStack_120,num);
+      num = extraout_r3_00;
     }
     if (bytes < 1) break;
 LAB_000ac410:

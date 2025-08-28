@@ -8,7 +8,7 @@ void CRYPTO_cfb128_1_encrypt
   uint uVar2;
   uint uVar3;
   uint uVar4;
-  undefined local_38 [8];
+  undefined1 local_38 [8];
   byte local_30 [12];
   
   if (param_3 != 0) {

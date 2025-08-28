@@ -6,7 +6,7 @@ int execv(char *__path,char **__argv)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_execv_000a8178)();
+  iVar1 = execv(__path,__argv);
   return iVar1;
 }
 

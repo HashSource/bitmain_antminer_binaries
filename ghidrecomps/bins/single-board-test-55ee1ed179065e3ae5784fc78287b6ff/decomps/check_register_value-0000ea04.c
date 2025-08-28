@@ -1,5 +1,5 @@
 
-undefined4 check_register_value(undefined param_1,void *param_2)
+undefined4 check_register_value(undefined1 param_1,void *param_2)
 
 {
   undefined4 uVar1;
@@ -16,7 +16,7 @@ undefined4 check_register_value(undefined param_1,void *param_2)
     memcpy((void *)((int)reg_value_buf + *reg_value_buf * 10 + 0x10),param_2,local_c);
     *(byte *)((int)reg_value_buf + *reg_value_buf * 10 + 0x18) =
          *(byte *)((int)param_2 + (local_c - 1)) & 0x1f;
-    *(undefined *)((int)reg_value_buf + *reg_value_buf * 10 + 0x19) = param_1;
+    *(undefined1 *)((int)reg_value_buf + *reg_value_buf * 10 + 0x19) = param_1;
     *reg_value_buf = *reg_value_buf + 1;
     reg_value_buf[2] = reg_value_buf[2] + 1;
     if (0x200 < *reg_value_buf) {

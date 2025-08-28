@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void init_dev_frequency(void)
 
@@ -25,8 +25,8 @@ void init_dev_frequency(void)
     }
   }
   else {
-    *(undefined *)&dev->frequency = 0x13;
-    *(undefined *)((int)&paVar1->frequency + 1) = 1;
+    *(undefined1 *)&dev->frequency = 0x13;
+    *(undefined1 *)((int)&paVar1->frequency + 1) = 1;
   }
   return;
 }

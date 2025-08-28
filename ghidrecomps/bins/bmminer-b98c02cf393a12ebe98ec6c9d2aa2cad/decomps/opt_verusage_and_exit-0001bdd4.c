@@ -5,7 +5,7 @@ void opt_verusage_and_exit
 {
   undefined4 uVar1;
   
-  printf("%s\nBuilt with bitmain_c5 mining support.\n",DAT_0001be18,param_3,param_4,param_4);
+  printf("%s\nBuilt with bitmain_c5 mining support.\n",packagename,param_3,param_4,param_4);
   uVar1 = opt_usage(opt_argv0,param_1);
   printf("%s",uVar1);
   fflush(stdout);

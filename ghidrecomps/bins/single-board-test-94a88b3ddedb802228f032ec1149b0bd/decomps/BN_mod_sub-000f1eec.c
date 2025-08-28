@@ -9,9 +9,9 @@ int BN_mod_sub(BIGNUM *r,BIGNUM *a,BIGNUM *b,BIGNUM *m,BN_CTX *ctx)
   if (iVar1 != 0) {
     iVar1 = BN_div((BIGNUM *)0x0,r,r,m,ctx);
     if ((iVar1 != 0) && (iVar1 = 1, r->neg != 0)) {
-      pcVar2 = DAT_000f1f30;
+      pcVar2 = (code *)0xef09d;
       if (m->neg != 0) {
-        pcVar2 = DAT_000f1f34;
+        pcVar2 = BN_sub;
       }
       iVar1 = (*pcVar2)(r,r,m);
     }

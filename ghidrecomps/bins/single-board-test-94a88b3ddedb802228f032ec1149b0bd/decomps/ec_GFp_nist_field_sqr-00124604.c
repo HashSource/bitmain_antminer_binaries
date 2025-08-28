@@ -6,7 +6,7 @@ int ec_GFp_nist_field_sqr(int param_1,BIGNUM *param_2,BIGNUM *param_3,BN_CTX *pa
   BN_CTX *c;
   
   if ((param_1 == 0 || param_2 == (BIGNUM *)0x0) || (param_3 == (BIGNUM *)0x0)) {
-    ERR_put_error(0x10,0xc9,0x86,DAT_0012467c,0xcb);
+    ERR_put_error(0x10,0xc9,0x86,"ecp_nist.c",0xcb);
   }
   else {
     c = (BN_CTX *)0x0;

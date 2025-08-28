@@ -8,7 +8,7 @@ undefined4 pkey_dsa_copy(int param_1,int param_2)
   undefined4 uVar4;
   undefined4 uVar5;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0x18,DAT_000ff768,0x54);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0x18,"dsa_pmeth.c",0x54);
   if (puVar1 != (undefined4 *)0x0) {
     puVar1[2] = 0;
     *puVar1 = 0x400;

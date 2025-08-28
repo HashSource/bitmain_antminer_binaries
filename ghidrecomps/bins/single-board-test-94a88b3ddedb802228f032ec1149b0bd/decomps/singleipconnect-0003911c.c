@@ -24,10 +24,10 @@ int singleipconnect(int *param_1,undefined4 param_2,int *param_3)
   int local_300;
   int iStack_2fc;
   int local_2f8;
-  undefined auStack_2f4 [4];
+  undefined1 auStack_2f4 [4];
   int *local_2f0;
   socklen_t local_2ec;
-  undefined auStack_2e8 [48];
+  undefined1 auStack_2e8 [48];
   sockaddr local_2b8;
   long local_2a0;
   sockaddr asStack_238 [8];
@@ -36,7 +36,7 @@ int singleipconnect(int *param_1,undefined4 param_2,int *param_3)
   socklen_t local_1ac;
   sockaddr asStack_1a8 [8];
   uint local_128;
-  undefined auStack_124 [256];
+  undefined1 auStack_124 [256];
   
   iVar11 = *param_1;
   *param_3 = -1;
@@ -49,11 +49,11 @@ int singleipconnect(int *param_1,undefined4 param_2,int *param_3)
     piVar7 = __errno_location();
     iVar3 = *piVar7;
     uVar4 = Curl_strerror(param_1,iVar3);
-    Curl_failf(iVar11,DAT_000393ec,iVar3,uVar4);
+    Curl_failf(iVar11,"sa_addr inet_ntop() failed with errno %d: %s",iVar3,uVar4);
     Curl_closesocket(param_1,local_2f8);
     return 0;
   }
-  Curl_infof(iVar11,DAT_000393e8,auStack_2e8);
+  Curl_infof(iVar11,"  Trying %s...\n",auStack_2e8);
   if (((local_1b8 & 0xfffffff7) == 2) && (local_1b4 == 1)) {
     if (*(char *)(iVar11 + 0x326) != '\0') {
       Curl_tcpnodelay(param_1,local_2f8);
@@ -63,18 +63,18 @@ int singleipconnect(int *param_1,undefined4 param_2,int *param_3)
       local_2ec = 1;
       iVar12 = setsockopt(local_2f8,1,9,&local_2ec,4);
       if (iVar12 < 0) {
-        Curl_infof(iVar11,DAT_000396ac,iVar3);
+        Curl_infof(iVar11,"Failed to set SO_KEEPALIVE on fd %d\n",iVar3);
       }
       else {
         local_2ec = curlx_sltosi(*(undefined4 *)(iVar11 + 0x430));
         iVar12 = setsockopt(iVar3,6,4,&local_2ec,4);
         if (iVar12 < 0) {
-          Curl_infof(iVar11,DAT_000396bc,iVar3);
+          Curl_infof(iVar11,"Failed to set TCP_KEEPIDLE on fd %d\n",iVar3);
         }
         local_2ec = curlx_sltosi(*(undefined4 *)(iVar11 + 0x434));
         iVar12 = setsockopt(iVar3,6,5,&local_2ec,4);
         if (iVar12 < 0) {
-          Curl_infof(iVar11,DAT_000393f0,iVar3);
+          Curl_infof(iVar11,"Failed to set TCP_KEEPINTVL on fd %d\n",iVar3);
         }
       }
     }
@@ -125,7 +125,7 @@ LAB_00039480:
   }
   local_128 = local_310;
   memset(auStack_124,local_310,0xfc);
-  iVar6 = strncmp(DAT_000393f4,pcVar14,3);
+  iVar6 = strncmp("if!",pcVar14,3);
   if (iVar6 == 0) {
     pcVar14 = pcVar14 + 3;
     local_310 = 1;
@@ -138,27 +138,29 @@ LAB_00039336:
     if (iVar6 == 0) {
       if (local_310 != 0) {
         iVar3 = 0x2d;
-        Curl_failf(iVar13,DAT_000396c8,pcVar14);
+        Curl_failf(iVar13,"Couldn\'t bind to interface \'%s\'",pcVar14);
         goto LAB_000394da;
       }
       goto LAB_00039368;
     }
     if (iVar6 == 2) {
-      Curl_infof(iVar13,DAT_000396c0,pcVar14,&local_128,uVar10);
+      Curl_infof(iVar13,"Local Interface %s is ip %s using address family %i\n",pcVar14,&local_128,
+                 uVar10);
       sVar5 = strlen(pcVar14);
       iVar6 = setsockopt(iVar3,1,0x19,pcVar14,sVar5 + 1);
       if (iVar6 != 0) {
         piVar7 = __errno_location();
         iVar6 = *piVar7;
         uVar4 = Curl_strerror(param_1,iVar6);
-        Curl_infof(iVar13,DAT_000396c4,pcVar14,iVar6,uVar4);
+        Curl_infof(iVar13,"SO_BINDTODEVICE %s failed with errno %d: %s; will do regular bind\n",
+                   pcVar14,iVar6,uVar4);
       }
       goto LAB_000393d4;
     }
     if (local_310 == 0) goto LAB_00039368;
   }
   else {
-    iVar6 = strncmp(DAT_000396a8,pcVar14,5);
+    iVar6 = strncmp("host!",pcVar14,5);
     if (iVar6 != 0) goto LAB_00039336;
     pcVar14 = pcVar14 + 5;
 LAB_00039368:
@@ -175,7 +177,8 @@ LAB_00039368:
     param_1[0x88] = iVar6;
     if (local_2f0 != (int *)0x0) {
       Curl_printable_address(*local_2f0,&local_128,0x100);
-      Curl_infof(iVar13,DAT_000393f8,pcVar14,uVar10,&local_128,*(undefined4 *)(*local_2f0 + 4));
+      Curl_infof(iVar13,"Name \'%s\' family %i resolved to \'%s\' family %i\n",pcVar14,uVar10,
+                 &local_128,*(undefined4 *)(*local_2f0 + 4));
       Curl_resolv_unlock(iVar13,local_2f0);
 LAB_000393d4:
       if (bVar15) {
@@ -214,11 +217,11 @@ LAB_0003942a:
           iVar3 = 0x2d;
           *(int *)(iVar13 + 0x85cc) = iVar11;
           uVar4 = Curl_strerror(param_1,iVar11);
-          Curl_failf(iVar13,DAT_000396a4,iVar11,uVar4);
+          Curl_failf(iVar13,"bind failed with errno %d: %s",iVar11,uVar4);
           goto LAB_000394da;
         }
         uVar10 = uVar9 + 1;
-        Curl_infof(iVar13,DAT_0003969c,uVar9);
+        Curl_infof(iVar13,"Bind to local port %hu failed, trying next\n",uVar9);
         uVar9 = uVar10 & 0xffff;
         uVar10 = uVar10 & 0xff;
         if (local_2b8.sa_family == 2) {
@@ -234,12 +237,12 @@ LAB_0003942a:
         iVar3 = *piVar7;
         *(int *)(iVar13 + 0x85cc) = iVar3;
         uVar4 = Curl_strerror(param_1,iVar3);
-        Curl_failf(iVar13,DAT_000396b4,iVar3,uVar4);
+        Curl_failf(iVar13,"getsockname() failed with errno %d: %s",iVar3,uVar4);
         Curl_closesocket(param_1,local_2f8);
         return 0x2d;
       }
-      Curl_infof(iVar13,DAT_000396a0,uVar9);
-      *(undefined *)((int)param_1 + 0x203) = 1;
+      Curl_infof(iVar13,"Local port: %hu\n",uVar9);
+      *(undefined1 *)((int)param_1 + 0x203) = 1;
 LAB_000391ca:
       curlx_nonblock(local_2f8,1);
       curlx_tvnow(&local_300);
@@ -256,7 +259,7 @@ LAB_000391ca:
           *(bool *)(param_1 + 0x7d) = local_1b8 == 10;
           if ((iVar3 != 0xb) && (iVar3 != 0x73)) {
             uVar4 = Curl_strerror(param_1,iVar3);
-            Curl_infof(iVar11,DAT_000396b0,auStack_2e8,uVar4);
+            Curl_infof(iVar11,"Immediate connect fail for %s: %s\n",auStack_2e8,uVar4);
             *(int *)(iVar11 + 0x85cc) = iVar3;
             Curl_closesocket(param_1,local_2f8);
             return 7;
@@ -271,7 +274,7 @@ LAB_000391ca:
     }
   }
   iVar3 = 0x2d;
-  Curl_failf(iVar13,DAT_000396b8,pcVar14);
+  Curl_failf(iVar13,"Couldn\'t bind to \'%s\'",pcVar14);
 LAB_000394da:
   Curl_closesocket(param_1,local_2f8);
   if (iVar3 != 1) {

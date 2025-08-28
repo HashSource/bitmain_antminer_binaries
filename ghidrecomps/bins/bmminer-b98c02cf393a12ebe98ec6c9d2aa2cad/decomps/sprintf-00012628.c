@@ -6,7 +6,7 @@ int sprintf(char *__s,char *__format,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sprintf_0007d044)();
+  iVar1 = sprintf(__s,__format);
   return iVar1;
 }
 

@@ -19,7 +19,7 @@ int restart_wait(int param_1,uint param_2)
   iVar1 = pthread_mutex_lock((pthread_mutex_t *)restart_lock);
   if (iVar1 != 0) {
                     /* WARNING: Subroutine does not return */
-    _mutex_lock_part_47_constprop_75(DAT_0001ed14,0x14e0);
+    _mutex_lock_part_47_constprop_75("restart_wait",0x14e0);
   }
   iVar1 = 0;
   if (*(char *)(param_1 + 0x3e) == '\0') {
@@ -29,7 +29,7 @@ int restart_wait(int param_1,uint param_2)
   iVar2 = pthread_mutex_unlock((pthread_mutex_t *)restart_lock);
   if (iVar2 != 0) {
                     /* WARNING: Subroutine does not return */
-    _mutex_unlock_noyield_part_48_constprop_77(DAT_0001ed14,0x14ea);
+    _mutex_unlock_noyield_part_48_constprop_77("restart_wait",0x14ea);
   }
   (*selective_yield)();
   return iVar1;

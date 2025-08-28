@@ -9,26 +9,16 @@ _Bool subscribe_extranonce(pool *pool)
   char *pcVar2;
   json_t *json;
   json_t *pjVar3;
-  json_t *res_val;
   json_t *val;
-  json_t *err_val;
-  char *ss;
   int iVar4;
-  undefined4 *__ptr;
-  undefined4 *puVar5;
-  char *__retval;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  size_t sVar8;
-  undefined4 uVar9;
-  undefined4 uVar10;
+  char *pcVar5;
+  size_t sVar6;
   json_error_t err;
   char tmp42 [2048];
   char s [8192];
   
-  pcVar2 = DAT_00014e38;
-  *DAT_00014e34 = *DAT_00014e34 + 1;
-  sprintf(s,pcVar2);
+  swork_id = swork_id + 1;
+  sprintf(s,"{\"id\": %d, \"method\": \"mining.extranonce.subscribe\", \"params\": []}");
   len = strlen(s);
   _Var1 = stratum_send(pool,s,len);
   if (_Var1) {
@@ -39,71 +29,66 @@ _Bool subscribe_extranonce(pool *pool)
       if (!_Var1) {
         json = json_loads(pcVar2,0,&err);
         free(pcVar2);
-        pjVar3 = json_object_get(json,DAT_00014e4c);
-        val = json_object_get(json,DAT_00014e50);
+        pjVar3 = json_object_get(json,"result");
+        val = json_object_get(json,"error");
         if ((pjVar3 == (json_t *)0x0) || (pjVar3->type == JSON_FALSE)) {
           if (val != (json_t *)0x0) goto LAB_00014d20;
-          puVar5 = (undefined4 *)malloc(0x11);
-          __ptr = (undefined4 *)0x0;
-          if (puVar5 != (undefined4 *)0x0) {
-            uVar6 = DAT_00014e6c[1];
-            uVar7 = DAT_00014e6c[2];
-            uVar9 = DAT_00014e6c[3];
-            uVar10 = DAT_00014e6c[4];
-            *puVar5 = *DAT_00014e6c;
-            puVar5[1] = uVar6;
-            puVar5[2] = uVar7;
-            puVar5[3] = uVar9;
-            *(char *)(puVar5 + 4) = (char)uVar10;
-            __ptr = puVar5;
+          pcVar5 = (char *)malloc(0x11);
+          pcVar2 = (char *)0x0;
+          if (pcVar5 != (char *)0x0) {
+            builtin_strncpy(pcVar5,"(unknown reason)",0x11);
+            pcVar2 = pcVar5;
           }
 LAB_00014d50:
-          if (((*DAT_00014e40 != '\0') || (*DAT_00014e44 != '\0')) || (5 < *DAT_00014e5c)) {
-            snprintf(tmp42,0x800,DAT_00014e60,pool->pool_no,__ptr);
+          if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
+            snprintf(tmp42,0x800,"Pool %d JSON extranonce subscribe failed: %s",pool->pool_no,pcVar2
+                    );
             _applog(6,tmp42,false);
           }
           _Var1 = false;
-          free(__ptr);
+          free(pcVar2);
         }
         else {
           if ((val == (json_t *)0x0) || (val->type == JSON_NULL)) {
-            if ((*DAT_00014e40 != '\0') || ((*DAT_00014e44 != '\0' || (5 < *DAT_00014e5c)))) {
+            if ((use_syslog != false) || ((opt_log_output != false || (5 < opt_log_level)))) {
               iVar4 = pool->pool_no;
-              pcVar2 = DAT_00014e68;
+              pcVar2 = "Stratum extranonce subscribe for pool %d";
 LAB_00014db6:
               snprintf(tmp42,0x800,pcVar2,iVar4);
               _Var1 = true;
               _applog(6,tmp42,false);
-              goto out;
+              goto LAB_00014d86;
             }
           }
           else {
 LAB_00014d20:
             pcVar2 = __json_array_string(val,1);
             if (((pcVar2 == (char *)0x0) && (pcVar2 = json_string_value(val), pcVar2 == (char *)0x0)
-                ) || ((iVar4 = strcmp(pcVar2,DAT_00014e54), iVar4 != 0 &&
-                      (iVar4 = strcmp(pcVar2,DAT_00014e58), iVar4 != 0)))) {
-              __ptr = (undefined4 *)json_dumps(val,3);
+                ) || ((iVar4 = strcmp(pcVar2,
+                                      "Method \'subscribe\' not found for service \'mining.extranonce\'"
+                                     ), iVar4 != 0 &&
+                      (iVar4 = strcmp(pcVar2,"Unrecognized request provided"), iVar4 != 0)))) {
+              pcVar2 = json_dumps(val,3);
               goto LAB_00014d50;
             }
-            if (((*DAT_00014e40 != '\0') || (*DAT_00014e44 != '\0')) || (5 < *DAT_00014e5c)) {
+            if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
               iVar4 = pool->pool_no;
-              pcVar2 = DAT_00014e64;
+              pcVar2 = "Cannot subscribe to mining.extranonce for pool %d";
               goto LAB_00014db6;
             }
           }
           _Var1 = true;
         }
-out:
+LAB_00014d86:
         if (json == (json_t *)0x0) {
           return _Var1;
         }
         if (json->refcount == 0xffffffff) {
           return _Var1;
         }
-        sVar8 = json->refcount - 1;
-        json->refcount = sVar8;
-        if (sVar8 != 0) {
+        sVar6 = json->refcount - 1;
+        json->refcount = sVar6;
+        if (sVar6 != 0) {
           return _Var1;
         }
         json_delete(json);
@@ -111,21 +96,9 @@ out:
       }
       free(pcVar2);
     }
-    if ((*DAT_00014e3c != '\0') &&
-       (((*DAT_00014e40 != '\0' || (*DAT_00014e44 != '\0')) || (6 < *DAT_00014e5c)))) {
-      tmp42._0_4_ = *DAT_00014e48;
-      tmp42._4_4_ = DAT_00014e48[1];
-      tmp42._8_4_ = DAT_00014e48[2];
-      tmp42._12_4_ = DAT_00014e48[3];
-      tmp42._16_4_ = DAT_00014e48[4];
-      tmp42._20_4_ = DAT_00014e48[5];
-      tmp42._24_4_ = DAT_00014e48[6];
-      tmp42._28_4_ = DAT_00014e48[7];
-      tmp42._32_4_ = DAT_00014e48[8];
-      tmp42._36_4_ = DAT_00014e48[9];
-      tmp42._40_4_ = DAT_00014e48[10];
-      tmp42._44_4_ = DAT_00014e48[0xb];
-      tmp42._48_4_ = DAT_00014e48[0xc];
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      builtin_strncpy(tmp42,"Timed out waiting for response extranonce.subscribe",0x34);
       _applog(7,tmp42,false);
     }
     _Var1 = true;

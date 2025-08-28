@@ -36,8 +36,7 @@ void freq_tuning_increase_final_freq_slowly(freq_tuning_info *freq_info,int init
         diff_freq[asic] = freq_info->freq_table[chain][asic] - min;
       }
       increase_freq_slowly
-                ((float)(longlong)init_freq,(float)(ulonglong)min,(float)(longlong)freq_step,
-                 (uint8_t)chain);
+                ((float)(longlong)init_freq,(float)min,(float)(longlong)freq_step,(uint8_t)chain);
       if ((min != max) &&
          (increase_asic_diff_freq_slowly_one_chain(diff_freq,min,freq_step,chain), 3 < log_level)) {
         print_crt_time_to_file(log_file,3);

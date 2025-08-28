@@ -4,26 +4,20 @@
 RAND_METHOD * RAND_get_rand_method(void)
 
 {
-  ENGINE **ppEVar1;
-  RAND_METHOD *pRVar2;
   ENGINE *e;
   
-  ppEVar1 = DAT_000ac188;
-  pRVar2 = (RAND_METHOD *)DAT_000ac188[1];
-  if (pRVar2 == (RAND_METHOD *)0x0) {
+  if (default_RAND_meth == (RAND_METHOD *)0x0) {
     e = ENGINE_get_default_RAND();
     if (e != (ENGINE *)0x0) {
-      pRVar2 = ENGINE_get_RAND(e);
-      ppEVar1[1] = (ENGINE *)pRVar2;
-      if (pRVar2 != (RAND_METHOD *)0x0) {
-        *ppEVar1 = e;
-        return pRVar2;
+      default_RAND_meth = ENGINE_get_RAND(e);
+      if (default_RAND_meth != (RAND_METHOD *)0x0) {
+        funct_ref = e;
+        return default_RAND_meth;
       }
       ENGINE_finish(e);
     }
-    pRVar2 = RAND_SSLeay();
-    ppEVar1[1] = (ENGINE *)pRVar2;
+    default_RAND_meth = RAND_SSLeay();
   }
-  return pRVar2;
+  return default_RAND_meth;
 }
 

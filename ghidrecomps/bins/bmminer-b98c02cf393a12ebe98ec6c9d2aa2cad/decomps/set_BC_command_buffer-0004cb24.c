@@ -23,11 +23,11 @@ void set_BC_command_buffer(undefined4 *param_1)
     get_BC_command_buffer(&local_28);
     return;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
     fprintf(__stream,
             "%s:%d:%s: set BC_COMMAND_BUFFER value[0]: 0x%x, value[1]: 0x%x, value[2]: 0x%x\n",
-            "znyq7010.c",0x1c3,DAT_0004cbbc,*param_1,param_1[1],param_1[2]);
+            "znyq7010.c",0x1c3,"set_BC_command_buffer",*param_1,param_1[1],param_1[2]);
   }
   fclose(__stream);
   get_BC_command_buffer(&local_28);

@@ -7,7 +7,7 @@ void bundle_destroy(int param_1)
       Curl_llist_destroy(*(int *)(param_1 + 8),0);
       *(undefined4 *)(param_1 + 8) = 0;
     }
-    (**DAT_0003c0dc)(param_1);
+    (*Curl_cfree)(param_1);
   }
   return;
 }

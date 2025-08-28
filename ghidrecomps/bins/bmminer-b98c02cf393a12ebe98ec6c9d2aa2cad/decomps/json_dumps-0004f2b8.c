@@ -4,7 +4,7 @@ undefined4 json_dumps(undefined4 param_1,undefined4 param_2)
 {
   int iVar1;
   undefined4 uVar2;
-  undefined auStack_1c [12];
+  undefined1 auStack_1c [12];
   
   iVar1 = strbuffer_init(auStack_1c);
   if (iVar1 == 0) {

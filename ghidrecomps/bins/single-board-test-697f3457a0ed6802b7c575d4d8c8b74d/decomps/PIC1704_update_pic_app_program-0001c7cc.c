@@ -38,36 +38,13 @@ int PIC1704_update_pic_app_program(uint which_i2c,uchar which_chain)
   buf[8] = '\0';
   buf[9] = '\0';
   buf[10] = '\0';
-  buf[11] = '\0';
-  buf[12] = '\0';
-  buf[13] = '\0';
-  buf[14] = '\0';
-  buf[15] = '\0';
+  buf[0xb] = '\0';
+  buf[0xc] = '\0';
+  buf[0xd] = '\0';
+  buf[0xe] = '\0';
+  buf[0xf] = '\0';
   if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
-    tmp42[0] = s_____update_pic_program_00035998[0];
-    tmp42[1] = s_____update_pic_program_00035998[1];
-    tmp42[2] = s_____update_pic_program_00035998[2];
-    tmp42[3] = s_____update_pic_program_00035998[3];
-    tmp42[4] = s_____update_pic_program_00035998[4];
-    tmp42[5] = s_____update_pic_program_00035998[5];
-    tmp42[6] = s_____update_pic_program_00035998[6];
-    tmp42[7] = s_____update_pic_program_00035998[7];
-    tmp42[8] = s_____update_pic_program_00035998[8];
-    tmp42[9] = s_____update_pic_program_00035998[9];
-    tmp42[10] = s_____update_pic_program_00035998[10];
-    tmp42[11] = s_____update_pic_program_00035998[11];
-    tmp42[12] = s_____update_pic_program_00035998[12];
-    tmp42[13] = s_____update_pic_program_00035998[13];
-    tmp42[14] = s_____update_pic_program_00035998[14];
-    tmp42[15] = s_____update_pic_program_00035998[15];
-    tmp42[16] = s_____update_pic_program_00035998[16];
-    tmp42[17] = s_____update_pic_program_00035998[17];
-    tmp42[18] = s_____update_pic_program_00035998[18];
-    tmp42[19] = s_____update_pic_program_00035998[19];
-    tmp42[20] = s_____update_pic_program_00035998[20];
-    tmp42[21] = s_____update_pic_program_00035998[21];
-    tmp42[22] = s_____update_pic_program_00035998[22];
-    tmp42[23] = s_____update_pic_program_00035998[23];
+    builtin_strncpy(tmp42,"--- update pic program\n",0x18);
     _applog(2,tmp42,false);
   }
   __stream = fopen("/mnt/card/pic16f1704_app.txt","r");
@@ -85,8 +62,6 @@ int PIC1704_update_pic_app_program(uint which_i2c,uchar which_chain)
       snprintf(tmp42,0x400,"pic_flash_length = %d\n",0x980);
       _applog(2,tmp42,false);
     }
-    which_chain_local = which_chain;
-    which_i2c_local = which_i2c;
     for (i = 0; i < 0x980; i = i + 1) {
       fgets(data_read,0x3ff,__stream);
       uVar1 = strtoul(data_read,(char **)0x0,0x10);
@@ -94,7 +69,7 @@ int PIC1704_update_pic_app_program(uint which_i2c,uchar which_chain)
       program_data[i * 2 + 1] = (uchar)uVar1;
     }
     fclose(__stream);
-    iVar2 = reset_PIC16F1704_pic(which_i2c_local,which_chain_local);
+    iVar2 = reset_PIC16F1704_pic(which_i2c,which_chain);
     if (iVar2 == 0) {
       if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
         snprintf(tmp42,0x400,"!!! %s: reset pic error!\n\n","PIC1704_update_pic_app_program");
@@ -103,7 +78,7 @@ int PIC1704_update_pic_app_program(uint which_i2c,uchar which_chain)
       iVar2 = 0;
     }
     else {
-      iVar2 = erase_PIC16F1704_app_flash(which_i2c_local,which_chain_local);
+      iVar2 = erase_PIC16F1704_app_flash(which_i2c,which_chain);
       if (iVar2 == 0) {
         if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
           snprintf(tmp42,0x400,"!!! %s: erase flash error!\n\n","PIC1704_update_pic_app_program");
@@ -112,7 +87,7 @@ int PIC1704_update_pic_app_program(uint which_i2c,uchar which_chain)
         iVar2 = 0;
       }
       else {
-        iVar2 = set_PIC16F1704_flash_pointer(which_i2c_local,which_chain_local,'\x06','\0');
+        iVar2 = set_PIC16F1704_flash_pointer(which_i2c,which_chain,'\x06','\0');
         if (iVar2 == 0) {
           if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
             snprintf(tmp42,0x400,"!!! %s: set flash pointer error!\n\n",
@@ -132,10 +107,10 @@ int PIC1704_update_pic_app_program(uint which_i2c,uchar which_chain)
               snprintf(tmp42,0x400,"send pic program time: %d\n",i);
               _applog(2,tmp42,false);
             }
-            send_data_to_PIC16F1704(which_i2c_local,which_chain_local,buf);
-            write_data_into_PIC16F1704_flash(which_i2c_local,which_chain_local);
+            send_data_to_PIC16F1704(which_i2c,which_chain,buf);
+            write_data_into_PIC16F1704_flash(which_i2c,which_chain);
           }
-          iVar2 = reset_PIC16F1704_pic(which_i2c_local,which_chain_local);
+          iVar2 = reset_PIC16F1704_pic(which_i2c,which_chain);
           if (iVar2 == 0) {
             if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
               snprintf(tmp42,0x400,"!!! %s: reset pic error!\n\n","PIC1704_update_pic_app_program");

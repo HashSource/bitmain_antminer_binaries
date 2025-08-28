@@ -5,19 +5,15 @@ int ERR_get_next_error_library(void)
 
 {
   int iVar1;
-  int iVar2;
   
-  iVar1 = DAT_000ae3fc;
-  iVar2 = *(int *)(DAT_000ae3fc + 0x2f4);
-  if (iVar2 == 0) {
-    CRYPTO_lock(9,1,DAT_000ae400,0x127);
-    if (*(int *)(iVar1 + 0x2f4) == 0) {
-      *(undefined4 *)(iVar1 + 0x2f4) = DAT_000ae404;
+  if (err_fns == (undefined **)0x0) {
+    CRYPTO_lock(9,1,"err.c",0x127);
+    if (err_fns == (undefined **)0x0) {
+      err_fns = &err_defaults;
     }
-    CRYPTO_lock(10,1,DAT_000ae400,0x12a);
-    iVar2 = *(int *)(iVar1 + 0x2f4);
+    CRYPTO_lock(10,1,"err.c",0x12a);
   }
-  iVar1 = (**(code **)(iVar2 + 0x28))();
+  iVar1 = (*(code *)err_fns[10])();
   return iVar1;
 }
 

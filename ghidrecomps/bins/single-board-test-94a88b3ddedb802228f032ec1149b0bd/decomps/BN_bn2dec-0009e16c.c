@@ -16,10 +16,10 @@ char * BN_bn2dec(BIGNUM *a)
   
   iVar2 = BN_num_bits(a);
   iVar2 = (iVar2 * 3) / 10 + (iVar2 * 3) / 1000;
-  ptr = (ulong *)CRYPTO_malloc(((iVar2 + 2) / 9 + 1) * 4,DAT_0009e2d8,0x7b);
-  ptr_00 = (char *)CRYPTO_malloc(iVar2 + 5,DAT_0009e2d8,0x7c);
+  ptr = (ulong *)CRYPTO_malloc(((iVar2 + 2) / 9 + 1) * 4,"bn_print.c",0x7b);
+  ptr_00 = (char *)CRYPTO_malloc(iVar2 + 5,"bn_print.c",0x7c);
   if (ptr_00 == (char *)0x0 || ptr == (ulong *)0x0) {
-    ERR_put_error(3,0x68,0x41,DAT_0009e2d8,0x7e);
+    ERR_put_error(3,0x68,0x41,"bn_print.c",0x7e);
     pcVar4 = ptr_00;
     if (ptr == (ulong *)0x0) {
       if (ptr_00 != (char *)0x0) {
@@ -64,7 +64,7 @@ LAB_0009e238:
         puVar6 = ptr;
       }
       puVar6 = puVar6 + -1;
-      BIO_snprintf(pcVar4,iVar8 + iVar2 + 5,DAT_0009e2dc,uVar3);
+      BIO_snprintf(pcVar4,iVar8 + iVar2 + 5,"%u",uVar3);
       cVar1 = *pcVar4;
       while (cVar1 != '\0') {
         pcVar4 = pcVar4 + 1;
@@ -73,7 +73,7 @@ LAB_0009e238:
       while (ptr != puVar6) {
         while( true ) {
           puVar6 = puVar6 + -1;
-          BIO_snprintf(pcVar4,(size_t)(ptr_00 + ((iVar2 + 5) - (int)pcVar4)),DAT_0009e2e0,*puVar6);
+          BIO_snprintf(pcVar4,(size_t)(ptr_00 + ((iVar2 + 5) - (int)pcVar4)),"%09u",*puVar6);
           if (*pcVar4 == '\0') break;
           do {
             pcVar4 = pcVar4 + 1;

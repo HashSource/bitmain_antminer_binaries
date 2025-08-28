@@ -1,6 +1,6 @@
 
 undefined4
-cms_kek_cipher(uchar **param_1,int *param_2,uchar *param_3,int param_4,int param_5,int param_6)
+cms_kek_cipher(undefined4 *param_1,int *param_2,uchar *param_3,int param_4,int param_5,int param_6)
 
 {
   int iVar1;
@@ -21,7 +21,7 @@ cms_kek_cipher(uchar **param_1,int *param_2,uchar *param_3,int param_4,int param
        (iVar1 = EVP_CipherInit_ex(ctx,(EVP_CIPHER *)0x0,(ENGINE *)0x0,auStack_68,(uchar *)0x0,
                                   param_6), iVar1 == 0)) ||
       (iVar1 = EVP_CipherUpdate(ctx,(uchar *)0x0,&local_6c,param_3,param_4), iVar1 == 0)) ||
-     (out = (uchar *)CRYPTO_malloc(local_6c,DAT_000d6aa0,0x105), out == (uchar *)0x0)) {
+     (out = (uchar *)CRYPTO_malloc(local_6c,"cms_kari.c",0x105), out == (uchar *)0x0)) {
     uVar2 = 0;
   }
   else {

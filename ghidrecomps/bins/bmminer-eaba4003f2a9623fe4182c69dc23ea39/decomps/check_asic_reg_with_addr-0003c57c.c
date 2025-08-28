@@ -32,7 +32,7 @@ uint check_asic_reg_with_addr(uint reg,uchar chip_addr,uint chain,int check_num)
   last_get_num = 0;
   no_reg_time = 0;
   cc = 0x14;
-rerun:
+LAB_0003c60c:
   do {
     clear_register_value_buf();
     read_asic_register((uchar)chain,'\0',chip_addr,(uchar)reg);
@@ -49,7 +49,7 @@ rerun:
       if ((((0x1fe < uVar2) || (0x1fe < reg_value_buf.p_rd)) || (uVar2 == 0)) &&
          (not_reg_data_time < 5)) {
         not_reg_data_time = not_reg_data_time + 1;
-        goto rerun;
+        goto LAB_0003c60c;
       }
       if (4 < not_reg_data_time) {
         return 0;

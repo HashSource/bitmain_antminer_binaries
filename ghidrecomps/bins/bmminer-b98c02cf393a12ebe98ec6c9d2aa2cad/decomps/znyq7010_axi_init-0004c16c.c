@@ -8,10 +8,10 @@ undefined4 znyq7010_axi_init(int *param_1)
   fd = open("/dev/axi_fpga_dev",2);
   if (fd < 0) {
     if (1 < log_level) {
-      pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,"%s:%d:%s: /dev/axi_fpga_dev open failed. fd = %d\n","znyq7010.c",0xda,
-                DAT_0004c520,fd);
+                "znyq7010_axi_init",fd);
       }
       fclose(pFVar1);
     }
@@ -22,36 +22,36 @@ undefined4 znyq7010_axi_init(int *param_1)
     if (log_level < 2) {
       return 0xffffffff;
     }
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s: mmap axi_fpga_addr failed. axi_fpga_addr = 0x%x\n","znyq7010.c",0xe2
-              ,DAT_0004c520,axi_fpga_addr);
+              ,"znyq7010_axi_init",axi_fpga_addr);
     }
     goto LAB_0004c42c;
   }
   if (5 < log_level) {
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: mmap axi_fpga_addr = 0x%x\n","znyq7010.c",0xe5,DAT_0004c520,
+      fprintf(pFVar1,"%s:%d:%s: mmap axi_fpga_addr = 0x%x\n","znyq7010.c",0xe5,"znyq7010_axi_init",
               axi_fpga_addr);
     }
     fclose(pFVar1);
     uVar2 = *axi_fpga_addr;
     if ((uVar2 & 0xffff) != 0xc501) {
       if (log_level < 6) goto LAB_0004c1c4;
-      pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,
                 "%s:%d:%s: data = 0x%x, and it\'s not equal to HARDWARE_VERSION_VALUE : 0x%x\n",
-                "znyq7010.c",0xeb,DAT_0004c520,uVar2,0xc501);
+                "znyq7010.c",0xeb,"znyq7010_axi_init",uVar2,0xc501);
       }
       fclose(pFVar1);
     }
     if (5 < log_level) {
-      pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
-        fprintf(pFVar1,"%s:%d:%s: axi_fpga_addr data = 0x%x\n","znyq7010.c",0xee,DAT_0004c520,uVar2)
-        ;
+        fprintf(pFVar1,"%s:%d:%s: axi_fpga_addr data = 0x%x\n","znyq7010.c",0xee,"znyq7010_axi_init"
+                ,uVar2);
       }
       fclose(pFVar1);
     }
@@ -67,27 +67,27 @@ LAB_0004c1c4:
         nonce2_jobid_address = fpga_mem_addr;
       }
       else {
-        pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar1 = fopen(log_file,"a+");
         if (pFVar1 != (FILE *)0x0) {
-          fprintf(pFVar1,"%s:%d:%s: mmap fpga_mem_addr = 0x%x\n","znyq7010.c",0xfe,DAT_0004c520,
-                  fpga_mem_addr);
+          fprintf(pFVar1,"%s:%d:%s: mmap fpga_mem_addr = 0x%x\n","znyq7010.c",0xfe,
+                  "znyq7010_axi_init",fpga_mem_addr);
         }
         fclose(pFVar1);
         job_start_address_1 = (int)fpga_mem_addr + 0x200000;
         job_start_address_2 = (int)fpga_mem_addr + 0x210000;
         nonce2_jobid_address = fpga_mem_addr;
         if (5 < log_level) {
-          pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar1 = fopen(log_file,"a+");
           if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: job_start_address_1 = 0x%x\n","znyq7010.c",0x104,DAT_0004c520,
-                    job_start_address_1);
+            fprintf(pFVar1,"%s:%d:%s: job_start_address_1 = 0x%x\n","znyq7010.c",0x104,
+                    "znyq7010_axi_init",job_start_address_1);
           }
           fclose(pFVar1);
           if (5 < log_level) {
-            pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+            pFVar1 = fopen(log_file,"a+");
             if (pFVar1 != (FILE *)0x0) {
               fprintf(pFVar1,"%s:%d:%s: job_start_address_2 = 0x%x\n","znyq7010.c",0x105,
-                      DAT_0004c520,job_start_address_2);
+                      "znyq7010_axi_init",job_start_address_2);
             }
             fclose(pFVar1);
           }
@@ -101,20 +101,20 @@ LAB_0004c1c4:
     if (log_level < 6) {
       return 0xffffffff;
     }
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s: mmap fpga_mem_addr failed. fpga_mem_addr = 0x%x\n","znyq7010.c",0xfb
-              ,DAT_0004c520,fpga_mem_addr);
+              ,"znyq7010_axi_init",fpga_mem_addr);
     }
 LAB_0004c42c:
     fclose(pFVar1);
     return 0xffffffff;
   }
   if (5 < log_level) {
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s: /dev/fpga_mem open failed. fd_fpga_mem = %d\n","znyq7010.c",0xf3,
-              DAT_0004c520,fd_fpga_mem);
+              "znyq7010_axi_init",fd_fpga_mem);
     }
     fclose(pFVar1);
   }

@@ -6,7 +6,7 @@ int pclose(FILE *__stream)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pclose_001941a8)();
+  iVar1 = pclose(__stream);
   return iVar1;
 }
 

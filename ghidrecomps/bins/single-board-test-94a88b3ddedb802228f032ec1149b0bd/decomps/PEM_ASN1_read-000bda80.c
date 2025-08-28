@@ -9,7 +9,7 @@ void * PEM_ASN1_read(undefined1 *d2i,char *name,FILE *fp,void **x,undefined1 *cb
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(9,0x66,7,DAT_000bdadc,0xac);
+    ERR_put_error(9,0x66,7,"pem_lib.c",0xac);
     pvVar1 = (void *)0x0;
   }
   else {

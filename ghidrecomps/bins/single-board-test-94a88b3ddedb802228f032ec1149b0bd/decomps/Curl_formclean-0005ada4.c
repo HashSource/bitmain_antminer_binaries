@@ -1,23 +1,21 @@
 
-void Curl_formclean(int **param_1)
+void Curl_formclean(int *param_1)
 
 {
-  code **ppcVar1;
+  int *piVar1;
   int *piVar2;
-  int *piVar3;
   
-  ppcVar1 = DAT_0005add0;
-  piVar2 = *param_1;
-  if (piVar2 != (int *)0x0) {
+  piVar1 = (int *)*param_1;
+  if (piVar1 != (int *)0x0) {
     do {
-      piVar3 = (int *)*piVar2;
-      if ((uint)piVar2[1] < 2) {
-        (**ppcVar1)(piVar2[2]);
+      piVar2 = (int *)*piVar1;
+      if ((uint)piVar1[1] < 2) {
+        (*Curl_cfree)(piVar1[2]);
       }
-      (**ppcVar1)(piVar2);
-      piVar2 = piVar3;
-    } while (piVar3 != (int *)0x0);
-    *param_1 = (int *)0x0;
+      (*Curl_cfree)(piVar1);
+      piVar1 = piVar2;
+    } while (piVar2 != (int *)0x0);
+    *param_1 = 0;
   }
   return;
 }

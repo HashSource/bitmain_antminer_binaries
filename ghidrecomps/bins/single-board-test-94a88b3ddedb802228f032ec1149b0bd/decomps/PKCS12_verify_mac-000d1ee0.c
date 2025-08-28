@@ -7,10 +7,10 @@ int PKCS12_verify_mac(PKCS12 *p12,char *pass,int passlen)
   size_t len;
   ASN1_OCTET_STRING *pAVar3;
   size_t local_5c;
-  undefined auStack_58 [68];
+  undefined1 auStack_58 [68];
   
   if (p12->mac == (PKCS12_MAC_DATA *)0x0) {
-    ERR_put_error(0x23,0x7e,0x6c,DAT_000d1f70,0x77);
+    ERR_put_error(0x23,0x7e,0x6c,"p12_mutl.c",0x77);
   }
   else {
     iVar1 = OBJ_obj2nid(p12->authsafes->type);
@@ -30,9 +30,9 @@ int PKCS12_verify_mac(PKCS12 *p12,char *pass,int passlen)
       }
     }
     else {
-      ERR_put_error(0x23,0x6b,0x79,DAT_000d1f70,0x4f);
+      ERR_put_error(0x23,0x6b,0x79,"p12_mutl.c",0x4f);
     }
-    ERR_put_error(0x23,0x7e,0x6d,DAT_000d1f70,0x7b);
+    ERR_put_error(0x23,0x7e,0x6d,"p12_mutl.c",0x7b);
   }
   return 0;
 }

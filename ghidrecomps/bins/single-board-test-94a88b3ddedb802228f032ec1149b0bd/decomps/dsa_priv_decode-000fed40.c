@@ -73,7 +73,7 @@ LAB_000fee00:
         r->priv_key = ctx;
         if (ctx == (BIGNUM *)0x0) {
 LAB_000fee56:
-          ERR_put_error(10,0x73,0x6d,DAT_000feee4,iVar1);
+          ERR_put_error(10,0x73,0x6d,"dsa_ameth.c",iVar1);
         }
         else {
           ctx = BN_new();
@@ -87,7 +87,7 @@ LAB_000fee56:
                 EVP_PKEY_assign(param_1,0x74,r);
                 BN_CTX_free((BN_CTX *)ctx);
                 if (st != (_STACK *)0x0) {
-                  sk_pop_free(st,DAT_000feee8);
+                  sk_pop_free(st,(func *)0xbbded);
                   return 1;
                 }
                 ASN1_STRING_clear_free(ai);
@@ -98,7 +98,7 @@ LAB_000fee56:
             }
             iVar1 = 0xff;
           }
-          ERR_put_error(10,0x73,0x41,DAT_000feee4,iVar1);
+          ERR_put_error(10,0x73,0x41,"dsa_ameth.c",iVar1);
         }
         goto LAB_000fedb2;
       }
@@ -108,13 +108,13 @@ LAB_000fee56:
 LAB_000fed9c:
   r = (DSA *)0x0;
   ctx = (BIGNUM *)0x0;
-  ERR_put_error(10,0x73,0x72,DAT_000feee4,0x112);
+  ERR_put_error(10,0x73,0x72,"dsa_ameth.c",0x112);
 LAB_000fedb2:
   BN_CTX_free((BN_CTX *)ctx);
   if (ai != (ASN1_INTEGER *)0x0) {
     ASN1_STRING_clear_free(ai);
   }
-  sk_pop_free(st,DAT_000feee8);
+  sk_pop_free(st,(func *)0xbbded);
   DSA_free(r);
   return 0;
 }

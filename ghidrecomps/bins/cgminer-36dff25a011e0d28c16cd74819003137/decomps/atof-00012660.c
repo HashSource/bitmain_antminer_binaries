@@ -6,7 +6,7 @@ double atof(char *__nptr)
 {
   double dVar1;
   
-  dVar1 = (double)(*(code *)PTR_atof_000c0258)();
+  dVar1 = atof(__nptr);
   return dVar1;
 }
 

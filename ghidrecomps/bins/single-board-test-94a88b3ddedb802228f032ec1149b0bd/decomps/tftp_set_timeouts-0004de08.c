@@ -7,6 +7,8 @@ undefined4 tftp_set_timeouts(uint *param_1)
   uint uVar3;
   uint uVar4;
   uint uVar5;
+  uint extraout_r3;
+  uint extraout_r3_00;
   int iVar6;
   uint uVar7;
   uint uVar8;
@@ -18,7 +20,7 @@ undefined4 tftp_set_timeouts(uint *param_1)
   time((time_t *)(param_1 + 9));
   iVar1 = Curl_timeleft(*(undefined4 *)param_1[4],0,iVar6);
   if (iVar1 < 0) {
-    Curl_failf(*(undefined4 *)param_1[4],DAT_0004df20);
+    Curl_failf(*(undefined4 *)param_1[4],"Connection time-out");
     uVar2 = 0x1c;
   }
   else {
@@ -39,21 +41,22 @@ undefined4 tftp_set_timeouts(uint *param_1)
     else {
       uVar8 = param_1[9];
       iVar6 = (iVar1 + 500) / 1000;
-      uVar4 = iVar6 >> 0x1f;
+      uVar7 = iVar6 >> 0x1f;
       param_1[10] = uVar8 + iVar6;
-      uVar7 = iVar6 / 5;
-      if ((int)uVar7 < 1) {
-        uVar4 = 1;
+      uVar4 = iVar6 / 5;
+      if ((int)uVar4 < 1) {
+        uVar7 = 1;
       }
-      uVar3 = uVar4;
-      if (0 < (int)uVar7) {
-        param_1[8] = uVar7;
-        uVar3 = uVar7;
-      }
-      if ((int)uVar7 < 1) {
+      uVar3 = uVar7;
+      if (0 < (int)uVar4) {
         param_1[8] = uVar4;
+        uVar3 = uVar4;
+      }
+      if ((int)uVar4 < 1) {
+        param_1[8] = uVar7;
       }
       uVar7 = __aeabi_idiv(iVar6,uVar3);
+      uVar4 = extraout_r3_00;
       if ((int)uVar7 < 1) {
         uVar4 = 1;
       }
@@ -82,6 +85,7 @@ undefined4 tftp_set_timeouts(uint *param_1)
       }
     }
     uVar7 = __aeabi_idiv(iVar6,uVar5);
+    uVar4 = extraout_r3;
     if ((int)uVar7 < 1) {
       uVar4 = 1;
     }
@@ -93,7 +97,9 @@ undefined4 tftp_set_timeouts(uint *param_1)
     if ((int)uVar7 < 1) {
       param_1[7] = uVar4;
     }
-    Curl_infof(*(undefined4 *)param_1[4],DAT_0004df1c,*param_1,param_1[10] - uVar8,uVar3,uVar5);
+    Curl_infof(*(undefined4 *)param_1[4],
+               "set timeouts for state %d; Total %ld, retry %d maxtry %d\n",*param_1,
+               param_1[10] - uVar8,uVar3,uVar5);
     time((time_t *)(param_1 + 0xb));
     uVar2 = 0;
   }

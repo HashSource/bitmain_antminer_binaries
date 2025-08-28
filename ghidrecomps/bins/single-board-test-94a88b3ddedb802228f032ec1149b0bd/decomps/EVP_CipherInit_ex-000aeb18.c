@@ -29,11 +29,13 @@ int EVP_CipherInit_ex(EVP_CIPHER_CTX *ctx,EVP_CIPHER *cipher,ENGINE *impl,uchar 
 LAB_000aebde:
     iVar1 = pEVar5->block_size;
     if ((iVar1 != 8 && iVar1 != 1) && (iVar1 != 0x10)) {
-      OpenSSLDie(DAT_000aedb8,0xd6,DAT_000aedbc);
+      OpenSSLDie("evp_enc.c",0xd6,
+                 "ctx->cipher->block_size == 1 || ctx->cipher->block_size == 8 || ctx->cipher->block_size == 16"
+                );
     }
     if (((ctx->flags & 1) == 0) && (uVar6 = EVP_CIPHER_CTX_flags(ctx), (uVar6 & 0xf0007) == 0x10002)
        ) {
-      ERR_put_error(6,0x7b,0xaa,DAT_000aedb8,0xda);
+      ERR_put_error(6,0x7b,0xaa,"evp_enc.c",0xda);
       return 0;
     }
     uVar6 = EVP_CIPHER_CTX_flags(ctx);
@@ -49,7 +51,7 @@ LAB_000aebde:
       case 2:
         iVar1 = EVP_CIPHER_CTX_iv_length(ctx);
         if (0x10 < iVar1) {
-          OpenSSLDie(DAT_000aedb8,0xee,DAT_000aedc0);
+          OpenSSLDie("evp_enc.c",0xee,"EVP_CIPHER_CTX_iv_length(ctx) <= (int)sizeof(ctx->iv)");
         }
         if (iv != (uchar *)0x0) {
           sVar3 = EVP_CIPHER_CTX_iv_length(ctx);
@@ -66,7 +68,7 @@ LAB_000aebde:
         }
         break;
       default:
-        goto switchD_000aec74_caseD_6;
+        goto switchD_000aec74_default;
       }
     }
     pEVar5 = ctx->cipher;
@@ -87,7 +89,7 @@ LAB_000aebde:
     if (pEVar5 == (EVP_CIPHER *)0x0) {
       if (cipher == (EVP_CIPHER *)0x0) {
 LAB_000aed38:
-        ERR_put_error(6,0x7b,0x83,DAT_000aedb8,0xc9);
+        ERR_put_error(6,0x7b,0x83,"evp_enc.c",0xc9);
         return 0;
       }
     }
@@ -123,10 +125,10 @@ LAB_000aebbc:
         pEVar5 = cipher;
       }
       else {
-        pvVar2 = CRYPTO_malloc(iVar1,DAT_000aedb8,0xb7);
+        pvVar2 = CRYPTO_malloc(iVar1,"evp_enc.c",0xb7);
         ctx->cipher_data = pvVar2;
         if (pvVar2 == (void *)0x0) {
-          ERR_put_error(6,0x7b,0x41,DAT_000aedb8,0xb9);
+          ERR_put_error(6,0x7b,0x41,"evp_enc.c",0xb9);
           return 0;
         }
         pEVar5 = ctx->cipher;
@@ -136,12 +138,12 @@ LAB_000aebbc:
       ctx->flags = ctx->flags & 1;
       if (-1 < (int)(uVar6 << 0x19)) goto LAB_000aebde;
       if (pEVar5->ctrl == (_func_1236 *)0x0) {
-        ERR_put_error(6,0x7c,0x84,DAT_000aedb8,0x267);
+        ERR_put_error(6,0x7c,0x84,"evp_enc.c",0x267);
       }
       else {
         iVar1 = (*pEVar5->ctrl)(ctx,0,0,(void *)0x0);
         if (iVar1 == -1) {
-          ERR_put_error(6,0x7c,0x85,DAT_000aedb8,0x26e);
+          ERR_put_error(6,0x7c,0x85,"evp_enc.c",0x26e);
         }
         else if (iVar1 != 0) {
           pEVar5 = ctx->cipher;
@@ -160,8 +162,8 @@ LAB_000aebaa:
         if (cipher != (EVP_CIPHER *)0x0) goto LAB_000aebbc;
       }
     }
-    ERR_put_error(6,0x7b,0x86,DAT_000aedb8,iVar4);
-switchD_000aec74_caseD_6:
+    ERR_put_error(6,0x7b,0x86,"evp_enc.c",iVar4);
+switchD_000aec74_default:
     iVar1 = 0;
   }
   return iVar1;

@@ -1,14 +1,14 @@
 
-undefined4 write_PIC16F1705_iic_slave(undefined param_1,undefined param_2,int param_3,byte param_4)
+undefined4
+write_PIC16F1705_iic_slave(undefined1 param_1,undefined1 param_2,int param_3,byte param_4)
 
 {
   byte bVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   undefined4 uVar3;
   uint uVar4;
   char acStack_484 [1024];
-  byte local_84 [4];
-  undefined auStack_80 [96];
+  byte local_84 [100];
   undefined4 local_20;
   byte local_1c;
   undefined2 local_18;
@@ -42,10 +42,10 @@ undefined4 write_PIC16F1705_iic_slave(undefined param_1,undefined param_2,int pa
   local_84[2] = local_14;
   local_84[3] = 0x26;
   for (local_13 = 0; local_13 < param_4; local_13 = local_13 + 1) {
-    auStack_80[local_13] = *(undefined *)((uint)local_13 + param_3);
+    local_84[local_13 + 4] = *(byte *)((uint)local_13 + param_3);
   }
-  auStack_80[param_4] = (undefined)local_18;
-  auStack_80[param_4 + 1] = local_18._1_1_;
+  local_84[param_4 + 4] = (byte)local_18;
+  local_84[param_4 + 5] = local_18._1_1_;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_13 = 0; (uint)local_13 < local_14 + 2; local_13 = local_13 + 1) {
     write_pic(param_1,param_2,local_84[local_13]);
@@ -54,7 +54,7 @@ undefined4 write_PIC16F1705_iic_slave(undefined param_1,undefined param_2,int pa
   for (local_13 = 0; local_13 < 5; local_13 = local_13 + 1) {
     uVar4 = (uint)local_13;
     uVar2 = read_pic(param_1,param_2);
-    *(undefined *)((int)&local_20 + uVar4) = uVar2;
+    *(undefined1 *)((int)&local_20 + uVar4) = uVar2;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   usleep(200000);

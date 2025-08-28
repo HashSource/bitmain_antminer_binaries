@@ -13,7 +13,7 @@ PKCS12_MAKE_SHKEYBAG
   
   pPVar1 = PKCS12_SAFEBAG_new();
   if (pPVar1 == (PKCS12_SAFEBAG *)0x0) {
-    ERR_put_error(0x23,0x71,0x41,DAT_0010eb70,0x73);
+    ERR_put_error(0x23,0x71,0x41,"p12_add.c",0x73);
   }
   else {
     pAVar2 = OBJ_nid2obj(0x97);
@@ -26,7 +26,7 @@ PKCS12_MAKE_SHKEYBAG
     pXVar3 = PKCS8_encrypt(pbe_nid,cipher,pass,passlen,salt,saltlen,iter,p8);
     (pPVar1->value).shkeybag = pXVar3;
     if (pXVar3 == (X509_SIG *)0x0) {
-      ERR_put_error(0x23,0x71,0x41,DAT_0010eb70,0x81);
+      ERR_put_error(0x23,0x71,0x41,"p12_add.c",0x81);
       pPVar1 = (PKCS12_SAFEBAG *)0x0;
     }
   }

@@ -1,6 +1,6 @@
 
 void tls_decrypt_ticket(int param_1,uchar *param_2,int param_3,void *param_4,size_t param_5,
-                       SSL_SESSION **param_6)
+                       undefined4 *param_6)
 
 {
   int iVar1;
@@ -57,7 +57,7 @@ void tls_decrypt_ticket(int param_1,uchar *param_2,int param_3,void *param_4,siz
     local_1c8 = param_2 + iVar3 + 0x10;
     iVar3 = EVP_CIPHER_CTX_iv_length(&EStack_17c);
     iVar3 = (-0x10 - iVar3) + len;
-    out = (uchar *)CRYPTO_malloc(iVar3,DAT_00070174,0xd57);
+    out = (uchar *)CRYPTO_malloc(iVar3,"t1_lib.c",0xd57);
     if (out != (uchar *)0x0) {
       EVP_DecryptUpdate(&EStack_17c,out,&local_1c4,local_1c8,iVar3);
       iVar3 = EVP_DecryptFinal(&EStack_17c,out + local_1c4,(int *)&local_1c0);

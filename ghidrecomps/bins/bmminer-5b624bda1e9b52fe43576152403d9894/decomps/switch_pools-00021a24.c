@@ -4,153 +4,134 @@
 void switch_pools(pool *selected)
 
 {
-  pthread_rwlock_t *__rwlock;
-  code **ppcVar1;
-  int **ppiVar2;
-  _Bool _Var3;
-  int iVar4;
-  int iVar5;
-  pool *ppVar6;
   pool *pool;
-  char *in_r2;
+  _Bool _Var1;
+  int iVar2;
+  pool **pppVar3;
+  pool *ppVar4;
+  char *func;
+  char *func_00;
+  char *func_01;
+  char *func_02;
+  char *func_03;
+  char *func_04;
+  int line;
+  int line_00;
+  pool **pppVar5;
+  uint uVar6;
+  int line_01;
+  int line_02;
+  int line_03;
+  int line_04;
   int iVar7;
-  int in_r3;
-  int *piVar8;
-  uint uVar9;
-  int *piVar10;
-  code *line;
-  int iVar11;
-  pool *pool_00;
-  pool *last_pool;
-  int *piVar12;
-  int pool_no;
-  int next_pool;
-  int *piVar13;
+  int iVar8;
+  int iVar9;
+  int iVar10;
   char tmp42 [2048];
   
-  iVar4 = pthread_mutex_lock(DAT_00021c18);
-  if (iVar4 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_00021c44,(char *)0x1417,in_r2,in_r3);
+  iVar2 = pthread_mutex_lock((pthread_mutex_t *)&control_lock);
+  if (iVar2 != 0) {
+    _mutex_lock((pthread_mutex_t *)"switch_pools",(char *)0x1417,func,line);
   }
-  iVar4 = pthread_rwlock_wrlock(DAT_00021c1c);
-  if (iVar4 != 0) {
-    _wr_lock(DAT_00021c44,(char *)0x1417,in_r2,in_r3);
+  iVar2 = pthread_rwlock_wrlock((pthread_rwlock_t *)&control_lock.rwlock);
+  if (iVar2 != 0) {
+    _wr_lock((pthread_rwlock_t *)"switch_pools",(char *)0x1417,func_00,line_00);
   }
-  ppiVar2 = DAT_00021c48;
-  iVar4 = DAT_00021c20;
-  pool_00 = *(pool **)(DAT_00021c20 + 0x498);
-  piVar12 = (int *)pool_00->pool_no;
-  if ((selected == (pool *)0x0) || (iVar11 = selected->prio, iVar11 == 0)) {
-    uVar9 = *(uint *)(DAT_00021c20 + 0x41c);
-    piVar10 = DAT_00021c24;
-  }
-  else {
-    iVar5 = *DAT_00021c24;
-    if (0 < iVar5) {
-      piVar8 = *DAT_00021c48;
-      piVar10 = piVar8;
+  pool = currentpool;
+  iVar9 = currentpool->pool_no;
+  iVar2 = total_pools;
+  pppVar5 = pools;
+  if ((selected != (pool *)0x0) && (iVar8 = selected->prio, iVar8 != 0)) {
+    if (0 < total_pools) {
+      pppVar3 = pools + total_pools;
       while( true ) {
-        iVar7 = *(int *)(*piVar10 + 4);
-        in_r2 = (char *)(iVar7 + 1);
-        if (iVar7 < iVar11) {
-          *(char **)(*piVar10 + 4) = in_r2;
+        iVar2 = (*pppVar5)->prio;
+        if (iVar2 < iVar8) {
+          (*pppVar5)->prio = iVar2 + 1;
         }
-        if (piVar10 + 1 == piVar8 + iVar5) break;
-        iVar11 = selected->prio;
-        piVar10 = piVar10 + 1;
+        if (pppVar5 + 1 == pppVar3) break;
+        iVar8 = selected->prio;
+        pppVar5 = pppVar5 + 1;
       }
     }
     selected->prio = 0;
-    uVar9 = *(uint *)(iVar4 + 0x41c);
-    piVar10 = DAT_00021c24;
+    iVar2 = total_pools;
+    pppVar5 = pools;
   }
-  DAT_00021c24 = piVar10;
-  if (uVar9 < 5) {
-    in_r2 = (char *)0x1;
-    uVar9 = 1 << (uVar9 & 0xff);
-    if ((uVar9 & 0x19) == 0) {
-      if ((uVar9 & 6) != 0) {
+  total_pools = iVar2;
+  pools = pppVar5;
+  if (pool_strategy < (POOL_BALANCE|POOL_ROUNDROBIN)) {
+    uVar6 = 1 << (pool_strategy & 0xff);
+    if ((uVar6 & 0x19) == 0) {
+      if ((uVar6 & 6) != 0) {
         if ((selected != (pool *)0x0) && (selected->idle == false)) {
-          in_r2 = (char *)selected->pool_no;
-          piVar10 = *ppiVar2;
-          ppVar6 = (pool *)piVar10[(int)in_r2];
+          ppVar4 = pppVar5[selected->pool_no];
           goto LAB_00021ada;
         }
-        iVar11 = *piVar10;
-        if (1 < iVar11) {
-          piVar13 = *ppiVar2;
-          iVar5 = 1;
-          piVar8 = piVar12;
+        if (1 < iVar2) {
+          iVar10 = 1;
+          iVar8 = iVar9;
           do {
-            piVar8 = (int *)((int)piVar8 + 1);
-            iVar5 = iVar5 + 1;
-            piVar10 = (int *)((int)piVar8 * 4);
-            if (iVar11 <= (int)piVar8) {
-              piVar10 = (int *)0x0;
-              piVar8 = piVar10;
+            iVar8 = iVar8 + 1;
+            iVar10 = iVar10 + 1;
+            iVar7 = iVar8 * 4;
+            if (iVar2 <= iVar8) {
+              iVar7 = 0;
+              iVar8 = iVar7;
             }
-            ppVar6 = *(pool **)((int)piVar13 + (int)piVar10);
-            _Var3 = pool_unusable(ppVar6);
-            if (!_Var3) goto LAB_00021ada;
-          } while (iVar5 != iVar11);
-          ppVar6 = (pool *)piVar13[(int)piVar12];
+            ppVar4 = *(pool **)((int)pppVar5 + iVar7);
+            _Var1 = pool_unusable(ppVar4);
+            if (!_Var1) goto LAB_00021ada;
+          } while (iVar10 != iVar2);
+          ppVar4 = pppVar5[iVar9];
           goto LAB_00021ada;
         }
       }
     }
-    else if (0 < *piVar10) {
-      iVar11 = 0;
+    else if (0 < iVar2) {
+      iVar2 = 0;
       do {
-        iVar5 = iVar11 + 1;
-        ppVar6 = priority_pool(iVar11);
-        _Var3 = pool_unusable(ppVar6);
-        if (!_Var3) {
-          in_r2 = (char *)ppVar6->pool_no;
-          piVar10 = *ppiVar2;
-          ppVar6 = (pool *)piVar10[(int)in_r2];
+        iVar8 = iVar2 + 1;
+        ppVar4 = priority_pool(iVar2);
+        _Var1 = pool_unusable(ppVar4);
+        if (!_Var1) {
+          ppVar4 = pools[ppVar4->pool_no];
           goto LAB_00021ada;
         }
-        iVar11 = iVar5;
-      } while (iVar5 < *piVar10);
+        iVar2 = iVar8;
+      } while (iVar8 < total_pools);
     }
   }
-  piVar10 = *ppiVar2;
-  ppVar6 = (pool *)piVar10[(int)piVar12];
+  ppVar4 = pools[iVar9];
 LAB_00021ada:
-  __rwlock = DAT_00021c1c;
-  *(pool **)(iVar4 + 0x498) = ppVar6;
-  iVar11 = pthread_rwlock_unlock(__rwlock);
-  if (iVar11 != 0) {
-    _rw_unlock(DAT_00021c44,(char *)0x1468,in_r2,(int)piVar10);
+  currentpool = ppVar4;
+  iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)&control_lock.rwlock);
+  if (iVar2 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"switch_pools",(char *)0x1468,func_01,line_01);
   }
-  iVar11 = pthread_mutex_unlock(DAT_00021c18);
-  if (iVar11 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_00021c44,(char *)0x1468,in_r2,(int)piVar10);
+  iVar2 = pthread_mutex_unlock((pthread_mutex_t *)&control_lock);
+  if (iVar2 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"switch_pools",(char *)0x1468,func_02,line_02);
   }
-  ppcVar1 = DAT_00021c28;
-  line = *DAT_00021c28;
-  (*line)();
-  if (((pool_00 != ppVar6) && (line = *(code **)(iVar4 + 0x41c), line != (code *)0x3)) &&
-     (line != (code *)0x4)) {
-    if (((*DAT_00021c2c != '\0') || (*DAT_00021c30 != '\0')) ||
-       (line = *DAT_00021c34, 3 < (int)line)) {
-      line = (code *)ppVar6->pool_no;
-      snprintf(tmp42,0x800,DAT_00021c38,line,ppVar6->rpc_url);
-      in_r2 = (char *)0x0;
+  (*selective_yield)();
+  if (((pool != ppVar4) && (pool_strategy != POOL_LOADBALANCE)) && (pool_strategy != POOL_BALANCE))
+  {
+    if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+      snprintf(tmp42,0x800,"Switching to pool %d %s",ppVar4->pool_no,ppVar4->rpc_url);
       _applog(4,tmp42,false);
     }
-    clear_pool_work(pool_00);
+    clear_pool_work(pool);
   }
-  iVar4 = pthread_mutex_lock(DAT_00021c3c);
-  if (iVar4 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_00021c44,(char *)0x1470,in_r2,(int)line);
+  iVar2 = pthread_mutex_lock((pthread_mutex_t *)&lp_lock);
+  if (iVar2 != 0) {
+    _mutex_lock((pthread_mutex_t *)"switch_pools",(char *)0x1470,func_03,line_03);
   }
-  pthread_cond_broadcast(DAT_00021c40);
-  iVar4 = pthread_mutex_unlock(DAT_00021c3c);
-  if (iVar4 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_00021c44,(char *)0x1472,in_r2,(int)line);
+  pthread_cond_broadcast((pthread_cond_t *)&lp_cond);
+  iVar2 = pthread_mutex_unlock((pthread_mutex_t *)&lp_lock);
+  if (iVar2 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"switch_pools",(char *)0x1472,func_04,line_04);
   }
-  (**ppcVar1)();
+  (*selective_yield)();
   return;
 }
 

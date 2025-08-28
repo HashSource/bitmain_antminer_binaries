@@ -6,7 +6,6 @@ pair_t * hashtable_find_pair(hashtable_t *hashtable,bucket_t *bucket,char *key,s
 {
   int iVar1;
   hashtable_list *phVar2;
-  list_t *list;
   
   phVar2 = bucket->first;
   if ((phVar2 != &hashtable->list) || (phVar2 != bucket->last)) {

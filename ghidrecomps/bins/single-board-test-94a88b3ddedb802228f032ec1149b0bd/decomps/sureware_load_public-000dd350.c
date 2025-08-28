@@ -3,98 +3,77 @@ EVP_PKEY *
 sureware_load_public(ENGINE *param_1,undefined4 param_2,void *param_3,uint param_4,char param_5)
 
 {
-  int iVar1;
   DSA *d;
-  BIGNUM *pBVar2;
+  BIGNUM *pBVar1;
   RSA *r;
-  int iVar3;
-  int *piVar4;
-  EVP_PKEY *pEVar5;
-  BIGNUM *pBVar6;
-  ulong *puVar7;
-  uint uVar8;
-  uint uVar9;
-  int *piVar10;
-  undefined4 local_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined local_54;
-  undefined auStack_53 [47];
+  int iVar2;
+  EVP_PKEY *pEVar3;
+  BIGNUM *pBVar4;
+  ulong *puVar5;
+  uint uVar6;
+  uint uVar7;
+  char local_68 [21];
+  undefined1 auStack_53 [47];
   
-  iVar3 = DAT_000dd5bc;
-  local_68 = *DAT_000dd5b8;
-  uStack_64 = DAT_000dd5b8[1];
-  uStack_60 = DAT_000dd5b8[2];
-  uStack_5c = DAT_000dd5b8[3];
-  uStack_58 = DAT_000dd5b8[4];
-  local_54 = (undefined)DAT_000dd5b8[5];
+  builtin_strncpy(local_68,"sureware_load_public",0x14);
+  local_68[0x14] = 0;
   memset(auStack_53,0,0x2b);
-  iVar1 = DAT_000dd5bc;
-  if ((*(int *)(iVar3 + 0x14) == 0) || (*(int *)(iVar3 + 0x18) == 0)) {
-    iVar3 = *(int *)(iVar3 + 4);
-    if (iVar3 == 0) {
-      iVar3 = ERR_get_next_error_library();
-      *(int *)(iVar1 + 4) = iVar3;
+  if ((p_surewarehk_Load_Rsa_Pubkey == (code *)0x0) || (p_surewarehk_Load_Dsa_Pubkey == (code *)0x0)
+     ) {
+    if (SUREWARE_lib_error_code == 0) {
+      SUREWARE_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar3,0x6a,0x75,DAT_000dd5c0,700);
+    ERR_put_error(SUREWARE_lib_error_code,0x6a,0x75,"e_sureware.c",700);
   }
   else {
     if (param_5 == '\x01') {
       r = RSA_new_method(param_1);
-      RSA_set_ex_data(r,*(int *)(DAT_000dd5c4 + 0xd4),param_3);
-      *(uint *)&r->field_0x3c = *(uint *)&r->field_0x3c | 0x20;
-      pBVar2 = BN_new();
-      *(BIGNUM **)&r->field_0x14 = pBVar2;
-      pBVar2 = BN_new();
-      *(BIGNUM **)&r->field_0x10 = pBVar2;
-      if ((*(BIGNUM **)&r->field_0x14 != (BIGNUM *)0x0) && (pBVar2 != (BIGNUM *)0x0)) {
-        uVar9 = param_4 >> 2;
-        bn_expand2(*(BIGNUM **)&r->field_0x14,uVar9);
-        bn_expand2(*(BIGNUM **)&r->field_0x10,uVar9);
-        if ((uVar9 == (*(undefined4 **)&r->field_0x14)[2]) &&
-           (uVar9 == (*(undefined4 **)&r->field_0x10)[2])) {
-          iVar1 = (**(code **)(iVar3 + 0x14))
-                            (&local_68,param_2,param_4,**(undefined4 **)&r->field_0x10,
-                             **(undefined4 **)&r->field_0x14);
-          surewarehk_error_handling(&local_68,0x6a,iVar1);
-          if (iVar1 == 1) {
-            piVar10 = *(int **)&r->field_0x14;
-            piVar10[1] = uVar9;
-            if (uVar9 == 0) {
-              *(undefined4 *)(*(int *)&r->field_0x10 + 4) = 0;
+      RSA_set_ex_data(r,rsaHndidx,param_3);
+      r->flags = r->flags | 0x20;
+      pBVar1 = BN_new();
+      r->e = pBVar1;
+      pBVar1 = BN_new();
+      r->n = pBVar1;
+      if ((r->e != (BIGNUM *)0x0) && (pBVar1 != (BIGNUM *)0x0)) {
+        uVar7 = param_4 >> 2;
+        bn_expand2(r->e,uVar7);
+        bn_expand2(r->n,uVar7);
+        if ((uVar7 == r->e->dmax) && (uVar7 == r->n->dmax)) {
+          iVar2 = (*p_surewarehk_Load_Rsa_Pubkey)(local_68,param_2,param_4,r->n->d,r->e->d);
+          surewarehk_error_handling(local_68,0x6a,iVar2);
+          if (iVar2 == 1) {
+            pBVar1 = r->e;
+            pBVar1->top = uVar7;
+            if (uVar7 == 0) {
+              r->n->top = 0;
             }
             else {
-              iVar3 = (uVar9 - 1) * 4;
-              uVar8 = uVar9;
-              piVar4 = (int *)(*piVar10 + iVar3);
+              uVar6 = uVar7;
+              puVar5 = pBVar1->d + (uVar7 - 1);
               do {
-                if (*piVar4 != 0) break;
-                uVar8 = uVar8 - 1;
-                piVar4 = piVar4 + -1;
-              } while (uVar8 != 0);
-              piVar4 = *(int **)&r->field_0x10;
-              piVar10[1] = uVar8;
-              piVar4[1] = uVar9;
-              piVar10 = (int *)(*piVar4 + iVar3);
+                if (*puVar5 != 0) break;
+                uVar6 = uVar6 - 1;
+                puVar5 = puVar5 + -1;
+              } while (uVar6 != 0);
+              pBVar4 = r->n;
+              pBVar1->top = uVar6;
+              pBVar4->top = uVar7;
+              puVar5 = pBVar4->d + (uVar7 - 1);
               do {
-                if (*piVar10 != 0) break;
-                uVar9 = uVar9 - 1;
-                piVar10 = piVar10 + -1;
-              } while (uVar9 != 0);
-              piVar4[1] = uVar9;
+                if (*puVar5 != 0) break;
+                uVar7 = uVar7 - 1;
+                puVar5 = puVar5 + -1;
+              } while (uVar7 != 0);
+              pBVar4->top = uVar7;
             }
-            pEVar5 = EVP_PKEY_new();
-            EVP_PKEY_assign(pEVar5,6,r);
-            return pEVar5;
+            pEVar3 = EVP_PKEY_new();
+            EVP_PKEY_assign(pEVar3,6,r);
+            return pEVar3;
           }
-          iVar1 = *(int *)(iVar3 + 4);
-          if (iVar1 == 0) {
-            iVar1 = ERR_get_next_error_library();
-            *(int *)(iVar3 + 4) = iVar1;
+          if (SUREWARE_lib_error_code == 0) {
+            SUREWARE_lib_error_code = ERR_get_next_error_library();
           }
-          ERR_put_error(iVar1,0x6a,0x81,DAT_000dd5c0,0x2d8);
+          ERR_put_error(SUREWARE_lib_error_code,0x6a,0x81,"e_sureware.c",0x2d8);
         }
       }
       RSA_free(r);
@@ -102,75 +81,75 @@ sureware_load_public(ENGINE *param_1,undefined4 param_2,void *param_3,uint param
     }
     if (param_5 == '\x02') {
       d = DSA_new_method(param_1);
-      DSA_set_ex_data(d,*(int *)(DAT_000dd5c4 + 0xd8),param_3);
-      pBVar2 = BN_new();
-      d->pub_key = pBVar2;
-      pBVar2 = BN_new();
-      d->p = pBVar2;
-      pBVar2 = BN_new();
-      d->q = pBVar2;
-      pBVar2 = BN_new();
-      d->g = pBVar2;
+      DSA_set_ex_data(d,dsaHndidx,param_3);
+      pBVar1 = BN_new();
+      d->pub_key = pBVar1;
+      pBVar1 = BN_new();
+      d->p = pBVar1;
+      pBVar1 = BN_new();
+      d->q = pBVar1;
+      pBVar1 = BN_new();
+      d->g = pBVar1;
       if ((((d->pub_key != (BIGNUM *)0x0) && (d->p != (BIGNUM *)0x0)) && (d->q != (BIGNUM *)0x0)) &&
-         (pBVar2 != (BIGNUM *)0x0)) {
-        uVar9 = param_4 >> 2;
-        bn_expand2(d->pub_key,uVar9);
-        bn_expand2(d->p,uVar9);
+         (pBVar1 != (BIGNUM *)0x0)) {
+        uVar7 = param_4 >> 2;
+        bn_expand2(d->pub_key,uVar7);
+        bn_expand2(d->p,uVar7);
         bn_expand2(d->q,5);
-        bn_expand2(d->g,uVar9);
-        if (((uVar9 == d->pub_key->dmax) && (uVar9 == d->p->dmax)) &&
-           ((d->q->dmax == 5 && (uVar9 == d->g->dmax)))) {
-          iVar3 = (**(code **)(iVar3 + 0x18))
-                            (&local_68,param_2,param_4,d->pub_key->d,d->p->d,d->q->d,d->g->d);
-          surewarehk_error_handling(&local_68,0x6a,iVar3);
-          if (iVar3 == 1) {
-            pBVar2 = d->pub_key;
-            pBVar2->top = uVar9;
-            if (uVar9 == 0) {
+        bn_expand2(d->g,uVar7);
+        if (((uVar7 == d->pub_key->dmax) && (uVar7 == d->p->dmax)) &&
+           ((d->q->dmax == 5 && (uVar7 == d->g->dmax)))) {
+          iVar2 = (*p_surewarehk_Load_Dsa_Pubkey)
+                            (local_68,param_2,param_4,d->pub_key->d,d->p->d,d->q->d,d->g->d);
+          surewarehk_error_handling(local_68,0x6a,iVar2);
+          if (iVar2 == 1) {
+            pBVar1 = d->pub_key;
+            pBVar1->top = uVar7;
+            if (uVar7 == 0) {
               d->p->top = 0;
             }
             else {
-              uVar8 = uVar9;
-              puVar7 = pBVar2->d + (uVar9 - 1);
+              uVar6 = uVar7;
+              puVar5 = pBVar1->d + (uVar7 - 1);
               do {
-                if (*puVar7 != 0) break;
-                uVar8 = uVar8 - 1;
-                puVar7 = puVar7 + -1;
-              } while (uVar8 != 0);
-              pBVar6 = d->p;
-              pBVar2->top = uVar8;
-              pBVar6->top = uVar9;
-              puVar7 = pBVar6->d + (uVar9 - 1);
-              uVar8 = uVar9;
+                if (*puVar5 != 0) break;
+                uVar6 = uVar6 - 1;
+                puVar5 = puVar5 + -1;
+              } while (uVar6 != 0);
+              pBVar4 = d->p;
+              pBVar1->top = uVar6;
+              pBVar4->top = uVar7;
+              puVar5 = pBVar4->d + (uVar7 - 1);
+              uVar6 = uVar7;
               do {
-                if (*puVar7 != 0) break;
-                uVar8 = uVar8 - 1;
-                puVar7 = puVar7 + -1;
-              } while (uVar8 != 0);
-              pBVar6->top = uVar8;
+                if (*puVar5 != 0) break;
+                uVar6 = uVar6 - 1;
+                puVar5 = puVar5 + -1;
+              } while (uVar6 != 0);
+              pBVar4->top = uVar6;
             }
-            pBVar2 = d->q;
-            iVar3 = 5;
-            pBVar2->top = 5;
+            pBVar1 = d->q;
+            iVar2 = 5;
+            pBVar1->top = 5;
             do {
-              if (pBVar2->d[iVar3 + -1] != 0) break;
-              iVar3 = iVar3 + -1;
-            } while (iVar3 != 0);
-            pBVar6 = d->g;
-            pBVar2->top = iVar3;
-            pBVar6->top = uVar9;
-            if (uVar9 != 0) {
-              puVar7 = pBVar6->d + (uVar9 - 1);
+              if (pBVar1->d[iVar2 + -1] != 0) break;
+              iVar2 = iVar2 + -1;
+            } while (iVar2 != 0);
+            pBVar4 = d->g;
+            pBVar1->top = iVar2;
+            pBVar4->top = uVar7;
+            if (uVar7 != 0) {
+              puVar5 = pBVar4->d + (uVar7 - 1);
               do {
-                if (*puVar7 != 0) break;
-                uVar9 = uVar9 - 1;
-                puVar7 = puVar7 + -1;
-              } while (uVar9 != 0);
-              pBVar6->top = uVar9;
+                if (*puVar5 != 0) break;
+                uVar7 = uVar7 - 1;
+                puVar5 = puVar5 + -1;
+              } while (uVar7 != 0);
+              pBVar4->top = uVar7;
             }
-            pEVar5 = EVP_PKEY_new();
-            EVP_PKEY_assign(pEVar5,0x74,d);
-            return pEVar5;
+            pEVar3 = EVP_PKEY_new();
+            EVP_PKEY_assign(pEVar3,0x74,d);
+            return pEVar3;
           }
           ERR_SUREWARE_error_constprop_5(0x6a,0x81,0x30a);
         }
@@ -178,12 +157,10 @@ sureware_load_public(ENGINE *param_1,undefined4 param_2,void *param_3,uint param
       DSA_free(d);
       return (EVP_PKEY *)0x0;
     }
-    iVar1 = *(int *)(iVar3 + 4);
-    if (iVar1 == 0) {
-      iVar1 = ERR_get_next_error_library();
-      *(int *)(iVar3 + 4) = iVar1;
+    if (SUREWARE_lib_error_code == 0) {
+      SUREWARE_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar1,0x6a,0x80,DAT_000dd5c0,800);
+    ERR_put_error(SUREWARE_lib_error_code,0x6a,0x80,"e_sureware.c",800);
   }
   return (EVP_PKEY *)0x0;
 }

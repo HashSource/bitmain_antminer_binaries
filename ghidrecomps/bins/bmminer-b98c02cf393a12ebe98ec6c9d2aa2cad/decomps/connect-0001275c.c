@@ -6,7 +6,7 @@ int connect(int __fd,sockaddr *__addr,socklen_t __len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_connect_0007d0a8)();
+  iVar1 = connect(__fd,__addr,__len);
   return iVar1;
 }
 

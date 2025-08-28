@@ -12,7 +12,6 @@ int tftp_tx(undefined4 *param_1,int param_2)
   short sVar8;
   int iVar9;
   
-  uVar5 = DAT_0004e14c;
   sVar8 = (short)param_2 + -4;
   iVar9 = *(int *)param_1[4];
   switch(param_2) {
@@ -25,14 +24,15 @@ int tftp_tx(undefined4 *param_1,int param_2)
       *(short *)(param_1 + 0xc) = sVar8;
     }
     else {
-      sVar8 = CONCAT11(*(undefined *)(param_1[0x52] + 2),*(undefined *)(param_1[0x52] + 3));
+      sVar8 = CONCAT11(*(undefined1 *)(param_1[0x52] + 2),*(undefined1 *)(param_1[0x52] + 3));
       if ((*(short *)(param_1 + 0xc) != sVar8) &&
          ((*(short *)(param_1 + 0xc) != 0 || (sVar8 != -1)))) {
-        Curl_infof(iVar9,DAT_0004e154);
+        Curl_infof(iVar9,"Received ACK for block %d, expecting %d\n");
         iVar2 = param_1[6];
         param_1[6] = iVar2 + 1;
         if ((int)param_1[8] < iVar2 + 1) {
-          Curl_failf(iVar9,DAT_0004e158,*(undefined2 *)(param_1 + 0xc));
+          Curl_failf(iVar9,"tftp_tx: giving up waiting for block %d ack",
+                     *(undefined2 *)(param_1 + 0xc));
           return 0x37;
         }
         sVar3 = sendto(param_1[5],(void *)param_1[0x53],param_1[0x4f] + 4,0x4000,
@@ -46,8 +46,8 @@ int tftp_tx(undefined4 *param_1,int param_2)
       *(short *)(param_1 + 0xc) = *(short *)(param_1 + 0xc) + 1;
     }
     param_1[6] = 0;
-    *(undefined *)param_1[0x53] = 0;
-    *(undefined *)(param_1[0x53] + 1) = 3;
+    *(undefined1 *)param_1[0x53] = 0;
+    *(undefined1 *)(param_1[0x53] + 1) = 3;
     uVar1 = *(undefined2 *)(param_1 + 0xc);
     *(char *)(param_1[0x53] + 2) = (char)((ushort)uVar1 >> 8);
     *(char *)(param_1[0x53] + 3) = (char)uVar1;
@@ -73,8 +73,8 @@ int tftp_tx(undefined4 *param_1,int param_2)
     break;
   case 5:
     *param_1 = 3;
-    *(undefined *)param_1[0x53] = 0;
-    *(undefined *)(param_1[0x53] + 1) = 5;
+    *(undefined1 *)param_1[0x53] = 0;
+    *(undefined1 *)(param_1[0x53] + 1) = 5;
     uVar1 = *(undefined2 *)(param_1 + 0xc);
     *(char *)(param_1[0x53] + 2) = (char)((ushort)uVar1 >> 8);
     *(char *)(param_1[0x53] + 3) = (char)uVar1;
@@ -83,7 +83,8 @@ int tftp_tx(undefined4 *param_1,int param_2)
     return 0;
   case 7:
     param_1[6] = param_1[6] + 1;
-    Curl_infof(iVar9,uVar5,*(short *)(param_1 + 0xc) + 1);
+    Curl_infof(iVar9,"Timeout waiting for block %d ACK.  Retries = %d\n",
+               *(short *)(param_1 + 0xc) + 1);
     if ((int)param_1[8] < (int)param_1[6]) {
       param_1[2] = 0xffffff9d;
       *param_1 = 3;
@@ -97,12 +98,12 @@ int tftp_tx(undefined4 *param_1,int param_2)
     }
     break;
   default:
-    Curl_failf(iVar9,DAT_0004e150,param_2);
+    Curl_failf(iVar9,"tftp_tx: internal error, event: %i",param_2);
     return 0;
   }
   piVar4 = __errno_location();
   uVar5 = Curl_strerror(param_1[4],*piVar4);
-  Curl_failf(iVar9,DAT_0004e15c,uVar5);
+  Curl_failf(iVar9,"%s",uVar5);
   return 0x37;
 }
 

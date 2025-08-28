@@ -6,7 +6,7 @@ void * memset(void *__s,int __c,size_t __n)
 {
   void *pvVar1;
   
-  pvVar1 = (void *)(*(code *)PTR_memset_0007cfb4)();
+  pvVar1 = memset(__s,__c,__n);
   return pvVar1;
 }
 

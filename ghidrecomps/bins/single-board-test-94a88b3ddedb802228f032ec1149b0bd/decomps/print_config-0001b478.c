@@ -36,7 +36,7 @@ void print_config(void)
   printf("TempSensor2:%d\n",Conf._220_4_);
   printf("TempSensor3:%d\n",Conf._224_4_);
   printf("TempSensor4:%d\n",Conf._228_4_);
-  printf("DefaultTempOffset:%d\n",(int)Conf[232]);
+  printf("DefaultTempOffset:%d\n",(int)Conf[0xe8]);
   printf("StartTemp:%d\n",Conf._260_4_);
   printf("year:%04d\n",Conf._264_4_);
   printf("month:%02d\n",Conf._268_4_);

@@ -47,14 +47,13 @@ void * check_system_work(void)
           for (j = 0; j < (int)(uint)dev->chain_asic_num[i]; j = j + 1) {
             iVar2 = nonce_times % 0x3c;
             uVar3 = *(undefined4 *)((int)dev->chain_asic_nonce[i] + j * 8 + 4);
-            *(undefined4 *)(nonce_num[i][j] + iVar2) = *(undefined4 *)(dev->chain_asic_nonce[i] + j)
-            ;
+            *(int *)(nonce_num[i][j] + iVar2) = (int)dev->chain_asic_nonce[i][j];
             *(undefined4 *)((int)nonce_num[i][j] + iVar2 * 8 + 4) = uVar3;
-            avg_num = *(int *)(dev->chain_asic_nonce[i] + j) + avg_num;
+            avg_num = (int)dev->chain_asic_nonce[i][j] + avg_num;
             if ((opt_debug != false) &&
                (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
               snprintf(tmp42,0x800,"%s: chain %d asic %d asic_nonce_num %d","check_system_work",i,j,
-                       *(undefined4 *)(dev->chain_asic_nonce[i] + j),
+                       (int)dev->chain_asic_nonce[i][j],
                        *(undefined4 *)((int)dev->chain_asic_nonce[i] + j * 8 + 4));
               _applog(7,tmp42,false);
             }

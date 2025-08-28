@@ -33,12 +33,12 @@ undefined4 check_fan(void)
         *(int *)(fan_speed_value + (uint)local_21 * 4) = local_28 * 0x78;
         if ((local_28 == 0) || (*(char *)((int)&fan_exist + (uint)local_21) != '\0')) {
           if ((local_28 == 0) && (*(char *)((int)&fan_exist + (uint)local_21) == '\x01')) {
-            *(undefined *)((int)&fan_exist + (uint)local_21) = 0;
+            *(undefined1 *)((int)&fan_exist + (uint)local_21) = 0;
             fan_num = fan_num + -1;
           }
         }
         else {
-          *(undefined *)((int)&fan_exist + (uint)local_21) = 1;
+          *(undefined1 *)((int)&fan_exist + (uint)local_21) = 1;
           fan_num = fan_num + 1;
         }
         if ((*(uint *)(fan_speed_value + (uint)local_21 * 4) < 3000) &&

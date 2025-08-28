@@ -1,54 +1,57 @@
 
+/* WARNING: Restarted to delay deadcode elimination for space: ram */
 /* WARNING: Unknown calling convention */
 
 void * stratum_sthread(void *userdata)
 
 {
   char cVar1;
-  byte *pbVar2;
-  char **ppcVar3;
-  char *pcVar4;
-  pthread_mutex_t *ppVar5;
-  char *pcVar6;
-  uint *puVar7;
-  _Bool _Var8;
-  pool *pool;
-  thread_q *ptVar9;
-  uint uVar10;
-  int iVar11;
-  int **__ptr;
-  stratum_share *sshare;
-  int *piVar12;
-  time_t tVar13;
-  char *pcVar14;
-  void *pvVar15;
-  UT_hash_bucket *_he_new_buckets;
-  void *pvVar16;
-  undefined4 uVar17;
-  int ssdiff;
-  int iVar18;
-  char *pcVar19;
-  char *pcVar20;
-  uint uVar21;
-  void *pvVar22;
-  work *line;
-  int *piVar23;
-  void *pvVar24;
-  int iVar25;
-  work *pwVar26;
-  int iVar27;
-  int **ppiVar28;
-  size_t __size;
-  UT_hash_handle *_he_thh;
-  _Bool sessionid_match;
-  int iVar29;
-  uint uVar30;
-  uint uVar31;
-  UT_hash_bucket *_he_newbkt;
-  UT_hash_handle *_he_hh_nxt;
-  void **ppvVar32;
+  stratum_share *psVar2;
+  work *pwVar3;
+  undefined4 uVar4;
+  _Bool _Var5;
+  pthread_t __th;
+  thread_q *ptVar6;
+  uint uVar7;
+  int iVar8;
+  stratum_share *__ptr;
+  time_t tVar9;
+  size_t sVar10;
+  UT_hash_handle *pUVar11;
+  UT_hash_bucket *pUVar12;
+  uint uVar13;
+  int iVar14;
+  char *pcVar15;
+  char *func;
+  char *func_00;
+  char *pcVar16;
+  char *func_01;
+  uint uVar17;
+  char *func_02;
+  char *func_03;
+  char *func_04;
+  char *func_05;
+  char *func_06;
+  int line;
+  int line_00;
+  int line_01;
+  UT_hash_table *pUVar18;
+  UT_hash_handle *pUVar19;
+  int line_02;
+  int line_03;
+  int line_04;
+  int line_05;
+  int line_06;
+  int iVar20;
+  int iVar21;
+  uint uVar22;
+  uint uVar23;
+  uint uVar24;
+  UT_hash_handle *pUVar25;
+  bool bVar26;
+  char *pcVar27;
   int local_c8c;
-  void *local_c84;
+  UT_hash_bucket *local_c84;
   uint nonce;
   work *work;
   uchar nonce2 [8];
@@ -58,33 +61,23 @@ void * stratum_sthread(void *userdata)
   char s [1024];
   char tmp42 [2048];
   
-  pool = (pool *)pthread_self();
-  pthread_detach((pthread_t)pool);
+  __th = pthread_self();
+  pthread_detach(__th);
                     /* WARNING: Load size is inaccurate */
-  snprintf(threadname,0x10,DAT_0002791c,*userdata);
+  snprintf(threadname,0x10,"%d/SStratum",*userdata);
   RenameThread(threadname);
-  ptVar9 = tq_new();
-  *(thread_q **)((int)userdata + 0x2d8) = ptVar9;
-  if (ptVar9 == (thread_q *)0x0) {
-    tmp42._0_4_ = *DAT_00027920;
-    tmp42._4_4_ = DAT_00027920[1];
-    tmp42._8_4_ = DAT_00027920[2];
-    tmp42._12_4_ = DAT_00027920[3];
-    tmp42._16_4_ = DAT_00027920[4];
-    tmp42._20_4_ = DAT_00027920[5];
-    tmp42._24_4_ = DAT_00027920[6];
-    tmp42._28_4_ = DAT_00027920[7];
-    tmp42._32_4_ = DAT_00027920[8];
-    tmp42._36_4_ = DAT_00027920[9];
-    tmp42._40_4_ = DAT_00027920[10];
-    tmp42[44] = (char)(short)DAT_00027920[0xb];
-    tmp42[45] = (char)((ushort)(short)DAT_00027920[0xb] >> 8);
+  ptVar6 = tq_new();
+  uVar4 = tmp42._44_4_;
+  *(thread_q **)((int)userdata + 0x2d8) = ptVar6;
+  if (ptVar6 == (thread_q *)0x0) {
+    builtin_strncpy(tmp42,"Failed to create stratum_q in stratum_sthread",0x2e);
+    tmp42._46_2_ = SUB42(uVar4,2);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  uVar31 = 0;
-  iVar27 = 0;
-  iVar29 = 0;
+  uVar24 = 0;
+  iVar20 = 0;
+  iVar21 = 0;
 LAB_000276bc:
   do {
     cVar1 = *(char *)((int)userdata + 0x69);
@@ -94,431 +87,352 @@ LAB_000276bc:
         return (void *)0x0;
       }
       work = (work *)tq_pop(*(thread_q **)((int)userdata + 0x2d8),(timespec *)0x0);
+      uVar4 = tmp42._28_4_;
       if (work == (work *)0x0) {
-        tmp42._0_4_ = *DAT_00027fa4;
-        tmp42._4_4_ = DAT_00027fa4[1];
-        tmp42._8_4_ = DAT_00027fa4[2];
-        tmp42._12_4_ = DAT_00027fa4[3];
-        tmp42._16_4_ = DAT_00027fa4[4];
-        tmp42._20_4_ = DAT_00027fa4[5];
-        tmp42._24_4_ = DAT_00027fa4[6];
-        tmp42[28] = (char)(short)DAT_00027fa4[7];
-        tmp42[29] = (char)((ushort)(short)DAT_00027fa4[7] >> 8);
+        builtin_strncpy(tmp42,"Stratum q returned empty work",0x1e);
+        tmp42._30_2_ = SUB42(uVar4,2);
         _applog(3,tmp42,true);
         _quit(1);
       }
-      pcVar19 = DAT_00027f90;
       if (8 < work->nonce2_len) {
-        if (((*DAT_00027f90 != '\0') || (*DAT_00027f7c != '\0')) || (2 < *DAT_00027f80)) {
+        if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
                     /* WARNING: Load size is inaccurate */
-          snprintf(tmp42,0x800,DAT_00027f94,*userdata,work->nonce2_len);
+          snprintf(tmp42,0x800,"Pool %d asking for inappropriately long nonce2 length %d",*userdata,
+                   work->nonce2_len);
           _applog(3,tmp42,false);
-          if (((*pcVar19 != '\0') || (*DAT_00027f7c != '\0')) || (2 < *DAT_00027f80)) {
-            tmp42._0_4_ = *DAT_00027fa0;
-            tmp42._4_4_ = DAT_00027fa0[1];
-            tmp42._8_4_ = DAT_00027fa0[2];
-            tmp42._12_4_ = DAT_00027fa0[3];
-            tmp42._16_4_ = DAT_00027fa0[4];
-            tmp42._20_4_ = DAT_00027fa0[5];
-            tmp42._24_4_ = DAT_00027fa0[6];
-            tmp42._28_4_ = DAT_00027fa0[7];
+          if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
+            builtin_strncpy(tmp42,"Not attempting to submit shares",0x20);
             _applog(3,tmp42,false);
           }
         }
-        _free_work(&work,DAT_00027f98,DAT_00027f74->__size,0x1d72);
+        _free_work(&work,"cgminer.c","stratum_sthread",0x1d72);
         goto LAB_000276bc;
       }
-      uVar10 = *(uint *)(work->data + 0x4c);
-      iVar11 = *(int *)&work->nonce2;
-      iVar18 = *(int *)((int)&work->nonce2 + 4);
-      nonce = uVar10;
-      nonce2._0_4_ = iVar11;
-      nonce2._4_4_ = iVar18;
-      if ((uVar31 == uVar10) && (iVar29 == iVar18 && iVar27 == iVar11)) break;
+      uVar7 = *(uint *)(work->data + 0x4c);
+      iVar8 = (int)work->nonce2;
+      iVar14 = *(int *)((int)&work->nonce2 + 4);
+      nonce = uVar7;
+      nonce2._0_4_ = iVar8;
+      nonce2._4_4_ = iVar14;
+      if ((uVar24 == uVar7) && (iVar21 == iVar14 && iVar20 == iVar8)) break;
       __bin2hex(noncehex,(uchar *)&nonce,4);
       __bin2hex(nonce2hex,nonce2,work->nonce2_len);
-      __ptr = (int **)_cgcalloc(0x34,1,DAT_00027924,DAT_00027928,0x1d87);
-      pwVar26 = work;
-      piVar12 = (int *)time((time_t *)0x0);
-      pcVar19 = (char *)0x400;
-      __ptr[0xb] = piVar12;
-      __ptr[9] = (int *)work;
-      line = work;
+      __ptr = (stratum_share *)_cgcalloc(0x34,1,"cgminer.c","stratum_sthread",0x1d87);
+      pwVar3 = work;
+      tVar9 = time((time_t *)0x0);
+      __ptr->sshare_time = tVar9;
+      __ptr->work = work;
       memset(s,0,0x400);
-      iVar27 = pthread_mutex_lock(DAT_0002792c);
-      if (iVar27 != 0) {
-        _mutex_lock((pthread_mutex_t *)DAT_00027f74,(char *)0x1d90,pcVar19,(int)line);
+      iVar20 = pthread_mutex_lock((pthread_mutex_t *)&sshare_lock);
+      if (iVar20 != 0) {
+        _mutex_lock((pthread_mutex_t *)"stratum_sthread",(char *)0x1d90,func,line);
       }
-      ppVar5 = DAT_0002792c;
-      __ptr[10] = (int *)swork_id;
-      iVar29 = swork_id + 1;
-      swork_id = iVar29;
-      iVar27 = pthread_mutex_unlock(ppVar5);
-      if (iVar27 != 0) {
-        _mutex_unlock_noyield((pthread_mutex_t *)DAT_00027f74,(char *)0x1d93,pcVar19,iVar29);
+      __ptr->id = swork_id;
+      swork_id = swork_id + 1;
+      iVar20 = pthread_mutex_unlock((pthread_mutex_t *)&sshare_lock);
+      if (iVar20 != 0) {
+        _mutex_unlock_noyield((pthread_mutex_t *)"stratum_sthread",(char *)0x1d93,func_00,line_00);
       }
       (*selective_yield)();
       if (*(char *)((int)userdata + 0x284) == '\0') {
-        pcVar19 = nonce2hex;
-        pcVar14 = noncehex;
-        pcVar20 = work->ntime;
-        piVar12 = __ptr[10];
-        snprintf(s,0x400,DAT_00027cc0,*(undefined4 *)((int)userdata + 0xac),work->job_id,pcVar19,
-                 pcVar20,pcVar14,piVar12);
+        pcVar15 = nonce2hex;
+        pcVar27 = noncehex;
+        pcVar16 = work->ntime;
+        uVar24 = __ptr->id;
+        snprintf(s,0x400,
+                 "{\"params\": [\"%s\", \"%s\", \"%s\", \"%s\", \"%s\"], \"id\": %d, \"method\": \"mining.submit\"}"
+                 ,*(undefined4 *)((int)userdata + 0xac),work->job_id,pcVar15,pcVar16,pcVar27,uVar24)
+        ;
       }
       else {
-        pcVar19 = nonce2hex;
-        uVar31 = work->version;
-        pcVar14 = noncehex;
-        pcVar20 = work->ntime;
-        piVar12 = (int *)(uVar31 << 0x18 | (uVar31 >> 8 & 0xff) << 0x10 |
-                          (uVar31 >> 0x10 & 0xff) << 8 | uVar31 >> 0x18);
-        snprintf(s,0x400,DAT_00027930,*(undefined4 *)((int)userdata + 0xac),work->job_id,pcVar19,
-                 pcVar20,pcVar14,piVar12,__ptr[10]);
+        pcVar15 = nonce2hex;
+        uVar24 = work->version;
+        pcVar27 = noncehex;
+        pcVar16 = work->ntime;
+        uVar24 = uVar24 << 0x18 | (uVar24 >> 8 & 0xff) << 0x10 | (uVar24 >> 0x10 & 0xff) << 8 |
+                 uVar24 >> 0x18;
+        snprintf(s,0x400,
+                 "{\"params\": [\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%08x\"], \"id\": %d, \"method\": \"mining.submit\"}"
+                 ,*(undefined4 *)((int)userdata + 0xac),work->job_id,pcVar15,pcVar16,pcVar27,uVar24,
+                 __ptr->id);
       }
-      pcVar6 = DAT_00027934;
-      if (((*DAT_00027934 != '\0') || (*DAT_00027938 != '\0')) ||
-         (pbVar2 = DAT_00027948, ppcVar3 = DAT_00027944, piVar23 = DAT_0002793c,
-         pcVar4 = DAT_00027938, 5 < *DAT_0002793c)) {
+      if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
                     /* WARNING: Load size is inaccurate */
-        snprintf(tmp42,0x800,DAT_00027940,*(undefined4 *)(pwVar26->hash + 0x18),*userdata,pcVar19,
-                 pcVar20,pcVar14,piVar12);
+        snprintf(tmp42,0x800,"Submitting share %08lx to pool %d",
+                 *(undefined4 *)(pwVar3->hash + 0x18),*userdata,pcVar15,pcVar16,pcVar27,uVar24);
         _applog(6,tmp42,false);
-        pbVar2 = DAT_00027948;
-        ppcVar3 = DAT_00027944;
-        piVar23 = DAT_0002793c;
-        pcVar4 = DAT_00027938;
       }
 LAB_00027806:
-      piVar12 = __ptr[0xb];
-      iVar27 = (int)piVar12 + 0x77;
-      tVar13 = time((time_t *)0x0);
-      pcVar19 = DAT_00027cb4;
-      if (tVar13 <= iVar27) {
-        pcVar14 = (char *)strlen(s);
-        _Var8 = stratum_send((pool *)userdata,s,(ssize_t)pcVar14);
-        if (_Var8) {
-          iVar27 = pthread_mutex_lock(DAT_0002792c);
-          if (iVar27 != 0) {
-            _mutex_lock(DAT_00027cc8,(char *)0x1db7,pcVar14,(int)piVar12);
+      iVar20 = __ptr->sshare_time;
+      tVar9 = time((time_t *)0x0);
+      if (tVar9 <= iVar20 + 0x77) {
+        sVar10 = strlen(s);
+        _Var5 = stratum_send((pool *)userdata,s,sVar10);
+        if (_Var5) {
+          iVar20 = pthread_mutex_lock((pthread_mutex_t *)&sshare_lock);
+          if (iVar20 != 0) {
+            _mutex_lock((pthread_mutex_t *)"stratum_sthread",(char *)0x1db7,func_01,line_01);
           }
-          iVar27 = DAT_0002794c;
-          uVar31 = *(byte *)(__ptr + 10) + 0x112410d +
-                   (uint)*(byte *)((int)__ptr + 0x2b) * 0x1000000 +
-                   (uint)*(byte *)((int)__ptr + 0x2a) * 0x10000 +
-                   (uint)*(byte *)((int)__ptr + 0x29) * 0x100 ^ 0x7f76d;
-          uVar21 = 0x9f49bac6 - uVar31 ^ uVar31 << 8;
-          __ptr[5] = (int *)(__ptr + 10);
-          ppiVar28 = *(int ***)(iVar27 + 0x480);
-          uVar30 = (-0x112410d - uVar31) - uVar21 ^ uVar21 >> 0xd;
-          __ptr[6] = (int *)0x4;
-          uVar31 = (uVar31 - uVar21) - uVar30 ^ uVar30 >> 0xc;
-          uVar21 = (uVar21 - uVar30) - uVar31 ^ uVar31 << 0x10;
-          uVar30 = (uVar30 - uVar31) - uVar21 ^ uVar21 >> 5;
-          uVar31 = (uVar31 - uVar21) - uVar30 ^ uVar30 >> 3;
-          uVar21 = (uVar21 - uVar30) - uVar31 ^ uVar31 << 10;
-          piVar12 = (int *)((uVar30 - uVar31) - uVar21 ^ uVar21 >> 0xf);
-          __ptr[7] = piVar12;
-          if (ppiVar28 == (int **)0x0) {
-            __ptr[2] = (int *)0x0;
-            __ptr[1] = (int *)0x0;
-            *(int ***)(iVar27 + 0x480) = __ptr;
-            piVar23 = (int *)malloc(0x2c);
-            *__ptr = piVar23;
-            if (piVar23 == (int *)0x0) goto LAB_00027e4c;
-            *piVar23 = 0;
-            piVar23[1] = 0;
-            piVar23[2] = 0;
-            piVar23[3] = 0;
-            piVar23[4] = 0;
-            piVar23[5] = 0;
-            piVar23[6] = 0;
-            piVar23[7] = 0;
-            piVar23[8] = 0;
-            piVar23[9] = 0;
-            piVar23[10] = 0;
-            ppvVar32 = (void **)*__ptr;
-            ppvVar32[4] = __ptr;
-            ppvVar32[5] = (void *)0x0;
-            ppvVar32[1] = (void *)0x20;
-            ppvVar32[2] = (void *)0x5;
-            pvVar15 = malloc(0x180);
-            *ppvVar32 = pvVar15;
-            if (pvVar15 == (void *)0x0) goto LAB_00027e4c;
-            memset(pvVar15,0,0x180);
-            piVar23 = *__ptr;
-            piVar23[10] = -0x5feee01f;
+          uVar24 = (byte)__ptr->id + 0x112410d + (uint)*(byte *)((int)&__ptr->id + 3) * 0x1000000 +
+                   (uint)*(byte *)((int)&__ptr->id + 2) * 0x10000 +
+                   (uint)*(byte *)((int)&__ptr->id + 1) * 0x100 ^ 0x7f76d;
+          uVar17 = 0x9f49bac6 - uVar24 ^ uVar24 << 8;
+          (__ptr->hh).key = &__ptr->id;
+          psVar2 = stratum_shares;
+          uVar22 = (-0x112410d - uVar24) - uVar17 ^ uVar17 >> 0xd;
+          (__ptr->hh).keylen = 4;
+          uVar24 = (uVar24 - uVar17) - uVar22 ^ uVar22 >> 0xc;
+          uVar17 = (uVar17 - uVar22) - uVar24 ^ uVar24 << 0x10;
+          uVar22 = (uVar22 - uVar24) - uVar17 ^ uVar17 >> 5;
+          uVar24 = (uVar24 - uVar17) - uVar22 ^ uVar22 >> 3;
+          uVar17 = (uVar17 - uVar22) - uVar24 ^ uVar24 << 10;
+          uVar24 = (uVar22 - uVar24) - uVar17 ^ uVar17 >> 0xf;
+          (__ptr->hh).hashv = uVar24;
+          if (psVar2 == (stratum_share *)0x0) {
+            (__ptr->hh).next = (void *)0x0;
+            (__ptr->hh).prev = (void *)0x0;
+            stratum_shares = __ptr;
+            pUVar18 = (UT_hash_table *)malloc(0x2c);
+            (__ptr->hh).tbl = pUVar18;
+            if (pUVar18 == (UT_hash_table *)0x0) goto LAB_00027e4c;
+            pUVar18->buckets = (UT_hash_bucket *)0x0;
+            pUVar18->num_buckets = 0;
+            pUVar18->log2_num_buckets = 0;
+            pUVar18->num_items = 0;
+            pUVar18->tail = (UT_hash_handle *)0x0;
+            pUVar18->hho = 0;
+            pUVar18->ideal_chain_maxlen = 0;
+            pUVar18->nonideal_items = 0;
+            pUVar18->ineff_expands = 0;
+            pUVar18->noexpand = 0;
+            pUVar18->signature = 0;
+            pUVar18 = (__ptr->hh).tbl;
+            pUVar18->tail = (UT_hash_handle *)__ptr;
+            pUVar18->hho = 0;
+            pUVar18->num_buckets = 0x20;
+            pUVar18->log2_num_buckets = 5;
+            pUVar12 = (UT_hash_bucket *)malloc(0x180);
+            pUVar18->buckets = pUVar12;
+            if (pUVar12 == (UT_hash_bucket *)0x0) goto LAB_00027e4c;
+            memset(pUVar12,0,0x180);
+            pUVar18 = (__ptr->hh).tbl;
+            pUVar18->signature = 0xa0111fe1;
           }
           else {
-            piVar23 = *ppiVar28;
-            __ptr[2] = (int *)0x0;
-            *__ptr = piVar23;
-            piVar23 = *ppiVar28;
-            iVar27 = piVar23[4];
-            iVar29 = piVar23[5];
-            *(int ***)(iVar27 + 8) = __ptr;
-            __ptr[1] = (int *)(iVar27 - iVar29);
-            piVar23[4] = (int)__ptr;
+            pUVar18 = (psVar2->hh).tbl;
+            (__ptr->hh).next = (void *)0x0;
+            (__ptr->hh).tbl = pUVar18;
+            pUVar18 = (psVar2->hh).tbl;
+            pUVar11 = pUVar18->tail;
+            iVar20 = pUVar18->hho;
+            pUVar11->next = __ptr;
+            (__ptr->hh).prev = (void *)((int)pUVar11 - iVar20);
+            pUVar18->tail = (UT_hash_handle *)__ptr;
           }
-          iVar27 = *piVar23;
-          uVar21 = (uint)piVar12 & piVar23[1] - 1U;
-          piVar23[3] = piVar23[3] + 1;
-          iVar29 = iVar27 + uVar21 * 0xc;
-          piVar12 = *(int **)(iVar27 + uVar21 * 0xc);
-          uVar31 = *(int *)(iVar29 + 4) + 1;
-          *(uint *)(iVar29 + 4) = uVar31;
-          __ptr[4] = piVar12;
-          __ptr[3] = (int *)0x0;
-          if (piVar12 != (int *)0x0) {
-            piVar12[3] = (int)__ptr;
+          pUVar12 = pUVar18->buckets;
+          uVar24 = uVar24 & pUVar18->num_buckets - 1;
+          pUVar18->num_items = pUVar18->num_items + 1;
+          pUVar11 = pUVar12[uVar24].hh_head;
+          uVar17 = pUVar12[uVar24].count + 1;
+          pUVar12[uVar24].count = uVar17;
+          (__ptr->hh).hh_next = pUVar11;
+          (__ptr->hh).hh_prev = (UT_hash_handle *)0x0;
+          if (pUVar11 != (UT_hash_handle *)0x0) {
+            pUVar11->hh_prev = (UT_hash_handle *)__ptr;
           }
-          iVar29 = *(int *)(iVar29 + 8) + 1;
-          pcVar19 = (char *)(iVar29 * 5);
-          *(int ***)(iVar27 + uVar21 * 0xc) = __ptr;
-          if ((uint)(iVar29 * 10) <= uVar31) {
-            pcVar19 = (char *)(*__ptr)[9];
-            if (pcVar19 != (char *)0x1) {
-              __size = (*__ptr)[1] * 0x18;
-              pvVar15 = malloc(__size);
-              if (pvVar15 == (void *)0x0) {
+          pUVar12[uVar24].hh_head = (UT_hash_handle *)__ptr;
+          if (((pUVar12[uVar24].expand_mult + 1) * 10 <= uVar17) &&
+             (pUVar18 = (__ptr->hh).tbl, pUVar18->noexpand != 1)) {
+            sVar10 = pUVar18->num_buckets * 0x18;
+            pUVar12 = (UT_hash_bucket *)malloc(sVar10);
+            if (pUVar12 == (UT_hash_bucket *)0x0) {
 LAB_00027e4c:
                     /* WARNING: Subroutine does not return */
-                exit(-1);
-              }
-              memset(pvVar15,0,__size);
-              ppvVar32 = (void **)*__ptr;
-              pvVar24 = ppvVar32[1];
-              ppvVar32[7] = (void *)0x0;
-              pvVar22 = (void *)((uint)ppvVar32[3] >> ((int)ppvVar32[2] + 1U & 0xff));
-              uVar31 = (int)pvVar24 * 2 - 1;
-              if ((uVar31 & (uint)ppvVar32[3]) != 0) {
-                pvVar22 = (void *)((int)pvVar22 + 1);
-              }
-              ppvVar32[6] = pvVar22;
-              if (pvVar24 == (void *)0x0) {
-                local_c84 = *ppvVar32;
-              }
-              else {
-                local_c84 = *ppvVar32;
-                local_c8c = 0;
-                do {
-                  iVar27 = *(int *)((int)local_c84 + local_c8c);
-                  while (iVar27 != 0) {
-                    iVar29 = *(int *)(iVar27 + 0x10);
-                    uVar21 = uVar31 & *(uint *)(iVar27 + 0x1c);
-                    pvVar16 = (void *)(*(int *)((int)pvVar15 + uVar21 * 0xc + 4) + 1);
-                    *(void **)((int)pvVar15 + uVar21 * 0xc + 4) = pvVar16;
-                    if (pvVar22 < pvVar16) {
-                      ppvVar32[7] = (void *)((int)ppvVar32[7] + 1);
-                      uVar17 = __aeabi_uidiv(pvVar16,pvVar22);
-                      *(undefined4 *)((int)pvVar15 + uVar21 * 0xc + 8) = uVar17;
-                    }
-                    iVar25 = *(int *)((int)pvVar15 + uVar21 * 0xc);
-                    *(undefined4 *)(iVar27 + 0xc) = 0;
-                    *(int *)(iVar27 + 0x10) = iVar25;
-                    if (iVar25 != 0) {
-                      *(int *)(iVar25 + 0xc) = iVar27;
-                    }
-                    *(int *)((int)pvVar15 + uVar21 * 0xc) = iVar27;
-                    iVar27 = iVar29;
+              exit(-1);
+            }
+            memset(pUVar12,0,sVar10);
+            pUVar18 = (__ptr->hh).tbl;
+            uVar17 = pUVar18->num_buckets;
+            pUVar18->nonideal_items = 0;
+            uVar24 = pUVar18->num_items >> (pUVar18->log2_num_buckets + 1 & 0xff);
+            uVar22 = uVar17 * 2 - 1;
+            if ((uVar22 & pUVar18->num_items) != 0) {
+              uVar24 = uVar24 + 1;
+            }
+            pUVar18->ideal_chain_maxlen = uVar24;
+            if (uVar17 == 0) {
+              local_c84 = pUVar18->buckets;
+            }
+            else {
+              local_c84 = pUVar18->buckets;
+              local_c8c = 0;
+              do {
+                pUVar11 = *(UT_hash_handle **)((int)&local_c84->hh_head + local_c8c);
+                while (pUVar11 != (UT_hash_handle *)0x0) {
+                  pUVar25 = pUVar11->hh_next;
+                  uVar23 = uVar22 & pUVar11->hashv;
+                  uVar13 = pUVar12[uVar23].count + 1;
+                  pUVar12[uVar23].count = uVar13;
+                  if (uVar24 < uVar13) {
+                    pUVar18->nonideal_items = pUVar18->nonideal_items + 1;
+                    uVar13 = __aeabi_uidiv(uVar13,uVar24);
+                    pUVar12[uVar23].expand_mult = uVar13;
                   }
-                  local_c8c = local_c8c + 0xc;
-                } while (local_c8c != (int)pvVar24 * 0xc);
-              }
-              free(local_c84);
-              ppvVar32 = (void **)*__ptr;
-              pvVar22 = ppvVar32[7];
-              pcVar19 = (char *)ppvVar32[3];
-              *ppvVar32 = pvVar15;
-              ppvVar32[2] = (void *)((int)ppvVar32[2] + 1);
-              pvVar15 = pvVar22;
-              if (pvVar22 <= (void *)((uint)pcVar19 >> 1)) {
-                pvVar15 = (void *)0x0;
-              }
-              ppvVar32[1] = (void *)((int)ppvVar32[1] << 1);
-              if ((void *)((uint)pcVar19 >> 1) < pvVar22) {
-                pvVar22 = (void *)((int)ppvVar32[8] + 1);
-                ppvVar32[8] = pvVar22;
-                pvVar15 = pvVar22;
-                if ((void *)0x1 < pvVar22) {
-                  pvVar15 = (void *)0x1;
+                  pUVar19 = pUVar12[uVar23].hh_head;
+                  pUVar11->hh_prev = (UT_hash_handle *)0x0;
+                  pUVar11->hh_next = pUVar19;
+                  if (pUVar19 != (UT_hash_handle *)0x0) {
+                    pUVar19->hh_prev = pUVar11;
+                  }
+                  pUVar12[uVar23].hh_head = pUVar11;
+                  pUVar11 = pUVar25;
                 }
-                if ((void *)0x1 < pvVar22) {
-                  ppvVar32[9] = pvVar15;
-                }
+                local_c8c = local_c8c + 0xc;
+              } while (local_c8c != uVar17 * 0xc);
+            }
+            free(local_c84);
+            pUVar18 = (__ptr->hh).tbl;
+            uVar22 = pUVar18->nonideal_items;
+            pUVar18->buckets = pUVar12;
+            uVar24 = pUVar18->num_items >> 1;
+            pUVar18->log2_num_buckets = pUVar18->log2_num_buckets + 1;
+            uVar17 = uVar22;
+            if (uVar22 <= uVar24) {
+              uVar17 = 0;
+            }
+            pUVar18->num_buckets = pUVar18->num_buckets << 1;
+            if (uVar24 < uVar22) {
+              uVar17 = pUVar18->ineff_expands + 1;
+              pUVar18->ineff_expands = uVar17;
+              uVar24 = uVar17;
+              if (1 < uVar17) {
+                uVar24 = 1;
               }
-              else {
-                ppvVar32[8] = pvVar15;
+              if (1 < uVar17) {
+                pUVar18->noexpand = uVar24;
               }
             }
+            else {
+              pUVar18->ineff_expands = uVar17;
+            }
           }
-          ppVar5 = DAT_00027ca4;
-          iVar29 = *(int *)((int)userdata + 0x2dc) + 1;
-          *(int *)((int)userdata + 0x2dc) = iVar29;
-          iVar27 = pthread_mutex_unlock(ppVar5);
-          if (iVar27 != 0) {
-            _mutex_unlock_noyield((pthread_mutex_t *)DAT_00027f74,(char *)0x1dba,pcVar19,iVar29);
+          *(int *)((int)userdata + 0x2dc) = *(int *)((int)userdata + 0x2dc) + 1;
+          iVar20 = pthread_mutex_unlock((pthread_mutex_t *)&sshare_lock);
+          if (iVar20 != 0) {
+            _mutex_unlock_noyield
+                      ((pthread_mutex_t *)"stratum_sthread",(char *)0x1dba,func_02,line_02);
           }
           (*selective_yield)();
-          _Var8 = pool_tclear((pool *)userdata,(_Bool *)((int)userdata + 0x60));
-          if ((_Var8) && (((*pcVar6 != '\0' || (*DAT_00027ca8 != '\0')) || (3 < *DAT_00027cac)))) {
+          _Var5 = pool_tclear((pool *)userdata,(_Bool *)((int)userdata + 0x60));
+          if ((_Var5) &&
+             (((use_syslog != false || (opt_log_output != false)) || (3 < opt_log_level)))) {
                     /* WARNING: Load size is inaccurate */
-            snprintf(tmp42,0x800,DAT_00027cb0,*userdata);
+            snprintf(tmp42,0x800,"Pool %d communication resumed, submitting work",*userdata);
             _applog(4,tmp42,false);
           }
-          pcVar19 = DAT_00027cb4;
-          if ((*DAT_00027cb4 != '\0') &&
-             (((*pcVar6 != '\0' || (*DAT_00027ca8 != '\0')) || (6 < *DAT_00027cac)))) {
-            tmp42._0_4_ = *DAT_00027cb8;
-            tmp42._4_4_ = DAT_00027cb8[1];
-            tmp42._8_4_ = DAT_00027cb8[2];
-            tmp42._12_4_ = DAT_00027cb8[3];
-            tmp42._16_4_ = DAT_00027cb8[4];
-            tmp42._20_4_ = DAT_00027cb8[5];
-            tmp42._24_4_ = DAT_00027cb8[6];
-            tmp42._28_4_ = DAT_00027cb8[7];
-            tmp42._32_4_ = DAT_00027cb8[8];
-            tmp42._36_4_ = DAT_00027cb8[9];
-            tmp42._40_4_ = DAT_00027cb8[10];
-            tmp42._44_4_ = DAT_00027cb8[0xb];
-            tmp42._48_4_ = DAT_00027cb8[0xc];
+          if ((opt_debug != false) &&
+             (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+            builtin_strncpy(tmp42,"Successfully submitted, adding to stratum_shares db",0x34);
             _applog(7,tmp42,false);
           }
-          piVar12 = (int *)time((time_t *)0x0);
-          cVar1 = *pcVar19;
-          __ptr[0xc] = piVar12;
-          if (((cVar1 != '\0') || (0 < (int)piVar12 - (int)__ptr[0xb])) &&
-             ((*pcVar6 != '\0' || ((*DAT_00027ca8 != '\0' || (5 < *DAT_00027cac)))))) {
+          tVar9 = time((time_t *)0x0);
+          _Var5 = opt_debug;
+          __ptr->sshare_sent = tVar9;
+          iVar20 = tVar9 - __ptr->sshare_time;
+          if (((_Var5 != false) || (0 < iVar20)) &&
+             ((use_syslog != false || ((opt_log_output != false || (5 < opt_log_level)))))) {
                     /* WARNING: Load size is inaccurate */
-            snprintf(tmp42,0x800,DAT_00027cbc,*userdata,(int)piVar12 - (int)__ptr[0xb]);
+            snprintf(tmp42,0x800,"Pool %d stratum share submission lag time %d seconds",*userdata,
+                     iVar20);
             _applog(6,tmp42,false);
           }
           goto LAB_00027b54;
         }
-        _Var8 = pool_tset((pool *)userdata,(_Bool *)((int)userdata + 0x60));
-        if ((!_Var8) && (_Var8 = cnx_needed((pool *)userdata), _Var8)) {
-          if ((*pcVar6 != '\0') || ((*pcVar4 != '\0' || (3 < *piVar23)))) {
+        _Var5 = pool_tset((pool *)userdata,(_Bool *)((int)userdata + 0x60));
+        if ((!_Var5) && (_Var5 = cnx_needed((pool *)userdata), _Var5)) {
+          if ((use_syslog != false) || ((opt_log_output != false || (3 < opt_log_level)))) {
                     /* WARNING: Load size is inaccurate */
-            snprintf(tmp42,0x800,DAT_00027f88,*userdata);
+            snprintf(tmp42,0x800,"Pool %d stratum share submission failure",*userdata);
             _applog(4,tmp42,false);
           }
-          iVar27 = *(int *)((int)userdata + 0x84);
-          pcVar14 = *ppcVar3 + 1;
-          *ppcVar3 = pcVar14;
-          *(int *)((int)userdata + 0x84) = iVar27 + 1;
+          total_ro = total_ro + 1;
+          *(int *)((int)userdata + 0x84) = *(int *)((int)userdata + 0x84) + 1;
         }
-        pcVar19 = DAT_00027f78;
-        pwVar26 = (work *)(uint)*pbVar2;
-        if (pwVar26 == (work *)0x0) {
-          iVar27 = pthread_mutex_lock((pthread_mutex_t *)((int)userdata + 0xd4));
-          if (iVar27 != 0) {
-            _mutex_lock((pthread_mutex_t *)DAT_00027f74,(char *)0x1dd0,pcVar14,(int)pwVar26);
+        uVar4 = tmp42._48_4_;
+        if (opt_lowmem == false) {
+          iVar20 = pthread_mutex_lock((pthread_mutex_t *)((int)userdata + 0xd4));
+          if (iVar20 != 0) {
+            _mutex_lock((pthread_mutex_t *)"stratum_sthread",(char *)0x1dd0,func_03,line_03);
           }
-          iVar27 = pthread_rwlock_rdlock((pthread_rwlock_t *)((int)userdata + 0xec));
-          if (iVar27 != 0) {
-            _rd_lock(DAT_00027f74,(char *)0x1dd0,pcVar14,(int)pwVar26);
+          iVar20 = pthread_rwlock_rdlock((pthread_rwlock_t *)((int)userdata + 0xec));
+          if (iVar20 != 0) {
+            _rd_lock((pthread_rwlock_t *)"stratum_sthread",(char *)0x1dd0,func_04,line_04);
           }
-          iVar27 = pthread_mutex_unlock((pthread_mutex_t *)((int)userdata + 0xd4));
-          if (iVar27 != 0) {
+          iVar20 = pthread_mutex_unlock((pthread_mutex_t *)((int)userdata + 0xd4));
+          if (iVar20 != 0) {
             _mutex_unlock_noyield
-                      ((pthread_mutex_t *)DAT_00027f74,(char *)0x1dd0,pcVar14,(int)pwVar26);
+                      ((pthread_mutex_t *)"stratum_sthread",(char *)0x1dd0,func_05,line_05);
           }
-          pcVar20 = *(char **)((int)userdata + 0x264);
-          if (pcVar20 != (char *)0x0) {
-            pwVar26 = work;
-            uVar31 = strcmp(work->nonce1,pcVar20);
-            pcVar20 = (char *)(1 - uVar31);
-            if (1 < uVar31) {
-              pcVar20 = (char *)0x0;
+          pcVar15 = *(char **)((int)userdata + 0x264);
+          if (pcVar15 != (char *)0x0) {
+            uVar24 = strcmp(work->nonce1,pcVar15);
+            pcVar15 = (char *)(1 - uVar24);
+            if (1 < uVar24) {
+              pcVar15 = (char *)0x0;
             }
           }
-          iVar27 = pthread_rwlock_unlock((pthread_rwlock_t *)((int)userdata + 0xec));
-          if (iVar27 != 0) {
-            _rw_unlock(DAT_00027f74,(char *)0x1dd2,pcVar14,(int)pwVar26);
+          iVar20 = pthread_rwlock_unlock((pthread_rwlock_t *)((int)userdata + 0xec));
+          if (iVar20 != 0) {
+            _rw_unlock((pthread_rwlock_t *)"stratum_sthread",(char *)0x1dd2,func_06,line_06);
           }
           (*selective_yield)();
-          pcVar19 = DAT_00027f78;
-          if (pcVar20 != (char *)0x0) goto code_r0x00027d68;
-          if (*DAT_00027f78 == '\0') goto LAB_00027c2a;
-          if (((*pcVar6 == '\0') && (*DAT_00027f7c == '\0')) &&
-             (pcVar14 = DAT_00027f7c, *DAT_00027f80 < 7)) goto LAB_00027c62;
-          tmp42._0_4_ = *DAT_00027f8c;
-          tmp42._4_4_ = DAT_00027f8c[1];
-          tmp42._8_4_ = DAT_00027f8c[2];
-          tmp42._12_4_ = DAT_00027f8c[3];
-          tmp42._16_4_ = DAT_00027f8c[4];
-          tmp42._20_4_ = DAT_00027f8c[5];
-          tmp42._24_4_ = DAT_00027f8c[6];
-          tmp42._28_4_ = DAT_00027f8c[7];
-          tmp42._32_4_ = DAT_00027f8c[8];
-          tmp42._36_4_ = DAT_00027f8c[9];
-          tmp42._40_4_ = DAT_00027f8c[10];
-          tmp42._44_4_ = DAT_00027f8c[0xb];
-          tmp42._48_4_ = DAT_00027f8c[0xc];
-          tmp42._52_2_ = (undefined2)DAT_00027f8c[0xd];
+          if (pcVar15 != (char *)0x0) goto code_r0x00027d68;
+          if (opt_debug == false) goto LAB_00027c2a;
+          if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 7))
+          goto LAB_00027c62;
+          builtin_strncpy(tmp42,"No matching session id for resubmitting stratum shar",0x34);
+          tmp42[0x34] = 'e';
+          tmp42[0x35] = '\0';
           _applog(7,tmp42,false);
         }
         else {
-          if (*DAT_00027f78 == '\0') goto LAB_00027c2a;
-          if (((*pcVar6 == '\0') && (*DAT_00027f7c == '\0')) &&
-             (pcVar14 = DAT_00027f7c, *DAT_00027f80 < 7)) goto LAB_00027c62;
-          tmp42._0_4_ = *DAT_00027f84;
-          tmp42._4_4_ = DAT_00027f84[1];
-          tmp42._8_4_ = DAT_00027f84[2];
-          tmp42._12_4_ = DAT_00027f84[3];
-          tmp42._16_4_ = DAT_00027f84[4];
-          tmp42._20_4_ = DAT_00027f84[5];
-          tmp42._24_4_ = DAT_00027f84[6];
-          tmp42._28_4_ = DAT_00027f84[7];
-          tmp42._32_4_ = DAT_00027f84[8];
-          tmp42._36_4_ = DAT_00027f84[9];
-          tmp42._40_4_ = DAT_00027f84[10];
-          tmp42._44_4_ = DAT_00027f84[0xb];
-          tmp42[48] = (char)(short)DAT_00027f84[0xc];
-          tmp42[49] = (char)((ushort)(short)DAT_00027f84[0xc] >> 8);
+          if (opt_debug == false) goto LAB_00027c2a;
+          if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 7))
+          goto LAB_00027c62;
+          builtin_strncpy(tmp42,"Lowmem option prevents resubmitting stratum share",0x32);
+          tmp42._50_2_ = SUB42(uVar4,2);
           _applog(7,tmp42,false);
         }
       }
-      if (*pcVar19 != '\0') {
-        pcVar14 = DAT_00027ca8;
-        if (*pcVar6 == '\0') {
+      if (opt_debug != false) {
+        if (use_syslog == false) {
 LAB_00027c62:
-          if ((*pcVar14 == '\0') && (*DAT_00027cac < 7)) goto LAB_00027c2a;
+          if ((opt_log_output == false) && (opt_log_level < 7)) goto LAB_00027c2a;
         }
-        tmp42._0_4_ = *DAT_00027cd0;
-        tmp42._4_4_ = DAT_00027cd0[1];
-        tmp42._8_4_ = DAT_00027cd0[2];
-        tmp42._12_4_ = DAT_00027cd0[3];
-        tmp42._16_4_ = DAT_00027cd0[4];
-        tmp42._20_4_ = DAT_00027cd0[5];
-        tmp42._24_4_ = DAT_00027cd0[6];
-        tmp42._28_4_ = DAT_00027cd0[7];
-        tmp42._32_4_ = DAT_00027cd0[8];
-        tmp42._36_4_ = DAT_00027cd0[9];
-        tmp42._40_3_ = (undefined3)DAT_00027cd0[10];
+        uVar4 = tmp42._40_4_;
+        builtin_strncpy(tmp42,"Failed to submit stratum share, discarding",0x2b);
+        tmp42[0x2b] = SUB41(uVar4,3);
         _applog(7,tmp42,false);
       }
 LAB_00027c2a:
-      _free_work(&work,DAT_00027cc4,DAT_00027cc8->__size,0x1de1);
+      _free_work(&work,"cgminer.c","stratum_sthread",0x1de1);
       free(__ptr);
-      puVar7 = DAT_00027ccc;
-      uVar31 = *DAT_00027ccc;
-      uVar21 = DAT_00027ccc[1];
+      bVar26 = 0xfffffffe < (uint)total_stale;
+      total_stale._0_4_ = (uint)total_stale + 1;
+      total_stale._4_4_ = total_stale._4_4_ + (uint)bVar26;
       *(int *)((int)userdata + 0x78) = *(int *)((int)userdata + 0x78) + 1;
-      *puVar7 = uVar31 + 1;
-      puVar7[1] = uVar21 + (0xfffffffe < uVar31);
 LAB_00027b54:
       cVar1 = *(char *)((int)userdata + 0x69);
-      iVar27 = iVar11;
-      iVar29 = iVar18;
-      uVar31 = uVar10;
+      iVar20 = iVar8;
+      iVar21 = iVar14;
+      uVar24 = uVar7;
     }
-    if ((*DAT_00027f90 != '\0') || ((*DAT_00027f7c != '\0' || (5 < *DAT_00027f80)))) {
+    if ((use_syslog != false) || ((opt_log_output != false || (5 < opt_log_level)))) {
                     /* WARNING: Load size is inaccurate */
-      snprintf(tmp42,0x800,DAT_00027f9c,*userdata);
+      snprintf(tmp42,0x800,"Filtering duplicate share to pool %d",*userdata);
       _applog(6,tmp42,false);
     }
-    _free_work(&work,DAT_00027f98,DAT_00027f74->__size,0x1d7e);
+    _free_work(&work,"cgminer.c","stratum_sthread",0x1d7e);
   } while( true );
 code_r0x00027d68:
   sleep(2);

@@ -14,13 +14,13 @@ int SSL_CTX_add_session(SSL_CTX *s,SSL_SESSION *c)
   ssl_session_st **ppsVar10;
   bool bVar11;
   
-  CRYPTO_add_lock((int *)(c->krb5_client_princ + 0x14),1,0xe,DAT_0007f160,0x2ef);
-  CRYPTO_lock(9,0xc,DAT_0007f160,0x2f4);
+  CRYPTO_add_lock((int *)(c->krb5_client_princ + 0x14),1,0xe,"ssl_sess.c",0x2ef);
+  CRYPTO_lock(9,0xc,"ssl_sess.c",0x2f4);
   pSVar1 = (SSL_SESSION *)lh_insert((_LHASH *)s->sessions,c);
   if (pSVar1 == c || pSVar1 == (SSL_SESSION *)0x0) {
     iVar9 = 0;
     if (pSVar1 != (SSL_SESSION *)0x0) {
-      iVar2 = CRYPTO_add_lock((int *)(pSVar1->krb5_client_princ + 0x14),-1,0xe,DAT_0007f160,0x352);
+      iVar2 = CRYPTO_add_lock((int *)(pSVar1->krb5_client_princ + 0x14),-1,0xe,"ssl_sess.c",0x352);
       if (iVar2 < 1) {
         SSL_SESSION_free_part_0(pSVar1);
       }
@@ -67,10 +67,16 @@ int SSL_CTX_add_session(SSL_CTX *s,SSL_SESSION *c)
           *(ssl_session_st **)(psVar5->krb5_client_princ + 0x3c) = psVar7;
         }
       }
-      *(undefined4 *)(pSVar1->krb5_client_princ + 0x3c) = 0;
-      *(undefined4 *)(pSVar1->krb5_client_princ + 0x38) = 0;
+      pSVar1->krb5_client_princ[0x3c] = '\0';
+      pSVar1->krb5_client_princ[0x3d] = '\0';
+      pSVar1->krb5_client_princ[0x3e] = '\0';
+      pSVar1->krb5_client_princ[0x3f] = '\0';
+      pSVar1->krb5_client_princ[0x38] = '\0';
+      pSVar1->krb5_client_princ[0x39] = '\0';
+      pSVar1->krb5_client_princ[0x3a] = '\0';
+      pSVar1->krb5_client_princ[0x3b] = '\0';
     }
-    iVar9 = CRYPTO_add_lock((int *)(pSVar1->krb5_client_princ + 0x14),-1,0xe,DAT_0007f160,0x352);
+    iVar9 = CRYPTO_add_lock((int *)(pSVar1->krb5_client_princ + 0x14),-1,0xe,"ssl_sess.c",0x352);
     if (iVar9 < 1) {
       SSL_SESSION_free_part_0(pSVar1);
     }
@@ -114,8 +120,14 @@ int SSL_CTX_add_session(SSL_CTX *s,SSL_SESSION *c)
         *(ssl_session_st **)(psVar5->krb5_client_princ + 0x3c) = psVar7;
       }
     }
-    *(undefined4 *)(c->krb5_client_princ + 0x3c) = 0;
-    *(undefined4 *)(c->krb5_client_princ + 0x38) = 0;
+    c->krb5_client_princ[0x3c] = '\0';
+    c->krb5_client_princ[0x3d] = '\0';
+    c->krb5_client_princ[0x3e] = '\0';
+    c->krb5_client_princ[0x3f] = '\0';
+    c->krb5_client_princ[0x38] = '\0';
+    c->krb5_client_princ[0x39] = '\0';
+    c->krb5_client_princ[0x3a] = '\0';
+    c->krb5_client_princ[0x3b] = '\0';
   }
   psVar7 = s->session_cache_head;
   if (psVar7 == (ssl_session_st *)0x0) {
@@ -175,15 +187,24 @@ int SSL_CTX_add_session(SSL_CTX *s,SSL_SESSION *c)
             *(ssl_session_st **)(psVar6->krb5_client_princ + 0x3c) = psVar5;
           }
         }
-        *(undefined4 *)(psVar7->krb5_client_princ + 0x3c) = 0;
-        *(undefined4 *)(psVar7->krb5_client_princ + 0x38) = 0;
+        psVar7->krb5_client_princ[0x3c] = '\0';
+        psVar7->krb5_client_princ[0x3d] = '\0';
+        psVar7->krb5_client_princ[0x3e] = '\0';
+        psVar7->krb5_client_princ[0x3f] = '\0';
+        psVar7->krb5_client_princ[0x38] = '\0';
+        psVar7->krb5_client_princ[0x39] = '\0';
+        psVar7->krb5_client_princ[0x3a] = '\0';
+        psVar7->krb5_client_princ[0x3b] = '\0';
       }
       p_Var8 = s->remove_session_cb;
-      *(undefined4 *)(pSVar1->krb5_client_princ + 4) = 1;
+      pSVar1->krb5_client_princ[4] = '\x01';
+      pSVar1->krb5_client_princ[5] = '\0';
+      pSVar1->krb5_client_princ[6] = '\0';
+      pSVar1->krb5_client_princ[7] = '\0';
       if (p_Var8 != (_func_3230 *)0x0) {
         (*p_Var8)(s,pSVar1);
       }
-      iVar9 = CRYPTO_add_lock((int *)(pSVar1->krb5_client_princ + 0x14),-1,0xe,DAT_0007f160,0x352);
+      iVar9 = CRYPTO_add_lock((int *)(pSVar1->krb5_client_princ + 0x14),-1,0xe,"ssl_sess.c",0x352);
       if (iVar9 < 1) {
         SSL_SESSION_free_part_0(pSVar1);
       }
@@ -192,7 +213,7 @@ int SSL_CTX_add_session(SSL_CTX *s,SSL_SESSION *c)
   }
   iVar9 = 1;
 LAB_0007ef70:
-  CRYPTO_lock(10,0xc,DAT_0007f160,0x326);
+  CRYPTO_lock(10,0xc,"ssl_sess.c",0x326);
   return iVar9;
 }
 

@@ -14,7 +14,7 @@ void Curl_hash_destroy(int *param_1)
       iVar2 = iVar2 + 1;
     } while (iVar2 < iVar1);
   }
-  (**DAT_0004cc34)(*param_1);
+  (*Curl_cfree)(*param_1);
   *param_1 = 0;
   param_1[5] = 0;
   param_1[4] = 0;

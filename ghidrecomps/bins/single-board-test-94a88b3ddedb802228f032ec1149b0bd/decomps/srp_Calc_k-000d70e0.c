@@ -20,7 +20,7 @@ BIGNUM * srp_Calc_k(BIGNUM *param_1,BIGNUM *param_2)
       iVar2 = iVar1 + 7;
     }
     cnt_00 = iVar2 >> 3;
-    to = (uchar *)CRYPTO_malloc(cnt_00,DAT_000d718c,0x5f);
+    to = (uchar *)CRYPTO_malloc(cnt_00,"srp_lib.c",0x5f);
     if (to != (uchar *)0x0) {
       BN_bn2bin(param_1,to);
       EVP_MD_CTX_init(&EStack_30);

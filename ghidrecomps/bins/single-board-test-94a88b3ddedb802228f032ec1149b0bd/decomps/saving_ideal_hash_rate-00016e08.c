@@ -4,7 +4,7 @@ void saving_ideal_hash_rate(int *param_1)
 {
   int iVar1;
   int iVar2;
-  undefined auStack_1c [4];
+  undefined1 auStack_1c [4];
   int local_18;
   int local_14;
   undefined4 local_10;
@@ -16,7 +16,7 @@ void saving_ideal_hash_rate(int *param_1)
       if (iVar1 == 0) {
         iVar1 = is_S9i();
         if (iVar1 == 0) {
-          if (*(char *)(param_1 + 0x16176) == '\0') {
+          if ((char)param_1[0x16176] == '\0') {
             *(int *)(local_c * 0x80 + *param_1 + 0x1a3fbbe) = param_1[local_c + 0x16166];
           }
           else {

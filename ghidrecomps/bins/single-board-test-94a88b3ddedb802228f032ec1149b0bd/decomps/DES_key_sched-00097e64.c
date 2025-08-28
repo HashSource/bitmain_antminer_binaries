@@ -4,33 +4,33 @@ int DES_key_sched(const_DES_cblock *key,DES_key_schedule *schedule)
 {
   int iVar1;
   
-  if (*DAT_00097fa4 != 0) {
-    if (((((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[0]) != (uint)(*key)[0]) ||
-         ((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[1]) != (uint)(*key)[1])) ||
-        ((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[2]) != (uint)(*key)[2])) ||
-       ((((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[3]) != (uint)(*key)[3] ||
-         ((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[4]) != (uint)(*key)[4])) ||
-        (((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[5]) != (uint)(*key)[5] ||
-         (((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[6]) != (uint)(*key)[6] ||
-          ((uint)*(byte *)(DAT_00097fa8 + (uint)(*key)[7]) != (uint)(*key)[7])))))))) {
+  if (_shadow_DES_check_key != 0) {
+    if (((((uint)(byte)(&odd_parity)[(*key)[0]] != (uint)(*key)[0]) ||
+         ((uint)(byte)(&odd_parity)[(*key)[1]] != (uint)(*key)[1])) ||
+        ((uint)(byte)(&odd_parity)[(*key)[2]] != (uint)(*key)[2])) ||
+       ((((uint)(byte)(&odd_parity)[(*key)[3]] != (uint)(*key)[3] ||
+         ((uint)(byte)(&odd_parity)[(*key)[4]] != (uint)(*key)[4])) ||
+        (((uint)(byte)(&odd_parity)[(*key)[5]] != (uint)(*key)[5] ||
+         (((uint)(byte)(&odd_parity)[(*key)[6]] != (uint)(*key)[6] ||
+          ((uint)(byte)(&odd_parity)[(*key)[7]] != (uint)(*key)[7])))))))) {
       return -1;
     }
-    iVar1 = memcmp((void *)(DAT_00097fa8 + 0x100),key,8);
-    if ((((((((iVar1 == 0) || (iVar1 = memcmp(DAT_00097fac,key,8), iVar1 == 0)) ||
-            (iVar1 = memcmp(DAT_00097fb0,key,8), iVar1 == 0)) ||
-           ((iVar1 = memcmp(DAT_00097fb4,key,8), iVar1 == 0 ||
-            (iVar1 = memcmp(DAT_00097fb8,key,8), iVar1 == 0)))) ||
-          ((iVar1 = memcmp(DAT_00097fbc,key,8), iVar1 == 0 ||
-           ((iVar1 = memcmp(DAT_00097fc0,key,8), iVar1 == 0 ||
-            (iVar1 = memcmp(DAT_00097fc4,key,8), iVar1 == 0)))))) ||
-         (iVar1 = memcmp(DAT_00097fc8,key,8), iVar1 == 0)) ||
-        (((iVar1 = memcmp(DAT_00097fcc,key,8), iVar1 == 0 ||
-          (iVar1 = memcmp(DAT_00097fd0,key,8), iVar1 == 0)) ||
-         (iVar1 = memcmp(DAT_00097fd4,key,8), iVar1 == 0)))) ||
-       (((iVar1 = memcmp(DAT_00097fd8,key,8), iVar1 == 0 ||
-         (iVar1 = memcmp(DAT_00097fdc,key,8), iVar1 == 0)) ||
-        ((iVar1 = memcmp(DAT_00097fe0,key,8), iVar1 == 0 ||
-         (iVar1 = memcmp(DAT_00097fe4,key,8), iVar1 == 0)))))) {
+    iVar1 = memcmp(weak_keys,key,8);
+    if ((((((((iVar1 == 0) || (iVar1 = memcmp(weak_keys + 8,key,8), iVar1 == 0)) ||
+            (iVar1 = memcmp(weak_keys + 0x10,key,8), iVar1 == 0)) ||
+           ((iVar1 = memcmp(weak_keys + 0x18,key,8), iVar1 == 0 ||
+            (iVar1 = memcmp(weak_keys + 0x20,key,8), iVar1 == 0)))) ||
+          ((iVar1 = memcmp(weak_keys + 0x28,key,8), iVar1 == 0 ||
+           ((iVar1 = memcmp(weak_keys + 0x30,key,8), iVar1 == 0 ||
+            (iVar1 = memcmp(weak_keys + 0x38,key,8), iVar1 == 0)))))) ||
+         (iVar1 = memcmp(weak_keys + 0x40,key,8), iVar1 == 0)) ||
+        (((iVar1 = memcmp(weak_keys + 0x48,key,8), iVar1 == 0 ||
+          (iVar1 = memcmp(weak_keys + 0x50,key,8), iVar1 == 0)) ||
+         (iVar1 = memcmp(weak_keys + 0x58,key,8), iVar1 == 0)))) ||
+       (((iVar1 = memcmp(weak_keys + 0x60,key,8), iVar1 == 0 ||
+         (iVar1 = memcmp(weak_keys + 0x68,key,8), iVar1 == 0)) ||
+        ((iVar1 = memcmp(weak_keys + 0x70,key,8), iVar1 == 0 ||
+         (iVar1 = memcmp(weak_keys + 0x78,key,8), iVar1 == 0)))))) {
       return -2;
     }
   }

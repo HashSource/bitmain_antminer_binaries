@@ -15,7 +15,7 @@ int dir_ctrl(int param_1,int param_2,char *param_3,int param_4)
       iVar1 = add_cert_dir_part_0(uVar3,param_3,param_4);
       return iVar1;
     }
-    ERR_put_error(0xb,100,0x71,DAT_000c5c74,0xcc);
+    ERR_put_error(0xb,100,0x71,"by_dir.c",0xcc);
     return 0;
   }
   pcVar2 = X509_get_default_cert_dir_env();
@@ -23,13 +23,13 @@ int dir_ctrl(int param_1,int param_2,char *param_3,int param_4)
   if (pcVar2 == (char *)0x0) {
     pcVar2 = X509_get_default_cert_dir();
     if ((pcVar2 == (char *)0x0) || (*pcVar2 == '\0')) {
-      ERR_put_error(0xb,100,0x71,DAT_000c5c74,0xcc);
+      ERR_put_error(0xb,100,0x71,"by_dir.c",0xcc);
       iVar1 = 0;
       goto LAB_000c5c3e;
     }
   }
   else if (*pcVar2 == '\0') {
-    ERR_put_error(0xb,100,0x71,DAT_000c5c74,0xcc);
+    ERR_put_error(0xb,100,0x71,"by_dir.c",0xcc);
     iVar1 = 0;
     goto LAB_000c5c3e;
   }
@@ -38,7 +38,7 @@ int dir_ctrl(int param_1,int param_2,char *param_3,int param_4)
     return iVar1;
   }
 LAB_000c5c3e:
-  ERR_put_error(0xb,0x66,0x67,DAT_000c5c74,0x8a);
+  ERR_put_error(0xb,0x66,0x67,"by_dir.c",0x8a);
   return iVar1;
 }
 

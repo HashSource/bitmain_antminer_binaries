@@ -4,25 +4,19 @@
 void set_reset_hashboard(int chainIndex,int resetBit)
 
 {
-  int iVar1;
-  uint uVar2;
-  uint resetFlag;
-  uint uVar3;
-  uint ret;
+  uint uVar1;
   char logstr [256];
   
-  iVar1 = DAT_0002f3e0;
-  uVar2 = 1 << (chainIndex & 0xffU);
-  uVar3 = *(uint *)(*(int *)(DAT_0002f3e0 + 0x8d4) + 0x34);
+  uVar1 = 1 << (chainIndex & 0xffU);
   if (resetBit < 1) {
-    uVar2 = uVar3 & ~uVar2;
+    uVar1 = axi_fpga_addr[0xd] & ~uVar1;
   }
   else {
-    uVar2 = uVar2 | uVar3;
+    uVar1 = uVar1 | axi_fpga_addr[0xd];
   }
-  sprintf(logstr,DAT_0002f3e4,uVar2);
+  sprintf(logstr,"set_reset_hashboard = 0x%08x\n",uVar1);
   writeInitLogFile(logstr);
-  *(uint *)(*(int *)(iVar1 + 0x8d4) + 0x34) = uVar2;
+  axi_fpga_addr[0xd] = uVar1;
   return;
 }
 

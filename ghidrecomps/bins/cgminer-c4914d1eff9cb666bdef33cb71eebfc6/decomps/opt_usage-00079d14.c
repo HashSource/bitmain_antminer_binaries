@@ -2,16 +2,13 @@
 char * opt_usage(char *argv0,char *extra)
 
 {
-  undefined uVar1;
+  size_t sVar1;
   size_t sVar2;
-  size_t sVar3;
   char *__s;
-  uint uVar4;
+  uint uVar3;
+  int iVar4;
   char *pcVar5;
   int iVar6;
-  undefined2 *puVar7;
-  undefined4 *puVar8;
-  int iVar9;
   char *extra_local;
   char *argv0_local;
   char buf [84];
@@ -25,28 +22,29 @@ char * opt_usage(char *argv0,char *extra)
   if (extra == (char *)0x0) {
     extra_local = "";
     for (i = 0; i < opt_count; i = i + 1) {
-      if ((opt_table[i].cb == opt_usage_and_exit + 1) && (opt_table[i].u.carg != (void *)0x0)) {
+      if ((opt_table[i].cb == (_func_char_ptr_void_ptr *)0x7961d) &&
+         (opt_table[i].u.carg != (void *)0x0)) {
         extra_local = (char *)opt_table[i].u.carg;
         break;
       }
     }
   }
-  sVar2 = strlen(argv0);
-  iVar9 = sVar2 + opt_num_short;
-  sVar2 = strlen(extra_local);
-  len = sVar2 + iVar9 + 0x14;
+  sVar1 = strlen(argv0);
+  iVar6 = sVar1 + opt_num_short;
+  sVar1 = strlen(extra_local);
+  len = sVar1 + iVar6 + 0x14;
   for (i = 0; i < opt_count; i = i + 1) {
     if (opt_table[i].type == OPT_SUBTABLE) {
-      sVar2 = strlen(opt_table[i].desc);
-      len = len + sVar2 + 3;
+      sVar1 = strlen(opt_table[i].desc);
+      len = len + sVar1 + 3;
     }
-    else if ((undefined4 *)opt_table[i].desc != &opt_hidden) {
-      sVar2 = strlen(opt_table[i].names);
-      sVar3 = strlen(opt_table[i].desc);
-      iVar9 = len + sVar2 + sVar3;
-      len = iVar9 + 0x1b;
+    else if (opt_table[i].desc != (char *)&opt_hidden) {
+      sVar1 = strlen(opt_table[i].names);
+      sVar2 = strlen(opt_table[i].desc);
+      iVar6 = len + sVar1 + sVar2;
+      len = iVar6 + 0x1b;
       if (opt_table[i].show != (_func_void_char_ptr_void_ptr *)0x0) {
-        len = iVar9 + 0x7c;
+        len = iVar6 + 0x7c;
       }
       len = len + 1;
     }
@@ -56,59 +54,56 @@ char * opt_usage(char *argv0,char *extra)
     __s = (char *)0x0;
   }
   else {
-    iVar9 = sprintf(__s,"Usage: %s",argv0);
-    p = __s + iVar9;
-    *(undefined4 *)p = DAT_00096b2c;
-    uVar4 = write_short_options((char *)((int)p + 3));
-    if (uVar4 != 0) {
-      puVar7 = (undefined2 *)((char *)((int)p + 3) + uVar4);
-      *puVar7 = DAT_00096b30;
-      p = (char *)((int)puVar7 + 1);
+    iVar6 = sprintf(__s,"Usage: %s",argv0);
+    p = __s + iVar6;
+    builtin_strncpy(__s + iVar6," [-",4);
+    uVar3 = write_short_options(p + 3);
+    if (uVar3 != 0) {
+      pcVar5 = p + 3 + uVar3;
+      pcVar5[0] = ']';
+      pcVar5[1] = '\0';
+      p = pcVar5 + 1;
     }
     if (extra_local != (char *)0x0) {
-      iVar9 = sprintf(p," %s",extra_local);
-      p = p + iVar9;
+      iVar6 = sprintf(p," %s",extra_local);
+      p = p + iVar6;
     }
-    *(undefined2 *)p = DAT_00096b38;
+    p[0] = '\n';
+    p[1] = '\0';
     p = p + 1;
     for (i = 0; i < opt_count; i = i + 1) {
-      if ((undefined4 *)opt_table[i].desc != &opt_hidden) {
+      if (opt_table[i].desc != (char *)&opt_hidden) {
         if (opt_table[i].type == OPT_SUBTABLE) {
-          iVar9 = sprintf(p,"%s:\n",opt_table[i].desc);
-          p = p + iVar9;
+          iVar6 = sprintf(p,"%s:\n",opt_table[i].desc);
+          p = p + iVar6;
         }
         else {
           len = sprintf(p,"%s",opt_table[i].names);
           if (((opt_table[i].type == OPT_HASARG) &&
               (pcVar5 = strchr(opt_table[i].names,0x20), pcVar5 == (char *)0x0)) &&
              (pcVar5 = strchr(opt_table[i].names,0x3d), pcVar5 == (char *)0x0)) {
-            puVar8 = (undefined4 *)(p + len);
-            *puVar8 = DAT_00096b48;
-            uVar1 = DAT_00096b4e;
-            *(undefined2 *)(puVar8 + 1) = DAT_00096b4c;
-            *(undefined *)((int)puVar8 + 6) = uVar1;
+            builtin_strncpy(p + len," <arg>",7);
             len = len + 6;
           }
           if (len < 0x14) {
-            iVar9 = 0x14 - len;
+            iVar6 = 0x14 - len;
           }
           else {
-            iVar9 = 1;
+            iVar6 = 1;
           }
-          iVar9 = sprintf(p + len,"%.*s",iVar9,"                    ");
-          iVar6 = sprintf(p + len + iVar9,"%s",opt_table[i].desc);
-          len = len + iVar9 + iVar6;
+          iVar6 = sprintf(p + len,"%.*s",iVar6,"                    ");
+          iVar4 = sprintf(p + len + iVar6,"%s",opt_table[i].desc);
+          len = len + iVar6 + iVar4;
           if (opt_table[i].show != (_func_void_char_ptr_void_ptr *)0x0) {
-            buf[80] = (char)DAT_00096b70;
-            buf[81] = DAT_00096b70._1_1_;
-            buf[82] = DAT_00096b70._2_1_;
-            buf[83] = DAT_00096b70._3_1_;
+            builtin_strncpy(buf + 0x50,"...",4);
             (*opt_table[i].show)(buf,opt_table[i].u.carg);
-            iVar9 = sprintf(p + len," (default: %s)",buf);
-            len = len + iVar9;
+            iVar6 = sprintf(p + len," (default: %s)",buf);
+            len = len + iVar6;
           }
-          *(undefined2 *)(p + len) = DAT_00096b38;
-          p = (char *)((int)(p + len) + 1);
+          pcVar5 = p + len;
+          pcVar5[0] = '\n';
+          pcVar5[1] = '\0';
+          p = pcVar5 + 1;
         }
       }
     }

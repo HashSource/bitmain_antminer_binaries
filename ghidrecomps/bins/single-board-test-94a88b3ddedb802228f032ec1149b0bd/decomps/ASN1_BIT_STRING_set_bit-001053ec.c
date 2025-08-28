@@ -30,13 +30,13 @@ int ASN1_BIT_STRING_set_bit(ASN1_BIT_STRING *a,int n,int value)
     }
     num = iVar2 + 1;
     if (a->data == (uchar *)0x0) {
-      puVar3 = (uchar *)CRYPTO_malloc(num,DAT_001054b4,0xd0);
+      puVar3 = (uchar *)CRYPTO_malloc(num,"a_bitstr.c",0xd0);
     }
     else {
-      puVar3 = (uchar *)CRYPTO_realloc_clean(a->data,a->length,num,DAT_001054b4,0xd3);
+      puVar3 = (uchar *)CRYPTO_realloc_clean(a->data,a->length,num,"a_bitstr.c",0xd3);
     }
     if (puVar3 == (uchar *)0x0) {
-      ERR_put_error(0xd,0xb7,0x41,DAT_001054b4,0xd5);
+      ERR_put_error(0xd,0xb7,0x41,"a_bitstr.c",0xd5);
       return 0;
     }
     __n = num - a->length;

@@ -5,14 +5,15 @@ undefined4 set_iic_power_to_higher_voltage(void)
   char cVar1;
   int iVar2;
   FILE *__stream;
-  double dVar3;
+  undefined4 uVar3;
+  undefined4 extraout_s1;
   bool local_19;
   undefined8 local_18;
   
-  local_18 = DAT_003b0f50 + DAT_00035468;
+  local_18 = DAT_003b0f50 + 0.3;
   iVar2 = is7007_Board();
   if (iVar2 != 0) {
-    local_18 = DAT_003b0f50 + DAT_00035470;
+    local_18 = DAT_003b0f50 + 0.35;
   }
   local_19 = (int)((uint)((double)CONCAT44(DAT_003b0f58._4_4_,(undefined4)DAT_003b0f58) < local_18)
                   << 0x1f) < 0;
@@ -30,8 +31,8 @@ undefined4 set_iic_power_to_higher_voltage(void)
   }
   cVar1 = set_iic_power_voltage((undefined4)local_18,&power_info,local_19);
   if (cVar1 != '\x01') {
-    dVar3 = (double)get_avg_voltage();
-    if ((int)((uint)(dVar3 < DAT_00035478) << 0x1f) < 0) {
+    uVar3 = get_avg_voltage();
+    if ((int)((uint)((double)CONCAT44(extraout_s1,uVar3) < 9.7) << 0x1f) < 0) {
       stop_mining("power voltage too low\n");
     }
   }

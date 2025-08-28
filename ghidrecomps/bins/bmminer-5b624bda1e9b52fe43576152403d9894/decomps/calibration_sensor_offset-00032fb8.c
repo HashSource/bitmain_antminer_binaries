@@ -4,7 +4,7 @@
 int8_t calibration_sensor_offset(uchar device,int chain)
 
 {
-  if (*DAT_00032ff8 < 0xe) {
+  if (fpga_version < 0xe) {
     if (chain % 3 != 1) {
       return '\0';
     }

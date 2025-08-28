@@ -12,7 +12,7 @@ void * nonce_scanhash_loop(void *args)
       pthread_testcancel();
       usleep(100000);
     }
-    pthread_create(&send_id,(pthread_attr_t *)0x0,nonce_scanhash + 1,args);
+    pthread_create(&send_id,(pthread_attr_t *)0x0,(__start_routine *)0x329d1,args);
     pthread_join(send_id,(void **)0x0);
     usleep(1000);
   } while( true );

@@ -15,7 +15,7 @@ void ftp_state_type(int *param_1)
     else {
       cVar2 = 'A';
     }
-    if (*(char *)(param_1 + 0x106) != cVar2) {
+    if ((char)param_1[0x106] != cVar2) {
       *(undefined4 *)(*(int *)(iVar3 + 0x14c) + 0xc) = 1;
       ftp_nb_type(param_1,cVar1,0x13);
       return;

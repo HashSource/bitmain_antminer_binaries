@@ -15,7 +15,7 @@ int PKCS12_key_gen_asc(char *pass,int passlen,uchar *salt,int saltlen,int id,int
   else {
     puVar1 = OPENSSL_asc2uni(pass,passlen,&local_18,(int *)&local_14);
     if (puVar1 == (uchar *)0x0) {
-      ERR_put_error(0x23,0x6e,0x41,DAT_000d19b8,0x5c);
+      ERR_put_error(0x23,0x6e,0x41,"p12_key.c",0x5c);
       return 0;
     }
   }

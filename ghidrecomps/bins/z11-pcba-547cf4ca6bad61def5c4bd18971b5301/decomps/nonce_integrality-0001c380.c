@@ -82,14 +82,14 @@ undefined4 nonce_integrality(byte param_1,byte param_2,int param_3,int param_4)
             );
       memcpy((void *)(param_3 + (uint)param_1 * 0x54d + (uint)param_2 * 0x54d + 0x548),
              (void *)((uint)param_2 * 0x5b0 + 0x5aa + param_4 + (uint)param_1 * 0x5b0),4);
-      *(undefined *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x540) =
-           *(undefined *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x556);
-      *(undefined *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x541) =
-           *(undefined *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x557);
-      *(undefined *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x542) =
-           *(undefined *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x558);
-      *(undefined *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x543) =
-           *(undefined *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x5a1);
+      *(undefined1 *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x540) =
+           *(undefined1 *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x556);
+      *(undefined1 *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x541) =
+           *(undefined1 *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x557);
+      *(undefined1 *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x542) =
+           *(undefined1 *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x558);
+      *(undefined1 *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x543) =
+           *(undefined1 *)((uint)param_2 * 0x5b0 + param_4 + (uint)param_1 * 0x5b0 + 0x5a1);
       memcpy((void *)((uint)param_2 * 0x54d + param_3 + (uint)param_1 * 0x54d + 0x544),
              (void *)((uint)param_2 * 0x5b0 + 0x5a2 + param_4 + (uint)param_1 * 0x5b0),4);
       return 0;

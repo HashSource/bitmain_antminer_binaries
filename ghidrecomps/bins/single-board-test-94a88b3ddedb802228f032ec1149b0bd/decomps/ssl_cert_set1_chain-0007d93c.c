@@ -9,7 +9,7 @@ int ssl_cert_set1_chain(int *param_1,int param_2)
     iVar1 = *param_1;
     if (iVar1 != 0) {
       if (*(_STACK **)(iVar1 + 0xc) != (_STACK *)0x0) {
-        sk_pop_free(*(_STACK **)(iVar1 + 0xc),DAT_0007d984);
+        sk_pop_free(*(_STACK **)(iVar1 + 0xc),(func *)0xb7c0d);
       }
       *(undefined4 *)(iVar1 + 0xc) = 0;
       return 1;
@@ -23,12 +23,12 @@ int ssl_cert_set1_chain(int *param_1,int param_2)
     iVar1 = *param_1;
     if (iVar1 != 0) {
       if (*(_STACK **)(iVar1 + 0xc) != (_STACK *)0x0) {
-        sk_pop_free(*(_STACK **)(iVar1 + 0xc),DAT_0007d984);
+        sk_pop_free(*(_STACK **)(iVar1 + 0xc),(func *)0xb7c0d);
       }
       *(_STACK **)(iVar1 + 0xc) = st;
       return 1;
     }
-    sk_pop_free(st,DAT_0007d984);
+    sk_pop_free(st,(func *)0xb7c0d);
     iVar1 = 0;
   }
   return iVar1;

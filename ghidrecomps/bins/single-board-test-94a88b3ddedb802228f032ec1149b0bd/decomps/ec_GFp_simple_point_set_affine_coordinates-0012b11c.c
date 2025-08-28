@@ -7,7 +7,7 @@ int ec_GFp_simple_point_set_affine_coordinates
   int iVar1;
   
   if (param_3 == (BIGNUM *)0x0 || param_4 == (BIGNUM *)0x0) {
-    ERR_put_error(0x10,0xa8,0x43,DAT_0012b160,0x210);
+    ERR_put_error(0x10,0xa8,0x43,"ecp_smpl.c",0x210);
     iVar1 = 0;
   }
   else {

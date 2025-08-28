@@ -21,7 +21,7 @@ json_t * json_loadb(char *buffer,size_t buflen,size_t flags,json_error_t *error)
     stream_data.pos = 0;
     stream_data.data = buffer;
     stream_data.len = buflen;
-    iVar1 = lex_init(&lex,buffer_get + 1,flags,&stream_data);
+    iVar1 = lex_init(&lex,(get_func)0x6757d,flags,&stream_data);
     if (iVar1 == 0) {
       pjVar2 = parse_json(&lex,flags,error);
       lex_close(&lex);

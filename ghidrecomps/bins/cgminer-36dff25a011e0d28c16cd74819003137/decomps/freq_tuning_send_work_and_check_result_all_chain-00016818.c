@@ -27,9 +27,9 @@ void freq_tuning_send_work_and_check_result_all_chain(freq_tuning_info *freq_inf
        (freq_info->fake_done[chain] == false)) {
       freq_tuning_init_chip_rate_table(freq_info,asic_nonce_num[chain],chain);
       if ((valid_nonce_num[chain] <
-           (int)(longlong)((double)(longlong)chain_ValidNonce[chain] * DAT_00016a90)) ||
-         ((int)(longlong)((double)(longlong)chain_ValidNonce[chain] * DAT_00016a98) <
-          chain_hw_num[chain])) {
+           (int)(longlong)((double)(longlong)chain_ValidNonce[chain] * 0.98)) ||
+         ((int)(longlong)((double)(longlong)chain_ValidNonce[chain] * 0.0003) < chain_hw_num[chain])
+         ) {
         freq_info->test_done[chain] = true;
       }
     }

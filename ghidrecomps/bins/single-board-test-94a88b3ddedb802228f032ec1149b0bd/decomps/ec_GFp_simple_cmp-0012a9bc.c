@@ -1,5 +1,5 @@
 
-int ec_GFp_simple_cmp(int *param_1,EC_POINT *param_2,EC_POINT *param_3,BN_CTX *param_4)
+int ec_GFp_simple_cmp(EC_GROUP *param_1,EC_POINT *param_2,EC_POINT *param_3,BN_CTX *param_4)
 
 {
   int iVar1;
@@ -14,15 +14,15 @@ int ec_GFp_simple_cmp(int *param_1,EC_POINT *param_2,EC_POINT *param_3,BN_CTX *p
   BIGNUM *b;
   BIGNUM *a;
   
-  iVar1 = EC_POINT_is_at_infinity((EC_GROUP *)param_1,param_2);
+  iVar1 = EC_POINT_is_at_infinity(param_1,param_2);
   if (iVar1 != 0) {
-    uVar6 = EC_POINT_is_at_infinity((EC_GROUP *)param_1,param_3);
+    uVar6 = EC_POINT_is_at_infinity(param_1,param_3);
     if (1 < uVar6) {
       return 0;
     }
     return 1 - uVar6;
   }
-  iVar1 = EC_POINT_is_at_infinity((EC_GROUP *)param_1,param_3);
+  iVar1 = EC_POINT_is_at_infinity(param_1,param_3);
   if (iVar1 != 0) {
     return 1;
   }
@@ -37,8 +37,8 @@ int ec_GFp_simple_cmp(int *param_1,EC_POINT *param_2,EC_POINT *param_3,BN_CTX *p
     }
     return 0;
   }
-  pcVar7 = *(code **)(*param_1 + 0x84);
-  pcVar8 = *(code **)(*param_1 + 0x88);
+  pcVar7 = *(code **)(*(int *)param_1 + 0x84);
+  pcVar8 = *(code **)(*(int *)param_1 + 0x88);
   if (param_4 == (BN_CTX *)0x0) {
     param_4 = BN_CTX_new();
     c = param_4;

@@ -31,8 +31,8 @@ int DH_generate_parameters_ex(DH *dh,int prime_len,int generator,BN_GENCB *cb)
         if (pBVar2 == (BIGNUM *)0x0) goto LAB_001265f6;
       }
       if (generator < 2) {
-        ERR_put_error(5,0x6a,0x65,DAT_00126664,0x91);
-        ERR_put_error(5,0x6a,3,DAT_00126664,0xc3);
+        ERR_put_error(5,0x6a,0x65,"dh_gen.c",0x91);
+        ERR_put_error(5,0x6a,3,"dh_gen.c",0xc3);
         iVar1 = 0;
         goto LAB_001265d4;
       }
@@ -67,7 +67,7 @@ joined_r0x00126624:
     }
   }
 LAB_001265f6:
-  ERR_put_error(5,0x6a,3,DAT_00126664,0xc3);
+  ERR_put_error(5,0x6a,3,"dh_gen.c",0xc3);
   iVar1 = 0;
   if (ctx == (BN_CTX *)0x0) {
     return 0;

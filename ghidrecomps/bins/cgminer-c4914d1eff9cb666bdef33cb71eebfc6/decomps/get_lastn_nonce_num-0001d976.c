@@ -29,15 +29,15 @@ void get_lastn_nonce_num(char *dest,int n)
       tmp[8] = '\0';
       tmp[9] = '\0';
       tmp[10] = '\0';
-      tmp[11] = '\0';
-      tmp[12] = '\0';
-      tmp[13] = '\0';
-      tmp[14] = '\0';
-      tmp[15] = '\0';
-      tmp[16] = '\0';
-      tmp[17] = '\0';
-      tmp[18] = '\0';
-      tmp[19] = '\0';
+      tmp[0xb] = '\0';
+      tmp[0xc] = '\0';
+      tmp[0xd] = '\0';
+      tmp[0xe] = '\0';
+      tmp[0xf] = '\0';
+      tmp[0x10] = '\0';
+      tmp[0x11] = '\0';
+      tmp[0x12] = '\0';
+      tmp[0x13] = '\0';
       sprintf(tmp,"Chain%d:{",i + 1);
       strcat(xtime,tmp);
       iVar1 = get_asic_nonce_num(i,0,n);
@@ -49,8 +49,9 @@ void get_lastn_nonce_num(char *dest,int n)
         strcat(xtime,tmp);
       }
       sVar2 = strlen(xtime);
-      *(undefined2 *)(xtime + sVar2) = DAT_00081868;
-      xtime[sVar2 + 2] = DAT_0008186a;
+      (xtime + sVar2)[0] = '}';
+      (xtime + sVar2)[1] = ',';
+      xtime[sVar2 + 2] = '\0';
       strcat(dest,xtime);
     }
   }

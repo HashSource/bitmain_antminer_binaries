@@ -12,15 +12,12 @@ void cg_savelogwork(work *work,uchar *nonce_bin)
   char *__ptr_03;
   char *__ptr_04;
   size_t sVar2;
-  uchar tmp;
   uchar uVar3;
   uint uVar4;
   uchar uVar5;
   uint uVar6;
   uint uVar7;
-  int i;
   int iVar8;
-  int j;
   bool bVar9;
   uchar nonce_bytes [4];
   char nonce [9];
@@ -30,7 +27,7 @@ void cg_savelogwork(work *work,uchar *nonce_bin)
   char szmsg [1024];
   
   if (fd_log == (FILE *)0x0) {
-    fd_log = (FILE *)fopen(DAT_0001f9ac,DAT_0001f9b0);
+    fd_log = (FILE *)fopen("/etc/config/worklog.txt","wb");
   }
   memset(szmsg,0,0x400);
   midstate_tmp._0_4_ = *(undefined4 *)work->midstate;
@@ -38,32 +35,32 @@ void cg_savelogwork(work *work,uchar *nonce_bin)
   iVar8 = 0;
   midstate_tmp._8_4_ = *(undefined4 *)(work->midstate + 8);
   midstate_tmp._12_4_ = *(undefined4 *)(work->midstate + 0xc);
-  data_tmp[12] = '\0';
-  data_tmp[13] = '\0';
-  data_tmp[14] = '\0';
-  data_tmp[15] = '\0';
-  data_tmp[16] = '\0';
-  data_tmp[17] = '\0';
-  data_tmp[18] = '\0';
-  data_tmp[19] = '\0';
+  data_tmp[0xc] = '\0';
+  data_tmp[0xd] = '\0';
+  data_tmp[0xe] = '\0';
+  data_tmp[0xf] = '\0';
+  data_tmp[0x10] = '\0';
+  data_tmp[0x11] = '\0';
+  data_tmp[0x12] = '\0';
+  data_tmp[0x13] = '\0';
   midstate_tmp._16_4_ = *(undefined4 *)(work->midstate + 0x10);
   midstate_tmp._20_4_ = *(undefined4 *)(work->midstate + 0x14);
   midstate_tmp._24_4_ = *(undefined4 *)(work->midstate + 0x18);
   midstate_tmp._28_4_ = *(undefined4 *)(work->midstate + 0x1c);
   uVar7 = 0;
-  data_tmp[20] = '\0';
-  data_tmp[21] = '\0';
-  data_tmp[22] = '\0';
-  data_tmp[23] = '\0';
-  data_tmp[24] = '\0';
-  data_tmp[25] = '\0';
-  data_tmp[26] = '\0';
-  data_tmp[27] = '\0';
+  data_tmp[0x14] = '\0';
+  data_tmp[0x15] = '\0';
+  data_tmp[0x16] = '\0';
+  data_tmp[0x17] = '\0';
+  data_tmp[0x18] = '\0';
+  data_tmp[0x19] = '\0';
+  data_tmp[0x1a] = '\0';
+  data_tmp[0x1b] = '\0';
   data_tmp._0_4_ = *(undefined4 *)(work->data + 0x40);
-  data_tmp[28] = '\0';
-  data_tmp[29] = '\0';
-  data_tmp[30] = '\0';
-  data_tmp[31] = '\0';
+  data_tmp[0x1c] = '\0';
+  data_tmp[0x1d] = '\0';
+  data_tmp[0x1e] = '\0';
+  data_tmp[0x1f] = '\0';
   data_tmp._4_4_ = *(undefined4 *)(work->data + 0x44);
   data_tmp._8_4_ = *(undefined4 *)(work->data + 0x48);
   hash_tmp._0_4_ = *(undefined4 *)work->hash;
@@ -112,7 +109,7 @@ void cg_savelogwork(work *work,uchar *nonce_bin)
       iVar8 = iVar8 + 1;
     }
   }
-  sprintf(szmsg,DAT_0001f9a8,__ptr_00,__ptr_01,__ptr_02);
+  sprintf(szmsg,"midstate %s data %s nonce %s \r\n",__ptr_00,__ptr_01,__ptr_02);
   sVar2 = strlen(szmsg);
   fwrite(szmsg,sVar2,1,(FILE *)fd_log);
   fflush((FILE *)fd_log);

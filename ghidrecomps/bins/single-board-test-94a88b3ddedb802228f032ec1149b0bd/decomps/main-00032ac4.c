@@ -220,7 +220,8 @@ int main(int param_1,int param_2)
       Conf._120_4_ = 0;
       ExitFlag = 0;
       receiveExit = '\0';
-      pthread_create(DAT_0003361c,(pthread_attr_t *)0x0,receive_func + 1,cgpu);
+      pthread_create((pthread_t *)(cgpu + 0x200),(pthread_attr_t *)0x0,(__start_routine *)0x2a799,
+                     cgpu);
       if (3 < log_level) {
         local_58 = fopen(log_file,"a+");
         if (local_58 != (FILE *)0x0) {
@@ -232,7 +233,8 @@ int main(int param_1,int param_2)
         StartSendFlag[local_10] = 0;
       }
       picheartExit = '\0';
-      pthread_create(DAT_00033620,(pthread_attr_t *)0x0,pic_heart_beat_func + 1,cgpu);
+      pthread_create((pthread_t *)(cgpu + 0x208),(pthread_attr_t *)0x0,(__start_routine *)0x29685,
+                     cgpu);
       InitAsicCoreEnabledFlag();
       PreparePICandVoltage();
       init_exist_chain_table();
@@ -328,7 +330,7 @@ int main(int param_1,int param_2)
             }
             fclose(local_6c);
           }
-          search_failed_info._0_4_ = DAT_00132c78;
+          search_failed_info._0_4_ = 0x323a52;
           saveSearchFailedFlagInfo();
           searchStatus = 2;
           do {
@@ -348,7 +350,7 @@ int main(int param_1,int param_2)
           }
           fclose(local_74);
         }
-        search_failed_info._0_4_ = DAT_00132880;
+        search_failed_info._0_4_ = 0x313a52;
         saveSearchFailedFlagInfo();
         searchStatus = 2;
         do {

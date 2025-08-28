@@ -6,7 +6,7 @@ FILE * fopen64(char *__filename,char *__modes)
 {
   FILE *pFVar1;
   
-  pFVar1 = (FILE *)(*(code *)PTR_fopen64_00194254)();
+  pFVar1 = fopen64(__filename,__modes);
   return pFVar1;
 }
 

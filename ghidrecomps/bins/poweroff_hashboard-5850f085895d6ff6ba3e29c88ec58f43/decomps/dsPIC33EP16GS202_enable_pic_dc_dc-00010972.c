@@ -2,7 +2,7 @@
 undefined4 dsPIC33EP16GS202_enable_pic_dc_dc(byte param_1,byte param_2)
 
 {
-  undefined local_14;
+  undefined1 local_14;
   byte local_13;
   byte local_10;
   byte local_f;

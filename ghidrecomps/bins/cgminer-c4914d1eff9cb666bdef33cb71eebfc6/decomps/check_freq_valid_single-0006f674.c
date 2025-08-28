@@ -2,7 +2,7 @@
 _Bool check_freq_valid_single(uint32_t freq,uint32_t valid_max_freq)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint32_t uVar2;
   uint32_t valid_max_freq_local;
   uint32_t freq_local;
@@ -11,7 +11,7 @@ _Bool check_freq_valid_single(uint32_t freq,uint32_t valid_max_freq)
   if (freq <= valid_max_freq) {
     uVar2 = 1;
   }
-  uVar1 = (undefined)uVar2;
+  uVar1 = (undefined1)uVar2;
   if (valid_max_freq < freq) {
     uVar1 = 0;
   }

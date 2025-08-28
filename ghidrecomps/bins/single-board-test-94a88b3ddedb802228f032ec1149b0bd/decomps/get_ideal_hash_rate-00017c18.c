@@ -34,7 +34,7 @@ void get_ideal_hash_rate(int *param_1)
     if ((*(int *)(cgpu + (local_14 + 0x9c638) * 4) != 0) &&
        ((iVar1 = is_S9_Hydro(), iVar1 == 0 ||
         (iVar1 = get_board_index_S9_Hydro(local_14,0), iVar1 == local_14)))) {
-      *(undefined *)((int)param_1 + local_14 + 0x58588) = 0;
+      *(undefined1 *)((int)param_1 + local_14 + 0x58588) = 0;
     }
   }
   board_init_all_chain(param_1);
@@ -196,7 +196,7 @@ void get_ideal_hash_rate(int *param_1)
           local_30 = local_30 +
                      ((double)(longlong)
                               (*(int *)(asic_nonce_num + (local_18 + local_14 * 0x100) * 4) * iVar1)
-                     / 8.0) / DAT_00018570;
+                     / 8.0) / 1000.0;
           if (3 < log_level) {
             local_6c = fopen(log_file,"a+");
             if (local_6c != (FILE *)0x0) {
@@ -216,7 +216,7 @@ void get_ideal_hash_rate(int *param_1)
           local_30 = local_30 +
                      ((double)(longlong)
                               (*(int *)(asic_nonce_num + (local_18 + local_14 * 0x100) * 4) * iVar1)
-                     / 8.0) / DAT_00018570;
+                     / 8.0) / 1000.0;
           if (3 < log_level) {
             local_68 = fopen(log_file,"a+");
             if (local_68 != (FILE *)0x0) {

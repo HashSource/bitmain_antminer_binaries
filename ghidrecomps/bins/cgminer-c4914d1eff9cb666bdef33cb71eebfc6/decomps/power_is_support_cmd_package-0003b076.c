@@ -4,14 +4,14 @@
 _Bool power_is_support_cmd_package(void)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint16_t uVar2;
   
   uVar2 = power_protocal_type;
   if (power_protocal_type == 2) {
     uVar2 = 1;
   }
-  uVar1 = (undefined)uVar2;
+  uVar1 = (undefined1)uVar2;
   if (power_protocal_type != 2) {
     uVar1 = 0;
   }

@@ -30,7 +30,7 @@ LAB_0002f254:
       *(uint *)(dev + (uVar7 + 0x14e2) * 4 + 4) = uVar4;
       if (local_24 == 0) {
         if (*(char *)(iVar1 + uVar7 + 0x5384) == '\x01') {
-          *(undefined *)(iVar1 + uVar7 + 0x5384) = 0;
+          *(undefined1 *)(iVar1 + uVar7 + 0x5384) = 0;
           uVar3 = *(uint *)(iVar1 + 0x4c) & 1;
           if (1 << uVar7 != 0) {
             uVar3 = 0;
@@ -40,7 +40,7 @@ LAB_0002f254:
         }
       }
       else if (*(char *)(iVar1 + uVar7 + 0x5384) == '\0') {
-        *(undefined *)(iVar1 + uVar7 + 0x5384) = 1;
+        *(undefined1 *)(iVar1 + uVar7 + 0x5384) = 1;
         *(uint *)(iVar1 + 0x4c) = 1 << uVar7 | *(uint *)(iVar1 + 0x4c);
         *(char *)(iVar1 + 0x53fe) = *(char *)(iVar1 + 0x53fe) + '\x01';
       }

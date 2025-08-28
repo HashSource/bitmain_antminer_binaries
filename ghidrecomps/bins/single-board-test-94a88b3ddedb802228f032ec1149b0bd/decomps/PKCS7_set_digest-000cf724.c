@@ -13,7 +13,7 @@ int PKCS7_set_digest(PKCS7 *p7,EVP_MD *md)
     pAVar2 = ASN1_TYPE_new();
     pXVar4->parameter = pAVar2;
     if (pAVar2 == (ASN1_TYPE *)0x0) {
-      ERR_put_error(0x21,0x7e,0x41,DAT_000cf790,0x1b2);
+      ERR_put_error(0x21,0x7e,0x41,"pk7_lib.c",0x1b2);
       iVar1 = 0;
     }
     else {
@@ -26,7 +26,7 @@ int PKCS7_set_digest(PKCS7 *p7,EVP_MD *md)
     }
   }
   else {
-    ERR_put_error(0x21,0x7e,0x71,DAT_000cf790,0x1ba);
+    ERR_put_error(0x21,0x7e,0x71,"pk7_lib.c",0x1ba);
     iVar1 = 1;
   }
   return iVar1;

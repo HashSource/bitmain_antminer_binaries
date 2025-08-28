@@ -6,7 +6,7 @@ int pthread_setcancelstate(int __state,int *__oldstate)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_setcancelstate_0007cebc)();
+  iVar1 = pthread_setcancelstate(__state,__oldstate);
   return iVar1;
 }
 

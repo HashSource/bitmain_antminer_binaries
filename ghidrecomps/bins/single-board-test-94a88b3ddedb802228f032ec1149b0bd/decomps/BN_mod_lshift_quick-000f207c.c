@@ -21,7 +21,7 @@ LAB_000f2090:
       iVar3 = BN_num_bits(r);
       iVar2 = iVar2 - iVar3;
       if (iVar2 < 0) {
-        ERR_put_error(3,0x77,0x6e,DAT_000f2104,0x121);
+        ERR_put_error(3,0x77,0x6e,"bn_mod.c",0x121);
         return 0;
       }
       iVar3 = n;

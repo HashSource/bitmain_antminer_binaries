@@ -6,7 +6,7 @@ undefined4 gost_cipher_init_cpa(EVP_CIPHER_CTX *param_1,int param_2,void *param_
   void *pvVar2;
   
   pvVar2 = param_1->cipher_data;
-  gost_init((int)pvVar2 + 0xc,DAT_00116c94);
+  gost_init((int)pvVar2 + 0xc,Gost28147_CryptoProParamSetA);
   *(undefined4 *)((int)pvVar2 + 8) = 1;
   *(undefined4 *)((int)pvVar2 + 4) = 0;
   if (param_2 != 0) {

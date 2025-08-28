@@ -1,12 +1,10 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable work:work *[r0:4] conflicts with parameter, skipped. */
 
 work * __find_work_byid(work *que,uint id)
 
 {
   work *pwVar1;
-  work *tmp;
   
   if (que != (work *)0x0) {
     pwVar1 = (work *)(que->hh).next;

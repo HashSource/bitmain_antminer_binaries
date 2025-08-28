@@ -4,7 +4,7 @@ CRYPTO_xts128_encrypt
           (undefined4 *param_1,uint *param_2,uint *param_3,uint *param_4,uint param_5,int param_6)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
@@ -13,8 +13,9 @@ CRYPTO_xts128_encrypt
   uint *puVar7;
   undefined4 uVar8;
   uint *puVar9;
-  bool bVar10;
+  uint uVar10;
   bool bVar11;
+  bool bVar12;
   uint local_68;
   uint uStack_64;
   uint local_5c;
@@ -70,16 +71,17 @@ CRYPTO_xts128_encrypt
     if (param_6 != 0) {
       puVar5 = param_3 + 1;
       puVar9 = local_4c + 1;
-      bVar11 = local_4c <= puVar5;
-      bVar10 = puVar5 == local_4c;
-      if (bVar11 && !bVar10) {
-        bVar11 = param_3 <= puVar9;
-        bVar10 = puVar9 == param_3;
+      bVar12 = local_4c <= puVar5;
+      bVar11 = puVar5 == local_4c;
+      if (bVar12 && !bVar11) {
+        bVar12 = param_3 <= puVar9;
+        bVar11 = puVar9 == param_3;
       }
-      uVar2 = param_5 & 0xfffffffc;
-      if (param_5 >> 2 == 0 ||
+      uVar10 = param_5 >> 2;
+      uVar2 = uVar10 * 4;
+      if (uVar10 == 0 ||
           ((((uint)local_4c | (uint)param_3) & 3) != 0 ||
-          ((param_5 < 4 || (bVar11 && !bVar10 || local_38 < puVar5 && param_3 < local_38 + 1)) ||
+          ((param_5 < 4 || (bVar12 && !bVar11 || local_38 < puVar5 && param_3 < local_38 + 1)) ||
           local_38 < puVar9 && local_4c < local_38 + 1))) {
         uVar2 = 0;
       }
@@ -92,13 +94,13 @@ CRYPTO_xts128_encrypt
           *(undefined4 *)((int)local_4c + iVar6) = *(undefined4 *)((int)local_38 + iVar6);
           *(undefined4 *)((int)local_38 + iVar6) = uVar8;
           iVar6 = iVar6 + 4;
-        } while (uVar4 < param_5 >> 2);
-        if (uVar2 == param_5) goto LAB_000ee996;
+        } while (uVar4 < uVar10);
+        if (uVar2 - param_5 == 0) goto LAB_000ee996;
       }
       do {
-        uVar1 = *(undefined *)((int)param_3 + uVar2);
-        *(undefined *)((int)local_4c + uVar2) = *(undefined *)((int)local_38 + uVar2);
-        *(undefined *)((int)local_38 + uVar2) = uVar1;
+        uVar1 = *(undefined1 *)((int)param_3 + uVar2);
+        *(undefined1 *)((int)local_4c + uVar2) = *(undefined1 *)((int)local_38 + uVar2);
+        *(undefined1 *)((int)local_38 + uVar2) = uVar1;
         uVar2 = uVar2 + 1;
       } while (uVar2 < param_5);
 LAB_000ee996:
@@ -134,34 +136,35 @@ LAB_000ee996:
   puVar7 = param_3 + 4;
   puVar5 = local_38 + 1;
   puVar9 = local_4c + 4;
-  if (param_5 >> 2 == 0 ||
+  uVar3 = param_5 >> 2;
+  if (uVar3 == 0 ||
       ((((uint)puVar7 | (uint)puVar9) & 3) != 0 ||
       ((param_5 < 4 ||
        (puVar9 < param_3 + 5 && puVar7 < local_4c + 5 || local_38 < param_3 + 5 && puVar7 < puVar5))
       || local_38 < local_4c + 5 && puVar9 < puVar5))) {
 LAB_000ee848:
     do {
-      uVar1 = *(undefined *)((int)param_3 + local_5c + 0x10);
-      *(undefined *)((int)local_4c + local_5c + 0x10) = *(undefined *)((int)local_38 + local_5c);
-      *(undefined *)((int)local_38 + local_5c) = uVar1;
+      uVar1 = *(undefined1 *)((int)param_3 + local_5c + 0x10);
+      *(undefined1 *)((int)local_4c + local_5c + 0x10) = *(undefined1 *)((int)local_38 + local_5c);
+      *(undefined1 *)((int)local_38 + local_5c) = uVar1;
       local_5c = local_5c + 1;
     } while (local_5c < param_5);
   }
   else {
     puVar9 = param_3 + 3;
     puVar7 = local_4c + 3;
-    uVar3 = 0;
+    uVar2 = 0;
     do {
-      uVar3 = uVar3 + 1;
+      uVar2 = uVar2 + 1;
       puVar9 = puVar9 + 1;
-      uVar2 = *puVar9;
+      uVar10 = *puVar9;
       puVar7 = puVar7 + 1;
       *puVar7 = puVar5[-1];
-      puVar5[-1] = uVar2;
+      puVar5[-1] = uVar10;
       puVar5 = puVar5 + 1;
-    } while (uVar3 < param_5 >> 2);
-    local_5c = param_5 & 0xfffffffc;
-    if ((param_5 & 0xfffffffc) != param_5) goto LAB_000ee848;
+    } while (uVar2 < uVar3);
+    local_5c = uVar3 * 4;
+    if (uVar3 * 4 != param_5) goto LAB_000ee848;
   }
   local_68 = local_38[2];
   uStack_64 = local_38[3];

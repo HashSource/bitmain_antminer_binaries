@@ -68,7 +68,7 @@ int BN_div_recp(BIGNUM *dv,BIGNUM *rem,BIGNUM *m,BN_RECP_CTX *recp,BN_CTX *ctx)
           }
           iVar4 = iVar4 + -1;
           if (iVar4 == 0) {
-            ERR_put_error(3,0x82,0x65,DAT_000f43ec,0xcb);
+            ERR_put_error(3,0x82,0x65,"bn_recp.c",0xcb);
             iVar4 = 0;
             goto LAB_000f427c;
           }

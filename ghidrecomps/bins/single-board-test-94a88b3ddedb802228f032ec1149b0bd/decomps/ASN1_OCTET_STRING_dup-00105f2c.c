@@ -9,9 +9,9 @@ ASN1_STRING * ASN1_OCTET_STRING_dup(ASN1_STRING *a)
     str = (ASN1_STRING *)0x0;
   }
   else {
-    str = (ASN1_STRING *)CRYPTO_malloc(0x10,DAT_000bcf6c,0x19c);
+    str = (ASN1_STRING *)CRYPTO_malloc(0x10,"asn1_lib.c",0x19c);
     if (str == (ASN1_STRING *)0x0) {
-      ERR_put_error(0xd,0x82,0x41,DAT_000bcf6c,0x19e);
+      ERR_put_error(0xd,0x82,0x41,"asn1_lib.c",0x19e);
     }
     else {
       str->type = 4;

@@ -16,7 +16,7 @@ ssize_t Curl_recv_plain(int *param_1,int param_2,void *param_3,size_t param_4,un
     if (iVar4 != 0xb && iVar4 != 4) {
       iVar5 = *param_1;
       uVar3 = Curl_strerror(param_1,iVar4);
-      Curl_failf(iVar5,DAT_000431dc,uVar3);
+      Curl_failf(iVar5,"Recv failure: %s",uVar3);
       *(int *)(*param_1 + 0x85cc) = iVar4;
       *param_5 = 0x38;
       return -1;

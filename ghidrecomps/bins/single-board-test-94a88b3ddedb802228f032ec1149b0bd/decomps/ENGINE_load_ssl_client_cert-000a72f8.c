@@ -7,20 +7,20 @@ int ENGINE_load_ssl_client_cert
   int iVar1;
   
   if (e == (ENGINE *)0x0) {
-    ERR_put_error(0x26,0xc2,0x43,DAT_000a738c,0xa8);
+    ERR_put_error(0x26,0xc2,0x43,"eng_pkey.c",0xa8);
     iVar1 = 0;
   }
   else {
-    CRYPTO_lock(9,0x1e,DAT_000a738c,0xab);
+    CRYPTO_lock(9,0x1e,"eng_pkey.c",0xab);
     if (*(int *)(e + 0x5c) == 0) {
-      CRYPTO_lock(10,0x1e,DAT_000a738c,0xad);
-      ERR_put_error(0x26,0xc2,0x75,DAT_000a738c,0xaf);
+      CRYPTO_lock(10,0x1e,"eng_pkey.c",0xad);
+      ERR_put_error(0x26,0xc2,0x75,"eng_pkey.c",0xaf);
       iVar1 = 0;
     }
     else {
-      CRYPTO_lock(10,0x1e,DAT_000a738c,0xb2);
+      CRYPTO_lock(10,0x1e,"eng_pkey.c",0xb2);
       if (*(code **)(e + 0x4c) == (code *)0x0) {
-        ERR_put_error(0x26,0xc2,0x7d,DAT_000a738c,0xb5);
+        ERR_put_error(0x26,0xc2,0x7d,"eng_pkey.c",0xb5);
         iVar1 = 0;
       }
       else {

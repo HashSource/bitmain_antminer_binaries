@@ -1,34 +1,31 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void clearInitLogFile(void)
 
 {
   FILE *pFVar1;
-  FILE *fd;
   
-  pthread_mutex_lock(DAT_00030374);
-  pFVar1 = fopen(DAT_00030378,DAT_0003037c);
+  pthread_mutex_lock((pthread_mutex_t *)&init_log_mutex);
+  pFVar1 = fopen("/tmp/freq","w");
   if (pFVar1 != (FILE *)0x0) {
     fclose(pFVar1);
   }
-  if (*(char *)(DAT_00030380 + 0xd0) != '\0') {
-    pFVar1 = fopen(DAT_00030384,DAT_0003037c);
+  if (opt_fixed_freq != false) {
+    pFVar1 = fopen("/tmp/search","w");
     if (pFVar1 != (FILE *)0x0) {
       fclose(pFVar1);
     }
-    pFVar1 = fopen(DAT_00030378,DAT_0003037c);
+    pFVar1 = fopen("/tmp/freq","w");
     if (pFVar1 != (FILE *)0x0) {
       fclose(pFVar1);
     }
-    pFVar1 = fopen(DAT_00030388,DAT_0003037c);
+    pFVar1 = fopen("/tmp/lasttemp","w");
     if (pFVar1 != (FILE *)0x0) {
       fclose(pFVar1);
     }
   }
-                    /* WARNING: Could not recover jumptable at 0x0000a2c8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_0005f228)(DAT_00030374);
+  (*(code *)(undefined *)0x0)(&init_log_mutex);
   return;
 }
 

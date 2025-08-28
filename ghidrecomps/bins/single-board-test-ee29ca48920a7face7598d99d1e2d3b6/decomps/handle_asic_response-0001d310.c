@@ -5,22 +5,21 @@ void handle_asic_response(void)
   pthread_t __th;
   int iVar1;
   char acStack_15198 [1024];
-  undefined2 uStack_14d98;
-  byte bStack_14d96;
+  char acStack_14d98 [4];
   int iStack_14d94;
-  undefined auStack_14d90 [4368];
-  undefined auStack_13c80 [4072];
-  undefined auStack_12c98 [1032];
+  undefined1 auStack_14d90 [4368];
+  undefined1 auStack_13c80 [4072];
+  char acStack_12c98 [1032];
   int iStack_12890;
   int iStack_1288c;
-  undefined auStack_12888 [74400];
-  undefined auStack_5e8 [1488];
+  char acStack_12888 [74400];
+  char acStack_5e8 [1488];
   undefined4 local_18;
   byte local_11;
   int local_10;
   int local_c;
   
-  memset(auStack_5e8,0,0x5d0);
+  memset(acStack_5e8,0,0x5d0);
   local_11 = 0;
   local_c = 0;
   __th = pthread_self();
@@ -29,10 +28,10 @@ void handle_asic_response(void)
     snprintf(acStack_15198,0x400,"Start A New Asic Response.Chain Id:[%d]\n",(uint)local_11);
     _applog(2,acStack_15198,0);
   }
-  memset(auStack_12888,0,0x122a0);
+  memset(acStack_12888,0,0x122a0);
   iStack_1288c = 0;
   iStack_12890 = 0;
-  memset(auStack_12c98,0,0x406);
+  memset(acStack_12c98,0,0x406);
   local_18 = 0x122a0;
   do {
     do {
@@ -40,9 +39,9 @@ void handle_asic_response(void)
         usleep(100000);
       }
       usleep(500);
-      local_c = uart_receive(*(uint *)(g_chain + (uint)local_11 * 0x20) & 0xff,auStack_5e8,0x5d0);
+      local_c = uart_receive(*(uint *)(g_chain + (uint)local_11 * 0x20) & 0xff,acStack_5e8,0x5d0);
       for (local_10 = 0; local_10 < local_c; local_10 = local_10 + 1) {
-        auStack_12888[iStack_12890] = auStack_5e8[local_10];
+        acStack_12888[iStack_12890] = acStack_5e8[local_10];
         add_point(&iStack_12890,local_18);
       }
     } while (iStack_1288c == iStack_12890);
@@ -55,48 +54,49 @@ void handle_asic_response(void)
     local_c = iStack_12890 + iVar1;
     while (2 < local_c) {
       iStack_14d94 = iStack_1288c;
-      uStack_14d98 = 0;
-      bStack_14d96 = 0;
+      acStack_14d98[0] = '\0';
+      acStack_14d98[1] = '\0';
+      acStack_14d98[2] = 0;
       for (local_10 = 0; local_10 < 3; local_10 = local_10 + 1) {
-        *(undefined *)((int)&uStack_14d98 + local_10) = auStack_12888[iStack_14d94];
+        acStack_14d98[local_10] = acStack_12888[iStack_14d94];
         add_point(&iStack_14d94,local_18);
       }
-      if (((char)uStack_14d98 == -0x56) && (uStack_14d98._1_1_ == 'U')) {
-        if ((bStack_14d96 & 0xf0) == 0xe0) {
+      if ((acStack_14d98[0] == -0x56) && (acStack_14d98[1] == 'U')) {
+        if ((acStack_14d98[2] & 0xf0U) == 0xe0) {
           if (local_c < 0x5d) break;
           for (local_10 = 0; local_10 < 0x5d; local_10 = local_10 + 1) {
-            auStack_12c98[local_10] = auStack_12888[iStack_1288c];
+            acStack_12c98[local_10] = acStack_12888[iStack_1288c];
             add_point(&iStack_1288c,local_18);
           }
           local_c = local_c + -0x5d;
-          nonce_handle(auStack_13c80,auStack_14d90,auStack_12c98,0x5d,local_11);
+          nonce_handle(auStack_13c80,auStack_14d90,acStack_12c98,0x5d,local_11);
         }
-        else if (bStack_14d96 == 0xcc) {
+        else if (acStack_14d98[2] == 0xcc) {
           if (local_c < 9) break;
           for (local_10 = 0; local_10 < 9; local_10 = local_10 + 1) {
-            auStack_12c98[local_10] = auStack_12888[iStack_1288c];
+            acStack_12c98[local_10] = acStack_12888[iStack_1288c];
             add_point(&iStack_1288c,local_18);
           }
           local_c = local_c + -9;
-          pm_handle(auStack_12c98,9,local_11);
+          pm_handle(acStack_12c98,9,local_11);
         }
-        else if (bStack_14d96 == 0xd0) {
+        else if (acStack_14d98[2] == 0xd0) {
           if (local_c < 0x406) break;
           for (local_10 = 0; local_10 < 0x406; local_10 = local_10 + 1) {
-            auStack_12c98[local_10] = auStack_12888[iStack_1288c];
+            acStack_12c98[local_10] = acStack_12888[iStack_1288c];
             add_point(&iStack_1288c,local_18);
           }
           local_c = local_c + -0x406;
-          pt_handle(auStack_12c98,0x406,local_11);
+          pt_handle(acStack_12c98,0x406,local_11);
         }
         else {
           if (local_c < 9) break;
           for (local_10 = 0; local_10 < 9; local_10 = local_10 + 1) {
-            auStack_12c98[local_10] = auStack_12888[iStack_1288c];
+            acStack_12c98[local_10] = acStack_12888[iStack_1288c];
             add_point(&iStack_1288c,local_18);
           }
           local_c = local_c + -9;
-          reg_handle(auStack_12c98,9,local_11);
+          reg_handle(acStack_12c98,9,local_11);
         }
       }
       else {

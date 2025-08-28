@@ -6,7 +6,7 @@ __pid_t waitpid(__pid_t __pid,int *__stat_loc,int __options)
 {
   __pid_t _Var1;
   
-  _Var1 = (*(code *)PTR_waitpid_00194270)();
+  _Var1 = waitpid(__pid,__stat_loc,__options);
   return _Var1;
 }
 

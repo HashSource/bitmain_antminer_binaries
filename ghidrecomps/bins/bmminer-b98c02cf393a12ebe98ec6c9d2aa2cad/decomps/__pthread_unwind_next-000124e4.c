@@ -4,7 +4,7 @@
 void __pthread_unwind_next(__pthread_unwind_buf_t *__buf)
 
 {
-  (*(code *)PTR___pthread_unwind_next_0007cfdc)();
+  __pthread_unwind_next(__buf);
   return;
 }
 

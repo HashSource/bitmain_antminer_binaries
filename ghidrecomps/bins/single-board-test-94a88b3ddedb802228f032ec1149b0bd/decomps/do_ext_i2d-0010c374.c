@@ -10,7 +10,7 @@ X509_EXTENSION * do_ext_i2d(int param_1,int param_2,int param_3,ASN1_VALUE *para
   
   if (*(ASN1_ITEM **)(param_1 + 8) == (ASN1_ITEM *)0x0) {
     num = (**(code **)(param_1 + 0x18))(param_4,0);
-    local_20 = (uchar *)CRYPTO_malloc(num,DAT_0010c408,0xc1);
+    local_20 = (uchar *)CRYPTO_malloc(num,"v3_conf.c",0xc1);
     if (local_20 == (uchar *)0x0) goto LAB_0010c3f2;
     local_1c[0] = local_20;
     (**(code **)(param_1 + 0x18))(param_4,local_1c);
@@ -31,7 +31,7 @@ X509_EXTENSION * do_ext_i2d(int param_1,int param_2,int param_3,ASN1_VALUE *para
     }
   }
 LAB_0010c3f2:
-  ERR_put_error(0x22,0x87,0x41,DAT_0010c408,0xd3);
+  ERR_put_error(0x22,0x87,0x41,"v3_conf.c",0xd3);
   return (X509_EXTENSION *)0x0;
 }
 

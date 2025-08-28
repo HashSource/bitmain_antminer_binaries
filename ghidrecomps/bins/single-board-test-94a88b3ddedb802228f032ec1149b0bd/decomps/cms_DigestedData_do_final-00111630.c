@@ -22,14 +22,14 @@ int cms_DigestedData_do_final(int param_1,undefined4 param_2,int param_3)
     }
     __n = **(size_t **)(iVar2 + 0xc);
     if (__n != local_6c) {
-      ERR_put_error(0x2e,0x75,0x79,DAT_001116bc,0x7d);
+      ERR_put_error(0x2e,0x75,0x79,"cms_dd.c",0x7d);
       iVar1 = 0;
       goto LAB_00111650;
     }
     iVar2 = memcmp(auStack_50,(void *)(*(size_t **)(iVar2 + 0xc))[2],__n);
     iVar1 = 1;
     if (iVar2 == 0) goto LAB_00111650;
-    ERR_put_error(0x2e,0x75,0x9e,DAT_001116bc,0x83);
+    ERR_put_error(0x2e,0x75,0x9e,"cms_dd.c",0x83);
   }
   iVar1 = 0;
 LAB_00111650:

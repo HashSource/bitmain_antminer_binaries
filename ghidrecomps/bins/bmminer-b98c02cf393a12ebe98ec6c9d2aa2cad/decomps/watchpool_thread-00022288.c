@@ -2,282 +2,275 @@
 void watchpool_thread(void)
 
 {
-  int **ppiVar1;
-  double dVar2;
-  double dVar3;
-  uint uVar4;
-  int iVar5;
-  time_t tVar6;
-  undefined4 uVar7;
-  int iVar8;
-  int **ppiVar9;
-  char *pcVar10;
+  int *piVar1;
+  uint uVar2;
+  int iVar3;
+  time_t tVar4;
+  undefined4 uVar5;
+  int iVar6;
+  int *piVar7;
+  char *pcVar8;
   pthread_mutex_t *__mutex;
-  int **ppiVar11;
-  int *piVar12;
-  undefined4 *puVar13;
-  int *piVar14;
-  int **ppiVar15;
-  undefined4 *puVar16;
-  undefined4 uVar17;
-  int iVar18;
-  uint uVar19;
-  int iVar20;
-  int iVar21;
-  int *piVar22;
-  bool bVar23;
-  double dVar24;
-  undefined auStack_850 [8];
+  int *piVar9;
+  int *piVar10;
+  undefined4 *puVar11;
+  undefined4 *puVar12;
+  char *pcVar13;
+  int iVar14;
+  uint uVar15;
+  int iVar16;
+  int iVar17;
+  bool bVar18;
+  double dVar19;
+  undefined1 auStack_850 [8];
   int local_848 [2];
   int local_840 [2];
   char acStack_838 [2052];
   
   pthread_setcanceltype(1,(int *)0x0);
   RenameThread("Watchpool");
-  dVar2 = DAT_000224a8;
   set_lowprio();
-  dVar3 = DAT_000224b0;
   cgtimer_time(auStack_850);
-  iVar21 = 0;
+  iVar17 = 0;
   while( true ) {
-    iVar21 = iVar21 + 1;
-    if (0x78 < iVar21) {
-      iVar21 = 0;
+    iVar17 = iVar17 + 1;
+    if (0x78 < iVar17) {
+      iVar17 = 0;
     }
     cgtime(local_848);
     if (0 < total_pools) break;
 LAB_0002242c:
-    iVar18 = current_pool();
-    if (*(char *)(iVar18 + 0x61) != '\0') {
+    iVar14 = current_pool();
+    if (*(char *)(iVar14 + 0x61) != '\0') {
       switch_pools(0);
     }
     if ((pool_strategy == 2) &&
-       (iVar18 = local_848[0] - (int)rotate_tv,
-       iVar18 != opt_rotate_period * 0x3c &&
-       iVar18 + opt_rotate_period * -0x3c < 0 == SBORROW4(iVar18,opt_rotate_period * 0x3c))) {
-      cgtime(DAT_00022840);
+       (iVar14 = local_848[0] - (int)rotate_tv,
+       iVar14 != opt_rotate_period * 0x3c &&
+       iVar14 + opt_rotate_period * -0x3c < 0 == SBORROW4(iVar14,opt_rotate_period * 0x3c))) {
+      cgtime(&rotate_tv);
       switch_pools(0);
     }
     cgsleep_ms_r(auStack_850,5000);
     cgtimer_time(auStack_850);
   }
-  iVar18 = 0;
+  iVar14 = 0;
 LAB_0002233c:
-  puVar16 = *(undefined4 **)(pools + iVar18 * 4);
+  puVar12 = *(undefined4 **)(pools + iVar14 * 4);
   if ((opt_benchmark == '\0') && (opt_benchfile == 0)) {
-    __mutex = (pthread_mutex_t *)(puVar16 + 0x2f);
+    __mutex = (pthread_mutex_t *)(puVar12 + 0x2f);
     cgtime(local_840);
-    iVar5 = pthread_mutex_lock(__mutex);
-    uVar17 = DAT_00022844;
-    if (iVar5 != 0) {
-      piVar12 = __errno_location();
-      uVar7 = 0x273e;
-      pcVar10 = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
+    iVar3 = pthread_mutex_lock(__mutex);
+    if (iVar3 != 0) {
+      piVar9 = __errno_location();
+      uVar5 = 0x273e;
+      pcVar13 = "reap_curl";
+      pcVar8 = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
       goto LAB_00022766;
     }
-    ppiVar11 = (int **)puVar16[0x56];
-    if ((int **)(puVar16 + 0x56) != ppiVar11) {
-      iVar5 = puVar16[0x48];
-      if (1 < iVar5) {
-        iVar20 = 0;
-        ppiVar9 = (int **)*ppiVar11;
+    piVar9 = (int *)puVar12[0x56];
+    if (puVar12 + 0x56 != piVar9) {
+      iVar3 = puVar12[0x48];
+      if (1 < iVar3) {
+        iVar16 = 0;
+        piVar10 = (int *)*piVar9;
         do {
-          ppiVar15 = ppiVar9;
-          if (local_840[0] - ((int *)ppiVar11)[2] < 0x12d) {
-            ppiVar9 = (int **)*ppiVar15;
+          piVar7 = piVar10;
+          if (local_840[0] - piVar9[2] < 0x12d) {
+            piVar10 = (int *)*piVar7;
           }
           else {
-            piVar12 = (int *)((int *)ppiVar11)[1];
-            iVar8 = (int)*ppiVar11;
-            iVar20 = iVar20 + 1;
-            puVar16[0x48] = iVar5 + -1;
-            *(int **)(iVar8 + 4) = piVar12;
-            *piVar12 = iVar8;
-            free((int *)ppiVar11 + -1);
-            ppiVar9 = (int **)*ppiVar15;
+            piVar10 = (int *)piVar9[1];
+            iVar6 = *piVar9;
+            iVar16 = iVar16 + 1;
+            puVar12[0x48] = iVar3 + -1;
+            *(int **)(iVar6 + 4) = piVar10;
+            *piVar10 = iVar6;
+            free(piVar9 + -1);
+            piVar10 = (int *)*piVar7;
           }
-          if ((int **)(puVar16 + 0x56) == ppiVar15) {
-            iVar5 = pthread_mutex_unlock(__mutex);
-            if (iVar5 != 0) goto LAB_000227ec;
+          if (puVar12 + 0x56 == piVar7) {
+            iVar3 = pthread_mutex_unlock(__mutex);
+            if (iVar3 != 0) goto LAB_000227ec;
             (*selective_yield)();
-            if (((iVar20 != 0) && (opt_debug != '\0')) &&
+            if (((iVar16 != 0) && (opt_debug != '\0')) &&
                ((use_syslog != '\0' || ((opt_log_output != '\0' || (6 < opt_log_level)))))) {
-              pcVar10 = "s";
-              if (iVar20 == 1) {
-                pcVar10 = "";
+              pcVar8 = "s";
+              if (iVar16 == 1) {
+                pcVar8 = "";
               }
-              snprintf(acStack_838,0x800,"Reaped %d curl%s from pool %d",iVar20,pcVar10,*puVar16);
+              snprintf(acStack_838,0x800,"Reaped %d curl%s from pool %d",iVar16,pcVar8,*puVar12);
               _applog(7,acStack_838,0);
             }
             break;
           }
-          iVar5 = puVar16[0x48];
-          ppiVar11 = ppiVar15;
-        } while (1 < iVar5);
+          iVar3 = puVar12[0x48];
+          piVar9 = piVar7;
+        } while (1 < iVar3);
       }
 LAB_00022570:
-      tVar6 = time((time_t *)0x0);
-      iVar5 = pthread_mutex_lock(DAT_00022838);
-      uVar17 = DAT_0002283c;
-      if (iVar5 != 0) {
-        piVar12 = __errno_location();
-        uVar7 = 0x2762;
-        pcVar10 = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
+      tVar4 = time((time_t *)0x0);
+      iVar3 = pthread_mutex_lock((pthread_mutex_t *)sshare_lock);
+      if (iVar3 != 0) {
+        piVar9 = __errno_location();
+        uVar5 = 0x2762;
+        pcVar13 = "prune_stratum_shares";
+        pcVar8 = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
         goto LAB_00022766;
       }
-      if (stratum_shares != (int **)0x0) {
-        puVar13 = (undefined4 *)stratum_shares[9][0x41];
-        uVar4 = 0;
-        ppiVar15 = (int **)stratum_shares[2];
-        ppiVar11 = stratum_shares;
-        ppiVar9 = stratum_shares;
+      if (stratum_shares != (int *)0x0) {
+        puVar11 = *(undefined4 **)(stratum_shares[9] + 0x104);
+        uVar2 = 0;
+        piVar7 = (int *)stratum_shares[2];
+        piVar9 = stratum_shares;
+        piVar10 = stratum_shares;
         do {
-          ppiVar1 = ppiVar15;
-          stratum_shares = ppiVar9;
-          if ((puVar16 == puVar13) && ((int)(ppiVar11[0xb] + 0x1e) < tVar6)) {
-            piVar12 = ppiVar11[1];
-            if (piVar12 == (int *)0x0) {
-              ppiVar15 = (int **)ppiVar11[2];
-              stratum_shares = ppiVar15;
-              if (ppiVar15 != (int **)0x0) {
-                piVar22 = *ppiVar9;
-                if (ppiVar11 == (int **)(piVar22[4] - piVar22[5])) {
-                  piVar22[4] = piVar22[5];
+          piVar1 = piVar7;
+          stratum_shares = piVar10;
+          if ((puVar12 == puVar11) && (piVar9[0xb] + 0x78 < tVar4)) {
+            iVar3 = piVar9[1];
+            if (iVar3 == 0) {
+              piVar7 = (int *)piVar9[2];
+              stratum_shares = piVar7;
+              if (piVar7 != (int *)0x0) {
+                iVar16 = *piVar10;
+                if (piVar9 == (int *)(*(int *)(iVar16 + 0x10) - *(int *)(iVar16 + 0x14))) {
+                  *(int *)(iVar16 + 0x10) = *(int *)(iVar16 + 0x14);
                 }
                 goto LAB_000225e8;
               }
-              stratum_shares = ppiVar9;
-              free((void *)**ppiVar9);
-              free(*ppiVar9);
-              stratum_shares = ppiVar15;
+              stratum_shares = piVar10;
+              free(*(void **)*piVar10);
+              free((void *)*piVar10);
+              stratum_shares = piVar7;
             }
             else {
-              piVar22 = *ppiVar9;
-              iVar5 = piVar22[5] + (int)piVar12;
-              if (ppiVar11 == (int **)(piVar22[4] - piVar22[5])) {
-                piVar22[4] = iVar5;
+              iVar6 = *piVar10;
+              iVar16 = *(int *)(iVar6 + 0x14) + iVar3;
+              if (piVar9 == (int *)(*(int *)(iVar6 + 0x10) - *(int *)(iVar6 + 0x14))) {
+                *(int *)(iVar6 + 0x10) = iVar16;
               }
-              *(int **)(iVar5 + 8) = ppiVar11[2];
-              ppiVar15 = ppiVar9;
+              *(int *)(iVar16 + 8) = piVar9[2];
+              piVar7 = piVar10;
 LAB_000225e8:
-              piVar22 = *ppiVar15;
-              if (ppiVar11[2] != (int *)0x0) {
-                *(int **)((int)ppiVar11[2] + piVar22[5] + 4) = piVar12;
+              piVar7 = (int *)*piVar7;
+              if (piVar9[2] != 0) {
+                *(int *)(piVar9[2] + piVar7[5] + 4) = iVar3;
               }
-              iVar5 = *piVar22;
-              uVar19 = (uint)ppiVar11[7] & piVar22[1] - 1U;
-              iVar20 = iVar5 + uVar19 * 0xc;
-              ppiVar9 = *(int ***)(iVar5 + uVar19 * 0xc);
-              *(int *)(iVar20 + 4) = *(int *)(iVar20 + 4) + -1;
-              piVar12 = ppiVar11[4];
-              if (ppiVar9 == ppiVar11) {
-                *(int **)(iVar5 + uVar19 * 0xc) = piVar12;
+              iVar3 = *piVar7;
+              uVar15 = piVar9[7] & piVar7[1] - 1U;
+              iVar16 = iVar3 + uVar15 * 0xc;
+              piVar10 = *(int **)(iVar3 + uVar15 * 0xc);
+              *(int *)(iVar16 + 4) = *(int *)(iVar16 + 4) + -1;
+              iVar16 = piVar9[4];
+              if (piVar10 == piVar9) {
+                *(int *)(iVar3 + uVar15 * 0xc) = iVar16;
               }
-              piVar14 = ppiVar11[3];
-              if (piVar14 != (int *)0x0) {
-                piVar14[4] = (int)piVar12;
-                piVar12 = ppiVar11[4];
+              iVar3 = piVar9[3];
+              if (iVar3 != 0) {
+                *(int *)(iVar3 + 0x10) = iVar16;
+                iVar16 = piVar9[4];
               }
-              if (piVar12 != (int *)0x0) {
-                piVar12[3] = (int)piVar14;
+              if (iVar16 != 0) {
+                *(int *)(iVar16 + 0xc) = iVar3;
               }
-              piVar22[3] = piVar22[3] + -1;
+              piVar7[3] = piVar7[3] + -1;
             }
-            uVar4 = uVar4 + 1;
-            _free_work(ppiVar11 + 9,"cgminer.c",DAT_0002283c,0x2769);
-            free(ppiVar11);
+            uVar2 = uVar2 + 1;
+            _free_work(piVar9 + 9,"cgminer.c","prune_stratum_shares",0x2769);
+            free(piVar9);
           }
-          if (ppiVar1 == (int **)0x0) goto LAB_00022652;
-          puVar13 = (undefined4 *)ppiVar1[9][0x41];
-          ppiVar15 = (int **)ppiVar1[2];
-          ppiVar11 = ppiVar1;
-          ppiVar9 = stratum_shares;
+          if (piVar1 == (int *)0x0) goto LAB_00022652;
+          puVar11 = *(undefined4 **)(piVar1[9] + 0x104);
+          piVar7 = (int *)piVar1[2];
+          piVar9 = piVar1;
+          piVar10 = stratum_shares;
         } while( true );
       }
-      iVar5 = pthread_mutex_unlock(DAT_00022838);
-      if (iVar5 == 0) {
+      iVar3 = pthread_mutex_unlock((pthread_mutex_t *)sshare_lock);
+      if (iVar3 == 0) {
         (*selective_yield)();
         goto LAB_00022354;
       }
       goto LAB_00022748;
     }
-    iVar5 = pthread_mutex_unlock(__mutex);
-    if (iVar5 == 0) {
+    iVar3 = pthread_mutex_unlock(__mutex);
+    if (iVar3 == 0) {
       (*selective_yield)();
       goto LAB_00022570;
     }
 LAB_000227ec:
-    piVar12 = __errno_location();
-    uVar7 = 0x2750;
-    uVar17 = DAT_00022844;
+    piVar9 = __errno_location();
+    pcVar13 = "reap_curl";
+    uVar5 = 0x2750;
     goto LAB_0002275a;
   }
   goto LAB_00022354;
 LAB_00022652:
-  iVar5 = pthread_mutex_unlock(DAT_00022838);
-  if (iVar5 != 0) {
+  iVar3 = pthread_mutex_unlock((pthread_mutex_t *)sshare_lock);
+  if (iVar3 != 0) {
 LAB_00022748:
-    uVar17 = DAT_0002283c;
-    piVar12 = __errno_location();
-    uVar7 = 0x276f;
+    pcVar13 = "prune_stratum_shares";
+    piVar9 = __errno_location();
+    uVar5 = 0x276f;
 LAB_0002275a:
-    pcVar10 = "WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d";
+    pcVar8 = "WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d";
 LAB_00022766:
-    snprintf(acStack_838,0x800,pcVar10,*piVar12,"cgminer.c",uVar17,uVar7);
+    snprintf(acStack_838,0x800,pcVar8,*piVar9,"cgminer.c",pcVar13,uVar5);
     _applog(3,acStack_838,1);
                     /* WARNING: Subroutine does not return */
     __quit(1);
   }
   (*selective_yield)();
-  if (uVar4 != 0) {
+  if (uVar2 != 0) {
     if (((use_syslog != '\0') || (opt_log_output != '\0')) || (3 < opt_log_level)) {
       snprintf(acStack_838,0x800,"Lost %d shares due to no stratum share response from pool %d",
-               uVar4,*puVar16);
+               uVar2,*puVar12);
       _applog(4,acStack_838,0);
     }
-    bVar23 = CARRY4((uint)total_stale,uVar4);
-    total_stale._0_4_ = (uint)total_stale + uVar4;
-    puVar16[0x1e] = puVar16[0x1e] + uVar4;
-    total_stale._4_4_ = total_stale._4_4_ + ((int)uVar4 >> 0x1f) + (uint)bVar23;
+    bVar18 = CARRY4((uint)total_stale,uVar2);
+    total_stale._0_4_ = (uint)total_stale + uVar2;
+    puVar12[0x1e] = puVar12[0x1e] + uVar2;
+    total_stale._4_4_ = total_stale._4_4_ + ((int)uVar2 >> 0x1f) + (uint)bVar18;
   }
 LAB_00022354:
-  if (iVar21 == 0x78) {
-    uVar4 = puVar16[0x26];
-    uVar19 = puVar16[10];
-    dVar24 = (double)__aeabi_l2d(uVar19 - uVar4,
-                                 (puVar16[0xb] - ((int)uVar4 >> 0x1f)) - (uint)(uVar19 < uVar4));
-    puVar16[0x26] = uVar19;
-    dVar24 = (*(double *)(puVar16 + 0x24) + dVar24 * dVar2) / dVar3;
-    *(double *)(puVar16 + 0x24) = dVar24;
-    puVar16[0x27] = (int)(longlong)dVar24;
+  if (iVar17 == 0x78) {
+    uVar2 = puVar12[0x26];
+    uVar15 = puVar12[10];
+    dVar19 = (double)__aeabi_l2d(uVar15 - uVar2,
+                                 (puVar12[0xb] - ((int)uVar2 >> 0x1f)) - (uint)(uVar15 < uVar2));
+    puVar12[0x26] = uVar15;
+    dVar19 = (*(double *)(puVar12 + 0x24) + dVar19 * 0.63) / 1.63;
+    *(double *)(puVar12 + 0x24) = dVar19;
+    puVar12[0x27] = (int)(longlong)dVar19;
   }
-  if ((puVar16[0x19] != 0) && (*(char *)(puVar16 + 0x47) == '\0')) {
-    iVar5 = pool_active(puVar16,1);
-    if (iVar5 == 0) {
-      cgtime(puVar16 + 0x22);
+  if ((puVar12[0x19] != 0) && (*(char *)(puVar12 + 0x47) == '\0')) {
+    iVar3 = pool_active(puVar12,1);
+    if (iVar3 == 0) {
+      cgtime(puVar12 + 0x22);
     }
     else {
-      iVar5 = pool_tclear(puVar16,(int)puVar16 + 0x61);
-      if (iVar5 != 0) {
-        pool_resus(puVar16);
+      iVar3 = pool_tclear(puVar12,(int)puVar12 + 0x61);
+      if (iVar3 != 0) {
+        pool_resus(puVar12);
       }
     }
-    if (((*(char *)((int)puVar16 + 0x61) == '\0') && (pool_strategy == 0)) &&
-       ((iVar20 = puVar16[1], iVar5 = cp_prio(), iVar20 < iVar5 &&
-        (opt_pool_fallback < local_848[0] - puVar16[0x22])))) {
+    if (((*(char *)((int)puVar12 + 0x61) == '\0') && (pool_strategy == 0)) &&
+       ((iVar16 = puVar12[1], iVar3 = cp_prio(), iVar16 < iVar3 &&
+        (opt_pool_fallback < local_848[0] - puVar12[0x22])))) {
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (3 < opt_log_level)) {
-        snprintf(acStack_838,0x800,"Pool %d %s stable for >%d seconds",*puVar16,puVar16[0x29],
+        snprintf(acStack_838,0x800,"Pool %d %s stable for >%d seconds",*puVar12,puVar12[0x29],
                  opt_pool_fallback);
         _applog(4,acStack_838,0);
       }
-      iVar18 = iVar18 + 1;
+      iVar14 = iVar14 + 1;
       switch_pools(0);
-      if (total_pools <= iVar18) goto LAB_0002242c;
+      if (total_pools <= iVar14) goto LAB_0002242c;
       goto LAB_0002233c;
     }
   }
-  iVar18 = iVar18 + 1;
-  if (total_pools <= iVar18) goto LAB_0002242c;
+  iVar14 = iVar14 + 1;
+  if (total_pools <= iVar14) goto LAB_0002242c;
   goto LAB_0002233c;
 }
 

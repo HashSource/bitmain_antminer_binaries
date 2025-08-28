@@ -6,7 +6,7 @@ int remove(char *__filename)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_remove_00047978)();
+  iVar1 = remove(__filename);
   return iVar1;
 }
 

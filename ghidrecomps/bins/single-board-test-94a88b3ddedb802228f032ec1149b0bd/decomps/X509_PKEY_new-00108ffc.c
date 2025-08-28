@@ -8,9 +8,9 @@ X509_PKEY * X509_PKEY_new(void)
   X509_ALGOR *pXVar2;
   ASN1_STRING *pAVar3;
   
-  pXVar1 = (X509_PKEY *)CRYPTO_malloc(0x34,DAT_0010905c,0x6d);
+  pXVar1 = (X509_PKEY *)CRYPTO_malloc(0x34,"x_pkey.c",0x6d);
   if (pXVar1 == (X509_PKEY *)0x0) {
-    ERR_put_error(0xd,0xad,0x41,DAT_0010905c,0x6d);
+    ERR_put_error(0xd,0xad,0x41,"x_pkey.c",0x6d);
   }
   else {
     pXVar1->version = 0;

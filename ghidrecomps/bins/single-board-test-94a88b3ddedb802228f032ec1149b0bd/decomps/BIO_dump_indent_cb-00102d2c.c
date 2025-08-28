@@ -79,31 +79,31 @@ int BIO_dump_indent_cb(cb *cb,void *u,char *s,int len,int indent)
       iVar6 = 0;
       local_14c[0] = '\0';
       BUF_strlcpy(local_14c,local_1d0,0x121);
-      BIO_snprintf(acStack_1e4,0x14,DAT_00102f30,iVar2);
+      BIO_snprintf(acStack_1e4,0x14,"%04x - ",iVar2);
       BUF_strlcat(local_14c,acStack_1e4,0x121);
       if (iVar5 < 1) {
-        BUF_strlcat(local_14c,DAT_00102f3c,0x121);
+        BUF_strlcat(local_14c,"  ",0x121);
       }
       else {
         do {
-          while (iVar2 + iVar6 < iVar4) {
-            if (iVar6 == 7) {
-              uVar11 = 0x2d;
-            }
-            else {
-              uVar11 = 0x20;
-            }
-            pbVar10 = pbVar7 + iVar6;
+          while (iVar4 <= iVar2 + iVar6) {
             iVar6 = iVar6 + 1;
-            BIO_snprintf(acStack_1e4,0x14,DAT_00102f34,(uint)*pbVar10,uVar11);
-            BUF_strlcat(local_14c,acStack_1e4,0x121);
+            BUF_strlcat(local_14c,"   ",0x121);
             if (iVar6 == iVar5) goto LAB_00102e4c;
           }
+          if (iVar6 == 7) {
+            uVar11 = 0x2d;
+          }
+          else {
+            uVar11 = 0x20;
+          }
+          pbVar10 = pbVar7 + iVar6;
           iVar6 = iVar6 + 1;
-          BUF_strlcat(local_14c,DAT_00102f38,0x121);
+          BIO_snprintf(acStack_1e4,0x14,"%02x%c",(uint)*pbVar10,uVar11);
+          BUF_strlcat(local_14c,acStack_1e4,0x121);
         } while (iVar6 != iVar5);
 LAB_00102e4c:
-        BUF_strlcat(local_14c,DAT_00102f3c,0x121);
+        BUF_strlcat(local_14c,"  ",0x121);
         if (iVar2 < iVar4) {
           pbVar10 = pbVar7;
           do {
@@ -112,14 +112,14 @@ LAB_00102e4c:
             if (0x5e < uVar3 - 0x20) {
               uVar3 = 0x2e;
             }
-            BIO_snprintf(acStack_1e4,0x14,DAT_00102f40,uVar3);
+            BIO_snprintf(acStack_1e4,0x14,"%c",uVar3);
             BUF_strlcat(local_14c,acStack_1e4,0x121);
           } while ((pbVar9 != (byte *)(s + iVar2 + iVar5)) &&
                   (pbVar10 = pbVar9, pbVar9 != (byte *)(s + iVar4)));
         }
       }
       iVar8 = iVar8 + 1;
-      BUF_strlcat(local_14c,DAT_00102f44,0x121);
+      BUF_strlcat(local_14c,"\n",0x121);
       iVar2 = iVar2 + iVar5;
       sVar1 = strlen(local_14c);
       iVar6 = (*cb)(local_14c,sVar1,u);
@@ -128,7 +128,7 @@ LAB_00102e4c:
     } while (iVar8 != local_1fc);
   }
   if (local_1ec != 0) {
-    BIO_snprintf(local_14c,0x121,DAT_00102f48,local_1d0,iVar4 + local_1ec);
+    BIO_snprintf(local_14c,0x121,"%s%04x - <SPACES/NULS>\n",local_1d0,iVar4 + local_1ec);
     sVar1 = strlen(local_14c);
     iVar4 = (*cb)(local_14c,sVar1,u);
     local_204 = local_204 + iVar4;

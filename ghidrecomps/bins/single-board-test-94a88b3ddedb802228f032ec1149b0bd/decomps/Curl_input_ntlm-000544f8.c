@@ -12,7 +12,7 @@ int Curl_input_ntlm(undefined4 *param_1,int param_2,int param_3,undefined4 param
   if (param_2 == 0) {
     piVar5 = param_1 + 0x9d;
   }
-  iVar1 = Curl_raw_nequal(DAT_0005458c,param_3,4,param_4,param_4);
+  iVar1 = Curl_raw_nequal(&DAT_00135cc0,param_3,4,param_4,param_4);
   if (iVar1 == 0) {
     return 0;
   }
@@ -35,18 +35,18 @@ int Curl_input_ntlm(undefined4 *param_1,int param_2,int param_3,undefined4 param
   }
   iVar1 = *piVar5;
   if (iVar1 == 4) {
-    Curl_infof(*param_1,DAT_00054598);
+    Curl_infof(*param_1,"NTLM auth restarted\n");
     Curl_http_ntlm_cleanup(param_1);
   }
   else {
     if (iVar1 == 3) {
-      Curl_infof(*param_1,DAT_00054594);
+      Curl_infof(*param_1,"NTLM handshake rejected\n");
       Curl_http_ntlm_cleanup(param_1);
       *piVar5 = 0;
       return 9;
     }
     if (iVar1 != 0) {
-      Curl_infof(*param_1,DAT_00054590);
+      Curl_infof(*param_1,"NTLM handshake failure (internal error)\n");
       return 9;
     }
   }

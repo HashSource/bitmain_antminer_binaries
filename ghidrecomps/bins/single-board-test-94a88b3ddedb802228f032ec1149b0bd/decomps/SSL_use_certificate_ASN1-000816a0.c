@@ -9,13 +9,13 @@ int SSL_use_certificate_ASN1(SSL *ssl,uchar *d,int len)
   local_14 = d;
   a = d2i_X509((X509 **)0x0,&local_14,len);
   if (a == (X509 *)0x0) {
-    ERR_put_error(0x14,199,0xd,DAT_00081704,0x86);
+    ERR_put_error(0x14,199,0xd,"ssl_rsa.c",0x86);
     iVar1 = 0;
   }
   else {
     iVar1 = ssl_cert_inst(&ssl->cert);
     if (iVar1 == 0) {
-      ERR_put_error(0x14,0xc6,0x41,DAT_00081704,0x4c);
+      ERR_put_error(0x14,0xc6,0x41,"ssl_rsa.c",0x4c);
       iVar1 = 0;
     }
     else {

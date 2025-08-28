@@ -22,7 +22,7 @@ int pkey_cmac_ctrl_str(int param_1,char *param_2,char *param_3)
       }
     }
     else {
-      iVar1 = strcmp(param_2,DAT_000d85b8);
+      iVar1 = strcmp(param_2,"cipher");
       if (iVar1 == 0) {
         cipher = EVP_get_cipherbyname(param_3);
         if (cipher != (EVP_CIPHER *)0x0) {
@@ -35,7 +35,7 @@ int pkey_cmac_ctrl_str(int param_1,char *param_2,char *param_3)
         }
       }
       else {
-        iVar1 = strcmp(param_2,DAT_000d85bc);
+        iVar1 = strcmp(param_2,"hexkey");
         if (iVar1 != 0) {
           return -2;
         }

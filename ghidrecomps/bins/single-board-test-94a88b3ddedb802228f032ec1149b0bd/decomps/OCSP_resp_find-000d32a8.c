@@ -2,7 +2,7 @@
 int OCSP_resp_find(OCSP_BASICRESP *bs,OCSP_CERTID *id,int last)
 
 {
-  OCSP_CERTID **ppOVar1;
+  undefined4 *puVar1;
   int iVar2;
   int iVar3;
   _STACK *p_Var4;
@@ -16,8 +16,8 @@ int OCSP_resp_find(OCSP_BASICRESP *bs,OCSP_CERTID *id,int last)
     }
     p_Var4 = &bs->tbsResponseData->responses->stack;
     for (; iVar2 = sk_num(p_Var4), iVar3 < iVar2; iVar3 = iVar3 + 1) {
-      ppOVar1 = (OCSP_CERTID **)sk_value(p_Var4,iVar3);
-      iVar2 = OCSP_id_cmp(id,*ppOVar1);
+      puVar1 = (undefined4 *)sk_value(p_Var4,iVar3);
+      iVar2 = OCSP_id_cmp(id,(OCSP_CERTID *)*puVar1);
       if (iVar2 == 0) {
         return iVar3;
       }

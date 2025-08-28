@@ -8,7 +8,7 @@ ASN1_OCTET_STRING * s2i_ASN1_OCTET_STRING(X509V3_EXT_METHOD *method,X509V3_CTX *
   
   a = ASN1_STRING_type_new(4);
   if (a == (ASN1_STRING *)0x0) {
-    ERR_put_error(0x22,0x70,0x41,DAT_000c9620,0x57);
+    ERR_put_error(0x22,0x70,0x41,"v3_skey.c",0x57);
   }
   else {
     puVar1 = string_to_hex(str,local_14);

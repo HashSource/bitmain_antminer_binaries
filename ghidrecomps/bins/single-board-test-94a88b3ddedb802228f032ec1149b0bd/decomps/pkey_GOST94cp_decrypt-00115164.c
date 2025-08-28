@@ -14,7 +14,7 @@ pkey_GOST94cp_decrypt
   int *piVar6;
   undefined4 *puVar7;
   undefined4 local_1090;
-  undefined auStack_108c [32];
+  undefined1 auStack_108c [32];
   undefined4 local_106c;
   undefined4 uStack_1068;
   undefined4 local_1064;
@@ -26,7 +26,7 @@ pkey_GOST94cp_decrypt
   undefined4 uStack_104c;
   undefined4 uStack_1048;
   undefined4 local_1044;
-  undefined auStack_1040 [4128];
+  undefined1 auStack_1040 [4128];
   
   local_1090 = param_4;
   pEVar1 = EVP_PKEY_CTX_get0_pkey(param_1);
@@ -36,27 +36,27 @@ pkey_GOST94cp_decrypt
   }
   piVar2 = (int *)d2i_GOST_KEY_TRANSPORT(0,&local_1090,param_5);
   if (piVar2 == (int *)0x0) {
-    ERR_GOST_error(0x7a,0x68,DAT_00115300,0xe6);
+    ERR_GOST_error(0x7a,0x68,"gost94_keyx.c",0xe6);
     return 0;
   }
   peer = X509_PUBKEY_get(*(X509_PUBKEY **)(piVar2[1] + 4));
   if (peer == (EVP_PKEY *)0x0) {
     iVar3 = EVP_PKEY_CTX_ctrl(param_1,-1,-1,2,3,(void *)0x0);
     if (iVar3 < 1) {
-      ERR_GOST_error(0x7a,0x84,DAT_00115300,0xf4);
+      ERR_GOST_error(0x7a,0x84,"gost94_keyx.c",0xf4);
       goto LAB_001152b2;
     }
   }
   else {
     iVar3 = EVP_PKEY_derive_set_peer(param_1,peer);
     if (iVar3 < 1) {
-      ERR_GOST_error(0x7a,0x83,DAT_00115300,0xed);
+      ERR_GOST_error(0x7a,0x83,"gost94_keyx.c",0xed);
       goto LAB_001152b2;
     }
   }
   pEVar4 = EVP_PKEY_CTX_get0_peerkey(param_1);
   if (pEVar4 == (EVP_PKEY *)0x0) {
-    ERR_GOST_error(0x7a,0x78,DAT_00115300,0xfa);
+    ERR_GOST_error(0x7a,0x78,"gost94_keyx.c",0xfa);
   }
   else {
     iVar3 = get_encryption_params(*(undefined4 *)piVar2[1]);
@@ -64,14 +64,14 @@ pkey_GOST94cp_decrypt
       gost_init(auStack_1040,*(undefined4 *)(iVar3 + 4));
       piVar6 = *(int **)(piVar2[1] + 8);
       if (*piVar6 != 8) {
-        OpenSSLDie(DAT_00115300,0x104,DAT_00115304);
+        OpenSSLDie("gost94_keyx.c",0x104,"gkt->key_agreement_info->eph_iv->length == 8");
         piVar6 = *(int **)(piVar2[1] + 8);
       }
       local_106c = *(undefined4 *)piVar6[2];
       uStack_1068 = ((undefined4 *)piVar6[2])[1];
       piVar6 = *(int **)*piVar2;
       if (*piVar6 != 0x20) {
-        OpenSSLDie(DAT_00115300,0x106,DAT_00115308);
+        OpenSSLDie("gost94_keyx.c",0x106,"gkt->key_info->encrypted_key->length == 32");
         piVar6 = *(int **)*piVar2;
       }
       puVar7 = (undefined4 *)piVar6[2];
@@ -85,7 +85,7 @@ pkey_GOST94cp_decrypt
       uStack_1050 = puVar7[5];
       piVar6 = *(int **)(*piVar2 + 4);
       if (*piVar6 != 4) {
-        OpenSSLDie(DAT_00115300,0x108,DAT_0011530c);
+        OpenSSLDie("gost94_keyx.c",0x108,"gkt->key_info->imit->length == 4");
         piVar6 = *(int **)(*piVar2 + 4);
       }
       local_1044 = *(undefined4 *)piVar6[2];
@@ -97,7 +97,7 @@ pkey_GOST94cp_decrypt
         GOST_KEY_TRANSPORT_free(piVar2);
         return 1;
       }
-      ERR_GOST_error(0x7a,0x66,DAT_00115300,0x10d);
+      ERR_GOST_error(0x7a,0x66,"gost94_keyx.c",0x10d);
     }
   }
 LAB_001152b2:

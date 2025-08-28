@@ -32,7 +32,7 @@ int cnt_of_proc(char *app_name)
   if (pFVar1 == (FILE *)0x0) {
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);
-      pFVar1 = fopen(log_file,(char *)&DAT_0008e568);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,"%s:%d:%s:  app-service:%s Not Found!!!","cgminer.c",0x2ceb,"cnt_of_proc",
                 app_name);
@@ -44,7 +44,7 @@ int cnt_of_proc(char *app_name)
     while (pcVar3 = fgets(buf,0x100,pFVar1), pcVar3 != (char *)0x0) {
       if (3 < log_level) {
         print_crt_time_to_file(log_file,3);
-        pFVar2 = fopen(log_file,(char *)&DAT_0008e568);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: pidof %s command result is:%s\n","cgminer.c",0x2cce,
                   "cnt_of_proc",app_name,buf);
@@ -53,7 +53,7 @@ int cnt_of_proc(char *app_name)
       }
       if (3 < log_level) {
         print_crt_time_to_file(log_file,3);
-        pFVar2 = fopen(log_file,(char *)&DAT_0008e568);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           sVar6 = strlen(buf);
           fprintf(pFVar2,"%s:%d:%s: strlen is: %d\n","cgminer.c",0x2ccf,"cnt_of_proc",sVar6);
@@ -73,7 +73,7 @@ int cnt_of_proc(char *app_name)
         iVar5 = atoi(sub_pid);
         if ((0 < iVar5) && (inst_cnt = inst_cnt + 1, 3 < log_level)) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,(char *)&DAT_0008e568);
+          pFVar1 = fopen(log_file,"a+");
           if (pFVar1 != (FILE *)0x0) {
             fprintf(pFVar1,"%s:%d:%s: Parsed proc id is: %d\n","cgminer.c",0x2ce4,"cnt_of_proc",
                     iVar5);
@@ -85,7 +85,7 @@ int cnt_of_proc(char *app_name)
   }
   if ((0 < inst_cnt) && (3 < log_level)) {
     print_crt_time_to_file(log_file,3);
-    pFVar1 = fopen(log_file,(char *)&DAT_0008e568);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s:  %d instance of %s is  already Running on this machine\n",
               "cgminer.c",0x2cf0,"cnt_of_proc",inst_cnt,app_name);

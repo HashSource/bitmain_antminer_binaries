@@ -1,33 +1,21 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void patten_info_init(void)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
   int one_patten_bin_len;
   
   memset(&g_patten,0,0x9c);
-  uVar2 = s_pattern_00036c40._4_4_;
-  puVar1 = DAT_00022f3c;
   g_patten.asic_num = app_conf->asic_num;
   g_patten.core_num = app_conf->core_num;
   g_patten.patten_num = app_conf->pattern_num;
-  *DAT_00022f3c = s_pattern_00036c40._0_4_;
-  puVar1[1] = uVar2;
-  uVar2 = DAT_00036c4c;
-  puVar1 = DAT_00022f40;
-  *DAT_00022f40 = DAT_00036c48;
-  puVar1[1] = uVar2;
-  uVar2 = DAT_00036c54;
-  puVar1 = DAT_00022f44;
-  *DAT_00022f44 = DAT_00036c50;
-  *(char *)(puVar1 + 1) = (char)uVar2;
-  uVar2 = DAT_00036c5c;
-  puVar1 = DAT_00022f48;
-  *DAT_00022f48 = DAT_00036c58;
-  *(char *)(puVar1 + 1) = (char)uVar2;
+  builtin_strncpy(g_patten.dir_root,"pattern",8);
+  builtin_strncpy(g_patten.dir_algo,"zec-z15",8);
+  builtin_strncpy(g_patten.dir_asic,"asic",4);
+  g_patten.dir_asic[4] = '\0';
+  builtin_strncpy(g_patten.file_core,"core",4);
+  g_patten.file_core[4] = '\0';
   g_patten.work_bin_len = 0x8c;
   g_patten.nonce_bin_len = 4;
   g_patten.sol_bin_len = 0x540;
@@ -56,7 +44,7 @@ void patten_info_init(void)
     exit(1);
   }
   memset(g_patten.asic_recv_nonces,0,g_patten.asic_num << 2);
-  pthread_mutex_init(DAT_00022f4c,(pthread_mutexattr_t *)0x0);
+  pthread_mutex_init((pthread_mutex_t *)&g_patten.patten_mutex,(pthread_mutexattr_t *)0x0);
   return;
 }
 

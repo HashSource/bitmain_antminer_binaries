@@ -1,5 +1,5 @@
 
-byte twoc2hex(undefined param_1,undefined param_2)
+byte twoc2hex(undefined1 param_1,undefined1 param_2)
 
 {
   char cVar1;

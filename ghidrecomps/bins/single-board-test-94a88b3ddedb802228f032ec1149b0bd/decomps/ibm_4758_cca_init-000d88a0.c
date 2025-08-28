@@ -2,91 +2,63 @@
 undefined4 ibm_4758_cca_init(void)
 
 {
-  DSO_FUNC_TYPE *ppDVar1;
-  DSO_FUNC_TYPE *ppDVar2;
-  DSO_FUNC_TYPE pDVar3;
-  DSO *dso;
-  int iVar4;
+  char *filename;
+  int line;
   
-  ppDVar1 = DAT_000d89a4;
-  if (DAT_000d89a4[5] == (DSO_FUNC_TYPE)0x0) {
-    pDVar3 = DAT_000d89a4[4];
-    if (DAT_000d89a4[4] == (DSO_FUNC_TYPE)0x0) {
-      pDVar3 = DAT_000d89ac;
+  if (dso == (DSO *)0x0) {
+    filename = CCA4758_LIB_NAME;
+    if (CCA4758_LIB_NAME == (char *)0x0) {
+      filename = "CSUNSAPI";
     }
-    dso = DSO_load((DSO *)0x0,(char *)pDVar3,(DSO_METHOD *)0x0,0);
-    ppDVar1[5] = (DSO_FUNC_TYPE)dso;
+    dso = DSO_load((DSO *)0x0,filename,(DSO_METHOD *)0x0,0);
     if (dso == (DSO *)0x0) {
-      pDVar3 = ppDVar1[3];
-      if (pDVar3 == (DSO_FUNC_TYPE)0x0) {
-        pDVar3 = (DSO_FUNC_TYPE)ERR_get_next_error_library();
-        ppDVar1[3] = pDVar3;
+      if (CCA4758_lib_error_code == 0) {
+        CCA4758_lib_error_code = ERR_get_next_error_library();
       }
-      iVar4 = 0x122;
+      line = 0x122;
     }
     else {
-      pDVar3 = DSO_bind_func(dso,DAT_000d89b0);
-      ppDVar1[6] = pDVar3;
-      if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-        pDVar3 = DSO_bind_func((DSO *)ppDVar1[5],DAT_000d89b4);
-        *ppDVar1 = pDVar3;
-        if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-          pDVar3 = DSO_bind_func((DSO *)ppDVar1[5],DAT_000d89b8);
-          ppDVar1[7] = pDVar3;
-          if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-            pDVar3 = DSO_bind_func((DSO *)ppDVar1[5],DAT_000d89bc);
-            ppDVar1[8] = pDVar3;
-            if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-              pDVar3 = DSO_bind_func((DSO *)ppDVar1[5],DAT_000d89c0);
-              ppDVar1[9] = pDVar3;
-              if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-                pDVar3 = DSO_bind_func((DSO *)ppDVar1[5],DAT_000d89c4);
-                ppDVar1[2] = pDVar3;
-                if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-                  pDVar3 = DSO_bind_func((DSO *)ppDVar1[5],DAT_000d89c8);
-                  ppDVar1[1] = pDVar3;
-                  if (pDVar3 != (DSO_FUNC_TYPE)0x0) {
-                    iVar4 = RSA_get_ex_new_index
-                                      (0,DAT_000d89d0,(undefined1 *)0x0,(undefined1 *)0x0,
-                                       DAT_000d89cc);
-                    *DAT_000d89d4 = iVar4;
-                    return 1;
-                  }
-                }
-              }
-            }
-          }
-        }
+      keyRecordRead = DSO_bind_func(dso,"CSNDKRR");
+      if ((((keyRecordRead != (DSO_FUNC_TYPE)0x0) &&
+           (randomNumberGenerate = DSO_bind_func(dso,"CSNBRNG"),
+           randomNumberGenerate != (DSO_FUNC_TYPE)0x0)) &&
+          (digitalSignatureGenerate = DSO_bind_func(dso,"CSNDDSG"),
+          digitalSignatureGenerate != (DSO_FUNC_TYPE)0x0)) &&
+         (((digitalSignatureVerify = DSO_bind_func(dso,"CSNDDSV"),
+           digitalSignatureVerify != (DSO_FUNC_TYPE)0x0 &&
+           (publicKeyExtract = DSO_bind_func(dso,"CSNDPKX"), publicKeyExtract != (DSO_FUNC_TYPE)0x0)
+           ) && ((pkaEncrypt = DSO_bind_func(dso,"CSNDPKE"), pkaEncrypt != (DSO_FUNC_TYPE)0x0 &&
+                 (pkaDecrypt = DSO_bind_func(dso,"CSNDPKD"), pkaDecrypt != (DSO_FUNC_TYPE)0x0))))))
+      {
+        hndidx = RSA_get_ex_new_index
+                           (0,"IBM 4758 CCA RSA key handle",(undefined1 *)0x0,(undefined1 *)0x0,
+                            (undefined1 *)0xd87bd);
+        return 1;
       }
-      ppDVar2 = DAT_000d89a4;
-      pDVar3 = ppDVar1[3];
-      if (pDVar3 == (DSO_FUNC_TYPE)0x0) {
-        pDVar3 = (DSO_FUNC_TYPE)ERR_get_next_error_library();
-        ppDVar2[3] = pDVar3;
+      if (CCA4758_lib_error_code == 0) {
+        CCA4758_lib_error_code = ERR_get_next_error_library();
       }
-      iVar4 = 0x135;
+      line = 0x135;
     }
-    ERR_put_error((int)pDVar3,0x66,0x67,DAT_000d89a8,iVar4);
+    ERR_put_error(CCA4758_lib_error_code,0x66,0x67,"e_4758cca.c",line);
   }
   else {
-    pDVar3 = DAT_000d89a4[3];
-    if (pDVar3 == (DSO_FUNC_TYPE)0x0) {
-      pDVar3 = (DSO_FUNC_TYPE)ERR_get_next_error_library();
-      ppDVar1[3] = pDVar3;
+    if (CCA4758_lib_error_code == 0) {
+      CCA4758_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error((int)pDVar3,0x66,100,DAT_000d89a8,0x11c);
+    ERR_put_error(CCA4758_lib_error_code,0x66,100,"e_4758cca.c",0x11c);
   }
-  if ((DSO *)ppDVar1[5] != (DSO *)0x0) {
-    DSO_free((DSO *)ppDVar1[5]);
+  if (dso != (DSO *)0x0) {
+    DSO_free(dso);
   }
-  ppDVar1[5] = (DSO_FUNC_TYPE)0x0;
-  ppDVar1[6] = (DSO_FUNC_TYPE)0x0;
-  ppDVar1[7] = (DSO_FUNC_TYPE)0x0;
-  ppDVar1[8] = (DSO_FUNC_TYPE)0x0;
-  ppDVar1[9] = (DSO_FUNC_TYPE)0x0;
-  ppDVar1[2] = (DSO_FUNC_TYPE)0x0;
-  ppDVar1[1] = (DSO_FUNC_TYPE)0x0;
-  *ppDVar1 = (DSO_FUNC_TYPE)0x0;
+  publicKeyExtract = (DSO_FUNC_TYPE)0x0;
+  digitalSignatureVerify = (DSO_FUNC_TYPE)0x0;
+  digitalSignatureGenerate = (DSO_FUNC_TYPE)0x0;
+  keyRecordRead = (DSO_FUNC_TYPE)0x0;
+  dso = (DSO *)0x0;
+  pkaEncrypt = (DSO_FUNC_TYPE)0x0;
+  pkaDecrypt = (DSO_FUNC_TYPE)0x0;
+  randomNumberGenerate = (DSO_FUNC_TYPE)0x0;
   return 0;
 }
 

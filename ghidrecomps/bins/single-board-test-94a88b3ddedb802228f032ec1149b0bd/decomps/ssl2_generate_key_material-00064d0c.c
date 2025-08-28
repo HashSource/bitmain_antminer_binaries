@@ -37,7 +37,9 @@ LAB_00064e08:
         iVar2 = *(int *)(param_1 + 0xc0);
         cnt = *(uint *)(iVar2 + 0x10);
         if (0x30 < cnt) {
-          OpenSSLDie(DAT_00064e18,0x1f0,DAT_00064e14);
+          OpenSSLDie("s2_lib.c",0x1f0,
+                     "s->session->master_key_length >= 0 && s->session->master_key_length <= (int)sizeof(s->session->master_key)"
+                    );
           iVar2 = *(int *)(param_1 + 0xc0);
           cnt = *(size_t *)(iVar2 + 0x10);
         }
@@ -59,7 +61,7 @@ LAB_00064e08:
   else {
     iVar2 = 0x1dc;
   }
-  ERR_put_error(0x14,0xf1,0x44,DAT_00064e18,iVar2);
+  ERR_put_error(0x14,0xf1,0x44,"s2_lib.c",iVar2);
   return 0;
 }
 

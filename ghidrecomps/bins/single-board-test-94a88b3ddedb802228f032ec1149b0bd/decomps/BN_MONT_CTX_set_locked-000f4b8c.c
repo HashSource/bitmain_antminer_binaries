@@ -9,11 +9,11 @@ BN_MONT_CTX * BN_MONT_CTX_set_locked(BN_MONT_CTX **pmont,int lock,BIGNUM *mod,BN
   BIGNUM *a_00;
   BIGNUM *a_01;
   
-  CRYPTO_lock(5,lock,DAT_000f4c80,0x20c);
+  CRYPTO_lock(5,lock,"bn_mont.c",0x20c);
   pBVar2 = *pmont;
-  CRYPTO_lock(6,lock,DAT_000f4c80,0x20e);
+  CRYPTO_lock(6,lock,"bn_mont.c",0x20e);
   if ((pBVar2 == (BN_MONT_CTX *)0x0) &&
-     (mont = (BN_MONT_CTX *)CRYPTO_malloc(0x4c,DAT_000f4c80,0x155), mont != (BN_MONT_CTX *)0x0)) {
+     (mont = (BN_MONT_CTX *)CRYPTO_malloc(0x4c,"bn_mont.c",0x155), mont != (BN_MONT_CTX *)0x0)) {
     a_01 = &mont->N;
     a_00 = &mont->RR;
     mont->ri = 0;
@@ -34,7 +34,7 @@ BN_MONT_CTX * BN_MONT_CTX_set_locked(BN_MONT_CTX **pmont,int lock,BIGNUM *mod,BN
       }
     }
     else {
-      CRYPTO_lock(9,lock,DAT_000f4c80,0x223);
+      CRYPTO_lock(9,lock,"bn_mont.c",0x223);
       if (*pmont == (BN_MONT_CTX *)0x0) {
         *pmont = mont;
       }
@@ -47,7 +47,7 @@ BN_MONT_CTX * BN_MONT_CTX_set_locked(BN_MONT_CTX **pmont,int lock,BIGNUM *mod,BN
         }
         mont = *pmont;
       }
-      CRYPTO_lock(10,lock,DAT_000f4c80,0x229);
+      CRYPTO_lock(10,lock,"bn_mont.c",0x229);
       pBVar2 = mont;
     }
   }

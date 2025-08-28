@@ -30,7 +30,7 @@ LAB_00081420:
   }
 LAB_00081394:
   if (iVar1 < 0) {
-    ERR_put_error(0x14,0xc1,0xf7,DAT_00081474,0xbf);
+    ERR_put_error(0x14,0xc1,0xf7,"ssl_rsa.c",0xbf);
     uVar3 = 0;
   }
   else {
@@ -49,7 +49,7 @@ LAB_00081394:
     if ((EVP_PKEY *)param_1[iVar1 * 7 + 0x10] != (EVP_PKEY *)0x0) {
       EVP_PKEY_free((EVP_PKEY *)param_1[iVar1 * 7 + 0x10]);
     }
-    CRYPTO_add_lock(&param_2->references,1,10,DAT_00081474,0xdc);
+    CRYPTO_add_lock(&param_2->references,1,10,"ssl_rsa.c",0xdc);
     uVar3 = 1;
     param_1[iVar1 * 7 + 0x10] = (int)param_2;
     *param_1 = (int)(param_1 + iVar1 * 7 + 0xf);

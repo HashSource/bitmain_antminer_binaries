@@ -2,23 +2,23 @@
 undefined4 MakeAEPBigNum(undefined4 *param_1,undefined4 param_2,undefined4 *param_3)
 
 {
-  undefined *puVar1;
-  undefined *puVar2;
-  undefined *puVar3;
-  undefined *puVar4;
+  undefined1 *puVar1;
+  undefined1 *puVar2;
+  undefined1 *puVar3;
+  undefined1 *puVar4;
   undefined4 uVar5;
-  undefined *puVar6;
-  undefined *puVar7;
-  undefined *puVar8;
+  undefined1 *puVar6;
+  undefined1 *puVar7;
+  undefined1 *puVar8;
   undefined4 *puVar9;
-  undefined *puVar10;
-  undefined *puVar11;
+  undefined1 *puVar10;
+  undefined1 *puVar11;
   int iVar12;
   int iVar13;
   
   iVar13 = param_1[1];
   if (0 < iVar13) {
-    puVar6 = (undefined *)*param_1;
+    puVar6 = (undefined1 *)*param_1;
     if (iVar13 < 9) {
       iVar12 = 0;
     }

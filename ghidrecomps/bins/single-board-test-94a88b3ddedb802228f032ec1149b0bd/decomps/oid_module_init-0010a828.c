@@ -20,7 +20,7 @@ undefined4 oid_module_init(CONF_IMODULE *param_1,CONF *param_2)
   pcVar2 = CONF_imodule_get_value(param_1);
   p_Var3 = &NCONF_get_section(param_2,pcVar2)->stack;
   if (p_Var3 == (_STACK *)0x0) {
-    ERR_put_error(0xd,0xae,0xac,DAT_0010a944,0x50);
+    ERR_put_error(0xd,0xae,0xac,"asn_moid.c",0x50);
     uVar8 = 0;
   }
   else {
@@ -36,7 +36,7 @@ undefined4 oid_module_init(CONF_IMODULE *param_1,CONF *param_2)
       else {
         if (pbVar6[1] == 0) {
 LAB_0010a8d0:
-          ERR_put_error(0xd,0xae,0xab,DAT_0010a944,0x56);
+          ERR_put_error(0xd,0xae,0xab,"asn_moid.c",0x56);
           return 0;
         }
         ppuVar7 = __ctype_b_loc();
@@ -59,7 +59,7 @@ LAB_0010a8d0:
           uVar1 = puVar11[*pbVar12];
         }
         pbVar12 = pbVar12 + (1 - (int)pbVar10);
-        __dest = (char **)CRYPTO_malloc((int)(pbVar12 + 1),DAT_0010a944,0x8f);
+        __dest = (char **)CRYPTO_malloc((int)(pbVar12 + 1),"asn_moid.c",0x8f);
         if (__dest == (char **)0x0) goto LAB_0010a8d0;
         memcpy(__dest,pbVar10,(size_t)pbVar12);
         *(byte *)((int)__dest + (int)pbVar12) = 0;

@@ -79,31 +79,31 @@ int BIO_dump_indent_cb_constprop_2(FILE *param_1,byte *param_2,int param_3,size_
       iVar6 = 0;
       local_14c[0] = '\0';
       BUF_strlcpy(local_14c,local_1d0,0x121);
-      BIO_snprintf(acStack_1e4,0x14,DAT_00102d0c,iVar2);
+      BIO_snprintf(acStack_1e4,0x14,"%04x - ",iVar2);
       BUF_strlcat(local_14c,acStack_1e4,0x121);
       if (iVar5 < 1) {
-        BUF_strlcat(local_14c,DAT_00102d18,0x121);
+        BUF_strlcat(local_14c,"  ",0x121);
       }
       else {
         do {
-          while (iVar2 + iVar6 < iVar4) {
-            if (iVar6 == 7) {
-              uVar11 = 0x2d;
-            }
-            else {
-              uVar11 = 0x20;
-            }
-            pbVar10 = pbVar7 + iVar6;
+          while (iVar4 <= iVar2 + iVar6) {
             iVar6 = iVar6 + 1;
-            BIO_snprintf(acStack_1e4,0x14,DAT_00102d10,(uint)*pbVar10,uVar11);
-            BUF_strlcat(local_14c,acStack_1e4,0x121);
+            BUF_strlcat(local_14c,"   ",0x121);
             if (iVar6 == iVar5) goto LAB_00102c24;
           }
+          if (iVar6 == 7) {
+            uVar11 = 0x2d;
+          }
+          else {
+            uVar11 = 0x20;
+          }
+          pbVar10 = pbVar7 + iVar6;
           iVar6 = iVar6 + 1;
-          BUF_strlcat(local_14c,DAT_00102d14,0x121);
+          BIO_snprintf(acStack_1e4,0x14,"%02x%c",(uint)*pbVar10,uVar11);
+          BUF_strlcat(local_14c,acStack_1e4,0x121);
         } while (iVar6 != iVar5);
 LAB_00102c24:
-        BUF_strlcat(local_14c,DAT_00102d18,0x121);
+        BUF_strlcat(local_14c,"  ",0x121);
         if (iVar2 < iVar4) {
           pbVar10 = pbVar7;
           do {
@@ -112,14 +112,14 @@ LAB_00102c24:
             if (0x5e < uVar3 - 0x20) {
               uVar3 = 0x2e;
             }
-            BIO_snprintf(acStack_1e4,0x14,DAT_00102d1c,uVar3);
+            BIO_snprintf(acStack_1e4,0x14,"%c",uVar3);
             BUF_strlcat(local_14c,acStack_1e4,0x121);
           } while ((pbVar9 != param_2 + iVar2 + iVar5) &&
                   (pbVar10 = pbVar9, pbVar9 != param_2 + iVar4));
         }
       }
       iVar8 = iVar8 + 1;
-      BUF_strlcat(local_14c,DAT_00102d20,0x121);
+      BUF_strlcat(local_14c,"\n",0x121);
       iVar2 = iVar2 + iVar5;
       sVar1 = strlen(local_14c);
       sVar1 = fwrite(local_14c,sVar1,1,param_1);
@@ -128,7 +128,7 @@ LAB_00102c24:
     } while (iVar8 != local_1f8);
   }
   if (local_1ec != 0) {
-    BIO_snprintf(local_14c,0x121,DAT_00102d24,local_1d0,local_1ec + iVar4);
+    BIO_snprintf(local_14c,0x121,"%s%04x - <SPACES/NULS>\n",local_1d0,local_1ec + iVar4);
     sVar1 = strlen(local_14c);
     sVar1 = fwrite(local_14c,sVar1,1,param_1);
     local_200 = local_200 + sVar1;

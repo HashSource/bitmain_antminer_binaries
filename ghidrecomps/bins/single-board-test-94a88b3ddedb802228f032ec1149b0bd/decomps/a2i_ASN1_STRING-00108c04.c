@@ -71,7 +71,7 @@ LAB_00108c7c:
       if (iVar2 == 1) break;
       iVar2 = iVar2 - (uint)(cVar9 == '\\');
       if (iVar2 * -0x80000000 < 0) {
-        ERR_put_error(0xd,0x67,0x91,DAT_00108e10,0x9b);
+        ERR_put_error(0xd,0x67,0x91,"f_string.c",0x9b);
         return 0;
       }
       iVar2 = iVar2 >> 1;
@@ -80,13 +80,13 @@ LAB_00108c7c:
       if (iVar12 < iVar7) {
         iVar12 = iVar2 * 2;
         if (addr == (uchar *)0x0) {
-          puVar3 = (uchar *)CRYPTO_malloc(iVar12 + iVar10,DAT_00108e10,0xa2);
+          puVar3 = (uchar *)CRYPTO_malloc(iVar12 + iVar10,"f_string.c",0xa2);
         }
         else {
-          puVar3 = (uchar *)CRYPTO_realloc(addr,iVar12 + iVar10,DAT_00108e10,0xa6);
+          puVar3 = (uchar *)CRYPTO_realloc(addr,iVar12 + iVar10,"f_string.c",0xa6);
         }
         if (puVar3 == (uchar *)0x0) {
-          ERR_put_error(0xd,0x67,0x41,DAT_00108e10,0xa8);
+          ERR_put_error(0xd,0x67,0x41,"f_string.c",0xa8);
           if (addr == (uchar *)0x0) {
             return 0;
           }
@@ -127,7 +127,7 @@ LAB_00108d06:
           if (5 < uVar5 - 0x61) {
             if (5 < uVar5 - 0x41) {
 LAB_00108d58:
-              ERR_put_error(0xd,0x67,0x8d,DAT_00108e10,0xbb);
+              ERR_put_error(0xd,0x67,0x8d,"f_string.c",0xbb);
               return 0;
             }
             uVar6 = uVar5 - 0x37;
@@ -144,7 +144,7 @@ LAB_00108d3e:
       iVar10 = iVar7;
       addr = puVar3;
     } while (0 < iVar2);
-    ERR_put_error(0xd,0x67,0x96,DAT_00108e10,0xce);
+    ERR_put_error(0xd,0x67,0x96,"f_string.c",0xce);
     iVar2 = 0;
   }
   return iVar2;

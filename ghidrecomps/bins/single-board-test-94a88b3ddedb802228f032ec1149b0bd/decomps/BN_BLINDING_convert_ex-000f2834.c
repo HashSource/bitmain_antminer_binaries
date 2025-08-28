@@ -7,7 +7,7 @@ int BN_BLINDING_convert_ex(BIGNUM *n,BIGNUM *r,BN_BLINDING *b,BN_CTX *param_4)
   bool bVar3;
   
   if ((*(int *)b == 0) || (*(int *)(b + 4) == 0)) {
-    ERR_put_error(3,100,0x6b,DAT_000f28a8,0xea);
+    ERR_put_error(3,100,0x6b,"bn_blind.c",0xea);
     pBVar2 = (BIGNUM *)0x0;
   }
   else {

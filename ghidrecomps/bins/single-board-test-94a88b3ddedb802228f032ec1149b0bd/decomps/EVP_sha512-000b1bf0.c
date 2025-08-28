@@ -4,6 +4,6 @@
 EVP_MD * EVP_sha512(void)
 
 {
-  return DAT_000b1bf4;
+  return (EVP_MD *)sha512_md;
 }
 

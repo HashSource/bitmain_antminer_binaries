@@ -26,8 +26,8 @@ void patten_load(char *root_path)
     }
     for (which_core = 0; which_core < g_patten.core_num; which_core = which_core + 1) {
       memset(fname,0,0x80);
-      sprintf(fname,"%s/%s/%s/%s-0x%02x/%s-0x%02x.txt",root_path,DAT_00023328,DAT_00023324,
-              DAT_00023320,which_asic,DAT_0002331c,which_core);
+      sprintf(fname,"%s/%s/%s/%s-0x%02x/%s-0x%02x.txt",root_path,0x4b840,0x4b850,0x4b860,which_asic,
+              0x4b870,which_core);
       printf("fname %s\n",fname);
       __stream = fopen(fname,"r");
       if (__stream == (FILE *)0x0) {

@@ -6,7 +6,7 @@ int system(char *__command)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_system_000a8128)();
+  iVar1 = system(__command);
   return iVar1;
 }
 

@@ -1,5 +1,5 @@
 
-void asn1_item_clear(code **param_1,undefined *param_2)
+void asn1_item_clear(int *param_1,undefined1 *param_2)
 
 {
   uint *puVar1;
@@ -14,13 +14,13 @@ void asn1_item_clear(code **param_1,undefined *param_2)
         if (pcVar2 != (code *)0x0) goto LAB_000b9120;
         pcVar2 = (code *)0x0;
         if (*(int *)(param_2 + 4) == 1) {
-          *param_1 = *(code **)(param_2 + 0x14);
+          *param_1 = *(int *)(param_2 + 0x14);
           return;
         }
         goto LAB_000b9102;
       }
       if ((*puVar1 & 0x306) != 0) goto switchD_000b90ec_caseD_1;
-      param_2 = (undefined *)puVar1[4];
+      param_2 = (undefined1 *)puVar1[4];
       break;
     case 4:
       if ((*(int *)(param_2 + 0x10) != 0) &&
@@ -33,7 +33,8 @@ void asn1_item_clear(code **param_1,undefined *param_2)
 switchD_000b90ec_caseD_1:
       pcVar2 = (code *)0x0;
 LAB_000b9102:
-      *param_1 = pcVar2;
+      *param_1 = (int)pcVar2;
+switchD_000b90ec_default:
       return;
     case 5:
       pcVar2 = *(code **)(param_2 + 0x10);
@@ -48,7 +49,7 @@ LAB_000b9126:
       }
       goto LAB_000b9102;
     default:
-      return;
+      goto switchD_000b90ec_default;
     }
   } while( true );
 }

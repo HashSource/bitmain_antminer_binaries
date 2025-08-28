@@ -16,8 +16,7 @@ _Bool freq_tuning_single_pre_test(freq_tuning_info *freq_info)
   freq_tuning_init_freq_info(freq_info);
   freq_tuning_reset_global_arg();
   freq_tuning_set_vol_all_chain(0);
-  increase_freq_slowly
-            (init_freq,(float)(longlong)pfVar1->base_freq,(float)(longlong)DAT_00018aa4,All_Chain);
+  increase_freq_slowly(init_freq,(float)(longlong)pfVar1->base_freq,25.0,All_Chain);
   freq_tuning_set_time_control_by_freq(pfVar1->base_freq);
   freq_tuning_send_work_and_check_result_all_chain(freq_info);
   _Var2 = freq_tuning_check_domain_unbalance();

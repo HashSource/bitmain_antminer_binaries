@@ -14,12 +14,12 @@ PKCS7 * PKCS12_pack_p7encdata
   
   p7 = PKCS7_new();
   if (p7 == (PKCS7 *)0x0) {
-    ERR_put_error(0x23,0x73,0x41,DAT_0010ed08,0xb2);
+    ERR_put_error(0x23,0x73,0x41,"p12_add.c",0xb2);
   }
   else {
     iVar1 = PKCS7_set_type(p7,0x1a);
     if (iVar1 == 0) {
-      ERR_put_error(0x23,0x73,0x78,DAT_0010ed08,0xb7);
+      ERR_put_error(0x23,0x73,0x78,"p12_add.c",0xb7);
       p7 = (PKCS7 *)0x0;
     }
     else {
@@ -32,7 +32,7 @@ PKCS7 * PKCS12_pack_p7encdata
         algor = PKCS5_pbe2_set(cipher,iter,salt,saltlen);
       }
       if (algor == (X509_ALGOR *)0x0) {
-        ERR_put_error(0x23,0x73,0x41,DAT_0010ed08,0xc3);
+        ERR_put_error(0x23,0x73,0x41,"p12_add.c",0xc3);
         p7 = (PKCS7 *)0x0;
       }
       else {
@@ -41,10 +41,10 @@ PKCS7 * PKCS12_pack_p7encdata
         pPVar2->algorithm = algor;
         ASN1_STRING_free(pPVar2->enc_data);
         pPVar2 = ((p7->d).encrypted)->enc_data;
-        pAVar3 = PKCS12_item_i2d_encrypt(algor,DAT_0010ed04,pass,passlen,bags,1);
+        pAVar3 = PKCS12_item_i2d_encrypt(algor,(ASN1_ITEM *)PKCS12_SAFEBAGS_it,pass,passlen,bags,1);
         pPVar2->enc_data = pAVar3;
         if (pAVar3 == (ASN1_OCTET_STRING *)0x0) {
-          ERR_put_error(0x23,0x73,0x67,DAT_0010ed08,0xcc);
+          ERR_put_error(0x23,0x73,0x67,"p12_add.c",0xcc);
           p7 = (PKCS7 *)0x0;
         }
       }

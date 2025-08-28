@@ -10,7 +10,7 @@ int SXNET_add_id_ulong(SXNET **psx,ulong lzone,char *user,int userlen)
     iVar1 = SXNET_add_id_INTEGER(psx,a,user,userlen);
     return iVar1;
   }
-  ERR_put_error(0x22,0x7f,0x41,DAT_000c9bd0,0xaa);
+  ERR_put_error(0x22,0x7f,0x41,"v3_sxnet.c",0xaa);
   ASN1_STRING_free(a);
   return 0;
 }

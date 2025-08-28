@@ -20,7 +20,7 @@ void ssl_update_cache(int param_1,uint param_2)
       pSVar2 = *(SSL_CTX **)(param_1 + 0x170);
     }
     if (pSVar2->new_session_cb != (_func_3229 *)0x0) {
-      CRYPTO_add_lock((int *)(*(int *)(param_1 + 0xc0) + 0xa4),1,0xe,DAT_0007bdec,0xa40);
+      CRYPTO_add_lock((int *)(*(int *)(param_1 + 0xc0) + 0xa4),1,0xe,"ssl_lib.c",0xa40);
       iVar3 = (**(code **)(*(int *)(param_1 + 0x170) + 0x28))
                         (param_1,*(undefined4 *)(param_1 + 0xc0));
       if (iVar3 == 0) {
@@ -32,10 +32,10 @@ LAB_0007bd8c:
   if ((-1 < (int)(uVar4 << 0x18)) && (param_2 == (param_2 & uVar4))) {
     pSVar2 = *(SSL_CTX **)(param_1 + 0x170);
     if ((int)(param_2 << 0x1f) < 0) {
-      cVar1 = *(char *)&(pSVar2->stats).sess_connect_good;
+      cVar1 = (char)(pSVar2->stats).sess_connect_good;
     }
     else {
-      cVar1 = *(char *)&(pSVar2->stats).sess_accept_good;
+      cVar1 = (char)(pSVar2->stats).sess_accept_good;
     }
     if (cVar1 == -1) {
       tm = time((time_t *)0x0);

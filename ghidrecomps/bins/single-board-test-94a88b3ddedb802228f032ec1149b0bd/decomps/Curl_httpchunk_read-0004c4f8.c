@@ -4,155 +4,156 @@
 undefined4 Curl_httpchunk_read(int *param_1,byte *param_2,uint param_3,int *param_4)
 
 {
-  uint uVar1;
-  int *piVar2;
-  uint uVar3;
+  int *piVar1;
+  uint uVar2;
   uint extraout_r1;
-  uint uVar4;
-  int iVar5;
-  byte bVar6;
+  uint uVar3;
+  int iVar4;
+  byte bVar5;
+  int iVar6;
   int iVar7;
-  uint uVar8;
-  uint uVar9;
-  int iVar10;
-  bool bVar11;
-  bool bVar12;
-  longlong lVar13;
-  undefined8 uVar14;
+  int iVar8;
+  bool bVar9;
+  bool bVar10;
+  longlong lVar11;
+  undefined8 uVar12;
   char *apcStack_2c [2];
   
-  iVar10 = *param_1;
-  uVar3 = (uint)*(byte *)(iVar10 + 0x330);
-  uVar9 = (int)param_3 >> 0x1f;
+  iVar8 = *param_1;
+  uVar2 = (uint)*(byte *)(iVar8 + 0x330);
+  iVar7 = (int)param_3 >> 0x1f;
   *param_4 = 0;
-  if ((uVar3 != 0) && (*(char *)(iVar10 + 0x135) == '\0')) {
-    uVar14 = Curl_client_write(param_1,1,param_2,param_3);
-    uVar3 = (uint)((ulonglong)uVar14 >> 0x20);
-    if ((int)uVar14 != 0) {
+  if ((uVar2 != 0) && (*(char *)(iVar8 + 0x135) == '\0')) {
+    uVar12 = Curl_client_write(param_1,1,param_2,param_3);
+    uVar2 = (uint)((ulonglong)uVar12 >> 0x20);
+    if ((int)uVar12 != 0) {
       return 4;
     }
   }
 LAB_0004c52c:
-  if ((param_3 | uVar9) == 0) {
+  if (param_3 == 0 && iVar7 == 0) {
     return 0;
   }
+switchD_0004c53c_switchD:
   switch(param_1[8]) {
   case 0:
-    bVar6 = *param_2;
-    uVar1 = (uint)bVar6;
-    uVar3 = uVar1 - 0x30;
-    bVar11 = 8 < uVar3;
-    bVar12 = uVar3 == 9;
-    if (9 < uVar3) {
-      bVar11 = 4 < uVar1 - 0x41;
-      bVar12 = uVar1 - 0x41 == 5;
+    bVar5 = *param_2;
+    uVar3 = (uint)bVar5;
+    uVar2 = uVar3 - 0x30;
+    bVar9 = 8 < uVar2;
+    bVar10 = uVar2 == 9;
+    if (9 < uVar2) {
+      bVar9 = 4 < uVar3 - 0x41;
+      bVar10 = uVar3 - 0x41 == 5;
     }
-    if (bVar11 && !bVar12) {
-      uVar3 = 0;
+    if (bVar9 && !bVar10) {
+      uVar2 = 0;
     }
-    if ((bVar11 && !bVar12) && (5 < uVar1 - 0x61)) {
+    if ((bVar9 && !bVar10) && (5 < uVar3 - 0x61)) {
       if (param_1[7] != 0) {
-        *(char *)((int)param_1 + param_1[7] + 8) = (char)uVar3;
-        lVar13 = strtoll((char *)(param_1 + 2),apcStack_2c,0x10);
-        uVar3 = (uint)((ulonglong)lVar13 >> 0x20);
-        *(longlong *)(param_1 + 10) = lVar13;
-        if ((uVar3 != 0x7fffffff || (int)lVar13 != -1) ||
-           (piVar2 = __errno_location(), uVar3 = extraout_r1, *piVar2 != 0x22)) {
+        *(char *)((int)param_1 + param_1[7] + 8) = (char)uVar2;
+        lVar11 = strtoll((char *)(param_1 + 2),apcStack_2c,0x10);
+        uVar2 = (uint)((ulonglong)lVar11 >> 0x20);
+        *(longlong *)(param_1 + 10) = lVar11;
+        if ((lVar11 != 0x7fffffffffffffff) ||
+           (piVar1 = __errno_location(), uVar2 = extraout_r1, *piVar1 != 0x22)) {
           param_1[8] = 1;
           goto LAB_0004c52c;
         }
       }
       return 2;
     }
-    iVar7 = param_1[7];
-    if (0xf < iVar7) {
+    iVar6 = param_1[7];
+    if (0xf < iVar6) {
       return 1;
     }
-    uVar3 = (int)param_1 + iVar7;
-    bVar12 = param_3 != 0;
+    uVar2 = (int)param_1 + iVar6;
+    bVar10 = param_3 != 0;
     param_3 = param_3 - 1;
     param_2 = param_2 + 1;
-    uVar9 = (uVar9 - 1) + (uint)bVar12;
-    *(byte *)(uVar3 + 8) = bVar6;
-    param_1[7] = iVar7 + 1;
+    iVar7 = iVar7 + -1 + (uint)bVar10;
+    *(byte *)(uVar2 + 8) = bVar5;
+    param_1[7] = iVar6 + 1;
     goto LAB_0004c52c;
   case 1:
     if (*param_2 == 10) {
-      bVar12 = (param_1[10] | param_1[0xb]) == 0;
-      if (bVar12) {
-        iVar7 = 0;
-        uVar3 = 5;
+      bVar10 = param_1[10] == 0;
+      bVar9 = param_1[0xb] == 0;
+      if (bVar10 && bVar9) {
+        iVar6 = 0;
+        uVar2 = 5;
       }
       else {
-        iVar7 = 2;
+        iVar6 = 2;
       }
-      if (bVar12) {
-        param_1[8] = uVar3;
+      if (bVar10 && bVar9) {
+        param_1[8] = uVar2;
       }
-      if (bVar12) {
-        param_1[0xef] = iVar7;
+      if (bVar10 && bVar9) {
+        param_1[0xef] = iVar6;
       }
-      if (!bVar12) {
-        param_1[8] = iVar7;
+      if (!bVar10 || !bVar9) {
+        param_1[8] = iVar6;
       }
     }
     break;
   case 2:
-    uVar4 = param_1[10];
-    uVar8 = param_1[0xb];
-    uVar1 = param_3;
-    uVar3 = uVar9;
-    if ((int)((uVar8 - uVar9) - (uint)(uVar4 < param_3)) < 0 !=
-        (SBORROW4(uVar8,uVar9) != SBORROW4(uVar8 - uVar9,(uint)(uVar4 < param_3)))) {
-      uVar1 = uVar4;
-      uVar3 = uVar8;
+    uVar3 = param_1[10];
+    iVar4 = param_1[0xb];
+    uVar2 = param_3;
+    iVar6 = iVar7;
+    if ((int)((iVar4 - iVar7) - (uint)(uVar3 < param_3)) < 0 !=
+        (SBORROW4(iVar4,iVar7) != SBORROW4(iVar4 - iVar7,(uint)(uVar3 < param_3)))) {
+      uVar2 = uVar3;
+      iVar6 = iVar4;
     }
-    uVar1 = curlx_sotouz(uVar1,uVar3);
+    uVar3 = curlx_sotouz(uVar2,iVar6);
     if (*(char *)(*param_1 + 0x331) == '\0') {
-      iVar7 = *(int *)(iVar10 + 0xdc);
-      if (iVar7 == 1) {
-        *(byte **)(iVar10 + 0xac) = param_2;
-        iVar7 = Curl_unencode_deflate_write(param_1,iVar10 + 0x50,uVar1);
+      iVar6 = *(int *)(iVar8 + 0xdc);
+      if (iVar6 == 1) {
+        *(byte **)(iVar8 + 0xac) = param_2;
+        iVar6 = Curl_unencode_deflate_write(param_1,iVar8 + 0x50,uVar3);
       }
       else {
-        if (iVar7 != 2) {
-          if (iVar7 != 0) {
-            Curl_failf(*param_1,DAT_0004c854);
+        if (iVar6 != 2) {
+          if (iVar6 != 0) {
+            Curl_failf(*param_1,
+                       "Unrecognized content encoding type. libcurl understands `identity\', `deflate\' and `gzip\' content encodings."
+                      );
             return 5;
           }
           goto LAB_0004c62a;
         }
-        *(byte **)(iVar10 + 0xac) = param_2;
-        iVar7 = Curl_unencode_gzip_write(param_1,iVar10 + 0x50,uVar1);
+        *(byte **)(iVar8 + 0xac) = param_2;
+        iVar6 = Curl_unencode_gzip_write(param_1,iVar8 + 0x50,uVar3);
       }
 joined_r0x0004c7ce:
-      if (iVar7 != 0) {
+      if (iVar6 != 0) {
         return 4;
       }
     }
     else {
 LAB_0004c62a:
-      if ((*(char *)(iVar10 + 0x135) == '\0') && (*(char *)(iVar10 + 0x330) == '\0')) {
-        iVar7 = Curl_client_write(param_1,1,param_2,uVar1);
+      if ((*(char *)(iVar8 + 0x135) == '\0') && (*(char *)(iVar8 + 0x330) == '\0')) {
+        iVar6 = Curl_client_write(param_1,1,param_2,uVar3);
         goto joined_r0x0004c7ce;
       }
     }
-    param_2 = param_2 + uVar1;
-    uVar4 = param_1[10] - uVar1;
-    uVar3 = param_1[0xb] - (uint)((uint)param_1[10] < uVar1);
-    bVar12 = param_3 < uVar1;
-    param_3 = param_3 - uVar1;
-    uVar9 = uVar9 - bVar12;
-    iVar7 = *param_4;
-    *param_4 = iVar7 + uVar1;
-    bVar12 = (uVar4 | uVar3) == 0;
-    if (bVar12) {
-      iVar7 = 3;
+    param_2 = param_2 + uVar3;
+    iVar6 = param_1[10] - uVar3;
+    uVar2 = param_1[0xb] - (uint)((uint)param_1[10] < uVar3);
+    bVar10 = param_3 < uVar3;
+    param_3 = param_3 - uVar3;
+    iVar7 = iVar7 - (uint)bVar10;
+    iVar4 = *param_4;
+    *param_4 = iVar4 + uVar3;
+    if (iVar6 == 0 && uVar2 == 0) {
+      iVar4 = 3;
     }
-    param_1[10] = uVar4;
-    param_1[0xb] = uVar3;
-    if (bVar12) {
-      param_1[8] = iVar7;
+    param_1[10] = iVar6;
+    param_1[0xb] = uVar2;
+    if (iVar6 == 0 && uVar2 == 0) {
+      param_1[8] = iVar4;
     }
     goto LAB_0004c52c;
   case 3:
@@ -169,26 +170,26 @@ LAB_0004c62a:
     if (*param_2 != 10) {
       return 3;
     }
-    iVar10 = curlx_sotouz(param_3 - 1,(uVar9 - 1) + (uint)(param_3 != 0));
-    param_1[0xc] = iVar10;
+    iVar7 = curlx_sotouz(param_3 - 1,iVar7 + -1 + (uint)(param_3 != 0));
+    param_1[0xc] = iVar7;
     return 0xffffffff;
   case 5:
-    bVar6 = *param_2;
-    if (bVar6 == 0xd || bVar6 == 10) {
-      iVar7 = param_1[0xef];
-      if (iVar7 == 0) {
+    bVar5 = *param_2;
+    if (bVar5 == 0xd || bVar5 == 10) {
+      iVar6 = param_1[0xef];
+      if (iVar6 == 0) {
         param_1[8] = 7;
         goto LAB_0004c52c;
       }
-      *(undefined *)(param_1[0xed] + iVar7) = 0xd;
-      uVar3 = 0;
-      *(undefined *)(param_1[0xed] + iVar7 + 1) = 10;
-      param_1[0xef] = iVar7 + 2;
-      *(undefined *)(param_1[0xed] + iVar7 + 2) = 0;
-      if (*(char *)(iVar10 + 0x330) == '\0') {
-        uVar14 = Curl_client_write(param_1,2,param_1[0xed],param_1[0xef]);
-        uVar3 = (uint)((ulonglong)uVar14 >> 0x20);
-        if ((int)uVar14 != 0) {
+      *(undefined1 *)(param_1[0xed] + iVar6) = 0xd;
+      uVar2 = 0;
+      *(undefined1 *)(param_1[0xed] + iVar6 + 1) = 10;
+      param_1[0xef] = iVar6 + 2;
+      *(undefined1 *)(param_1[0xed] + iVar6 + 2) = 0;
+      if (*(char *)(iVar8 + 0x330) == '\0') {
+        uVar12 = Curl_client_write(param_1,2,param_1[0xed],param_1[0xef]);
+        uVar2 = (uint)((ulonglong)uVar12 >> 0x20);
+        if ((int)uVar12 != 0) {
           return 4;
         }
       }
@@ -197,30 +198,30 @@ LAB_0004c62a:
       if (*param_2 == 10) goto LAB_0004c52c;
     }
     else {
-      iVar5 = param_1[0xef];
-      iVar7 = param_1[0xee];
-      if (iVar5 < iVar7) {
-        iVar7 = param_1[0xed];
+      iVar4 = param_1[0xef];
+      iVar6 = param_1[0xee];
+      if (iVar4 < iVar6) {
+        iVar6 = param_1[0xed];
       }
       else {
-        if (iVar7 == 0) {
+        if (iVar6 == 0) {
           param_1[0xee] = 0x80;
-          iVar7 = (*Curl_cmalloc)(0x83);
+          iVar6 = (*Curl_cmalloc)(0x83);
         }
         else {
-          param_1[0xee] = iVar7 * 2;
-          iVar7 = (*Curl_crealloc)(param_1[0xed],iVar7 * 2 + 3);
+          param_1[0xee] = iVar6 * 2;
+          iVar6 = (*Curl_crealloc)(param_1[0xed],iVar6 * 2 + 3);
         }
-        if (iVar7 == 0) {
+        if (iVar6 == 0) {
           return 6;
         }
-        param_1[0xed] = iVar7;
-        iVar5 = param_1[0xef];
-        bVar6 = *param_2;
+        param_1[0xed] = iVar6;
+        iVar4 = param_1[0xef];
+        bVar5 = *param_2;
       }
-      uVar3 = iVar5 + 1;
-      *(byte *)(iVar7 + iVar5) = bVar6;
-      param_1[0xef] = uVar3;
+      uVar2 = iVar4 + 1;
+      *(byte *)(iVar6 + iVar4) = bVar5;
+      param_1[0xef] = uVar2;
     }
     break;
   case 6:
@@ -231,26 +232,28 @@ LAB_0004c62a:
     break;
   case 7:
     goto switchD_0004c53c_caseD_7;
+  default:
+    goto switchD_0004c53c_switchD;
   }
-  bVar12 = param_3 != 0;
+  bVar10 = param_3 != 0;
   param_3 = param_3 - 1;
   param_2 = param_2 + 1;
-  uVar9 = (uVar9 - 1) + (uint)bVar12;
+  iVar7 = iVar7 + -1 + (uint)bVar10;
   goto LAB_0004c52c;
 switchD_0004c53c_caseD_7:
-  bVar6 = *param_2;
-  if (bVar6 != 10 && bVar6 != 0xd) {
-    uVar3 = 5;
+  bVar5 = *param_2;
+  if (bVar5 != 10 && bVar5 != 0xd) {
+    uVar2 = 5;
   }
-  if (bVar6 != 10 && bVar6 != 0xd) {
-    param_1[8] = uVar3;
+  if (bVar5 != 10 && bVar5 != 0xd) {
+    param_1[8] = uVar2;
   }
   else {
-    if (bVar6 == 0xd) {
-      bVar12 = param_3 != 0;
+    if (bVar5 == 0xd) {
+      bVar10 = param_3 != 0;
       param_3 = param_3 - 1;
       param_2 = param_2 + 1;
-      uVar9 = (uVar9 - 1) + (uint)bVar12;
+      iVar7 = iVar7 + -1 + (uint)bVar10;
     }
     param_1[8] = 4;
   }

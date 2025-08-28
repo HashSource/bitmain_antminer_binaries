@@ -13,7 +13,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
   size_t sVar7;
   uchar *puVar8;
   bool bVar9;
-  undefined auStack_3c [24];
+  undefined1 auStack_3c [24];
   
   do {
     uVar1 = SSL_state(param_1);
@@ -23,7 +23,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
         return sVar7;
       }
       if (sVar7 == 0) {
-        ERR_put_error(0x14,0xec,0xe5,DAT_00065640,0x8e);
+        ERR_put_error(0x14,0xec,0xe5,"s2_pkt.c",0x8e);
         return 0xffffffff;
       }
     }
@@ -69,7 +69,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
         pbVar5 = param_1->packet;
         param_1->max_cert_list = 0;
         if ((-1 < (char)*pbVar5) || (pbVar5[2] != 4 && pbVar5[2] != 1)) {
-          ERR_put_error(0x14,0xec,0xaf,DAT_00065640,0xb8);
+          ERR_put_error(0x14,0xec,0xaf,"s2_pkt.c",0xb8);
           return 0xffffffff;
         }
       }
@@ -102,7 +102,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
       }
     }
     else if (param_1->rstate != 0xf1) {
-      ERR_put_error(0x14,0xec,0x7e,DAT_00065640,0x127);
+      ERR_put_error(0x14,0xec,0x7e,"s2_pkt.c",0x127);
       return 0xffffffff;
     }
     uVar1 = psVar6->three_byte_header;
@@ -131,13 +131,13 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
         return 0xffffffff;
       }
       if (0x14 < (int)uVar1) {
-        OpenSSLDie(DAT_00065640,0xf3,DAT_00065644);
+        OpenSSLDie("s2_pkt.c",0xf3,"mac_size <= MAX_MAC_SIZE");
       }
       psVar6 = param_1->s2;
       psVar6->mac_data = puVar8;
       psVar6->ract_data = puVar8 + uVar1;
       if (psVar6->rlength < psVar6->padding + uVar1) {
-        ERR_put_error(0x14,0xec,0x11b,DAT_00065640,0xf7);
+        ERR_put_error(0x14,0xec,0x11b,"s2_pkt.c",0xf7);
         return 0xffffffff;
       }
     }
@@ -145,7 +145,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
       psVar6->mac_data = puVar8;
       psVar6->ract_data = puVar8;
       if (uVar1 != 0) {
-        ERR_put_error(0x14,0xec,0x11b,DAT_00065640,0xec);
+        ERR_put_error(0x14,0xec,0x11b,"s2_pkt.c",0xec);
         return 0xffffffff;
       }
       uVar1 = 0;
@@ -154,7 +154,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
     if ((psVar6->clear_text == 0) && (uVar1 <= psVar6->rlength)) {
       iVar3 = ssl2_enc(param_1,0);
       if (iVar3 == 0) {
-        ERR_put_error(0x14,0xec,0x93,DAT_00065640,0x104);
+        ERR_put_error(0x14,0xec,0x93,"s2_pkt.c",0x104);
         return 0xffffffff;
       }
       param_1->s2->ract_data_length = param_1->s2->ract_data_length - uVar1;
@@ -164,7 +164,7 @@ size_t ssl2_read_internal(SSL *param_1,void *param_2,size_t param_3,int param_4)
       iVar3 = CRYPTO_memcmp(auStack_3c,psVar6->mac_data,uVar1);
       if (iVar3 != 0) {
 LAB_00065610:
-        ERR_put_error(0x14,0xec,0x71,DAT_00065640,0x10d);
+        ERR_put_error(0x14,0xec,0x71,"s2_pkt.c",0x10d);
         return 0xffffffff;
       }
       uVar1 = param_1->s2->rlength;

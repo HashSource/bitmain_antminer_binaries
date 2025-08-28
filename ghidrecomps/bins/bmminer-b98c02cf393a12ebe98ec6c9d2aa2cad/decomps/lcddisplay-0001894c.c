@@ -10,9 +10,9 @@ void lcddisplay(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
   char acStack_a0 [32];
   char acStack_80 [32];
   undefined2 local_60;
-  undefined local_5e;
+  undefined1 local_5e;
   undefined2 local_40;
-  undefined local_3e;
+  undefined1 local_3e;
   
   memset(local_c0,0,0x20);
   memset(acStack_a0,0,0x20);
@@ -26,7 +26,7 @@ void lcddisplay(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
     iVar3 = io_add(param_1,",\"POOLS\":[");
   }
   local_c0[0] = 0x30;
-  local_c8 = ((total_mhashes_done - new_total_mhashes_done) / DAT_00018b30) /
+  local_c8 = ((total_mhashes_done - new_total_mhashes_done) / 1000.0) /
              (total_secs - new_total_secs);
   uVar2 = api_add_data_full(0,&DAT_000584cc,1,local_c0,0);
   uVar2 = api_add_data_full(uVar2,"GHS5s",0x11,&g_displayed_rolling,0);
@@ -36,8 +36,8 @@ void lcddisplay(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
   sprintf(acStack_80,"%d",g_max_temp);
   uVar2 = api_add_data_full(uVar2,&DAT_000584e4,1,acStack_80,0);
   if (iVar1 == 0) {
-    local_60 = (undefined2)DAT_000584ec;
-    local_5e = (undefined)((uint)DAT_000584ec >> 0x10);
+    local_60 = 0x6f6e;
+    local_5e = 0;
     local_40 = local_60;
     local_3e = local_5e;
     uVar2 = api_add_data_full(uVar2,&DAT_000584f0,1,&local_60,0);
@@ -49,7 +49,7 @@ void lcddisplay(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
   }
   print_data(param_1,uVar2,param_4,param_4);
   if (iVar3 != 0) {
-    *(undefined *)(param_1 + 0xd) = 1;
+    *(undefined1 *)(param_1 + 0xd) = 1;
   }
   return;
 }

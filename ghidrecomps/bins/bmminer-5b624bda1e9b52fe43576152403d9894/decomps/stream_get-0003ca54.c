@@ -5,10 +5,8 @@ int stream_get(stream_t *stream,json_error_t *error)
 
 {
   uint uVar1;
-  int c_1;
   int iVar2;
   uint uVar3;
-  int count;
   int iVar4;
   uint uVar5;
   uint uVar6;
@@ -40,7 +38,7 @@ int stream_get(stream_t *stream,json_error_t *error)
       if (iVar2 != 0) {
         if (iVar2 < 2) {
                     /* WARNING: Subroutine does not return */
-          __assert_fail(DAT_0003cb30,DAT_0003cb34,0xaf,DAT_0003cb38);
+          __assert_fail("count >= 2","compat/jansson-2.6/src/load.c",0xaf,"stream_get");
         }
         psVar8 = stream;
         do {
@@ -58,7 +56,7 @@ int stream_get(stream_t *stream,json_error_t *error)
         }
       }
       stream->state = -2;
-      error_set(error,(lex_t *)stream,DAT_0003cb2c,uVar3);
+      error_set(error,(lex_t *)stream,"unable to decode byte 0x%x",uVar3);
       return -2;
     }
     stream->buffer[1] = '\0';

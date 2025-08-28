@@ -29,7 +29,7 @@ int BN_div(BIGNUM *dv,BIGNUM *rem,BIGNUM *m,BIGNUM *d,BN_CTX *ctx)
   
   if (((0 < m->top) && (m->d[m->top + -1] == 0)) ||
      ((iVar7 = d->top, 0 < iVar7 && (d->d[iVar7 + -1] == 0)))) {
-    ERR_put_error(3,0x6b,0x6b,DAT_000ef4dc,0xcf);
+    ERR_put_error(3,0x6b,0x6b,"bn_div.c",0xcf);
     return 0;
   }
   if ((m->flags << 0x1d < 0) || ((d->flags & 4U) != 0)) {
@@ -39,7 +39,7 @@ int BN_div(BIGNUM *dv,BIGNUM *rem,BIGNUM *m,BIGNUM *d,BN_CTX *ctx)
   else {
     if (iVar7 == 0) {
 LAB_000ef272:
-      ERR_put_error(3,0x6b,0x67,DAT_000ef4dc,0xe5);
+      ERR_put_error(3,0x6b,0x67,"bn_div.c",0xe5);
       return 0;
     }
     iVar7 = BN_ucmp(m,d);
@@ -179,7 +179,7 @@ LAB_000ef586:
             if (uVar14 == uVar6) {
               bVar15 = (uint)lVar1 <= puVar10[-2];
             }
-            if ((!bVar15) && (w = w - 1, CARRY4(uVar14,uVar12) == false)) {
+            if ((!bVar15) && (w = w - 1, !CARRY4(uVar14,uVar12))) {
               do {
                 uVar14 = uVar14 + uVar12;
                 lVar2 = lVar1 - (ulonglong)local_74;
@@ -189,7 +189,7 @@ LAB_000ef586:
                 if (uVar14 == uVar6) {
                   bVar15 = (uint)lVar2 <= puVar10[-2];
                 }
-              } while ((!bVar15) && (w = w - 1, CARRY4(uVar14,uVar12) == false));
+              } while ((!bVar15) && (w = w - 1, !CARRY4(uVar14,uVar12)));
             }
           }
           uVar8 = bn_mul_words(pBVar3->d,r_00->d,iVar7,w);

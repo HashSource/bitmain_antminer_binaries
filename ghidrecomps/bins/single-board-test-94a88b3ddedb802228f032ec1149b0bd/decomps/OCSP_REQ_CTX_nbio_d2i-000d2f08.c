@@ -1,5 +1,5 @@
 
-int OCSP_REQ_CTX_nbio_d2i(undefined4 *param_1,ASN1_VALUE **param_2,ASN1_ITEM *param_3)
+int OCSP_REQ_CTX_nbio_d2i(undefined4 *param_1,undefined4 *param_2,ASN1_ITEM *param_3)
 
 {
   int iVar1;

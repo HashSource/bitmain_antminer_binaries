@@ -61,7 +61,7 @@ undefined4 curl_multi_wait(int *param_1,int param_2,uint param_3,int param_4,int
       } while (piVar11 != (int *)0x0);
     }
     uVar8 = iVar10 + param_3 | param_3;
-    if ((uVar8 != 0) && (uVar8 = (**DAT_0003a3f4)((iVar10 + param_3) * 8), uVar8 == 0)) {
+    if ((uVar8 != 0) && (uVar8 = (*Curl_cmalloc)((iVar10 + param_3) * 8), uVar8 == 0)) {
       return 3;
     }
     if (iVar10 == 0) {
@@ -159,7 +159,7 @@ undefined4 curl_multi_wait(int *param_1,int param_2,uint param_3,int param_4,int
         *(ushort *)(iVar9 + 6) = uVar5;
       } while (iVar6 != param_3 << 3);
     }
-    (**DAT_0003a3f0)(uVar8);
+    (*Curl_cfree)(uVar8);
     if (param_5 == (int *)0x0) {
       uVar2 = 0;
     }

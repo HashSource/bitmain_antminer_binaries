@@ -6,7 +6,7 @@ int shutdown(int __fd,int __how)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_shutdown_0019428c)();
+  iVar1 = shutdown(__fd,__how);
   return iVar1;
 }
 

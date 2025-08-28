@@ -1,5 +1,5 @@
 
-int ec_GF2m_simple_is_on_curve(int *param_1,EC_POINT *param_2,BN_CTX *param_3)
+int ec_GF2m_simple_is_on_curve(EC_GROUP *param_1,EC_POINT *param_2,BN_CTX *param_3)
 
 {
   int iVar1;
@@ -10,12 +10,12 @@ int ec_GF2m_simple_is_on_curve(int *param_1,EC_POINT *param_2,BN_CTX *param_3)
   EC_POINT *pEVar5;
   code *pcVar6;
   
-  iVar1 = EC_POINT_is_at_infinity((EC_GROUP *)param_1,param_2);
+  iVar1 = EC_POINT_is_at_infinity(param_1,param_2);
   if (iVar1 != 0) {
     return 1;
   }
-  pcVar6 = *(code **)(*param_1 + 0x84);
-  pcVar4 = *(code **)(*param_1 + 0x88);
+  pcVar6 = *(code **)(*(int *)param_1 + 0x84);
+  pcVar4 = *(code **)(*(int *)param_1 + 0x88);
   if (*(int *)(param_2 + 0x40) == 0) {
     return -1;
   }
@@ -34,12 +34,12 @@ int ec_GF2m_simple_is_on_curve(int *param_1,EC_POINT *param_2,BN_CTX *param_3)
   pBVar3 = BN_CTX_get(param_3);
   if (pBVar3 != (BIGNUM *)0x0) {
     pEVar5 = param_2 + 4;
-    iVar1 = BN_GF2m_add(pBVar3,pEVar5,param_1 + 0x1d);
+    iVar1 = BN_GF2m_add(pBVar3,pEVar5,param_1 + 0x74);
     if ((iVar1 != 0) && (iVar1 = (*pcVar6)(param_1,pBVar3,pBVar3,pEVar5,param_3), iVar1 != 0)) {
       iVar1 = BN_GF2m_add(pBVar3,pBVar3,param_2 + 0x18);
       if (((iVar1 != 0) &&
           (((iVar1 = (*pcVar6)(param_1,pBVar3,pBVar3,pEVar5,param_3), iVar1 != 0 &&
-            (iVar1 = BN_GF2m_add(pBVar3,pBVar3,param_1 + 0x22), iVar1 != 0)) &&
+            (iVar1 = BN_GF2m_add(pBVar3,pBVar3,param_1 + 0x88), iVar1 != 0)) &&
            (iVar1 = (*pcVar4)(param_1,pBVar2,param_2 + 0x18,param_3), iVar1 != 0)))) &&
          (iVar1 = BN_GF2m_add(pBVar3,pBVar3,pBVar2), iVar1 != 0)) {
         iVar1 = 1 - pBVar3->top;

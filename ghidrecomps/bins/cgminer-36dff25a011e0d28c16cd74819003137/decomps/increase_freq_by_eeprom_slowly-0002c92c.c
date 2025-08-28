@@ -34,8 +34,7 @@ uint16_t increase_freq_by_eeprom_slowly(int init_freq,int freq_step)
         fclose((FILE *)pFile);
       }
       increase_freq_slowly
-                ((float)(longlong)init_freq,(float)(ulonglong)min,(float)(longlong)freq_step,
-                 (uint8_t)chain);
+                ((float)(longlong)init_freq,(float)min,(float)(longlong)freq_step,(uint8_t)chain);
       if (min != max) {
         increase_asic_diff_freq_slowly_one_chain(diff_freq,min,freq_step,chain);
       }

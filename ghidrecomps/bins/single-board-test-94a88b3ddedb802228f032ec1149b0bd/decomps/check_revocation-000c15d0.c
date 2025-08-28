@@ -98,7 +98,7 @@ LAB_000c16b4:
             st = (_STACK *)(**(code **)(param_1 + 0x44))(param_1,pXVar2);
             if ((st != (_STACK *)0x0) || (local_30 == (X509_CRL *)0x0)) {
               get_crl_sk(param_1,&local_30,local_2c,&local_3c,&local_38,&local_34,st);
-              sk_pop_free(st,DAT_000c1794);
+              sk_pop_free(st,X509_CRL_free);
               goto LAB_000c16e6;
             }
           }

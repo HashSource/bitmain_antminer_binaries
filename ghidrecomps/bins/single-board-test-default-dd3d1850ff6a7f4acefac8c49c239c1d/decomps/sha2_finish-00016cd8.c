@@ -1,16 +1,16 @@
 
-void sha2_finish(uint *param_1,undefined *param_2)
+void sha2_finish(uint *param_1,undefined1 *param_2)
 
 {
   uint uVar1;
-  undefined local_20;
-  undefined local_1f;
-  undefined local_1e;
-  undefined local_1d;
-  undefined local_1c;
-  undefined local_1b;
-  undefined local_1a;
-  undefined local_19;
+  undefined1 local_20;
+  undefined1 local_1f;
+  undefined1 local_1e;
+  undefined1 local_1d;
+  undefined1 local_1c;
+  undefined1 local_1b;
+  undefined1 local_1a;
+  undefined1 local_19;
   int local_18;
   uint local_14;
   int local_10;
@@ -19,14 +19,14 @@ void sha2_finish(uint *param_1,undefined *param_2)
   uVar1 = param_1[1] << 3;
   local_c = uVar1 | *param_1 >> 0x1d;
   local_10 = *param_1 << 3;
-  local_20 = (undefined)(uVar1 >> 0x18);
-  local_1f = (undefined)(uVar1 >> 0x10);
-  local_1e = (undefined)(uVar1 >> 8);
-  local_1d = (undefined)local_c;
-  local_1c = (undefined)((uint)local_10 >> 0x18);
-  local_1b = (undefined)((uint)local_10 >> 0x10);
-  local_1a = (undefined)((uint)local_10 >> 8);
-  local_19 = (undefined)local_10;
+  local_20 = (undefined1)(uVar1 >> 0x18);
+  local_1f = (undefined1)(uVar1 >> 0x10);
+  local_1e = (undefined1)(uVar1 >> 8);
+  local_1d = (undefined1)local_c;
+  local_1c = (undefined1)((uint)local_10 >> 0x18);
+  local_1b = (undefined1)((uint)local_10 >> 0x10);
+  local_1a = (undefined1)((uint)local_10 >> 8);
+  local_19 = (undefined1)local_10;
   local_14 = *param_1 & 0x3f;
   if (local_14 < 0x38) {
     local_18 = 0x38 - local_14;

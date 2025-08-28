@@ -4,18 +4,18 @@ undefined4 blake2b_init_key(undefined4 param_1,byte param_2,void *param_3,byte p
 {
   int iVar1;
   undefined4 uVar2;
-  undefined auStack_c8 [128];
+  undefined1 auStack_c8 [128];
   byte local_48;
   byte local_47;
-  undefined local_46;
-  undefined local_45;
-  undefined auStack_44 [4];
-  undefined auStack_40 [8];
-  undefined local_38;
-  undefined local_37;
-  undefined auStack_36 [14];
-  undefined auStack_28 [16];
-  undefined auStack_18 [16];
+  undefined1 local_46;
+  undefined1 local_45;
+  undefined1 auStack_44 [4];
+  undefined1 auStack_40 [8];
+  undefined1 local_38;
+  undefined1 local_37;
+  undefined1 auStack_36 [14];
+  undefined1 auStack_28 [16];
+  undefined1 auStack_18 [16];
   
   if ((param_2 == 0) || (0x40 < param_2)) {
     uVar2 = 0xffffffff;

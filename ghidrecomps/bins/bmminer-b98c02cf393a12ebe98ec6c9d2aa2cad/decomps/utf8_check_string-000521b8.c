@@ -13,7 +13,7 @@ undefined4 utf8_check_string(int param_1,uint param_2)
   uVar3 = 0;
   uVar2 = param_2;
   do {
-    uVar1 = utf8_check_first(*(undefined *)(param_1 + uVar3),uVar2);
+    uVar1 = utf8_check_first(*(undefined1 *)(param_1 + uVar3),uVar2);
     if (uVar1 == 0) {
       return 0;
     }

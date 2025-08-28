@@ -30,9 +30,9 @@ ASN1_STRING * d2i_ASN1_type_bytes(ASN1_STRING **a,uchar **pp,long length,int typ
       }
       __dest = local_24;
       if (local_24 != (uchar *)0x0) {
-        __dest = (uchar *)CRYPTO_malloc((int)(local_24 + 1),DAT_0010a088,0x66);
+        __dest = (uchar *)CRYPTO_malloc((int)(local_24 + 1),"a_bytes.c",0x66);
         if (__dest == (uchar *)0x0) {
-          ERR_put_error(0xd,0x95,0x41,DAT_0010a088,0x7b);
+          ERR_put_error(0xd,0x95,0x41,"a_bytes.c",0x7b);
           if ((a != (ASN1_STRING **)0x0) && (a_00 == *a)) {
             return (ASN1_STRING *)0x0;
           }
@@ -60,7 +60,7 @@ ASN1_STRING * d2i_ASN1_type_bytes(ASN1_STRING **a,uchar **pp,long length,int typ
   else {
     iVar1 = 0x99;
   }
-  ERR_put_error(0xd,0x95,iVar1,DAT_0010a088,0x7b);
+  ERR_put_error(0xd,0x95,iVar1,"a_bytes.c",0x7b);
   return (ASN1_STRING *)0x0;
 }
 

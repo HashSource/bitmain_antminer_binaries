@@ -1,16 +1,18 @@
 
-undefined4 dtls1_get_client_method(int param_1)
+undefined1 * dtls1_get_client_method(int param_1)
 
 {
-  undefined4 uVar1;
+  undefined1 *puVar1;
   
   if (param_1 == 0xfeff || param_1 == 0x100) {
-    return DAT_00075690;
+    return &DTLSv1_client_method_data_18564;
   }
-  uVar1 = DAT_0007568c;
-  if (param_1 != 0xfefd) {
-    uVar1 = 0;
+  if (param_1 == 0xfefd) {
+    puVar1 = DTLSv1_2_client_method_data_18568;
   }
-  return uVar1;
+  else {
+    puVar1 = (undefined1 *)0x0;
+  }
+  return puVar1;
 }
 

@@ -11,7 +11,7 @@ void patten_info_destory(void)
   if (g_patten._116_4_ != 0) {
     free((void *)g_patten._116_4_);
   }
-  pthread_mutex_destroy(DAT_0002cc44);
+  pthread_mutex_destroy((pthread_mutex_t *)(g_patten + 0x84));
   return;
 }
 

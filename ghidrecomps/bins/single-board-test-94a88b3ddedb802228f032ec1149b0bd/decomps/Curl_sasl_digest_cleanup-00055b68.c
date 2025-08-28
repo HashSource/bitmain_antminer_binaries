@@ -23,7 +23,7 @@ void Curl_sasl_digest_cleanup(undefined4 *param_1)
   param_1[7] = 0;
   param_1[8] = 0;
   param_1[3] = 0;
-  *(undefined *)(param_1 + 4) = 0;
+  *(undefined1 *)(param_1 + 4) = 0;
   return;
 }
 

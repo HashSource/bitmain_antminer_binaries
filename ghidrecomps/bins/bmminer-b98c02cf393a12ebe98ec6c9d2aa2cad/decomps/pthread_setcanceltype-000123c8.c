@@ -6,7 +6,7 @@ int pthread_setcanceltype(int __type,int *__oldtype)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_setcanceltype_0007cf84)();
+  iVar1 = pthread_setcanceltype(__type,__oldtype);
   return iVar1;
 }
 

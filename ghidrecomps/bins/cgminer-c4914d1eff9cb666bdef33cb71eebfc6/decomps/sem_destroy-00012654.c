@@ -6,7 +6,7 @@ int sem_destroy(sem_t *__sem)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sem_destroy_000a8270)();
+  iVar1 = sem_destroy(__sem);
   return iVar1;
 }
 

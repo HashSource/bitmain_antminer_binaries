@@ -9,7 +9,7 @@ int PKCS7_set_signed_attributes(PKCS7_SIGNER_INFO *p7si,stack_st_X509_ATTRIBUTE 
   int iVar5;
   
   if (&p7si->auth_attr->stack != (_STACK *)0x0) {
-    sk_pop_free(&p7si->auth_attr->stack,DAT_000d105c);
+    sk_pop_free(&p7si->auth_attr->stack,(func *)0xb7131);
   }
   p_Var1 = sk_dup(&sk->stack);
   p7si->auth_attr = (stack_st_X509_ATTRIBUTE *)p_Var1;

@@ -23,18 +23,18 @@ int BN_nist_mod_384(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   uint uVar19;
   int iVar20;
   ulong *rp;
-  code *pcVar21;
+  code *local_cc;
   uint local_88 [11];
   uint local_5c;
-  undefined auStack_58 [52];
+  undefined1 auStack_58 [52];
   
   puVar15 = a->d;
   iVar20 = a->top;
-  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,DAT_00129178), -1 < iVar2)) {
-    iVar20 = BN_nnmod(r,a,DAT_0012917c,ctx);
+  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,(BIGNUM *)_bignum_nist_p_384_sqr_8346), -1 < iVar2)) {
+    iVar20 = BN_nnmod(r,a,(BIGNUM *)_bignum_nist_p_384,ctx);
     return iVar20;
   }
-  iVar2 = BN_ucmp(DAT_0012917c,a);
+  iVar2 = BN_ucmp((BIGNUM *)_bignum_nist_p_384,a);
   if (iVar2 == 0) {
     BN_set_word(r,0);
     return 1;
@@ -68,7 +68,6 @@ int BN_nist_mod_384(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
     rp[10] = puVar15[10];
     rp[0xb] = puVar15[0xb];
   }
-  pcVar21 = DAT_00129768;
   iVar2 = iVar20 + -0xc;
   if (iVar2 < 1) {
     iVar2 = 0;
@@ -117,6 +116,7 @@ LAB_00129276:
   uVar7 = uVar6 + local_88[8];
   uVar5 = ((uint)CARRY4(local_88[0],*rp) + (uint)CARRY4(uVar5,local_88[9]) +
           (uint)CARRY4(uVar6,local_88[8])) - (uint)(uVar7 < local_5c);
+  local_cc = bn_sub_words;
   uVar6 = uVar5 + rp[1];
   uVar16 = uVar6 + local_88[1];
   uVar17 = uVar16 + local_88[10];
@@ -235,16 +235,17 @@ LAB_00129276:
       uVar5 = 0xffffffff;
     }
     else {
-      uVar14 = bn_add_words(rp,rp,(ulong *)(DAT_00129760 + ~uVar5 * 0x30),0xc);
+      uVar14 = bn_add_words(rp,rp,(ulong *)(_nist_p_384 + ~uVar5 * 0x30),0xc);
       uVar5 = -uVar14;
-      pcVar21 = (code *)(DAT_00129764 & ~uVar5 | uVar5 & (uint)pcVar21);
+      local_cc = (code *)(~uVar5 & 0x9f81d | uVar5 & 0x9fa9d);
     }
   }
   else {
-    uVar14 = bn_sub_words(rp,rp,(ulong *)(DAT_00129760 + (uVar5 - 1) * 0x30),0xc);
+    local_cc = bn_sub_words;
+    uVar14 = bn_sub_words(rp,rp,(ulong *)(_nist_p_384 + (uVar5 - 1) * 0x30),0xc);
     uVar5 = -uVar14;
   }
-  iVar20 = (*pcVar21)(auStack_58,rp,DAT_00129760,0xc);
+  iVar20 = (*local_cc)(auStack_58,rp,_nist_p_384,0xc);
   puVar15 = r->d;
   puVar13 = (ulong *)((uint)auStack_58 & ~(-iVar20 & uVar5) | (uint)rp & -iVar20 & uVar5);
   *rp = *puVar13;

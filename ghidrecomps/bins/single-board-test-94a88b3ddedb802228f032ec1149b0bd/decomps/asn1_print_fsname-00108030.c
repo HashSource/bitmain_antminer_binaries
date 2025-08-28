@@ -7,12 +7,12 @@ bool asn1_print_fsname(BIO *param_1,int param_2,char *param_3,char *param_4,uint
   
   while (0x14 < param_2) {
     param_2 = param_2 + -0x14;
-    iVar1 = BIO_write(param_1,DAT_001080c8,0x14);
+    iVar1 = BIO_write(param_1,spaces_16322,0x14);
     if (iVar1 != 0x14) {
       return false;
     }
   }
-  iVar1 = BIO_write(param_1,DAT_001080c8,param_2);
+  iVar1 = BIO_write(param_1,spaces_16322,param_2);
   if (iVar1 != param_2) {
     return false;
   }
@@ -35,7 +35,7 @@ LAB_00108070:
       return false;
     }
     if (param_4 == (char *)0x0) goto LAB_00108096;
-    iVar1 = BIO_printf(param_1,DAT_001080cc,param_4);
+    iVar1 = BIO_printf(param_1," (%s)",param_4);
   }
   else {
     if (-1 < (int)(uVar2 << 0x19)) goto LAB_00108070;
@@ -49,7 +49,7 @@ LAB_001080ae:
     return false;
   }
 LAB_00108096:
-  iVar1 = BIO_write(param_1,DAT_001080d0,2);
+  iVar1 = BIO_write(param_1,": ",2);
   return iVar1 == 2;
 }
 

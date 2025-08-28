@@ -2,20 +2,20 @@
 void * DSO_global_lookup(char *name)
 
 {
-  DSO_METHOD *pDVar1;
-  void *pvVar2;
+  void *pvVar1;
+  DSO_METHOD *pDVar2;
   
-  pDVar1 = *DAT_001019c4;
-  if (pDVar1 == (DSO_METHOD *)0x0) {
-    pDVar1 = DSO_METHOD_openssl();
+  pDVar2 = default_DSO_meth;
+  if (default_DSO_meth == (DSO_METHOD *)0x0) {
+    pDVar2 = DSO_METHOD_openssl();
   }
-  if (pDVar1->globallookup == (_func_3882 *)0x0) {
-    ERR_put_error(0x25,0x8b,0x6c,DAT_001019c8,0x1bb);
-    pvVar2 = (void *)0x0;
+  if (pDVar2->globallookup == (_func_3882 *)0x0) {
+    ERR_put_error(0x25,0x8b,0x6c,"dso_lib.c",0x1bb);
+    pvVar1 = (void *)0x0;
   }
   else {
-    pvVar2 = (*pDVar1->globallookup)(name);
+    pvVar1 = (*pDVar2->globallookup)(name);
   }
-  return pvVar2;
+  return pvVar1;
 }
 

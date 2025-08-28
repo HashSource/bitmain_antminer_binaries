@@ -70,21 +70,21 @@ LAB_00108978:
       }
       iVar3 = iVar3 - (uint)(cVar13 == '\\');
       if (iVar3 * -0x80000000 < 0) {
-        ERR_put_error(0xd,0x66,0x91,DAT_00108b3c,0xa3);
+        ERR_put_error(0xd,0x66,0x91,"f_int.c",0xa3);
         return 0;
       }
       iVar3 = iVar3 / 2;
       iVar10 = iVar11 + iVar3;
       if (old_num < iVar10) {
         if (local_38 == (uchar *)0x0) {
-          puVar4 = (uchar *)CRYPTO_malloc(iVar3 * 2 + iVar11,DAT_00108b3c,0xaa);
+          puVar4 = (uchar *)CRYPTO_malloc(iVar3 * 2 + iVar11,"f_int.c",0xaa);
         }
         else {
-          puVar4 = (uchar *)CRYPTO_realloc_clean
-                                      (local_38,old_num,iVar3 * 2 + iVar11,DAT_00108b3c,0xac);
+          puVar4 = (uchar *)CRYPTO_realloc_clean(local_38,old_num,iVar3 * 2 + iVar11,"f_int.c",0xac)
+          ;
         }
         if (puVar4 == (uchar *)0x0) {
-          ERR_put_error(0xd,0x66,0x41,DAT_00108b3c,0xae);
+          ERR_put_error(0xd,0x66,0x41,"f_int.c",0xae);
           if (local_38 == (uchar *)0x0) {
             return 0;
           }
@@ -126,7 +126,7 @@ LAB_00108a18:
           if (5 < uVar9 - 0x61) {
             if (5 < uVar9 - 0x41) {
 LAB_00108a70:
-              ERR_put_error(0xd,0x66,0x8d,DAT_00108b3c,0xc1);
+              ERR_put_error(0xd,0x66,0x8d,"f_int.c",0xc1);
               return 0;
             }
             uVar6 = uVar9 - 0x37;
@@ -148,7 +148,7 @@ LAB_00108a50:
       iVar11 = iVar10;
     } while (0 < iVar3);
   }
-  ERR_put_error(0xd,0x66,0x96,DAT_00108b3c,0xd4);
+  ERR_put_error(0xd,0x66,0x96,"f_int.c",0xd4);
   return 0;
 }
 

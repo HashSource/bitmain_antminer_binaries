@@ -2,9 +2,11 @@
 int parse_config_ini_array(char *str,void **pointer)
 
 {
-  char *pcVar1;
-  int iVar2;
-  double dVar3;
+  bool bVar1;
+  size_t sVar2;
+  int iVar3;
+  int iVar4;
+  double dVar5;
   void **pointer_local;
   char *str_local;
   char item_str [32];
@@ -17,44 +19,43 @@ int parse_config_ini_array(char *str,void **pointer)
   int item_num;
   int type;
   
-  str_len = strlen(str);
-  type = 1;
+  sVar2 = strlen(str);
+  bVar1 = true;
   item_num = 0;
-  for (i = 0; i < str_len; i = i + 1) {
+  for (i = 0; i < (int)sVar2; i = i + 1) {
     if (str[i] == '.') {
-      type = 0;
+      bVar1 = false;
     }
     if (str[i] == ',') {
       item_num = item_num + 1;
     }
   }
-  item_num = item_num + 1;
-  if (type == 0) {
-    local_pointer = malloc(item_num * 8);
-    memset(local_pointer,0,item_num * 8);
+  iVar4 = item_num + 1;
+  if (bVar1) {
+    local_pointer = malloc(iVar4 * 4);
+    memset(local_pointer,0,iVar4 * 4);
   }
   else {
-    local_pointer = malloc(item_num * 4);
-    memset(local_pointer,0,item_num * 4);
+    local_pointer = malloc(iVar4 * 8);
+    memset(local_pointer,0,iVar4 * 8);
   }
   item_str_counter = 0;
   memset(item_str,0,0x20);
   j = 0;
-  for (i_1 = 0; i_1 < str_len; i_1 = i_1 + 1) {
+  for (i_1 = 0; i_1 < (int)sVar2; i_1 = i_1 + 1) {
     if (((0x2f < (byte)str[i_1]) && ((byte)str[i_1] < 0x3a)) || (str[i_1] == '.')) {
-      pcVar1 = item_str + item_str_counter;
+      item_str[item_str_counter] = str[i_1];
       item_str_counter = item_str_counter + 1;
-      *pcVar1 = str[i_1];
     }
     if ((str[i_1] == ',') || (str[i_1] == ']')) {
       item_str[item_str_counter] = '\0';
-      if (type == 0) {
-        dVar3 = atof(item_str);
-        *(double *)((int)local_pointer + j * 8) = dVar3;
+      if (bVar1) {
+        iVar3 = atoi(item_str);
+        *(int *)((int)local_pointer + j * 4) = iVar3;
       }
       else {
-        iVar2 = atoi(item_str);
-        *(int *)((int)local_pointer + j * 4) = iVar2;
+        dVar5 = atof(item_str);
+        *(double *)((int)local_pointer + j * 8) = dVar5;
       }
       j = j + 1;
       memset(item_str,0x20,0x20);
@@ -62,6 +63,6 @@ int parse_config_ini_array(char *str,void **pointer)
     }
   }
   *pointer = local_pointer;
-  return item_num;
+  return iVar4;
 }
 

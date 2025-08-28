@@ -4,9 +4,7 @@
 void __assert_fail(char *__assertion,char *__file,uint __line,char *__function)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00008f6c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_00035520)();
+  (*(code *)(undefined *)0x0)(__assertion);
   return;
 }
 

@@ -9,7 +9,7 @@ CMS_RecipientInfo_kari_get0_orig_id
   int *piVar2;
   
   if (*param_1 != 1) {
-    ERR_put_error(0x2e,0xad,0xb5,DAT_000d6b98,0x70);
+    ERR_put_error(0x2e,0xad,0xb5,"cms_kari.c",0x70);
     return 0;
   }
   piVar2 = *(int **)(param_1[1] + 4);

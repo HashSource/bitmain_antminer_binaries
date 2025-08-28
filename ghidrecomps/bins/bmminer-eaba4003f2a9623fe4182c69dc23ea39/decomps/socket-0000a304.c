@@ -6,9 +6,7 @@ int socket(int __domain,int __type,int __protocol)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a30c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_000852c0)();
+  iVar1 = (*(code *)(undefined *)0x0)(__domain);
   return iVar1;
 }
 

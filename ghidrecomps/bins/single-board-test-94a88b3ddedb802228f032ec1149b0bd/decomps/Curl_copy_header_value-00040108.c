@@ -48,7 +48,7 @@ void * Curl_copy_header_value(byte *param_1)
         pbVar4 = pbVar5;
       } while (pbVar5 != pbVar3);
     }
-    __dest = (void *)(**DAT_000401bc)(pbVar4 + (2 - (int)pbVar3));
+    __dest = (void *)(*Curl_cmalloc)(pbVar4 + (2 - (int)pbVar3));
     if (__dest != (void *)0x0) {
       memcpy(__dest,pbVar3,(size_t)(pbVar4 + (1 - (int)pbVar3)));
       *(byte *)((int)__dest + (int)(pbVar4 + (1 - (int)pbVar3))) = 0;

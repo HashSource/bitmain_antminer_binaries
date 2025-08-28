@@ -1,6 +1,5 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void signal_work_update(void)
 
@@ -9,14 +8,8 @@ void signal_work_update(void)
   int i;
   
   if (((use_syslog) || (opt_log_output)) || (5 < opt_log_level)) {
-    tmp42._0_4_ = s_Work_update_message_received_0007311c._0_4_;
-    tmp42._4_4_ = s_Work_update_message_received_0007311c._4_4_;
-    tmp42._8_4_ = s_Work_update_message_received_0007311c._8_4_;
-    tmp42._12_4_ = s_Work_update_message_received_0007311c._12_4_;
-    tmp42._16_4_ = s_Work_update_message_received_0007311c._16_4_;
-    tmp42._20_4_ = s_Work_update_message_received_0007311c._20_4_;
-    tmp42._24_4_ = s_Work_update_message_received_0007311c._24_4_;
-    tmp42[28] = (char)ram0x00073138;
+    builtin_strncpy(tmp42,"Work update message received",0x1c);
+    tmp42[0x1c] = '\0';
     _applog(6,tmp42,false);
   }
   cgtime(&update_tv_start);

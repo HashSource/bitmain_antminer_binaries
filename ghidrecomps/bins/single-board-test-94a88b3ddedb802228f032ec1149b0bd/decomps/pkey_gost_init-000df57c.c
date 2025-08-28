@@ -10,7 +10,7 @@ undefined4 pkey_gost_init(EVP_PKEY_CTX *param_1)
   EC_GROUP *group;
   
   pkey = EVP_PKEY_CTX_get0_pkey(param_1);
-  __s = (int *)CRYPTO_malloc(0x10,DAT_000df5e8,0x1a);
+  __s = (int *)CRYPTO_malloc(0x10,"gost_pmeth.c",0x1a);
   if (__s == (int *)0x0) {
     return 0;
   }

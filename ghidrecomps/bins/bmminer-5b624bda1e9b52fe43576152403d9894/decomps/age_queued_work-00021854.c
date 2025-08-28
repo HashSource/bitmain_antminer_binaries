@@ -4,48 +4,44 @@ int age_queued_work(cgpu_info *cgpu,double secs)
 {
   int iVar1;
   int iVar2;
-  work *in_r2;
-  int in_r3;
-  work *line;
+  char *func;
+  char *func_00;
+  int line;
+  int line_00;
   work *pwVar3;
-  work *tmp;
-  double in_d0;
   double dVar4;
-  work *work;
+  work *local_2c;
   timeval tv_now;
   
   cgtime(&tv_now);
   iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar1 != 0) {
-    _wr_lock(DAT_000218fc,(char *)0x24e3,(char *)in_r2,in_r3);
+    _wr_lock((pthread_rwlock_t *)"age_queued_work",(char *)0x24e3,func,line);
   }
-  line = cgpu->queued_work;
-  pwVar3 = line;
-  if (line != (work *)0x0) {
-    pwVar3 = (work *)(line->hh).next;
+  local_2c = cgpu->queued_work;
+  pwVar3 = local_2c;
+  if (local_2c != (work *)0x0) {
+    pwVar3 = (work *)(local_2c->hh).next;
   }
   iVar1 = 0;
   while( true ) {
-    work = line;
-    if (line == (work *)0x0) break;
-    dVar4 = tdiff(&tv_now,&line->tv_work_start);
-    if (dVar4 != in_d0 && dVar4 < in_d0 == (NAN(dVar4) || NAN(in_d0))) {
-      __work_completed(cgpu,work);
+    if (local_2c == (work *)0x0) break;
+    dVar4 = tdiff(&tv_now,&local_2c->tv_work_start);
+    if (secs < dVar4) {
+      __work_completed(cgpu,local_2c);
       iVar1 = iVar1 + 1;
-      _free_work(&work,DAT_000218f8,DAT_000218fc->__size,0x24e9);
+      _free_work(&local_2c,"cgminer.c","age_queued_work",0x24e9);
     }
-    in_r2 = pwVar3;
-    line = pwVar3;
+    local_2c = pwVar3;
     if (pwVar3 != (work *)0x0) {
-      in_r2 = (work *)(pwVar3->hh).next;
-      pwVar3 = in_r2;
+      pwVar3 = (work *)(pwVar3->hh).next;
     }
   }
   iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar2 != 0) {
-    _rw_unlock(DAT_000218fc,(char *)0x24ee,(char *)in_r2,(int)line);
+    _rw_unlock((pthread_rwlock_t *)"age_queued_work",(char *)0x24ee,func_00,line_00);
   }
-  (**DAT_00021900)();
+  (*selective_yield)();
   return iVar1;
 }
 

@@ -4,105 +4,82 @@
 _Bool clement_doTestBoardOnce(_Bool showlog)
 
 {
-  int *piVar1;
+  int iVar1;
   int iVar2;
-  char *__s;
-  __start_routine *__start_routine;
-  int iVar3;
-  void *__s_00;
+  _Bool *p_Var3;
   int iVar4;
-  int ret;
-  int iVar5;
-  undefined *puVar6;
+  int (*paiVar5) [256];
+  int (*paiVar6) [256];
   int iVar7;
-  int iVar8;
-  int iVar9;
-  int iVar10;
-  int iVar11;
-  int iVar12;
   
-  __s_00 = DAT_000181dc;
-  iVar2 = DAT_000181ac;
-  piVar1 = (int *)(DAT_000181ac + 4);
-  *(_Bool *)DAT_000181ac = showlog;
-  if (0 < *piVar1) {
-    memset(__s_00,0,0x271974);
-    iVar4 = configMiner();
-    iVar10 = DAT_000181e0;
-    __s = DAT_000181b8;
-    iVar9 = DAT_000181b4;
-    iVar8 = DAT_000181b0;
-    if (iVar4 < 0) {
-      puts(DAT_000181d8);
+  showLogToKernelLog = showlog;
+  if (0 < init_once) {
+    memset(&cgpu,0,0x271974);
+    iVar1 = configMiner();
+    if (iVar1 < 0) {
+      puts("configMiner Error!");
       return false;
     }
-    *(undefined4 *)(iVar2 + 4) = 0;
-    puts(__s);
-    __start_routine = DAT_000181bc;
-    *(undefined *)(iVar10 + 0x304) = 0;
-    *(undefined *)(iVar10 + 0x305) = 0;
-    *(undefined4 *)(iVar8 + 0xd2c) = 0x390;
-    *(undefined4 *)(iVar8 + 0xd30) = 0x390;
-    *(undefined4 *)(iVar8 + 0xd34) = 0x390;
-    *(undefined4 *)(iVar8 + 0xd38) = 0x390;
-    *(undefined4 *)(iVar9 + 0xee4) = 0x390;
-    *(undefined4 *)(iVar9 + 0xee8) = 0x390;
-    *(undefined4 *)(iVar9 + 0xeec) = 0x390;
-    *(undefined4 *)(iVar9 + 0xef0) = 0x390;
-    *(undefined4 *)(iVar8 + 0xd68) = 0x4020;
-    *(undefined4 *)(iVar9 + 0xf28) = 0x4020;
-    *(undefined4 *)(iVar8 + 0xd6c) = 0x4020;
-    *(undefined4 *)(iVar9 + 0xf2c) = 0x4020;
-    *(undefined4 *)(iVar8 + 0xd70) = 0x4020;
-    *(undefined4 *)(iVar9 + 0xf30) = 0x4020;
-    pthread_create((pthread_t *)((int)__s_00 + 0x200),(pthread_attr_t *)0x0,__start_routine,__s_00);
-    puVar6 = (undefined *)(iVar10 + 0x357);
+    init_once = 0;
+    puts("single board test start");
+    ExitFlag = false;
+    receiveExit = false;
+    conf.dataCount = 0x390;
+    conf.passCount1 = 0x390;
+    conf.passCount2 = 0x390;
+    conf.passCount3 = 0x390;
+    Conf.DataCount = 0x390;
+    Conf.PassCount1 = 0x390;
+    Conf.PassCount2 = 0x390;
+    Conf.PassCount3 = 0x390;
+    conf.ValidNonce1 = 0x4020;
+    Conf.ValidNonce1 = 0x4020;
+    conf.ValidNonce2 = 0x4020;
+    Conf.ValidNonce2 = 0x4020;
+    conf.ValidNonce3 = 0x4020;
+    Conf.ValidNonce3 = 0x4020;
+    pthread_create(&cgpu.receive_id,(pthread_attr_t *)0x0,(__start_routine *)0x15f7d,&cgpu);
+    p_Var3 = chain_need_opencore + 0xf;
     do {
-      puVar6 = puVar6 + 1;
-      *puVar6 = 0;
-    } while (puVar6 != (undefined *)(iVar10 + 0x367));
+      p_Var3 = p_Var3 + 1;
+      *p_Var3 = false;
+    } while (p_Var3 != StartSendFlag + 0xf);
   }
-  iVar2 = DAT_000181e4;
-  iVar10 = 0;
-  iVar12 = 0;
-  iVar11 = DAT_000181c0 + -0x90;
-  iVar4 = DAT_000181e4 + -0x10;
-  iVar8 = DAT_000181c0;
-  iVar9 = DAT_000181c4;
+  paiVar5 = last_result;
+  iVar1 = 0;
+  iVar7 = 0;
+  paiVar6 = last_result_opencore;
   do {
-    iVar5 = 0;
-    *(undefined4 *)(iVar2 + iVar10) = 0;
+    iVar2 = 0;
+    *(undefined4 *)((int)testModeOKCounter + iVar1) = 0;
     do {
-      *(undefined4 *)(iVar8 + iVar5) = 0;
-      iVar7 = 0;
-      *(undefined4 *)(iVar9 + iVar5) = 0;
-      iVar3 = DAT_000181c8;
-      iVar5 = iVar5 + 4;
-    } while (iVar5 != 0x400);
-    iVar8 = iVar8 + 0x400;
-    *(undefined *)(iVar4 + iVar12) = 1;
-    iVar9 = iVar9 + 0x400;
-    *(undefined4 *)(iVar11 + iVar10) = 0x390;
-    *(undefined *)(iVar3 + iVar12) = 0;
-    iVar5 = DAT_000181cc;
-    iVar12 = iVar12 + 1;
-    *(undefined4 *)(DAT_000181cc + iVar10) = 0;
-    *(undefined4 *)(iVar5 + 0x40 + iVar10) = 0;
-    *(undefined4 *)(iVar5 + 0x80 + iVar10) = 0;
-    *(undefined4 *)(DAT_000181d0 + iVar10) = 0x4020;
-    *(undefined4 *)(DAT_000181d4 + iVar10) = 0x390;
-    iVar10 = iVar10 + 4;
-  } while (iVar12 != 0x10);
+      *(undefined4 *)((int)*paiVar5 + iVar2) = 0;
+      iVar4 = 0;
+      *(undefined4 *)((int)*paiVar6 + iVar2) = 0;
+      iVar2 = iVar2 + 4;
+    } while (iVar2 != 0x400);
+    paiVar5 = paiVar5 + 1;
+    search_freq_result[iVar7] = true;
+    paiVar6 = paiVar6 + 1;
+    *(undefined4 *)((int)chain_DataCount + iVar1) = 0x390;
+    chain_need_opencore[iVar7] = false;
+    iVar7 = iVar7 + 1;
+    *(undefined4 *)((int)chain_vol_value + iVar1) = 0;
+    *(undefined4 *)((int)chain_vol_final + iVar1) = 0;
+    *(undefined4 *)((int)chain_vol_added + iVar1) = 0;
+    *(undefined4 *)((int)chain_ValidNonce + iVar1) = 0x4020;
+    *(undefined4 *)((int)chain_PassCount + iVar1) = 0x390;
+    iVar1 = iVar1 + 4;
+  } while (iVar7 != 0x10);
   doTestBoard(0x4020);
-  iVar8 = 0;
+  iVar1 = 0;
   do {
-    if ((*(int *)((int)__s_00 + (int)cgpu.results[0x6b] + iVar7 + 0x4228) != 0) &&
-       (*(char *)(iVar4 + iVar8) != '\0')) {
-      *(int *)(iVar2 + iVar7) = *(int *)(iVar2 + iVar7) + 1;
+    if ((*(int *)((int)cgpu.chain_exist + iVar4) != 0) && (search_freq_result[iVar1] != false)) {
+      *(int *)((int)testModeOKCounter + iVar4) = *(int *)((int)testModeOKCounter + iVar4) + 1;
     }
-    iVar8 = iVar8 + 1;
-    iVar7 = iVar7 + 4;
-  } while (iVar8 != 0x10);
+    iVar1 = iVar1 + 1;
+    iVar4 = iVar4 + 4;
+  } while (iVar1 != 0x10);
   set_PWM('d');
   return true;
 }

@@ -3,7 +3,6 @@ int * sk_deep_copy(int *param_1,code *param_2,code *param_3)
 
 {
   int *piVar1;
-  char *file;
   int *ptr;
   int iVar2;
   void *pvVar3;
@@ -11,7 +10,7 @@ int * sk_deep_copy(int *param_1,code *param_2,code *param_3)
   int iVar5;
   int iVar6;
   
-  ptr = (int *)CRYPTO_malloc(0x14,DAT_000ab3fc,0x7c);
+  ptr = (int *)CRYPTO_malloc(0x14,"stack.c",0x7c);
   if (ptr != (int *)0x0) {
     iVar4 = param_1[4];
     iVar5 = param_1[2];
@@ -19,12 +18,11 @@ int * sk_deep_copy(int *param_1,code *param_2,code *param_3)
     iVar2 = *param_1;
     ptr[4] = iVar4;
     ptr[2] = iVar5;
-    file = DAT_000ab3fc;
     if (iVar2 < 4) {
       iVar2 = 4;
     }
     ptr[3] = iVar2;
-    pvVar3 = CRYPTO_malloc(iVar2 << 2,file,0x82);
+    pvVar3 = CRYPTO_malloc(iVar2 << 2,"stack.c",0x82);
     ptr[1] = (int)pvVar3;
     if (pvVar3 == (void *)0x0) {
       CRYPTO_free(ptr);

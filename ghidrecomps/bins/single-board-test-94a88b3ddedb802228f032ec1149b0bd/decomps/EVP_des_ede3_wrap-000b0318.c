@@ -1,7 +1,7 @@
 
-undefined4 EVP_des_ede3_wrap(void)
+undefined1 * EVP_des_ede3_wrap(void)
 
 {
-  return DAT_000b031c;
+  return des3_wrap;
 }
 

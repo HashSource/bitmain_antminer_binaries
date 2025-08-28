@@ -12,18 +12,15 @@ void discard_stale(void)
   int iVar7;
   int iVar8;
   undefined4 uVar9;
-  undefined4 uVar10;
   int local_824;
   char acStack_820 [2048];
   
   iVar1 = pthread_mutex_lock(stgd_lock);
-  uVar9 = DAT_0002401c;
   if (iVar1 != 0) {
     piVar4 = __errno_location();
     iVar1 = *piVar4;
     __format = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
-    uVar10 = 0x14b5;
-    uVar9 = DAT_0002401c;
+    uVar9 = 0x14b5;
     goto LAB_00023fb0;
   }
   local_824 = staged_work;
@@ -46,7 +43,7 @@ void discard_stale(void)
             }
             goto LAB_00023e32;
           }
-          free(**(void ***)(staged_work + 0x158));
+          free((void *)**(undefined4 **)(staged_work + 0x158));
           free(*(void **)(staged_work + 0x158));
           staged_work = iVar7;
         }
@@ -83,7 +80,7 @@ LAB_00023e32:
           piVar4[3] = piVar4[3] + -1;
         }
         iVar1 = iVar1 + 1;
-        _discard_work(&local_824,"cgminer.c",uVar9,0x14bc);
+        _discard_work(&local_824,"cgminer.c","discard_stale",0x14bc);
       }
       local_824 = iVar3;
       if (iVar3 == 0) goto LAB_00023eac;
@@ -110,13 +107,12 @@ LAB_00023eac:
     return;
   }
 LAB_00023fca:
-  uVar9 = DAT_0002401c;
   piVar4 = __errno_location();
   iVar1 = *piVar4;
   __format = "WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d";
-  uVar10 = 0x14c2;
+  uVar9 = 0x14c2;
 LAB_00023fb0:
-  snprintf(acStack_820,0x800,__format,iVar1,"cgminer.c",uVar9,uVar10);
+  snprintf(acStack_820,0x800,__format,iVar1,"cgminer.c","discard_stale",uVar9);
   _applog(3,acStack_820,1);
                     /* WARNING: Subroutine does not return */
   __quit(1);

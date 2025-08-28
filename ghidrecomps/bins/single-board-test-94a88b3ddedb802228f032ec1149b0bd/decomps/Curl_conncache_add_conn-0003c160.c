@@ -14,11 +14,11 @@ undefined4 Curl_conncache_add_conn(int param_1,int *param_2,undefined4 param_3,u
            Curl_conncache_find_bundle
                      (param_2,*(undefined4 *)(iVar5 + 0x580),param_3,param_4,param_4);
   if (puVar1 == (undefined4 *)0x0) {
-    puVar1 = (undefined4 *)(**DAT_0003c240)(0xc);
+    puVar1 = (undefined4 *)(*Curl_cmalloc)(0xc);
     if (puVar1 != (undefined4 *)0x0) {
       puVar1[1] = 0;
       *puVar1 = 0;
-      iVar3 = Curl_llist_alloc(DAT_0003c244);
+      iVar3 = Curl_llist_alloc(0x3c081);
       puVar1[2] = iVar3;
       if (iVar3 != 0) {
         if (*(char *)((int)param_2 + 0x1ef) == '\0') {
@@ -27,11 +27,11 @@ undefined4 Curl_conncache_add_conn(int param_1,int *param_2,undefined4 param_3,u
         else {
           iVar3 = param_2[0x2a];
         }
-        __s = (char *)curl_maprintf(DAT_0003c248,iVar3,*(undefined2 *)(param_2 + 0x118));
+        __s = (char *)curl_maprintf("%s:%d",iVar3,(short)param_2[0x118]);
         if (__s != (char *)0x0) {
           sVar2 = strlen(__s);
           iVar3 = Curl_hash_add(*(undefined4 *)(iVar5 + 0x580),__s,sVar2,puVar1);
-          (**DAT_0003c24c)(__s);
+          (*Curl_cfree)(__s);
           if (iVar3 != 0) {
             iVar3 = Curl_llist_insert_next(puVar1[2],*(undefined4 *)(puVar1[2] + 4),param_2);
             if (iVar3 == 0) {
@@ -44,7 +44,7 @@ undefined4 Curl_conncache_add_conn(int param_1,int *param_2,undefined4 param_3,u
         bundle_destroy(puVar1);
         return 0x1b;
       }
-      (**DAT_0003c24c)(puVar1);
+      (*Curl_cfree)(puVar1);
     }
   }
   else {

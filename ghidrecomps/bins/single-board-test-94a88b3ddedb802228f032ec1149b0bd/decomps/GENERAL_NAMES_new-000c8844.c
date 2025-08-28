@@ -4,9 +4,9 @@
 GENERAL_NAMES * GENERAL_NAMES_new(void)
 
 {
-  GENERAL_NAMES *pGVar1;
+  ASN1_VALUE *pAVar1;
   
-  pGVar1 = (GENERAL_NAMES *)ASN1_item_new(DAT_000c884c);
-  return pGVar1;
+  pAVar1 = ASN1_item_new((ASN1_ITEM *)GENERAL_NAMES_it);
+  return (GENERAL_NAMES *)pAVar1;
 }
 

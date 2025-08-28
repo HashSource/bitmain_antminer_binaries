@@ -8,7 +8,7 @@ undefined4 def_load(undefined4 param_1,char *param_2,undefined4 param_3)
   int reason;
   int line;
   
-  a = BIO_new_file(param_2,DAT_0010e4bc);
+  a = BIO_new_file(param_2,"rb");
   if (a == (BIO *)0x0) {
     uVar2 = ERR_peek_last_error();
     if ((uVar2 & 0xfff) == 0x80) {
@@ -19,7 +19,7 @@ undefined4 def_load(undefined4 param_1,char *param_2,undefined4 param_3)
       line = 0xc5;
       reason = 2;
     }
-    ERR_put_error(0xe,0x78,reason,DAT_0010e4c0,line);
+    ERR_put_error(0xe,0x78,reason,"conf_def.c",line);
     uVar1 = 0;
   }
   else {

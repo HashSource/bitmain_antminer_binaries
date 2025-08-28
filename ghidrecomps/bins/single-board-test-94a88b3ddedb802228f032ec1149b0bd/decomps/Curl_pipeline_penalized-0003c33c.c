@@ -6,7 +6,7 @@ int * Curl_pipeline_penalized(int param_1,int param_2)
   int iVar2;
   int *piVar3;
   undefined4 uVar4;
-  undefined4 uVar5;
+  char *pcVar5;
   uint uVar6;
   int iVar7;
   uint uVar8;
@@ -32,26 +32,27 @@ int * Curl_pipeline_penalized(int param_1,int param_2)
     iVar9 = *(int *)(*piVar3 + 0x54);
     piVar3 = (int *)(uint)((int)((iVar7 - iVar9) - (uint)(uVar6 < uVar8)) < 0 !=
                           (SBORROW4(iVar7,iVar9) != SBORROW4(iVar7 - iVar9,(uint)(uVar6 < uVar8))));
-    if ((int)(iVar7 - (uint)(uVar6 == 0)) < 0 != (SBORROW4(iVar7,(uint)(uVar6 == 0)) != false)) {
+    if (iVar7 < (int)(uint)(uVar6 == 0)) {
       piVar3 = (int *)0x0;
     }
   }
   uVar6 = *(uint *)(param_2 + 0x28);
   iVar7 = *(int *)(param_2 + 0x2c);
-  if (((int)(iVar2 - (uint)(uVar1 == 0)) < 0 == (SBORROW4(iVar2,(uint)(uVar1 == 0)) != false)) &&
-     ((int)((iVar2 - iVar7) - (uint)(uVar1 < uVar6)) < 0 !=
+  if ((iVar2 < (int)(uint)(uVar1 == 0)) ||
+     ((int)((iVar2 - iVar7) - (uint)(uVar1 < uVar6)) < 0 ==
       (SBORROW4(iVar2,iVar7) != SBORROW4(iVar2 - iVar7,(uint)(uVar1 < uVar6))))) {
     uVar4 = *(undefined4 *)(param_2 + 0x44);
-    piVar3 = (int *)0x1;
+    pcVar5 = "FALSE";
+    if (piVar3 == (int *)0x0) goto LAB_0003c3c2;
   }
   else {
     uVar4 = *(undefined4 *)(param_2 + 0x44);
-    uVar5 = DAT_0003c3f0;
-    if (piVar3 == (int *)0x0) goto LAB_0003c3c2;
+    piVar3 = (int *)0x1;
   }
-  uVar5 = DAT_0003c3ec;
+  pcVar5 = "TRUE";
 LAB_0003c3c2:
-  Curl_infof(param_1,DAT_0003c3f4,uVar4,param_2,uVar8,iVar9,uVar6,iVar7,uVar5);
+  Curl_infof(param_1,"Conn: %ld (%p) Receive pipe weight: (%lld/%zu), penalized: %s\n",uVar4,param_2
+             ,uVar8,iVar9,uVar6,iVar7,pcVar5);
   return piVar3;
 }
 

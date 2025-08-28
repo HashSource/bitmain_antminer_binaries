@@ -6,7 +6,7 @@ int putchar(int __c)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_putchar_000a81a8)();
+  iVar1 = putchar(__c);
   return iVar1;
 }
 

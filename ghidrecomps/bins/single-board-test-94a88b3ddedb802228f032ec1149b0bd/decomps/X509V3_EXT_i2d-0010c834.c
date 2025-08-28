@@ -10,7 +10,7 @@ X509_EXTENSION * X509V3_EXT_i2d(int ext_nid,int crit,void *ext_struc)
     pXVar2 = (X509_EXTENSION *)do_ext_i2d(pXVar1,ext_nid,crit,ext_struc);
     return pXVar2;
   }
-  ERR_put_error(0x22,0x88,0x81,DAT_0010c86c,0xde);
+  ERR_put_error(0x22,0x88,0x81,"v3_conf.c",0xde);
   return (X509_EXTENSION *)0x0;
 }
 

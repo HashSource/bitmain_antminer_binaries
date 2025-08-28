@@ -6,9 +6,7 @@ void * memcpy(void *__dest,void *__src,size_t __n)
 {
   void *pvVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a39c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pvVar1 = (void *)(*(code *)PTR_LAB_000852f0)();
+  pvVar1 = (void *)(*(code *)(undefined *)0x0)(__dest);
   return pvVar1;
 }
 

@@ -1,5 +1,5 @@
 
-undefined4 rsa_cb(int param_1,RSA **param_2)
+undefined4 rsa_cb(int param_1,undefined4 *param_2)
 
 {
   RSA *pRVar1;
@@ -17,8 +17,8 @@ undefined4 rsa_cb(int param_1,RSA **param_2)
     return uVar2;
   }
   if (param_1 == 2) {
-    RSA_free(*param_2);
-    *param_2 = (RSA *)0x0;
+    RSA_free((RSA *)*param_2);
+    *param_2 = 0;
     return 2;
   }
   return 1;

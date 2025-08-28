@@ -6,7 +6,7 @@ long strtol(char *__nptr,char **__endptr,int __base)
 {
   long lVar1;
   
-  lVar1 = (*(code *)PTR_strtol_000a8030)();
+  lVar1 = strtol(__nptr,__endptr,__base);
   return lVar1;
 }
 

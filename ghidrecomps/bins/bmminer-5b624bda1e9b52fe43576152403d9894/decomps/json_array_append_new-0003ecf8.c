@@ -4,7 +4,6 @@
 int json_array_append_new(json_t *json,json_t *value)
 
 {
-  json_array_t *array;
   json_t **ppjVar1;
   size_t sVar2;
   

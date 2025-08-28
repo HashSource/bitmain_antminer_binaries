@@ -1,5 +1,5 @@
 
-void reg_handle(int param_1,char param_2,undefined param_3)
+void reg_handle(int param_1,char param_2,undefined1 param_3)
 
 {
   char acStack_41c [1024];
@@ -13,6 +13,8 @@ void reg_handle(int param_1,char param_2,undefined param_3)
   local_d = CRC5_v1(param_1 + 2,(param_2 + -3) * '\b' + '\x03');
   if (local_d == (*(byte *)(local_c + 8) & 0x1f)) {
     local_14 = 3;
+    local_1c._0_3_ =
+         CONCAT12(*(undefined1 *)(local_c + 2),CONCAT11(*(undefined1 *)(local_c + 7),param_3));
     local_18 = (uint)*(byte *)(local_c + 5) << 8 |
                (uint)*(byte *)(local_c + 3) << 0x18 | (uint)*(byte *)(local_c + 4) << 0x10 |
                (uint)*(byte *)(local_c + 6);

@@ -6,9 +6,9 @@ BIGNUM * BN_new(void)
 {
   BIGNUM *pBVar1;
   
-  pBVar1 = (BIGNUM *)CRYPTO_malloc(0x14,DAT_0009d0e8,0x110);
+  pBVar1 = (BIGNUM *)CRYPTO_malloc(0x14,"bn_lib.c",0x110);
   if (pBVar1 == (BIGNUM *)0x0) {
-    ERR_put_error(3,0x71,0x41,DAT_0009d0e8,0x111);
+    ERR_put_error(3,0x71,0x41,"bn_lib.c",0x111);
   }
   else {
     pBVar1->flags = 1;

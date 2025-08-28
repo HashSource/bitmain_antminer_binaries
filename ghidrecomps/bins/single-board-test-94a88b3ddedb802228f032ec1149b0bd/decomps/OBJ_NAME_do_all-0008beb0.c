@@ -9,7 +9,7 @@ void OBJ_NAME_do_all(int type,fn *fn,void *arg)
   local_14 = type;
   local_10 = fn;
   local_c = arg;
-  lh_doall_arg(names_lh,do_all_fn_LHASH_DOALL_ARG + 1,&local_14);
+  lh_doall_arg(names_lh,(LHASH_DOALL_ARG_FN_TYPE)0x8babd,&local_14);
   return;
 }
 

@@ -9,14 +9,16 @@ void _k_insert_before(int *param_1,int *param_2,int param_3,undefined4 param_4,u
   
   if (*param_2 != *param_1) {
     snprintf(acStack_818,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
-             *param_1,DAT_0004066c,*param_2,param_4,param_5,param_6,"klist.c",DAT_0004066c,0x106);
+             *param_1,"_k_insert_before",*param_2,param_4,param_5,param_6,"klist.c",
+             "_k_insert_before",0x106);
     _applog(3,acStack_818,1);
     _quit(1);
   }
   if (param_3 == 0) {
     snprintf(acStack_818,0x800,
-             "%s() (%s) can\'t before a null item - from %s %s() line %d in %s %s():%d",DAT_0004066c
-             ,*param_1,param_4,param_5,param_6,"klist.c",DAT_0004066c,0x10b);
+             "%s() (%s) can\'t before a null item - from %s %s() line %d in %s %s():%d",
+             "_k_insert_before",*param_1,param_4,param_5,param_6,"klist.c","_k_insert_before",0x10b)
+    ;
     _applog(3,acStack_818,1);
     _quit(1);
   }

@@ -4,7 +4,6 @@ void set_general_i2c(uchar chain,uchar chip_addr,int bottom_or_mid,uchar reg,uch
 
 {
   uint uVar1;
-  uchar uVar2;
   int bottom_or_mid_local;
   uchar reg_local;
   uchar chip_addr_local;
@@ -22,12 +21,12 @@ void set_general_i2c(uchar chain,uchar chip_addr,int bottom_or_mid,uchar reg,uch
   buf[0] = 'A';
   buf[1] = '\t';
   buf[3] = '\x1c';
-  uVar2 = '\x01';
+  buf[4] = '\x01';
   if (bottom_or_mid == 1) {
-    uVar2 = '\x05';
+    buf[4] = '\x05';
   }
-  buf._4_2_ = CONCAT11(write | device,uVar2);
-  buf._4_3_ = CONCAT12(reg,buf._4_2_);
+  buf[5] = write | device;
+  buf[6] = reg;
   buf[7] = data;
   buf[8] = CRC5(buf,'@');
   cmd_buf[0] = (uint)buf._0_4_ >> 0x18 |

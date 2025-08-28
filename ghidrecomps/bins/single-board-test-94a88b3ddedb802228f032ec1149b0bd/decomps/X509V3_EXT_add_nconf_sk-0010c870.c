@@ -33,13 +33,13 @@ LAB_0010c8e6:
           iVar2 = OBJ_sn2nid(s);
           ex = (X509_EXTENSION *)do_ext_nconf(conf,ctx,iVar2,uVar7,pbVar8);
           if (ex == (X509_EXTENSION *)0x0) {
-            ERR_put_error(0x22,0x98,0x80,DAT_0010c9c0,0x5f);
-            ERR_add_error_data(4,DAT_0010c9c4,s,DAT_0010c9c8,pbVar8);
+            ERR_put_error(0x22,0x98,0x80,"v3_conf.c",0x5f);
+            ERR_add_error_data(4,"name=",s,", value=",pbVar8);
             return 0;
           }
         }
         else {
-          iVar2 = strncmp((char *)pbVar8,DAT_0010c9b4,9);
+          iVar2 = strncmp((char *)pbVar8,"critical,",9);
           if (iVar2 == 0) {
             ppuVar5 = __ctype_b_loc();
             pbVar9 = pbVar8 + 9;
@@ -53,13 +53,13 @@ LAB_0010c8e6:
           }
           uVar7 = 0;
 LAB_0010c92c:
-          iVar2 = strncmp((char *)pbVar8,DAT_0010c9b8,4);
+          iVar2 = strncmp((char *)pbVar8,"DER:",4);
           if (iVar2 == 0) {
             pbVar8 = pbVar8 + 4;
             uVar10 = 1;
           }
           else {
-            if ((sVar4 == 4) || (iVar2 = strncmp((char *)pbVar8,DAT_0010c9bc,5), iVar2 != 0))
+            if ((sVar4 == 4) || (iVar2 = strncmp((char *)pbVar8,"ASN1:",5), iVar2 != 0))
             goto LAB_0010c8e6;
             pbVar8 = pbVar8 + 5;
             uVar10 = 2;

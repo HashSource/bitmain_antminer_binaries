@@ -14,11 +14,7 @@ void hash_sole_work(thr_info *mythr)
   undefined4 uVar7;
   pool *ppVar8;
   bool bVar9;
-  double dVar10;
-  double dVar11;
-  int64_t iVar12;
-  int in_stack_fffff760;
-  undefined4 in_stack_fffff764;
+  int64_t iVar10;
   thr_info *mythr_local;
   char tmp42 [2048];
   timespec rgtp;
@@ -86,9 +82,7 @@ LAB_00027c86:
       }
       goto LAB_00027c86;
     }
-    dVar10 = drv_00->max_diff;
-    dVar11 = work->work_difficulty;
-    if (dVar10 == dVar11 || dVar10 < dVar11 != (NAN(dVar10) || NAN(dVar11))) {
+    if (drv_00->max_diff <= work->work_difficulty) {
       uVar4 = *(undefined4 *)&drv_00->max_diff;
       uVar7 = *(undefined4 *)((int)&drv_00->max_diff + 4);
     }
@@ -98,9 +92,7 @@ LAB_00027c86:
     }
     *(undefined4 *)&work->device_diff = uVar4;
     *(undefined4 *)((int)&work->device_diff + 4) = uVar7;
-    dVar10 = drv_00->min_diff;
-    dVar11 = work->device_diff;
-    if (dVar10 == dVar11 || dVar10 < dVar11 != (NAN(dVar10) || NAN(dVar11))) {
+    if (drv_00->min_diff <= work->device_diff) {
       uVar4 = *(undefined4 *)&work->device_diff;
       uVar7 = *(undefined4 *)((int)&work->device_diff + 4);
     }
@@ -137,19 +129,19 @@ LAB_00027c86:
       cgtime(&work->tv_work_start);
       pthread_setcancelstate(1,(int *)0x0);
       thread_reportin(mythr);
-      iVar12 = (*drv_00->scanhash)(mythr,work,CONCAT44(in_stack_fffff764,in_stack_fffff760));
+      iVar10 = (*drv_00->scanhash)(mythr,work,(ulonglong)(work->nonce + max_nonce));
       thread_reportout(mythr);
       pthread_setcancelstate(0,(int *)0x0);
       pthread_testcancel();
       cgtime(&getwork_start);
-      hashes._0_4_ = (uint)iVar12;
-      hashes._4_4_ = (int)((ulonglong)iVar12 >> 0x20);
+      hashes._0_4_ = (uint)iVar10;
+      hashes._4_4_ = (int)((ulonglong)iVar10 >> 0x20);
       if (hashes._4_4_ == -1 && (uint)hashes == 0xffffffff) break;
       bVar9 = CARRY4((uint)hashes,(uint)hashes_done);
       hashes_done._0_4_ = (uint)hashes + (uint)hashes_done;
-      hashes_done._4_4_ = hashes._4_4_ + hashes_done._4_4_ + bVar9;
+      hashes_done._4_4_ = hashes._4_4_ + hashes_done._4_4_ + (uint)bVar9;
       iVar3 = *(int *)((int)&dev->max_hashes + 4);
-      bVar9 = *(uint *)&dev->max_hashes < (uint)hashes;
+      bVar9 = (uint)dev->max_hashes < (uint)hashes;
       if ((int)((iVar3 - hashes._4_4_) - (uint)bVar9) < 0 !=
           (SBORROW4(iVar3,hashes._4_4_) != SBORROW4(iVar3 - hashes._4_4_,(uint)bVar9))) {
         *(uint *)&dev->max_hashes = (uint)hashes;
@@ -210,9 +202,9 @@ LAB_00027b0a:
           diff.tv_sec = diff.tv_sec + -1;
           diff.tv_usec = diff.tv_usec + 1000000;
         }
-        if (((((uint)hashes_done | hashes_done._4_4_) != 0) &&
+        if ((((uint)hashes_done != 0 || hashes_done._4_4_ != 0) &&
             ((0 < diff.tv_sec || (200000 < diff.tv_usec)))) || (opt_log_interval <= diff.tv_sec)) {
-          hashmeter(thr_id_00,CONCAT44(in_stack_fffff764,in_stack_fffff760));
+          hashmeter(thr_id_00,CONCAT44(hashes_done._4_4_,(uint)hashes_done));
           hashes_done._0_4_ = 0;
           hashes_done._4_4_ = 0;
           copy_time(&tv_lastupdate,&getwork_start);
@@ -231,12 +223,11 @@ LAB_00027b0a:
         sdiff.tv_usec = 0;
         sdiff.tv_sec = 0;
       }
-      _Var1 = abandon_work(work,&wdiff,CONCAT44(in_stack_fffff764,in_stack_fffff760));
+      _Var1 = abandon_work(work,&wdiff,dev->max_hashes);
       if (_Var1) goto LAB_00027c54;
     }
     if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
-      in_stack_fffff760 = dev->device_id;
-      snprintf(tmp42,0x800,"%s %d failure, disabling!",drv_00->name);
+      snprintf(tmp42,0x800,"%s %d failure, disabling!",drv_00->name,dev->device_id);
       _applog(3,tmp42,false);
     }
     dev->deven = DEV_DISABLED;

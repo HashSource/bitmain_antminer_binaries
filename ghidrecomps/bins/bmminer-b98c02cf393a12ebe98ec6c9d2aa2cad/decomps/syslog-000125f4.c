@@ -4,7 +4,7 @@
 void syslog(int __pri,char *__fmt,...)
 
 {
-  (*(code *)PTR_syslog_0007d034)();
+  syslog(__pri,__fmt);
   return;
 }
 

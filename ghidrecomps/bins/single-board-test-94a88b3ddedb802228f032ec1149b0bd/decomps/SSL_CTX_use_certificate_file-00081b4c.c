@@ -11,12 +11,12 @@ int SSL_CTX_use_certificate_file(SSL_CTX *ctx,char *file,int type)
   type_00 = BIO_s_file();
   bp = BIO_new(type_00);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0x14,0xad,7,DAT_00081c2c,0x1bf);
+    ERR_put_error(0x14,0xad,7,"ssl_rsa.c",0x1bf);
     return 0;
   }
   lVar1 = BIO_ctrl(bp,0x6c,3,file);
   if (lVar1 < 1) {
-    ERR_put_error(0x14,0xad,2,DAT_00081c2c,0x1c4);
+    ERR_put_error(0x14,0xad,2,"ssl_rsa.c",0x1c4);
   }
   else {
     if (type == 2) {
@@ -25,7 +25,7 @@ int SSL_CTX_use_certificate_file(SSL_CTX *ctx,char *file,int type)
     }
     else {
       if (type != 1) {
-        ERR_put_error(0x14,0xad,0x7c,DAT_00081c2c,0x1cf);
+        ERR_put_error(0x14,0xad,0x7c,"ssl_rsa.c",0x1cf);
         goto LAB_00081b8c;
       }
       a = PEM_read_bio_X509(bp,(X509 **)0x0,ctx->default_passwd_callback,
@@ -35,7 +35,7 @@ int SSL_CTX_use_certificate_file(SSL_CTX *ctx,char *file,int type)
     if (a != (X509 *)0x0) {
       iVar2 = ssl_cert_inst(&ctx->cert);
       if (iVar2 == 0) {
-        ERR_put_error(0x14,0xab,0x41,DAT_00081c2c,0x176);
+        ERR_put_error(0x14,0xab,0x41,"ssl_rsa.c",0x176);
         iVar2 = 0;
       }
       else {
@@ -44,7 +44,7 @@ int SSL_CTX_use_certificate_file(SSL_CTX *ctx,char *file,int type)
       X509_free(a);
       goto LAB_00081b8e;
     }
-    ERR_put_error(0x14,0xad,iVar2,DAT_00081c2c,0x1d4);
+    ERR_put_error(0x14,0xad,iVar2,"ssl_rsa.c",0x1d4);
   }
 LAB_00081b8c:
   iVar2 = 0;

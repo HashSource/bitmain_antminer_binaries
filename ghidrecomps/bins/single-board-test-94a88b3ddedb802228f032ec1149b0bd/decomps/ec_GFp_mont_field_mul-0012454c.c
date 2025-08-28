@@ -10,7 +10,7 @@ int ec_GFp_mont_field_mul
     ;
     return iVar1;
   }
-  ERR_put_error(0x10,0x83,0x6f,DAT_00124580,0x101);
+  ERR_put_error(0x10,0x83,0x6f,"ecp_mont.c",0x101);
   return 0;
 }
 

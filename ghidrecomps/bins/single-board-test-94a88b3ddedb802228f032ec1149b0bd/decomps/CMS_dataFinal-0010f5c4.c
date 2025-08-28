@@ -15,7 +15,7 @@ int CMS_dataFinal(CMS_ContentInfo *cms,BIO *bio)
   if ((*ppAVar1 != (ASN1_OCTET_STRING *)0x0) && ((*ppAVar1)->flags << 0x1a < 0)) {
     bp = BIO_find_type(bio,0x401);
     if (bp == (BIO *)0x0) {
-      ERR_put_error(0x2e,0x6e,0x69,DAT_0010f690,0xa9);
+      ERR_put_error(0x2e,0x6e,0x69,"cms_lib.c",0xa9);
       return 0;
     }
     len = BIO_ctrl(bp,3,0,&local_1c);
@@ -44,7 +44,7 @@ LAB_0010f626:
         return iVar2;
       }
     }
-    ERR_put_error(0x2e,0x6e,0x9c,DAT_0010f690,0xc4);
+    ERR_put_error(0x2e,0x6e,0x9c,"cms_lib.c",0xc4);
     iVar2 = 0;
   }
   return iVar2;

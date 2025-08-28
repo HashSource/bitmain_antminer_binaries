@@ -3,7 +3,7 @@ int ASN1_UTCTIME_print(BIO *fp,ASN1_UTCTIME *a)
 
 {
   uint uVar1;
-  undefined4 uVar2;
+  undefined1 *puVar2;
   byte *pbVar3;
   uint uVar4;
   int iVar5;
@@ -32,20 +32,20 @@ int ASN1_UTCTIME_print(BIO *fp,ASN1_UTCTIME *a)
         else {
           iVar6 = uVar4 + uVar1 * 10 + -0x210;
         }
-        uVar2 = DAT_000b8764;
+        puVar2 = &DAT_00160c24;
         if (pbVar3[iVar5 + -1] != 0x5a) {
-          uVar2 = DAT_000b8760;
+          puVar2 = &DAT_0013a6fc;
         }
-        iVar5 = BIO_printf(fp,DAT_000b876c,*(undefined4 *)(DAT_000b8768 + uVar8 * 4),
+        iVar5 = BIO_printf(fp,"%s %2d %02d:%02d:%02d %d%s",(&mon)[uVar8],
                            (uint)pbVar3[5] + (uint)pbVar3[4] * 10 + -0x210,
                            (uint)pbVar3[7] + (uint)pbVar3[6] * 10 + -0x210,
-                           (uint)pbVar3[9] + (uint)pbVar3[8] * 10 + -0x210,iVar6,iVar7 + 0x76c,uVar2
-                          );
+                           (uint)pbVar3[9] + (uint)pbVar3[8] * 10 + -0x210,iVar6,iVar7 + 0x76c,
+                           puVar2);
         return (uint)(0 < iVar5);
       }
     }
   }
-  BIO_write(fp,DAT_000b875c,0xe);
+  BIO_write(fp,"Bad time value",0xe);
   return 0;
 }
 

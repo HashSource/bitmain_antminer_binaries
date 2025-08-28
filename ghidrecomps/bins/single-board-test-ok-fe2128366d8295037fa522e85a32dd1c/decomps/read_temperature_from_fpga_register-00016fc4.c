@@ -44,10 +44,10 @@ byte read_temperature_from_fpga_register(byte param_1)
   if (local_9 != 0) {
     gSensor_OK[(uint)param_1 * 4] = 1;
   }
-  if ((int)Conf[224] <= (int)(uint)local_9) {
+  if ((int)Conf[0xe0] <= (int)(uint)local_9) {
     gStartTest = 1;
   }
-  if ((int)Conf[226] < (int)(uint)local_9) {
+  if ((int)Conf[0xe2] < (int)(uint)local_9) {
     gHigherThanAlarmTemp = 1;
   }
   return local_9;

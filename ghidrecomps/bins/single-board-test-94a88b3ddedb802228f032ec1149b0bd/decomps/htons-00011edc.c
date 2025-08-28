@@ -6,7 +6,7 @@ uint16_t htons(uint16_t __hostshort)
 {
   uint16_t uVar1;
   
-  uVar1 = (*(code *)PTR_htons_001941bc)(__hostshort);
+  uVar1 = htons(__hostshort);
   return uVar1;
 }
 

@@ -11,7 +11,8 @@ void _k_unlink_item(int *param_1,int *param_2,undefined4 param_3,undefined4 para
   
   if (*param_2 != *param_1) {
     snprintf(acStack_818,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
-             *param_1,DAT_000407f0,*param_2,param_3,param_4,param_5,"klist.c",DAT_000407f0,0x138);
+             *param_1,"_k_unlink_item",*param_2,param_3,param_4,param_5,"klist.c","_k_unlink_item",
+             0x138);
     _applog(3,acStack_818,1);
     _quit(1);
   }
@@ -26,7 +27,7 @@ void _k_unlink_item(int *param_1,int *param_2,undefined4 param_3,undefined4 para
   if (param_2 == (int *)param_1[3]) {
     param_1[3] = iVar1;
   }
-  if (*(char *)(param_1 + 0xb) != '\0') {
+  if ((char)param_1[0xb] != '\0') {
     piVar3 = (int *)param_1[4];
     bVar4 = param_2 == piVar3;
     if (bVar4) {

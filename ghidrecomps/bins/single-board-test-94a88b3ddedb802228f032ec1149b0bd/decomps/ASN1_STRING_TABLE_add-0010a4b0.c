@@ -3,53 +3,52 @@ int ASN1_STRING_TABLE_add(int param_1,long param_2,long param_3,ulong param_4,ul
 
 {
   bool bVar1;
-  _STACK **pp_Var2;
-  _STACK **pp_Var3;
   int *data;
-  int iVar4;
-  _STACK *p_Var5;
+  int iVar2;
+  int iVar3;
   int local_3c [6];
   
-  pp_Var2 = DAT_0010a57c;
-  if (*DAT_0010a57c == (_STACK *)0x0) {
-    p_Var5 = sk_new(DAT_0010a58c);
-    *pp_Var2 = p_Var5;
-    if (p_Var5 == (_STACK *)0x0) {
-      iVar4 = 0xf2;
-      goto LAB_0010a564;
-    }
-  }
-  local_3c[0] = param_1;
-  data = (int *)OBJ_bsearch_(local_3c,DAT_0010a584,0x13,0x14,DAT_0010a580);
-  pp_Var3 = DAT_0010a57c;
-  if ((data == (int *)0x0) &&
-     (((*pp_Var2 == (_STACK *)0x0 || (iVar4 = sk_find(*pp_Var2,local_3c), iVar4 < 0)) ||
-      (data = (int *)sk_value(*pp_Var3,iVar4), data == (int *)0x0)))) {
-    data = (int *)CRYPTO_malloc(0x14,DAT_0010a588,0xf6);
-    if (data == (int *)0x0) {
-      iVar4 = 0xf8;
+  if (stable == (_STACK *)0x0) {
+    stable = sk_new((cmp *)0x10a2e9);
+    if (stable != (_STACK *)0x0) goto LAB_0010a4cc;
+    iVar3 = 0xf2;
 LAB_0010a564:
-      ERR_put_error(0xd,0x81,0x41,DAT_0010a588,iVar4);
-      return 0;
-    }
-    *data = param_1;
-    data[4] = param_5 & 0xfffffffe | 1;
-    bVar1 = true;
+    iVar2 = 0;
+    ERR_put_error(0xd,0x81,0x41,"a_strnid.c",iVar3);
   }
   else {
-    bVar1 = false;
-    data[4] = param_5 & 0xfffffffe | data[4] & 1U;
+LAB_0010a4cc:
+    local_3c[0] = param_1;
+    data = (int *)OBJ_bsearch_(local_3c,&tbl_standard,0x13,0x14,(cmp *)0x10a2f5);
+    if ((data == (int *)0x0) &&
+       (((stable == (_STACK *)0x0 || (iVar3 = sk_find(stable,local_3c), iVar3 < 0)) ||
+        (data = (int *)sk_value(stable,iVar3), data == (int *)0x0)))) {
+      data = (int *)CRYPTO_malloc(0x14,"a_strnid.c",0xf6);
+      if (data == (int *)0x0) {
+        iVar3 = 0xf8;
+        goto LAB_0010a564;
+      }
+      *data = param_1;
+      data[4] = param_5 & 0xfffffffe | 1;
+      bVar1 = true;
+    }
+    else {
+      bVar1 = false;
+      data[4] = param_5 & 0xfffffffe | data[4] & 1U;
+    }
+    data[3] = param_4;
+    if (param_2 != -1) {
+      data[1] = param_2;
+    }
+    if (param_3 != -1) {
+      data[2] = param_3;
+    }
+    iVar2 = 1;
+    if (bVar1) {
+      sk_push(stable,data);
+      iVar2 = 1;
+    }
   }
-  data[3] = param_4;
-  if (param_2 != -1) {
-    data[1] = param_2;
-  }
-  if (param_3 != -1) {
-    data[2] = param_3;
-  }
-  if (bVar1) {
-    sk_push(*pp_Var2,data);
-  }
-  return 1;
+  return iVar2;
 }
 

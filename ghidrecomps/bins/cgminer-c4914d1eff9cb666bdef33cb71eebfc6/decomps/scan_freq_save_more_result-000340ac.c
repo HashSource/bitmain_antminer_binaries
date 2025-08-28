@@ -5,7 +5,7 @@ void scan_freq_save_more_result(working_mode_e working_mode)
   uint8_t chain_00;
   _Bool _Var1;
   FILE *pFVar2;
-  double in_stack_ffffffc8;
+  double dVar3;
   working_mode_e working_mode_local;
   FILE *pFile_3;
   FILE *pFile_2;
@@ -49,11 +49,9 @@ void scan_freq_save_more_result(working_mode_e working_mode)
       if (3 < log_level) {
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          in_stack_ffffffc8 =
-               (double)(ulonglong)
-                       CONCAT14(inbalance_info[chain].vol3,(uint)(byte)inbalance_info[chain].vol2);
           fprintf(pFVar2,"inbalance vol = %d,%d,%d,%d\n",(uint)(byte)inbalance_info[chain].vol0,
-                  (uint)(byte)inbalance_info[chain].vol1);
+                  (uint)(byte)inbalance_info[chain].vol1,(uint)(byte)inbalance_info[chain].vol2,
+                  (uint)(byte)inbalance_info[chain].vol3);
         }
         fclose(pFVar2);
       }
@@ -66,21 +64,21 @@ void scan_freq_save_more_result(working_mode_e working_mode)
       if (3 < log_level) {
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          in_stack_ffffffc8 = get_working_voltage_by_chain(chain_00);
+          get_working_voltage_by_chain(chain_00);
           fprintf(pFVar2,"chain[%d] working vol = %.2f\n",chain);
         }
         fclose(pFVar2);
       }
       if (working_mode == MODE1) {
-        get_working_voltage_by_chain(chain_00);
-        _Var1 = eeprom_set_voltage_mode1(chain_00,in_stack_ffffffc8);
+        dVar3 = get_working_voltage_by_chain(chain_00);
+        _Var1 = eeprom_set_voltage_mode1(chain_00,dVar3);
         if (!_Var1) {
           stop_scan(3,chain_00);
         }
       }
       else {
-        get_working_voltage_by_chain(chain_00);
-        _Var1 = eeprom_set_voltage_mode2(chain_00,in_stack_ffffffc8);
+        dVar3 = get_working_voltage_by_chain(chain_00);
+        _Var1 = eeprom_set_voltage_mode2(chain_00,dVar3);
         if (!_Var1) {
           stop_scan(3,chain_00);
         }

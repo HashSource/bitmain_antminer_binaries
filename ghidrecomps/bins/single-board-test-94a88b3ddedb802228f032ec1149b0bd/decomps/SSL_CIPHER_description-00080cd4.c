@@ -2,28 +2,28 @@
 char * SSL_CIPHER_description(SSL_CIPHER *param_1,char *buf,int size)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   uint uVar2;
   uint uVar3;
   uint uVar4;
-  uint uVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
+  char *pcVar5;
+  char *pcVar6;
+  char *pcVar7;
   int iVar8;
-  undefined4 uVar9;
+  char *pcVar9;
   bool bVar10;
-  undefined4 uVar11;
+  char *pcVar11;
   uint uVar12;
-  undefined4 uVar13;
+  char *pcVar13;
   int local_30;
   
-  uVar3 = param_1->algo_strength & 2;
-  uVar2 = param_1->algorithm_mkey;
-  uVar5 = param_1->algorithm_auth;
-  uVar4 = param_1->algorithm_enc;
+  uVar2 = param_1->algo_strength & 2;
+  uVar1 = param_1->algorithm_mkey;
+  uVar4 = param_1->algorithm_auth;
+  uVar3 = param_1->algorithm_enc;
   uVar12 = param_1->algorithm_ssl;
   if ((param_1->algo_strength & 8) == 0) {
-    if (uVar4 == 1) {
+    if (uVar3 == 1) {
       local_30 = 8;
     }
     else {
@@ -37,169 +37,252 @@ char * SSL_CIPHER_description(SSL_CIPHER *param_1,char *buf,int size)
     iVar8 = 0x200;
     local_30 = 5;
   }
-  uVar7 = DAT_00080fd4;
-  if (uVar3 == 0) {
-    uVar7 = DAT_00081038;
+  pcVar6 = " export";
+  if (uVar2 == 0) {
+    pcVar6 = "";
   }
-  uVar1 = DAT_00081044;
-  if ((((uVar12 & 1) == 0) && (uVar1 = DAT_0008103c, (uVar12 & 2) == 0)) &&
-     (uVar1 = DAT_00080fd8, (uVar12 & 4) != 0)) {
-    uVar1 = DAT_00081048;
+  if ((uVar12 & 1) == 0) {
+    if ((uVar12 & 2) == 0) {
+      pcVar7 = "unknown";
+      if ((uVar12 & 4) != 0) {
+        pcVar7 = "TLSv1.2";
+      }
+      goto LAB_00080d44;
+    }
+    pcVar7 = "SSLv3";
+    if (uVar1 != 0x20) goto LAB_00080d48;
+LAB_00080d2a:
+    pcVar9 = "ECDH/RSA";
   }
-  uVar9 = DAT_00081040;
-  if (uVar2 != 0x20) {
-    if (uVar2 < 0x21) {
-      uVar9 = DAT_00081068;
-      if (uVar2 != 4) {
-        if (uVar2 < 5) {
-          if (uVar2 == 1) {
-            uVar9 = DAT_00081018;
-            if ((uVar3 != 0) && (uVar9 = DAT_00081060, iVar8 == 0x200)) {
-              uVar9 = DAT_00081020;
-            }
+  else {
+    pcVar7 = "SSLv2";
+LAB_00080d44:
+    if (uVar1 == 0x20) goto LAB_00080d2a;
+LAB_00080d48:
+    if (uVar1 < 0x21) {
+      if (uVar1 == 4) {
+        pcVar9 = "DH/DSS";
+      }
+      else if (uVar1 < 5) {
+        if (uVar1 == 1) {
+          if (uVar2 == 0) {
+            pcVar9 = "RSA";
+          }
+          else if (iVar8 == 0x200) {
+            pcVar9 = "RSA(512)";
           }
           else {
-            uVar9 = DAT_0008104c;
-            if (uVar2 != 2) goto LAB_00080d60;
-          }
-        }
-        else if (uVar2 == 8) {
-          uVar9 = DAT_00080ffc;
-          if ((uVar3 != 0) && (uVar9 = DAT_00081058, iVar8 == 0x200)) {
-            uVar9 = DAT_00081004;
+            pcVar9 = "RSA(1024)";
           }
         }
         else {
-          uVar9 = DAT_0008101c;
-          if (uVar2 != 0x10) goto LAB_00080d60;
+          if (uVar1 != 2) goto LAB_00080d60;
+          pcVar9 = "DH/RSA";
         }
       }
-    }
-    else {
-      uVar9 = DAT_00080fe8;
-      if (uVar2 != 0x100) {
-        if (uVar2 < 0x101) {
-          uVar9 = DAT_0008105c;
-          if ((uVar2 != 0x40) && (uVar9 = DAT_00080ff0, uVar2 != 0x80)) {
-LAB_00080d60:
-            uVar9 = DAT_00080fd8;
-          }
+      else if (uVar1 == 8) {
+        if (uVar2 == 0) {
+          pcVar9 = "DH";
+        }
+        else if (iVar8 == 0x200) {
+          pcVar9 = "DH(512)";
         }
         else {
-          uVar9 = DAT_00081064;
-          if ((uVar2 != 0x200) && (uVar9 = DAT_00080fec, uVar2 != 0x400)) goto LAB_00080d60;
-        }
-      }
-    }
-  }
-  uVar6 = DAT_0008101c;
-  if (uVar5 != 0x20) {
-    if (uVar5 < 0x21) {
-      uVar6 = DAT_00081000;
-      if (uVar5 != 4) {
-        if (uVar5 < 5) {
-          uVar6 = DAT_00081018;
-          if ((uVar5 != 1) && (uVar6 = DAT_00081014, uVar5 != 2)) {
-LAB_00080d82:
-            uVar6 = DAT_00080fd8;
-          }
-        }
-        else {
-          uVar6 = DAT_00080ffc;
-          if ((uVar5 != 8) && (uVar6 = DAT_00080ff0, uVar5 != 0x10)) goto LAB_00080d82;
-        }
-      }
-    }
-    else {
-      uVar6 = DAT_00081010;
-      if (uVar5 != 0x100) {
-        if (uVar5 < 0x101) {
-          uVar6 = DAT_00081008;
-          if ((uVar5 != 0x40) && (uVar6 = DAT_00080fe8, uVar5 != 0x80)) goto LAB_00080d82;
-        }
-        else {
-          uVar6 = DAT_0008100c;
-          if ((uVar5 != 0x200) && (uVar6 = DAT_00080fec, uVar5 != 0x400)) goto LAB_00080d82;
-        }
-      }
-    }
-  }
-  uVar11 = DAT_0008106c;
-  if (uVar4 == 0x40) goto LAB_00080da6;
-  if (uVar4 < 0x41) {
-    if (uVar4 == 4) {
-      if (uVar3 == 0) {
-        uVar11 = DAT_000810a8;
-        if ((param_1->algorithm2 & 2) != 0) {
-          uVar11 = DAT_000810ac;
+          pcVar9 = "DH(1024)";
         }
       }
       else {
-        uVar11 = DAT_00081028;
-        if (local_30 == 5) {
-          uVar11 = DAT_0008102c;
+        if (uVar1 != 0x10) goto LAB_00080d60;
+        pcVar9 = "KRB5";
+      }
+    }
+    else if (uVar1 == 0x100) {
+      pcVar9 = "PSK";
+    }
+    else if (uVar1 < 0x101) {
+      if (uVar1 == 0x40) {
+        pcVar9 = "ECDH/ECDSA";
+      }
+      else if (uVar1 == 0x80) {
+        pcVar9 = "ECDH";
+      }
+      else {
+LAB_00080d60:
+        pcVar9 = "unknown";
+      }
+    }
+    else if (uVar1 == 0x200) {
+      pcVar9 = "GOST";
+    }
+    else {
+      if (uVar1 != 0x400) goto LAB_00080d60;
+      pcVar9 = "SRP";
+    }
+  }
+  if (uVar4 == 0x20) {
+    pcVar5 = "KRB5";
+  }
+  else if (uVar4 < 0x21) {
+    if (uVar4 == 4) {
+      pcVar5 = "None";
+    }
+    else if (uVar4 < 5) {
+      if (uVar4 == 1) {
+        pcVar5 = "RSA";
+      }
+      else if (uVar4 == 2) {
+        pcVar5 = "DSS";
+      }
+      else {
+LAB_00080d82:
+        pcVar5 = "unknown";
+      }
+    }
+    else if (uVar4 == 8) {
+      pcVar5 = "DH";
+    }
+    else {
+      if (uVar4 != 0x10) goto LAB_00080d82;
+      pcVar5 = "ECDH";
+    }
+  }
+  else if (uVar4 == 0x100) {
+    pcVar5 = "GOST94";
+  }
+  else if (uVar4 < 0x101) {
+    if (uVar4 == 0x40) {
+      pcVar5 = "ECDSA";
+    }
+    else {
+      if (uVar4 != 0x80) goto LAB_00080d82;
+      pcVar5 = "PSK";
+    }
+  }
+  else if (uVar4 == 0x200) {
+    pcVar5 = "GOST01";
+  }
+  else {
+    if (uVar4 != 0x400) goto LAB_00080d82;
+    pcVar5 = "SRP";
+  }
+  if (uVar3 == 0x40) {
+    pcVar11 = "AES(128)";
+    goto LAB_00080da6;
+  }
+  if (uVar3 < 0x41) {
+    if (uVar3 == 4) {
+      if (uVar2 == 0) {
+        if ((param_1->algorithm2 & 2) == 0) {
+          pcVar11 = "RC4(128)";
         }
+        else {
+          pcVar11 = "RC4(64)";
+        }
+      }
+      else if (local_30 == 5) {
+        pcVar11 = "RC4(40)";
+      }
+      else {
+        pcVar11 = "RC4(56)";
       }
       goto LAB_00080da6;
     }
-    if (uVar4 < 5) {
-      if (uVar4 == 1) {
-        if (uVar3 == 0) {
+    if (uVar3 < 5) {
+      if (uVar3 == 1) {
+        if (uVar2 == 0) {
           bVar10 = false;
         }
-        uVar11 = DAT_00081030;
         if (bVar10) {
-          uVar11 = DAT_00081034;
+          pcVar11 = "DES(40)";
+        }
+        else {
+          pcVar11 = "DES(56)";
         }
         goto LAB_00080da6;
       }
-      uVar11 = DAT_0008107c;
-      if (uVar4 == 2) goto LAB_00080da6;
+      if (uVar3 == 2) {
+        pcVar11 = "3DES(168)";
+        goto LAB_00080da6;
+      }
     }
     else {
-      uVar11 = DAT_00081080;
-      if ((uVar4 == 0x10) || (uVar11 = DAT_00081000, uVar4 == 0x20)) goto LAB_00080da6;
-      if (uVar4 == 8) {
-        uVar11 = DAT_0008108c;
-        if ((uVar3 != 0) && (uVar11 = DAT_00080ff4, local_30 == 5)) {
-          uVar11 = DAT_00080ff8;
+      if (uVar3 == 0x10) {
+        pcVar11 = "IDEA(128)";
+        goto LAB_00080da6;
+      }
+      if (uVar3 == 0x20) {
+        pcVar11 = "None";
+        goto LAB_00080da6;
+      }
+      if (uVar3 == 8) {
+        if (uVar2 == 0) {
+          pcVar11 = "RC2(128)";
+        }
+        else if (local_30 == 5) {
+          pcVar11 = "RC2(40)";
+        }
+        else {
+          pcVar11 = "RC2(56)";
         }
         goto LAB_00080da6;
       }
     }
   }
   else {
-    uVar11 = DAT_00081088;
-    if (uVar4 == 0x400) goto LAB_00080da6;
-    if (uVar4 < 0x401) {
-      uVar11 = DAT_00081078;
-      if (((uVar4 == 0x100) || (uVar11 = DAT_00081074, uVar4 == 0x200)) ||
-         (uVar11 = DAT_00081050, uVar4 == 0x80)) goto LAB_00080da6;
+    if (uVar3 == 0x400) {
+      pcVar11 = "GOST89(256)";
+      goto LAB_00080da6;
+    }
+    if (uVar3 < 0x401) {
+      if (uVar3 == 0x100) {
+        pcVar11 = "Camellia(128)";
+        goto LAB_00080da6;
+      }
+      if (uVar3 == 0x200) {
+        pcVar11 = "Camellia(256)";
+        goto LAB_00080da6;
+      }
+      if (uVar3 == 0x80) {
+        pcVar11 = "AES(256)";
+        goto LAB_00080da6;
+      }
     }
     else {
-      uVar11 = DAT_00081084;
-      if (((uVar4 == 0x1000) || (uVar11 = DAT_00081070, uVar4 == 0x2000)) ||
-         (uVar11 = DAT_00081054, uVar4 == 0x800)) goto LAB_00080da6;
+      if (uVar3 == 0x1000) {
+        pcVar11 = "AESGCM(128)";
+        goto LAB_00080da6;
+      }
+      if (uVar3 == 0x2000) {
+        pcVar11 = "AESGCM(256)";
+        goto LAB_00080da6;
+      }
+      if (uVar3 == 0x800) {
+        pcVar11 = "SEED(128)";
+        goto LAB_00080da6;
+      }
     }
   }
-  uVar11 = DAT_00080fd8;
+  pcVar11 = "unknown";
 LAB_00080da6:
-  uVar2 = param_1->algorithm_mac - 1;
-  uVar13 = DAT_00080fd8;
-  if (uVar2 < 0x40) {
-    uVar13 = *(undefined4 *)(DAT_00080fdc + uVar2 * 4 + 0xff8);
+  uVar1 = param_1->algorithm_mac - 1;
+  if (uVar1 < 0x40) {
+    pcVar13 = *(char **)(CSWTCH_91 + uVar1 * 4);
+  }
+  else {
+    pcVar13 = "unknown";
   }
   if (buf == (char *)0x0) {
-    buf = (char *)CRYPTO_malloc(0x80,DAT_00081024,0x741);
+    buf = (char *)CRYPTO_malloc(0x80,"ssl_ciph.c",0x741);
     if (buf == (char *)0x0) {
-      return DAT_000810b0;
+      return "OPENSSL_malloc Error";
     }
     size = 0x80;
   }
   else if (size < 0x80) {
-    return DAT_00080fe4;
+    return "Buffer too small";
   }
-  BIO_snprintf(buf,size,DAT_00080fe0,param_1->name,uVar1,uVar9,uVar6,uVar11,uVar13,uVar7);
+  BIO_snprintf(buf,size,"%-23s %s Kx=%-8s Au=%-4s Enc=%-9s Mac=%-4s%s\n",param_1->name,pcVar7,pcVar9
+               ,pcVar5,pcVar11,pcVar13,pcVar6);
   return buf;
 }
 

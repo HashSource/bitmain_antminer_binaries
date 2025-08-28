@@ -6,7 +6,7 @@ void * mmap(void *__addr,size_t __len,int __prot,int __flags,int __fd,__off_t __
 {
   void *pvVar1;
   
-  pvVar1 = (void *)(*(code *)PTR_mmap_0002102c)();
+  pvVar1 = mmap(__addr,__len,__prot,__flags,__fd,__offset);
   return pvVar1;
 }
 

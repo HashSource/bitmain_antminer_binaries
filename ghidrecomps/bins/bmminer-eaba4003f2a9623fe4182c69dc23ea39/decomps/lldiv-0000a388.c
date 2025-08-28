@@ -5,10 +5,11 @@ lldiv_t * lldiv(lldiv_t *__return_storage_ptr__,longlong __numer,longlong __deno
 
 {
   lldiv_t *plVar1;
+  undefined4 in_r1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a390. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  plVar1 = (lldiv_t *)(*(code *)PTR_LAB_000852ec)();
+  plVar1 = (lldiv_t *)
+           (*(code *)(undefined *)0x0)
+                     (__return_storage_ptr__,in_r1,(int)__numer,(int)((ulonglong)__numer >> 0x20));
   return plVar1;
 }
 

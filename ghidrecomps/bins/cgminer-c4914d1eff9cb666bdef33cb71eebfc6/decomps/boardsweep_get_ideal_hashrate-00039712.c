@@ -4,6 +4,7 @@ void boardsweep_get_ideal_hashrate(working_mode_e working_mode)
 {
   FILE *pFVar1;
   int iVar2;
+  int iVar3;
   working_mode_e working_mode_local;
   int down_count [16];
   int chain_max_ideal_hashrate_index [16];
@@ -65,13 +66,12 @@ void boardsweep_get_ideal_hashrate(working_mode_e working_mode)
     }
   }
   iVar2 = fix_hash_rate(total_ideal_hashrate);
-  target_rate = iVar2 + 100;
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
     pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s: total ideal hash is %d, target hash is %d\n","freq_scan.c",0xfee,
-              "boardsweep_get_ideal_hashrate",total_ideal_hashrate,target_rate);
+              "boardsweep_get_ideal_hashrate",total_ideal_hashrate,iVar2 + 100);
     }
     fclose(pFVar1);
   }
@@ -100,11 +100,10 @@ void boardsweep_get_ideal_hashrate(working_mode_e working_mode)
       }
       down_count[fix_chain] = down_count[fix_chain] + 1;
     } while (chain_max_ideal_hashrate_index[fix_chain] < 1);
-    index = chain_max_ideal_hashrate_index[fix_chain] + -1;
+    iVar3 = chain_max_ideal_hashrate_index[fix_chain];
     chain_max_ideal_hashrate[fix_chain] =
-         scanfreq_info.ideal_hash_rate[fix_chain + -1]
-         [chain_max_ideal_hashrate_index[fix_chain] + 0x27];
-    chain_max_ideal_hashrate_index[fix_chain] = index;
+         scanfreq_info.ideal_hash_rate[fix_chain + -1][iVar3 + 0x27];
+    chain_max_ideal_hashrate_index[fix_chain] = iVar3 + -1;
     total_ideal_hashrate = 0;
     for (chain = 0; chain < 0x10; chain = chain + 1) {
       if (dev->chain_exist[chain] == 1) {
@@ -117,11 +116,12 @@ void boardsweep_get_ideal_hashrate(working_mode_e working_mode)
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,"%s:%d:%s: chain %d down to %d, total hash is %d\n","freq_scan.c",0x1017,
                 "boardsweep_get_ideal_hashrate",fix_chain,
-                scanfreq_info.ideal_hash_rate_freq[fix_chain][index],total_ideal_hashrate);
+                scanfreq_info.ideal_hash_rate_freq[fix_chain + -1][iVar3 + 0x27],
+                total_ideal_hashrate);
       }
       fclose(pFVar1);
     }
-  } while (target_rate <= total_ideal_hashrate);
+  } while (iVar2 + 100 <= total_ideal_hashrate);
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
     pFVar1 = fopen(log_file,"a+");
@@ -131,8 +131,8 @@ void boardsweep_get_ideal_hashrate(working_mode_e working_mode)
     }
     fclose(pFVar1);
   }
-  chain_max_ideal_hashrate[fix_chain] = scanfreq_info.ideal_hash_rate[fix_chain][index + 1];
-  chain_max_ideal_hashrate_index[fix_chain] = index + 1;
+  chain_max_ideal_hashrate[fix_chain] = scanfreq_info.ideal_hash_rate[fix_chain][iVar3];
+  chain_max_ideal_hashrate_index[fix_chain] = iVar3;
 LAB_00039daa:
   for (chain = 0; chain < 0x10; chain = chain + 1) {
     if (dev->chain_exist[chain] != 0) {

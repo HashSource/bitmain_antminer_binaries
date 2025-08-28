@@ -41,7 +41,7 @@ LAB_000fb7ea:
     }
   }
   else {
-    ERR_put_error(4,0x6d,0x6e,DAT_000fb81c,0x99);
+    ERR_put_error(4,0x6d,0x6e,"rsa_pk1.c",0x99);
     iVar1 = 0;
   }
   return iVar1;

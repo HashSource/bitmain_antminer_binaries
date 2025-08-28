@@ -8,7 +8,7 @@ void ENGINE_register_all_DSA(void)
   
   for (e = ENGINE_get_first(); e != (ENGINE *)0x0; e = ENGINE_get_next(e)) {
     if (*(int *)(e + 0xc) != 0) {
-      engine_table_register(DAT_000a7854,DAT_000a784c,e,DAT_000a7850,1,0);
+      engine_table_register(&dsa_table,0xa77cd,e,&dummy_nid,1,0);
     }
   }
   return;

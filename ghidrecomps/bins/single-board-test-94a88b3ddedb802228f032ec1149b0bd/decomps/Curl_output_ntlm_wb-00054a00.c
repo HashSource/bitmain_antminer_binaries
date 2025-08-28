@@ -2,72 +2,68 @@
 int Curl_output_ntlm_wb(int *param_1,int param_2)
 
 {
-  code **ppcVar1;
-  int iVar2;
-  int iVar3;
+  int iVar1;
+  undefined1 *puVar2;
+  char *pcVar3;
   int iVar4;
   int iVar5;
   int *piVar6;
   int *piVar7;
   
-  iVar2 = DAT_00054b24;
   if (param_2 == 0) {
     piVar6 = param_1 + 0x8e;
-    iVar3 = param_1[0x48];
+    puVar2 = (undefined1 *)param_1[0x48];
     piVar7 = param_1 + 0x9d;
     iVar5 = *param_1 + 0x8620;
   }
   else {
-    iVar3 = param_1[0x4c];
+    puVar2 = (undefined1 *)param_1[0x4c];
     piVar6 = param_1 + 0x8b;
     piVar7 = param_1 + 0xa3;
     iVar5 = *param_1 + 0x8630;
   }
   iVar4 = *piVar7;
-  *(undefined *)(iVar5 + 0xc) = 0;
-  if (iVar3 == 0) {
-    iVar3 = iVar2;
+  *(undefined1 *)(iVar5 + 0xc) = 0;
+  if (puVar2 == (undefined1 *)0x0) {
+    puVar2 = &DAT_0013a6fc;
   }
   if (iVar4 == 2) {
     iVar4 = 0x1b;
-    iVar3 = curl_maprintf(DAT_00054b2c,param_1[0xab]);
-    ppcVar1 = DAT_00054b28;
-    if (iVar3 != 0) {
-      iVar4 = ntlm_wb_response(param_1,iVar3,*piVar7);
-      (**ppcVar1)(iVar3);
+    iVar1 = curl_maprintf("TT %s\n",param_1[0xab]);
+    if (iVar1 != 0) {
+      iVar4 = ntlm_wb_response(param_1,iVar1,*piVar7);
+      (*Curl_cfree)(iVar1);
       if (iVar4 == 0) {
-        (**ppcVar1)(*piVar6);
-        iVar3 = DAT_00054b30;
+        (*Curl_cfree)(*piVar6);
+        pcVar3 = "Proxy-";
         if (param_2 == 0) {
-          iVar3 = iVar2;
+          pcVar3 = "";
         }
-        iVar2 = curl_maprintf(DAT_00054b34,iVar3,param_1[0xac]);
-        *piVar6 = iVar2;
+        iVar1 = curl_maprintf("%sAuthorization: %s\r\n",pcVar3,param_1[0xac]);
+        *piVar6 = iVar1;
         *piVar7 = 3;
-        *(undefined *)(iVar5 + 0xc) = 1;
+        *(undefined1 *)(iVar5 + 0xc) = 1;
         Curl_ntlm_wb_cleanup(param_1);
       }
     }
   }
   else if (iVar4 == 3) {
     iVar4 = 0;
-    (**DAT_00054b28)(*piVar6,iVar3);
+    (*Curl_cfree)(*piVar6,puVar2);
     *piVar6 = 0;
-    *(undefined *)(iVar5 + 0xc) = 1;
+    *(undefined1 *)(iVar5 + 0xc) = 1;
   }
   else {
     iVar4 = ntlm_wb_init(param_1);
-    if ((iVar4 == 0) &&
-       (iVar4 = ntlm_wb_response(param_1,DAT_00054b38,*piVar7), ppcVar1 = DAT_00054b28, iVar4 == 0))
-    {
-      (**DAT_00054b28)(*piVar6);
-      iVar3 = DAT_00054b30;
+    if ((iVar4 == 0) && (iVar4 = ntlm_wb_response(param_1,&DAT_0013a46c,*piVar7), iVar4 == 0)) {
+      (*Curl_cfree)(*piVar6);
+      pcVar3 = "Proxy-";
       if (param_2 == 0) {
-        iVar3 = iVar2;
+        pcVar3 = "";
       }
-      iVar2 = curl_maprintf(DAT_00054b34,iVar3,param_1[0xac]);
-      *piVar6 = iVar2;
-      (**ppcVar1)(param_1[0xac]);
+      iVar5 = curl_maprintf("%sAuthorization: %s\r\n",pcVar3,param_1[0xac]);
+      *piVar6 = iVar5;
+      (*Curl_cfree)(param_1[0xac]);
       param_1[0xac] = 0;
     }
   }

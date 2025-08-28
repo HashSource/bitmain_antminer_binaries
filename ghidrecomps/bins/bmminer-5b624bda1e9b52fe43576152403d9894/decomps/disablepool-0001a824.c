@@ -4,15 +4,12 @@
 void disablepool(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  int *piVar1;
   long paramid;
+  pool *ppVar1;
   pool *ppVar2;
-  pool *ppVar3;
-  pool *pool;
   int id;
   
-  piVar1 = DAT_0001a8e4;
-  if (*DAT_0001a8e4 == 0) {
+  if (total_pools == 0) {
     message(io_data,8,0,(char *)0x0,isjson);
     return;
   }
@@ -21,19 +18,19 @@ void disablepool(io_data *io_data,long c,char *param,_Bool isjson,char group)
     return;
   }
   paramid = strtol(param,(char **)0x0,10);
-  if ((paramid < 0) || (*piVar1 <= paramid)) {
+  if ((paramid < 0) || (total_pools <= paramid)) {
     message(io_data,0x1a,paramid,(char *)0x0,isjson);
     return;
   }
-  ppVar3 = *(pool **)(*DAT_0001a8e8 + paramid * 4);
-  if (ppVar3->enabled == POOL_DISABLED) {
+  ppVar2 = pools[paramid];
+  if (ppVar2->enabled == POOL_DISABLED) {
     message(io_data,0x32,paramid,(char *)0x0,isjson);
     return;
   }
-  if (1 < *DAT_0001a8ec) {
-    ppVar3->enabled = POOL_DISABLED;
-    ppVar2 = current_pool();
-    if (ppVar3 == ppVar2) {
+  if (1 < enabled_pools) {
+    ppVar2->enabled = POOL_DISABLED;
+    ppVar1 = current_pool();
+    if (ppVar2 == ppVar1) {
       switch_pools((pool *)0x0);
     }
     message(io_data,0x30,paramid,(char *)0x0,isjson);

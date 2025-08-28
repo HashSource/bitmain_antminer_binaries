@@ -25,7 +25,7 @@ size_t mem_read(BIO *param_1,void *param_2,uint param_3)
       psVar3[1] = psVar3[1] + param_3;
       return param_3;
     }
-    memmove((void *)psVar3[1],(void *)((int)(void *)psVar3[1] + param_3),sVar1 - param_3);
+    memmove((void *)psVar3[1],(void *)((int)psVar3[1] + param_3),sVar1 - param_3);
   }
   else if ((*psVar3 == 0) && (param_3 = param_1->num, param_3 != 0)) {
     BIO_set_flags(param_1,9);

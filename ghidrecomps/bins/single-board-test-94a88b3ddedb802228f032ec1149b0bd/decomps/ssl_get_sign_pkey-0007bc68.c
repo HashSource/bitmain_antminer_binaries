@@ -22,7 +22,7 @@ undefined4 ssl_get_sign_pkey(int param_1,int param_2,undefined4 *param_3)
   else {
     if ((-1 < iVar1 << 0x19) || (*(int *)(iVar2 + 0xcc) == 0)) {
 LAB_0007bcb6:
-      ERR_put_error(0x14,0xb7,0x44,DAT_0007bccc,0xa12);
+      ERR_put_error(0x14,0xb7,0x44,"ssl_lib.c",0xa12);
       return 0;
     }
     iVar1 = 5;

@@ -24,11 +24,11 @@ AUTHORITY_KEYID * v2i_AUTHORITY_KEYID(undefined4 param_1,int *param_2,_STACK *pa
   for (iVar8 = 0; iVar1 = sk_num(param_3), iVar8 < iVar1; iVar8 = iVar8 + 1) {
     pvVar2 = sk_value(param_3,iVar8);
     __s1 = *(char **)((int)pvVar2 + 4);
-    iVar1 = strcmp(__s1,DAT_000c9818);
+    iVar1 = strcmp(__s1,"keyid");
     if (iVar1 == 0) {
       pAVar9 = (ASN1_STRING *)0x1;
       if (*(char **)((int)pvVar2 + 8) != (char *)0x0) {
-        iVar1 = strcmp(*(char **)((int)pvVar2 + 8),DAT_000c9814);
+        iVar1 = strcmp(*(char **)((int)pvVar2 + 8),"always");
         if (iVar1 == 0) {
           pAVar9 = (ASN1_STRING *)0x2;
         }
@@ -38,15 +38,15 @@ AUTHORITY_KEYID * v2i_AUTHORITY_KEYID(undefined4 param_1,int *param_2,_STACK *pa
       }
     }
     else {
-      iVar10 = strcmp(__s1,DAT_000c981c);
+      iVar10 = strcmp(__s1,"issuer");
       if (iVar10 != 0) {
-        ERR_put_error(0x22,0x77,0x78,DAT_000c9820,0x8f);
-        ERR_add_error_data(2,DAT_000c9824,*(undefined4 *)((int)pvVar2 + 4));
+        ERR_put_error(0x22,0x77,0x78,"v3_akey.c",0x8f);
+        ERR_add_error_data(2,"name=",*(undefined4 *)((int)pvVar2 + 4));
         return (AUTHORITY_KEYID *)0x0;
       }
       iVar10 = 1;
       if (*(char **)((int)pvVar2 + 8) != (char *)0x0) {
-        iVar10 = strcmp(*(char **)((int)pvVar2 + 8),DAT_000c9814);
+        iVar10 = strcmp(*(char **)((int)pvVar2 + 8),"always");
         if (iVar10 == 0) {
           iVar10 = 2;
         }
@@ -81,7 +81,7 @@ AUTHORITY_KEYID * v2i_AUTHORITY_KEYID(undefined4 param_1,int *param_2,_STACK *pa
           uVar6 = 0;
         }
         if (uVar6 != 0) {
-          ERR_put_error(0x22,0x77,0x7b,DAT_000c9820,0xa5);
+          ERR_put_error(0x22,0x77,0x7b,"v3_akey.c",0xa5);
           return (AUTHORITY_KEYID *)0x0;
         }
       }
@@ -111,7 +111,7 @@ LAB_000c9754:
         pAVar5 = X509_get_serialNumber(x);
         pAVar5 = ASN1_STRING_dup(pAVar5);
         if (pXVar4 == (X509_NAME *)0x0 || pAVar5 == (ASN1_STRING *)0x0) {
-          ERR_put_error(0x22,0x77,0x7a,DAT_000c9820,0xaf);
+          ERR_put_error(0x22,0x77,0x7a,"v3_akey.c",0xaf);
         }
         else {
           pAVar3 = AUTHORITY_KEYID_new();
@@ -123,7 +123,7 @@ LAB_000c9754:
               (data->d).directoryName = pXVar4;
               goto LAB_000c9754;
             }
-            ERR_put_error(0x22,0x77,0x41,DAT_000c9820,0xbb);
+            ERR_put_error(0x22,0x77,0x41,"v3_akey.c",0xbb);
           }
         }
       }
@@ -137,7 +137,7 @@ LAB_000c9754:
       return pAVar3;
     }
   }
-  ERR_put_error(0x22,0x77,0x79,DAT_000c9820,0x99);
+  ERR_put_error(0x22,0x77,0x79,"v3_akey.c",0x99);
   return (AUTHORITY_KEYID *)0x0;
 }
 

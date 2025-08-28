@@ -4,33 +4,30 @@
 void notify(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  int *piVar1;
-  char cVar2;
-  cgpu_info *cgpu_00;
+  char cVar1;
   cgpu_info *cgpu;
   int id;
-  int iVar3;
+  int iVar2;
   
-  piVar1 = DAT_0001c210;
-  if (*DAT_0001c210 == 0) {
+  if (total_devices == 0) {
     message(io_data,10,0,(char *)0x0,isjson);
     return;
   }
   message(io_data,0x3c,0,(char *)0x0,isjson);
-  cVar2 = isjson;
+  cVar1 = isjson;
   if (isjson) {
-    cVar2 = io_add(io_data,DAT_0001c214);
+    cVar1 = io_add(io_data,",\"NOTIFY\":[");
   }
-  if (0 < *piVar1) {
+  if (0 < total_devices) {
     id = 0;
     do {
-      cgpu_00 = get_devices(id);
-      iVar3 = id + 1;
-      notifystatus(io_data,id,cgpu_00,isjson,group);
-      id = iVar3;
-    } while (iVar3 < *piVar1);
+      cgpu = get_devices(id);
+      iVar2 = id + 1;
+      notifystatus(io_data,id,cgpu,isjson,group);
+      id = iVar2;
+    } while (iVar2 < total_devices);
   }
-  if (cVar2 != '\0') {
+  if (cVar1 != '\0') {
     io_data->close = true;
   }
   return;

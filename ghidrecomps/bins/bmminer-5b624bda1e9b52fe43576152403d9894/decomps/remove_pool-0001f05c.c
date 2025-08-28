@@ -4,40 +4,36 @@
 void remove_pool(pool *pool)
 
 {
-  int *piVar1;
-  pool *other;
-  int *piVar2;
-  int iVar3;
-  int *piVar4;
-  int *piVar5;
-  int iVar6;
+  pool *ppVar1;
+  int iVar2;
+  pool **pppVar3;
+  pool **pppVar5;
   int last_pool;
-  int iVar7;
+  int iVar6;
+  pool **pppVar4;
   
-  piVar1 = DAT_0001f0b8;
-  iVar6 = *DAT_0001f0b8;
-  iVar7 = iVar6 + -1;
-  if (0 < iVar6) {
-    piVar4 = *DAT_0001f0b4;
-    piVar2 = piVar4;
+  iVar6 = total_pools + -1;
+  if (0 < total_pools) {
+    pppVar5 = pools + total_pools;
+    pppVar3 = pools;
     do {
-      piVar5 = piVar2 + 1;
-      iVar3 = *(int *)(*piVar2 + 4);
-      if (pool->prio < iVar3) {
-        *(int *)(*piVar2 + 4) = iVar3 + -1;
+      pppVar4 = pppVar3 + 1;
+      iVar2 = (*pppVar3)->prio;
+      if (pool->prio < iVar2) {
+        (*pppVar3)->prio = iVar2 + -1;
       }
-      piVar2 = piVar5;
-    } while (piVar5 != piVar4 + iVar6);
+      pppVar3 = pppVar4;
+    } while (pppVar4 != pppVar5);
   }
-  if (pool->pool_no < iVar7) {
-    piVar4 = *DAT_0001f0b4;
-    piVar2 = (int *)piVar4[iVar7];
-    *piVar2 = pool->pool_no;
-    piVar4[pool->pool_no] = (int)piVar2;
+  pppVar3 = pools;
+  if (pool->pool_no < iVar6) {
+    ppVar1 = pools[iVar6];
+    ppVar1->pool_no = pool->pool_no;
+    pppVar3[pool->pool_no] = ppVar1;
   }
-  pool->pool_no = iVar6;
+  pool->pool_no = total_pools;
   pool->removed = true;
-  *piVar1 = iVar7;
+  total_pools = iVar6;
   return;
 }
 

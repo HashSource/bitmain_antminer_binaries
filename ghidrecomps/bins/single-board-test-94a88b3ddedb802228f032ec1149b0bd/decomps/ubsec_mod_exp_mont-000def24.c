@@ -7,7 +7,7 @@ void ubsec_mod_exp_mont(BIGNUM *param_1,BIGNUM *param_2,BIGNUM *param_3,BIGNUM *
   RSA_METHOD *pRVar2;
   
   iVar1 = BN_num_bits(param_4);
-  if (iVar1 <= *(int *)(DAT_000def78 + 0xcc)) {
+  if (iVar1 <= max_key_len) {
     ubsec_mod_exp(param_1,param_2,param_3,param_4);
     return;
   }

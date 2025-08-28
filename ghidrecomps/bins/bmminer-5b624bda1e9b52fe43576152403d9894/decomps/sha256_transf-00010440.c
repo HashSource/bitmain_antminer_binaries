@@ -7,14 +7,12 @@ void sha256_transf(sha256_ctx *ctx,uchar *message,uint block_nb)
   int *piVar1;
   int *piVar2;
   int iVar3;
-  uchar *sub_block;
   uint uVar4;
   uint *puVar5;
   uint uVar6;
   sha256_ctx *psVar7;
   int iVar8;
   int iVar9;
-  uint t1;
   uint local_158;
   uint local_154;
   uint local_150;

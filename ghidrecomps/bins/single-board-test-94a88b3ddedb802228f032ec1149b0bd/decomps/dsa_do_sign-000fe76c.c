@@ -26,7 +26,7 @@ DSA_SIG * dsa_do_sign(uchar *param_1,int param_2,DSA *param_3)
     iVar3 = 0x65;
     ctx_in = r;
 LAB_000fe8d6:
-    ERR_put_error(10,0x70,iVar3,DAT_000fe90c,0xd1);
+    ERR_put_error(10,0x70,iVar3,"dsa_ossl.c",0xd1);
     BN_free(local_54);
     BN_free(r);
     if (ctx_in == (BIGNUM *)0x0) {
@@ -58,7 +58,7 @@ LAB_000fe8f6:
         }
 LAB_000fe8b0:
         if (pDVar6 == (DSA_SIG *)0x0) {
-          ERR_put_error(10,0x70,3,DAT_000fe90c,0xd1);
+          ERR_put_error(10,0x70,3,"dsa_ossl.c",0xd1);
           BN_free(local_54);
           BN_free(r);
         }

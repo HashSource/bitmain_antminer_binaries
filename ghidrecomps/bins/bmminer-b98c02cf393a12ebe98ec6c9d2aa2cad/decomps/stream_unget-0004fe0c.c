@@ -18,14 +18,14 @@ void stream_unget(int param_1,uint param_2)
     }
     if (*(int *)(param_1 + 0x10) == 0) {
                     /* WARNING: Subroutine does not return */
-      __assert_fail("stream->buffer_pos > 0","compat/jansson-2.9/src/load.c",0xf0,DAT_0004fe80);
+      __assert_fail("stream->buffer_pos > 0","compat/jansson-2.9/src/load.c",0xf0,"stream_unget");
     }
     iVar1 = *(int *)(param_1 + 0x10) + -1;
     *(int *)(param_1 + 0x10) = iVar1;
     if (param_2 != *(byte *)(param_1 + iVar1 + 8)) {
                     /* WARNING: Subroutine does not return */
       __assert_fail("stream->buffer[stream->buffer_pos] == c","compat/jansson-2.9/src/load.c",0xf2,
-                    DAT_0004fe80);
+                    "stream_unget");
     }
   }
   return;

@@ -8,7 +8,7 @@ int EC_POINT_set_compressed_coordinates_GFp
   
   puVar2 = *(uint **)group;
   if (((code *)puVar2[0x13] == (code *)0x0) && ((*puVar2 & 1) == 0)) {
-    ERR_put_error(0x10,0x7d,0x42,DAT_000a3974,0x4e);
+    ERR_put_error(0x10,0x7d,0x42,"ec_oct.c",0x4e);
     iVar1 = 0;
   }
   else if (puVar2 == *(uint **)p) {
@@ -23,7 +23,7 @@ int EC_POINT_set_compressed_coordinates_GFp
     iVar1 = (*(code *)puVar2[0x13])();
   }
   else {
-    ERR_put_error(0x10,0x7d,0x65,DAT_000a3974,0x53);
+    ERR_put_error(0x10,0x7d,0x65,"ec_oct.c",0x53);
     iVar1 = 0;
   }
   return iVar1;

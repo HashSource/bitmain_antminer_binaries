@@ -6,7 +6,7 @@ int toupper(int __c)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_toupper_000c0200)();
+  iVar1 = toupper(__c);
   return iVar1;
 }
 

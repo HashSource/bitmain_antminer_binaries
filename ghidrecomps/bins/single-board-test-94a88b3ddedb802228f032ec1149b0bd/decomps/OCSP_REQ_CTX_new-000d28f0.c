@@ -7,7 +7,7 @@ undefined4 * OCSP_REQ_CTX_new(undefined4 param_1,int param_2)
   BIO *pBVar1;
   void *ptr_00;
   
-  ptr = (undefined4 *)CRYPTO_malloc(0x1c,DAT_000d2958,0x78);
+  ptr = (undefined4 *)CRYPTO_malloc(0x1c,"ocsp_ht.c",0x78);
   if (ptr == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
@@ -22,7 +22,7 @@ undefined4 * OCSP_REQ_CTX_new(undefined4 param_1,int param_2)
   ptr[2] = param_2;
   ptr[3] = param_1;
   ptr[5] = 0;
-  ptr_00 = CRYPTO_malloc(param_2,DAT_000d2958,0x84);
+  ptr_00 = CRYPTO_malloc(param_2,"ocsp_ht.c",0x84);
   ptr[1] = ptr_00;
   if (ptr_00 == (void *)0x0) {
     if ((BIO *)ptr[4] == (BIO *)0x0) goto LAB_000d294e;

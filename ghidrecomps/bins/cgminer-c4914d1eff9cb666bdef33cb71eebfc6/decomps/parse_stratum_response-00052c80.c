@@ -193,7 +193,7 @@ _Bool parse_stratum_response(pool *pool,char *s)
                 bVar14 = 0xfffffffe < (uint)total_rejected;
                 total_rejected._0_4_ = (uint)total_rejected + 1;
                 total_rejected._4_4_ = total_rejected._4_4_ + (uint)bVar14;
-                uVar8 = *(uint *)&pool->rejected;
+                uVar8 = (uint)pool->rejected;
                 iVar13 = *(int *)((int)&pool->rejected + 4);
                 *(uint *)&pool->rejected = uVar8 + 1;
                 *(uint *)((int)&pool->rejected + 4) = iVar13 + (uint)(0xfffffffe < uVar8);
@@ -211,7 +211,7 @@ _Bool parse_stratum_response(pool *pool,char *s)
                 bVar14 = 0xfffffffe < (uint)total_accepted;
                 total_accepted._0_4_ = (uint)total_accepted + 1;
                 total_accepted._4_4_ = total_accepted._4_4_ + (uint)bVar14;
-                uVar8 = *(uint *)&pool->accepted;
+                uVar8 = (uint)pool->accepted;
                 iVar13 = *(int *)((int)&pool->accepted + 4);
                 *(uint *)&pool->accepted = uVar8 + 1;
                 *(uint *)((int)&pool->accepted + 4) = iVar13 + (uint)(0xfffffffe < uVar8);

@@ -4,142 +4,128 @@
 void clear_stratum_shares(pool *pool)
 
 {
-  double *pdVar1;
-  uint *puVar2;
+  stratum_share *psVar1;
+  stratum_share *psVar2;
   int iVar3;
-  void *pvVar4;
-  int iVar5;
-  pthread_mutex_t *in_r2;
-  pool *in_r3;
-  int **ppiVar6;
-  uint uVar7;
-  void *__ptr;
-  stratum_share *sshare;
-  UT_hash_handle *_hd_hh_del;
-  void *pvVar8;
-  stratum_share *tmpshare;
-  uint uVar9;
-  int **ppiVar10;
-  void **ppvVar11;
-  int iVar12;
-  uint uVar13;
-  int *piVar14;
-  int iVar15;
-  bool bVar16;
-  double dVar17;
-  double dVar18;
+  stratum_share *psVar4;
+  UT_hash_handle *pUVar5;
+  void *pvVar6;
+  UT_hash_handle *pUVar7;
+  char *func;
+  work *pwVar8;
+  char *func_00;
+  int line;
+  int line_00;
+  stratum_share *__ptr;
+  stratum_share *psVar9;
+  uint uVar10;
+  stratum_share *psVar11;
+  uint uVar12;
+  UT_hash_table *pUVar13;
+  UT_hash_bucket *pUVar14;
+  bool bVar15;
+  double dVar16;
   char tmp42 [2048];
   
-  iVar3 = pthread_mutex_lock(DAT_00021058);
+  iVar3 = pthread_mutex_lock((pthread_mutex_t *)&sshare_lock);
   if (iVar3 != 0) {
-    _mutex_lock(DAT_00021060,(char *)0x1c55,in_r2->__size,(int)in_r3);
+    _mutex_lock((pthread_mutex_t *)"clear_stratum_shares",(char *)0x1c55,func,line);
   }
-  iVar3 = DAT_00021080;
-  __ptr = *(void **)(DAT_00021080 + 0x480);
-  dVar18 = DAT_00021050;
-  if (__ptr == (void *)0x0) {
-    uVar9 = 0;
+  if (stratum_shares == (stratum_share *)0x0) {
+    dVar16 = 0.0;
+    uVar10 = 0;
   }
   else {
-    in_r2 = *(pthread_mutex_t **)((int)__ptr + 0x24);
-    uVar9 = 0;
-    pvVar8 = *(void **)((int)__ptr + 8);
-    in_r3 = *(pool **)((int)in_r2 + 0x104);
-    if (in_r3 == pool) goto LAB_00020ebc;
-    while (__ptr = pvVar8, pvVar8 != (void *)0x0) {
+    pwVar8 = stratum_shares->work;
+    uVar10 = 0;
+    psVar9 = (stratum_share *)(stratum_shares->hh).next;
+    dVar16 = 0.0;
+    __ptr = stratum_shares;
+    if (pwVar8->pool == pool) goto LAB_00020ebc;
+    while (__ptr = psVar9, psVar9 != (stratum_share *)0x0) {
       while( true ) {
-        pvVar8 = *(void **)((int)__ptr + 8);
-        in_r2 = *(pthread_mutex_t **)((int)__ptr + 0x24);
-        in_r3 = *(pool **)((int)in_r2 + 0x104);
-        if (in_r3 != pool) break;
+        psVar9 = (stratum_share *)(__ptr->hh).next;
+        pwVar8 = __ptr->work;
+        if (pwVar8->pool != pool) break;
 LAB_00020ebc:
-        iVar5 = *(int *)((int)__ptr + 4);
-        ppiVar10 = *(int ***)((int)__ptr + 8);
-        if ((iVar5 == 0) && (ppiVar10 == (int **)0x0)) {
-          ppvVar11 = *(void ***)(iVar3 + 0x480);
-                    /* WARNING: Load size is inaccurate */
-          free(**ppvVar11);
-          free(*ppvVar11);
-          *(undefined4 *)(iVar3 + 0x480) = 0;
-          in_r2 = *(pthread_mutex_t **)((int)__ptr + 0x24);
+        psVar1 = stratum_shares;
+        pvVar6 = (__ptr->hh).prev;
+        psVar11 = (stratum_share *)(__ptr->hh).next;
+        if ((pvVar6 == (void *)0x0) && (psVar11 == (stratum_share *)0x0)) {
+          free(((stratum_shares->hh).tbl)->buckets);
+          free((psVar1->hh).tbl);
+          pwVar8 = __ptr->work;
+          stratum_shares = psVar11;
         }
         else {
-          ppiVar6 = *(int ***)(iVar3 + 0x480);
-          piVar14 = *ppiVar6;
-          iVar12 = piVar14[5];
-          pvVar4 = (void *)(piVar14[4] - iVar12);
-          bVar16 = __ptr == pvVar4;
-          if (bVar16) {
-            pvVar4 = (void *)(iVar5 + iVar12);
+          pUVar13 = (stratum_shares->hh).tbl;
+          iVar3 = pUVar13->hho;
+          psVar4 = (stratum_share *)((int)pUVar13->tail - iVar3);
+          bVar15 = __ptr == psVar4;
+          if (bVar15) {
+            psVar4 = (stratum_share *)((int)pvVar6 + iVar3);
           }
-          if (bVar16) {
-            piVar14[4] = (int)pvVar4;
+          if (bVar15) {
+            pUVar13->tail = &psVar4->hh;
           }
-          if (iVar5 == 0) {
-            *(int ***)(iVar3 + 0x480) = ppiVar10;
-            ppiVar6 = ppiVar10;
+          psVar4 = psVar11;
+          psVar2 = psVar11;
+          if (pvVar6 != (void *)0x0) {
+            *(stratum_share **)((int)pvVar6 + iVar3 + 8) = psVar11;
+            psVar11 = psVar1;
+            psVar4 = (stratum_share *)(__ptr->hh).next;
+            psVar2 = stratum_shares;
           }
-          else {
-            *(int ***)(iVar12 + iVar5 + 8) = ppiVar10;
-            ppiVar10 = ppiVar6;
-            ppiVar6 = *(int ***)((int)__ptr + 8);
+          stratum_shares = psVar2;
+          pUVar13 = (psVar11->hh).tbl;
+          if (psVar4 != (stratum_share *)0x0) {
+            *(void **)((int)&(psVar4->hh).prev + pUVar13->hho) = pvVar6;
           }
-          piVar14 = *ppiVar10;
-          if (ppiVar6 != (int **)0x0) {
-            *(int *)((int)ppiVar6 + piVar14[5] + 4) = iVar5;
+          pUVar14 = pUVar13->buckets;
+          uVar12 = pUVar13->num_buckets - 1 & (__ptr->hh).hashv;
+          pUVar7 = (__ptr->hh).hh_next;
+          pUVar14[uVar12].count = pUVar14[uVar12].count - 1;
+          pUVar5 = (__ptr->hh).hh_prev;
+          if ((stratum_share *)pUVar14[uVar12].hh_head == __ptr) {
+            pUVar14[uVar12].hh_head = pUVar7;
           }
-          iVar15 = *piVar14;
-          uVar13 = piVar14[1] - 1U & *(uint *)((int)__ptr + 0x1c);
-          iVar5 = iVar15 + uVar13 * 0xc;
-          pvVar4 = *(void **)(iVar15 + uVar13 * 0xc);
-          iVar12 = *(int *)((int)__ptr + 0x10);
-          *(int *)(iVar5 + 4) = *(int *)(iVar5 + 4) + -1;
-          iVar5 = *(int *)((int)__ptr + 0xc);
-          if (pvVar4 == __ptr) {
-            *(int *)(iVar15 + uVar13 * 0xc) = iVar12;
+          if (pUVar5 != (UT_hash_handle *)0x0) {
+            pUVar5->hh_next = pUVar7;
+            pUVar7 = (__ptr->hh).hh_next;
           }
-          if (iVar5 != 0) {
-            *(int *)(iVar5 + 0x10) = iVar12;
-            iVar12 = *(int *)((int)__ptr + 0x10);
+          if (pUVar7 != (UT_hash_handle *)0x0) {
+            pUVar7->hh_prev = pUVar5;
           }
-          if (iVar12 != 0) {
-            *(int *)(iVar12 + 0xc) = iVar5;
-          }
-          piVar14[3] = piVar14[3] + -1;
+          pUVar13->num_items = pUVar13->num_items - 1;
         }
-        uVar9 = uVar9 + 1;
-        dVar18 = dVar18 + *(double *)((int)in_r2 + 0x178);
-        in_r2 = DAT_00021060;
-        _free_work((work **)((int)__ptr + 0x24),DAT_0002105c,DAT_00021060->__size,0x1c5d);
-        in_r3 = (pool *)(pool->sshares + -1);
-        pool->sshares = (int)in_r3;
+        uVar10 = uVar10 + 1;
+        dVar16 = dVar16 + pwVar8->work_difficulty;
+        _free_work(&__ptr->work,"cgminer.c","clear_stratum_shares",0x1c5d);
+        pool->sshares = pool->sshares + -1;
         free(__ptr);
-        __ptr = pvVar8;
-        if (pvVar8 == (void *)0x0) goto LAB_00020f7a;
+        __ptr = psVar9;
+        if (psVar9 == (stratum_share *)0x0) goto LAB_00020f7a;
       }
     }
   }
 LAB_00020f7a:
-  iVar3 = pthread_mutex_unlock(DAT_00021058);
+  iVar3 = pthread_mutex_unlock((pthread_mutex_t *)&sshare_lock);
   if (iVar3 != 0) {
-    _mutex_unlock_noyield(DAT_00021060,(char *)0x1c63,in_r2->__size,(int)in_r3);
+    _mutex_unlock_noyield((pthread_mutex_t *)"clear_stratum_shares",(char *)0x1c63,func_00,line_00);
   }
-  (**DAT_00021064)();
-  if (uVar9 != 0) {
-    if (((*DAT_00021068 != '\0') || (*DAT_0002106c != '\0')) || (3 < *DAT_00021070)) {
-      snprintf(tmp42,0x800,DAT_00021074,uVar9,pool->pool_no);
+  (*selective_yield)();
+  if (uVar10 != 0) {
+    if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+      snprintf(tmp42,0x800,"Lost %d shares due to stratum disconnect on pool %d",uVar10,
+               pool->pool_no);
       _applog(4,tmp42,false);
     }
-    puVar2 = DAT_0002107c;
-    pdVar1 = DAT_00021078;
-    dVar17 = *DAT_00021078;
-    uVar13 = *DAT_0002107c;
-    uVar7 = DAT_0002107c[1];
-    pool->stale_shares = pool->stale_shares + uVar9;
-    pool->diff_stale = pool->diff_stale + dVar18;
-    *puVar2 = uVar13 + uVar9;
-    puVar2[1] = uVar7 + ((int)uVar9 >> 0x1f) + (uint)CARRY4(uVar13,uVar9);
-    *pdVar1 = dVar17 + dVar18;
+    pool->stale_shares = pool->stale_shares + uVar10;
+    pool->diff_stale = pool->diff_stale + dVar16;
+    total_diff_stale = total_diff_stale + dVar16;
+    bVar15 = CARRY4((uint)total_stale,uVar10);
+    total_stale._0_4_ = (uint)total_stale + uVar10;
+    total_stale._4_4_ = total_stale._4_4_ + ((int)uVar10 >> 0x1f) + (uint)bVar15;
   }
   return;
 }

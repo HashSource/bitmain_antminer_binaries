@@ -6,7 +6,7 @@ OCSP_ONEREQ * OCSP_ONEREQ_new(void)
 {
   OCSP_ONEREQ *pOVar1;
   
-  pOVar1 = (OCSP_ONEREQ *)ASN1_item_new(DAT_000d26a0);
+  pOVar1 = (OCSP_ONEREQ *)ASN1_item_new((ASN1_ITEM *)OCSP_ONEREQ_it);
   return pOVar1;
 }
 

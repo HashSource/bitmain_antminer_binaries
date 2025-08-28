@@ -4,7 +4,6 @@
 void read_asic_register(uchar chain,uchar mode,uchar chip_addr,uchar reg_addr)
 
 {
-  uint ret;
   int iVar1;
   uint uVar2;
   uint uVar3;
@@ -22,7 +21,7 @@ void read_asic_register(uchar chain,uchar mode,uchar chip_addr,uchar reg_addr)
   cmd_buf[0] = 0;
   cmd_buf[1] = 0;
   cmd_buf[2] = 0;
-  if (*DAT_000320b4 == 0) {
+  if (opt_multi_version == 0) {
     buf[0] = '\x04';
     if (mode != '\0') {
       buf[0] = 0x84;
@@ -31,9 +30,10 @@ void read_asic_register(uchar chain,uchar mode,uchar chip_addr,uchar reg_addr)
     buf[2] = reg_addr;
     buf[3] = CRC5(buf,'\x1b');
     uVar3 = (uint)buf[3];
-    if ((*DAT_000320b8 != '\0') &&
-       (((*DAT_000320bc != '\0' || (*DAT_000320c0 != '\0')) || (6 < *DAT_000320cc)))) {
-      snprintf(logstr,0x800,DAT_000320c8,DAT_000320c4,(uint)buf[0],uVar5,uVar6,uVar3);
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      snprintf(logstr,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
+               "read_asic_register",(uint)buf[0],uVar5,uVar6,uVar3);
       _applog(7,logstr,false);
       uVar5 = (uint)buf[1];
       uVar6 = (uint)buf[2];
@@ -53,12 +53,13 @@ void read_asic_register(uchar chain,uchar mode,uchar chip_addr,uchar reg_addr)
     buf[3] = reg_addr;
     buf[4] = CRC5(buf,' ');
     uVar3 = (uint)buf[4];
-    if ((*DAT_000320b8 == '\0') ||
-       (((*DAT_000320bc == '\0' && (*DAT_000320c0 == '\0')) && (*DAT_000320cc < 7)))) {
+    if ((opt_debug == false) ||
+       (((use_syslog == false && (opt_log_output == false)) && (opt_log_level < 7)))) {
       uVar2 = 0x50000;
     }
     else {
-      snprintf(logstr,0x800,DAT_000320d0,DAT_000320c4,(uint)buf[0],5,uVar5,uVar6,uVar3);
+      snprintf(logstr,0x800,"%s:VIL buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x, buf[4]=0x%x"
+               ,"read_asic_register",(uint)buf[0],5,uVar5,uVar6,uVar3);
       _applog(7,logstr,false);
       uVar5 = (uint)buf[2];
       uVar6 = (uint)buf[3];
@@ -75,14 +76,13 @@ void read_asic_register(uchar chain,uchar mode,uchar chip_addr,uchar reg_addr)
       iVar4 = iVar4 + -1;
     } while (iVar4 != 0);
     iVar4 = get_hash_on_plug();
-    sprintf(logstr,DAT_000320d4,iVar4);
+    sprintf(logstr,"Error: clement debug: wait BC ready timeout, PLUG ON=0x%08x..\n",iVar4);
     writeInitLogFile(logstr);
   }
 LAB_00031fac:
   set_BC_command_buffer(cmd_buf);
   uVar5 = get_BC_write_command();
-  ret = uVar5 & 0xfff0ffff;
-  set_BC_write_command((uint)chain << 0x10 | 0x80800000 | ret);
+  set_BC_write_command((uint)chain << 0x10 | 0x80800000 | uVar5 & 0xfff0ffff);
   return;
 }
 

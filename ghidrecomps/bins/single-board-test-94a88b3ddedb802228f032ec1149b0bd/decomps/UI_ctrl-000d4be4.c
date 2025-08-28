@@ -6,7 +6,7 @@ int UI_ctrl(UI *ui,int cmd,long i,void *p,f *f)
   uint uVar2;
   
   if (ui == (UI *)0x0) {
-    ERR_put_error(0x28,0x6f,0x43,DAT_000d4c48,0x20d);
+    ERR_put_error(0x28,0x6f,0x43,"ui_lib.c",0x20d);
     uVar1 = 0xffffffff;
   }
   else if (cmd == 1) {
@@ -23,7 +23,7 @@ int UI_ctrl(UI *ui,int cmd,long i,void *p,f *f)
     uVar1 = *(uint *)(ui + 0x14) & 1;
   }
   else {
-    ERR_put_error(0x28,0x6f,0x6a,DAT_000d4c48,0x21f);
+    ERR_put_error(0x28,0x6f,0x6a,"ui_lib.c",0x21f);
     uVar1 = 0xffffffff;
   }
   return uVar1;

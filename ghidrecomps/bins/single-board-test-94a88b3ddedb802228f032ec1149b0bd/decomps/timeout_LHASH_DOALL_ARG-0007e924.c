@@ -56,7 +56,7 @@ void timeout_LHASH_DOALL_ARG(void *param_1,int *param_2)
     if (pcVar4 != (code *)0x0) {
       (*pcVar4)(iVar1,param_1);
     }
-    iVar1 = CRYPTO_add_lock((int *)((int)param_1 + 0xa4),-1,0xe,DAT_0007e9d0,0x352);
+    iVar1 = CRYPTO_add_lock((int *)((int)param_1 + 0xa4),-1,0xe,"ssl_sess.c",0x352);
     if (iVar1 < 1) {
       SSL_SESSION_free_part_0(param_1);
       return;

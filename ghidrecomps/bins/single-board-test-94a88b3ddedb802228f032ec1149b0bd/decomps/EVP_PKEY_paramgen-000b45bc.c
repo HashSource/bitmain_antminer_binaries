@@ -8,7 +8,7 @@ int EVP_PKEY_paramgen(EVP_PKEY_CTX *ctx,EVP_PKEY **ppkey)
   
   if (((ctx == (EVP_PKEY_CTX *)0x0) || (*(int *)ctx == 0)) ||
      (pcVar3 = *(code **)(*(int *)ctx + 0x18), pcVar3 == (code *)0x0)) {
-    ERR_put_error(6,0x94,0x96,DAT_000b463c,0x5a);
+    ERR_put_error(6,0x94,0x96,"pmeth_gn.c",0x5a);
     iVar1 = -2;
   }
   else if (*(int *)(ctx + 0x10) == 2) {
@@ -30,7 +30,7 @@ int EVP_PKEY_paramgen(EVP_PKEY_CTX *ctx,EVP_PKEY **ppkey)
     }
   }
   else {
-    ERR_put_error(6,0x94,0x97,DAT_000b463c,0x5f);
+    ERR_put_error(6,0x94,0x97,"pmeth_gn.c",0x5f);
     iVar1 = -1;
   }
   return iVar1;

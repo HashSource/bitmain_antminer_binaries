@@ -5,7 +5,6 @@ void get_benchfile_work(work *work)
 
 {
   pool **pppVar1;
-  double in_stack_00000000;
   
   benchfile_get_work(work);
   pppVar1 = pools;
@@ -14,7 +13,7 @@ void get_benchfile_work(work *work)
   cgtime(&work->tv_getwork);
   copy_time(&work->tv_getwork_reply,&work->tv_getwork);
   work->getwork_mode = 'B';
-  calc_diff(work,in_stack_00000000);
+  calc_diff(work,0.0);
   return;
 }
 

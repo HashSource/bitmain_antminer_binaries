@@ -8,13 +8,14 @@ void AT24C02_write_bytes(uchar address,uchar *buf,uchar which_iic,uchar length)
   uint uVar2;
   uint uVar3;
   uchar *puVar4;
+  undefined4 unaff_lr;
   
-  printf(DAT_0002cf24,DAT_0002cf28);
+  printf("--- %s\n","AT24C02_write_bytes");
   uVar1 = (uint)address + (uint)length;
   if (0x100 < uVar1) {
-                    /* WARNING: Could not recover jumptable at 0x0000a420. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    (*(code *)PTR_LAB_0005f294)(DAT_0002cf2c,DAT_0002cf28,uVar1,0x100);
+    (*(code *)(undefined *)0x0)
+              ("\n--- %s: address + length = %d > EEPROM_LENGTH(%d)\n","AT24C02_write_bytes",uVar1,
+               0x100,unaff_lr);
     return;
   }
   if (length == 0) {

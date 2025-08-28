@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void check_asic_status(void)
 
@@ -27,9 +27,9 @@ void check_asic_status(void)
         for (j = 0; j < (int)(uint)dev->chain_asic_num[i]; j = j + 1) {
           iVar4 = nonce_times % 0x3c;
           uVar5 = *(undefined4 *)((int)dev->chain_asic_nonce[i] + j * 8 + 4);
-          *(undefined4 *)(nonce_num[i][j] + iVar4) = *(undefined4 *)(dev->chain_asic_nonce[i] + j);
+          *(int *)(nonce_num[i][j] + iVar4) = (int)dev->chain_asic_nonce[i][j];
           *(undefined4 *)((int)nonce_num[i][j] + iVar4 * 8 + 4) = uVar5;
-          avg_num = avg_num + *(int *)(dev->chain_asic_nonce[i] + j);
+          avg_num = avg_num + (int)dev->chain_asic_nonce[i][j];
           if (4 < log_level) {
             print_crt_time_to_file(log_file,4);
             pFVar3 = fopen(log_file,"a+");

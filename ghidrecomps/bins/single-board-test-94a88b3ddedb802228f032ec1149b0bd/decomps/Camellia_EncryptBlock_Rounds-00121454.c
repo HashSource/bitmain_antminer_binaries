@@ -1,5 +1,5 @@
 
-void Camellia_EncryptBlock_Rounds(int param_1,byte *param_2,uint *param_3,undefined *param_4)
+void Camellia_EncryptBlock_Rounds(int param_1,byte *param_2,uint *param_3,undefined1 *param_4)
 
 {
   uint *puVar1;
@@ -36,74 +36,74 @@ void Camellia_EncryptBlock_Rounds(int param_1,byte *param_2,uint *param_3,undefi
     uVar11 = uVar8 ^ puVar5[1];
     local_34 = local_34 + 0x10;
     uVar9 = uVar7 ^ *puVar1;
-    uVar10 = *(uint *)(DAT_001214f0 + ((uVar9 & 0xff) + 0x100) * 4) ^
-             *(uint *)(DAT_001214f0 + (uVar9 >> 0x18) * 4) ^
-             *(uint *)(DAT_001214f0 + (((uVar9 << 0x10) >> 0x18) + 0x300) * 4) ^
-             *(uint *)(DAT_001214f0 + (((uVar9 << 8) >> 0x18) + 0x200) * 4);
-    uVar9 = *(uint *)(DAT_001214f0 + (uVar11 & 0xff) * 4) ^
-            *(uint *)(DAT_001214f0 + ((uVar11 >> 0x18) + 0x200) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar11 << 0x10) >> 0x18) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar11 << 8) >> 0x18) + 0x300) * 4) ^ uVar10;
+    uVar10 = *(uint *)(&Camellia_SBOX + ((uVar9 & 0xff) + 0x100) * 4) ^
+             *(uint *)(&Camellia_SBOX + (uVar9 >> 0x18) * 4) ^
+             *(uint *)(&Camellia_SBOX + (((uVar9 << 0x10) >> 0x18) + 0x300) * 4) ^
+             *(uint *)(&Camellia_SBOX + (((uVar9 << 8) >> 0x18) + 0x200) * 4);
+    uVar9 = *(uint *)(&Camellia_SBOX + (uVar11 & 0xff) * 4) ^
+            *(uint *)(&Camellia_SBOX + ((uVar11 >> 0x18) + 0x200) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar11 << 0x10) >> 0x18) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar11 << 8) >> 0x18) + 0x300) * 4) ^ uVar10;
     uVar3 = uVar9 ^ uVar3;
     uVar11 = uVar3 ^ puVar5[2];
     local_38 = uVar9 ^ (uVar10 >> 8 | uVar10 << 0x18) ^ local_38;
     uVar10 = local_38 ^ puVar5[3];
-    uVar9 = *(uint *)(DAT_001214f0 + ((uVar11 & 0xff) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (uVar11 >> 0x18) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar11 << 0x10) >> 0x18) + 0x300) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar11 << 8) >> 0x18) + 0x200) * 4);
-    uVar10 = *(uint *)(DAT_001214f0 + (uVar10 & 0xff) * 4) ^
-             *(uint *)(DAT_001214f0 + ((uVar10 >> 0x18) + 0x200) * 4) ^
-             *(uint *)(DAT_001214f0 + (((uVar10 << 0x10) >> 0x18) + 0x100) * 4) ^
-             *(uint *)(DAT_001214f0 + (((uVar10 << 8) >> 0x18) + 0x300) * 4) ^ uVar9;
+    uVar9 = *(uint *)(&Camellia_SBOX + ((uVar11 & 0xff) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (uVar11 >> 0x18) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar11 << 0x10) >> 0x18) + 0x300) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar11 << 8) >> 0x18) + 0x200) * 4);
+    uVar10 = *(uint *)(&Camellia_SBOX + (uVar10 & 0xff) * 4) ^
+             *(uint *)(&Camellia_SBOX + ((uVar10 >> 0x18) + 0x200) * 4) ^
+             *(uint *)(&Camellia_SBOX + (((uVar10 << 0x10) >> 0x18) + 0x100) * 4) ^
+             *(uint *)(&Camellia_SBOX + (((uVar10 << 8) >> 0x18) + 0x300) * 4) ^ uVar9;
     uVar9 = uVar8 ^ (uVar9 >> 8 | uVar9 << 0x18) ^ uVar10;
     uVar10 = uVar10 ^ uVar7;
     uVar7 = uVar9 ^ puVar5[5];
     uVar8 = uVar10 ^ puVar5[4];
-    uVar11 = *(uint *)(DAT_001214f0 + ((uVar8 & 0xff) + 0x100) * 4) ^
-             *(uint *)(DAT_001214f0 + (uVar8 >> 0x18) * 4) ^
-             *(uint *)(DAT_001214f0 + (((uVar8 << 0x10) >> 0x18) + 0x300) * 4) ^
-             *(uint *)(DAT_001214f0 + (((uVar8 << 8) >> 0x18) + 0x200) * 4);
-    uVar8 = *(uint *)(DAT_001214f0 + ((uVar7 >> 0x18) + 0x200) * 4) ^
-            *(uint *)(DAT_001214f0 + (uVar7 & 0xff) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 0x10) >> 0x18) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 8) >> 0x18) + 0x300) * 4) ^ uVar11;
+    uVar11 = *(uint *)(&Camellia_SBOX + ((uVar8 & 0xff) + 0x100) * 4) ^
+             *(uint *)(&Camellia_SBOX + (uVar8 >> 0x18) * 4) ^
+             *(uint *)(&Camellia_SBOX + (((uVar8 << 0x10) >> 0x18) + 0x300) * 4) ^
+             *(uint *)(&Camellia_SBOX + (((uVar8 << 8) >> 0x18) + 0x200) * 4);
+    uVar8 = *(uint *)(&Camellia_SBOX + ((uVar7 >> 0x18) + 0x200) * 4) ^
+            *(uint *)(&Camellia_SBOX + (uVar7 & 0xff) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 0x10) >> 0x18) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 8) >> 0x18) + 0x300) * 4) ^ uVar11;
     uVar3 = uVar8 ^ uVar3;
     uVar7 = uVar3 ^ puVar5[6];
     local_38 = uVar8 ^ (uVar11 >> 8 | uVar11 << 0x18) ^ local_38;
     uVar8 = local_38 ^ puVar5[7];
-    uVar7 = *(uint *)(DAT_001214f0 + (uVar7 >> 0x18) * 4) ^
-            *(uint *)(DAT_001214f0 + ((uVar7 & 0xff) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 0x10) >> 0x18) + 0x300) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 8) >> 0x18) + 0x200) * 4);
-    uVar11 = uVar7 ^ *(uint *)(DAT_001214f0 + (uVar8 & 0xff) * 4) ^
-                     *(uint *)(DAT_001214f0 + ((uVar8 >> 0x18) + 0x200) * 4) ^
-                     *(uint *)(DAT_001214f0 + (((uVar8 << 0x10) >> 0x18) + 0x100) * 4) ^
-                     *(uint *)(DAT_001214f0 + (((uVar8 << 8) >> 0x18) + 0x300) * 4);
+    uVar7 = *(uint *)(&Camellia_SBOX + (uVar7 >> 0x18) * 4) ^
+            *(uint *)(&Camellia_SBOX + ((uVar7 & 0xff) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 0x10) >> 0x18) + 0x300) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 8) >> 0x18) + 0x200) * 4);
+    uVar11 = uVar7 ^ *(uint *)(&Camellia_SBOX + (uVar8 & 0xff) * 4) ^
+                     *(uint *)(&Camellia_SBOX + ((uVar8 >> 0x18) + 0x200) * 4) ^
+                     *(uint *)(&Camellia_SBOX + (((uVar8 << 0x10) >> 0x18) + 0x100) * 4) ^
+                     *(uint *)(&Camellia_SBOX + (((uVar8 << 8) >> 0x18) + 0x300) * 4);
     uVar10 = uVar10 ^ uVar11;
     uVar11 = uVar9 ^ (uVar7 >> 8 | uVar7 << 0x18) ^ uVar11;
     uVar8 = puVar5[9] ^ uVar11;
     uVar7 = uVar10 ^ puVar5[8];
-    uVar7 = *(uint *)(DAT_001214f0 + ((uVar7 & 0xff) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (uVar7 >> 0x18) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 0x10) >> 0x18) + 0x300) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 8) >> 0x18) + 0x200) * 4);
-    uVar9 = *(uint *)(DAT_001214f0 + (((uVar8 << 0x10) >> 0x18) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + ((uVar8 >> 0x18) + 0x200) * 4) ^
-            *(uint *)(DAT_001214f0 + (uVar8 & 0xff) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar8 << 8) >> 0x18) + 0x300) * 4) ^ uVar7;
+    uVar7 = *(uint *)(&Camellia_SBOX + ((uVar7 & 0xff) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (uVar7 >> 0x18) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 0x10) >> 0x18) + 0x300) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 8) >> 0x18) + 0x200) * 4);
+    uVar9 = *(uint *)(&Camellia_SBOX + (((uVar8 << 0x10) >> 0x18) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + ((uVar8 >> 0x18) + 0x200) * 4) ^
+            *(uint *)(&Camellia_SBOX + (uVar8 & 0xff) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar8 << 8) >> 0x18) + 0x300) * 4) ^ uVar7;
     uVar3 = uVar9 ^ uVar3;
     uVar8 = uVar3 ^ puVar5[10];
     local_38 = uVar9 ^ (uVar7 >> 8 | uVar7 << 0x18) ^ local_38;
     uVar7 = local_38 ^ puVar5[0xb];
-    uVar9 = *(uint *)(DAT_001214f0 + ((uVar8 & 0xff) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (uVar8 >> 0x18) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar8 << 0x10) >> 0x18) + 0x300) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar8 << 8) >> 0x18) + 0x200) * 4);
-    uVar8 = *(uint *)(DAT_001214f0 + (uVar7 & 0xff) * 4) ^
-            *(uint *)(DAT_001214f0 + ((uVar7 >> 0x18) + 0x200) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 0x10) >> 0x18) + 0x100) * 4) ^
-            *(uint *)(DAT_001214f0 + (((uVar7 << 8) >> 0x18) + 0x300) * 4) ^ uVar9;
+    uVar9 = *(uint *)(&Camellia_SBOX + ((uVar8 & 0xff) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (uVar8 >> 0x18) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar8 << 0x10) >> 0x18) + 0x300) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar8 << 8) >> 0x18) + 0x200) * 4);
+    uVar8 = *(uint *)(&Camellia_SBOX + (uVar7 & 0xff) * 4) ^
+            *(uint *)(&Camellia_SBOX + ((uVar7 >> 0x18) + 0x200) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 0x10) >> 0x18) + 0x100) * 4) ^
+            *(uint *)(&Camellia_SBOX + (((uVar7 << 8) >> 0x18) + 0x300) * 4) ^ uVar9;
     uVar10 = uVar8 ^ uVar10;
     uVar8 = uVar11 ^ (uVar9 >> 8 | uVar9 << 0x18) ^ uVar8;
     if (param_3 + param_1 * 0x10 == puVar5 + 0xc) break;

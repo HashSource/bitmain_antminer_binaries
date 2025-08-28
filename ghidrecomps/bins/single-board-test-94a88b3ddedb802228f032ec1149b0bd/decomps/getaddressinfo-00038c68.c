@@ -12,7 +12,7 @@ undefined4 getaddressinfo(short *param_1,char *param_2,uint *param_3,undefined4 
   else {
     if (sVar1 != 10) {
       if (sVar1 == 1) {
-        curl_msnprintf(param_2,0x2e,DAT_00038cd0,param_1 + 1,param_4);
+        curl_msnprintf(param_2,0x2e,"%s",param_1 + 1,param_4);
         *param_3 = 0;
         return 1;
       }

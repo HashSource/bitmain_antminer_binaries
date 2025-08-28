@@ -4,23 +4,23 @@
 EC_KEY * EC_KEY_new(void)
 
 {
-  undefined4 *puVar1;
+  EC_KEY *pEVar1;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0x24,DAT_000a3144,0x4b);
-  if (puVar1 == (undefined4 *)0x0) {
-    ERR_put_error(0x10,0xb6,0x41,DAT_000a3144,0x4d);
+  pEVar1 = (EC_KEY *)CRYPTO_malloc(0x24,"ec_key.c",0x4b);
+  if (pEVar1 == (EC_KEY *)0x0) {
+    ERR_put_error(0x10,0xb6,0x41,"ec_key.c",0x4d);
   }
   else {
-    *puVar1 = 1;
-    puVar1[6] = 1;
-    puVar1[7] = 0;
-    puVar1[1] = 0;
-    puVar1[2] = 0;
-    puVar1[3] = 0;
-    puVar1[4] = 0;
-    puVar1[8] = 0;
-    puVar1[5] = 4;
+    *(undefined4 *)pEVar1 = 1;
+    *(undefined4 *)(pEVar1 + 0x18) = 1;
+    *(undefined4 *)(pEVar1 + 0x1c) = 0;
+    *(undefined4 *)(pEVar1 + 4) = 0;
+    *(undefined4 *)(pEVar1 + 8) = 0;
+    *(undefined4 *)(pEVar1 + 0xc) = 0;
+    *(undefined4 *)(pEVar1 + 0x10) = 0;
+    *(undefined4 *)(pEVar1 + 0x20) = 0;
+    *(undefined4 *)(pEVar1 + 0x14) = 4;
   }
-  return (EC_KEY *)puVar1;
+  return pEVar1;
 }
 

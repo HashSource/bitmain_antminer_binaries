@@ -8,7 +8,7 @@ X509_EXTENSION_create_by_NID(X509_EXTENSION **ex,int nid,int crit,ASN1_OCTET_STR
   
   obj = OBJ_nid2obj(nid);
   if (obj == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x6c,0x6d,DAT_000c35a0,0xc2);
+    ERR_put_error(0xb,0x6c,0x6d,"x509_v3.c",0xc2);
     pXVar1 = (X509_EXTENSION *)0x0;
   }
   else {

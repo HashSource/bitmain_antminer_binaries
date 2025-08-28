@@ -5,7 +5,7 @@ undefined4 json_object_update_missing(int *param_1,int *param_2)
   int iVar1;
   int iVar2;
   undefined4 uVar3;
-  int local_c;
+  undefined4 local_c;
   
   if ((((param_1 == (int *)0x0) || (*param_1 != 0)) || (param_2 == (int *)0x0)) || (*param_2 != 0))
   {

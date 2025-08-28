@@ -1,5 +1,5 @@
 
-void save_chain_data_to_file(undefined param_1,void *param_2,size_t param_3)
+void save_chain_data_to_file(undefined1 param_1,void *param_2,size_t param_3)
 
 {
   char acStack_d4 [200];

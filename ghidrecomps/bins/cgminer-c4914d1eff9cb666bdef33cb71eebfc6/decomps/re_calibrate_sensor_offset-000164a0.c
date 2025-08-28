@@ -2,9 +2,9 @@
 int8_t re_calibrate_sensor_offset(uchar device,int chain)
 
 {
-  uchar chain_00;
   _Bool _Var1;
   int8_t iVar2;
+  uchar chain_00;
   FILE *pFVar3;
   int chain_local;
   uchar device_local;
@@ -55,8 +55,6 @@ int8_t re_calibrate_sensor_offset(uchar device,int chain)
     }
     fclose(pFVar3);
   }
-  sensor_type = TMP451;
-  sensor_num = 2;
   _Var1 = is_T11();
   if (_Var1) {
     sensor_pos[0] = '\x1f';
@@ -99,19 +97,19 @@ int8_t re_calibrate_sensor_offset(uchar device,int chain)
       fclose(pFVar3);
     }
   }
-  _Var1 = eeprom_set_temp_sensor_type(chain_00,sensor_type);
+  _Var1 = eeprom_set_temp_sensor_type(chain_00,TMP451);
   if (!_Var1) {
     stop_scan(3,chain_00);
   }
-  _Var1 = eeprom_set_temp_sensor_num(chain_00,(uint8_t)sensor_num);
+  _Var1 = eeprom_set_temp_sensor_num(chain_00,'\x02');
   if (!_Var1) {
     stop_scan(3,chain_00);
   }
-  _Var1 = eeprom_set_temp_sensor_pos(chain_00,sensor_pos,sensor_num);
+  _Var1 = eeprom_set_temp_sensor_pos(chain_00,sensor_pos,2);
   if (!_Var1) {
     stop_scan(3,chain_00);
   }
-  _Var1 = eeprom_set_temp_sensor_data(chain_00,(uint8_t *)sensor_offset,sensor_num);
+  _Var1 = eeprom_set_temp_sensor_data(chain_00,(uint8_t *)sensor_offset,2);
   if (!_Var1) {
     stop_scan(3,chain_00);
   }

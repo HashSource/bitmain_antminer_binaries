@@ -16,7 +16,7 @@ _Bool cg_completion_timeout(void *fn,void *fnarg,int timeout)
   _cgsem_init((cgsem_t *)cgc,"util.c","cg_completion_timeout",0xd96);
   cgc->fn = (_func_void_void_ptr *)fn;
   cgc->fnarg = fnarg;
-  pthread_create(&pthread,(pthread_attr_t *)0x0,completion_thread + 1,cgc);
+  pthread_create(&pthread,(pthread_attr_t *)0x0,(__start_routine *)0x6177d,cgc);
   iVar1 = _cgsem_mswait(&cgc->cgsem,timeout,"util.c","cg_completion_timeout",0xd9c);
   bVar2 = iVar1 == 0;
   if (bVar2) {

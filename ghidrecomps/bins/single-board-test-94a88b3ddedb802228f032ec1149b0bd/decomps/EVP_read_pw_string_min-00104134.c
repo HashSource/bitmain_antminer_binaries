@@ -6,8 +6,8 @@ int EVP_read_pw_string_min(char *buf,int minlen,int maxlen,char *prompt,int veri
   int iVar1;
   char acStack_2020 [8196];
   
-  if ((prompt == (char *)0x0) && (*DAT_001041c0 != '\0')) {
-    prompt = DAT_001041c0;
+  if ((prompt == (char *)0x0) && (prompt_string != '\0')) {
+    prompt = &prompt_string;
   }
   ui = UI_new();
   if (0x1ffe < maxlen) {

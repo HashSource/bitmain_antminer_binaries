@@ -2,44 +2,46 @@
 /* WARNING: Heritage AFTER dead removal. Example location: s1 : 0x00035030 */
 /* WARNING: Restarted to delay deadcode elimination for space: register */
 
-undefined set_iic_power_voltage(int *param_1,char param_2)
+undefined1 set_iic_power_voltage(int *param_1,char param_2)
 
 {
   int iVar1;
   uint uVar2;
   FILE *pFVar3;
   uint uVar4;
-  undefined8 in_d0;
+  double in_d0;
   double dVar5;
   undefined4 uStack_3c;
-  undefined local_21;
+  undefined1 local_21;
   double local_20;
   int local_14;
+  undefined4 uVar6;
   
   local_14 = 0;
   local_21 = 0;
-  *(undefined *)(param_1 + 1) = 0;
+  *(undefined1 *)(param_1 + 1) = 0;
+  dVar5 = in_d0;
   do {
     sleep(1);
     iVar1 = is7007_Board();
+    local_20 = dVar5;
     if (iVar1 == 0) {
-      local_20 = (double)get_avg_voltage();
-      dVar5 = local_20;
+      get_avg_voltage();
     }
     else {
-      dVar5 = (double)get_min_voltage();
-      local_20 = dVar5;
+      get_min_voltage();
       if (param_2 != '\0') {
-        local_20 = (dVar5 * DAT_000351e0) / DAT_000351e8;
+        local_20 = (dVar5 * 324.0) / 330.0;
       }
     }
-    uVar2 = voltage_tunning(SUB84(local_20,0),(int)((ulonglong)dVar5 >> 0x20),(int)in_d0,local_21,
-                            param_1);
+    uVar6 = (undefined4)((ulonglong)dVar5 >> 0x20);
+    dVar5 = (double)CONCAT44(uVar6,SUB84(local_20,0));
+    uVar2 = voltage_tunning(SUB84(local_20,0),uVar6,SUB84(in_d0,0),local_21,param_1);
     if (3 < log_level) {
       pFVar3 = fopen(log_file,"a+");
       if (pFVar3 != (FILE *)0x0) {
         uStack_3c = (undefined4)((ulonglong)in_d0 >> 0x20);
-        fprintf(pFVar3,"%s:%d: voltage_tunning, set to %f, N=%d\n","power.c",0x272,(int)in_d0,
+        fprintf(pFVar3,"%s:%d: voltage_tunning, set to %f, N=%d\n","power.c",0x272,SUB84(in_d0,0),
                 uStack_3c,uVar2);
       }
       fclose(pFVar3);
@@ -84,7 +86,7 @@ undefined set_iic_power_voltage(int *param_1,char param_2)
       }
       fclose(pFVar3);
     }
-  } while (*(char *)(param_1 + 1) != '\x01');
-  return *(undefined *)(param_1 + 1);
+  } while ((char)param_1[1] != '\x01');
+  return (char)param_1[1];
 }
 

@@ -1,44 +1,38 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void change_pic_voltage_old(void)
 
 {
   byte bVar1;
-  int iVar2;
-  int *piVar3;
+  byte bVar2;
   byte voltage;
-  int iVar4;
-  int i;
-  int iVar5;
+  int iVar3;
   
-  piVar3 = DAT_000346d0;
-  iVar2 = DAT_000346cc;
-  iVar4 = 0;
-  iVar5 = DAT_000346cc + 0x7c;
+  iVar3 = 0;
   sleep(300);
   do {
-    voltage = *(byte *)(iVar2 + 0x91);
-    if ((*(int *)(*piVar3 + (iVar4 + 2) * 4) != 0) &&
-       (bVar1 = *(byte *)(iVar5 + iVar4), voltage <= bVar1)) {
+    if ((dev->chain_exist[iVar3] != 0) &&
+       (bVar1 = chain_voltage_pic[iVar3], bVar2 = de_voltage, de_voltage <= bVar1)) {
       do {
-        voltage = voltage + 5;
-        if (bVar1 < voltage) {
+        voltage = bVar2 + 5;
+        if (bVar1 < (byte)(bVar2 + 5)) {
           voltage = bVar1;
         }
-        pthread_mutex_lock(DAT_000346c8);
-        set_pic_voltage((uchar)iVar4,voltage);
-        pthread_mutex_unlock(DAT_000346c8);
-        pthread_mutex_lock(DAT_000346c8);
-        get_pic_voltage((uchar)iVar4);
-        pthread_mutex_unlock(DAT_000346c8);
-        if (*(byte *)(iVar5 + iVar4) == voltage) break;
+        pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+        set_pic_voltage((uchar)iVar3,voltage);
+        pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
+        pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+        get_pic_voltage((uchar)iVar3);
+        pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
+        if (chain_voltage_pic[iVar3] == voltage) break;
         cgsleep_ms(100);
-        bVar1 = *(byte *)(iVar5 + iVar4);
+        bVar1 = chain_voltage_pic[iVar3];
+        bVar2 = voltage;
       } while (voltage <= bVar1);
     }
-    iVar4 = iVar4 + 1;
-    if (iVar4 == 0x10) {
+    iVar3 = iVar3 + 1;
+    if (iVar3 == 0x10) {
       return;
     }
   } while( true );

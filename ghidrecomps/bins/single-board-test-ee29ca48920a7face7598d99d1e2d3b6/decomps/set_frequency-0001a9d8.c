@@ -3,9 +3,9 @@ void set_frequency(undefined4 param_1)
 
 {
   char acStack_418 [1024];
-  undefined local_18;
-  undefined local_17;
-  undefined local_16;
+  undefined1 local_18;
+  undefined1 local_17;
+  undefined1 local_16;
   undefined4 local_14;
   undefined4 local_10;
   int local_c;

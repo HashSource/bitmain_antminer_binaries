@@ -1,5 +1,5 @@
 
-void work_list_insert(undefined param_1,void *param_2)
+void work_list_insert(undefined1 param_1,void *param_2)
 
 {
   pthread_mutex_lock((pthread_mutex_t *)g_work_list_mutex);

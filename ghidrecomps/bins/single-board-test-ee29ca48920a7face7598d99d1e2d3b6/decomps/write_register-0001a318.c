@@ -1,10 +1,10 @@
 
-void write_register(undefined param_1,undefined4 param_2)
+void write_register(undefined1 param_1,undefined4 param_2)
 
 {
-  undefined local_10;
-  undefined local_f;
-  undefined local_e;
+  undefined1 local_10;
+  undefined1 local_f;
+  undefined1 local_e;
   undefined4 local_c;
   
   local_f = 1;

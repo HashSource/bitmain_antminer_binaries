@@ -38,7 +38,7 @@ int CMAC_Final(CMAC_CTX *ctx,uchar *out,size_t *poutlen)
       }
       pCVar2 = ctx + 0x8c;
       uVar3 = uVar11 >> 2;
-      uVar9 = uVar11 & 0xfffffffc;
+      uVar9 = uVar3 << 2;
       if (uVar3 == 0 ||
           ((uVar11 < 4 || (bVar13 && !bVar12 || ((uint)out & 3) != 0)) ||
           out < ctx + 0x90 && pCVar2 < pCVar5)) {
@@ -104,7 +104,7 @@ int CMAC_Final(CMAC_CTX *ctx,uchar *out,size_t *poutlen)
       }
       pCVar2 = ctx + 0xac;
       uVar9 = inl >> 2;
-      uVar11 = inl & 0xfffffffc;
+      uVar11 = uVar9 << 2;
       if (uVar9 == 0 ||
           (inl < 4 ||
           ((((uint)out & 3) != 0 || bVar13 && !bVar12) || out < ctx + 0xb0 && pCVar2 < pCVar4))) {

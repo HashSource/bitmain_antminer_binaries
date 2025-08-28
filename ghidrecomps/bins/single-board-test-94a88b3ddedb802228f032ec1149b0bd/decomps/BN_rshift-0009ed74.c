@@ -17,7 +17,7 @@ int BN_rshift(BIGNUM *r,BIGNUM *a,int n)
   uint uVar13;
   
   if (n < 0) {
-    ERR_put_error(3,0x92,0x77,DAT_0009efa0,0xb7);
+    ERR_put_error(3,0x92,0x77,"bn_shift.c",0xb7);
     return 0;
   }
   iVar11 = n >> 5;

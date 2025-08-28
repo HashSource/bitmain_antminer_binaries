@@ -7,9 +7,9 @@ undefined4 sig_cb(int param_1,undefined4 *param_2)
   
   uVar1 = 1;
   if (param_1 == 0) {
-    puVar2 = (undefined4 *)CRYPTO_malloc(8,DAT_000a47d4,0x49);
+    puVar2 = (undefined4 *)CRYPTO_malloc(8,"dsa_asn1.c",0x49);
     if (puVar2 == (undefined4 *)0x0) {
-      ERR_put_error(10,0x72,0x41,DAT_000a47d4,0x4b);
+      ERR_put_error(10,0x72,0x41,"dsa_asn1.c",0x4b);
       uVar1 = 0;
     }
     else {

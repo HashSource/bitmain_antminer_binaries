@@ -7,7 +7,7 @@ undefined4 main(void)
   
   app_config_handle("/mnt/card/app_config.ini");
   memset(acStack_28,0,0x20);
-  sprintf(acStack_28,"%s.log",DAT_00021e0c);
+  sprintf(acStack_28,"%s.log",0xf29cc);
   app_conf._0_4_ = fopen(acStack_28,"w+");
   if ((FILE *)app_conf._0_4_ == (FILE *)0x0) {
     if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {

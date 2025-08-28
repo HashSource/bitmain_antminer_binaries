@@ -20,7 +20,7 @@ int ssl23_read(SSL *param_1,void *param_2,int param_3)
         iVar3 = SSL_read(param_1,param_2,param_3);
         return iVar3;
       }
-      ERR_put_error(0x14,0x78,0xe5,DAT_0006fca8,0x89);
+      ERR_put_error(0x14,0x78,0xe5,"s23_lib.c",0x89);
       iVar3 = -1;
     }
   }

@@ -91,11 +91,10 @@ uint uart_send(byte param_1,void *param_2,uint param_3)
     local_20 = 0x417;
     break;
   default:
-    if (((use_syslog == '\0') && (opt_log_output == '\0')) && (opt_log_level < 2)) {
-      return 0;
+    if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
+      snprintf(acStack_630,0x400,"%s: The uart%d is not supported!!!\n","uart_send",(uint)param_1);
+      _applog(2,acStack_630,0);
     }
-    snprintf(acStack_630,0x400,"%s: The uart%d is not supported!!!\n","uart_send",(uint)param_1);
-    _applog(2,acStack_630,0);
     return 0;
   }
   local_c = 0;

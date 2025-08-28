@@ -1,9 +1,9 @@
 
-void pic_heart_beat_func(undefined *param_1)
+void pic_heart_beat_func(undefined1 *param_1)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   
   uVar1 = *param_1;
   uVar2 = param_1[1];

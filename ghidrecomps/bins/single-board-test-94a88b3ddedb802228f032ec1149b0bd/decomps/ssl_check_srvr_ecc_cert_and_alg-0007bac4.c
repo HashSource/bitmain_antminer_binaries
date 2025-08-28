@@ -36,23 +36,23 @@ LAB_0007bb00:
     }
     if ((uVar3 & 0x60) != 0) {
       if (((int)(param_1->ex_flags << 0x1e) < 0) && ((param_1->ex_kusage & 8) == 0)) {
-        ERR_put_error(0x14,0x117,0x13d,DAT_0007bbf4,0x9a7);
+        ERR_put_error(0x14,0x117,0x13d,"ssl_lib.c",0x9a7);
         return 0;
       }
       if (((int)(uVar3 << 0x19) < 0) &&
          (((*param_2 >> 8 != 3 || (*param_2 < 0x303)) && (local_24[0] != 0x198)))) {
-        ERR_put_error(0x14,0x117,0x143,DAT_0007bbf4,0x9ae);
+        ERR_put_error(0x14,0x117,0x143,"ssl_lib.c",0x9ae);
         return 0;
       }
       if ((((int)(uVar3 << 0x1a) < 0) && ((*param_2 >> 8 != 3 || (*param_2 < 0x303)))) &&
          (local_24[0] != 0x13 && local_24[0] != 6)) {
-        ERR_put_error(0x14,0x117,0x142,DAT_0007bbf4,0x9b7);
+        ERR_put_error(0x14,0x117,0x142,"ssl_lib.c",0x9b7);
         goto LAB_0007bbb0;
       }
     }
     if (((iVar4 << 0x19 < 0) && ((int)(param_1->ex_flags << 0x1e) < 0)) &&
        ((param_1->ex_kusage & 0x80) == 0)) {
-      ERR_put_error(0x14,0x117,0x13e,DAT_0007bbf4,0x9c0);
+      ERR_put_error(0x14,0x117,0x13e,"ssl_lib.c",0x9c0);
       uVar1 = 0;
     }
     else {

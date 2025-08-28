@@ -1,13 +1,13 @@
 
 undefined4
 PIC16F1704_i2c_forward_send
-          (undefined param_1,undefined param_2,char param_3,int param_4,undefined param_5,
+          (undefined1 param_1,undefined1 param_2,char param_3,int param_4,undefined1 param_5,
           size_t param_6,byte *param_7)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   char acStack_450 [1024];
-  undefined local_50 [4];
+  undefined1 local_50 [4];
   undefined4 local_4c;
   undefined4 local_48;
   byte local_44 [32];
@@ -18,7 +18,7 @@ PIC16F1704_i2c_forward_send
   ushort local_12;
   
   memset(local_44,0,0x20);
-  local_50 = (undefined  [4])0x0;
+  local_50 = (undefined1  [4])0x0;
   local_4c = 0;
   local_48 = 0;
   local_12 = 0;

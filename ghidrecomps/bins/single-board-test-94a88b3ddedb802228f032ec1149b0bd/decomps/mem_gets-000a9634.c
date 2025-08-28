@@ -1,5 +1,5 @@
 
-size_t mem_gets(BIO *param_1,undefined *param_2,int param_3)
+size_t mem_gets(BIO *param_1,undefined1 *param_2,int param_3)
 
 {
   char *pcVar1;
@@ -34,10 +34,10 @@ size_t mem_gets(BIO *param_1,undefined *param_2,int param_3)
     __n = uVar5;
   }
   bVar7 = (int)param_2 < 0;
-  if (param_2 != (undefined *)0x0) {
+  if (param_2 != (undefined1 *)0x0) {
     bVar7 = (int)__n < 0;
   }
-  if ((param_2 != (undefined *)0x0 && __n != 0) && !bVar7) {
+  if ((param_2 != (undefined1 *)0x0 && __n != 0) && !bVar7) {
     memcpy(param_2,(void *)psVar6[1],__n);
     iVar3 = param_1->flags;
     sVar2 = *psVar6;
@@ -46,7 +46,7 @@ size_t mem_gets(BIO *param_1,undefined *param_2,int param_3)
       psVar6[1] = psVar6[1] + __n;
     }
     else {
-      memmove((void *)psVar6[1],(void *)((int)(void *)psVar6[1] + __n),sVar2 - __n);
+      memmove((void *)psVar6[1],(void *)((int)psVar6[1] + __n),sVar2 - __n);
     }
   }
   else {

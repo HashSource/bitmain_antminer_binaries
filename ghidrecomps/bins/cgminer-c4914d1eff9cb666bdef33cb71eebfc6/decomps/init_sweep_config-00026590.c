@@ -1,13 +1,11 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void init_sweep_config(void)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  _Bool _Var3;
-  FILE *pFVar4;
+  _Bool _Var1;
+  FILE *pFVar2;
   FILE *pFile_9;
   FILE *pFile_8;
   FILE *pFile_7;
@@ -23,43 +21,41 @@ void init_sweep_config(void)
   CHIP_MINOR_TYPE _g_minor_type;
   int chain;
   
-  uVar2 = DAT_00027314;
-  uVar1 = DAT_00027310;
   _g_minor_type = PKG_BSL;
   _g_bin_level = BIN1;
   chain = 0;
   do {
     if (0xf < chain) {
 LAB_000265f6:
-      _Var3 = is_T11();
-      if (_Var3) {
+      _Var1 = is_T11();
+      if (_Var1) {
         if ((_g_minor_type == PKG_BSL) || (_g_minor_type == PKG_B_BGM)) {
           if (_g_bin_level == BIN1) {
             g_sweep_config_eco.sweep_start_voltage._0_4_ = 0;
             g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40228000;
-            g_sweep_config_eco.max_aging_voltage = (double)CONCAT44(uVar2,uVar1) + 9.25;
+            g_sweep_config_eco.max_aging_voltage = 9.65;
             g_sweep_config_eco.sweep_min_freq = 300;
             g_sweep_config_eco.sweep_max_freq = 0x15e;
-            _Var3 = is_column_sweep();
-            if (_Var3) {
-              g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027318;
-              g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002731c;
-              g_sweep_config_hpf.max_aging_voltage =
-                   (double)CONCAT44(DAT_0002731c,DAT_00027318) + (double)CONCAT44(uVar2,uVar1);
+            _Var1 = is_column_sweep();
+            if (_Var1) {
+              g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x33333333;
+              g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40233333;
+              g_sweep_config_hpf.max_aging_voltage = 10.0;
               g_sweep_config_hpf.sweep_min_freq = 0x14f;
               g_sweep_config_hpf.sweep_max_freq = 0x181;
             }
             else {
-              g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027328;
-              g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002732c;
               if (_g_minor_type == PKG_B_BGM) {
-                g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027320;
-                g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_00027324;
+                g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x66666666;
+                g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40236666;
+              }
+              else {
+                g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xcccccccd;
+                g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x4023cccc;
               }
               g_sweep_config_hpf.max_aging_voltage =
                    (double)CONCAT44(g_sweep_config_hpf.sweep_start_voltage._4_4_,
-                                    g_sweep_config_hpf.sweep_start_voltage._0_4_) +
-                   (double)CONCAT44(uVar2,uVar1);
+                                    g_sweep_config_hpf.sweep_start_voltage._0_4_) + 0.4;
               g_sweep_config_hpf.sweep_min_freq = 0x163;
               g_sweep_config_hpf.sweep_max_freq = 0x181;
             }
@@ -67,275 +63,251 @@ LAB_000265f6:
           else if (_g_bin_level == BIN2) {
             g_sweep_config_eco.sweep_start_voltage._0_4_ = 0;
             g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40228000;
-            g_sweep_config_eco.max_aging_voltage = (double)CONCAT44(uVar2,uVar1) + 9.25;
+            g_sweep_config_eco.max_aging_voltage = 9.65;
             g_sweep_config_eco.sweep_min_freq = 300;
             g_sweep_config_eco.sweep_max_freq = 0x15e;
-            _Var3 = is_column_sweep();
-            if (_Var3) {
-              g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027318;
-              g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002731c;
-              g_sweep_config_hpf.max_aging_voltage =
-                   (double)CONCAT44(DAT_0002731c,DAT_00027318) + (double)CONCAT44(uVar2,uVar1);
+            _Var1 = is_column_sweep();
+            if (_Var1) {
+              g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x33333333;
+              g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40233333;
+              g_sweep_config_hpf.max_aging_voltage = 10.0;
               g_sweep_config_hpf.sweep_min_freq = 0x14f;
               g_sweep_config_hpf.sweep_max_freq = 0x181;
             }
             else {
-              g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027328;
-              g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002732c;
-              g_sweep_config_hpf.max_aging_voltage =
-                   (double)CONCAT44(DAT_0002732c,DAT_00027328) + (double)CONCAT44(uVar2,uVar1);
+              g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xcccccccd;
+              g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x4023cccc;
+              g_sweep_config_hpf.max_aging_voltage = 10.3;
               g_sweep_config_hpf.sweep_min_freq = 0x163;
               g_sweep_config_hpf.sweep_max_freq = 0x181;
             }
           }
           else if (_g_bin_level == BIN3) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027330;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027334;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027334,DAT_00027330) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0xae147ae1;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x4022e147;
+            g_sweep_config_eco.max_aging_voltage = 9.84;
             g_sweep_config_eco.sweep_min_freq = 0x10e;
             g_sweep_config_eco.sweep_max_freq = 0x136;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027338;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002733c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002733c,DAT_00027338) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xae147ae1;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x4023e147;
+            g_sweep_config_hpf.max_aging_voltage = 10.34;
             g_sweep_config_hpf.sweep_min_freq = 300;
             g_sweep_config_hpf.sweep_max_freq = 0x15e;
           }
           else {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027340;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027344;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027344,DAT_00027340) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0xf5c28f5c;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40235c28;
+            g_sweep_config_eco.max_aging_voltage = 10.08;
             g_sweep_config_eco.sweep_min_freq = 0x10e;
             g_sweep_config_eco.sweep_max_freq = 0x136;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027348;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002734c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002734c,DAT_00027348) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xc28f5c29;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x402428f5;
+            g_sweep_config_hpf.max_aging_voltage = 10.48;
             g_sweep_config_hpf.sweep_min_freq = 300;
             g_sweep_config_hpf.sweep_max_freq = 0x15e;
           }
         }
         else if (_g_minor_type == PKG_BE) {
           if (_g_bin_level == BIN1) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027350;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027354;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027354,DAT_00027350) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x66666666;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40226666;
+            g_sweep_config_eco.max_aging_voltage = 9.6;
             g_sweep_config_eco.sweep_min_freq = 0x118;
             g_sweep_config_eco.sweep_max_freq = 0x14a;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027318;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002731c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002731c,DAT_00027318) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x33333333;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40233333;
+            g_sweep_config_hpf.max_aging_voltage = 10.0;
             g_sweep_config_hpf.sweep_min_freq = 300;
             g_sweep_config_hpf.sweep_max_freq = 0x168;
           }
           else if (_g_bin_level == BIN2) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027350;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027354;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027354,DAT_00027350) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x66666666;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40226666;
+            g_sweep_config_eco.max_aging_voltage = 9.6;
             g_sweep_config_eco.sweep_min_freq = 0x118;
             g_sweep_config_eco.sweep_max_freq = 0x14a;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027318;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002731c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002731c,DAT_00027318) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x33333333;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40233333;
+            g_sweep_config_hpf.max_aging_voltage = 10.0;
             g_sweep_config_hpf.sweep_min_freq = 300;
             g_sweep_config_hpf.sweep_max_freq = 0x168;
           }
           else if (_g_bin_level == BIN3) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027330;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027334;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027334,DAT_00027330) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0xae147ae1;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x4022e147;
+            g_sweep_config_eco.max_aging_voltage = 9.84;
             g_sweep_config_eco.sweep_min_freq = 0x10e;
             g_sweep_config_eco.sweep_max_freq = 0x136;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027338;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002733c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002733c,DAT_00027338) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xae147ae1;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x4023e147;
+            g_sweep_config_hpf.max_aging_voltage = 10.34;
             g_sweep_config_hpf.sweep_min_freq = 300;
             g_sweep_config_hpf.sweep_max_freq = 0x15e;
           }
           else {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027340;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027344;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027344,DAT_00027340) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0xf5c28f5c;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40235c28;
+            g_sweep_config_eco.max_aging_voltage = 10.08;
             g_sweep_config_eco.sweep_min_freq = 0x10e;
             g_sweep_config_eco.sweep_max_freq = 0x136;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027348;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002734c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002734c,DAT_00027348) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xc28f5c29;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x402428f5;
+            g_sweep_config_hpf.max_aging_voltage = 10.48;
             g_sweep_config_hpf.sweep_min_freq = 300;
             g_sweep_config_hpf.sweep_max_freq = 0x15e;
           }
         }
         else if (_g_minor_type == PKG_CE) {
           if (_g_bin_level == BIN1) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027358;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_0002735c;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002735c,DAT_00027358) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x33333333;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40213333;
+            g_sweep_config_eco.max_aging_voltage = 9.0;
             g_sweep_config_eco.sweep_min_freq = 300;
             g_sweep_config_eco.sweep_max_freq = 0x17c;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027350;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_00027354;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027354,DAT_00027350) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x66666666;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40226666;
+            g_sweep_config_hpf.max_aging_voltage = 9.6;
             g_sweep_config_hpf.sweep_min_freq = 0x19f;
             g_sweep_config_hpf.sweep_max_freq = 0x1d1;
           }
           else if (_g_bin_level == BIN2) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027358;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_0002735c;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002735c,DAT_00027358) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x33333333;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40213333;
+            g_sweep_config_eco.max_aging_voltage = 9.0;
             g_sweep_config_eco.sweep_min_freq = 300;
             g_sweep_config_eco.sweep_max_freq = 0x17c;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027350;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_00027354;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027354,DAT_00027350) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x66666666;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40226666;
+            g_sweep_config_hpf.max_aging_voltage = 9.6;
             g_sweep_config_hpf.sweep_min_freq = 0x19f;
             g_sweep_config_hpf.sweep_max_freq = 0x1d1;
           }
           else if (_g_bin_level == BIN3) {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027360;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027364;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027364,DAT_00027360) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x33333333;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40223333;
+            g_sweep_config_eco.max_aging_voltage = 9.5;
             g_sweep_config_eco.sweep_min_freq = 0x136;
             g_sweep_config_eco.sweep_max_freq = 0x168;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027368;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002736c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002736c,DAT_00027368) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xcccccccd;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x4022cccc;
+            g_sweep_config_hpf.max_aging_voltage = 9.8;
             g_sweep_config_hpf.sweep_min_freq = 400;
             g_sweep_config_hpf.sweep_max_freq = 0x1c2;
           }
           else {
-            g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027360;
-            g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027364;
-            g_sweep_config_eco.max_aging_voltage =
-                 (double)CONCAT44(DAT_00027364,DAT_00027360) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x33333333;
+            g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40223333;
+            g_sweep_config_eco.max_aging_voltage = 9.5;
             g_sweep_config_eco.sweep_min_freq = 0x136;
             g_sweep_config_eco.sweep_max_freq = 0x168;
-            g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027368;
-            g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002736c;
-            g_sweep_config_hpf.max_aging_voltage =
-                 (double)CONCAT44(DAT_0002736c,DAT_00027368) + (double)CONCAT44(uVar2,uVar1);
+            g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xcccccccd;
+            g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x4022cccc;
+            g_sweep_config_hpf.max_aging_voltage = 9.8;
             g_sweep_config_hpf.sweep_min_freq = 400;
             g_sweep_config_hpf.sweep_max_freq = 0x1c2;
           }
         }
         else {
-          g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027370;
-          g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027374;
-          g_sweep_config_eco.max_aging_voltage =
-               (double)CONCAT44(DAT_00027374,DAT_00027370) + (double)CONCAT44(uVar2,uVar1);
+          g_sweep_config_eco.sweep_start_voltage._0_4_ = 0x3d70a3d7;
+          g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x4022d70a;
+          g_sweep_config_eco.max_aging_voltage = 9.82;
           g_sweep_config_eco.sweep_min_freq = 0xfa;
           g_sweep_config_eco.sweep_max_freq = 300;
-          g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027378;
-          g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_0002737c;
-          g_sweep_config_hpf.max_aging_voltage =
-               (double)CONCAT44(DAT_0002737c,DAT_00027378) + (double)CONCAT44(uVar2,uVar1);
+          g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0x9999999a;
+          g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40239999;
+          g_sweep_config_hpf.max_aging_voltage = 10.200000000000001;
           g_sweep_config_hpf.sweep_min_freq = 300;
           g_sweep_config_hpf.sweep_max_freq = 0x168;
         }
       }
       else {
-        _Var3 = is_T11a();
-        if (_Var3) {
-          g_sweep_config_eco.sweep_start_voltage._0_4_ = DAT_00027380;
-          g_sweep_config_eco.sweep_start_voltage._4_4_ = DAT_00027384;
-          g_sweep_config_eco.max_aging_voltage = (double)CONCAT44(DAT_0002738c,DAT_00027388);
+        _Var1 = is_T11a();
+        if (_Var1) {
+          g_sweep_config_eco.sweep_start_voltage._0_4_ = 0xcccccccd;
+          g_sweep_config_eco.sweep_start_voltage._4_4_ = 0x40324ccc;
+          g_sweep_config_eco.max_aging_voltage = 18.7;
           g_sweep_config_eco.sweep_min_freq = 0xfa;
           g_sweep_config_eco.sweep_max_freq = 0x113;
-          g_sweep_config_hpf.sweep_start_voltage._0_4_ = DAT_00027390;
-          g_sweep_config_hpf.sweep_start_voltage._4_4_ = DAT_00027394;
+          g_sweep_config_hpf.sweep_start_voltage._0_4_ = 0xcccccccd;
+          g_sweep_config_hpf.sweep_start_voltage._4_4_ = 0x40334ccc;
           g_sweep_config_hpf.max_aging_voltage = 19.5;
           g_sweep_config_hpf.sweep_min_freq = 0x127;
           g_sweep_config_hpf.sweep_max_freq = 0x140;
         }
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fwrite("\nsweep config for eco mode: \n",1,0x1d,pFVar4);
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fwrite("\nsweep config for eco mode: \n",1,0x1d,pFVar2);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"sweep_start_voltage: %.2f\n",g_sweep_config_eco.sweep_start_voltage._0_4_,
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"sweep_start_voltage: %.2f\n",g_sweep_config_eco.sweep_start_voltage._0_4_,
                   g_sweep_config_eco.sweep_start_voltage._4_4_);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"max_aging_voltage:   %.2f\n",g_sweep_config_eco.max_aging_voltage._0_4_,
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"max_aging_voltage:   %.2f\n",g_sweep_config_eco.max_aging_voltage._0_4_,
                   g_sweep_config_eco.max_aging_voltage._4_4_);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"sweep_min_freq:      %dM\n",g_sweep_config_eco.sweep_min_freq);
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"sweep_min_freq:      %dM\n",g_sweep_config_eco.sweep_min_freq);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"sweep_max_freq:      %dM\n",g_sweep_config_eco.sweep_max_freq);
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"sweep_max_freq:      %dM\n",g_sweep_config_eco.sweep_max_freq);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fwrite("\nsweep config for hpf mode: \n",1,0x1d,pFVar4);
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fwrite("\nsweep config for hpf mode: \n",1,0x1d,pFVar2);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"sweep_start_voltage: %.2f\n",g_sweep_config_hpf.sweep_start_voltage._0_4_,
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"sweep_start_voltage: %.2f\n",g_sweep_config_hpf.sweep_start_voltage._0_4_,
                   g_sweep_config_hpf.sweep_start_voltage._4_4_);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"max_aging_voltage:   %.2f\n",g_sweep_config_hpf.max_aging_voltage._0_4_,
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"max_aging_voltage:   %.2f\n",g_sweep_config_hpf.max_aging_voltage._0_4_,
                   g_sweep_config_hpf.max_aging_voltage._4_4_);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"sweep_min_freq:      %dM\n",g_sweep_config_hpf.sweep_min_freq);
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"sweep_min_freq:      %dM\n",g_sweep_config_hpf.sweep_min_freq);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       if (3 < log_level) {
-        pFVar4 = fopen(log_file,"a+");
-        if (pFVar4 != (FILE *)0x0) {
-          fprintf(pFVar4,"sweep_max_freq:      %dM\n",g_sweep_config_hpf.sweep_max_freq);
+        pFVar2 = fopen(log_file,"a+");
+        if (pFVar2 != (FILE *)0x0) {
+          fprintf(pFVar2,"sweep_max_freq:      %dM\n",g_sweep_config_hpf.sweep_max_freq);
         }
-        fclose(pFVar4);
+        fclose(pFVar2);
       }
       return;
     }

@@ -4,7 +4,8 @@ ASN1_GENERALSTRING * d2i_ASN1_GENERALSTRING(ASN1_GENERALSTRING **a,uchar **in,lo
 {
   ASN1_GENERALSTRING *pAVar1;
   
-  pAVar1 = (ASN1_GENERALSTRING *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000bbcb0);
+  pAVar1 = (ASN1_GENERALSTRING *)
+           ASN1_item_d2i((ASN1_VALUE **)a,in,len,(ASN1_ITEM *)ASN1_GENERALSTRING_it);
   return pAVar1;
 }
 

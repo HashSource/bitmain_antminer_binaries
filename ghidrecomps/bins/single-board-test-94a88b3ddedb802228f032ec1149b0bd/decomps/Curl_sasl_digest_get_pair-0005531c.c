@@ -1,5 +1,5 @@
 
-undefined4 Curl_sasl_digest_get_pair(char *param_1,char *param_2,byte *param_3,byte **param_4)
+undefined4 Curl_sasl_digest_get_pair(char *param_1,char *param_2,byte *param_3,undefined4 *param_4)
 
 {
   char *pcVar1;

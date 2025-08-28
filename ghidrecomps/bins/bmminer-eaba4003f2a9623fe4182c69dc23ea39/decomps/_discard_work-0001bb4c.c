@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void _discard_work(work **workptr,char *file,char *func,int line)
 
 {
@@ -23,14 +21,7 @@ void _discard_work(work **workptr,char *file,char *func,int line)
   else {
     if (((pwVar1->clone == true) || (pwVar1->rolls != 0)) || (pwVar1->mined == true)) {
       if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
-        tmp42._0_4_ = s_Discarded_cloned_or_rolled_work_000730a8._0_4_;
-        tmp42._4_4_ = s_Discarded_cloned_or_rolled_work_000730a8._4_4_;
-        tmp42._8_4_ = s_Discarded_cloned_or_rolled_work_000730a8._8_4_;
-        tmp42._12_4_ = s_Discarded_cloned_or_rolled_work_000730a8._12_4_;
-        tmp42._16_4_ = s_Discarded_cloned_or_rolled_work_000730a8._16_4_;
-        tmp42._20_4_ = s_Discarded_cloned_or_rolled_work_000730a8._20_4_;
-        tmp42._24_4_ = s_Discarded_cloned_or_rolled_work_000730a8._24_4_;
-        tmp42._28_4_ = s_Discarded_cloned_or_rolled_work_000730a8._28_4_;
+        builtin_strncpy(tmp42,"Discarded cloned or rolled work",0x20);
         _applog(7,tmp42,false);
       }
     }
@@ -45,19 +36,10 @@ void _discard_work(work **workptr,char *file,char *func,int line)
       total_discarded._4_4_ = total_discarded._4_4_ + (uint)bVar2;
       if ((opt_debug != false) &&
          (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-        tmp42[0] = s_Discarded_work_00073098[0];
-        tmp42[1] = s_Discarded_work_00073098[1];
-        tmp42[2] = s_Discarded_work_00073098[2];
-        tmp42[3] = s_Discarded_work_00073098[3];
-        tmp42[4] = s_Discarded_work_00073098[4];
-        tmp42[5] = s_Discarded_work_00073098[5];
-        tmp42[6] = s_Discarded_work_00073098[6];
-        tmp42[7] = s_Discarded_work_00073098[7];
-        tmp42[8] = s_Discarded_work_00073098[8];
-        tmp42[9] = s_Discarded_work_00073098[9];
-        tmp42[10] = s_Discarded_work_00073098[10];
-        tmp42[11] = s_Discarded_work_00073098[11];
-        tmp42._12_3_ = (undefined3)ram0x000730a4;
+        builtin_strncpy(tmp42,"Discarded wo",0xc);
+        tmp42[0xc] = 'r';
+        tmp42[0xd] = 'k';
+        tmp42[0xe] = '\0';
         _applog(7,tmp42,false);
       }
     }

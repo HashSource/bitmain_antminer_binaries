@@ -6,7 +6,7 @@ float roundf(float __x)
 {
   float fVar1;
   
-  fVar1 = (float)(*(code *)PTR_roundf_000a8228)();
+  fVar1 = roundf(__x);
   return fVar1;
 }
 

@@ -1,6 +1,6 @@
 
 int ec_GFp_simple_set_compressed_coordinates
-              (int *param_1,EC_POINT *param_2,BIGNUM *param_3,uint param_4,BN_CTX *param_5)
+              (EC_GROUP *param_1,EC_POINT *param_2,BIGNUM *param_3,uint param_4,BN_CTX *param_5)
 
 {
   BIGNUM *pBVar1;
@@ -27,13 +27,13 @@ int ec_GFp_simple_set_compressed_coordinates
   r_00 = BN_CTX_get(param_5);
   ret = BN_CTX_get(param_5);
   if (ret != (BIGNUM *)0x0) {
-    d = (BIGNUM *)(param_1 + 0x12);
+    d = (BIGNUM *)(param_1 + 0x48);
     iVar2 = BN_nnmod(r_00,param_3,d,param_5);
     if (iVar2 != 0) {
-      if (*(int *)(*param_1 + 0x94) == 0) {
-        iVar2 = (**(code **)(*param_1 + 0x88))(param_1,r,param_3,param_5);
+      if (*(int *)(*(int *)param_1 + 0x94) == 0) {
+        iVar2 = (**(code **)(*(int *)param_1 + 0x88))(param_1,r,param_3,param_5);
         if (iVar2 != 0) {
-          iVar2 = (**(code **)(*param_1 + 0x84))(param_1,pBVar1,r,param_3,param_5);
+          iVar2 = (**(code **)(*(int *)param_1 + 0x84))(param_1,pBVar1,r,param_3,param_5);
           goto joined_r0x000f9392;
         }
       }
@@ -43,13 +43,14 @@ int ec_GFp_simple_set_compressed_coordinates
           iVar2 = BN_mod_mul(pBVar1,r,param_3,d,param_5);
 joined_r0x000f9392:
           if (iVar2 != 0) {
-            if (param_1[0x27] == 0) {
-              pcVar6 = *(code **)(*param_1 + 0x94);
+            if (*(int *)(param_1 + 0x9c) == 0) {
+              pcVar6 = *(code **)(*(int *)param_1 + 0x94);
               if (pcVar6 == (code *)0x0) {
-                iVar2 = (**(code **)(*param_1 + 0x84))(param_1,r,param_1 + 0x1d,r_00,param_5);
+                iVar2 = (**(code **)(*(int *)param_1 + 0x84))(param_1,r,param_1 + 0x74,r_00,param_5)
+                ;
               }
               else {
-                iVar2 = (*pcVar6)(param_1,r,param_1 + 0x1d,param_5);
+                iVar2 = (*pcVar6)(param_1,r,param_1 + 0x74,param_5);
                 if (iVar2 == 0) goto LAB_000f923e;
                 iVar2 = BN_mod_mul(r,r,r_00,d,param_5);
               }
@@ -64,11 +65,11 @@ joined_r0x000f9392:
                 iVar2 = BN_mod_sub_quick(pBVar1,pBVar1,r,d);
 joined_r0x000f92ca:
                 if (iVar2 != 0) {
-                  if (*(code **)(*param_1 + 0x94) == (code *)0x0) {
-                    iVar2 = BN_mod_add_quick(pBVar1,pBVar1,(BIGNUM *)(param_1 + 0x22),d);
+                  if (*(code **)(*(int *)param_1 + 0x94) == (code *)0x0) {
+                    iVar2 = BN_mod_add_quick(pBVar1,pBVar1,(BIGNUM *)(param_1 + 0x88),d);
                   }
                   else {
-                    iVar2 = (**(code **)(*param_1 + 0x94))(param_1,r,param_1 + 0x22,param_5);
+                    iVar2 = (**(code **)(*(int *)param_1 + 0x94))(param_1,r,param_1 + 0x88,param_5);
                     if (iVar2 == 0) goto LAB_000f923e;
                     iVar2 = BN_mod_add_quick(pBVar1,pBVar1,r,d);
                   }
@@ -81,10 +82,10 @@ joined_r0x000f92ca:
                         iVar2 = 0xa3;
 LAB_000f934c:
                         iVar5 = 0;
-                        ERR_put_error(0x10,0xa9,0x6e,DAT_000f9494,iVar2);
+                        ERR_put_error(0x10,0xa9,0x6e,"ecp_oct.c",iVar2);
                         goto LAB_000f9240;
                       }
-                      ERR_put_error(0x10,0xa9,3,DAT_000f9494,0xa6);
+                      ERR_put_error(0x10,0xa9,3,"ecp_oct.c",0xa6);
                     }
                     else {
                       iVar2 = ret->top;
@@ -107,13 +108,13 @@ LAB_000f9416:
                         }
                         if (uVar4 == param_4) {
                           iVar5 = EC_POINT_set_affine_coordinates_GFp
-                                            ((EC_GROUP *)param_1,param_2,r_00,ret,param_5);
+                                            (param_1,param_2,r_00,ret,param_5);
                           if (iVar5 != 0) {
                             iVar5 = 1;
                           }
                         }
                         else {
-                          ERR_put_error(0x10,0xa9,0x44,DAT_000f9494,0xc2);
+                          ERR_put_error(0x10,0xa9,0x44,"ecp_oct.c",0xc2);
                           iVar5 = 0;
                         }
                         goto LAB_000f9240;
@@ -123,7 +124,7 @@ LAB_000f9416:
                         if (iVar2 != -2) {
                           iVar5 = 0;
                           if (iVar2 == 1) {
-                            ERR_put_error(0x10,0xa9,0x6d,DAT_000f9494,0xb4);
+                            ERR_put_error(0x10,0xa9,0x6d,"ecp_oct.c",0xb4);
                             goto LAB_000f9240;
                           }
                           iVar2 = 0xba;

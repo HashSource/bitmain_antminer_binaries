@@ -1,5 +1,5 @@
 
-undefined4 ssl_parse_clienthello_tlsext(SSL *param_1,uchar **param_2,int param_3,int param_4)
+undefined4 ssl_parse_clienthello_tlsext(SSL *param_1,undefined4 *param_2,int param_3,int param_4)
 
 {
   uchar *puVar1;
@@ -41,7 +41,7 @@ undefined4 ssl_parse_clienthello_tlsext(SSL *param_1,uchar **param_2,int param_3
   psVar15 = param_1->s3;
   pvVar6 = (void *)psVar15[1].delay_buf_pop_ret;
   local_34 = 0xffffffff;
-  puVar22 = *param_2;
+  puVar22 = (uchar *)*param_2;
   param_1->tlsext_hostname = (char *)0x0;
   param_1->servername_done = -1;
   psVar15->next_proto_neg_seen = 0;
@@ -59,16 +59,16 @@ undefined4 ssl_parse_clienthello_tlsext(SSL *param_1,uchar **param_2,int param_3
       if (puVar26 <= puVar25) {
         if ((param_1->first_packet >> 8 == 3) && (0x302 < param_1->first_packet)) {
           if ((puVar25 == puVar26 + 0x22) &&
-             (iVar20 = memcmp(puVar26,DAT_00072584,0x12), iVar20 == 0)) {
-            iVar20 = memcmp(puVar26 + 0x12,DAT_00072588,0x10);
+             (iVar20 = memcmp(puVar26,kSafariExtensionsBlock_20561,0x12), iVar20 == 0)) {
+            iVar20 = memcmp(puVar26 + 0x12,kSafariTLS12ExtensionsBlock_20562,0x10);
 joined_r0x00072090:
             if (iVar20 == 0) {
-              *(undefined *)&psVar15[1].flags = 1;
+              *(undefined1 *)&psVar15[1].flags = 1;
             }
           }
         }
         else if (puVar25 == puVar26 + 0x12) {
-          iVar20 = memcmp(puVar26,DAT_0007219c,0x12);
+          iVar20 = memcmp(puVar26,kSafariExtensionsBlock_20561,0x12);
           goto joined_r0x00072090;
         }
       }
@@ -133,21 +133,25 @@ LAB_00071ef6:
                       local_34 = 0x70;
                       goto LAB_00071fe6;
                     }
-                    pvVar6 = CRYPTO_malloc(uVar28 + 1,DAT_00072198,0x833);
+                    pvVar6 = CRYPTO_malloc(uVar28 + 1,"t1_lib.c",0x833);
                     *(void **)(pSVar24->krb5_client_princ + 0x40) = pvVar6;
                     if (pvVar6 == (void *)0x0) {
                       local_34 = 0x50;
                       goto LAB_00071fe6;
                     }
                     memcpy(*(void **)(param_1->session->krb5_client_princ + 0x40),puVar26,uVar28);
-                    *(undefined *)(*(int *)(param_1->session->krb5_client_princ + 0x40) + uVar28) =
+                    *(undefined1 *)(*(int *)(param_1->session->krb5_client_princ + 0x40) + uVar28) =
                          0;
                     pcVar27 = *(char **)(param_1->session->krb5_client_princ + 0x40);
                     sVar7 = strlen(pcVar27);
                     if (uVar28 != sVar7) {
                       CRYPTO_free(pcVar27);
+                      pSVar24 = param_1->session;
                       local_34 = 0x70;
-                      *(undefined4 *)(param_1->session->krb5_client_princ + 0x40) = 0;
+                      pSVar24->krb5_client_princ[0x40] = '\0';
+                      pSVar24->krb5_client_princ[0x41] = '\0';
+                      pSVar24->krb5_client_princ[0x42] = '\0';
+                      pSVar24->krb5_client_princ[0x43] = '\0';
                       goto LAB_00071fe6;
                     }
                     pcVar27 = (char *)0x1;
@@ -185,11 +189,11 @@ LAB_00071ef6:
           if (sVar4 == 0xc) {
             if (((uVar28 != 0) && (uVar23 = (uint)puVar16[4], uVar23 == uVar28 - 1)) &&
                (param_1[1].rbio == (BIO *)0x0)) {
-              __dest = (BIO *)CRYPTO_malloc(uVar28,DAT_00072198,0x859);
+              __dest = (BIO *)CRYPTO_malloc(uVar28,"t1_lib.c",0x859);
               param_1[1].rbio = __dest;
               if (__dest == (BIO *)0x0) goto LAB_00071fe6;
               memcpy(__dest,puVar16 + 5,uVar23);
-              *(undefined *)((int)&(param_1[1].rbio)->method + uVar23) = 0;
+              *(undefined1 *)((int)&(param_1[1].rbio)->method + uVar23) = 0;
               sVar7 = strlen((char *)param_1[1].rbio);
               if (uVar23 == sVar7) goto LAB_00072158;
             }
@@ -203,10 +207,16 @@ LAB_00071ef6:
                 if (*(void **)(pSVar24->krb5_client_princ + 0x48) != (void *)0x0) {
                   CRYPTO_free(*(void **)(pSVar24->krb5_client_princ + 0x48));
                   pSVar24 = param_1->session;
-                  *(undefined4 *)(pSVar24->krb5_client_princ + 0x48) = 0;
+                  pSVar24->krb5_client_princ[0x48] = '\0';
+                  pSVar24->krb5_client_princ[0x49] = '\0';
+                  pSVar24->krb5_client_princ[0x4a] = '\0';
+                  pSVar24->krb5_client_princ[0x4b] = '\0';
                 }
-                *(undefined4 *)(pSVar24->krb5_client_princ + 0x44) = 0;
-                pvVar6 = CRYPTO_malloc(uVar23,DAT_00072580,0x872);
+                pSVar24->krb5_client_princ[0x44] = '\0';
+                pSVar24->krb5_client_princ[0x45] = '\0';
+                pSVar24->krb5_client_princ[0x46] = '\0';
+                pSVar24->krb5_client_princ[0x47] = '\0';
+                pvVar6 = CRYPTO_malloc(uVar23,"t1_lib.c",0x872);
                 *(void **)(pSVar24->krb5_client_princ + 0x48) = pvVar6;
                 if (pvVar6 == (void *)0x0) goto LAB_0007244a;
                 pSVar24 = param_1->session;
@@ -224,8 +234,11 @@ LAB_00071ef6:
             if (param_1->hit == 0) {
               pSVar24 = param_1->session;
               if (*(int *)(pSVar24->krb5_client_princ + 0x50) == 0) {
-                *(undefined4 *)(pSVar24->krb5_client_princ + 0x4c) = 0;
-                pvVar6 = CRYPTO_malloc(sVar7,DAT_00072580,0x895);
+                pSVar24->krb5_client_princ[0x4c] = '\0';
+                pSVar24->krb5_client_princ[0x4d] = '\0';
+                pSVar24->krb5_client_princ[0x4e] = '\0';
+                pSVar24->krb5_client_princ[0x4f] = '\0';
+                pvVar6 = CRYPTO_malloc(sVar7,"t1_lib.c",0x895);
                 *(void **)(pSVar24->krb5_client_princ + 0x50) = pvVar6;
                 if (pvVar6 == (void *)0x0) goto LAB_0007244a;
                 pSVar24 = param_1->session;
@@ -262,7 +275,7 @@ LAB_0007244a:
                 uVar28 = (uint)CONCAT11(puVar16[4],puVar16[5]);
                 if ((uVar28 == uVar23) && ((-1 < (int)(uVar28 << 0x1f) && (uVar28 != 0)))) {
                   if (-1 < *(int *)(param_1->method->ssl3_enc + 0x38) << 0x1e) goto LAB_0007255c;
-                  pvVar6 = CRYPTO_malloc(uVar28,DAT_00072580,0xe70);
+                  pvVar6 = CRYPTO_malloc(uVar28,"t1_lib.c",0xe70);
                   *(void **)(pcVar17 + 0x124) = pvVar6;
                   if (pvVar6 != (void *)0x0) {
                     *(uint *)(pcVar17 + 0x128) = uVar28;
@@ -363,8 +376,8 @@ LAB_000726b8:
                     do {
                       uVar9 = (uint)(puVar16 + 6)[uVar28];
                       uVar12 = uVar28 + 1;
-                      if (((uVar9 == 0) || (uVar28 = uVar9 + uVar12, CARRY4(uVar9,uVar12) != false))
-                         || (uVar23 < uVar28)) goto LAB_00071fe2;
+                      if (((uVar9 == 0) || (uVar28 = uVar9 + uVar12, CARRY4(uVar9,uVar12))) ||
+                         (uVar23 < uVar28)) goto LAB_00071fe2;
                     } while (uVar28 < uVar23);
                     iVar20 = (*pcVar21)(param_1,&local_30,local_2c,puVar16 + 6,uVar23,
                                         *(undefined4 *)(param_1->psk_server_callback + 0x1bc));
@@ -374,7 +387,7 @@ LAB_000726b8:
                         CRYPTO_free((void *)psVar15[1].delay_buf_pop_ret);
                         psVar15 = param_1->s3;
                       }
-                      pvVar6 = CRYPTO_malloc(local_2c[0] & 0xff,DAT_00072734,0x7a9);
+                      pvVar6 = CRYPTO_malloc(local_2c[0] & 0xff,"t1_lib.c",0x7a9);
                       psVar14 = param_1->s3;
                       psVar15[1].delay_buf_pop_ret = (int)pvVar6;
                       pvVar6 = (void *)psVar14[1].delay_buf_pop_ret;
@@ -418,7 +431,7 @@ LAB_00071fe6:
 LAB_000721b8:
   if ((param_1->tlsext_hb_seq != 0) && (-1 < param_1->references << 0xd)) {
     local_34 = 0x28;
-    ERR_put_error(0x14,0x140,0x152,DAT_00072580,0x975);
+    ERR_put_error(0x14,0x140,0x152,"t1_lib.c",0x975);
     goto LAB_00071fe6;
   }
 LAB_000721c8:
@@ -437,7 +450,7 @@ LAB_000721c8:
 joined_r0x000722a4:
     if (iVar20 == 2) {
       ssl3_send_alert(param_1,2,local_2c[0]);
-      ERR_put_error(0x14,0x12e,0xe2,DAT_00072580,0x9b5);
+      ERR_put_error(0x14,0x12e,0xe2,"t1_lib.c",0x9b5);
       return 0;
     }
     if (iVar20 != 3) {
@@ -480,7 +493,7 @@ LAB_00072510:
   local_30 = puVar26;
   if (uVar28 != 0) {
     if (&param_1->tlsext_ocsp_ids->stack != (_STACK *)0x0) {
-      sk_pop_free(&param_1->tlsext_ocsp_ids->stack,DAT_0007258c);
+      sk_pop_free(&param_1->tlsext_ocsp_ids->stack,(func *)0xbc31d);
     }
     pXVar10 = d2i_X509_EXTENSIONS((X509_EXTENSIONS **)0x0,&local_30,uVar28);
     param_1->tlsext_ocsp_ids = (stack_st_OCSP_RESPID *)pXVar10;

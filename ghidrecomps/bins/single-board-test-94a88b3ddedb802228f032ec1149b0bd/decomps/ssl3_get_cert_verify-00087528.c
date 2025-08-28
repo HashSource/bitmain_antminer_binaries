@@ -39,7 +39,7 @@ int ssl3_get_cert_verify(int param_1)
   pubkey = X509_get_pubkey(x);
   iVar3 = X509_certificate_type(x,pubkey);
   if (-1 < iVar3 << 0x1b) {
-    ERR_put_error(0x14,0x88,0xdc,DAT_0008784c,0xba6);
+    ERR_put_error(0x14,0x88,0xdc,"s3_srvr.c",0xba6);
     uVar5 = 0x2f;
     goto LAB_00087646;
   }
@@ -48,7 +48,7 @@ int ssl3_get_cert_verify(int param_1)
     iVar2 = EVP_PKEY_size(pubkey);
     if (iVar2 < 0x40) {
 LAB_00087656:
-      ERR_put_error(0x14,0x88,0x109,DAT_0008784c,0xbcf);
+      ERR_put_error(0x14,0x88,0x109,"s3_srvr.c",0xbcf);
       uVar5 = 0x32;
     }
     else {
@@ -60,12 +60,12 @@ LAB_000875c2:
           iVar2 = RSA_verify(0x72,(uchar *)(*(int *)(param_1 + 0x58) + 0x1b4),0x24,puVar8,siglen,
                              (pubkey->pkey).rsa);
           if (iVar2 < 0) {
-            ERR_put_error(0x14,0x88,0x76,DAT_0008784c,0xbf5);
+            ERR_put_error(0x14,0x88,0x76,"s3_srvr.c",0xbf5);
             uVar5 = 0x33;
           }
           else {
             if (iVar2 != 0) goto LAB_00087754;
-            ERR_put_error(0x14,0x88,0x7a,DAT_0008784c,0xbfa);
+            ERR_put_error(0x14,0x88,0x7a,"s3_srvr.c",0xbfa);
             uVar5 = 0x33;
           }
         }
@@ -73,7 +73,7 @@ LAB_000875c2:
           iVar2 = DSA_verify(pubkey->save_type,(uchar *)(*(int *)(param_1 + 0x58) + 0x1c4),0x14,
                              puVar8,siglen,(DSA *)(pubkey->pkey).rsa);
           if (0 < iVar2) goto LAB_00087754;
-          ERR_put_error(0x14,0x88,0x70,DAT_0008784c,0xc07);
+          ERR_put_error(0x14,0x88,0x70,"s3_srvr.c",0xc07);
           uVar5 = 0x33;
         }
         else if (iVar2 == 0x198) {
@@ -82,7 +82,7 @@ LAB_000875c2:
           if (0 < iVar2) goto LAB_00087754;
           iVar2 = 0xc14;
 LAB_000877f6:
-          ERR_put_error(0x14,0x88,0x131,DAT_0008784c,iVar2);
+          ERR_put_error(0x14,0x88,0x131,"s3_srvr.c",iVar2);
           uVar5 = 0x33;
         }
         else {
@@ -90,7 +90,7 @@ LAB_000877f6:
             ctx = EVP_PKEY_CTX_new(pubkey,(ENGINE *)0x0);
             EVP_PKEY_verify_init(ctx);
             if (siglen != 0x40) {
-              fprintf(*DAT_00087850,DAT_00087854,siglen);
+              fprintf(stderr,"GOST signature length is %d",siglen);
             }
             puVar8 = puVar8 + -1;
             sig = auStack_20;
@@ -109,26 +109,26 @@ LAB_00087754:
             iVar2 = 1;
             goto LAB_00087608;
           }
-          ERR_put_error(0x14,0x88,0x44,DAT_0008784c,0xc2e);
+          ERR_put_error(0x14,0x88,0x44,"s3_srvr.c",0xc2e);
           uVar5 = 0x2b;
         }
       }
       else {
         cnt = BIO_ctrl(*(BIO **)(*(int *)(param_1 + 0x58) + 0x178),3,0,&local_7c);
         if ((int)cnt < 1) {
-          ERR_put_error(0x14,0x88,0x44,DAT_0008784c,0xbd9);
+          ERR_put_error(0x14,0x88,0x44,"s3_srvr.c",0xbd9);
           uVar5 = 0x50;
         }
         else {
           iVar2 = EVP_DigestInit_ex(&EStack_78,local_80,(ENGINE *)0x0);
           if ((iVar2 == 0) || (iVar2 = EVP_DigestUpdate(&EStack_78,local_7c,cnt), iVar2 == 0)) {
-            ERR_put_error(0x14,0x88,6,DAT_0008784c,0xbe3);
+            ERR_put_error(0x14,0x88,6,"s3_srvr.c",0xbe3);
             uVar5 = 0x50;
           }
           else {
             iVar2 = EVP_VerifyFinal(&EStack_78,puVar8,siglen,pubkey);
             if (0 < iVar2) goto LAB_00087754;
-            ERR_put_error(0x14,0x88,0x7b,DAT_0008784c,0xbea);
+            ERR_put_error(0x14,0x88,0x7b,"s3_srvr.c",0xbea);
             uVar5 = 0x33;
           }
         }
@@ -166,7 +166,7 @@ LAB_0008759c:
       puVar8 = puVar8 + 2;
       goto LAB_000875c2;
     }
-    ERR_put_error(0x14,0x88,0x9f,DAT_0008784c,0xbc8);
+    ERR_put_error(0x14,0x88,0x9f,"s3_srvr.c",0xbc8);
     uVar5 = 0x32;
   }
 LAB_00087646:

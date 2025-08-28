@@ -6,7 +6,7 @@ int atoi(char *__nptr)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_atoi_00023d50)();
+  iVar1 = atoi(__nptr);
   return iVar1;
 }
 

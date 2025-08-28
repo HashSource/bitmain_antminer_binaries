@@ -18,7 +18,7 @@ int PEM_read_bio(BIO *bp,char **name,char **header,uchar **data,long *len)
   EVP_ENCODE_CTX EStack_188;
   byte local_128 [9];
   byte abStack_11f [245];
-  undefined local_2a;
+  undefined1 local_2a;
   
   local_18c = 0;
   a = BUF_MEM_new();
@@ -28,7 +28,7 @@ int PEM_read_bio(BIO *bp,char **name,char **header,uchar **data,long *len)
     BUF_MEM_free(a);
     BUF_MEM_free(a_00);
     BUF_MEM_free(local_1a4);
-    ERR_put_error(9,0x6d,0x41,DAT_000be880,0x2b4);
+    ERR_put_error(9,0x6d,0x41,"pem_lib.c",0x2b4);
     return 0;
   }
   local_2a = 0;
@@ -36,7 +36,7 @@ int PEM_read_bio(BIO *bp,char **name,char **header,uchar **data,long *len)
     do {
       iVar2 = BIO_gets(bp,(char *)local_128,0xfe);
       if (iVar2 < 1) {
-        ERR_put_error(9,0x6d,0x6c,DAT_000be880,0x2bd);
+        ERR_put_error(9,0x6d,0x6c,"pem_lib.c",0x2bd);
         goto LAB_000be668;
       }
       do {
@@ -46,10 +46,10 @@ int PEM_read_bio(BIO *bp,char **name,char **header,uchar **data,long *len)
       } while (bVar6);
       local_128[iVar2 + 1] = 10;
       local_128[iVar2 + 2] = 0;
-      iVar2 = strncmp((char *)local_128,DAT_000be878,0xb);
+      iVar2 = strncmp((char *)local_128,"-----BEGIN ",0xb);
     } while (iVar2 != 0);
     sVar3 = strlen((char *)(abStack_11f + 2));
-    iVar2 = strncmp((char *)(local_128 + sVar3 + 5),DAT_000be87c,6);
+    iVar2 = strncmp((char *)(local_128 + sVar3 + 5),"-----\n",6);
   } while (iVar2 != 0);
   iVar2 = BUF_MEM_grow(a,sVar3 + 9);
   if (iVar2 == 0) {
@@ -81,7 +81,7 @@ int PEM_read_bio(BIO *bp,char **name,char **header,uchar **data,long *len)
           iVar2 = 0x2e7;
           goto LAB_000be65a;
         }
-        iVar2 = strncmp((char *)local_128,DAT_000be884,9);
+        iVar2 = strncmp((char *)local_128,"-----END ",9);
         if (iVar2 == 0) {
           bVar6 = true;
           goto LAB_000be764;
@@ -99,7 +99,7 @@ LAB_000be764:
         *local_1a4->data = '\0';
         if (bVar6) {
           local_18c = iVar5;
-          iVar2 = strncmp((char *)local_128,DAT_000be9a4,9);
+          iVar2 = strncmp((char *)local_128,"-----END ",9);
           pBVar1 = local_1a4;
           local_1a4 = a_00;
         }
@@ -114,12 +114,12 @@ LAB_000be764:
                 local_128[iVar2 + 1] = 10;
                 local_128[sVar3] = bVar6;
                 if (sVar3 == 0x41) {
-                  iVar2 = strncmp((char *)local_128,DAT_000be884,9);
+                  iVar2 = strncmp((char *)local_128,"-----END ",9);
                   if (iVar2 == 0) goto LAB_000be97e;
                   bVar7 = false;
                 }
                 else {
-                  iVar2 = strncmp((char *)local_128,DAT_000be884,9);
+                  iVar2 = strncmp((char *)local_128,"-----END ",9);
                   if (iVar2 == 0) goto LAB_000be97e;
                   if (0x41 < (int)sVar3) goto LAB_000be948;
                   bVar7 = true;
@@ -131,7 +131,7 @@ LAB_000be764:
             } while (bVar7);
             local_128[0] = 10;
             local_128[1] = bVar6;
-            iVar2 = strncmp((char *)local_128,DAT_000be884,9);
+            iVar2 = strncmp((char *)local_128,"-----END ",9);
             if (iVar2 == 0) {
 LAB_000be97e:
               __s = a->data;
@@ -154,7 +154,7 @@ LAB_000be7ca:
           iVar2 = BIO_gets(bp,(char *)local_128,0xfe);
           if (iVar2 < 1) {
 LAB_000be968:
-            iVar2 = strncmp((char *)local_128,DAT_000be9a4,9);
+            iVar2 = strncmp((char *)local_128,"-----END ",9);
           }
           else {
             do {
@@ -164,7 +164,7 @@ LAB_000be968:
             } while (bVar6);
             local_128[iVar2 + 1] = 10;
             local_128[iVar2 + 2] = 0;
-            iVar2 = strncmp((char *)local_128,DAT_000be884,9);
+            iVar2 = strncmp((char *)local_128,"-----END ",9);
           }
         }
         a_00 = pBVar1;
@@ -174,7 +174,7 @@ LAB_000be968:
 LAB_000be8b0:
           iVar2 = strncmp(__s,(char *)abStack_11f,sVar3);
           if ((iVar2 == 0) &&
-             (iVar2 = strncmp((char *)(local_128 + sVar3 + 9),DAT_000be9a8,6), iVar2 == 0)) {
+             (iVar2 = strncmp((char *)(local_128 + sVar3 + 9),"-----\n",6), iVar2 == 0)) {
             EVP_DecodeInit(&EStack_188);
             iVar2 = EVP_DecodeUpdate(&EStack_188,(uchar *)local_1a4->data,&local_18c,
                                      (uchar *)local_1a4->data,local_18c);
@@ -200,18 +200,18 @@ LAB_000be8b0:
               }
               iVar2 = 0x337;
             }
-            ERR_put_error(9,0x6d,100,DAT_000be9ac,iVar2);
+            ERR_put_error(9,0x6d,100,"pem_lib.c",iVar2);
             goto LAB_000be668;
           }
         }
 LAB_000be948:
-        ERR_put_error(9,0x6d,0x66,DAT_000be9ac,0x329);
+        ERR_put_error(9,0x6d,0x66,"pem_lib.c",0x329);
         goto LAB_000be668;
       }
     }
   }
 LAB_000be65a:
-  ERR_put_error(9,0x6d,0x41,DAT_000be880,iVar2);
+  ERR_put_error(9,0x6d,0x41,"pem_lib.c",iVar2);
 LAB_000be668:
   BUF_MEM_free(a);
   BUF_MEM_free(a_00);

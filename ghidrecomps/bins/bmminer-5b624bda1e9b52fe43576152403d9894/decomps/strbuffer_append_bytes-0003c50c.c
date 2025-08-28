@@ -8,9 +8,8 @@ int strbuffer_append_bytes(strbuffer_t *strbuff,char *data,size_t size)
   __useconds_t __useconds;
   size_t sVar2;
   char *pcVar3;
-  char *new_value;
   int iVar4;
-  size_t new_size;
+  uint __size;
   
   sVar2 = strbuff->size;
   sVar1 = strbuff->length;
@@ -18,13 +17,13 @@ int strbuffer_append_bytes(strbuffer_t *strbuff,char *data,size_t size)
     if ((((int)sVar2 < 0) || (size == 0xffffffff)) || (-size - 2 < sVar1)) {
       return -1;
     }
-    new_size = sVar1 + 1 + size;
-    if (new_size < sVar2 << 1) {
-      new_size = sVar2 << 1;
+    __size = sVar1 + 1 + size;
+    if (__size < sVar2 << 1) {
+      __size = sVar2 << 1;
     }
     iVar4 = 1;
     while( true ) {
-      pcVar3 = (char *)realloc(strbuff->value,new_size);
+      pcVar3 = (char *)realloc(strbuff->value,__size);
       __useconds = iVar4 * 1000;
       if (pcVar3 != (char *)0x0) break;
       iVar4 = iVar4 << 1;
@@ -32,7 +31,7 @@ int strbuffer_append_bytes(strbuffer_t *strbuff,char *data,size_t size)
     }
     sVar1 = strbuff->length;
     strbuff->value = pcVar3;
-    strbuff->size = new_size;
+    strbuff->size = __size;
   }
   else {
     pcVar3 = strbuff->value;

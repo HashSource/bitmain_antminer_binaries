@@ -34,7 +34,7 @@ int a2d_ASN1_OBJECT(uchar *out,int olen,char *buf,int num)
     uVar4 = bVar1 - 0x30;
     if (uVar4 < 3) {
       if ((int)(num - 1U) < 1) {
-        ERR_put_error(0xd,100,0x8a,DAT_000b515c,0x71);
+        ERR_put_error(0xd,100,0x8a,"a_object.c",0x71);
       }
       else {
         iVar13 = num - 2;
@@ -58,7 +58,7 @@ int a2d_ASN1_OBJECT(uchar *out,int olen,char *buf,int num)
                 iVar13 = iVar13 + -1;
                 if (uVar10 == 0x20 || uVar10 == 0x2e) goto LAB_000b4f30;
                 if (9 < uVar10 - 0x30) {
-                  ERR_put_error(0xd,100,0x82,DAT_000b515c,0x87);
+                  ERR_put_error(0xd,100,0x82,"a_object.c",0x87);
                   goto LAB_000b5018;
                 }
                 bVar3 = (bool)(bVar2 ^ 1);
@@ -82,7 +82,7 @@ LAB_000b4f14:
 LAB_000b4f30:
             if (local_64 == 0) {
               if ((int)uVar4 < 2 && 0x27 < w) {
-                ERR_put_error(0xd,100,0x93,DAT_000b515c,0x9b);
+                ERR_put_error(0xd,100,0x93,"a_object.c",0x9b);
                 goto LAB_000b5018;
               }
               if (bVar2) {
@@ -110,7 +110,7 @@ LAB_000b5072:
                   CRYPTO_free(local_5c);
                 }
                 local_48 = iVar5 + 0x20;
-                local_5c = (uchar *)CRYPTO_malloc(local_48,DAT_000b515c,0xad);
+                local_5c = (uchar *)CRYPTO_malloc(local_48,"a_object.c",0xad);
                 if (local_5c == (uchar *)0x0) goto LAB_000b5020;
               }
               if (iVar5 != 0) {
@@ -127,7 +127,7 @@ LAB_000b5072:
             }
             else {
               if (olen < local_64 + iVar5) {
-                ERR_put_error(0xd,100,0x6b,DAT_000b515c,0xbf);
+                ERR_put_error(0xd,100,0x6b,"a_object.c",0xbf);
                 goto LAB_000b5018;
               }
               if (1 < iVar5) {
@@ -160,7 +160,7 @@ LAB_000b5072:
           local_5c = local_40;
           a = (BIGNUM *)0x0;
         }
-        ERR_put_error(0xd,100,0x83,DAT_000b515c,0x7a);
+        ERR_put_error(0xd,100,0x83,"a_object.c",0x7a);
 LAB_000b5018:
         local_50 = local_40;
         if (local_5c != local_50) {
@@ -174,7 +174,7 @@ LAB_000b5020:
       }
     }
     else {
-      ERR_put_error(0xd,100,0x7a,DAT_000b515c,0x6c);
+      ERR_put_error(0xd,100,0x7a,"a_object.c",0x6c);
     }
   }
   return 0;

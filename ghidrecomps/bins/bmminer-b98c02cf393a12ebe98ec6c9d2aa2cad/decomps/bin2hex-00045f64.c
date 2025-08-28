@@ -14,7 +14,7 @@ void bin2hex(byte *param_1,int param_2)
   if ((int)uVar2 < 1) {
     uVar6 = -(-uVar2 & 3);
   }
-  pcVar3 = (char *)_cgcalloc(uVar2 + (4 - uVar6),1,"util.c",DAT_00045fe4,0x315);
+  pcVar3 = (char *)_cgcalloc(uVar2 + (4 - uVar6),1,"util.c","bin2hex",0x315);
   if (0 < param_2) {
     pbVar4 = param_1;
     pcVar1 = pcVar3;

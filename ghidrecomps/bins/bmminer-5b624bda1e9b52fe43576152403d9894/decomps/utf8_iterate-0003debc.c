@@ -7,7 +7,6 @@ char * utf8_iterate(char *buffer,int32_t *codepoint)
   byte byte;
   uint uVar1;
   int size;
-  int count;
   int iVar2;
   int32_t value;
   

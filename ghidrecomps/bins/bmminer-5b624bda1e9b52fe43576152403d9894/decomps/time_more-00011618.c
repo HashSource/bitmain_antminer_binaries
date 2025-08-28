@@ -4,7 +4,7 @@
 _Bool time_more(timeval *a,timeval *b)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   int iVar3;
   
@@ -25,7 +25,7 @@ _Bool time_more(timeval *a,timeval *b)
   if (iVar3 <= b->tv_usec) {
     iVar2 = 0;
   }
-  uVar1 = (undefined)iVar2;
+  uVar1 = (undefined1)iVar2;
   if (b->tv_usec < iVar3) {
     uVar1 = 1;
   }

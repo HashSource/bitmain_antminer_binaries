@@ -25,10 +25,10 @@ int PKCS7_SIGNER_INFO_sign(PKCS7_SIGNER_INFO *si)
     if (iVar1 < 1) {
       iVar1 = 0x3a0;
 LAB_000d06aa:
-      ERR_put_error(0x21,0x8b,0x98,DAT_000d06d0,iVar1);
+      ERR_put_error(0x21,0x8b,0x98,"pk7_doit.c",iVar1);
     }
     else {
-      cnt = ASN1_item_i2d((ASN1_VALUE *)si->auth_attr,&local_38,DAT_000d06cc);
+      cnt = ASN1_item_i2d((ASN1_VALUE *)si->auth_attr,&local_38,(ASN1_ITEM *)PKCS7_ATTR_SIGN_it);
       if (local_38 == (uchar *)0x0) goto LAB_000d06c0;
       iVar1 = EVP_DigestUpdate(&EStack_30,local_38,cnt);
       if (0 < iVar1) {
@@ -36,7 +36,7 @@ LAB_000d06aa:
         local_38 = (uchar *)0x0;
         iVar1 = EVP_DigestSignFinal(&EStack_30,(uchar *)0x0,&local_34);
         if (0 < iVar1) {
-          local_38 = (uchar *)CRYPTO_malloc(local_34,DAT_000d06d0,0x3ae);
+          local_38 = (uchar *)CRYPTO_malloc(local_34,"pk7_doit.c",0x3ae);
           if (local_38 == (uchar *)0x0) goto LAB_000d06c0;
           iVar1 = EVP_DigestSignFinal(&EStack_30,local_38,&local_34);
           if (0 < iVar1) {

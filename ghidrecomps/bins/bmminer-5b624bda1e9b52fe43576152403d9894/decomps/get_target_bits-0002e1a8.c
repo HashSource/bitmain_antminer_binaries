@@ -4,15 +4,14 @@
 int get_target_bits(void)
 
 {
-  int iVar1;
+  uint uVar1;
   char tmp42 [2048];
   
-  iVar1 = *(int *)(*(int *)(DAT_0002e1f8 + 0x8d4) + 0x138);
-  if ((*DAT_0002e1fc != '\0') &&
-     (((*DAT_0002e200 != '\0' || (*DAT_0002e204 != '\0')) || (6 < *DAT_0002e208)))) {
-    snprintf(tmp42,0x800,DAT_0002e20c,DAT_0002e210,iVar1);
+  uVar1 = axi_fpga_addr[0x4e];
+  if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: TARGET_BITS is 0x%x\n","get_target_bits",uVar1);
     _applog(7,tmp42,false);
   }
-  return iVar1;
+  return uVar1;
 }
 

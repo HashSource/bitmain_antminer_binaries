@@ -26,820 +26,771 @@ _Bool test_work_current(work *work)
   char *pcVar20;
   char *pcVar21;
   char *pcVar22;
-  int *piVar23;
-  double *pdVar24;
-  timeval *ptVar25;
-  block *pbVar26;
-  int iVar27;
-  block *pbVar28;
-  uint _hj_k;
-  block *pbVar29;
-  UT_hash_handle *pUVar30;
-  UT_hash_handle *_hs_e;
-  UT_hash_handle *_hd_hh_del;
-  size_t sVar31;
-  uint _hj_k_1;
-  UT_hash_bucket *_he_new_buckets;
-  int powdiff;
-  pool *ppVar32;
-  tm *ptVar33;
-  tm *tm;
-  uint uVar34;
-  UT_hash_handle *pUVar35;
+  char *pcVar23;
+  undefined4 uVar24;
+  block *pbVar25;
+  int iVar26;
+  size_t sVar27;
+  block *__dest;
+  UT_hash_handle *pUVar28;
+  pool *ppVar29;
+  tm *ptVar30;
+  uint uVar31;
+  UT_hash_handle *pUVar32;
+  char *func;
+  char *func_00;
+  char *func_01;
+  char *func_02;
+  char *func_03;
+  uint uVar33;
+  UT_hash_handle *pUVar34;
+  uint uVar35;
+  char *func_04;
   char *pcVar36;
-  uint uVar37;
-  UT_hash_handle *pUVar38;
-  uint uVar39;
-  uint uVar40;
-  uint uVar41;
-  _func_int *p_Var42;
-  byte *pbVar43;
-  UT_hash_handle *pUVar44;
-  void *pvVar45;
-  block *pbVar46;
+  char *func_05;
+  char *func_06;
+  char *func_07;
+  char *func_08;
   int line;
-  pool *ppVar47;
-  pool *pool;
-  uchar *puVar48;
-  UT_hash_handle *pUVar49;
-  UT_hash_handle *_hs_q;
-  block *pbVar50;
-  block *oldblock;
-  UT_hash_handle *_he_thh;
-  pool *ppVar51;
-  char cVar52;
-  pthread_rwlock_t *ppVar53;
-  UT_hash_table *pUVar54;
-  UT_hash_handle *pUVar55;
-  UT_hash_bucket *pUVar56;
+  int line_00;
+  int line_01;
+  int line_02;
+  int line_03;
+  byte *pbVar37;
+  UT_hash_handle *pUVar38;
+  void *pvVar39;
+  block *pbVar40;
+  int line_04;
+  int line_05;
+  int line_06;
+  int line_07;
+  int line_08;
+  undefined1 *puVar41;
+  pool *ppVar42;
+  uchar *puVar43;
+  UT_hash_handle *pUVar44;
+  block *pbVar45;
+  pool *ppVar46;
+  char cVar47;
+  undefined1 uVar48;
+  pthread_rwlock_t *__rwlock;
+  uint uVar49;
+  UT_hash_table *pUVar50;
+  UT_hash_handle *pUVar51;
+  block *pbVar52;
+  UT_hash_bucket *pUVar53;
+  uint uVar54;
+  UT_hash_table *pUVar55;
+  UT_hash_handle *pUVar56;
   uint uVar57;
-  UT_hash_table *pUVar58;
-  UT_hash_bucket *_he_newbkt;
-  UT_hash_handle *_he_hh_nxt;
-  uint _hs_qsize;
-  int ms;
-  char *pcVar59;
-  UT_hash_handle *pUVar60;
-  UT_hash_handle *_hs_p;
-  UT_hash_handle *pUVar61;
-  bool bVar62;
-  double dVar63;
-  undefined8 uVar64;
-  uint in_stack_fffff734;
+  UT_hash_handle *pUVar58;
+  UT_hash_handle *pUVar59;
+  bool bVar60;
+  double dVar61;
+  uint64_t val;
   int local_8bc;
-  uchar *_hj_key;
   block *local_8b0;
   UT_hash_bucket *local_8ac;
   uint height;
-  time_t tmp_time;
+  __time_t local_898;
   uchar bedata [32];
   char hexstr [68];
   char tmp42 [2048];
   
-  ppVar47 = work->pool;
-  puVar48 = ppVar47->coinbase;
+  ppVar42 = work->pool;
+  puVar43 = ppVar42->coinbase;
   height = 0;
-  pcVar59 = (char *)(uint)puVar48[0x2a];
+  uVar57 = (uint)puVar43[0x2a];
   if (work->mandatory != false) {
     return true;
   }
   bedata._0_4_ = *(undefined4 *)(work->data + 0x20);
   bedata._4_4_ = *(undefined4 *)(work->data + 0x1c);
-  pcVar36 = (char *)0x20;
   bedata._12_4_ = *(undefined4 *)(work->data + 0x14);
   bedata._20_4_ = *(undefined4 *)(work->data + 0xc);
   bedata._8_4_ = *(undefined4 *)(work->data + 0x18);
   bedata._16_4_ = *(undefined4 *)(work->data + 0x10);
-  uVar41 = *(uint *)(work->data + 4);
+  bedata._28_4_ = *(undefined4 *)(work->data + 4);
   bedata._24_4_ = *(undefined4 *)(work->data + 8);
-  bedata._28_4_ = uVar41;
   __bin2hex(hexstr,bedata,0x20);
-  if (pcVar59 < (char *)0x5) {
-    in_stack_fffff734 = 0x15a9;
-    _cg_memcpy(&height,puVar48 + 0x2b,(uint)pcVar59,DAT_00025310,DAT_0002530c,0x15a9);
-    uVar41 = height - 1;
-    pcVar36 = pcVar59;
-    height = uVar41;
+  if (uVar57 < 5) {
+    _cg_memcpy(&height,puVar43 + 0x2b,uVar57,"cgminer.c","test_work_current",0x15a9);
+    height = height - 1;
   }
-  iVar27 = pthread_mutex_lock((pthread_mutex_t *)&ppVar47->data_lock);
-  if (iVar27 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_00025888,(char *)0x15ae,pcVar36,uVar41);
+  iVar26 = pthread_mutex_lock((pthread_mutex_t *)&ppVar42->data_lock);
+  if (iVar26 != 0) {
+    _mutex_lock((pthread_mutex_t *)"test_work_current",(char *)0x15ae,func,line);
   }
-  ppVar53 = &(ppVar47->data_lock).rwlock;
-  iVar27 = pthread_rwlock_wrlock((pthread_rwlock_t *)ppVar53);
-  if (iVar27 != 0) {
-    _wr_lock(DAT_00025888,(char *)0x15ae,pcVar36,uVar41);
+  __rwlock = &(ppVar42->data_lock).rwlock;
+  iVar26 = pthread_rwlock_wrlock((pthread_rwlock_t *)__rwlock);
+  if (iVar26 != 0) {
+    _wr_lock((pthread_rwlock_t *)"test_work_current",(char *)0x15ae,func_00,line_00);
   }
-  uVar41 = (uint)(ppVar47->swork).clean;
-  if (uVar41 != 0) {
-    pcVar36 = (char *)0x0;
-    uVar41 = 1;
-    (ppVar47->swork).clean = false;
+  if ((ppVar42->swork).clean != false) {
+    (ppVar42->swork).clean = false;
     work->longpoll = true;
   }
-  iVar27 = pthread_rwlock_unlock((pthread_rwlock_t *)ppVar53);
-  if (iVar27 != 0) {
-    _rw_unlock(DAT_00025888,(char *)0x15b6,pcVar36,uVar41);
+  iVar26 = pthread_rwlock_unlock((pthread_rwlock_t *)__rwlock);
+  if (iVar26 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"test_work_current",(char *)0x15b6,func_01,line_01);
   }
-  iVar27 = pthread_mutex_unlock((pthread_mutex_t *)&ppVar47->data_lock);
-  if (iVar27 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_00025888,(char *)0x15b6,pcVar36,uVar41);
+  iVar26 = pthread_mutex_unlock((pthread_mutex_t *)&ppVar42->data_lock);
+  if (iVar26 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"test_work_current",(char *)0x15b6,func_02,line_02);
   }
-  p_Var42 = selective_yield;
   (*selective_yield)();
-  iVar27 = pthread_rwlock_wrlock(DAT_00024c14);
-  if (iVar27 != 0) {
-    _wr_lock(DAT_00025890,(char *)0x155f,pcVar36,(int)p_Var42);
+  iVar26 = pthread_rwlock_wrlock((pthread_rwlock_t *)&blk_lock);
+  if (iVar26 != 0) {
+    _wr_lock((pthread_rwlock_t *)"block_exists",(char *)0x155f,func_03,line_03);
   }
-  pbVar28 = (block *)strlen(hexstr);
-  uVar41 = 0x9e3779b9;
-  uVar57 = 0xfeedbeef;
-  pbVar43 = (byte *)hexstr;
-  uVar34 = uVar41;
-  for (pbVar29 = pbVar28; (block *)0xb < pbVar29; pbVar29 = (block *)&pbVar29[-1].hh.keylen) {
-    pbVar1 = pbVar43 + 6;
-    pbVar10 = pbVar43 + 10;
-    pbVar11 = pbVar43 + 2;
-    pbVar2 = pbVar43 + 5;
-    pbVar3 = pbVar43 + 9;
-    pbVar4 = pbVar43 + 1;
-    pbVar5 = pbVar43 + 7;
-    pbVar6 = pbVar43 + 4;
-    bVar12 = *pbVar43;
-    pbVar7 = pbVar43 + 8;
-    pbVar8 = pbVar43 + 3;
-    pbVar9 = pbVar43 + 0xb;
-    pbVar43 = pbVar43 + 0xc;
-    iVar27 = uVar34 + (uint)*pbVar1 * 0x10000 + (uint)*pbVar2 * 0x100 + (uint)*pbVar6 +
+  sVar27 = strlen(hexstr);
+  uVar57 = 0x9e3779b9;
+  uVar54 = 0xfeedbeef;
+  pbVar37 = (byte *)hexstr;
+  uVar31 = uVar57;
+  for (uVar49 = sVar27; 0xb < uVar49; uVar49 = uVar49 - 0xc) {
+    pbVar1 = pbVar37 + 6;
+    pbVar10 = pbVar37 + 10;
+    pbVar11 = pbVar37 + 2;
+    pbVar2 = pbVar37 + 5;
+    pbVar3 = pbVar37 + 9;
+    pbVar4 = pbVar37 + 1;
+    pbVar5 = pbVar37 + 7;
+    pbVar6 = pbVar37 + 4;
+    bVar12 = *pbVar37;
+    pbVar7 = pbVar37 + 8;
+    pbVar8 = pbVar37 + 3;
+    pbVar9 = pbVar37 + 0xb;
+    pbVar37 = pbVar37 + 0xc;
+    iVar26 = uVar31 + (uint)*pbVar1 * 0x10000 + (uint)*pbVar2 * 0x100 + (uint)*pbVar6 +
                       (uint)*pbVar5 * 0x1000000;
-    uVar57 = (uint)*pbVar10 * 0x10000 + (uint)*pbVar3 * 0x100 + (uint)*pbVar7 +
-             (uint)*pbVar9 * 0x1000000 + uVar57;
-    uVar34 = uVar41 + ((((uint)*pbVar11 * 0x10000 + (uint)*pbVar4 * 0x100 + (uint)bVar12 +
-                        (uint)*pbVar8 * 0x1000000) - iVar27) - uVar57) ^ uVar57 >> 0xd;
-    uVar41 = (iVar27 - uVar57) - uVar34 ^ uVar34 << 8;
-    uVar37 = (uVar57 - uVar34) - uVar41 ^ uVar41 >> 0xd;
-    uVar57 = (uVar34 - uVar41) - uVar37 ^ uVar37 >> 0xc;
-    uVar34 = (uVar41 - uVar37) - uVar57 ^ uVar57 << 0x10;
-    uVar37 = (uVar37 - uVar57) - uVar34 ^ uVar34 >> 5;
-    uVar41 = (uVar57 - uVar34) - uVar37 ^ uVar37 >> 3;
-    uVar34 = (uVar34 - uVar37) - uVar41 ^ uVar41 << 10;
-    uVar57 = (uVar37 - uVar41) - uVar34 ^ uVar34 >> 0xf;
+    uVar54 = (uint)*pbVar10 * 0x10000 + (uint)*pbVar3 * 0x100 + (uint)*pbVar7 +
+             (uint)*pbVar9 * 0x1000000 + uVar54;
+    uVar31 = uVar57 + ((((uint)*pbVar11 * 0x10000 + (uint)*pbVar4 * 0x100 + (uint)bVar12 +
+                        (uint)*pbVar8 * 0x1000000) - iVar26) - uVar54) ^ uVar54 >> 0xd;
+    uVar57 = (iVar26 - uVar54) - uVar31 ^ uVar31 << 8;
+    uVar33 = (uVar54 - uVar31) - uVar57 ^ uVar57 >> 0xd;
+    uVar54 = (uVar31 - uVar57) - uVar33 ^ uVar33 >> 0xc;
+    uVar31 = (uVar57 - uVar33) - uVar54 ^ uVar54 << 0x10;
+    uVar33 = (uVar33 - uVar54) - uVar31 ^ uVar31 >> 5;
+    uVar57 = (uVar54 - uVar31) - uVar33 ^ uVar33 >> 3;
+    uVar31 = (uVar31 - uVar33) - uVar57 ^ uVar57 << 10;
+    uVar54 = (uVar33 - uVar57) - uVar31 ^ uVar31 >> 0xf;
   }
-  pcVar59 = pbVar28->hash + uVar57;
-  switch(pbVar29) {
-  case (block *)0xb:
-    pcVar59 = pcVar59 + (uint)pbVar43[10] * 0x1000000;
-  case (block *)0xa:
-    pcVar59 = pcVar59 + (uint)pbVar43[9] * 0x10000;
-  case (block *)0x9:
-    pcVar59 = pcVar59 + (uint)pbVar43[8] * 0x100;
-  case (block *)0x8:
-    uVar34 = uVar34 + (uint)pbVar43[7] * 0x1000000;
-  case (block *)0x7:
-    uVar34 = uVar34 + (uint)pbVar43[6] * 0x10000;
-  case (block *)0x6:
-    uVar34 = uVar34 + (uint)pbVar43[5] * 0x100;
-  case (block *)0x5:
-    uVar34 = uVar34 + pbVar43[4];
-  case (block *)0x4:
-    uVar41 = uVar41 + (uint)pbVar43[3] * 0x1000000;
-  case (block *)0x3:
-    uVar41 = uVar41 + (uint)pbVar43[2] * 0x10000;
-  case (block *)0x2:
-    uVar41 = uVar41 + (uint)pbVar43[1] * 0x100;
-  case (block *)0x1:
-    uVar41 = uVar41 + *pbVar43;
+  uVar54 = uVar54 + sVar27;
+  switch(uVar49) {
+  case 0xb:
+    uVar54 = uVar54 + (uint)pbVar37[10] * 0x1000000;
+  case 10:
+    uVar54 = uVar54 + (uint)pbVar37[9] * 0x10000;
+  case 9:
+    uVar54 = uVar54 + (uint)pbVar37[8] * 0x100;
+  case 8:
+    uVar31 = uVar31 + (uint)pbVar37[7] * 0x1000000;
+  case 7:
+    uVar31 = uVar31 + (uint)pbVar37[6] * 0x10000;
+  case 6:
+    uVar31 = uVar31 + (uint)pbVar37[5] * 0x100;
+  case 5:
+    uVar31 = uVar31 + pbVar37[4];
+  case 4:
+    uVar57 = uVar57 + (uint)pbVar37[3] * 0x1000000;
+  case 3:
+    uVar57 = uVar57 + (uint)pbVar37[2] * 0x10000;
+  case 2:
+    uVar57 = uVar57 + (uint)pbVar37[1] * 0x100;
+  case 1:
+    uVar57 = uVar57 + *pbVar37;
   }
-  uVar41 = (uVar41 - uVar34) - (int)pcVar59 ^ (uint)pcVar59 >> 0xd;
-  uVar34 = (uVar34 - (int)pcVar59) - uVar41 ^ uVar41 << 8;
-  uVar57 = (uint)(pcVar59 + (-uVar34 - uVar41)) ^ uVar34 >> 0xd;
-  uVar41 = (uVar41 - uVar34) - uVar57 ^ uVar57 >> 0xc;
-  uVar34 = (uVar34 - uVar57) - uVar41 ^ uVar41 << 0x10;
-  uVar57 = (uVar57 - uVar41) - uVar34 ^ uVar34 >> 5;
-  uVar41 = (uVar41 - uVar34) - uVar57 ^ uVar57 >> 3;
-  uVar34 = (uVar34 - uVar57) - uVar41 ^ uVar41 << 10;
-  pUVar54 = (UT_hash_table *)((uVar57 - uVar41) - uVar34 ^ uVar34 >> 0xf);
+  uVar57 = (uVar57 - uVar31) - uVar54 ^ uVar54 >> 0xd;
+  uVar31 = (uVar31 - uVar54) - uVar57 ^ uVar57 << 8;
+  uVar54 = (uVar54 - uVar57) - uVar31 ^ uVar31 >> 0xd;
+  uVar57 = (uVar57 - uVar31) - uVar54 ^ uVar54 >> 0xc;
+  uVar31 = (uVar31 - uVar54) - uVar57 ^ uVar57 << 0x10;
+  uVar54 = (uVar54 - uVar57) - uVar31 ^ uVar31 >> 5;
+  uVar57 = (uVar57 - uVar31) - uVar54 ^ uVar54 >> 3;
+  uVar31 = (uVar31 - uVar54) - uVar57 ^ uVar57 << 10;
+  pUVar50 = (UT_hash_table *)((uVar54 - uVar57) - uVar31 ^ uVar31 >> 0xf);
   if (blocks != (block *)0x0) {
-    pUVar58 = (blocks->hh).tbl;
-    pUVar49 = pUVar58->buckets[pUVar58->num_buckets - 1 & (uint)pUVar54].hh_head;
-    if (pUVar49 != (UT_hash_handle *)0x0) {
-      pUVar49 = (UT_hash_handle *)((int)pUVar49 - pUVar58->hho);
+    pUVar55 = (blocks->hh).tbl;
+    pUVar44 = pUVar55->buckets[pUVar55->num_buckets - 1 & (uint)pUVar50].hh_head;
+    if (pUVar44 != (UT_hash_handle *)0x0) {
+      pUVar44 = (UT_hash_handle *)((int)pUVar44 - pUVar55->hho);
     }
-    for (; pUVar49 != (UT_hash_handle *)0x0;
-        pUVar49 = (UT_hash_handle *)((int)pUVar49[2].key - pUVar58->hho)) {
-      if (((pUVar54 == pUVar49[3].tbl) && (pbVar29 = (block *)pUVar49[2].hashv, pbVar28 == pbVar29))
-         && (pbVar50 = pbVar28, iVar27 = memcmp((void *)pUVar49[2].keylen,hexstr,(size_t)pbVar28),
-            iVar27 == 0)) {
-        cVar52 = '\x01';
+    for (; pUVar44 != (UT_hash_handle *)0x0;
+        pUVar44 = (UT_hash_handle *)((int)pUVar44[2].key - pUVar55->hho)) {
+      if (((pUVar50 == pUVar44[3].tbl) && (sVar27 == pUVar44[2].hashv)) &&
+         (iVar26 = memcmp((void *)pUVar44[2].keylen,hexstr,sVar27), iVar26 == 0)) {
+        cVar47 = '\x01';
         local_8b0 = (block *)0x0;
         goto LAB_00025122;
       }
-      if (pUVar49[2].key == (void *)0x0) break;
+      if (pUVar44[2].key == (void *)0x0) break;
     }
   }
-  pbVar29 = (block *)_cgcalloc(0x68,1,DAT_00024c18,DAT_00024c1c,0x1563);
-  if (pbVar29 == (block *)0x0) {
-    tmp42._0_4_ = *DAT_0002588c;
-    tmp42._4_4_ = DAT_0002588c[1];
-    tmp42._8_4_ = DAT_0002588c[2];
-    tmp42._12_4_ = DAT_0002588c[3];
-    tmp42[16] = (char)DAT_0002588c[4];
+  __dest = (block *)_cgcalloc(0x68,1,"cgminer.c","block_exists",0x1563);
+  if (__dest == (block *)0x0) {
+    builtin_strncpy(tmp42,"block_exists OOM",0x10);
+    tmp42._16_4_ = tmp42._16_4_ & 0xffffff00;
     _applog(3,tmp42,true);
     _quit(1);
   }
-  strcpy((char *)pbVar29,hexstr);
-  pbVar28 = blocks;
-  piVar23 = DAT_00024c20;
+  strcpy((char *)__dest,hexstr);
+  pbVar52 = blocks;
   local_8b0 = blocks;
-  iVar27 = *DAT_00024c20;
-  pbVar29->block_no = iVar27;
-  *piVar23 = iVar27 + 1;
-  if (pbVar28 != (block *)0x0) {
-    pUVar54 = (pbVar28->hh).tbl;
-    if (3 < pUVar54->num_items) {
-      pUVar49 = &pbVar28->hh;
-      pUVar38 = (UT_hash_handle *)0x1;
+  uVar57 = new_blocks + 1;
+  __dest->block_no = new_blocks;
+  new_blocks = uVar57;
+  if (pbVar52 != (block *)0x0) {
+    pUVar50 = (pbVar52->hh).tbl;
+    if (3 < pUVar50->num_items) {
+      pUVar44 = &pbVar52->hh;
+      pUVar34 = (UT_hash_handle *)0x1;
 LAB_00024bf2:
-      pUVar55 = (UT_hash_handle *)0x0;
-      uVar41 = 0;
-      pUVar61 = pUVar49;
-      pUVar49 = (UT_hash_handle *)0x0;
+      pUVar51 = (UT_hash_handle *)0x0;
+      uVar57 = 0;
+      pUVar59 = pUVar44;
+      pUVar44 = (UT_hash_handle *)0x0;
 LAB_00024bfa:
-      uVar41 = uVar41 + 1;
-      _hs_qsize = (uint)pUVar38;
-      if (pUVar38 == (UT_hash_handle *)0x0) {
-        pUVar35 = (UT_hash_handle *)0x0;
-        pUVar44 = pUVar61;
+      uVar57 = uVar57 + 1;
+      pUVar56 = pUVar34;
+      if (pUVar34 == (UT_hash_handle *)0x0) {
+        pUVar32 = (UT_hash_handle *)0x0;
+        pUVar38 = pUVar59;
       }
       else {
-        pUVar44 = (UT_hash_handle *)pUVar61->next;
-        pUVar35 = (UT_hash_handle *)0x1;
-        if (pUVar44 != (UT_hash_handle *)0x0) {
-          pUVar35 = (UT_hash_handle *)0x1;
-          pUVar44 = (UT_hash_handle *)((int)&pUVar44->tbl + pUVar54->hho);
-          if (pUVar44 != (UT_hash_handle *)0x0) {
-            while (pUVar35 != pUVar38) {
-              pUVar44 = (UT_hash_handle *)pUVar44->next;
-              pUVar35 = (UT_hash_handle *)((int)&pUVar35->tbl + 1);
-              if ((pUVar44 == (UT_hash_handle *)0x0) ||
-                 (pUVar44 = (UT_hash_handle *)((int)&pUVar44->tbl + pUVar54->hho),
-                 pUVar44 == (UT_hash_handle *)0x0)) break;
+        pUVar38 = (UT_hash_handle *)pUVar59->next;
+        pUVar32 = (UT_hash_handle *)0x1;
+        if (pUVar38 != (UT_hash_handle *)0x0) {
+          pUVar32 = (UT_hash_handle *)0x1;
+          pUVar38 = (UT_hash_handle *)((int)&pUVar38->tbl + pUVar50->hho);
+          if (pUVar38 != (UT_hash_handle *)0x0) {
+            while (pUVar32 != pUVar34) {
+              pUVar38 = (UT_hash_handle *)pUVar38->next;
+              pUVar32 = (UT_hash_handle *)((int)&pUVar32->tbl + 1);
+              if ((pUVar38 == (UT_hash_handle *)0x0) ||
+                 (pUVar38 = (UT_hash_handle *)((int)&pUVar38->tbl + pUVar50->hho),
+                 pUVar38 == (UT_hash_handle *)0x0)) break;
             }
           }
         }
       }
 LAB_00024c3a:
       do {
-        pUVar30 = pUVar61;
-        if (pUVar35 == (UT_hash_handle *)0x0) goto LAB_00024c84;
+        pUVar28 = pUVar59;
+        if (pUVar32 == (UT_hash_handle *)0x0) goto LAB_00024c84;
 LAB_00024c3c:
-        pUVar61 = pUVar30;
-        if (_hs_qsize == 0 || pUVar44 == (UT_hash_handle *)0x0) {
-          if ((pUVar30 != (UT_hash_handle *)0x0) &&
-             (pUVar61 = (UT_hash_handle *)pUVar30->next, pUVar61 != (UT_hash_handle *)0x0)) {
-            pUVar61 = (UT_hash_handle *)((int)&pUVar61->tbl + pUVar54->hho);
+        pUVar59 = pUVar28;
+        if (pUVar56 == (UT_hash_handle *)0x0 || pUVar38 == (UT_hash_handle *)0x0) {
+          if ((pUVar28 != (UT_hash_handle *)0x0) &&
+             (pUVar59 = (UT_hash_handle *)pUVar28->next, pUVar59 != (UT_hash_handle *)0x0)) {
+            pUVar59 = (UT_hash_handle *)((int)&pUVar59->tbl + pUVar50->hho);
           }
         }
         else {
-          iVar27 = pUVar54->hho;
-          if (0 < *(int *)((int)pUVar30 + -iVar27 + 100) - *(int *)((int)pUVar44 + -iVar27 + 100)) {
-            pUVar60 = (UT_hash_handle *)pUVar44->next;
-            pUVar30 = pUVar44;
-            if (pUVar60 == (UT_hash_handle *)0x0) goto joined_r0x000252b6;
-            pUVar60 = (UT_hash_handle *)((int)&pUVar60->tbl + iVar27);
+          iVar26 = pUVar50->hho;
+          if (0 < *(int *)((int)pUVar28 + -iVar26 + 100) - *(int *)((int)pUVar38 + -iVar26 + 100)) {
+            pUVar58 = (UT_hash_handle *)pUVar38->next;
+            pUVar28 = pUVar38;
+            if (pUVar58 == (UT_hash_handle *)0x0) goto joined_r0x000252b6;
+            pUVar58 = (UT_hash_handle *)((int)&pUVar58->tbl + iVar26);
             goto joined_r0x000252b6;
           }
-          if ((pUVar30 != (UT_hash_handle *)0x0) &&
-             (pUVar61 = (UT_hash_handle *)pUVar30->next, pUVar61 != (UT_hash_handle *)0x0)) {
-            pUVar61 = (UT_hash_handle *)((int)&pUVar61->tbl + iVar27);
+          if ((pUVar28 != (UT_hash_handle *)0x0) &&
+             (pUVar59 = (UT_hash_handle *)pUVar28->next, pUVar59 != (UT_hash_handle *)0x0)) {
+            pUVar59 = (UT_hash_handle *)((int)&pUVar59->tbl + iVar26);
           }
         }
-        pUVar35 = (UT_hash_handle *)((int)&pUVar35[-1].hashv + 3);
-        if (pUVar55 == (UT_hash_handle *)0x0) {
-          pUVar55 = pUVar30;
-          pUVar49 = pUVar30;
-          if (pUVar30 != (UT_hash_handle *)0x0) {
-            pvVar45 = (void *)0x0;
+        pUVar32 = (UT_hash_handle *)((int)&pUVar32[-1].hashv + 3);
+        if (pUVar51 == (UT_hash_handle *)0x0) {
+          pUVar51 = pUVar28;
+          pUVar44 = pUVar28;
+          if (pUVar28 != (UT_hash_handle *)0x0) {
+            pvVar39 = (void *)0x0;
             goto LAB_00024c7e;
           }
           goto LAB_00024c3a;
         }
-        while (pUVar30 != (UT_hash_handle *)0x0) {
-          pvVar45 = (void *)((int)pUVar55 - pUVar54->hho);
-          pUVar55->next = (void *)((int)pUVar30 - pUVar54->hho);
-          pUVar55 = pUVar30;
+        while (pUVar28 != (UT_hash_handle *)0x0) {
+          pvVar39 = (void *)((int)pUVar51 - pUVar50->hho);
+          pUVar51->next = (void *)((int)pUVar28 - pUVar50->hho);
+          pUVar51 = pUVar28;
 LAB_00024c7e:
           while( true ) {
-            pUVar55->prev = pvVar45;
-            pUVar30 = pUVar61;
-            if (pUVar35 != (UT_hash_handle *)0x0) goto LAB_00024c3c;
+            pUVar51->prev = pvVar39;
+            pUVar28 = pUVar59;
+            if (pUVar32 != (UT_hash_handle *)0x0) goto LAB_00024c3c;
 LAB_00024c84:
-            if (pUVar44 == (UT_hash_handle *)0x0 || _hs_qsize == 0) {
-              pUVar61 = pUVar44;
-              if (pUVar44 != (UT_hash_handle *)0x0) goto LAB_00024bfa;
-              if (pUVar55 != (UT_hash_handle *)0x0) {
-                pUVar55->next = (void *)0x0;
+            if (pUVar38 == (UT_hash_handle *)0x0 || pUVar56 == (UT_hash_handle *)0x0) {
+              pUVar59 = pUVar38;
+              if (pUVar38 != (UT_hash_handle *)0x0) goto LAB_00024bfa;
+              if (pUVar51 != (UT_hash_handle *)0x0) {
+                pUVar51->next = (void *)0x0;
               }
-              if ((1 < uVar41) &&
-                 (pUVar38 = (UT_hash_handle *)((int)pUVar38 << 1), pUVar55 = pUVar49,
-                 pUVar49 != (UT_hash_handle *)0x0)) goto LAB_00024bf2;
-              pUVar54->tail = pUVar55;
-              pbVar50 = (block *)((int)pUVar49 - pUVar54->hho);
-              local_8b0 = (block *)pbVar50->block_no;
-              pvVar45 = (pbVar50->hh).prev;
-              pbVar28 = (block *)(pbVar50->hh).next;
-              blocks = pbVar50;
-              if ((pvVar45 == (void *)0x0) && (pbVar28 == (block *)0x0)) {
-                free(((pbVar50->hh).tbl)->buckets);
-                free((pbVar50->hh).tbl);
-                blocks = pbVar28;
+              if ((1 < uVar57) &&
+                 (pUVar34 = (UT_hash_handle *)((int)pUVar34 << 1), pUVar51 = pUVar44,
+                 pUVar44 != (UT_hash_handle *)0x0)) goto LAB_00024bf2;
+              pUVar50->tail = pUVar51;
+              pbVar45 = (block *)((int)pUVar44 - pUVar50->hho);
+              local_8b0 = (block *)pbVar45->block_no;
+              pvVar39 = (pbVar45->hh).prev;
+              pbVar52 = (block *)(pbVar45->hh).next;
+              blocks = pbVar45;
+              if ((pvVar39 == (void *)0x0) && (pbVar52 == (block *)0x0)) {
+                free(((pbVar45->hh).tbl)->buckets);
+                free((pbVar45->hh).tbl);
+                blocks = pbVar52;
               }
               else {
-                pUVar54 = (pbVar50->hh).tbl;
-                iVar27 = pUVar54->hho;
-                pbVar46 = (block *)((int)pUVar54->tail - iVar27);
-                bVar62 = pbVar50 == pbVar46;
-                if (bVar62) {
-                  pbVar46 = (block *)((int)pvVar45 + iVar27);
+                pUVar50 = (pbVar45->hh).tbl;
+                iVar26 = pUVar50->hho;
+                pbVar40 = (block *)((int)pUVar50->tail - iVar26);
+                bVar60 = pbVar45 == pbVar40;
+                if (bVar60) {
+                  pbVar40 = (block *)((int)pvVar39 + iVar26);
                 }
-                if (bVar62) {
-                  pUVar54->tail = (UT_hash_handle *)pbVar46;
+                if (bVar60) {
+                  pUVar50->tail = (UT_hash_handle *)pbVar40;
                 }
-                pbVar46 = pbVar28;
-                pbVar26 = pbVar28;
-                if (pvVar45 != (void *)0x0) {
-                  *(block **)((int)pvVar45 + iVar27 + 8) = pbVar28;
-                  pbVar28 = (block *)(pbVar50->hh).next;
-                  pbVar46 = pbVar50;
-                  pbVar26 = blocks;
+                pbVar40 = pbVar52;
+                pbVar25 = pbVar52;
+                if (pvVar39 != (void *)0x0) {
+                  *(block **)((int)pvVar39 + iVar26 + 8) = pbVar52;
+                  pbVar52 = (block *)(pbVar45->hh).next;
+                  pbVar40 = pbVar45;
+                  pbVar25 = blocks;
                 }
-                blocks = pbVar26;
-                pUVar54 = (pbVar46->hh).tbl;
-                if (pbVar28 != (block *)0x0) {
-                  *(void **)(pbVar28->hash + pUVar54->hho + 4) = pvVar45;
+                blocks = pbVar25;
+                pUVar50 = (pbVar40->hh).tbl;
+                if (pbVar52 != (block *)0x0) {
+                  *(void **)(pbVar52->hash + pUVar50->hho + 4) = pvVar39;
                 }
-                pUVar56 = pUVar54->buckets;
-                uVar41 = (pbVar50->hh).hashv & pUVar54->num_buckets - 1;
-                pUVar38 = (pbVar50->hh).hh_next;
-                pUVar56[uVar41].count = pUVar56[uVar41].count - 1;
-                pUVar49 = (pbVar50->hh).hh_prev;
-                if (&pbVar50->hh == pUVar56[uVar41].hh_head) {
-                  pUVar56[uVar41].hh_head = pUVar38;
+                pUVar53 = pUVar50->buckets;
+                uVar57 = (pbVar45->hh).hashv & pUVar50->num_buckets - 1;
+                pUVar34 = (pbVar45->hh).hh_next;
+                pUVar53[uVar57].count = pUVar53[uVar57].count - 1;
+                pUVar44 = (pbVar45->hh).hh_prev;
+                if (&pbVar45->hh == pUVar53[uVar57].hh_head) {
+                  pUVar53[uVar57].hh_head = pUVar34;
                 }
-                if (pUVar49 != (UT_hash_handle *)0x0) {
-                  pUVar49->hh_next = pUVar38;
-                  pUVar38 = (pbVar50->hh).hh_next;
+                if (pUVar44 != (UT_hash_handle *)0x0) {
+                  pUVar44->hh_next = pUVar34;
+                  pUVar34 = (pbVar45->hh).hh_next;
                 }
-                if (pUVar38 != (UT_hash_handle *)0x0) {
-                  pUVar38->hh_prev = pUVar49;
+                if (pUVar34 != (UT_hash_handle *)0x0) {
+                  pUVar34->hh_prev = pUVar44;
                 }
-                pUVar54->num_items = pUVar54->num_items - 1;
-                pbVar28 = pbVar46;
+                pUVar50->num_items = pUVar50->num_items - 1;
+                pbVar52 = pbVar40;
               }
-              free(pbVar50);
+              free(pbVar45);
               goto LAB_00024d40;
             }
-            pUVar60 = pUVar35;
-            pUVar30 = pUVar44;
-            if (pUVar44->next != (void *)0x0) {
-              pUVar60 = (UT_hash_handle *)((int)pUVar44->next + pUVar54->hho);
+            pUVar58 = pUVar32;
+            pUVar28 = pUVar38;
+            if (pUVar38->next != (void *)0x0) {
+              pUVar58 = (UT_hash_handle *)((int)pUVar38->next + pUVar50->hho);
             }
 joined_r0x000252b6:
-            pUVar44 = pUVar60;
-            _hs_qsize = _hs_qsize - 1;
-            if (pUVar55 != (UT_hash_handle *)0x0) break;
-            pvVar45 = (void *)0x0;
-            pUVar55 = pUVar30;
-            pUVar49 = pUVar30;
+            pUVar38 = pUVar58;
+            pUVar56 = (UT_hash_handle *)((int)&pUVar56[-1].hashv + 3);
+            if (pUVar51 != (UT_hash_handle *)0x0) break;
+            pvVar39 = (void *)0x0;
+            pUVar51 = pUVar28;
+            pUVar44 = pUVar28;
           }
         }
-        pUVar55->next = (void *)0x0;
-        pUVar55 = pUVar30;
+        pUVar51->next = (void *)0x0;
+        pUVar51 = pUVar28;
       } while( true );
     }
     local_8b0 = (block *)0x0;
   }
 LAB_00024d40:
-  sVar31 = strlen((char *)pbVar29);
-  uVar41 = 0xfeedbeef;
-  uVar34 = 0x9e3779b9;
-  uVar57 = uVar34;
-  pbVar50 = pbVar29;
-  for (uVar37 = sVar31; 0xb < uVar37; uVar37 = uVar37 - 0xc) {
-    pcVar59 = pbVar50->hash;
-    pcVar36 = pbVar50->hash;
-    pcVar13 = pbVar50->hash;
-    pcVar14 = pbVar50->hash;
-    pcVar15 = pbVar50->hash;
-    pcVar16 = pbVar50->hash;
-    pcVar17 = pbVar50->hash;
-    pcVar18 = pbVar50->hash;
-    pcVar19 = pbVar50->hash;
-    pcVar20 = pbVar50->hash;
-    pcVar21 = pbVar50->hash;
-    pcVar22 = pbVar50->hash;
-    pbVar50 = (block *)(pbVar50->hash + 0xc);
-    iVar27 = uVar57 + (uint)(byte)pcVar17[4] +
-                      (uint)(byte)pcVar59[6] * 0x10000 + (uint)(byte)pcVar13[5] * 0x100 +
-                      (uint)(byte)pcVar19[7] * 0x1000000;
-    uVar41 = (uint)(byte)pcVar21[8] +
-             (uint)(byte)pcVar15[10] * 0x10000 + (uint)(byte)pcVar16[9] * 0x100 +
-             (uint)(byte)pcVar22[0xb] * 0x1000000 + uVar41;
-    uVar39 = uVar34 + ((((uint)(byte)*pcVar18 +
-                         (uint)(byte)pcVar36[2] * 0x10000 + (uint)(byte)pcVar14[1] * 0x100 +
-                        (uint)(byte)pcVar20[3] * 0x1000000) - iVar27) - uVar41) ^ uVar41 >> 0xd;
-    uVar34 = (iVar27 - uVar41) - uVar39 ^ uVar39 << 8;
-    uVar57 = (uVar41 - uVar39) - uVar34 ^ uVar34 >> 0xd;
-    uVar40 = (uVar39 - uVar34) - uVar57 ^ uVar57 >> 0xc;
-    uVar41 = (uVar34 - uVar57) - uVar40 ^ uVar40 << 0x10;
-    uVar39 = (uVar57 - uVar40) - uVar41 ^ uVar41 >> 5;
-    uVar34 = (uVar40 - uVar41) - uVar39 ^ uVar39 >> 3;
-    uVar57 = (uVar41 - uVar39) - uVar34 ^ uVar34 << 10;
-    uVar41 = (uVar39 - uVar34) - uVar57 ^ uVar57 >> 0xf;
+  sVar27 = strlen((char *)__dest);
+  uVar57 = 0xfeedbeef;
+  uVar31 = 0x9e3779b9;
+  uVar54 = uVar31;
+  pbVar45 = __dest;
+  for (uVar49 = sVar27; 0xb < uVar49; uVar49 = uVar49 - 0xc) {
+    pcVar36 = pbVar45->hash;
+    pcVar13 = pbVar45->hash;
+    pcVar14 = pbVar45->hash;
+    pcVar15 = pbVar45->hash;
+    pcVar16 = pbVar45->hash;
+    pcVar17 = pbVar45->hash;
+    pcVar18 = pbVar45->hash;
+    pcVar19 = pbVar45->hash;
+    pcVar20 = pbVar45->hash;
+    pcVar21 = pbVar45->hash;
+    pcVar22 = pbVar45->hash;
+    pcVar23 = pbVar45->hash;
+    pbVar45 = (block *)(pbVar45->hash + 0xc);
+    iVar26 = uVar54 + (uint)(byte)pcVar18[4] +
+                      (uint)(byte)pcVar36[6] * 0x10000 + (uint)(byte)pcVar14[5] * 0x100 +
+                      (uint)(byte)pcVar20[7] * 0x1000000;
+    uVar57 = (uint)(byte)pcVar22[8] +
+             (uint)(byte)pcVar16[10] * 0x10000 + (uint)(byte)pcVar17[9] * 0x100 +
+             (uint)(byte)pcVar23[0xb] * 0x1000000 + uVar57;
+    uVar33 = uVar31 + ((((uint)(byte)*pcVar19 +
+                         (uint)(byte)pcVar13[2] * 0x10000 + (uint)(byte)pcVar15[1] * 0x100 +
+                        (uint)(byte)pcVar21[3] * 0x1000000) - iVar26) - uVar57) ^ uVar57 >> 0xd;
+    uVar31 = (iVar26 - uVar57) - uVar33 ^ uVar33 << 8;
+    uVar54 = (uVar57 - uVar33) - uVar31 ^ uVar31 >> 0xd;
+    uVar35 = (uVar33 - uVar31) - uVar54 ^ uVar54 >> 0xc;
+    uVar57 = (uVar31 - uVar54) - uVar35 ^ uVar35 << 0x10;
+    uVar33 = (uVar54 - uVar35) - uVar57 ^ uVar57 >> 5;
+    uVar31 = (uVar35 - uVar57) - uVar33 ^ uVar33 >> 3;
+    uVar54 = (uVar57 - uVar33) - uVar31 ^ uVar31 << 10;
+    uVar57 = (uVar33 - uVar31) - uVar54 ^ uVar54 >> 0xf;
   }
-  uVar41 = uVar41 + sVar31;
-  switch(uVar37) {
+  uVar57 = uVar57 + sVar27;
+  switch(uVar49) {
   case 0xb:
-    uVar41 = uVar41 + (uint)(byte)pbVar50->hash[10] * 0x1000000;
+    uVar57 = uVar57 + (uint)(byte)pbVar45->hash[10] * 0x1000000;
   case 10:
-    uVar41 = uVar41 + (uint)(byte)pbVar50->hash[9] * 0x10000;
+    uVar57 = uVar57 + (uint)(byte)pbVar45->hash[9] * 0x10000;
   case 9:
-    uVar41 = uVar41 + (uint)(byte)pbVar50->hash[8] * 0x100;
+    uVar57 = uVar57 + (uint)(byte)pbVar45->hash[8] * 0x100;
   case 8:
-    uVar57 = uVar57 + (uint)(byte)pbVar50->hash[7] * 0x1000000;
+    uVar54 = uVar54 + (uint)(byte)pbVar45->hash[7] * 0x1000000;
   case 7:
-    uVar57 = uVar57 + (uint)(byte)pbVar50->hash[6] * 0x10000;
+    uVar54 = uVar54 + (uint)(byte)pbVar45->hash[6] * 0x10000;
   case 6:
-    uVar57 = uVar57 + (uint)(byte)pbVar50->hash[5] * 0x100;
+    uVar54 = uVar54 + (uint)(byte)pbVar45->hash[5] * 0x100;
   case 5:
-    uVar57 = uVar57 + (byte)pbVar50->hash[4];
+    uVar54 = uVar54 + (byte)pbVar45->hash[4];
   case 4:
-    uVar34 = uVar34 + (uint)(byte)pbVar50->hash[3] * 0x1000000;
+    uVar31 = uVar31 + (uint)(byte)pbVar45->hash[3] * 0x1000000;
   case 3:
-    uVar34 = uVar34 + (uint)(byte)pbVar50->hash[2] * 0x10000;
+    uVar31 = uVar31 + (uint)(byte)pbVar45->hash[2] * 0x10000;
   case 2:
-    uVar34 = uVar34 + (uint)(byte)pbVar50->hash[1] * 0x100;
+    uVar31 = uVar31 + (uint)(byte)pbVar45->hash[1] * 0x100;
   case 1:
-    uVar34 = uVar34 + (byte)pbVar50->hash[0];
+    uVar31 = uVar31 + (byte)pbVar45->hash[0];
   }
-  uVar34 = (uVar34 - uVar57) - uVar41 ^ uVar41 >> 0xd;
-  uVar57 = (uVar57 - uVar41) - uVar34 ^ uVar34 << 8;
-  (pbVar29->hh).key = pbVar29;
-  uVar37 = (uVar41 - uVar34) - uVar57 ^ uVar57 >> 0xd;
-  uVar41 = (uVar34 - uVar57) - uVar37 ^ uVar37 >> 0xc;
-  uVar34 = (uVar57 - uVar37) - uVar41 ^ uVar41 << 0x10;
-  uVar57 = (uVar37 - uVar41) - uVar34 ^ uVar34 >> 5;
-  uVar41 = (uVar41 - uVar34) - uVar57 ^ uVar57 >> 3;
-  uVar34 = (uVar34 - uVar57) - uVar41 ^ uVar41 << 10;
-  uVar41 = (uVar57 - uVar41) - uVar34 ^ uVar34 >> 0xf;
-  (pbVar29->hh).hashv = uVar41;
-  sVar31 = strlen((char *)pbVar29);
-  (pbVar29->hh).keylen = sVar31;
-  if (pbVar28 == (block *)0x0) {
-    (pbVar29->hh).next = (void *)0x0;
-    (pbVar29->hh).prev = (void *)0x0;
-    blocks = pbVar29;
-    pUVar54 = (UT_hash_table *)malloc(0x2c);
-    (pbVar29->hh).tbl = pUVar54;
-    if (pUVar54 == (UT_hash_table *)0x0) goto LAB_00025764;
-    pUVar54->buckets = (UT_hash_bucket *)0x0;
-    pUVar54->num_buckets = 0;
-    pUVar54->log2_num_buckets = 0;
-    pUVar54->num_items = 0;
-    pUVar54->tail = (UT_hash_handle *)0x0;
-    pUVar54->hho = 0;
-    pUVar54->ideal_chain_maxlen = 0;
-    pUVar54->nonideal_items = 0;
-    pUVar54->ineff_expands = 0;
-    pUVar54->noexpand = 0;
-    pUVar54->signature = 0;
-    pUVar54 = (pbVar29->hh).tbl;
-    pUVar54->tail = &pbVar29->hh;
-    pUVar54->num_buckets = 0x20;
-    pUVar54->log2_num_buckets = 5;
-    pUVar54->hho = 0x44;
-    pUVar56 = (UT_hash_bucket *)malloc(0x180);
-    pUVar54->buckets = pUVar56;
-    if (pUVar56 == (UT_hash_bucket *)0x0) goto LAB_00025764;
-    memset(pUVar56,0,0x180);
-    pUVar54 = (pbVar29->hh).tbl;
-    pUVar54->signature = 0xa0111fe1;
+  uVar31 = (uVar31 - uVar54) - uVar57 ^ uVar57 >> 0xd;
+  uVar54 = (uVar54 - uVar57) - uVar31 ^ uVar31 << 8;
+  (__dest->hh).key = __dest;
+  uVar49 = (uVar57 - uVar31) - uVar54 ^ uVar54 >> 0xd;
+  uVar57 = (uVar31 - uVar54) - uVar49 ^ uVar49 >> 0xc;
+  uVar31 = (uVar54 - uVar49) - uVar57 ^ uVar57 << 0x10;
+  uVar54 = (uVar49 - uVar57) - uVar31 ^ uVar31 >> 5;
+  uVar57 = (uVar57 - uVar31) - uVar54 ^ uVar54 >> 3;
+  uVar31 = (uVar31 - uVar54) - uVar57 ^ uVar57 << 10;
+  uVar57 = (uVar54 - uVar57) - uVar31 ^ uVar31 >> 0xf;
+  (__dest->hh).hashv = uVar57;
+  sVar27 = strlen((char *)__dest);
+  (__dest->hh).keylen = sVar27;
+  if (pbVar52 == (block *)0x0) {
+    (__dest->hh).next = (void *)0x0;
+    (__dest->hh).prev = (void *)0x0;
+    blocks = __dest;
+    pUVar50 = (UT_hash_table *)malloc(0x2c);
+    (__dest->hh).tbl = pUVar50;
+    if (pUVar50 == (UT_hash_table *)0x0) goto LAB_00025764;
+    pUVar50->buckets = (UT_hash_bucket *)0x0;
+    pUVar50->num_buckets = 0;
+    pUVar50->log2_num_buckets = 0;
+    pUVar50->num_items = 0;
+    pUVar50->tail = (UT_hash_handle *)0x0;
+    pUVar50->hho = 0;
+    pUVar50->ideal_chain_maxlen = 0;
+    pUVar50->nonideal_items = 0;
+    pUVar50->ineff_expands = 0;
+    pUVar50->noexpand = 0;
+    pUVar50->signature = 0;
+    pUVar50 = (__dest->hh).tbl;
+    pUVar50->tail = &__dest->hh;
+    pUVar50->num_buckets = 0x20;
+    pUVar50->log2_num_buckets = 5;
+    pUVar50->hho = 0x44;
+    pUVar53 = (UT_hash_bucket *)malloc(0x180);
+    pUVar50->buckets = pUVar53;
+    if (pUVar53 == (UT_hash_bucket *)0x0) goto LAB_00025764;
+    memset(pUVar53,0,0x180);
+    pUVar50 = (__dest->hh).tbl;
+    pUVar50->signature = 0xa0111fe1;
   }
   else {
-    pUVar54 = (pbVar28->hh).tbl;
-    (pbVar29->hh).next = (void *)0x0;
-    (pbVar29->hh).tbl = pUVar54;
-    pUVar54 = (pbVar28->hh).tbl;
-    pUVar49 = pUVar54->tail;
-    iVar27 = pUVar54->hho;
-    pUVar49->next = pbVar29;
-    (pbVar29->hh).prev = (void *)((int)pUVar49 - iVar27);
-    pUVar54->tail = &pbVar29->hh;
+    pUVar50 = (pbVar52->hh).tbl;
+    (__dest->hh).next = (void *)0x0;
+    (__dest->hh).tbl = pUVar50;
+    pUVar50 = (pbVar52->hh).tbl;
+    pUVar44 = pUVar50->tail;
+    iVar26 = pUVar50->hho;
+    pUVar44->next = __dest;
+    (__dest->hh).prev = (void *)((int)pUVar44 - iVar26);
+    pUVar50->tail = &__dest->hh;
   }
-  pUVar56 = pUVar54->buckets;
-  uVar41 = uVar41 & pUVar54->num_buckets - 1;
-  pUVar54->num_items = pUVar54->num_items + 1;
-  pUVar49 = pUVar56[uVar41].hh_head;
-  uVar34 = pUVar56[uVar41].count + 1;
-  pUVar56[uVar41].count = uVar34;
-  (pbVar29->hh).hh_next = pUVar49;
-  (pbVar29->hh).hh_prev = (UT_hash_handle *)0x0;
-  if (pUVar49 != (UT_hash_handle *)0x0) {
-    pUVar49->hh_prev = &pbVar29->hh;
+  pUVar53 = pUVar50->buckets;
+  uVar57 = uVar57 & pUVar50->num_buckets - 1;
+  pUVar50->num_items = pUVar50->num_items + 1;
+  pUVar44 = pUVar53[uVar57].hh_head;
+  uVar31 = pUVar53[uVar57].count + 1;
+  pUVar53[uVar57].count = uVar31;
+  (__dest->hh).hh_next = pUVar44;
+  (__dest->hh).hh_prev = (UT_hash_handle *)0x0;
+  if (pUVar44 != (UT_hash_handle *)0x0) {
+    pUVar44->hh_prev = &__dest->hh;
   }
-  pUVar56[uVar41].hh_head = &pbVar29->hh;
-  iVar27 = pUVar56[uVar41].expand_mult + 1;
-  pbVar50 = (block *)(iVar27 * 5);
-  if ((uint)(iVar27 * 10) <= uVar34) {
-    pUVar54 = (pbVar29->hh).tbl;
-    pbVar50 = (block *)pUVar54->noexpand;
-    if (pbVar50 != (block *)0x1) {
-      sVar31 = pUVar54->num_buckets * 0x18;
-      pUVar56 = (UT_hash_bucket *)malloc(sVar31);
-      if (pUVar56 == (UT_hash_bucket *)0x0) {
+  pUVar53[uVar57].hh_head = &__dest->hh;
+  if (((pUVar53[uVar57].expand_mult + 1) * 10 <= uVar31) &&
+     (pUVar50 = (__dest->hh).tbl, pUVar50->noexpand != 1)) {
+    sVar27 = pUVar50->num_buckets * 0x18;
+    pUVar53 = (UT_hash_bucket *)malloc(sVar27);
+    if (pUVar53 == (UT_hash_bucket *)0x0) {
 LAB_00025764:
                     /* WARNING: Subroutine does not return */
-        exit(-1);
-      }
-      memset(pUVar56,0,sVar31);
-      pUVar54 = (pbVar29->hh).tbl;
-      uVar34 = pUVar54->num_buckets;
-      pUVar54->nonideal_items = 0;
-      uVar41 = pUVar54->num_items >> (pUVar54->log2_num_buckets + 1 & 0xff);
-      uVar57 = uVar34 * 2 - 1;
-      if ((uVar57 & pUVar54->num_items) != 0) {
-        uVar41 = uVar41 + 1;
-      }
-      pUVar54->ideal_chain_maxlen = uVar41;
-      if (uVar34 == 0) {
-        local_8ac = pUVar54->buckets;
-      }
-      else {
-        local_8ac = pUVar54->buckets;
-        local_8bc = 0;
-        do {
-          pUVar49 = *(UT_hash_handle **)((int)&local_8ac->hh_head + local_8bc);
-          while (pUVar49 != (UT_hash_handle *)0x0) {
-            pUVar38 = pUVar49->hh_next;
-            uVar39 = uVar57 & pUVar49->hashv;
-            uVar37 = pUVar56[uVar39].count + 1;
-            pUVar56[uVar39].count = uVar37;
-            if (uVar41 < uVar37) {
-              pUVar54->nonideal_items = pUVar54->nonideal_items + 1;
-              uVar37 = __aeabi_uidiv(uVar37,uVar41);
-              pUVar56[uVar39].expand_mult = uVar37;
-            }
-            pUVar61 = pUVar56[uVar39].hh_head;
-            pUVar49->hh_prev = (UT_hash_handle *)0x0;
-            pUVar49->hh_next = pUVar61;
-            if (pUVar61 != (UT_hash_handle *)0x0) {
-              pUVar61->hh_prev = pUVar49;
-            }
-            pUVar56[uVar39].hh_head = pUVar49;
-            pUVar49 = pUVar38;
+      exit(-1);
+    }
+    memset(pUVar53,0,sVar27);
+    pUVar50 = (__dest->hh).tbl;
+    uVar31 = pUVar50->num_buckets;
+    pUVar50->nonideal_items = 0;
+    uVar57 = pUVar50->num_items >> (pUVar50->log2_num_buckets + 1 & 0xff);
+    uVar54 = uVar31 * 2 - 1;
+    if ((uVar54 & pUVar50->num_items) != 0) {
+      uVar57 = uVar57 + 1;
+    }
+    pUVar50->ideal_chain_maxlen = uVar57;
+    if (uVar31 == 0) {
+      local_8ac = pUVar50->buckets;
+    }
+    else {
+      local_8ac = pUVar50->buckets;
+      local_8bc = 0;
+      do {
+        pUVar44 = *(UT_hash_handle **)((int)&local_8ac->hh_head + local_8bc);
+        while (pUVar44 != (UT_hash_handle *)0x0) {
+          pUVar34 = pUVar44->hh_next;
+          uVar33 = uVar54 & pUVar44->hashv;
+          uVar49 = pUVar53[uVar33].count + 1;
+          pUVar53[uVar33].count = uVar49;
+          if (uVar57 < uVar49) {
+            pUVar50->nonideal_items = pUVar50->nonideal_items + 1;
+            uVar49 = __aeabi_uidiv(uVar49,uVar57);
+            pUVar53[uVar33].expand_mult = uVar49;
           }
-          local_8bc = local_8bc + 0xc;
-        } while (local_8bc != uVar34 * 0xc);
-      }
-      free(local_8ac);
-      pUVar54 = (pbVar29->hh).tbl;
-      uVar34 = pUVar54->nonideal_items;
-      pbVar50 = (block *)pUVar54->num_items;
-      pUVar54->buckets = pUVar56;
-      pUVar54->log2_num_buckets = pUVar54->log2_num_buckets + 1;
-      uVar41 = uVar34;
-      if (uVar34 <= (uint)pbVar50 >> 1) {
-        uVar41 = 0;
-      }
-      pUVar54->num_buckets = pUVar54->num_buckets << 1;
-      if ((uint)pbVar50 >> 1 < uVar34) {
-        uVar34 = pUVar54->ineff_expands + 1;
-        pUVar54->ineff_expands = uVar34;
-        uVar41 = uVar34;
-        if (1 < uVar34) {
-          uVar41 = 1;
+          pUVar59 = pUVar53[uVar33].hh_head;
+          pUVar44->hh_prev = (UT_hash_handle *)0x0;
+          pUVar44->hh_next = pUVar59;
+          if (pUVar59 != (UT_hash_handle *)0x0) {
+            pUVar59->hh_prev = pUVar44;
+          }
+          pUVar53[uVar33].hh_head = pUVar44;
+          pUVar44 = pUVar34;
         }
-        if (1 < uVar34) {
-          pUVar54->noexpand = uVar41;
-        }
+        local_8bc = local_8bc + 0xc;
+      } while (local_8bc != uVar31 * 0xc);
+    }
+    free(local_8ac);
+    pUVar50 = (__dest->hh).tbl;
+    uVar54 = pUVar50->nonideal_items;
+    pUVar50->buckets = pUVar53;
+    uVar57 = pUVar50->num_items >> 1;
+    pUVar50->log2_num_buckets = pUVar50->log2_num_buckets + 1;
+    uVar31 = uVar54;
+    if (uVar54 <= uVar57) {
+      uVar31 = 0;
+    }
+    pUVar50->num_buckets = pUVar50->num_buckets << 1;
+    if (uVar57 < uVar54) {
+      uVar31 = pUVar50->ineff_expands + 1;
+      pUVar50->ineff_expands = uVar31;
+      uVar57 = uVar31;
+      if (1 < uVar31) {
+        uVar57 = 1;
       }
-      else {
-        pUVar54->ineff_expands = uVar41;
+      if (1 < uVar31) {
+        pUVar50->noexpand = uVar57;
       }
     }
+    else {
+      pUVar50->ineff_expands = uVar31;
+    }
   }
-  iVar27 = 0x1d - (uint)work->data[0x48];
-  uVar41 = iVar27 * 8;
-  dVar63 = DAT_000252e0;
-  if (7 < (int)uVar41) {
-    pbVar50 = (block *)0xffff;
-    dVar63 = (double)__aeabi_ul2d(0xffff << (uVar41 & 0xff),
-                                  0xffff << (uVar41 - 0x20 & 0xff) |
-                                  0xffffU >> (iVar27 * -8 + 0x20U & 0xff));
+  iVar26 = 0x1d - (uint)work->data[0x48];
+  uVar57 = iVar26 * 8;
+  if ((int)uVar57 < 8) {
+    dVar61 = 16776960.0;
   }
-  pdVar24 = DAT_000252e8;
-  uVar41 = *(uint *)(work->data + 0x48);
-  pbVar29 = (block *)((uVar41 >> 8 & 0xff) << 0x10 | (uVar41 >> 0x10 & 0xff) << 8 | uVar41 >> 0x18);
-  dVar63 = dVar63 / (double)(longlong)(int)pbVar29;
-  if (dVar63 != *DAT_000252e8) {
-    uVar64 = __fixunsdfdi(SUB84(dVar63,0),(int)((ulonglong)dVar63 >> 0x20));
-    pbVar50 = DAT_00025880;
-    suffix_string((ulonglong)in_stack_fffff734 << 0x20,(char *)uVar64,
-                  (size_t)((ulonglong)uVar64 >> 0x20),(int)DAT_00025880);
-    pcVar59 = DAT_00025860;
-    *pdVar24 = dVar63;
-    if (((*pcVar59 != '\0') || (*DAT_00025864 != '\0')) ||
-       (pbVar29 = *DAT_00025868, 4 < (int)pbVar29)) {
-      pbVar29 = DAT_00025880;
-      snprintf(tmp42,0x800,DAT_00025884);
-      pbVar50 = (block *)0x0;
+  else {
+    dVar61 = (double)__aeabi_ul2d(0xffff << (uVar57 & 0xff),
+                                  0xffff << (uVar57 - 0x20 & 0xff) |
+                                  0xffffU >> (iVar26 * -8 + 0x20U & 0xff));
+  }
+  uVar57 = *(uint *)(work->data + 0x48);
+  dVar61 = dVar61 / (double)(longlong)
+                            (int)((uVar57 >> 8 & 0xff) << 0x10 | (uVar57 >> 0x10 & 0xff) << 8 |
+                                 uVar57 >> 0x18);
+  if (dVar61 != current_diff) {
+    val = __fixunsdfdi(SUB84(dVar61,0),(int)((ulonglong)dVar61 >> 0x20));
+    suffix_string(val,block_diff,8,0);
+    current_diff = dVar61;
+    if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+      snprintf(tmp42,0x800,"Network diff set to %s",block_diff);
       _applog(5,tmp42,false);
     }
   }
   if (local_8b0 == (block *)0x0) {
-    cVar52 = '\0';
+    cVar47 = '\0';
   }
   else {
-    cVar52 = DAT_000252ec->hash[0];
-    pbVar29 = DAT_000252ec;
-    if (cVar52 != '\0') {
-      if ((*DAT_000252f0 == '\0') && (*DAT_000252f4 == '\0')) {
-        pbVar29 = *DAT_000252f8;
-        cVar52 = '\0';
-        if ((int)pbVar29 < 7) goto LAB_00025122;
-      }
-      cVar52 = '\0';
-      pbVar29 = local_8b0;
-      snprintf(tmp42,0x800,DAT_000252fc);
-      pbVar50 = (block *)0x0;
+    cVar47 = opt_debug;
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (cVar47 = '\0', 6 < opt_log_level))))
+    {
+      cVar47 = '\0';
+      snprintf(tmp42,0x800,"Deleted block %d from database",local_8b0);
       _applog(7,tmp42,false);
     }
   }
 LAB_00025122:
-  iVar27 = pthread_rwlock_unlock(DAT_00025300);
-  if (iVar27 != 0) {
-    _rw_unlock(DAT_00025890,(char *)0x1585,pbVar50->hash,(int)pbVar29);
+  iVar26 = pthread_rwlock_unlock((pthread_rwlock_t *)&blk_lock);
+  if (iVar26 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"block_exists",(char *)0x1585,func_04,line_04);
   }
-  p_Var42 = selective_yield;
   (*selective_yield)();
-  if (cVar52 == '\0') {
-    iVar27 = pthread_mutex_lock(DAT_000255a0);
-    if (iVar27 != 0) {
-      _mutex_lock((pthread_mutex_t *)DAT_00025894,(char *)0x1528,pbVar50->hash,(int)p_Var42);
+  if (cVar47 == '\0') {
+    iVar26 = pthread_mutex_lock((pthread_mutex_t *)&ch_lock);
+    if (iVar26 != 0) {
+      _mutex_lock((pthread_mutex_t *)"set_curblock",(char *)0x1528,func_05,line_05);
     }
-    iVar27 = pthread_rwlock_wrlock(DAT_000255a4);
-    if (iVar27 != 0) {
-      _wr_lock(DAT_00025894,(char *)0x1528,pbVar50->hash,(int)p_Var42);
+    iVar26 = pthread_rwlock_wrlock((pthread_rwlock_t *)&ch_lock.rwlock);
+    if (iVar26 != 0) {
+      _wr_lock((pthread_rwlock_t *)"set_curblock",(char *)0x1528,func_06,line_06);
     }
-    ppVar53 = DAT_000255ac;
-    ptVar25 = DAT_000255a8;
-    cgtime(DAT_000255a8);
-    strcpy(DAT_000255b0,hexstr);
-    _cg_memcpy(DAT_000255b4,bedata,0x20,DAT_00025588,ppVar53->__size,0x152b);
-    iVar27 = ptVar25->tv_usec;
-    tmp_time = ptVar25->tv_sec;
-    ptVar33 = localtime(&tmp_time);
-    line = ptVar33->tm_hour;
-    pcVar59 = DAT_000255bc;
-    snprintf(DAT_000255b8,0x20,DAT_000255bc,line,ptVar33->tm_min,ptVar33->tm_sec,iVar27 / 1000);
-    iVar27 = pthread_rwlock_unlock(DAT_000255a4);
-    if (iVar27 != 0) {
-      _rw_unlock(ppVar53,(char *)0x152d,pcVar59,line);
+    cgtime(&block_timeval);
+    strcpy(current_hash,hexstr);
+    _cg_memcpy(current_block,bedata,0x20,"cgminer.c","set_curblock",0x152b);
+    local_898 = block_timeval.tv_sec;
+    iVar26 = block_timeval.tv_usec / 1000;
+    ptVar30 = localtime(&local_898);
+    snprintf(blocktime,0x20,"[%02d:%02d:%02d.%03d]",ptVar30->tm_hour,ptVar30->tm_min,ptVar30->tm_sec
+             ,iVar26);
+    iVar26 = pthread_rwlock_unlock((pthread_rwlock_t *)&ch_lock.rwlock);
+    if (iVar26 != 0) {
+      _rw_unlock((pthread_rwlock_t *)"set_curblock",(char *)0x152d,func_07,line_07);
     }
-    iVar27 = pthread_mutex_unlock(DAT_000255a0);
-    if (iVar27 != 0) {
-      _mutex_unlock_noyield((pthread_mutex_t *)DAT_00025894,(char *)0x152d,pcVar59,line);
+    iVar26 = pthread_mutex_unlock((pthread_mutex_t *)&ch_lock);
+    if (iVar26 != 0) {
+      _mutex_unlock_noyield((pthread_mutex_t *)"set_curblock",(char *)0x152d,func_08,line_08);
     }
     (*selective_yield)();
-    iVar27 = 0;
+    iVar26 = 0;
     do {
-      if (DAT_000255b0[iVar27] != '0') break;
-      iVar27 = iVar27 + 1;
-    } while (iVar27 != 0x39);
-    strncpy(DAT_000255c0,DAT_000255b0 + iVar27,8);
+      if (current_hash[iVar26] != '0') break;
+      iVar26 = iVar26 + 1;
+    } while (iVar26 != 0x39);
+    strncpy(prev_block,current_hash + iVar26,8);
     prev_block[8] = '\0';
-    if (((*DAT_00025590 != '\0') || (*DAT_00025594 != '\0')) || (5 < *DAT_00025598)) {
-      snprintf(tmp42,0x800,DAT_000255c8,DAT_000255b0,DAT_000255c4);
+    if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
+      snprintf(tmp42,0x800,"New block: %s... diff %s",current_hash,block_diff);
       _applog(6,tmp42,false);
     }
   }
-  if (((local_8b0 != (block *)0x0) && (DAT_000252ec->hash[0] != '\0')) &&
-     ((*DAT_000252f0 != '\0' || ((*DAT_000252f4 != '\0' || (6 < (int)*DAT_000252f8)))))) {
-    snprintf(tmp42,0x800,DAT_000252fc,local_8b0);
+  if (((local_8b0 != (block *)0x0) && (opt_debug != false)) &&
+     ((use_syslog != false || ((opt_log_output != false || (6 < opt_log_level)))))) {
+    snprintf(tmp42,0x800,"Deleted block %d from database",local_8b0);
     _applog(7,tmp42,false);
   }
-  if (cVar52 != '\0') {
-    cVar52 = '\x01';
-    iVar27 = memcmp(ppVar47->prev_block,bedata,0x20);
-    if (iVar27 != 0) {
-      iVar27 = memcmp(bedata,DAT_00025304,0x20);
-      if (iVar27 == 0) {
-        if (((*DAT_00025590 != '\0') || (*DAT_00025594 != '\0')) || (5 < *DAT_00025598)) {
-          snprintf(tmp42,0x800,DAT_000255d0,ppVar47->pool_no,height);
+  if (cVar47 != '\0') {
+    iVar26 = memcmp(ppVar42->prev_block,bedata,0x20);
+    uVar48 = 1;
+    if (iVar26 != 0) {
+      iVar26 = memcmp(bedata,current_block,0x20);
+      if (iVar26 == 0) {
+        if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
+          snprintf(tmp42,0x800,"Pool %d now up to date at height %d",ppVar42->pool_no,height);
           _applog(6,tmp42,false);
         }
-        cVar52 = '\x01';
-        _cg_memcpy(ppVar47->prev_block,bedata,0x20,DAT_00025588,DAT_00025584,0x15f0);
+        uVar48 = 1;
+        _cg_memcpy(ppVar42->prev_block,bedata,0x20,"cgminer.c","test_work_current",0x15f0);
       }
       else {
-        cVar52 = DAT_000252ec->hash[0];
-        if ((cVar52 != '\0') &&
-           (((*DAT_000252f0 != '\0' || (*DAT_000252f4 != '\0')) ||
-            (cVar52 = '\0', 6 < (int)*DAT_000252f8)))) {
-          cVar52 = '\0';
-          snprintf(tmp42,0x800,DAT_00025308,ppVar47->pool_no,height);
+        uVar48 = opt_debug;
+        if ((opt_debug != false) &&
+           (((use_syslog != false || (opt_log_output != false)) || (uVar48 = 0, 6 < opt_log_level)))
+           ) {
+          uVar48 = 0;
+          snprintf(tmp42,0x800,"Stale data from pool %d at height %d",ppVar42->pool_no,height);
           _applog(7,tmp42,false);
         }
       }
     }
     if (work->longpoll != false) {
-      uVar41 = pool_strategy + ~POOL_ROTATE;
+      uVar57 = pool_strategy - POOL_LOADBALANCE;
       work_block = work_block + 1;
       work->work_block = work_block;
-      if ((uVar41 < 2) || (ppVar51 = work->pool, ppVar32 = current_pool(), ppVar51 == ppVar32)) {
+      if ((uVar57 < 2) || (ppVar46 = work->pool, ppVar29 = current_pool(), ppVar46 == ppVar29)) {
         if (work->stratum == false) {
-          if (((*DAT_00025860 != '\0') || (*DAT_00025864 != '\0')) || (4 < (int)*DAT_00025868)) {
-            iVar27 = DAT_00025870;
+          if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+            puVar41 = &DAT_00046bb8;
             if (work->gbt != false) {
-              iVar27 = DAT_0002586c;
+              puVar41 = &DAT_0004d014;
             }
-            snprintf(tmp42,0x800,DAT_00025874,iVar27,work->pool->pool_no);
+            snprintf(tmp42,0x800,"%sLONGPOLL from pool %d requested work restart",puVar41,
+                     work->pool->pool_no);
             _applog(5,tmp42,false);
           }
         }
-        else if (((*DAT_00025590 != '\0') || (*DAT_00025594 != '\0')) || (4 < *DAT_00025598)) {
-          snprintf(tmp42,0x800,DAT_000255cc,ppVar47->pool_no);
+        else if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+          snprintf(tmp42,0x800,"Stratum from pool %d requested work restart",ppVar42->pool_no);
           _applog(5,tmp42,false);
         }
         restart_threads();
       }
     }
-    goto out;
+    goto LAB_00025212;
   }
-  _cg_memcpy(ppVar47->prev_block,bedata,0x20,DAT_00025588,DAT_00025584,0x15be);
-  cVar52 = '\0';
-  if (*DAT_0002558c == 1) goto out;
+  _cg_memcpy(ppVar42->prev_block,bedata,0x20,"cgminer.c","test_work_current",0x15be);
+  uVar24 = tmp42._28_4_;
+  uVar48 = 0;
+  if (new_blocks == 1) goto LAB_00025212;
   work_block = work_block + 1;
   work->work_block = work_block;
   if (work->longpoll == false) {
-    if (*DAT_000255d4 == '\0') {
-      if ((ppVar47->gbt_solo == false) &&
-         (((*DAT_00025860 != '\0' || (*DAT_00025864 != '\0')) || (4 < (int)*DAT_00025868)))) {
-        tmp42._0_4_ = *DAT_0002587c;
-        tmp42._4_4_ = DAT_0002587c[1];
-        tmp42._8_4_ = DAT_0002587c[2];
-        tmp42._12_4_ = DAT_0002587c[3];
-        tmp42._16_4_ = DAT_0002587c[4];
-        tmp42._20_4_ = DAT_0002587c[5];
-        tmp42._24_4_ = DAT_0002587c[6];
-        tmp42[28] = (char)(short)DAT_0002587c[7];
-        tmp42[29] = (char)((ushort)(short)DAT_0002587c[7] >> 8);
+    if (have_longpoll == false) {
+      if ((ppVar42->gbt_solo == false) &&
+         (((use_syslog != false || (opt_log_output != false)) || (4 < opt_log_level)))) {
+        builtin_strncpy(tmp42,"New block detected on network",0x1e);
+        tmp42._30_2_ = SUB42(uVar24,2);
         _applog(5,tmp42,false);
       }
     }
-    else if ((ppVar47->gbt_solo == false) &&
-            (((*DAT_00025590 != '\0' || (*DAT_00025594 != '\0')) || (4 < *DAT_00025598)))) {
-      tmp42._0_4_ = *DAT_000255d8;
-      tmp42._4_4_ = DAT_000255d8[1];
-      tmp42._8_4_ = DAT_000255d8[2];
-      tmp42._12_4_ = DAT_000255d8[3];
-      tmp42._16_4_ = DAT_000255d8[4];
-      tmp42._20_4_ = DAT_000255d8[5];
-      tmp42._24_4_ = DAT_000255d8[6];
-      tmp42._28_4_ = DAT_000255d8[7];
-      tmp42._32_4_ = DAT_000255d8[8];
-      tmp42._36_4_ = DAT_000255d8[9];
-      tmp42._40_4_ = DAT_000255d8[10];
-      tmp42._44_4_ = DAT_000255d8[0xb];
-      tmp42._48_4_ = DAT_000255d8[0xc];
-      tmp42._52_2_ = (undefined2)DAT_000255d8[0xd];
-      tmp42[54] = (char)((uint)DAT_000255d8[0xd] >> 0x10);
+    else if ((ppVar42->gbt_solo == false) &&
+            (((use_syslog != false || (opt_log_output != false)) || (4 < opt_log_level)))) {
+      builtin_strncpy(tmp42,"New block detected on network before pool notificati",0x34);
+      tmp42[0x34] = 'o';
+      tmp42[0x35] = 'n';
+      tmp42[0x36] = '\0';
       _applog(5,tmp42,false);
     }
   }
   else if (work->stratum == false) {
-    if (((*DAT_00025860 != '\0') || (*DAT_00025864 != '\0')) || (4 < (int)*DAT_00025868)) {
-      uVar41 = work->pool->pool_no;
-      pcVar59 = DAT_00025878;
-      iVar27 = DAT_00025870;
+    if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+      puVar41 = &DAT_00046bb8;
+      uVar57 = work->pool->pool_no;
+      pcVar36 = "%sLONGPOLL from pool %d detected new block";
       if (work->gbt != false) {
-        iVar27 = DAT_0002586c;
+        puVar41 = &DAT_0004d014;
       }
       goto LAB_00025386;
     }
   }
-  else if (((*DAT_00025590 != '\0') || (*DAT_00025594 != '\0')) || (4 < *DAT_00025598)) {
-    pcVar59 = DAT_0002559c;
-    iVar27 = ppVar47->pool_no;
-    uVar41 = height;
+  else if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
+    pcVar36 = "Stratum from pool %d detected new block at height %d";
+    puVar41 = (undefined1 *)ppVar42->pool_no;
+    uVar57 = height;
 LAB_00025386:
-    snprintf(tmp42,0x800,pcVar59,iVar27,uVar41);
+    snprintf(tmp42,0x800,pcVar36,puVar41,uVar57);
     _applog(5,tmp42,false);
   }
   restart_threads();
-  cVar52 = '\x01';
-out:
+  uVar48 = 1;
+LAB_00025212:
   work->longpoll = false;
-  return (_Bool)cVar52;
+  return (_Bool)uVar48;
 }
 

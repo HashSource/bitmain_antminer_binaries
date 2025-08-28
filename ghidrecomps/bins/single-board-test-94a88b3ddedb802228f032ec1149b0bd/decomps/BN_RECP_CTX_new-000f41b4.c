@@ -6,7 +6,7 @@ BN_RECP_CTX * BN_RECP_CTX_new(void)
 {
   BN_RECP_CTX *pBVar1;
   
-  pBVar1 = (BN_RECP_CTX *)CRYPTO_malloc(0x34,DAT_000f41dc,0x4b);
+  pBVar1 = (BN_RECP_CTX *)CRYPTO_malloc(0x34,"bn_recp.c",0x4b);
   if (pBVar1 != (BN_RECP_CTX *)0x0) {
     BN_init((BIGNUM *)pBVar1);
     BN_init(&pBVar1->Nr);

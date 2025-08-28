@@ -18,10 +18,10 @@ undefined4 isTempTooLow(void)
       if (*(int *)(lowest_testOK_temp + iVar5 * 4) < 1) {
         if (iVar1 < 0x50) {
           if (3 < log_level) {
-            pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+            pFVar2 = fopen(log_file,"a+");
             if (pFVar2 != (FILE *)0x0) {
               fprintf(pFVar2,"%s:%d:%s: Detect temp too low: Chain[%d] curtemp=%d\n",
-                      "driver-btm-c5.c",0xc03,DAT_0002f6ec,iVar5,
+                      "driver-btm-c5.c",0xc03,"isTempTooLow",iVar5,
                       (int)*(short *)(dev + iVar5 * 0x40 + 0x570));
             }
             fclose(pFVar2);
@@ -31,11 +31,11 @@ undefined4 isTempTooLow(void)
       }
       else if (iVar1 < *(int *)(lowest_testOK_temp + iVar5 * 4)) {
         if (3 < log_level) {
-          pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
             fprintf(pFVar2,
                     "%s:%d:%s: Detect temp too low: Chain[%d] lowest_testOK_temp=%d curtemp=%d\n",
-                    "driver-btm-c5.c",0xc0a,DAT_0002f6ec,iVar5,
+                    "driver-btm-c5.c",0xc0a,"isTempTooLow",iVar5,
                     *(undefined4 *)(lowest_testOK_temp + iVar5 * 4),
                     (int)*(short *)(dev + iVar5 * 0x40 + 0x570));
           }

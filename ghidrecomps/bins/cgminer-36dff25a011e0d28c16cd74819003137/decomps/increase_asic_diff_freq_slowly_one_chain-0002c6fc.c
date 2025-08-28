@@ -41,7 +41,7 @@ void increase_asic_diff_freq_slowly_one_chain
             uVar2 = asic_diff_freq[asic_00];
           }
           asic_freq = start_freq + uVar2;
-          change_high_pll_by_aisc(chain,asic_00,(float)(ulonglong)asic_freq,0);
+          change_high_pll_by_aisc(chain,asic_00,(float)asic_freq,0);
         }
       }
       usleep(100000);

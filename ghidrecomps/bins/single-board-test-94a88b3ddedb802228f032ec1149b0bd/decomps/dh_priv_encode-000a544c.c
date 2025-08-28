@@ -12,7 +12,7 @@ undefined4 dh_priv_encode(PKCS8_PRIV_KEY_INFO *param_1,int param_2)
   a = ASN1_STRING_new();
   iVar1 = 0x10b;
   if (a != (ASN1_STRING *)0x0) {
-    if (*(int *)(param_2 + 0xc) == DAT_000a550c) {
+    if (*(undefined1 **)(param_2 + 0xc) == &dhx_asn1_meth) {
       iVar1 = i2d_DHxparams();
     }
     else {
@@ -23,7 +23,7 @@ undefined4 dh_priv_encode(PKCS8_PRIV_KEY_INFO *param_1,int param_2)
       a->type = 0x10;
       a_00 = BN_to_ASN1_INTEGER(*(BIGNUM **)(*(int *)(param_2 + 0x14) + 0x18),(ASN1_INTEGER *)0x0);
       if (a_00 == (ASN1_INTEGER *)0x0) {
-        ERR_put_error(5,0x6f,0x6a,DAT_000a5510,0x11a);
+        ERR_put_error(5,0x6f,0x6a,"dh_ameth.c",0x11a);
       }
       else {
         iVar1 = i2d_ASN1_INTEGER(a_00,local_24);
@@ -38,7 +38,7 @@ undefined4 dh_priv_encode(PKCS8_PRIV_KEY_INFO *param_1,int param_2)
     }
     iVar1 = 0x111;
   }
-  ERR_put_error(5,0x6f,0x41,DAT_000a5510,iVar1);
+  ERR_put_error(5,0x6f,0x41,"dh_ameth.c",iVar1);
 LAB_000a54c2:
   if (local_24[0] != (uchar *)0x0) {
     CRYPTO_free(local_24[0]);

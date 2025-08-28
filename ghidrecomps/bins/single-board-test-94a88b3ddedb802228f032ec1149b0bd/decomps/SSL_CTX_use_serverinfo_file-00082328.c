@@ -16,21 +16,15 @@ void * SSL_CTX_use_serverinfo_file(int param_1,void *param_2)
   size_t local_44;
   char *local_40;
   char *local_3c;
-  undefined4 local_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
+  char local_38 [20];
   
-  local_38 = *DAT_00082534;
-  uStack_34 = DAT_00082534[1];
-  uStack_30 = DAT_00082534[2];
-  uStack_2c = DAT_00082534[3];
   local_48 = (uchar *)0x0;
   local_44 = 0;
+  builtin_strncpy(local_38,"SERVERINFO FOR ",0x10);
   local_40 = (char *)0x0;
   local_3c = (char *)0x0;
   if (param_1 == 0 || param_2 == (void *)0x0) {
-    ERR_put_error(0x14,0x151,0x43,DAT_00082538,0x3a4);
+    ERR_put_error(0x14,0x151,0x43,"ssl_rsa.c",0x3a4);
   }
   else {
     addr = (void *)0x0;
@@ -39,7 +33,7 @@ void * SSL_CTX_use_serverinfo_file(int param_1,void *param_2)
     if (bp != (BIO *)0x0) {
       lVar1 = BIO_ctrl(bp,0x6c,3,param_2);
       if (lVar1 < 1) {
-        ERR_put_error(0x14,0x151,2,DAT_00082538,0x3ae);
+        ERR_put_error(0x14,0x151,2,"ssl_rsa.c",0x3ae);
         pvVar5 = addr;
       }
       else {
@@ -49,27 +43,27 @@ void * SSL_CTX_use_serverinfo_file(int param_1,void *param_2)
               pcVar3 = local_40, iVar4 != 0) {
           pvVar5 = (void *)((int)pvVar5 + 1);
           sVar2 = strlen(local_40);
-          __n = strlen((char *)&local_38);
+          __n = strlen(local_38);
           if (sVar2 < __n) {
-            ERR_put_error(0x14,0x151,0x188,DAT_00082538,0x3c2);
+            ERR_put_error(0x14,0x151,0x188,"ssl_rsa.c",0x3c2);
             pvVar5 = (void *)0x0;
             goto LAB_0008249e;
           }
-          pcVar3 = (char *)strncmp(pcVar3,(char *)&local_38,__n);
+          pcVar3 = (char *)strncmp(pcVar3,local_38,__n);
           if (pcVar3 != (char *)0x0) {
-            ERR_put_error(0x14,0x151,0x187,DAT_00082538,0x3c7);
+            ERR_put_error(0x14,0x151,0x187,"ssl_rsa.c",0x3c7);
             pvVar5 = (void *)0x0;
             goto LAB_0008249e;
           }
           if (((int)local_44 < 4) || ((uint)local_48[3] + (uint)local_48[2] * 0x100 != local_44 - 4)
              ) {
-            ERR_put_error(0x14,0x151,0x186,DAT_00082538,0x3cf);
+            ERR_put_error(0x14,0x151,0x186,"ssl_rsa.c",0x3cf);
             pvVar5 = (void *)0x0;
             goto LAB_0008249e;
           }
-          addr = CRYPTO_realloc(addr,local_44 + (int)pvVar6,DAT_00082538,0x3d4);
+          addr = CRYPTO_realloc(addr,local_44 + (int)pvVar6,"ssl_rsa.c",0x3d4);
           if (addr == (void *)0x0) {
-            ERR_put_error(0x14,0x151,0x41,DAT_00082538,0x3d6);
+            ERR_put_error(0x14,0x151,0x41,"ssl_rsa.c",0x3d6);
             pvVar5 = (void *)0x0;
             goto LAB_0008249e;
           }
@@ -83,7 +77,7 @@ void * SSL_CTX_use_serverinfo_file(int param_1,void *param_2)
           local_48 = (uchar *)0x0;
         }
         if (pvVar5 == (void *)0x0) {
-          ERR_put_error(0x14,0x151,0x185,DAT_00082538,0x3ba);
+          ERR_put_error(0x14,0x151,0x185,"ssl_rsa.c",0x3ba);
           pvVar5 = (void *)0x0;
         }
         else {
@@ -98,7 +92,7 @@ LAB_0008249e:
       BIO_free(bp);
       return pvVar5;
     }
-    ERR_put_error(0x14,0x151,7,DAT_00082538,0x3aa);
+    ERR_put_error(0x14,0x151,7,"ssl_rsa.c",0x3aa);
   }
   CRYPTO_free(local_40);
   CRYPTO_free(local_3c);

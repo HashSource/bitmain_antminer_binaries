@@ -26,7 +26,7 @@ int X509_ATTRIBUTE_set1_data(X509_ATTRIBUTE *attr,int attrtype,void *data,int le
     iVar3 = OBJ_obj2nid(attr->object);
     str = ASN1_STRING_set_by_NID((ASN1_STRING **)0x0,(uchar *)data,len,attrtype,iVar3);
     if (str == (ASN1_STRING *)0x0) {
-      ERR_put_error(0xb,0x8a,0xd,DAT_0010bb34,0x134);
+      ERR_put_error(0xb,0x8a,0xd,"x509_att.c",0x134);
       return 0;
     }
     iVar3 = str->type;
@@ -54,7 +54,7 @@ int X509_ATTRIBUTE_set1_data(X509_ATTRIBUTE *attr,int attrtype,void *data,int le
     }
   }
 LAB_0010ba94:
-  ERR_put_error(0xb,0x8a,0x41,DAT_0010bb34,0x154);
+  ERR_put_error(0xb,0x8a,0x41,"x509_att.c",0x154);
   return 0;
 }
 

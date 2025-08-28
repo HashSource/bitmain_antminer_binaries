@@ -32,7 +32,7 @@ COMP_CTX * ssl3_change_cipher_state(int param_1,uint param_2)
   cipher = *(EVP_CIPHER **)(iVar5 + 0x37c);
   uVar11 = *(uint *)(*(int *)(iVar5 + 0x344) + 0x20);
   if (pEVar8 == (EVP_MD *)0x0) {
-    OpenSSLDie(DAT_0006adcc,0xeb,DAT_0006add0);
+    OpenSSLDie("s3_enc.c",0xeb,"m");
     iVar5 = *(int *)(param_1 + 0x58);
   }
   meth = *(COMP_METHOD **)(iVar5 + 0x38c);
@@ -42,7 +42,7 @@ COMP_CTX * ssl3_change_cipher_state(int param_1,uint param_2)
   if ((param_2 & 1) == 0) {
     pEVar7 = *(EVP_CIPHER_CTX **)(param_1 + 0x8c);
     if (pEVar7 == (EVP_CIPHER_CTX *)0x0) {
-      pEVar7 = (EVP_CIPHER_CTX *)CRYPTO_malloc(0x8c,DAT_0006adcc,0x11b);
+      pEVar7 = (EVP_CIPHER_CTX *)CRYPTO_malloc(0x8c,"s3_enc.c",0x11b);
       *(EVP_CIPHER_CTX **)(param_1 + 0x8c) = pEVar7;
       if (pEVar7 == (EVP_CIPHER_CTX *)0x0) goto LAB_0006ad8a;
       EVP_CIPHER_CTX_init(pEVar7);
@@ -67,14 +67,14 @@ COMP_CTX * ssl3_change_cipher_state(int param_1,uint param_2)
       }
     }
     iVar5 = *(int *)(param_1 + 0x58);
-    *(undefined *)(iVar5 + 0x54) = 0;
-    *(undefined *)(iVar5 + 0x55) = 0;
-    *(undefined *)(iVar5 + 0x56) = 0;
-    *(undefined *)(iVar5 + 0x57) = 0;
-    *(undefined *)(iVar5 + 0x58) = 0;
-    *(undefined *)(iVar5 + 0x59) = 0;
-    *(undefined *)(iVar5 + 0x5a) = 0;
-    *(undefined *)(iVar5 + 0x5b) = 0;
+    *(undefined1 *)(iVar5 + 0x54) = 0;
+    *(undefined1 *)(iVar5 + 0x55) = 0;
+    *(undefined1 *)(iVar5 + 0x56) = 0;
+    *(undefined1 *)(iVar5 + 0x57) = 0;
+    *(undefined1 *)(iVar5 + 0x58) = 0;
+    *(undefined1 *)(iVar5 + 0x59) = 0;
+    *(undefined1 *)(iVar5 + 0x5a) = 0;
+    *(undefined1 *)(iVar5 + 0x5b) = 0;
     iVar5 = *(int *)(param_1 + 0x58);
     local_9c = (void *)(iVar5 + 0x60);
     if (bVar10) goto LAB_0006ac40;
@@ -82,7 +82,7 @@ COMP_CTX * ssl3_change_cipher_state(int param_1,uint param_2)
   else {
     pEVar7 = *(EVP_CIPHER_CTX **)(param_1 + 0x80);
     if (pEVar7 == (EVP_CIPHER_CTX *)0x0) {
-      pEVar7 = (EVP_CIPHER_CTX *)CRYPTO_malloc(0x8c,DAT_0006adcc,0xf7);
+      pEVar7 = (EVP_CIPHER_CTX *)CRYPTO_malloc(0x8c,"s3_enc.c",0xf7);
       *(EVP_CIPHER_CTX **)(param_1 + 0x80) = pEVar7;
       if (pEVar7 == (EVP_CIPHER_CTX *)0x0) goto LAB_0006ad8a;
       EVP_CIPHER_CTX_init(pEVar7);
@@ -106,29 +106,29 @@ COMP_CTX * ssl3_change_cipher_state(int param_1,uint param_2)
       *(COMP_CTX **)(param_1 + 0x88) = pCVar1;
       if (pCVar1 == (COMP_CTX *)0x0) {
 LAB_0006adba:
-        ERR_put_error(0x14,0x81,0x8e,DAT_0006adcc,iVar5);
+        ERR_put_error(0x14,0x81,0x8e,"s3_enc.c",iVar5);
         return pCVar1;
       }
       iVar5 = *(int *)(param_1 + 0x58);
       if (*(int *)(iVar5 + 0x120) == 0) {
-        pvVar9 = CRYPTO_malloc(0x4000,DAT_0006adcc,0x110);
+        pvVar9 = CRYPTO_malloc(0x4000,"s3_enc.c",0x110);
         *(void **)(iVar5 + 0x120) = pvVar9;
         iVar5 = *(int *)(param_1 + 0x58);
         if (*(int *)(iVar5 + 0x120) == 0) {
 LAB_0006ad8a:
-          ERR_put_error(0x14,0x81,0x41,DAT_0006adcc,399);
+          ERR_put_error(0x14,0x81,0x41,"s3_enc.c",399);
           return (COMP_CTX *)0x0;
         }
       }
     }
-    *(undefined *)(iVar5 + 8) = 0;
-    *(undefined *)(iVar5 + 9) = 0;
-    *(undefined *)(iVar5 + 10) = 0;
-    *(undefined *)(iVar5 + 0xb) = 0;
-    *(undefined *)(iVar5 + 0xc) = 0;
-    *(undefined *)(iVar5 + 0xd) = 0;
-    *(undefined *)(iVar5 + 0xe) = 0;
-    *(undefined *)(iVar5 + 0xf) = 0;
+    *(undefined1 *)(iVar5 + 8) = 0;
+    *(undefined1 *)(iVar5 + 9) = 0;
+    *(undefined1 *)(iVar5 + 10) = 0;
+    *(undefined1 *)(iVar5 + 0xb) = 0;
+    *(undefined1 *)(iVar5 + 0xc) = 0;
+    *(undefined1 *)(iVar5 + 0xd) = 0;
+    *(undefined1 *)(iVar5 + 0xe) = 0;
+    *(undefined1 *)(iVar5 + 0xf) = 0;
     iVar5 = *(int *)(param_1 + 0x58);
     local_9c = (void *)(iVar5 + 0x14);
     if (bVar10) {
@@ -170,7 +170,7 @@ LAB_0006ac40:
     __src = pvVar9;
     if (*(int *)(iVar4 + 0x374) < iVar3 + iVar5 * 2) {
 LAB_0006ac74:
-      ERR_put_error(0x14,0x81,0x44,DAT_0006adcc,0x15a);
+      ERR_put_error(0x14,0x81,0x44,"s3_enc.c",0x15a);
       return (COMP_CTX *)0x0;
     }
   }

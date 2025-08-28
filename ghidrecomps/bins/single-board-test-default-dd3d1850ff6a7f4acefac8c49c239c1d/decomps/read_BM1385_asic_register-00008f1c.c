@@ -1,5 +1,5 @@
 
-void read_BM1385_asic_register(undefined param_1,byte param_2,byte param_3,char param_4)
+void read_BM1385_asic_register(undefined1 param_1,byte param_2,byte param_3,char param_4)
 
 {
   byte local_c;

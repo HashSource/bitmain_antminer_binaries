@@ -13,7 +13,6 @@ void __work_completed(cgpu_info *cgpu,work *work)
   UT_hash_table *pUVar7;
   UT_hash_bucket *pUVar8;
   work *pwVar9;
-  UT_hash_handle *_hd_hh_del;
   work *pwVar10;
   bool bVar11;
   

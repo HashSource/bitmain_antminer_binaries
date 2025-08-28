@@ -1,5 +1,4 @@
 
-/* WARNING: Variable defined which should be unmapped: total_thashes */
 /* WARNING: Unknown calling convention */
 
 void * store_hash_rate(void)
@@ -14,7 +13,7 @@ void * store_hash_rate(void)
   do {
     counter = counter + 1;
     dVar1 = get_total_hashs();
-    store_mhashrate_history((dVar1 / DAT_00060b78) / DAT_00060b78);
+    store_mhashrate_history((dVar1 / 1000.0) / 1000.0);
     show_hashrate_history();
     sleep(0x3c);
     if (counter % 0x1e == 0) {

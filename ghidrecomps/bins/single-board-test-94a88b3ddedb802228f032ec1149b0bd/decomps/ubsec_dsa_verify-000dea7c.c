@@ -2,9 +2,9 @@
 int ubsec_dsa_verify(uchar *param_1,int param_2,DSA_SIG *param_3,DSA *param_4)
 
 {
-  BIGNUM *pBVar1;
-  undefined4 uVar2;
-  int iVar3;
+  code *pcVar1;
+  BIGNUM *pBVar2;
+  undefined4 uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
@@ -18,73 +18,64 @@ int ubsec_dsa_verify(uchar *param_1,int param_2,DSA_SIG *param_3,DSA *param_4)
   ulong *puVar14;
   ulong *puVar15;
   ulong *puVar16;
-  code *pcVar17;
-  ulong *puVar18;
+  ulong *puVar17;
   int local_40;
   BIGNUM local_3c;
   
   BN_init(&local_3c);
-  pBVar1 = param_4->p;
-  if (local_3c.dmax < pBVar1->top) {
-    pBVar1 = bn_expand2(&local_3c,pBVar1->top);
-    iVar4 = DAT_000debe8;
-    if (pBVar1 == (BIGNUM *)0x0) {
-      iVar10 = *(int *)(DAT_000debe8 + 4);
-      if (iVar10 == 0) {
-        iVar10 = ERR_get_next_error_library();
-        *(int *)(iVar4 + 4) = iVar10;
+  pBVar2 = param_4->p;
+  if (local_3c.dmax < pBVar2->top) {
+    pBVar2 = bn_expand2(&local_3c,pBVar2->top);
+    if (pBVar2 == (BIGNUM *)0x0) {
+      if (UBSEC_lib_error_code == 0) {
+        UBSEC_lib_error_code = ERR_get_next_error_library();
       }
-      iVar4 = 0;
-      ERR_put_error(iVar10,0x67,0x65,DAT_000debf0,0x350);
+      iVar5 = 0;
+      ERR_put_error(UBSEC_lib_error_code,0x67,0x65,"e_ubsec.c",0x350);
       goto LAB_000deb5c;
     }
-    pBVar1 = param_4->p;
+    pBVar2 = param_4->p;
   }
-  iVar10 = DAT_000debe8;
-  local_40 = BN_num_bits(pBVar1);
-  uVar2 = (**(code **)(iVar10 + 0xc))(param_1,param_2);
-  iVar3 = (**(code **)(iVar10 + 0x14))(DAT_000debec);
-  if (iVar3 < 1) {
-    iVar4 = *(int *)(iVar10 + 4);
-    if (iVar4 == 0) {
-      iVar4 = ERR_get_next_error_library();
-      *(int *)(iVar10 + 4) = iVar4;
+  local_40 = BN_num_bits(pBVar2);
+  uVar3 = (*p_UBSEC_ubsec_bytes_to_bits)(param_1,param_2);
+  iVar4 = (*p_UBSEC_ubsec_open)("/dev/ubskey");
+  pcVar1 = p_UBSEC_dsa_verify_ioctl;
+  if (iVar4 < 1) {
+    if (UBSEC_lib_error_code == 0) {
+      UBSEC_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar4,0x67,0x6c,DAT_000debf0,0x35b);
+    ERR_put_error(UBSEC_lib_error_code,0x67,0x6c,"e_ubsec.c",0x35b);
   }
   else {
-    pcVar17 = *(code **)(iVar10 + 0x30);
     puVar12 = param_4->p->d;
-    iVar4 = BN_num_bits(param_4->p);
+    iVar5 = BN_num_bits(param_4->p);
     puVar13 = param_4->q->d;
-    iVar5 = BN_num_bits(param_4->q);
-    puVar18 = param_4->g->d;
-    iVar6 = BN_num_bits(param_4->g);
+    iVar6 = BN_num_bits(param_4->q);
+    puVar17 = param_4->g->d;
+    iVar7 = BN_num_bits(param_4->g);
     puVar14 = param_4->pub_key->d;
-    iVar7 = BN_num_bits(param_4->pub_key);
+    iVar8 = BN_num_bits(param_4->pub_key);
     puVar15 = param_3->r->d;
-    iVar8 = BN_num_bits(param_3->r);
+    iVar9 = BN_num_bits(param_3->r);
     puVar16 = param_3->s->d;
-    iVar9 = BN_num_bits(param_3->s);
-    iVar4 = (*pcVar17)(iVar3,0,param_1,uVar2,puVar12,iVar4,puVar13,iVar5,puVar18,iVar6,puVar14,iVar7
-                       ,puVar15,iVar8,puVar16,iVar9,local_3c.d,&local_40);
-    if (iVar4 == 0) {
-      iVar4 = 1;
-      (**(code **)(iVar10 + 0x18))(iVar3);
+    iVar10 = BN_num_bits(param_3->s);
+    iVar5 = (*pcVar1)(iVar4,0,param_1,uVar3,puVar12,iVar5,puVar13,iVar6,puVar17,iVar7,puVar14,iVar8,
+                      puVar15,iVar9,puVar16,iVar10,local_3c.d,&local_40);
+    if (iVar5 == 0) {
+      iVar5 = 1;
+      (*p_UBSEC_ubsec_close)(iVar4);
       goto LAB_000deb5c;
     }
-    iVar4 = *(int *)(iVar10 + 4);
-    if (iVar4 == 0) {
-      iVar4 = ERR_get_next_error_library();
-      *(int *)(iVar10 + 4) = iVar4;
+    if (UBSEC_lib_error_code == 0) {
+      UBSEC_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar4,0x67,0x6a,DAT_000debf0,0x371);
-    (**(code **)(iVar10 + 0x18))(iVar3);
+    ERR_put_error(UBSEC_lib_error_code,0x67,0x6a,"e_ubsec.c",0x371);
+    (*p_UBSEC_ubsec_close)(iVar4);
   }
   pDVar11 = DSA_OpenSSL();
-  iVar4 = (*pDVar11->dsa_do_verify)(param_1,param_2,param_3,param_4);
+  iVar5 = (*pDVar11->dsa_do_verify)(param_1,param_2,param_3,param_4);
 LAB_000deb5c:
   BN_clear_free(&local_3c);
-  return iVar4;
+  return iVar5;
 }
 

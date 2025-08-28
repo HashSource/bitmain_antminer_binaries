@@ -1,14 +1,14 @@
 
-int buffer_gets(BIO *param_1,undefined *param_2,int param_3)
+int buffer_gets(BIO *param_1,undefined1 *param_2,int param_3)
 
 {
   char *pcVar1;
   int iVar2;
   int iVar3;
   int iVar4;
-  undefined *puVar5;
+  undefined1 *puVar5;
   int iVar6;
-  undefined *puVar7;
+  undefined1 *puVar7;
   int *piVar8;
   int iVar9;
   
@@ -41,7 +41,7 @@ int buffer_gets(BIO *param_1,undefined *param_2,int param_3)
     }
     else {
       puVar7 = param_2 + 1;
-      *param_2 = *(undefined *)(iVar3 + iVar2);
+      *param_2 = *(undefined1 *)(iVar3 + iVar2);
       if (*(char *)(iVar3 + iVar2) == '\n') {
         iVar2 = 1;
 LAB_000aa19a:
@@ -52,7 +52,7 @@ LAB_000aa19a:
         break;
       }
       iVar4 = 0;
-      puVar5 = (undefined *)(iVar3 + iVar2);
+      puVar5 = (undefined1 *)(iVar3 + iVar2);
       param_2 = puVar7;
       while( true ) {
         iVar2 = iVar4;

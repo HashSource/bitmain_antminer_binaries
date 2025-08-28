@@ -1,1964 +1,1710 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* WARNING: Restarted to delay deadcode elimination for space: ram */
 /* WARNING: Unknown calling convention */
 
 int main(int argc,char **argv)
 
 {
   undefined2 uVar1;
-  cgpu_info **ppcVar2;
-  char cVar3;
+  char cVar2;
+  char *pcVar3;
   char *pcVar4;
   char *pcVar5;
   char *pcVar6;
   char *pcVar7;
   char *pcVar8;
-  char *pcVar9;
+  pthread_mutex_t *__mutex;
+  pool ***ppppVar9;
   char **ppcVar10;
-  opt_table *entry;
-  device_drv *drv;
-  device_drv *drv_00;
-  device_drv *drv_01;
-  undefined *__rwlock;
-  undefined *puVar11;
-  __start_routine *__start_routine;
-  long *plVar12;
-  pthread_cond_t *__cond;
-  pthread_mutex_t *ppVar13;
-  thr_info *ptVar14;
-  _Bool _Var15;
-  uint uVar16;
-  long lVar17;
-  char **ppcVar18;
-  undefined4 uVar19;
-  int iVar20;
-  thread_q *ptVar21;
-  char *pcVar22;
-  char *s;
-  size_t sVar23;
-  block *__s;
-  block *block;
-  uint _hj_k;
-  UT_hash_bucket *_he_new_buckets;
-  pool *ppVar24;
-  pool *pool;
-  undefined4 *puVar25;
-  FILE *pFVar26;
-  FILE *fpversion;
-  sysinfo *psVar27;
-  char *nextptr;
-  void *pvVar28;
-  size_t sVar29;
-  int r;
-  __sighandler_t p_Var30;
-  sighandler_t sr0;
-  __sighandler_t p_Var31;
-  sighandler_t sr1;
-  thr_info **pptVar32;
-  int *piVar33;
-  time_t tVar34;
-  int ret;
-  pool *cp_1;
-  pool *ppVar35;
-  cgpu_info *cgpu_1;
-  pool *pool_2;
-  thr_info **pptVar36;
-  uint uVar37;
-  uint uVar38;
-  UT_hash_handle *pUVar39;
-  UT_hash_bucket *pUVar40;
-  thr_info *ptVar41;
-  undefined4 *puVar42;
-  undefined8 *puVar43;
-  uint uVar44;
-  UT_hash_table *pUVar45;
-  UT_hash_handle *pUVar46;
-  char *pcVar47;
-  pool_enable pVar48;
-  int *piVar49;
-  int *piVar50;
-  int *piVar51;
-  device_drv *pdVar52;
-  _func__Bool_thr_info_ptr *p_Var53;
-  dev_enable dVar54;
-  undefined8 *puVar55;
-  pool *pool_3;
-  pool *tp;
-  pool *tp_1;
-  thr_info **pptVar56;
-  uint *puVar57;
+  uchar *puVar11;
+  _Bool _Var12;
+  long lVar13;
+  char **ppcVar14;
+  undefined4 uVar15;
+  char *pcVar16;
+  char *pcVar17;
+  size_t sVar18;
+  block *pbVar19;
+  uint uVar20;
+  pool *ppVar21;
+  FILE *pFVar22;
+  sysinfo *psVar23;
+  size_t sVar24;
+  __sighandler_t p_Var25;
+  __sighandler_t p_Var26;
+  thr_info *ptVar27;
+  thr_info **pptVar28;
+  int *piVar29;
+  pool *ppVar30;
+  pool **pppVar31;
+  uint uVar32;
+  thr_info **pptVar33;
+  uint uVar34;
+  uint uVar35;
+  UT_hash_handle *pUVar36;
+  UT_hash_bucket *pUVar37;
+  uchar *puVar38;
+  char *func;
+  char *func_00;
+  char *func_01;
+  char *func_02;
+  char *func_03;
+  char *func_04;
+  char *func_05;
+  char *func_06;
+  _func_int *extraout_r3;
+  code *pcVar39;
+  int line;
+  int line_00;
+  int line_01;
+  int line_02;
+  int line_03;
+  int line_04;
+  int line_05;
+  int line_06;
+  int line_07;
+  int line_08;
+  int line_09;
+  int line_10;
+  int line_11;
+  UT_hash_table *pUVar40;
+  UT_hash_handle *pUVar41;
+  pool_enable pVar42;
+  uchar (*pauVar43) [160];
+  int line_12;
+  int line_13;
+  cgpu_info **line_14;
+  cgpu_info **extraout_r3_00;
+  cgpu_info **line_15;
+  cgpu_info **extraout_r3_01;
+  cgpu_info **ppcVar44;
+  pool **pppVar45;
+  device_drv *pdVar46;
+  _func__Bool_thr_info_ptr *p_Var47;
+  dev_enable dVar48;
+  double *pdVar49;
+  cgpu_info **ppcVar50;
+  int line_16;
+  int line_17;
+  int iVar51;
+  int line_18;
+  thr_info **pptVar52;
+  int line_19;
+  char *pcVar53;
+  int iVar54;
+  cgpu_info **ppcVar55;
+  cgpu_info *pcVar56;
+  work *pwVar57;
   int iVar58;
-  UT_hash_handle *_he_thh;
-  int iVar59;
-  int i;
-  pool *pool_1;
-  cgpu_info *pcVar60;
-  cgpu_info *cgpu;
-  int i_1;
-  int ts;
-  int iVar61;
-  block *pbVar62;
-  int iVar63;
-  FILE **ppFVar64;
-  size_t siz;
-  char *pcVar65;
-  int iVar66;
-  thr_info *thr;
-  UT_hash_handle *pUVar67;
-  UT_hash_handle *_he_hh_nxt;
-  uchar *_hj_key;
-  thr_info *ptVar68;
-  UT_hash_bucket *_he_newbkt;
-  pool *pool_4;
-  bool bVar69;
-  undefined4 in_stack_ffffd5fc;
+  block *pbVar59;
+  FILE **ppFVar60;
+  _Bool *p_Var61;
+  int iVar62;
+  pool **pppVar63;
+  UT_hash_handle *pUVar64;
+  bool bVar65;
   char acStack_29f8 [4104];
-  undefined4 local_19f0;
-  undefined4 uStack_19ec;
-  undefined local_19e8;
-  undefined4 local_9f8;
+  char local_19f0 [4088];
+  char *local_9f8;
   thr_info *local_9e8;
-  thr_info *local_9e4;
-  int **ppiStack_9e0;
-  char *pcStack_9dc;
+  uchar *local_9e4;
+  _func_int **pp_Stack_9e0;
+  _Bool *p_Stack_9dc;
   int *local_9d8;
-  thr_info **pptStack_9d4;
+  pool ***ppppStack_9d4;
   block *local_9d0;
   thr_info *local_9cc;
   block *local_9c8;
   char **local_9c4;
-  pool *pool_6;
+  pool *local_9c0;
   int local_9bc;
-  work *work;
+  work *local_9b8;
   sigaction handler;
   sysinfo sInfo;
   char tmp42 [2048];
   
-  puVar57 = DAT_0000af34;
-  uVar16 = *DAT_0000af2c;
-  uVar37 = DAT_0000af2c[2];
-  g_logfile_openflag[2] = *(char *)(DAT_0000af30 + 1);
-  uVar44 = (uint)(byte)g_logfile_openflag[2];
-  g_logfile_openflag._0_2_ = *DAT_0000af30;
-  DAT_0000af34[1] = DAT_0000af2c[1];
-  puVar57[2] = uVar37;
-  *puVar57 = uVar16;
+  pcVar53 = g_logfile_path;
+  builtin_strncpy(g_logfile_path,"bmminer.log",0xc);
+  g_logfile_openflag[2] = '\0';
+  g_logfile_openflag[0] = 'a';
+  g_logfile_openflag[1] = '+';
   g_logfile_enable = false;
-  work = (work *)0x0;
+  local_9b8 = (work *)0x0;
   local_9c4 = argv;
   local_9bc = argc;
-  lVar17 = sysconf(0x54);
-  pcVar65 = DAT_0000af44;
-  pcVar22 = DAT_0000af40;
-  if (lVar17 == 1) {
-    puVar57 = DAT_0000af3c;
-    uVar44 = DAT_0000af38;
+  lVar13 = sysconf(0x54);
+  pcVar39 = extraout_r3;
+  if (lVar13 == 1) {
+    pcVar39 = sched_yield;
+    pcVar53 = (char *)&selective_yield;
   }
-  if (lVar17 == 1) {
-    *puVar57 = uVar44;
+  if (lVar13 == 1) {
+    *(code **)pcVar53 = pcVar39;
   }
-  ppcVar18 = (char **)_cgmalloc((local_9bc + 1) * 4,pcVar22,pcVar65,0x2c9f);
+  ppcVar14 = (char **)_cgmalloc((local_9bc + 1) * 4,"cgminer.c","main",0x2c9f);
   ppcVar10 = local_9c4;
-  initial_args = ppcVar18;
+  initial_args = ppcVar14;
   if (0 < local_9bc) {
+    iVar54 = 0;
     iVar58 = 0;
-    iVar61 = 0;
     do {
-      iVar61 = iVar61 + 1;
-      uVar19 = __strdup(*(undefined4 *)((int)ppcVar10 + iVar58));
-      *(undefined4 *)((int)ppcVar18 + iVar58) = uVar19;
-      iVar58 = iVar58 + 4;
-    } while (iVar61 < local_9bc);
+      iVar58 = iVar58 + 1;
+      uVar15 = __strdup(*(undefined4 *)((int)ppcVar10 + iVar54));
+      *(undefined4 *)((int)ppcVar14 + iVar54) = uVar15;
+      iVar54 = iVar54 + 4;
+    } while (iVar58 < local_9bc);
   }
-  ppcVar18[local_9bc] = (char *)0x0;
-  iVar61 = local_9bc;
-  _mutex_init(DAT_0000af48,DAT_0000af44,(char *)0x2ca8,local_9bc);
-  iVar58 = DAT_0000af50;
-  _mutex_init(DAT_0000af4c,DAT_0000af44,(char *)0x2ca9,iVar61);
-  _mutex_init(DAT_0000af54,DAT_0000af44,(char *)0x2caa,iVar61);
-  _cglock_init(DAT_0000af58,DAT_0000af44,(char *)0x2cab,iVar61);
-  _mutex_init(DAT_0000af5c,DAT_0000af44,(char *)0x2cac,iVar61);
-  _mutex_init((pthread_mutex_t *)(iVar58 + 0x500),DAT_0000af44,(char *)0x2cad,iVar61);
-  _cglock_init(DAT_0000af60,DAT_0000af44,(char *)0x2cae,iVar61);
-  _mutex_init((pthread_mutex_t *)(iVar58 + 0x468),DAT_0000af44,(char *)0x2caf,iVar61);
-  _rwlock_init((pthread_rwlock_t *)(iVar58 + 0x6d4),DAT_0000af44,(char *)0x2cb0,iVar61);
-  _rwlock_init(DAT_0000af64,DAT_0000af44,(char *)0x2cb1,iVar61);
-  _rwlock_init(DAT_0000af68,DAT_0000af44,(char *)0x2cb2,iVar61);
-  _rwlock_init(DAT_0000af6c,DAT_0000af44,(char *)0x2cb3,iVar61);
-  _mutex_init((pthread_mutex_t *)(iVar58 + 0x49c),DAT_0000af44,(char *)0x2cb5,iVar61);
-  iVar20 = pthread_cond_init((pthread_cond_t *)(iVar58 + 0x4b8),(pthread_condattr_t *)0x0);
-  if (iVar20 != 0) {
-    tmp42._0_4_ = *DAT_0000bd00;
-    tmp42._4_4_ = DAT_0000bd00[1];
-    tmp42._8_4_ = DAT_0000bd00[2];
-    tmp42._12_4_ = DAT_0000bd00[3];
-    tmp42._16_4_ = DAT_0000bd00[4];
-    tmp42._20_4_ = DAT_0000bd00[5];
-    tmp42._24_4_ = DAT_0000bd00[6];
-    tmp42._28_4_ = DAT_0000bd00[7];
-    tmp42._32_4_ = DAT_0000bd00[8];
+  ppcVar14[local_9bc] = (char *)0x0;
+  _mutex_init(&hash_lock,"main",(char *)0x2ca8,local_9bc);
+  _mutex_init(&update_job_lock,"main",(char *)0x2ca9,line);
+  _mutex_init(&console_lock,"main",(char *)0x2caa,line_00);
+  _cglock_init(&control_lock,"main",(char *)0x2cab,line_01);
+  _mutex_init(&stats_lock,"main",(char *)0x2cac,line_02);
+  _mutex_init(&sharelog_lock,"main",(char *)0x2cad,line_03);
+  _cglock_init(&ch_lock,"main",(char *)0x2cae,line_04);
+  _mutex_init(&sshare_lock,"main",(char *)0x2caf,line_05);
+  _rwlock_init(&blk_lock,"main",(char *)0x2cb0,line_06);
+  _rwlock_init(&netacc_lock,"main",(char *)0x2cb1,line_07);
+  _rwlock_init(&mining_thr_lock,"main",(char *)0x2cb2,line_08);
+  _rwlock_init(&devices_lock,"main",(char *)0x2cb3,line_09);
+  _mutex_init(&lp_lock,"main",(char *)0x2cb5,line_10);
+  iVar54 = pthread_cond_init((pthread_cond_t *)&lp_cond,(pthread_condattr_t *)0x0);
+  if (iVar54 != 0) {
+    builtin_strncpy(tmp42,"Failed to pthread_cond_init lp_cond",0x24);
     _applog(3,tmp42,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
-  _mutex_init(DAT_0000af70,DAT_0000af44,(char *)0x2cbc,iVar61);
-  iVar61 = pthread_cond_init(DAT_0000af74,(pthread_condattr_t *)0x0);
-  if (iVar61 != 0) {
-    tmp42._0_4_ = *DAT_0000c074;
-    tmp42._4_4_ = DAT_0000c074[1];
-    tmp42._8_4_ = DAT_0000c074[2];
-    tmp42._12_4_ = DAT_0000c074[3];
-    tmp42._16_4_ = DAT_0000c074[4];
-    tmp42._20_4_ = DAT_0000c074[5];
-    tmp42._24_4_ = DAT_0000c074[6];
-    tmp42._28_4_ = DAT_0000c074[7];
-    tmp42._32_4_ = DAT_0000c074[8];
-    tmp42._36_4_ = DAT_0000c074[9];
-    tmp42[40] = (char)DAT_0000c074[10];
+  _mutex_init(&restart_lock,"main",(char *)0x2cbc,line_11);
+  iVar54 = pthread_cond_init((pthread_cond_t *)&restart_cond,(pthread_condattr_t *)0x0);
+  if (iVar54 != 0) {
+    builtin_strncpy(tmp42,"Failed to pthread_cond_init restart_cond",0x28);
+    tmp42[0x28] = '\0';
     _applog(3,tmp42,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
-  iVar61 = pthread_cond_init(DAT_0000af78,(pthread_condattr_t *)0x0);
-  if (iVar61 != 0) {
-    tmp42._0_4_ = *DAT_0000c070;
-    tmp42._4_4_ = DAT_0000c070[1];
-    tmp42._8_4_ = DAT_0000c070[2];
-    tmp42._12_4_ = DAT_0000c070[3];
-    tmp42._16_4_ = DAT_0000c070[4];
-    tmp42._20_4_ = DAT_0000c070[5];
-    tmp42._24_4_ = DAT_0000c070[6];
-    tmp42._28_4_ = DAT_0000c070[7];
-    tmp42._32_4_ = DAT_0000c070[8];
-    tmp42[36] = (char)DAT_0000c070[9];
+  iVar54 = pthread_cond_init((pthread_cond_t *)&gws_cond,(pthread_condattr_t *)0x0);
+  if (iVar54 != 0) {
+    tmp42[8] = 'o';
+    tmp42[9] = ' ';
+    tmp42[10] = 'p';
+    tmp42[0xb] = 't';
+    tmp42[0xc] = 'h';
+    tmp42[0xd] = 'r';
+    tmp42[0xe] = 'e';
+    tmp42[0xf] = 'a';
+    tmp42[0x10] = 'd';
+    tmp42[0x11] = '_';
+    tmp42[0x12] = 'c';
+    tmp42[0x13] = 'o';
+    tmp42[0x14] = 'n';
+    tmp42[0x15] = 'd';
+    tmp42[0x16] = '_';
+    tmp42[0x17] = 'i';
+    tmp42[0x18] = 'n';
+    tmp42[0x19] = 'i';
+    tmp42[0x1a] = 't';
+    tmp42[0x1b] = ' ';
+    tmp42[0x1c] = 'g';
+    tmp42[0x1d] = 'w';
+    tmp42[0x1e] = 's';
+    tmp42[0x1f] = '_';
+    tmp42[0x20] = 'c';
+    tmp42[0x21] = 'o';
+    tmp42[0x22] = 'n';
+    tmp42[0x23] = 'd';
+    tmp42._36_4_ = tmp42._36_4_ & 0xffffff00;
 LAB_0000bfd4:
+    builtin_strncpy(tmp42,"Failed t",8);
     _applog(3,tmp42,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
-  ptVar21 = tq_new();
-  *DAT_0000af7c = ptVar21;
-  local_9f8 = DAT_0000af80;
-  if (ptVar21 == (thread_q *)0x0) {
-    tmp42._0_4_ = *DAT_0000c06c;
-    tmp42._4_4_ = DAT_0000c06c[1];
-    tmp42._8_4_ = DAT_0000c06c[2];
-    tmp42._12_4_ = DAT_0000c06c[3];
-    tmp42._16_4_ = DAT_0000c06c[4];
-    tmp42[20] = (char)(short)DAT_0000c06c[5];
-    tmp42[21] = (char)((ushort)(short)DAT_0000c06c[5] >> 8);
+  getq = tq_new();
+  if (getq == (thread_q *)0x0) {
+    builtin_strncpy(tmp42 + 8,"o create getq",0xe);
+    getq = (thread_q *)0x0;
     goto LAB_0000bfd4;
   }
-  *(pthread_mutex_t **)(iVar58 + 0x454) = &ptVar21->mutex;
-  snprintf((char *)(iVar58 + 0x1c),0x100,DAT_0000af84,DAT_0000af88);
-  ppcVar10 = DAT_0000af90;
-  iVar20 = 0x24;
-  handler.__sigaction_handler = DAT_0000af8c;
-  handler.sa_flags = iVar61;
+  stgd_lock = &getq->mutex;
+  local_9f8 = "2.0.0";
+  snprintf(packagename,0x100,"%s %s","bmminer");
+  iVar58 = 0x24;
+  handler.__sigaction_handler = (anon_union_4_2_5ad2d23e_for___sigaction_handler)(code *)0x20379;
+  handler.sa_flags = iVar54;
   sigemptyset((sigset_t *)&handler.sa_mask);
-  sigaction(0xf,(sigaction *)&handler,DAT_0000af94);
-  sigaction(2,(sigaction *)&handler,DAT_0000af98);
-  sigaction(6,(sigaction *)&handler,DAT_0000af9c);
-  opt_kernel_path = (char *)&local_19f0;
-  local_19f0 = *DAT_0000afa0;
-  uStack_19ec = DAT_0000afa0[1];
-  local_19e8 = (undefined)DAT_0000afa0[2];
-  *ppcVar10 = acStack_29f8;
-  pcVar22 = (char *)__strdup(*local_9c4);
-  pcVar65 = *ppcVar10;
-  s = dirname(pcVar22);
-  strcpy(pcVar65,s);
-  free(pcVar22);
-  iVar58 = DAT_0000afa4;
-  pcVar22 = *ppcVar10;
-  sVar23 = strlen(pcVar22);
-  *(undefined2 *)(pcVar22 + sVar23) = s__bmminer__0004bfec._8_2_;
-  *(undefined4 *)(iVar58 + 0xa7c) = 9;
-  *(undefined4 *)(iVar58 + 0xa80) = 10;
-  *(undefined4 *)(iVar58 + 0xa78) = 8;
-  pcVar22 = (char *)0x2ceb;
-  __s = (block *)_cgcalloc(0x68,1,DAT_0000af40,DAT_0000af44,0x2ceb);
-  uVar1 = *DAT_0000afa8;
+  sigaction(0xf,(sigaction *)&handler,(sigaction *)&termhandler);
+  sigaction(2,(sigaction *)&handler,(sigaction *)&inthandler);
+  sigaction(6,(sigaction *)&handler,(sigaction *)&abrthandler);
+  opt_kernel_path = local_19f0;
+  cgminer_path = acStack_29f8;
+  builtin_strncpy(local_19f0,"/usr/bin",8);
+  local_19f0[8] = 0;
+  pcVar16 = (char *)__strdup(*local_9c4);
+  pcVar53 = cgminer_path;
+  pcVar17 = dirname(pcVar16);
+  strcpy(pcVar53,pcVar17);
+  free(pcVar16);
+  pcVar53 = cgminer_path;
+  sVar18 = strlen(cgminer_path);
+  (pcVar53 + sVar18)[0] = '/';
+  (pcVar53 + sVar18)[1] = '\0';
+  logstart = 9;
+  logcursor = 10;
+  devcursor = 8;
+  pcVar53 = (char *)0x2ceb;
+  pbVar19 = (block *)_cgcalloc(0x68,1,"cgminer.c","main",0x2ceb);
   do {
-    sVar23 = strlen((char *)__s);
-    iVar20 = iVar20 + -1;
-    *(undefined2 *)(__s->hash + sVar23) = uVar1;
-  } while (iVar20 != 0);
-  pool_6 = (pool *)strlen((char *)__s);
-  uVar44 = 0x9e3779b9;
-  uVar37 = 0xfeedbeef;
-  uVar16 = uVar44;
-  pbVar62 = __s;
-  for (ppVar24 = pool_6; (pool *)0xb < ppVar24; ppVar24 = (pool *)&ppVar24[-1].tv_lastwork) {
-    pcVar65 = pbVar62->hash;
-    pcVar47 = pbVar62->hash;
-    pcVar4 = pbVar62->hash;
-    pcVar5 = pbVar62->hash;
-    pcVar6 = pbVar62->hash;
-    pcVar7 = pbVar62->hash;
-    pcVar8 = pbVar62->hash;
-    pcVar9 = pbVar62->hash;
-    iVar61 = uVar16 + (uint)(byte)pbVar62->hash[6] * 0x10000 + (uint)(byte)pbVar62->hash[5] * 0x100
-                      + (uint)(byte)pbVar62->hash[4] + (uint)(byte)pbVar62->hash[7] * 0x1000000;
-    pbVar62 = (block *)(pbVar62->hash + 0xc);
-    uVar37 = uVar37 + (uint)(byte)pcVar8[8] +
-                      (uint)(byte)pcVar47[10] * 0x10000 + (uint)(byte)pcVar5[9] * 0x100 +
-                      (uint)(byte)pcVar9[0xb] * 0x1000000;
-    uVar16 = uVar44 + ((((uint)(byte)*pcVar6 +
-                         (uint)(byte)pcVar65[2] * 0x10000 + (uint)(byte)pcVar4[1] * 0x100 +
-                        (uint)(byte)pcVar7[3] * 0x1000000) - iVar61) - uVar37) ^ uVar37 >> 0xd;
-    uVar38 = (iVar61 - uVar37) - uVar16 ^ uVar16 << 8;
-    uVar44 = (uVar37 - uVar16) - uVar38 ^ uVar38 >> 0xd;
-    uVar16 = (uVar16 - uVar38) - uVar44 ^ uVar44 >> 0xc;
-    uVar38 = (uVar38 - uVar44) - uVar16 ^ uVar16 << 0x10;
-    uVar37 = (uVar44 - uVar16) - uVar38 ^ uVar38 >> 5;
-    uVar44 = (uVar16 - uVar38) - uVar37 ^ uVar37 >> 3;
-    uVar16 = (uVar38 - uVar37) - uVar44 ^ uVar44 << 10;
-    uVar37 = (uVar37 - uVar44) - uVar16 ^ uVar16 >> 0xf;
-    local_9c8 = __s;
+    sVar18 = strlen((char *)pbVar19);
+    iVar58 = iVar58 + -1;
+    (pbVar19->hash + sVar18)[0] = '0';
+    (pbVar19->hash + sVar18)[1] = '\0';
+  } while (iVar58 != 0);
+  local_9c0 = (pool *)strlen((char *)pbVar19);
+  uVar34 = 0x9e3779b9;
+  uVar20 = 0xfeedbeef;
+  uVar32 = uVar34;
+  pbVar59 = pbVar19;
+  for (ppVar21 = local_9c0; (pool *)0xb < ppVar21; ppVar21 = (pool *)&ppVar21[-1].tv_lastwork) {
+    pcVar16 = pbVar59->hash;
+    pcVar17 = pbVar59->hash;
+    pcVar3 = pbVar59->hash;
+    pcVar4 = pbVar59->hash;
+    pcVar5 = pbVar59->hash;
+    pcVar6 = pbVar59->hash;
+    pcVar7 = pbVar59->hash;
+    pcVar8 = pbVar59->hash;
+    iVar54 = uVar32 + (uint)(byte)pbVar59->hash[6] * 0x10000 + (uint)(byte)pbVar59->hash[5] * 0x100
+                      + (uint)(byte)pbVar59->hash[4] + (uint)(byte)pbVar59->hash[7] * 0x1000000;
+    pbVar59 = (block *)(pbVar59->hash + 0xc);
+    uVar20 = uVar20 + (uint)(byte)pcVar7[8] +
+                      (uint)(byte)pcVar17[10] * 0x10000 + (uint)(byte)pcVar4[9] * 0x100 +
+                      (uint)(byte)pcVar8[0xb] * 0x1000000;
+    uVar32 = uVar34 + ((((uint)(byte)*pcVar5 +
+                         (uint)(byte)pcVar16[2] * 0x10000 + (uint)(byte)pcVar3[1] * 0x100 +
+                        (uint)(byte)pcVar6[3] * 0x1000000) - iVar54) - uVar20) ^ uVar20 >> 0xd;
+    uVar35 = (iVar54 - uVar20) - uVar32 ^ uVar32 << 8;
+    uVar34 = (uVar20 - uVar32) - uVar35 ^ uVar35 >> 0xd;
+    uVar32 = (uVar32 - uVar35) - uVar34 ^ uVar34 >> 0xc;
+    uVar35 = (uVar35 - uVar34) - uVar32 ^ uVar32 << 0x10;
+    uVar20 = (uVar34 - uVar32) - uVar35 ^ uVar35 >> 5;
+    uVar34 = (uVar32 - uVar35) - uVar20 ^ uVar20 >> 3;
+    uVar32 = (uVar35 - uVar20) - uVar34 ^ uVar34 << 10;
+    uVar20 = (uVar20 - uVar34) - uVar32 ^ uVar32 >> 0xf;
+    local_9c8 = pbVar19;
   }
-  pcVar65 = pool_6->diff + (uVar37 - 0x30);
-  switch(ppVar24) {
+  pcVar16 = local_9c0->diff + (uVar20 - 0x30);
+  switch(ppVar21) {
   case (pool *)0xb:
-    pcVar65 = pcVar65 + (uint)(byte)pbVar62->hash[10] * 0x1000000;
+    pcVar16 = pcVar16 + (uint)(byte)pbVar59->hash[10] * 0x1000000;
   case (pool *)0xa:
-    pcVar65 = pcVar65 + (uint)(byte)pbVar62->hash[9] * 0x10000;
+    pcVar16 = pcVar16 + (uint)(byte)pbVar59->hash[9] * 0x10000;
   case (pool *)0x9:
-    pcVar65 = pcVar65 + (uint)(byte)pbVar62->hash[8] * 0x100;
+    pcVar16 = pcVar16 + (uint)(byte)pbVar59->hash[8] * 0x100;
   case (pool *)0x8:
-    uVar16 = uVar16 + (uint)(byte)pbVar62->hash[7] * 0x1000000;
+    uVar32 = uVar32 + (uint)(byte)pbVar59->hash[7] * 0x1000000;
   case (pool *)0x7:
-    uVar16 = uVar16 + (uint)(byte)pbVar62->hash[6] * 0x10000;
+    uVar32 = uVar32 + (uint)(byte)pbVar59->hash[6] * 0x10000;
   case (pool *)0x6:
-    uVar16 = uVar16 + (uint)(byte)pbVar62->hash[5] * 0x100;
+    uVar32 = uVar32 + (uint)(byte)pbVar59->hash[5] * 0x100;
   case (pool *)0x5:
-    uVar16 = uVar16 + (byte)pbVar62->hash[4];
+    uVar32 = uVar32 + (byte)pbVar59->hash[4];
   case (pool *)0x4:
-    uVar44 = uVar44 + (uint)(byte)pbVar62->hash[3] * 0x1000000;
+    uVar34 = uVar34 + (uint)(byte)pbVar59->hash[3] * 0x1000000;
   case (pool *)0x3:
-    uVar44 = uVar44 + (uint)(byte)pbVar62->hash[2] * 0x10000;
+    uVar34 = uVar34 + (uint)(byte)pbVar59->hash[2] * 0x10000;
   case (pool *)0x2:
-    uVar44 = uVar44 + (uint)(byte)pbVar62->hash[1] * 0x100;
+    uVar34 = uVar34 + (uint)(byte)pbVar59->hash[1] * 0x100;
   case (pool *)0x1:
-    uVar44 = uVar44 + (byte)pbVar62->hash[0];
+    uVar34 = uVar34 + (byte)pbVar59->hash[0];
   }
-  (__s->hh).key = __s;
-  uVar44 = (uVar44 - uVar16) - (int)pcVar65 ^ (uint)pcVar65 >> 0xd;
-  uVar16 = (uVar16 - (int)pcVar65) - uVar44 ^ uVar44 << 8;
-  uVar37 = (uint)(pcVar65 + (-uVar16 - uVar44)) ^ uVar16 >> 0xd;
-  uVar44 = (uVar44 - uVar16) - uVar37 ^ uVar37 >> 0xc;
-  uVar16 = (uVar16 - uVar37) - uVar44 ^ uVar44 << 0x10;
-  uVar37 = (uVar37 - uVar44) - uVar16 ^ uVar16 >> 5;
-  uVar44 = (uVar44 - uVar16) - uVar37 ^ uVar37 >> 3;
-  uVar16 = (uVar16 - uVar37) - uVar44 ^ uVar44 << 10;
-  uVar44 = (uVar37 - uVar44) - uVar16 ^ uVar16 >> 0xf;
-  (__s->hh).hashv = uVar44;
-  sVar23 = strlen((char *)__s);
-  (__s->hh).keylen = sVar23;
-  pbVar62 = blocks;
-  iVar61 = DAT_0000b348;
+  (pbVar19->hh).key = pbVar19;
+  uVar34 = (uVar34 - uVar32) - (int)pcVar16 ^ (uint)pcVar16 >> 0xd;
+  uVar32 = (uVar32 - (int)pcVar16) - uVar34 ^ uVar34 << 8;
+  uVar20 = (uint)(pcVar16 + (-uVar32 - uVar34)) ^ uVar32 >> 0xd;
+  uVar34 = (uVar34 - uVar32) - uVar20 ^ uVar20 >> 0xc;
+  uVar32 = (uVar32 - uVar20) - uVar34 ^ uVar34 << 0x10;
+  uVar20 = (uVar20 - uVar34) - uVar32 ^ uVar32 >> 5;
+  uVar34 = (uVar34 - uVar32) - uVar20 ^ uVar20 >> 3;
+  uVar32 = (uVar32 - uVar20) - uVar34 ^ uVar34 << 10;
+  uVar34 = (uVar20 - uVar34) - uVar32 ^ uVar32 >> 0xf;
+  (pbVar19->hh).hashv = uVar34;
+  sVar18 = strlen((char *)pbVar19);
+  (pbVar19->hh).keylen = sVar18;
+  pbVar59 = blocks;
   if (blocks == (block *)0x0) {
-    (__s->hh).next = (void *)0x0;
-    (__s->hh).prev = (void *)0x0;
-    *(block **)(iVar61 + 0x6f4) = __s;
-    pUVar45 = (UT_hash_table *)malloc(0x2c);
-    (__s->hh).tbl = pUVar45;
-    if (pUVar45 == (UT_hash_table *)0x0) goto LAB_0000bf48;
-    memset(pUVar45,0,0x2c);
-    pUVar45 = (__s->hh).tbl;
-    pUVar45->tail = &__s->hh;
-    pUVar45->num_buckets = 0x20;
-    pUVar45->log2_num_buckets = 5;
-    pUVar45->hho = 0x44;
-    pUVar40 = (UT_hash_bucket *)malloc(0x180);
-    pUVar45->buckets = pUVar40;
-    if (pUVar40 == (UT_hash_bucket *)0x0) goto LAB_0000bf48;
-    memset(pUVar40,0,0x180);
-    ((__s->hh).tbl)->signature = 0xa0111fe1;
-    pbVar62 = __s;
+    (pbVar19->hh).next = (void *)0x0;
+    (pbVar19->hh).prev = (void *)0x0;
+    blocks = pbVar19;
+    pUVar40 = (UT_hash_table *)malloc(0x2c);
+    (pbVar19->hh).tbl = pUVar40;
+    if (pUVar40 == (UT_hash_table *)0x0) goto LAB_0000bf48;
+    memset(pUVar40,0,0x2c);
+    pUVar40 = (pbVar19->hh).tbl;
+    pUVar40->tail = &pbVar19->hh;
+    pUVar40->num_buckets = 0x20;
+    pUVar40->log2_num_buckets = 5;
+    pUVar40->hho = 0x44;
+    pUVar37 = (UT_hash_bucket *)malloc(0x180);
+    pUVar40->buckets = pUVar37;
+    if (pUVar37 == (UT_hash_bucket *)0x0) goto LAB_0000bf48;
+    memset(pUVar37,0,0x180);
+    ((pbVar19->hh).tbl)->signature = 0xa0111fe1;
+    pbVar59 = pbVar19;
   }
   else {
-    pUVar45 = (blocks->hh).tbl;
-    (__s->hh).next = (void *)0x0;
-    (__s->hh).tbl = pUVar45;
-    pUVar45 = (pbVar62->hh).tbl;
-    pUVar39 = pUVar45->tail;
-    iVar61 = pUVar45->hho;
-    pUVar39->next = __s;
-    (__s->hh).prev = (void *)((int)pUVar39 - iVar61);
-    pUVar45->tail = &__s->hh;
+    pUVar40 = (blocks->hh).tbl;
+    (pbVar19->hh).next = (void *)0x0;
+    (pbVar19->hh).tbl = pUVar40;
+    pUVar40 = (pbVar59->hh).tbl;
+    pUVar36 = pUVar40->tail;
+    iVar54 = pUVar40->hho;
+    pUVar36->next = pbVar19;
+    (pbVar19->hh).prev = (void *)((int)pUVar36 - iVar54);
+    pUVar40->tail = &pbVar19->hh;
   }
-  pUVar45 = (pbVar62->hh).tbl;
-  pUVar40 = pUVar45->buckets;
-  uVar44 = uVar44 & pUVar45->num_buckets - 1;
-  pUVar45->num_items = pUVar45->num_items + 1;
-  pUVar39 = pUVar40[uVar44].hh_head;
-  uVar16 = pUVar40[uVar44].count + 1;
-  pUVar40[uVar44].count = uVar16;
-  (__s->hh).hh_next = pUVar39;
-  (__s->hh).hh_prev = (UT_hash_handle *)0x0;
-  if (pUVar39 != (UT_hash_handle *)0x0) {
-    pUVar39->hh_prev = &__s->hh;
+  pUVar40 = (pbVar59->hh).tbl;
+  pUVar37 = pUVar40->buckets;
+  uVar34 = uVar34 & pUVar40->num_buckets - 1;
+  pUVar40->num_items = pUVar40->num_items + 1;
+  pUVar36 = pUVar37[uVar34].hh_head;
+  uVar32 = pUVar37[uVar34].count + 1;
+  pUVar37[uVar34].count = uVar32;
+  (pbVar19->hh).hh_next = pUVar36;
+  (pbVar19->hh).hh_prev = (UT_hash_handle *)0x0;
+  if (pUVar36 != (UT_hash_handle *)0x0) {
+    pUVar36->hh_prev = &pbVar19->hh;
   }
-  pUVar40[uVar44].hh_head = &__s->hh;
-  if (((pUVar40[uVar44].expand_mult + 1) * 10 <= uVar16) &&
-     (pUVar45 = (__s->hh).tbl, pUVar45->noexpand != 1)) {
-    sVar23 = pUVar45->num_buckets * 0x18;
-    pUVar40 = (UT_hash_bucket *)malloc(sVar23);
-    if (pUVar40 == (UT_hash_bucket *)0x0) {
+  pUVar37[uVar34].hh_head = &pbVar19->hh;
+  if (((pUVar37[uVar34].expand_mult + 1) * 10 <= uVar32) &&
+     (pUVar40 = (pbVar19->hh).tbl, pUVar40->noexpand != 1)) {
+    sVar18 = pUVar40->num_buckets * 0x18;
+    pUVar37 = (UT_hash_bucket *)malloc(sVar18);
+    if (pUVar37 == (UT_hash_bucket *)0x0) {
 LAB_0000bf48:
                     /* WARNING: Subroutine does not return */
       exit(-1);
     }
-    memset(pUVar40,0,sVar23);
-    pUVar45 = (__s->hh).tbl;
-    uVar16 = pUVar45->num_buckets;
-    pUVar45->nonideal_items = 0;
-    pool_6 = (pool *)(uVar16 * 2 - 1);
-    uVar44 = pUVar45->num_items >> (pUVar45->log2_num_buckets + 1 & 0xff);
-    if (((uint)pool_6 & pUVar45->num_items) != 0) {
-      uVar44 = uVar44 + 1;
+    memset(pUVar37,0,sVar18);
+    pUVar40 = (pbVar19->hh).tbl;
+    uVar32 = pUVar40->num_buckets;
+    pUVar40->nonideal_items = 0;
+    local_9c0 = (pool *)(uVar32 * 2 - 1);
+    uVar34 = pUVar40->num_items >> (pUVar40->log2_num_buckets + 1 & 0xff);
+    if (((uint)local_9c0 & pUVar40->num_items) != 0) {
+      uVar34 = uVar34 + 1;
     }
-    pUVar45->ideal_chain_maxlen = uVar44;
-    if (uVar16 == 0) {
-      local_9c8 = (block *)pUVar45->buckets;
+    pUVar40->ideal_chain_maxlen = uVar34;
+    if (uVar32 == 0) {
+      local_9c8 = (block *)pUVar40->buckets;
     }
     else {
-      local_9c8 = (block *)pUVar45->buckets;
-      local_9cc = (thr_info *)(uVar16 * 0xc);
-      ptVar41 = (thr_info *)0x0;
-      local_9d0 = __s;
+      local_9c8 = (block *)pUVar40->buckets;
+      local_9cc = (thr_info *)(uVar32 * 0xc);
+      puVar38 = (uchar *)0x0;
+      local_9d0 = pbVar19;
       do {
-        pUVar39 = *(UT_hash_handle **)((int)&ptVar41->id + (int)local_9c8->hash);
-        ptVar68 = local_9e8;
-        ptVar14 = local_9e4;
-        __s = local_9d0;
-        while (local_9e4 = ptVar41, local_9d0 = __s, pUVar39 != (UT_hash_handle *)0x0) {
-          pUVar67 = pUVar39->hh_next;
-          uVar37 = (uint)pool_6 & pUVar39->hashv;
-          local_9e8 = (thr_info *)(pUVar40 + uVar37);
-          uVar16 = local_9e8->device_thread + 1;
-          local_9e8->device_thread = uVar16;
-          ptVar41 = local_9e4;
-          if (uVar44 < uVar16) {
-            pUVar45->nonideal_items = pUVar45->nonideal_items + 1;
-            uVar19 = __aeabi_uidiv(uVar16,uVar44);
-            *(undefined4 *)&local_9e8->primary_thread = uVar19;
-            ptVar41 = local_9e4;
-            ptVar68 = local_9e8;
-            ptVar14 = local_9e4;
+        pUVar36 = *(UT_hash_handle **)(puVar38 + (int)local_9c8->hash);
+        ptVar27 = local_9e8;
+        puVar11 = local_9e4;
+        pbVar19 = local_9d0;
+        while (local_9e4 = puVar38, local_9d0 = pbVar19, pUVar36 != (UT_hash_handle *)0x0) {
+          pUVar64 = pUVar36->hh_next;
+          uVar20 = (uint)local_9c0 & pUVar36->hashv;
+          local_9e8 = (thr_info *)(pUVar37 + uVar20);
+          uVar32 = local_9e8->device_thread + 1;
+          local_9e8->device_thread = uVar32;
+          puVar38 = local_9e4;
+          if (uVar34 < uVar32) {
+            pUVar40->nonideal_items = pUVar40->nonideal_items + 1;
+            uVar32 = __aeabi_uidiv(uVar32,uVar34);
+            *(uint *)&local_9e8->primary_thread = uVar32;
+            puVar38 = local_9e4;
+            ptVar27 = local_9e8;
+            puVar11 = local_9e4;
           }
-          local_9e4 = ptVar14;
-          local_9e8 = ptVar68;
-          pUVar46 = pUVar40[uVar37].hh_head;
-          pUVar39->hh_prev = (UT_hash_handle *)0x0;
-          pUVar39->hh_next = pUVar46;
-          if (pUVar46 != (UT_hash_handle *)0x0) {
-            pUVar46->hh_prev = pUVar39;
+          local_9e4 = puVar11;
+          local_9e8 = ptVar27;
+          pUVar41 = pUVar37[uVar20].hh_head;
+          pUVar36->hh_prev = (UT_hash_handle *)0x0;
+          pUVar36->hh_next = pUVar41;
+          if (pUVar41 != (UT_hash_handle *)0x0) {
+            pUVar41->hh_prev = pUVar36;
           }
-          pUVar40[uVar37].hh_head = pUVar39;
-          pUVar39 = pUVar67;
-          ptVar68 = local_9e8;
-          ptVar14 = local_9e4;
-          __s = local_9d0;
+          pUVar37[uVar20].hh_head = pUVar36;
+          pUVar36 = pUVar64;
+          ptVar27 = local_9e8;
+          puVar11 = local_9e4;
+          pbVar19 = local_9d0;
         }
-        ptVar41 = (thr_info *)&local_9e4->pth;
-        local_9e8 = ptVar68;
-        local_9e4 = ptVar14;
-      } while (ptVar41 != local_9cc);
+        puVar38 = local_9e4 + 0xc;
+        local_9e8 = ptVar27;
+        local_9e4 = puVar11;
+      } while ((thr_info *)puVar38 != local_9cc);
     }
     free(local_9c8);
-    pUVar45 = (__s->hh).tbl;
-    uVar37 = pUVar45->nonideal_items;
-    pUVar45->buckets = pUVar40;
-    uVar44 = pUVar45->num_items >> 1;
-    uVar16 = uVar37;
-    if (uVar37 <= uVar44) {
-      uVar16 = 0;
+    pUVar40 = (pbVar19->hh).tbl;
+    uVar20 = pUVar40->nonideal_items;
+    pUVar40->buckets = pUVar37;
+    uVar34 = pUVar40->num_items >> 1;
+    uVar32 = uVar20;
+    if (uVar20 <= uVar34) {
+      uVar32 = 0;
     }
-    pUVar45->log2_num_buckets = pUVar45->log2_num_buckets + 1;
-    pUVar45->num_buckets = pUVar45->num_buckets << 1;
-    if (uVar44 < uVar37) {
-      uVar16 = pUVar45->ineff_expands + 1;
-      pUVar45->ineff_expands = uVar16;
-      uVar44 = uVar16;
-      if (1 < uVar16) {
-        uVar44 = 1;
+    pUVar40->log2_num_buckets = pUVar40->log2_num_buckets + 1;
+    pUVar40->num_buckets = pUVar40->num_buckets << 1;
+    if (uVar34 < uVar20) {
+      uVar32 = pUVar40->ineff_expands + 1;
+      pUVar40->ineff_expands = uVar32;
+      uVar34 = uVar32;
+      if (1 < uVar32) {
+        uVar34 = 1;
       }
-      if (1 < uVar16) {
-        pUVar45->noexpand = uVar44;
+      if (1 < uVar32) {
+        pUVar40->noexpand = uVar34;
       }
     }
     else {
-      pUVar45->ineff_expands = uVar16;
+      pUVar40->ineff_expands = uVar32;
     }
   }
-  strcpy(DAT_0000b34c,__s->hash);
-  pcVar65 = DAT_0000b358;
-  entry = DAT_0000b354;
-  iVar61 = DAT_0000b350;
-  *(int *)DAT_0000b350 = DAT_0000b350;
-  *(int *)(iVar61 + 4) = iVar61;
-  opt_register_table(entry,pcVar65);
-  opt_register_table(DAT_0000b35c,DAT_0000b360);
-  opt_parse(&local_9bc,local_9c4,DAT_0000b364);
-  iVar61 = DAT_0000b680;
+  strcpy(current_hash,pbVar19->hash);
+  scan_devices.next = &scan_devices;
+  scan_devices.prev = &scan_devices;
+  opt_register_table(opt_config_table,"Options for both config file and command line");
+  opt_register_table(opt_cmdline_table,"Options for command line only");
+  opt_parse(&local_9bc,local_9c4,(_func_void_char_ptr_varargs *)0x1e1d5);
   if (local_9bc != 1) {
-    tmp42._0_4_ = *DAT_0000b368;
-    tmp42._4_4_ = DAT_0000b368[1];
-    tmp42._8_4_ = DAT_0000b368[2];
-    tmp42._12_4_ = DAT_0000b368[3];
-    tmp42._16_4_ = DAT_0000b368[4];
-    tmp42._20_4_ = DAT_0000b368[5];
-    tmp42._24_4_ = DAT_0000b368[6];
-    tmp42._28_4_ = DAT_0000b368[7];
-    tmp42._32_4_ = DAT_0000b368[8];
-    tmp42._36_3_ = (undefined3)DAT_0000b368[9];
+    builtin_strncpy(tmp42,"Unexpected extra commandline arguments",0x27);
     _applog(3,tmp42,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
   if (config_loaded == false) {
-    pcVar65 = (char *)_cgmalloc(0x1000,DAT_0000c36c,DAT_0000c370,0x812);
-    *(char **)(iVar61 + 0x340) = pcVar65;
-    default_save_file(pcVar65);
-    iVar20 = access(*(char **)(iVar61 + 0x340),4);
-    if (iVar20 == 0) {
-      load_config(*(char **)(iVar61 + 0x340),(void *)0x0);
+    cnfbuf = (char *)_cgmalloc(0x1000,"cgminer.c","load_default_config",0x812);
+    default_save_file(cnfbuf);
+    iVar54 = access(cnfbuf,4);
+    if (iVar54 == 0) {
+      load_config(cnfbuf,(void *)0x0);
     }
     else {
-      free(*(char **)(iVar61 + 0x340));
-      *(undefined4 *)(iVar61 + 0x340) = 0;
+      free(cnfbuf);
+      cnfbuf = (char *)0x0;
     }
   }
-  if ((opt_benchmark != false) || (*(int *)(DAT_0000b680 + 0x448) != 0)) {
-    ppVar24 = add_pool();
-    puVar25 = (undefined4 *)_cgmalloc(0xff,DAT_0000b688,(char *)DAT_0000b684,0x2d0f);
-    pcVar65 = opt_benchfile;
-    ppVar24->rpc_url = (char *)puVar25;
-    puVar42 = DAT_0000c368;
-    if (pcVar65 != (char *)0x0) {
-      puVar42 = DAT_0000b68c;
+  if ((opt_benchmark != false) || (opt_benchfile != (char *)0x0)) {
+    ppVar21 = add_pool();
+    pcVar17 = (char *)_cgmalloc(0xff,"cgminer.c","main",0x2d0f);
+    pcVar16 = opt_benchfile;
+    ppVar21->rpc_url = pcVar17;
+    if (pcVar16 == (char *)0x0) {
+      pcVar16 = "Benchmark";
     }
-    uVar19 = puVar42[1];
-    uVar1 = *(undefined2 *)(puVar42 + 2);
-    *puVar25 = *puVar42;
-    puVar25[1] = uVar19;
-    *(undefined2 *)(puVar25 + 2) = uVar1;
-    pcVar65 = DAT_0000b690;
-    pcVar47 = ppVar24->rpc_url;
-    ppVar24->rpc_user = pcVar47;
-    ppVar24->rpc_pass = pcVar47;
-    ppVar24->rpc_userpass = pcVar47;
-    ppVar24->sockaddr_url = pcVar47;
-    strncpy(ppVar24->diff,pcVar65,7);
-    pVar48 = ppVar24->enabled;
-    ppVar24->diff[7] = '\0';
-    piVar33 = DAT_0000b694;
-    if (pVar48 != POOL_ENABLED) {
-      ppVar24->enabled = POOL_ENABLED;
-      *piVar33 = *piVar33 + 1;
+    else {
+      pcVar16 = "Benchfile";
     }
-    iVar20 = DAT_0000b6d0;
-    iVar61 = DAT_0000b6cc;
-    local_9e4 = DAT_0000b698;
-    iVar63 = 0;
-    ppVar24->idle = false;
-    *DAT_0000b69c = 1;
+    uVar15 = *(undefined4 *)(pcVar16 + 4);
+    uVar1 = *(undefined2 *)(pcVar16 + 8);
+    *(undefined4 *)pcVar17 = *(undefined4 *)pcVar16;
+    *(undefined4 *)(pcVar17 + 4) = uVar15;
+    *(undefined2 *)(pcVar17 + 8) = uVar1;
+    pcVar16 = ppVar21->rpc_url;
+    ppVar21->rpc_user = pcVar16;
+    ppVar21->rpc_pass = pcVar16;
+    ppVar21->rpc_userpass = pcVar16;
+    ppVar21->sockaddr_url = pcVar16;
+    strncpy(ppVar21->diff,"?",7);
+    pVar42 = ppVar21->enabled;
+    ppVar21->diff[7] = '\0';
+    if (pVar42 != POOL_ENABLED) {
+      ppVar21->enabled = POOL_ENABLED;
+      enabled_pools = enabled_pools + 1;
+    }
+    pauVar43 = bench_hidiff_bins;
+    ppVar21->idle = false;
+    successful_connect = true;
+    iVar54 = 0;
     do {
-      iVar59 = iVar63 * 0x144;
-      iVar66 = iVar63 * 0xa0;
-      iVar63 = iVar63 + 1;
-      hex2bin((uchar *)((int)local_9e4 + iVar66),(char *)(iVar61 + iVar59),0xa0);
-      hex2bin((uchar *)(iVar20 + iVar66),(char *)(DAT_0000b6d4 + iVar59),0xa0);
-    } while (iVar63 != 0x10);
-    set_target(DAT_0000b6a0,(double)CONCAT44(in_stack_ffffd5fc,pcVar22));
+      iVar58 = iVar54 + 1;
+      local_9e4 = *pauVar43;
+      hex2bin((uchar *)((int)pauVar43 + iVar54 * 0xa0),bench_hidiffs[iVar54],0xa0);
+      hex2bin(bench_lodiff_bins[iVar54],bench_lodiffs[iVar54],0xa0);
+      pauVar43 = (uchar (*) [160])local_9e4;
+      iVar54 = iVar58;
+    } while (iVar58 != 0x10);
+    set_target(bench_target,32.0);
   }
   if (opt_version_path == (char *)0x0) {
     local_9c4 = (char **)tmp42;
-    local_9cc = DAT_0000c358;
-    local_9d0 = (block *)DAT_0000c35c;
+    local_9cc = (thr_info *)&use_syslog;
+    local_9d0 = (block *)&opt_log_output;
   }
   else {
-    pFVar26 = fopen(opt_version_path,DAT_0000b6a4);
+    pFVar22 = fopen(opt_version_path,"rb");
     memset(&sInfo,0,0x100);
-    if (pFVar26 == (FILE *)0x0) {
-      local_9cc = DAT_0000c358;
-      if (((*(char *)&DAT_0000c358->id != '\0') ||
-          (local_9d0 = (block *)DAT_0000c35c, *DAT_0000c35c != '\0')) || (2 < *DAT_0000c360)) {
-        local_9d0 = (block *)DAT_0000c35c;
+    if (pFVar22 == (FILE *)0x0) {
+      local_9cc = (thr_info *)&use_syslog;
+      if (((use_syslog != false) || (local_9d0 = (block *)&opt_log_output, opt_log_output != false))
+         || (2 < opt_log_level)) {
+        local_9d0 = (block *)&opt_log_output;
         local_9c4 = (char **)tmp42;
-        snprintf((char *)local_9c4,0x800,DAT_0000c364,opt_version_path);
+        snprintf((char *)local_9c4,0x800,"Open miner version file %s error",opt_version_path);
         _applog(3,(char *)local_9c4,false);
         goto LAB_0000b544;
       }
       local_9c4 = (char **)tmp42;
 LAB_0000b54a:
-      if ((local_9d0->hash[0] == '\0') && (*DAT_0000b6b8 < 3)) goto LAB_0000b57a;
+      if ((*(_Bool *)local_9d0 == false) && (opt_log_level < 3)) goto LAB_0000b57a;
     }
     else {
-      psVar27 = (sysinfo *)fread(&sInfo,1,0x100,pFVar26);
-      if ((int)psVar27 < 1) {
-        local_9cc = DAT_0000c358;
-        if (*(char *)&DAT_0000c358->id == '\0') {
-          local_9d0 = (block *)DAT_0000c35c;
-          if ((*DAT_0000c35c == '\0') && (*DAT_0000c360 < 3)) {
-            local_9c4 = (char **)tmp42;
-            goto LAB_0000b54a;
-          }
+      psVar23 = (sysinfo *)fread(&sInfo,1,0x100,pFVar22);
+      if ((int)psVar23 < 1) {
+        local_9cc = (thr_info *)&use_syslog;
+        if (((use_syslog == false) &&
+            (local_9d0 = (block *)&opt_log_output, opt_log_output == false)) && (opt_log_level < 3))
+        {
+          local_9c4 = (char **)tmp42;
+          goto LAB_0000b54a;
         }
-        else {
-          local_9d0 = (block *)DAT_0000cef0;
-        }
+        local_9d0 = (block *)&opt_log_output;
         local_9c4 = (char **)tmp42;
-        snprintf((char *)local_9c4,0x800,DAT_0000cef4,opt_version_path,psVar27);
+        snprintf((char *)local_9c4,0x800,"Read miner version file %s error %d",opt_version_path,
+                 psVar23);
         _applog(3,(char *)local_9c4,false);
-        pcVar22 = (char *)psVar27;
+        pcVar53 = (char *)psVar23;
       }
       else {
-        pcVar65 = strchr((char *)&sInfo,10);
-        if (pcVar65 == (char *)0x0) {
-          strcpy(DAT_0000c068,(char *)&sInfo);
+        pcVar16 = strchr((char *)&sInfo,10);
+        if (pcVar16 == (char *)0x0) {
+          strcpy(g_miner_compiletime,(char *)&sInfo);
         }
         else {
-          pcVar22 = (char *)DAT_0000b684;
-          _cg_memcpy(DAT_0000b6a8,&sInfo,(int)pcVar65 - (int)&sInfo,DAT_0000b688,
-                     (char *)DAT_0000b684,0x2d4a);
-          strcpy((char *)DAT_0000b6ac,pcVar65 + 1);
+          pcVar53 = "main";
+          _cg_memcpy(g_miner_compiletime,&sInfo,(int)pcVar16 - (int)&sInfo,"cgminer.c","main",0x2d4a
+                    );
+          strcpy(g_miner_type,pcVar16 + 1);
         }
-        sVar23 = strlen(DAT_0000b6a8);
-        pcVar65 = DAT_0000b6a8;
-        iVar61 = iVar58 + (sVar23 - 1);
-        if (*(char *)(iVar61 + 0xa84) == '\n') {
-          *(undefined *)(iVar61 + 0xa84) = 0;
+        sVar18 = strlen(g_miner_compiletime);
+        if (*(char *)((int)&logcursor + sVar18 + 3) == '\n') {
+          *(undefined1 *)((int)&logcursor + sVar18 + 3) = 0;
         }
-        sVar23 = strlen(pcVar65);
-        psVar27 = DAT_0000b6ac;
-        iVar61 = iVar58 + (sVar23 - 1);
-        if (*(char *)(iVar61 + 0xa84) == '\r') {
-          *(undefined *)(iVar61 + 0xa84) = 0;
+        sVar18 = strlen(g_miner_compiletime);
+        if (*(char *)((int)&logcursor + sVar18 + 3) == '\r') {
+          *(undefined1 *)((int)&logcursor + sVar18 + 3) = 0;
         }
-        sVar23 = strlen((char *)psVar27);
-        psVar27 = DAT_0000b6ac;
-        iVar61 = iVar58 + (sVar23 - 1);
-        if (*(char *)(iVar61 + 0xb84) == '\n') {
-          *(undefined *)(iVar61 + 0xb84) = 0;
+        sVar18 = strlen(g_miner_type);
+        if (g_miner_compiletime[sVar18 + 0xff] == '\n') {
+          g_miner_compiletime[sVar18 + 0xff] = '\0';
         }
-        sVar23 = strlen((char *)psVar27);
-        iVar61 = iVar58 + (sVar23 - 1);
-        if (*(char *)(iVar61 + 0xb84) == '\r') {
-          local_9cc = DAT_0000c060;
+        sVar18 = strlen(g_miner_type);
+        if (g_miner_compiletime[sVar18 + 0xff] == '\r') {
           local_9c4 = (char **)tmp42;
-          local_9d0 = (block *)DAT_0000c064;
-          *(undefined *)(iVar61 + 0xb84) = 0;
+          local_9cc = (thr_info *)&use_syslog;
+          local_9d0 = (block *)&opt_log_output;
+          g_miner_compiletime[sVar18 + 0xff] = '\0';
         }
         else {
           local_9c4 = (char **)tmp42;
-          local_9cc = DAT_0000b6b0;
-          local_9d0 = (block *)DAT_0000b6b4;
+          local_9cc = (thr_info *)&use_syslog;
+          local_9d0 = (block *)&opt_log_output;
         }
       }
 LAB_0000b544:
       if (*(char *)&local_9cc->id == '\0') goto LAB_0000b54a;
     }
-    pcVar22 = (char *)DAT_0000b6ac;
-    snprintf((char *)local_9c4,0x800,DAT_0000b6bc,DAT_0000b6ac + -4,DAT_0000b6ac);
+    pcVar53 = g_miner_type;
+    snprintf((char *)local_9c4,0x800,"Miner compile time: %s type: %s",g_miner_compiletime,
+             g_miner_type);
     _applog(3,(char *)local_9c4,false);
   }
 LAB_0000b57a:
-  iVar61 = DAT_0000b680;
   if (opt_logfile_path != (char *)0x0) {
     g_logfile_enable = true;
-    strcpy(DAT_0000b6c0,opt_logfile_path);
-    if (*(char **)(iVar61 + 0x14) != (char *)0x0) {
-      strcpy(DAT_0000b6c4,*(char **)(iVar61 + 0x14));
+    strcpy(g_logfile_path,opt_logfile_path);
+    if (opt_logfile_openflag != (char *)0x0) {
+      strcpy(g_logfile_openflag,opt_logfile_openflag);
     }
-    if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (2 < *DAT_0000b6b8))
-    {
-      pcVar22 = g_logfile_openflag;
-      snprintf((char *)local_9c4,0x800,DAT_0000b6c8,DAT_0000b6c0,g_logfile_openflag);
+    if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) || (2 < opt_log_level)
+       ) {
+      pcVar53 = g_logfile_openflag;
+      snprintf((char *)local_9c4,0x800,"Log file path: %s Open flag: %s",g_logfile_path,
+               g_logfile_openflag);
       _applog(3,(char *)local_9c4,false);
     }
   }
-  pcVar65 = opt_logwork_path;
-  iVar61 = DAT_0000b680;
+  pcVar16 = opt_logwork_path;
   if (opt_logwork_path != (char *)0x0) {
     memset(&sInfo,0,0x100);
-    pcVar47 = *(char **)(iVar61 + 0xc);
-    if (pcVar47 == (char *)0x0) {
-      if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (2 < *DAT_0000c040)
-         ) {
-        snprintf((char *)local_9c4,0x800,DAT_0000c044,pcVar65,pcVar22);
+    if (opt_logwork_asicnum == (char *)0x0) {
+      if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) ||
+         (2 < opt_log_level)) {
+        snprintf((char *)local_9c4,0x800,"Log work path: %s",pcVar16,pcVar53);
         _applog(3,(char *)local_9c4,false);
       }
     }
     else {
-      if (*pcVar47 == '\0') {
-        iVar20 = DAT_0000c078[1];
-        iVar63 = DAT_0000c078[2];
-        iVar59 = DAT_0000c078[3];
-        *local_9c4 = (char *)*DAT_0000c078;
-        local_9c4[1] = (char *)iVar20;
-        local_9c4[2] = (char *)iVar63;
-        local_9c4[3] = (char *)iVar59;
-        iVar20 = DAT_0000c078[5];
-        local_9c4[4] = (char *)DAT_0000c078[4];
-        local_9c4[5] = (char *)iVar20;
-        _applog(3,(char *)local_9c4,true);
-        _quit(1);
-        pcVar47 = *(char **)(iVar61 + 0xc);
-      }
-      lVar17 = strtol(pcVar47,(char **)0x0,10);
-      *(long *)(iVar58 + 0xc84) = lVar17;
-      if ((lVar17 != 0x20 && lVar17 != 1) && (lVar17 != 0x40)) {
-        iVar61 = DAT_0000b6d8[1];
-        iVar20 = DAT_0000b6d8[2];
-        iVar63 = DAT_0000b6d8[3];
-        *local_9c4 = (char *)*DAT_0000b6d8;
-        local_9c4[1] = (char *)iVar61;
-        local_9c4[2] = (char *)iVar20;
-        local_9c4[3] = (char *)iVar63;
-        iVar61 = DAT_0000b6d8[5];
-        iVar20 = DAT_0000b6d8[6];
-        iVar63 = DAT_0000b6d8[7];
-        iVar59 = DAT_0000b6d8[8];
-        local_9c4[4] = (char *)DAT_0000b6d8[4];
-        local_9c4[5] = (char *)iVar61;
-        local_9c4[6] = (char *)iVar20;
-        local_9c4[7] = (char *)iVar63;
-        local_9c4[8] = (char *)iVar59;
+      if (*opt_logwork_asicnum == '\0') {
+        *local_9c4 = (char *)0x20676f4c;
+        local_9c4[1] = (char *)0x6b726f77;
+        local_9c4[2] = (char *)0x69736120;
+        local_9c4[3] = (char *)0x756e2063;
+        local_9c4[4] = (char *)0x6d65206d;
+        local_9c4[5] = (char *)0x797470;
         _applog(3,(char *)local_9c4,true);
         _quit(1);
       }
-      if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (2 < *DAT_0000b6b8)
-         ) {
-        pcVar22 = opt_logwork_asicnum;
-        snprintf((char *)local_9c4,0x800,DAT_0000b9d0,opt_logwork_path,opt_logwork_asicnum);
+      g_logwork_asicnum = strtol(opt_logwork_asicnum,(char **)0x0,10);
+      if ((g_logwork_asicnum != 0x20 && g_logwork_asicnum != 1) && (g_logwork_asicnum != 0x40)) {
+        *local_9c4 = (char *)0x20676f4c;
+        local_9c4[1] = (char *)0x6b726f77;
+        local_9c4[2] = (char *)0x69736120;
+        local_9c4[3] = (char *)0x756e2063;
+        local_9c4[4] = (char *)0x756d206d;
+        local_9c4[5] = (char *)0x62207473;
+        local_9c4[6] = (char *)0x2c312065;
+        local_9c4[7] = (char *)0x2c323320;
+        local_9c4[8] = (char *)0x343620;
+        _applog(3,(char *)local_9c4,true);
+        _quit(1);
+      }
+      if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) ||
+         (2 < opt_log_level)) {
+        pcVar53 = opt_logwork_asicnum;
+        snprintf((char *)local_9c4,0x800,"Log work path: %s Asic num: %s",opt_logwork_path,
+                 opt_logwork_asicnum);
         _applog(3,(char *)local_9c4,false);
       }
     }
-    sprintf((char *)&sInfo,DAT_0000b9d4,opt_logwork_path);
-    pFVar26 = fopen((char *)&sInfo,DAT_0000b9d8);
-    *(FILE **)(iVar58 + 0xc88) = pFVar26;
-    if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (2 < *DAT_0000b9dc))
-    {
-      snprintf((char *)local_9c4,0x800,DAT_0000b9e0,&sInfo);
+    sprintf((char *)&sInfo,"%s.txt",opt_logwork_path);
+    g_logwork_file = (FILE *)fopen((char *)&sInfo,"a+");
+    if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) || (2 < opt_log_level)
+       ) {
+      snprintf((char *)local_9c4,0x800,"Log work open file %s",&sInfo);
       _applog(3,(char *)local_9c4,false);
     }
-    piVar49 = (int *)local_9c4;
-    ptVar41 = local_9cc;
-    iVar61 = DAT_0000b9e4;
-    piVar33 = DAT_0000b9dc;
-    iVar20 = *(int *)(iVar58 + 0xc84);
-    if (iVar20 == 1) {
-      sprintf((char *)&sInfo,DAT_0000c054,opt_logwork_path);
-      pFVar26 = fopen((char *)&sInfo,DAT_0000c058);
-      *(FILE **)(iVar61 + 0xc8c) = pFVar26;
-      if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (2 < *DAT_0000c040)
-         ) {
-        pcVar22 = (char *)&sInfo;
-        snprintf((char *)local_9c4,0x800,DAT_0000c05c,*(undefined4 *)(iVar58 + 0xc84),&sInfo);
+    ppcVar10 = local_9c4;
+    ptVar27 = local_9cc;
+    if (g_logwork_asicnum == 1) {
+      sprintf((char *)&sInfo,"%s%02d.txt",opt_logwork_path);
+      g_logwork_files[0] = (FILE *)fopen((char *)&sInfo,"a+");
+      if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) ||
+         (2 < opt_log_level)) {
+        pcVar53 = (char *)&sInfo;
+        snprintf((char *)local_9c4,0x800,"Log work open asic %d file %s",g_logwork_asicnum,&sInfo);
         _applog(3,(char *)local_9c4,false);
       }
     }
-    else if ((iVar20 == 0x20 || iVar20 == 0x40) && (-1 < iVar20)) {
-      psVar27 = (sysinfo *)0x0;
-      ppFVar64 = DAT_0000b9e8;
+    else if ((g_logwork_asicnum == 0x20 || g_logwork_asicnum == 0x40) && (-1 < g_logwork_asicnum)) {
+      ppFVar60 = &g_logwork_file;
+      psVar23 = (sysinfo *)0x0;
       do {
-        pcVar22 = (char *)psVar27;
-        sprintf((char *)&sInfo,DAT_0000b9ec,opt_logwork_path,iVar20,psVar27);
-        pFVar26 = fopen((char *)&sInfo,DAT_0000b9d8);
-        cVar3 = *(char *)&ptVar41->id;
-        ppFVar64 = ppFVar64 + 1;
-        *ppFVar64 = pFVar26;
-        if (((cVar3 != '\0') || (local_9d0->hash[0] != '\0')) || (2 < *piVar33)) {
-          pcVar22 = (char *)&sInfo;
-          snprintf((char *)piVar49,0x800,DAT_0000b9f0,*(undefined4 *)(iVar58 + 0xc84),&sInfo);
-          _applog(3,(char *)piVar49,false);
+        pcVar53 = (char *)psVar23;
+        sprintf((char *)&sInfo,"%s%02d_%02d.txt",opt_logwork_path,g_logwork_asicnum,psVar23);
+        pFVar22 = fopen((char *)&sInfo,"a+");
+        cVar2 = *(char *)&ptVar27->id;
+        ppFVar60 = ppFVar60 + 1;
+        *ppFVar60 = (FILE *)pFVar22;
+        if (((cVar2 != '\0') || (*(_Bool *)local_9d0 != false)) || (2 < opt_log_level)) {
+          pcVar53 = (char *)&sInfo;
+          snprintf((char *)ppcVar10,0x800,"Log work open asic %d file %s",g_logwork_asicnum,&sInfo);
+          _applog(3,(char *)ppcVar10,false);
         }
-        iVar20 = *(int *)(iVar58 + 0xc84);
-        psVar27 = (sysinfo *)((int)&psVar27->uptime + 1);
-      } while ((int)psVar27 <= iVar20);
+        psVar23 = (sysinfo *)((int)&psVar23->uptime + 1);
+      } while ((int)psVar23 <= g_logwork_asicnum);
     }
-    piVar49 = (int *)local_9c4;
-    pcVar65 = local_9d0->hash;
-    piVar33 = DAT_0000b9dc;
-    if (*(char *)(iVar58 + 0xd90) != '\0') {
-      iVar61 = 0;
-      ppFVar64 = DAT_0000b9f4;
+    ppcVar10 = local_9c4;
+    pbVar19 = local_9d0;
+    if (opt_logwork_diff != false) {
+      p_Var61 = &opt_logwork_diff;
+      iVar54 = 0;
       do {
-        sprintf((char *)&sInfo,DAT_0000b9f8,opt_logwork_path,iVar61);
-        pFVar26 = fopen((char *)&sInfo,DAT_0000b9d8);
-        ppFVar64 = ppFVar64 + 1;
-        *ppFVar64 = pFVar26;
-        if (((*(char *)&local_9cc->id != '\0') || (*pcVar65 != '\0')) || (2 < *piVar33)) {
-          snprintf((char *)piVar49,0x800,DAT_0000b9fc,&sInfo);
-          _applog(3,(char *)piVar49,false);
+        sprintf((char *)&sInfo,"%s_diff_%02d.txt",opt_logwork_path,iVar54);
+        pFVar22 = fopen((char *)&sInfo,"a+");
+        p_Var61 = p_Var61 + 4;
+        *(FILE **)p_Var61 = pFVar22;
+        if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)pbVar19 != false)) ||
+           (2 < opt_log_level)) {
+          snprintf((char *)ppcVar10,0x800,"Log work open diff file %s",&sInfo);
+          _applog(3,(char *)ppcVar10,false);
         }
-        iVar61 = iVar61 + 1;
-      } while (iVar61 != 0x41);
+        iVar54 = iVar54 + 1;
+      } while (iVar54 != 0x41);
     }
   }
-  if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (3 < *DAT_0000b9dc)) {
-    snprintf((char *)local_9c4,0x800,DAT_0000ba00,DAT_0000ba04,pcVar22);
+  if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) || (3 < opt_log_level))
+  {
+    snprintf((char *)local_9c4,0x800,"Started %s",packagename,pcVar53);
     _applog(4,(char *)local_9c4,false);
   }
   if (cnfbuf != (char *)0x0) {
-    if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (4 < *DAT_0000b9dc))
-    {
-      snprintf((char *)local_9c4,0x800,DAT_0000ba08);
+    if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) || (4 < opt_log_level)
+       ) {
+      snprintf((char *)local_9c4,0x800,"Loaded configuration file %s");
       _applog(5,(char *)local_9c4,false);
     }
     if (fileconf_load == -1) {
-      if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (3 < *DAT_0000c040)
-         ) {
-        iVar61 = DAT_0000c048[1];
-        iVar20 = DAT_0000c048[2];
-        iVar63 = DAT_0000c048[3];
-        *local_9c4 = (char *)*DAT_0000c048;
-        local_9c4[1] = (char *)iVar61;
-        local_9c4[2] = (char *)iVar20;
-        local_9c4[3] = (char *)iVar63;
-        iVar61 = DAT_0000c048[5];
-        iVar20 = DAT_0000c048[6];
-        iVar63 = DAT_0000c048[7];
-        local_9c4[4] = (char *)DAT_0000c048[4];
-        local_9c4[5] = (char *)iVar61;
-        local_9c4[6] = (char *)iVar20;
-        local_9c4[7] = (char *)iVar63;
-        iVar61 = DAT_0000c048[9];
-        iVar20 = DAT_0000c048[10];
-        iVar63 = DAT_0000c048[0xb];
-        local_9c4[8] = (char *)DAT_0000c048[8];
-        local_9c4[9] = (char *)iVar61;
-        local_9c4[10] = (char *)iVar20;
-        *(short *)(local_9c4 + 0xb) = (short)iVar63;
-        *(char *)((int)local_9c4 + 0x2e) = (char)((uint)iVar63 >> 0x10);
+      if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) ||
+         (3 < opt_log_level)) {
+        *local_9c4 = (char *)0x6f727245;
+        local_9c4[1] = (char *)0x6e692072;
+        local_9c4[2] = (char *)0x6e6f6320;
+        local_9c4[3] = (char *)0x75676966;
+        local_9c4[4] = (char *)0x69746172;
+        local_9c4[5] = (char *)0x66206e6f;
+        local_9c4[6] = (char *)0x2c656c69;
+        local_9c4[7] = (char *)0x72617020;
+        local_9c4[8] = (char *)0x6c616974;
+        local_9c4[9] = (char *)0x6c20796c;
+        local_9c4[10] = (char *)0x6564616f;
+        *(undefined2 *)(local_9c4 + 0xb) = 0x2e64;
+        *(undefined1 *)((int)local_9c4 + 0x2e) = 0;
         _applog(4,(char *)local_9c4,false);
       }
-      if ((*DAT_0000c04c != '\0') &&
-         (((*(char *)&local_9cc->id != '\0' || (local_9d0->hash[0] != '\0')) || (3 < *DAT_0000c040))
-         )) {
-        iVar61 = DAT_0000c050[1];
-        iVar20 = DAT_0000c050[2];
-        iVar63 = DAT_0000c050[3];
-        *local_9c4 = (char *)*DAT_0000c050;
-        local_9c4[1] = (char *)iVar61;
-        local_9c4[2] = (char *)iVar20;
-        local_9c4[3] = (char *)iVar63;
-        iVar61 = DAT_0000c050[5];
-        iVar20 = DAT_0000c050[6];
-        iVar63 = DAT_0000c050[7];
-        local_9c4[4] = (char *)DAT_0000c050[4];
-        local_9c4[5] = (char *)iVar61;
-        local_9c4[6] = (char *)iVar20;
-        local_9c4[7] = (char *)iVar63;
-        iVar61 = DAT_0000c050[9];
-        iVar20 = DAT_0000c050[10];
-        iVar63 = DAT_0000c050[0xb];
-        iVar59 = DAT_0000c050[0xc];
-        local_9c4[8] = (char *)DAT_0000c050[8];
-        local_9c4[9] = (char *)iVar61;
-        local_9c4[10] = (char *)iVar20;
-        local_9c4[0xb] = (char *)iVar63;
-        *(short *)(local_9c4 + 0xc) = (short)iVar59;
+      if ((use_curses != false) &&
+         (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
+          (3 < opt_log_level)))) {
+        *local_9c4 = (char *)0x72617453;
+        local_9c4[1] = (char *)0x67632074;
+        local_9c4[2] = (char *)0x656e696d;
+        local_9c4[3] = (char *)0x69772072;
+        local_9c4[4] = (char *)0x2d206874;
+        local_9c4[5] = (char *)0x6f742054;
+        local_9c4[6] = (char *)0x65657320;
+        local_9c4[7] = (char *)0x61687720;
+        local_9c4[8] = (char *)0x61662074;
+        local_9c4[9] = (char *)0x64656c69;
+        local_9c4[10] = (char *)0x206f7420;
+        local_9c4[0xb] = (char *)0x64616f6c;
+        *(undefined2 *)(local_9c4 + 0xc) = 0x2e;
         _applog(4,(char *)local_9c4,false);
       }
     }
     else if (fileconf_load == 0) {
-      if (((*(char *)&local_9cc->id == '\0') && (local_9d0->hash[0] == '\0')) &&
-         (local_9d8 = DAT_0000b9dc, *DAT_0000b9dc < 4)) {
+      if (((*(char *)&local_9cc->id == '\0') && (*(_Bool *)local_9d0 == false)) &&
+         (local_9d8 = &opt_log_level, opt_log_level < 4)) {
 LAB_0000b932:
-        local_9d8 = DAT_0000b9dc;
-        if (*DAT_0000b9dc < 4) goto LAB_0000b95a;
+        local_9d8 = &opt_log_level;
+        if (opt_log_level < 4) goto LAB_0000b95a;
       }
       else {
-        iVar61 = DAT_0000ba0c[1];
-        iVar20 = DAT_0000ba0c[2];
-        iVar63 = DAT_0000ba0c[3];
-        *local_9c4 = (char *)*DAT_0000ba0c;
-        local_9c4[1] = (char *)iVar61;
-        local_9c4[2] = (char *)iVar20;
-        local_9c4[3] = (char *)iVar63;
-        iVar61 = DAT_0000ba0c[5];
-        iVar20 = DAT_0000ba0c[6];
-        iVar63 = DAT_0000ba0c[7];
-        local_9c4[4] = (char *)DAT_0000ba0c[4];
-        local_9c4[5] = (char *)iVar61;
-        local_9c4[6] = (char *)iVar20;
-        local_9c4[7] = (char *)iVar63;
-        iVar61 = DAT_0000ba0c[9];
-        local_9c4[8] = (char *)DAT_0000ba0c[8];
-        local_9c4[9] = (char *)iVar61;
+        *local_9c4 = (char *)0x61746146;
+        local_9c4[1] = (char *)0x534a206c;
+        local_9c4[2] = (char *)0x65204e4f;
+        local_9c4[3] = (char *)0x726f7272;
+        local_9c4[4] = (char *)0x206e6920;
+        local_9c4[5] = (char *)0x666e6f63;
+        local_9c4[6] = (char *)0x72756769;
+        local_9c4[7] = (char *)0x6f697461;
+        local_9c4[8] = (char *)0x6966206e;
+        local_9c4[9] = (char *)0x2e656c;
         _applog(4,(char *)local_9c4,false);
-        if ((*(char *)&local_9cc->id == '\0') && (local_9d0->hash[0] == '\0')) goto LAB_0000b932;
+        if ((*(char *)&local_9cc->id == '\0') && (*(_Bool *)local_9d0 == false)) goto LAB_0000b932;
       }
-      iVar61 = DAT_0000ba10[1];
-      iVar20 = DAT_0000ba10[2];
-      iVar63 = DAT_0000ba10[3];
-      *local_9c4 = (char *)*DAT_0000ba10;
-      local_9c4[1] = (char *)iVar61;
-      local_9c4[2] = (char *)iVar20;
-      local_9c4[3] = (char *)iVar63;
-      iVar61 = DAT_0000ba10[5];
-      iVar20 = DAT_0000ba10[6];
-      iVar63 = DAT_0000ba10[7];
-      local_9c4[4] = (char *)DAT_0000ba10[4];
-      local_9c4[5] = (char *)iVar61;
-      local_9c4[6] = (char *)iVar20;
-      local_9c4[7] = (char *)iVar63;
-      iVar61 = DAT_0000ba10[9];
-      local_9c4[8] = (char *)DAT_0000ba10[8];
-      *(short *)(local_9c4 + 9) = (short)iVar61;
+      *local_9c4 = (char *)0x666e6f43;
+      local_9c4[1] = (char *)0x72756769;
+      local_9c4[2] = (char *)0x6f697461;
+      local_9c4[3] = (char *)0x6966206e;
+      local_9c4[4] = (char *)0x6320656c;
+      local_9c4[5] = (char *)0x646c756f;
+      local_9c4[6] = (char *)0x746f6e20;
+      local_9c4[7] = (char *)0x20656220;
+      local_9c4[8] = (char *)0x64657375;
+      *(undefined2 *)(local_9c4 + 9) = 0x2e;
       _applog(4,(char *)local_9c4,false);
     }
 LAB_0000b95a:
     free(cnfbuf);
     cnfbuf = (char *)0x0;
   }
-  pcVar22 = opt_kernel_path;
-  sVar23 = strlen(opt_kernel_path);
-  *(undefined2 *)(pcVar22 + sVar23) = s__bmminer__0004bfec._8_2_;
-  if (*DAT_0000ba14 == '\0') {
-    if (local_9d0->hash[0] != '\0') goto LAB_0000bbe4;
+  pcVar53 = opt_kernel_path;
+  sVar18 = strlen(opt_kernel_path);
+  (pcVar53 + sVar18)[0] = '/';
+  (pcVar53 + sVar18)[1] = '\0';
+  if (want_per_device_stats == false) {
+    if (*(_Bool *)local_9d0 != false) goto LAB_0000bbe4;
     setlogmask(0x3f);
   }
   else {
-    local_9d0->hash[0] = '\x01';
+    *(_Bool *)local_9d0 = true;
 LAB_0000bbe4:
     setlogmask(0xff);
   }
-  piVar33 = DAT_0000ba2c;
-  drv_01 = DAT_0000ba28;
-  drv_00 = DAT_0000ba24;
-  drv = DAT_0000ba20;
-  pdVar52 = DAT_0000ba1c;
-  iVar20 = 0;
-  iVar61 = *(int *)(DAT_0000ba18 + 0x81c);
-  bVar69 = iVar61 < 0;
-  if (bVar69) {
-    iVar61 = 0x3c;
+  iVar54 = 0;
+  if (opt_scantime < 0) {
+    opt_scantime = 0x3c;
   }
-  if (bVar69) {
-    *(int *)(DAT_0000ba18 + 0x81c) = iVar61;
-  }
-  *(undefined4 *)(iVar58 + 0xe98) = 8;
-  pcVar22 = DAT_0000bcec;
-  control_thr = (thr_info *)_cgcalloc(8,0x40,DAT_0000bcec,DAT_0000bce8,0x2de6);
-  *(undefined4 *)(iVar58 + 0xe9c) = 0;
-  fill_device_drv(drv);
-  fill_device_drv(drv_00);
-  fill_device_drv(drv_01);
-  fill_device_drv(pdVar52);
-  (*drv->drv_detect)(false);
-  (*drv_00->drv_detect)(false);
-  (*drv_01->drv_detect)(false);
-  piVar49 = (int *)pdVar52->drv_detect;
-  (*(code *)piVar49)(0);
-  puVar11 = PTR_devices_0000bd0c;
-  iVar61 = *piVar33;
+  total_control_threads = 8;
+  control_thr = (thr_info *)_cgcalloc(8,0x40,"cgminer.c","main",0x2de6);
+  gwsched_thr_id = 0;
+  fill_device_drv(&bitforce_drv);
+  fill_device_drv(&modminer_drv);
+  fill_device_drv(&bitmain_drv);
+  fill_device_drv(&bitmain_c5_drv);
+  (*bitforce_drv.drv_detect)(false);
+  (*modminer_drv.drv_detect)(false);
+  (*bitmain_drv.drv_detect)(false);
+  (*bitmain_c5_drv.drv_detect)(false);
   mining_threads = 0;
-  if (0 < iVar61) {
+  if (0 < total_devices) {
     do {
-      piVar49 = *(int **)puVar11;
-      ppcVar2 = (cgpu_info **)(piVar49 + iVar20);
-      iVar20 = iVar20 + 1;
-      enable_device(*ppcVar2);
-      iVar61 = *piVar33;
-    } while (iVar20 < iVar61);
+      ppcVar50 = devices + iVar54;
+      iVar54 = iVar54 + 1;
+      enable_device(*ppcVar50);
+    } while (iVar54 < total_devices);
   }
-  if (iVar61 == 0) {
-    iVar58 = _UNK_0000c038[1];
-    iVar61 = _UNK_0000c038[2];
-    iVar20 = _UNK_0000c038[3];
-    *local_9c4 = (char *)*_UNK_0000c038;
-    local_9c4[1] = (char *)iVar58;
-    local_9c4[2] = (char *)iVar61;
-    local_9c4[3] = (char *)iVar20;
-    iVar58 = _UNK_0000c038[5];
-    iVar61 = _UNK_0000c038[6];
-    iVar20 = _UNK_0000c038[7];
-    iVar63 = _UNK_0000c038[8];
-    local_9c4[4] = (char *)_UNK_0000c038[4];
-    local_9c4[5] = (char *)iVar58;
-    local_9c4[6] = (char *)iVar61;
-    local_9c4[7] = (char *)iVar20;
-    *(short *)(local_9c4 + 8) = (short)iVar63;
-    *(char *)((int)local_9c4 + 0x22) = (char)((uint)iVar63 >> 0x10);
+  if (total_devices == 0) {
+    *local_9c4 = (char *)0x206c6c41;
+    local_9c4[1] = (char *)0x69766564;
+    local_9c4[2] = (char *)0x20736563;
+    local_9c4[3] = (char *)0x61736964;
+    local_9c4[4] = (char *)0x64656c62;
+    local_9c4[5] = (char *)0x6163202c;
+    local_9c4[6] = (char *)0x746f6e6e;
+    local_9c4[7] = (char *)0x6e696d20;
+    *(undefined2 *)(local_9c4 + 8) = 0x2174;
+    *(undefined1 *)((int)local_9c4 + 0x22) = 0;
     _applog(3,(char *)local_9c4,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
-  *(int *)(iVar58 + 0xa74) = iVar61;
+  most_devices = total_devices;
   if (temp_cutoff_str == (char *)0x0) {
-    iVar61 = pthread_rwlock_rdlock((pthread_rwlock_t *)PTR_devices_lock_0000bcf8);
-    if (iVar61 != 0) {
-      _rd_lock((pthread_rwlock_t *)PTR___func___1_0000bcfc,(char *)0x51c,pcVar22,(int)piVar49);
+    iVar54 = pthread_rwlock_rdlock((pthread_rwlock_t *)&devices_lock);
+    ppcVar50 = line_15;
+    if (iVar54 != 0) {
+      _rd_lock((pthread_rwlock_t *)"load_temp_cutoffs",(char *)0x51c,func_02,(int)line_15);
+      ppcVar50 = extraout_r3_01;
     }
-    iVar61 = *piVar33;
-    if (0 < iVar61) {
-      piVar50 = *(int **)PTR_devices_0000bd0c;
-      piVar51 = piVar50;
+    if (0 < total_devices) {
+      ppcVar55 = devices + total_devices;
+      ppcVar44 = devices;
       do {
-        piVar49 = piVar51 + 1;
-        if (*(int *)(*piVar51 + 0xb8) == 0) {
-          *(undefined4 *)(*piVar51 + 0xb8) = 0x5f;
+        ppcVar50 = ppcVar44 + 1;
+        if ((*ppcVar44)->cutofftemp == 0) {
+          (*ppcVar44)->cutofftemp = 0x5f;
         }
-        piVar51 = piVar49;
-      } while (piVar49 != piVar50 + iVar61);
+        ppcVar44 = ppcVar50;
+      } while (ppcVar50 != ppcVar55);
     }
-    _rd_unlock((pthread_rwlock_t *)PTR_devices_lock_0000bcf8,PTR___func___1_0000bcfc,(char *)0x525,
-               (int)piVar49);
+    _rd_unlock(&devices_lock,"load_temp_cutoffs",(char *)0x525,(int)ppcVar50);
   }
   else {
-    pcVar65 = strtok(temp_cutoff_str,PTR_DAT_0000bcf0);
-    piVar51 = (int *)local_9c4;
-    puVar11 = PTR_devices_0000bd0c;
-    if (pcVar65 == (char *)0x0) {
-      iVar61 = 0;
-      uVar44 = 0;
+    pcVar53 = strtok(temp_cutoff_str,",");
+    ppcVar10 = local_9c4;
+    if (pcVar53 == (char *)0x0) {
+      iVar54 = 0;
+      uVar34 = 0;
     }
     else {
-      ppiStack_9e0 = (int **)PTR_selective_yield_0000bcf4;
-      iVar61 = 0;
+      pp_Stack_9e0 = &selective_yield;
+      iVar54 = 0;
       do {
-        iVar20 = *piVar33;
-        if (iVar20 <= iVar61) {
-          iVar20 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 4);
-          iVar63 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 8);
-          iVar59 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0xc);
-          *piVar51 = *(int *)PTR_s_Too_many_values_passed_to_set_te_0000bd10;
-          piVar51[1] = iVar20;
-          piVar51[2] = iVar63;
-          piVar51[3] = iVar59;
-          iVar63 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x14);
-          iVar59 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x18);
-          iVar20 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x1c);
-          piVar51[4] = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x10);
-          piVar51[5] = iVar63;
-          piVar51[6] = iVar59;
-          piVar51[7] = iVar20;
-          iVar63 = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x24);
-          uVar19 = *(undefined4 *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x28);
-          piVar51[8] = *(int *)(PTR_s_Too_many_values_passed_to_set_te_0000bd10 + 0x20);
-          piVar51[9] = iVar63;
-          *(short *)(piVar51 + 10) = (short)uVar19;
-          _applog(3,(char *)piVar51,true);
+        if (total_devices <= iVar54) {
+          *ppcVar10 = (char *)0x206f6f54;
+          ppcVar10[1] = (char *)0x796e616d;
+          ppcVar10[2] = (char *)0x6c617620;
+          ppcVar10[3] = (char *)0x20736575;
+          ppcVar10[4] = (char *)0x73736170;
+          ppcVar10[5] = (char *)0x74206465;
+          ppcVar10[6] = (char *)0x6573206f;
+          ppcVar10[7] = (char *)0x65742074;
+          ppcVar10[8] = (char *)0x6320706d;
+          ppcVar10[9] = (char *)0x666f7475;
+          *(undefined2 *)(ppcVar10 + 10) = 0x66;
+          _applog(3,(char *)ppcVar10,true);
           _quit(1);
         }
-        pcVar22 = (char *)0xa;
-        uVar44 = strtol(pcVar65,(char **)0x0,10);
-        if (200 < uVar44) {
-          iVar20 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 4);
-          iVar63 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 8);
-          iVar59 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0xc);
-          *piVar51 = *(int *)PTR_s_Invalid_value_passed_to_set_temp_0000bd14;
-          piVar51[1] = iVar20;
-          piVar51[2] = iVar63;
-          piVar51[3] = iVar59;
-          iVar63 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0x14);
-          iVar59 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0x18);
-          iVar20 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0x1c);
-          piVar51[4] = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0x10);
-          piVar51[5] = iVar63;
-          piVar51[6] = iVar59;
-          piVar51[7] = iVar20;
-          pcVar22 = (char *)0x1;
-          iVar63 = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0x24);
-          piVar51[8] = *(int *)(PTR_s_Invalid_value_passed_to_set_temp_0000bd14 + 0x20);
-          piVar51[9] = iVar63;
-          _applog(3,(char *)piVar51,true);
+        uVar34 = strtol(pcVar53,(char **)0x0,10);
+        if (200 < uVar34) {
+          *ppcVar10 = (char *)0x61766e49;
+          ppcVar10[1] = (char *)0x2064696c;
+          ppcVar10[2] = (char *)0x756c6176;
+          ppcVar10[3] = (char *)0x61702065;
+          ppcVar10[4] = (char *)0x64657373;
+          ppcVar10[5] = (char *)0x206f7420;
+          ppcVar10[6] = (char *)0x20746573;
+          ppcVar10[7] = (char *)0x706d6574;
+          ppcVar10[8] = (char *)0x74756320;
+          ppcVar10[9] = (char *)0x66666f;
+          _applog(3,(char *)ppcVar10,true);
           _quit(1);
         }
-        iVar63 = pthread_rwlock_rdlock((pthread_rwlock_t *)PTR_devices_lock_0000bcf8);
-        if (iVar63 != 0) {
-          _rd_lock((pthread_rwlock_t *)PTR___func___1_0000bcfc,(char *)0x515,pcVar22,iVar20);
+        iVar58 = pthread_rwlock_rdlock((pthread_rwlock_t *)&devices_lock);
+        if (iVar58 != 0) {
+          _rd_lock((pthread_rwlock_t *)"load_temp_cutoffs",(char *)0x515,func_00,line_13);
         }
-        __rwlock = PTR_devices_lock_0000bcf8;
-        iVar63 = *(int *)(*(int *)puVar11 + iVar61 * 4);
-        *(uint *)(iVar63 + 0xb8) = uVar44;
-        iVar20 = pthread_rwlock_unlock((pthread_rwlock_t *)__rwlock);
-        if (iVar20 != 0) {
-          _rw_unlock(_UNK_0000c03c,(char *)0x517,pcVar22,iVar63);
+        devices[iVar54]->cutofftemp = uVar34;
+        iVar58 = pthread_rwlock_unlock((pthread_rwlock_t *)&devices_lock);
+        if (iVar58 != 0) {
+          _rw_unlock((pthread_rwlock_t *)"load_temp_cutoffs",(char *)0x517,func,line_12);
         }
-        iVar61 = iVar61 + 1;
-        piVar49 = *ppiStack_9e0;
-        (*(code *)piVar49)();
-        pcVar65 = strtok((char *)0x0,PTR_DAT_0000bcf0);
-      } while (pcVar65 != (char *)0x0);
-      if (iVar61 != 1) goto code_r0x0000bc7a;
-      iVar61 = 1;
+        iVar54 = iVar54 + 1;
+        (**pp_Stack_9e0)();
+        pcVar53 = strtok((char *)0x0,",");
+      } while (pcVar53 != (char *)0x0);
+      if (iVar54 != 1) goto code_r0x0000bc7a;
+      iVar54 = 1;
     }
-    iVar20 = pthread_rwlock_rdlock((pthread_rwlock_t *)PTR_devices_lock_0000bcf8);
-    if (iVar20 != 0) {
-      _rd_lock((pthread_rwlock_t *)PTR___func___1_0000bcfc,(char *)0x52c,pcVar22,(int)piVar49);
+    iVar58 = pthread_rwlock_rdlock((pthread_rwlock_t *)&devices_lock);
+    ppcVar50 = line_14;
+    if (iVar58 != 0) {
+      _rd_lock((pthread_rwlock_t *)"load_temp_cutoffs",(char *)0x52c,func_01,(int)line_14);
+      ppcVar50 = extraout_r3_00;
     }
-    if (iVar61 < *piVar33) {
-      piVar49 = (int *)(*(int *)PTR_devices_0000bd0c + *piVar33 * 4);
-      piVar51 = (int *)(*(int *)PTR_devices_0000bd0c + iVar61 * 4);
+    if (iVar54 < total_devices) {
+      ppcVar50 = devices + total_devices;
+      ppcVar44 = devices + iVar54;
       do {
-        piVar50 = piVar51 + 1;
-        *(uint *)(*piVar51 + 0xb8) = uVar44;
-        piVar51 = piVar50;
-      } while (piVar50 != piVar49);
+        ppcVar55 = ppcVar44 + 1;
+        (*ppcVar44)->cutofftemp = uVar34;
+        ppcVar44 = ppcVar55;
+      } while (ppcVar55 != ppcVar50);
     }
-    _rd_unlock((pthread_rwlock_t *)PTR_devices_lock_0000bcf8,PTR___func___1_0000bcfc,(char *)0x532,
-               (int)piVar49);
+    _rd_unlock(&devices_lock,"load_temp_cutoffs",(char *)0x532,(int)ppcVar50);
   }
 code_r0x0000bc7a:
-  iVar61 = *piVar33;
-  if (0 < iVar61) {
-    piVar51 = *(int **)PTR_devices_0000bd0c;
-    piVar49 = piVar51;
+  if (0 < total_devices) {
+    ppcVar44 = devices + total_devices;
+    ppcVar50 = devices;
     do {
-      piVar50 = piVar49 + 1;
-      *(undefined4 *)(*piVar49 + 0x138) = 99999999;
-      piVar49 = piVar50;
-    } while (piVar50 != piVar51 + iVar61);
+      ppcVar55 = ppcVar50 + 1;
+      ((*ppcVar50)->cgminer_stats).getwork_wait_min.tv_sec = 99999999;
+      ppcVar50 = ppcVar55;
+    } while (ppcVar55 != ppcVar44);
   }
-  if (*PTR_opt_compact_0000bd04 == '\0') {
-    iVar61 = *(int *)(iVar58 + 0xa7c) + *(int *)(iVar58 + 0xa74);
-    *(int *)(iVar58 + 0xa7c) = iVar61;
-    *(int *)(iVar58 + 0xa80) = iVar61 + 1;
+  if (opt_compact == false) {
+    logstart = logstart + most_devices;
+    logcursor = logstart + 1;
   }
   if (total_pools == 0) {
-    if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (3 < *DAT_0000c360))
-    {
-      iVar58 = _UNK_0000c38c[1];
-      iVar61 = _UNK_0000c38c[2];
-      iVar20 = _UNK_0000c38c[3];
-      *local_9c4 = (char *)*_UNK_0000c38c;
-      local_9c4[1] = (char *)iVar58;
-      local_9c4[2] = (char *)iVar61;
-      local_9c4[3] = (char *)iVar20;
-      iVar58 = _UNK_0000c38c[5];
-      iVar61 = _UNK_0000c38c[6];
-      iVar20 = _UNK_0000c38c[7];
-      local_9c4[4] = (char *)_UNK_0000c38c[4];
-      local_9c4[5] = (char *)iVar58;
-      local_9c4[6] = (char *)iVar61;
-      local_9c4[7] = (char *)iVar20;
-      iVar58 = _UNK_0000c38c[9];
-      iVar61 = _UNK_0000c38c[10];
-      local_9c4[8] = (char *)_UNK_0000c38c[8];
-      local_9c4[9] = (char *)iVar58;
-      *(short *)(local_9c4 + 10) = (short)iVar61;
+    if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) || (3 < opt_log_level)
+       ) {
+      *local_9c4 = (char *)0x6465654e;
+      local_9c4[1] = (char *)0x206f7420;
+      local_9c4[2] = (char *)0x63657073;
+      local_9c4[3] = (char *)0x20796669;
+      local_9c4[4] = (char *)0x6c207461;
+      local_9c4[5] = (char *)0x74736165;
+      local_9c4[6] = (char *)0x656e6f20;
+      local_9c4[7] = (char *)0x6f6f7020;
+      local_9c4[8] = (char *)0x6573206c;
+      local_9c4[9] = (char *)0x72657672;
+      *(undefined2 *)(local_9c4 + 10) = 0x2e;
       _applog(4,(char *)local_9c4,false);
     }
-    iVar58 = _UNK_0000c390[1];
-    iVar61 = _UNK_0000c390[2];
-    iVar20 = _UNK_0000c390[3];
-    iVar63 = _UNK_0000c390[4];
-    *local_9c4 = (char *)*_UNK_0000c390;
-    local_9c4[1] = (char *)iVar58;
-    local_9c4[2] = (char *)iVar61;
-    local_9c4[3] = (char *)iVar20;
-    *(short *)(local_9c4 + 4) = (short)iVar63;
+    *local_9c4 = (char *)0x6c6f6f50;
+    local_9c4[1] = (char *)0x74657320;
+    local_9c4[2] = (char *)0x66207075;
+    local_9c4[3] = (char *)0x656c6961;
+    *(undefined2 *)(local_9c4 + 4) = 100;
     _applog(3,(char *)local_9c4,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
-  pptStack_9d4 = (thr_info **)PTR_pools_0000bd08;
+  ppppStack_9d4 = &pools;
   if (0 < total_pools) {
-    iVar61 = 0;
-    ptVar41 = *(thr_info **)PTR_pools_0000bd08;
+    iVar54 = 0;
+    pppVar45 = pools;
     do {
-      iVar20 = (&ptVar41->id)[iVar61];
-      *(undefined4 *)(iVar20 + 0x194) = 99999999;
-      *(undefined4 *)(iVar20 + 0x1b8) = 99999999;
-      if (*(int *)(iVar20 + 0xa8) == 0) {
-        if (*(int *)(iVar20 + 0xb0) == 0) {
-          pvVar28 = calloc(1,1);
-          *(void **)(iVar20 + 0xb0) = pvVar28;
+      ppVar21 = pppVar45[iVar54];
+      pcVar53 = ppVar21->rpc_userpass;
+      (ppVar21->cgminer_stats).getwork_wait_min.tv_sec = 99999999;
+      (ppVar21->cgminer_pool_stats).getwork_wait_min.tv_sec = 99999999;
+      if (pcVar53 == (char *)0x0) {
+        if (ppVar21->rpc_pass == (char *)0x0) {
+          pcVar53 = (char *)calloc(1,1);
+          ppVar21->rpc_pass = pcVar53;
         }
-        if (*(char **)(iVar20 + 0xac) == (char *)0x0) {
-          snprintf((char *)local_9c4,0x800,DAT_0000ceec,iVar61,*(undefined4 *)(iVar20 + 0xa4));
+        if (ppVar21->rpc_user == (char *)0x0) {
+          snprintf((char *)local_9c4,0x800,"No login credentials supplied for pool %u %s",iVar54,
+                   ppVar21->rpc_url);
           goto LAB_0000cdee;
         }
-        sVar23 = strlen(*(char **)(iVar20 + 0xac));
-        sVar29 = strlen(*(char **)(iVar20 + 0xb0));
-        uVar44 = sVar23 + sVar29 + 2;
-        pcVar22 = (char *)_cgmalloc(uVar44,DAT_0000c02c,DAT_0000c030,0x2e53);
-        *(char **)(iVar20 + 0xa8) = pcVar22;
-        snprintf(pcVar22,uVar44,DAT_0000c034,*(undefined4 *)(iVar20 + 0xac),
-                 *(undefined4 *)(iVar20 + 0xb0));
-        ptVar41 = *pptStack_9d4;
+        sVar18 = strlen(ppVar21->rpc_user);
+        sVar24 = strlen(ppVar21->rpc_pass);
+        uVar34 = sVar18 + sVar24 + 2;
+        pcVar53 = (char *)_cgmalloc(uVar34,"cgminer.c","main",0x2e53);
+        ppVar21->rpc_userpass = pcVar53;
+        snprintf(pcVar53,uVar34,"%s:%s",ppVar21->rpc_user,ppVar21->rpc_pass);
+        pppVar45 = *ppppStack_9d4;
       }
-      iVar61 = iVar61 + 1;
-    } while (iVar61 < total_pools);
+      iVar54 = iVar54 + 1;
+    } while (iVar54 < total_pools);
   }
-  currentpool = (pool *)(*pptStack_9d4)->id;
+  currentpool = **ppppStack_9d4;
   if (*(char *)&local_9cc->id != '\0') {
-    openlog(DAT_0000c374,1,8);
+    openlog("bmminer",1,8);
   }
-  iVar61 = DAT_0000c378;
-  if (*(int *)(iVar58 + 0xea0) != 0) {
-    iVar20 = pipe((int *)local_9c4);
-    if (iVar20 < 0) {
-      perror(DAT_0000cee4);
+  if (opt_stderr_cmd != (char *)0x0) {
+    iVar54 = pipe((int *)local_9c4);
+    if (iVar54 < 0) {
+      perror("pipe - failed to create pipe for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
-    fflush(*DAT_0000c37c);
-    iVar20 = dup2((int)local_9c4[1],2);
-    if (iVar20 < 0) {
-      perror(DAT_0000cee8);
+    fflush(stderr);
+    iVar54 = dup2((int)local_9c4[1],2);
+    if (iVar54 < 0) {
+      perror("dup2 - failed to alias stderr to write end of pipe for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
-    iVar20 = close((int)local_9c4[1]);
-    if (iVar20 < 0) {
-      perror(DAT_0000cee0);
+    iVar54 = close((int)local_9c4[1]);
+    if (iVar54 < 0) {
+      perror("close - failed to close write end of pipe for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
-    p_Var30 = signal(0xd,(__sighandler_t)0x1);
-    p_Var31 = signal(0xd,(__sighandler_t)0x1);
-    if ((p_Var31 == (__sighandler_t)0xffffffff) || (p_Var30 == (__sighandler_t)0xffffffff)) {
-      perror(DAT_0000c9fc);
+    p_Var25 = signal(0xd,(__sighandler_t)0x1);
+    p_Var26 = signal(0xd,(__sighandler_t)0x1);
+    if ((p_Var26 == (__sighandler_t)0xffffffff) || (p_Var25 == (__sighandler_t)0xffffffff)) {
+      perror("signal - failed to edit signal mask for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
     forkpid = fork();
     if (forkpid < 0) {
-      perror(DAT_0000c9f0);
+      perror("fork - failed to fork child process for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
     if (forkpid == 0) {
-      iVar58 = dup2((int)*local_9c4,0);
-      if (iVar58 < 0) {
-        perror(DAT_0000c394);
+      iVar54 = dup2((int)*local_9c4,0);
+      if (-1 < iVar54) {
+        close((int)*local_9c4);
+        execl("/bin/bash","/bin/bash",&DAT_0004e424,opt_stderr_cmd,0);
+        perror("execl - in child failed to exec user specified command for --monitor");
                     /* WARNING: Subroutine does not return */
         exit(1);
       }
-      close((int)*local_9c4);
-      execl(DAT_0000c380,DAT_0000c380,DAT_0000c384,*(undefined4 *)(iVar61 + 0xea0),0);
-      perror(DAT_0000c388);
+      perror("dup2 - in child, failed to alias read end of pipe to stdin for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
-    iVar61 = close((int)*local_9c4);
-    if (iVar61 < 0) {
-      perror(DAT_0000c728);
+    iVar54 = close((int)*local_9c4);
+    if (iVar54 < 0) {
+      perror("close - failed to close read end of pipe for --monitor");
                     /* WARNING: Subroutine does not return */
       exit(1);
     }
   }
-  mining_thr = (thr_info **)_cgcalloc(mining_threads,4,DAT_0000c36c,DAT_0000c398,0x2e64);
+  mining_thr = (thr_info **)_cgcalloc(mining_threads,4,"cgminer.c","main",0x2e64);
   if (0 < mining_threads) {
-    iVar61 = 0;
+    iVar54 = 0;
     do {
-      pptVar32 = mining_thr;
-      ptVar41 = (thr_info *)_cgcalloc(1,0x40,DAT_0000c36c,DAT_0000c398,0x2e68);
-      iVar20 = mining_threads;
-      pptVar32[iVar61] = ptVar41;
-      iVar61 = iVar61 + 1;
-    } while (iVar61 < iVar20);
+      pptVar28 = mining_thr;
+      ptVar27 = (thr_info *)_cgcalloc(1,0x40,"cgminer.c","main",0x2e68);
+      iVar58 = mining_threads;
+      pptVar28[iVar54] = ptVar27;
+      iVar54 = iVar54 + 1;
+    } while (iVar54 < iVar58);
   }
-  piVar49 = DAT_0000c39c;
-  if (0 < *piVar33) {
-    iVar61 = 0;
-    pool_6 = (pool *)0x0;
+  if (0 < total_devices) {
+    iVar54 = 0;
+    local_9c0 = (pool *)0x0;
     do {
-      iVar63 = 0;
-      pcVar60 = *(cgpu_info **)(*piVar49 + (int)pool_6 * 4);
-      pptVar32 = (thr_info **)_cgmalloc((pcVar60->threads + 1) * 4,DAT_0000c36c,DAT_0000c398,0x2e71)
-      ;
-      iVar20 = pcVar60->threads;
-      pcVar60->thr = pptVar32;
-      pptVar32[iVar20] = (thr_info *)0x0;
-      pcVar60->status = LIFE_INIT;
-      if (0 < iVar20) {
+      iVar62 = 0;
+      pcVar56 = devices[(int)local_9c0];
+      pptVar28 = (thr_info **)_cgmalloc((pcVar56->threads + 1) * 4,"cgminer.c","main",0x2e71);
+      iVar58 = pcVar56->threads;
+      pcVar56->thr = pptVar28;
+      pptVar28[iVar58] = (thr_info *)0x0;
+      pcVar56->status = LIFE_INIT;
+      if (0 < iVar58) {
         do {
           while( true ) {
-            ptVar41 = get_thread(iVar61);
-            pdVar52 = pcVar60->drv;
-            ptVar41->id = iVar61;
-            ptVar41->cgpu = pcVar60;
-            p_Var53 = pdVar52->thread_prepare;
-            ptVar41->device_thread = iVar63;
-            _Var15 = (*p_Var53)(ptVar41);
-            if (_Var15) break;
+            ptVar27 = get_thread(iVar54);
+            pdVar46 = pcVar56->drv;
+            ptVar27->id = iVar54;
+            ptVar27->cgpu = pcVar56;
+            p_Var47 = pdVar46->thread_prepare;
+            ptVar27->device_thread = iVar62;
+            _Var12 = (*p_Var47)(ptVar27);
+            if (_Var12) break;
 LAB_0000c3a0:
-            iVar63 = iVar63 + 1;
-            iVar61 = iVar61 + 1;
-            if (pcVar60->threads <= iVar63) goto LAB_0000c452;
+            iVar62 = iVar62 + 1;
+            iVar54 = iVar54 + 1;
+            if (pcVar56->threads <= iVar62) goto LAB_0000c452;
           }
-          iVar20 = thr_info_create(ptVar41,(pthread_attr_t *)0x0,DAT_0000c6e4,ptVar41);
-          if (iVar20 != 0) {
-            snprintf((char *)local_9c4,0x800,DAT_0000c72c,ptVar41->id);
+          iVar58 = thr_info_create(ptVar27,(pthread_attr_t *)0x0,(_func_void_ptr_void_ptr *)0x1e301,
+                                   ptVar27);
+          if (iVar58 != 0) {
+            snprintf((char *)local_9c4,0x800,"thread %d create failed",ptVar27->id);
             _applog(3,(char *)local_9c4,true);
                     /* WARNING: Subroutine does not return */
             __quit(1,false);
           }
-          dVar54 = pcVar60->deven;
-          pcVar60->thr[iVar63] = ptVar41;
-          if (dVar54 == DEV_DISABLED) goto LAB_0000c3a0;
+          dVar48 = pcVar56->deven;
+          pcVar56->thr[iVar62] = ptVar27;
+          if (dVar48 == DEV_DISABLED) goto LAB_0000c3a0;
           if ((opt_debug != false) &&
-             (((*(char *)&local_9cc->id != '\0' || (local_9d0->hash[0] != '\0')) ||
+             (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
               (6 < opt_log_level)))) {
-            snprintf((char *)local_9c4,0x800,DAT_0000c6e8,ptVar41->id);
+            snprintf((char *)local_9c4,0x800,"Pushing sem post to thread %d",ptVar27->id);
             _applog(7,(char *)local_9c4,false);
           }
-          iVar63 = iVar63 + 1;
-          iVar61 = iVar61 + 1;
-          _cgsem_post(&ptVar41->sem,DAT_0000c6ec,DAT_0000c6f0,0x2e8d);
-        } while (iVar63 < pcVar60->threads);
+          iVar62 = iVar62 + 1;
+          iVar54 = iVar54 + 1;
+          _cgsem_post(&ptVar27->sem,"cgminer.c","main",0x2e8d);
+        } while (iVar62 < pcVar56->threads);
       }
 LAB_0000c452:
-      pool_6 = (pool *)((int)&pool_6->pool_no + 1);
-    } while ((int)pool_6 < *piVar33);
+      local_9c0 = (pool *)((int)&local_9c0->pool_no + 1);
+    } while ((int)local_9c0 < total_devices);
   }
-  iVar61 = total_pools;
-  piVar49 = DAT_0000c730;
-  if ((opt_benchmark == false) && (*(int *)(DAT_0000c6f4 + 0x448) == 0)) {
-    ptVar41 = *pptStack_9d4;
-    iVar63 = *DAT_0000c730;
-    iVar20 = 0;
-    while (iVar20 < iVar61) {
-      iVar59 = (&ptVar41->id)[iVar20];
-      iVar20 = iVar20 + 1;
-      *(undefined *)(iVar59 + 0x61) = 1;
-      bVar69 = *(int *)(iVar59 + 100) != 1;
-      if (bVar69) {
-        iVar63 = iVar63 + 1;
-      }
-      if (bVar69) {
-        *(undefined4 *)(iVar59 + 100) = 1;
-      }
-    }
-    *piVar49 = iVar63;
-    if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (4 < *DAT_0000c704))
-    {
-      iVar61 = DAT_0000c734[1];
-      iVar20 = DAT_0000c734[2];
-      iVar63 = DAT_0000c734[3];
-      *local_9c4 = (char *)*DAT_0000c734;
-      local_9c4[1] = (char *)iVar61;
-      local_9c4[2] = (char *)iVar20;
-      local_9c4[3] = (char *)iVar63;
-      iVar61 = DAT_0000c734[5];
-      iVar20 = DAT_0000c734[6];
-      local_9c4[4] = (char *)DAT_0000c734[4];
-      local_9c4[5] = (char *)iVar61;
-      *(short *)(local_9c4 + 6) = (short)iVar20;
-      _applog(5,(char *)local_9c4,false);
-    }
-    pptVar32 = pptStack_9d4;
-    for (i_1 = 0; __start_routine = DAT_0000c738, i_1 < total_pools; i_1 = i_1 + 1) {
-      pvVar28 = (void *)(&(*pptVar32)->id)[i_1];
-      *(undefined *)((int)pvVar28 + 0x11c) = 1;
-      pthread_create((pthread_t *)((int)pvVar28 + 0x118),(pthread_attr_t *)0x0,__start_routine,
-                     pvVar28);
-    }
-    iVar61 = 0x3c;
+  iVar54 = total_pools;
+  if ((opt_benchmark != false) || (opt_benchfile != (char *)0x0)) {
+LAB_0000c47c:
+    pdVar49 = g_local_mhashes_dones;
+    total_mhashes_done = 0.0;
     do {
-      sleep(1);
-      piVar51 = (int *)local_9c4;
-      pcVar22 = local_9d0->hash;
-      piVar49 = DAT_0000ca00;
-      if (pools_active != false) break;
-      iVar61 = iVar61 + -1;
-    } while (iVar61 != 0);
-    bVar69 = false;
-    ptVar41 = local_9cc;
-LAB_0000c78e:
-    do {
-      if (pools_active != false) break;
-      ptVar68 = DAT_0000ca04;
-      if (!bVar69) {
-        if (((*(char *)&ptVar41->id == '\0') && (*pcVar22 == '\0')) && (*piVar49 < 3)) {
-LAB_0000cf8a:
-          if (2 < *DAT_0000d090) goto LAB_0000cf90;
-LAB_0000cfb2:
-          if (2 < *DAT_0000d090) goto LAB_0000cfb8;
-        }
-        else {
-          iVar61 = DAT_0000d0b0[1];
-          iVar20 = DAT_0000d0b0[2];
-          iVar63 = DAT_0000d0b0[3];
-          *piVar51 = *DAT_0000d0b0;
-          piVar51[1] = iVar61;
-          piVar51[2] = iVar20;
-          piVar51[3] = iVar63;
-          iVar61 = DAT_0000d0b0[5];
-          iVar20 = DAT_0000d0b0[6];
-          iVar63 = DAT_0000d0b0[7];
-          piVar51[4] = DAT_0000d0b0[4];
-          piVar51[5] = iVar61;
-          piVar51[6] = iVar20;
-          piVar51[7] = iVar63;
-          iVar61 = DAT_0000d0b0[9];
-          iVar20 = DAT_0000d0b0[10];
-          iVar63 = DAT_0000d0b0[0xb];
-          piVar51[8] = DAT_0000d0b0[8];
-          piVar51[9] = iVar61;
-          piVar51[10] = iVar20;
-          piVar51[0xb] = iVar63;
-          iVar61 = DAT_0000d0b0[0xd];
-          iVar20 = DAT_0000d0b0[0xe];
-          piVar51[0xc] = DAT_0000d0b0[0xc];
-          piVar51[0xd] = iVar61;
-          *(short *)(piVar51 + 0xe) = (short)iVar20;
-          *(char *)((int)piVar51 + 0x3a) = (char)((uint)iVar20 >> 0x10);
-          _applog(3,(char *)piVar51,false);
-          if ((*(char *)&ptVar41->id == '\0') && (*pcVar22 == '\0')) goto LAB_0000cf8a;
-LAB_0000cf90:
-          memcpy(piVar51,DAT_0000d09c,0x4b);
-          _applog(3,(char *)piVar51,false);
-          if ((*(char *)&ptVar41->id == '\0') && (*pcVar22 == '\0')) goto LAB_0000cfb2;
-LAB_0000cfb8:
-          memcpy(piVar51,DAT_0000d0a0,0x5e);
-          _applog(3,(char *)piVar51,false);
-        }
-        for (iVar61 = 0; iVar61 < total_pools; iVar61 = iVar61 + 1) {
-          iVar20 = (&(*pptStack_9d4)->id)[iVar61];
-          if (((*(char *)&ptVar41->id != '\0') || (*pcVar22 != '\0')) || (3 < *piVar49)) {
-            local_9e8 = ptVar41;
-            snprintf((char *)piVar51,0x800,DAT_0000d0a4,iVar61,*(undefined4 *)(iVar20 + 0xa4),
-                     *(undefined4 *)(iVar20 + 0xac),*(undefined4 *)(iVar20 + 0xb0));
-            _applog(4,(char *)piVar51,false);
-            ptVar41 = local_9e8;
-          }
-        }
-        if (use_curses == false) goto LAB_0000c7ae;
-        if (((*(char *)&ptVar41->id == '\0') && (*pcVar22 == '\0')) && (*piVar49 < 3)) {
-          bVar69 = true;
-          goto LAB_0000c78e;
-        }
-        local_9e4 = DAT_0000d0a8;
-        memcpy(piVar51,DAT_0000d0ac,0x4c);
-        _applog(3,(char *)piVar51,false);
-        bVar69 = true;
-        ptVar68 = local_9e4;
+      *pdVar49 = 0.0;
+      pdVar49 = pdVar49 + 1;
+    } while (pdVar49 != (double *)&g_local_mhashes_index);
+    g_local_mhashes_index = 0;
+    if (0 < total_devices) {
+      ppcVar44 = devices + total_devices;
+      ppcVar50 = devices;
+      do {
+        ppcVar55 = ppcVar50 + 1;
+        pcVar56 = *ppcVar50;
+        pcVar56->total_mhashes = 0.0;
+        pcVar56->rolling = 0.0;
+        ppcVar50 = ppcVar55;
+      } while (ppcVar55 != ppcVar44);
+    }
+    iVar54 = sysinfo((sysinfo *)&sInfo);
+    if (iVar54 == 0) {
+      total_tv_end_sys = sInfo.uptime;
+      total_tv_start_sys = sInfo.uptime;
+    }
+    else {
+      if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) ||
+         (5 < opt_log_level)) {
+        piVar29 = __errno_location();
+        iVar54 = *piVar29;
+        pcVar53 = strerror(iVar54);
+        snprintf((char *)local_9c4,0x800,"Failed to get sysinfo, errno:%u, reason:%s\n",iVar54,
+                 pcVar53);
+        _applog(6,(char *)local_9c4,false);
       }
-      if (*(char *)&ptVar68->id == '\0') {
-LAB_0000c7ae:
-        iVar58 = DAT_0000ca08[1];
-        iVar61 = DAT_0000ca08[2];
-        iVar20 = DAT_0000ca08[3];
-        *local_9c4 = (char *)*DAT_0000ca08;
-        local_9c4[1] = (char *)iVar58;
-        local_9c4[2] = (char *)iVar61;
-        local_9c4[3] = (char *)iVar20;
-        iVar58 = DAT_0000ca08[5];
-        iVar61 = DAT_0000ca08[6];
-        iVar20 = DAT_0000ca08[7];
-        iVar63 = DAT_0000ca08[8];
-        local_9c4[4] = (char *)DAT_0000ca08[4];
-        local_9c4[5] = (char *)iVar58;
-        local_9c4[6] = (char *)iVar61;
-        local_9c4[7] = (char *)iVar20;
-        *(short *)(local_9c4 + 8) = (short)iVar63;
-        *(char *)((int)local_9c4 + 0x22) = (char)((uint)iVar63 >> 0x10);
+      total_tv_end_sys = time((time_t *)0x0);
+      total_tv_start_sys = time((time_t *)0x0);
+    }
+    cgtime(&total_tv_start);
+    cgtime(&total_tv_end);
+    cgtime(&tv_hashmeter);
+    get_datestamp(datestamp,0x28,&total_tv_start);
+    ptVar27 = control_thr;
+    watchpool_thr_id = 2;
+    iVar54 = thr_info_create(control_thr + 2,(pthread_attr_t *)0x0,
+                             (_func_void_ptr_void_ptr *)0x26089,(void *)0x0);
+    if (iVar54 != 0) {
+      *local_9c4 = (char *)0x63746177;
+      local_9c4[1] = (char *)0x6f6f7068;
+      local_9c4[2] = (char *)0x6874206c;
+      local_9c4[3] = (char *)0x64616572;
+      local_9c4[4] = (char *)0x65726320;
+      local_9c4[5] = (char *)0x20657461;
+      local_9c4[6] = (char *)0x6c696166;
+      *(undefined2 *)(local_9c4 + 7) = 0x6465;
+      *(undefined1 *)((int)local_9c4 + 0x1e) = 0;
+      _applog(3,(char *)local_9c4,true);
+                    /* WARNING: Subroutine does not return */
+      __quit(1,false);
+    }
+    pthread_detach(ptVar27[2].pth);
+    watchdog_thr_id = 3;
+    local_9e8 = control_thr;
+    iVar54 = thr_info_create(control_thr + 3,(pthread_attr_t *)0x0,
+                             (_func_void_ptr_void_ptr *)0x284d1,(void *)0x0);
+    if (iVar54 != 0) {
+      *local_9c4 = (char *)0x63746177;
+      local_9c4[1] = (char *)0x676f6468;
+      local_9c4[2] = (char *)0x72687420;
+      local_9c4[3] = (char *)0x20646165;
+      local_9c4[4] = (char *)0x61657263;
+      local_9c4[5] = (char *)0x66206574;
+      local_9c4[6] = (char *)0x656c6961;
+      *(undefined2 *)(local_9c4 + 7) = 100;
+      _applog(3,(char *)local_9c4,true);
+                    /* WARNING: Subroutine does not return */
+      __quit(1,false);
+    }
+    pthread_detach(local_9e8[3].pth);
+    api_thr_id = 5;
+    iVar54 = thr_info_create(control_thr + 5,(pthread_attr_t *)0x0,
+                             (_func_void_ptr_void_ptr *)0x1e7c5,control_thr + 5);
+    if (iVar54 == 0) {
+      if (total_control_threads != 8) {
+        snprintf((char *)local_9c4,0x800,"incorrect total_control_threads (%d) should be 8");
         _applog(3,(char *)local_9c4,true);
                     /* WARNING: Subroutine does not return */
-        __quit(0,false);
+        __quit(1,false);
       }
-    } while( true );
-  }
-  puVar55 = DAT_0000c6fc;
-  *DAT_0000c6f8 = 0;
-  puVar43 = puVar55 + 0xc;
-  do {
-    *puVar55 = 0;
-    puVar55 = puVar55 + 1;
-  } while (puVar55 != puVar43);
-  iVar61 = *piVar33;
-  g_local_mhashes_index = 0;
-  if (0 < iVar61) {
-    piVar49 = *DAT_0000c700;
-    piVar33 = piVar49;
-    do {
-      piVar51 = piVar33 + 1;
-      iVar20 = *piVar33;
-      *(undefined8 *)(iVar20 + 0x50) = 0;
-      *(undefined8 *)(iVar20 + 0x30) = 0;
-      piVar33 = piVar51;
-    } while (piVar51 != piVar49 + iVar61);
-  }
-  iVar61 = sysinfo((sysinfo *)&sInfo);
-  plVar12 = DAT_0000c9f8;
-  if (iVar61 == 0) {
-    *DAT_0000c9f4 = sInfo.uptime;
-    *plVar12 = sInfo.uptime;
-  }
-  else {
-    if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) || (5 < *DAT_0000c704))
-    {
-      piVar33 = __errno_location();
-      iVar61 = *piVar33;
-      pcVar22 = strerror(iVar61);
-      snprintf((char *)local_9c4,0x800,DAT_0000c708,iVar61,pcVar22);
-      _applog(6,(char *)local_9c4,false);
+      iVar54 = nice(-10);
+      if (iVar54 == 0) {
+        local_9c8 = (block *)&opt_debug;
+        if (opt_debug == false) {
+          pp_Stack_9e0 = &selective_yield;
+          local_9d8 = &opt_log_level;
+          p_Stack_9dc = &opt_work_update;
+        }
+        else if (((*(char *)&local_9cc->id == '\0') && (*(_Bool *)local_9d0 == false)) &&
+                (local_9d8 = &opt_log_level, opt_log_level < 7)) {
+          pp_Stack_9e0 = &selective_yield;
+          p_Stack_9dc = &opt_work_update;
+        }
+        else {
+          local_9d8 = &opt_log_level;
+          pp_Stack_9e0 = &selective_yield;
+          p_Stack_9dc = &opt_work_update;
+          *local_9c4 = (char *)0x62616e55;
+          local_9c4[1] = (char *)0x7420656c;
+          local_9c4[2] = (char *)0x6573206f;
+          local_9c4[3] = (char *)0x68742074;
+          local_9c4[4] = (char *)0x64616572;
+          local_9c4[5] = (char *)0x206f7420;
+          local_9c4[6] = (char *)0x68676968;
+          local_9c4[7] = (char *)0x69727020;
+          local_9c4[8] = (char *)0x7469726f;
+          *(undefined2 *)(local_9c4 + 9) = 0x79;
+          _applog(7,(char *)local_9c4,false);
+        }
+      }
+      else {
+        pp_Stack_9e0 = &selective_yield;
+        local_9d8 = &opt_log_level;
+        local_9c8 = (block *)&opt_debug;
+        p_Stack_9dc = &opt_work_update;
+      }
+LAB_0000c830:
+      do {
+        cVar2 = *p_Stack_9dc;
+        while( true ) {
+          if (cVar2 != '\0') {
+            if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) ||
+               (5 < *local_9d8)) {
+              *local_9c4 = (char *)0x6b726f57;
+              ((int *)local_9c4)[1] = 0x64707520;
+              ((int *)local_9c4)[2] = 0x20657461;
+              ((int *)local_9c4)[3] = 0x7373656d;
+              ((int *)local_9c4)[4] = 0x20656761;
+              ((int *)local_9c4)[5] = 0x65636572;
+              ((int *)local_9c4)[6] = 0x64657669;
+              *(char *)((int *)local_9c4 + 7) = '\0';
+              _applog(6,(char *)local_9c4,false);
+            }
+            cgtime(&update_tv_start);
+            iVar54 = pthread_rwlock_rdlock((pthread_rwlock_t *)&mining_thr_lock);
+            if (iVar54 != 0) {
+              _rd_lock((pthread_rwlock_t *)"signal_work_update",(char *)0x151a,func_05,line_18);
+            }
+            if (0 < mining_threads) {
+              pptVar33 = mining_thr + mining_threads;
+              pptVar28 = mining_thr;
+              do {
+                pptVar52 = pptVar28 + 1;
+                (*pptVar28)->work_update = true;
+                pptVar28 = pptVar52;
+              } while (pptVar52 != pptVar33);
+            }
+            iVar54 = pthread_rwlock_unlock((pthread_rwlock_t *)&mining_thr_lock);
+            if (iVar54 != 0) {
+              _rw_unlock((pthread_rwlock_t *)"signal_work_update",(char *)0x1521,func_06,line_19);
+            }
+            (**pp_Stack_9e0)();
+          }
+          __mutex = stgd_lock;
+          *p_Stack_9dc = false;
+          iVar54 = pthread_mutex_lock((pthread_mutex_t *)__mutex);
+          if (iVar54 != 0) {
+            _mutex_lock((pthread_mutex_t *)"main",(char *)0x2f3c,func_03,line_16);
+          }
+          pwVar57 = staged_work;
+          if ((staged_work != (work *)0x0) &&
+             (pwVar57 = (work *)((staged_work->hh).tbl)->num_items, 1 < (int)pwVar57)) {
+            work_filled = true;
+            pthread_cond_wait((pthread_cond_t *)&gws_cond,(pthread_mutex_t *)stgd_lock);
+            pwVar57 = staged_work;
+            if (staged_work != (work *)0x0) {
+              pwVar57 = (work *)((staged_work->hh).tbl)->num_items;
+            }
+          }
+          iVar54 = pthread_mutex_unlock((pthread_mutex_t *)stgd_lock);
+          if (iVar54 != 0) {
+            _mutex_unlock_noyield((pthread_mutex_t *)"main",(char *)0x2f47,func_04,line_17);
+          }
+          (**pp_Stack_9e0)();
+          if (1 < (int)pwVar57) break;
+          if (local_9b8 != (work *)0x0) {
+            _discard_work(&local_9b8,"cgminer.c","main",0x2f5b);
+          }
+          local_9b8 = make_work();
+LAB_0000c96a:
+          local_9c0 = current_pool();
+          iVar54 = total_pools;
+          if (pool_strategy == POOL_BALANCE) {
+            ppVar21 = select_balanced(local_9c0);
+          }
+          else {
+            ppVar21 = local_9c0;
+            if (pool_strategy == POOL_LOADBALANCE) {
+              if (total_pools < 1) {
+LAB_0000c9d2:
+                select_pool::rotating_pool = select_pool::rotating_pool + 1;
+                if (iVar54 <= select_pool::rotating_pool) {
+                  select_pool::rotating_pool = 0;
+                }
+              }
+              else {
+                pppVar45 = *ppppStack_9d4;
+                if ((*pppVar45)->quota_gcd <= (*pppVar45)->quota_used) {
+                  iVar58 = 0;
+                  pppVar31 = pppVar45;
+LAB_0000c9bc:
+                  iVar58 = iVar58 + 1;
+                  if (iVar58 != total_pools) goto LAB_0000c9b0;
+                  pppVar31 = pppVar45 + total_pools;
+                  do {
+                    pppVar63 = pppVar45 + 1;
+                    (*pppVar45)->quota_used = 0;
+                    pppVar45 = pppVar63;
+                  } while (pppVar63 != pppVar31);
+                  goto LAB_0000c9d2;
+                }
+              }
+LAB_0000c9e4:
+              puVar38 = (uchar *)*ppppStack_9d4;
+              iVar58 = 0;
+              while (iVar62 = select_pool::rotating_pool, iVar58 < iVar54) {
+                ppVar21 = *(pool **)(puVar38 + select_pool::rotating_pool * 4);
+                iVar51 = ppVar21->quota_used;
+                ppVar21->quota_used = iVar51 + 1;
+                if ((iVar51 < ppVar21->quota_gcd) &&
+                   (local_9e4 = puVar38, _Var12 = pool_unusable(ppVar21), puVar38 = local_9e4,
+                   !_Var12)) goto LAB_0000c8b6;
+                select_pool::rotating_pool = iVar62 + 1;
+                iVar58 = iVar58 + 1;
+                if (iVar54 <= select_pool::rotating_pool) {
+                  select_pool::rotating_pool = 0;
+                }
+              }
+              ppVar21 = local_9c0;
+              if (0 < iVar54) {
+                iVar54 = 0;
+                do {
+                  ppVar30 = priority_pool(iVar54);
+                  _Var12 = pool_unusable(ppVar30);
+                  ppVar21 = local_9c0;
+                  if (!_Var12) {
+                    if (ppVar30 != (pool *)0x0) {
+                      ppVar21 = ppVar30;
+                    }
+                    break;
+                  }
+                  iVar54 = iVar54 + 1;
+                } while (iVar54 < total_pools);
+              }
+            }
+          }
+LAB_0000c8b6:
+          local_9c0 = ppVar21;
+          if ((*(_Bool *)local_9c8 != false) &&
+             (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
+              (6 < *local_9d8)))) {
+            snprintf((char *)local_9c4,0x800,"Selecting pool %d for work",local_9c0->pool_no);
+            _applog(7,(char *)local_9c4,false);
+          }
+          _Var12 = pool_unusable(local_9c0);
+          if (_Var12) {
+            switch_pools((pool *)0x0);
+            local_9c0 = current_pool();
+            iVar54 = total_pools;
+            if (pool_strategy == POOL_BALANCE) {
+              ppVar21 = select_balanced(local_9c0);
+            }
+            else {
+              ppVar21 = local_9c0;
+              if (pool_strategy == POOL_LOADBALANCE) {
+                if (total_pools < 1) {
+LAB_0000caee:
+                  select_pool::rotating_pool = select_pool::rotating_pool + 1;
+                  if (iVar54 <= select_pool::rotating_pool) {
+                    select_pool::rotating_pool = 0;
+                  }
+                }
+                else {
+                  pppVar45 = *ppppStack_9d4;
+                  if ((*pppVar45)->quota_gcd <= (*pppVar45)->quota_used) {
+                    iVar58 = 0;
+                    pppVar31 = pppVar45;
+LAB_0000cad8:
+                    iVar58 = iVar58 + 1;
+                    if (iVar58 != total_pools) goto LAB_0000cacc;
+                    pppVar31 = pppVar45 + total_pools;
+                    do {
+                      pppVar63 = pppVar45 + 1;
+                      (*pppVar45)->quota_used = 0;
+                      pppVar45 = pppVar63;
+                    } while (pppVar63 != pppVar31);
+                    goto LAB_0000caee;
+                  }
+                }
+LAB_0000cb00:
+                puVar38 = (uchar *)*ppppStack_9d4;
+                iVar58 = 0;
+                while (iVar62 = select_pool::rotating_pool, iVar58 < iVar54) {
+                  ppVar21 = *(pool **)(puVar38 + select_pool::rotating_pool * 4);
+                  iVar51 = ppVar21->quota_used;
+                  ppVar21->quota_used = iVar51 + 1;
+                  if ((iVar51 < ppVar21->quota_gcd) &&
+                     (local_9e4 = puVar38, _Var12 = pool_unusable(ppVar21), puVar38 = local_9e4,
+                     !_Var12)) goto LAB_0000c922;
+                  select_pool::rotating_pool = iVar62 + 1;
+                  iVar58 = iVar58 + 1;
+                  if (iVar54 <= select_pool::rotating_pool) {
+                    select_pool::rotating_pool = 0;
+                  }
+                }
+                ppVar21 = local_9c0;
+                if (0 < iVar54) {
+                  iVar54 = 0;
+                  do {
+                    ppVar30 = priority_pool(iVar54);
+                    _Var12 = pool_unusable(ppVar30);
+                    ppVar21 = local_9c0;
+                    if (!_Var12) {
+                      if (ppVar30 != (pool *)0x0) {
+                        ppVar21 = ppVar30;
+                      }
+                      break;
+                    }
+                    iVar54 = iVar54 + 1;
+                  } while (iVar54 < total_pools);
+                }
+              }
+            }
+LAB_0000c922:
+            local_9c0 = ppVar21;
+            if ((*(_Bool *)local_9c8 != false) &&
+               (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
+                (6 < *local_9d8)))) {
+              snprintf((char *)local_9c4,0x800,"Selecting pool %d for work",local_9c0->pool_no);
+              _applog(7,(char *)local_9c4,false);
+            }
+            _Var12 = pool_unusable(local_9c0);
+            if (_Var12) {
+              cgsleep_ms(0xb);
+            }
+            goto LAB_0000c96a;
+          }
+          if (local_9c0->has_stratum == false) {
+            if (opt_benchfile == (char *)0x0) {
+              if (opt_benchmark == false) goto LAB_0000c830;
+              get_benchmark_work(local_9b8);
+              if ((*(_Bool *)local_9c8 != false) &&
+                 (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
+                  (6 < *local_9d8)))) {
+                pcVar53 = "Generated benchmark work";
+                goto LAB_0000cbe8;
+              }
+            }
+            else {
+              get_benchfile_work(local_9b8);
+              if ((*(_Bool *)local_9c8 != false) &&
+                 (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
+                  (6 < *local_9d8)))) {
+                pcVar53 = "Generated benchfile work";
+LAB_0000cbe8:
+                iVar54 = *(int *)((int)pcVar53 + 4);
+                iVar58 = *(int *)((int)pcVar53 + 8);
+                iVar62 = *(int *)((int)pcVar53 + 0xc);
+                *local_9c4 = (char *)*(int *)pcVar53;
+                local_9c4[1] = (char *)iVar54;
+                local_9c4[2] = (char *)iVar58;
+                local_9c4[3] = (char *)iVar62;
+                iVar54 = *(int *)((int)pcVar53 + 0x14);
+                iVar58 = *(int *)((int)pcVar53 + 0x18);
+                local_9c4[4] = (char *)*(int *)((int)pcVar53 + 0x10);
+                local_9c4[5] = (char *)iVar54;
+                *(char *)(local_9c4 + 6) = (char)iVar58;
+                _applog(7,(char *)local_9c4,false);
+              }
+            }
+          }
+          else {
+            gen_stratum_work(local_9c0,local_9b8);
+            if ((*(_Bool *)local_9c8 != false) &&
+               (((*(char *)&local_9cc->id != '\0' || (*(_Bool *)local_9d0 != false)) ||
+                (6 < *local_9d8)))) {
+              *local_9c4 = (char *)0x656e6547;
+              local_9c4[1] = (char *)0x65746172;
+              local_9c4[2] = (char *)0x74732064;
+              local_9c4[3] = (char *)0x75746172;
+              local_9c4[4] = (char *)0x6f77206d;
+              *(undefined2 *)(local_9c4 + 5) = 0x6b72;
+              *(undefined1 *)((int)local_9c4 + 0x16) = 0;
+              _applog(7,(char *)local_9c4,false);
+            }
+          }
+          _stage_work(local_9b8);
+          local_9b8 = (work *)0x0;
+          cVar2 = *p_Stack_9dc;
+        }
+        work_filled = true;
+        local_9b8 = hash_pop(false);
+        if (local_9b8 != (work *)0x0) {
+          _discard_work(&local_9b8,"cgminer.c","main",0x2f53);
+        }
+      } while( true );
     }
-    tVar34 = time((time_t *)0x0);
-    *DAT_0000c70c = tVar34;
-    tVar34 = time((time_t *)0x0);
-    *DAT_0000c710 = tVar34;
-  }
-  iVar61 = DAT_0000c6f4;
-  cgtime((timeval *)(DAT_0000c6f4 + 0x518));
-  cgtime(DAT_0000c714);
-  cgtime((timeval *)(iVar61 + 0x520));
-  get_datestamp((char *)(iVar61 + 0x6a0),0x28,(timeval *)(iVar61 + 0x518));
-  ptVar41 = control_thr;
-  watchpool_thr_id = 2;
-  iVar61 = thr_info_create(control_thr + 2,(pthread_attr_t *)0x0,DAT_0000c718,(void *)0x0);
-  if (iVar61 != 0) {
-    iVar58 = DAT_0000cefc[1];
-    iVar61 = DAT_0000cefc[2];
-    iVar20 = DAT_0000cefc[3];
-    *local_9c4 = (char *)*DAT_0000cefc;
-    local_9c4[1] = (char *)iVar58;
-    local_9c4[2] = (char *)iVar61;
-    local_9c4[3] = (char *)iVar20;
-    iVar58 = DAT_0000cefc[5];
-    iVar61 = DAT_0000cefc[6];
-    iVar20 = DAT_0000cefc[7];
-    local_9c4[4] = (char *)DAT_0000cefc[4];
-    local_9c4[5] = (char *)iVar58;
-    local_9c4[6] = (char *)iVar61;
-    *(short *)(local_9c4 + 7) = (short)iVar20;
-    *(char *)((int)local_9c4 + 0x1e) = (char)((uint)iVar20 >> 0x10);
-    _applog(3,(char *)local_9c4,true);
-                    /* WARNING: Subroutine does not return */
-    __quit(1,false);
-  }
-  pthread_detach(ptVar41[2].pth);
-  watchdog_thr_id = 3;
-  local_9e8 = control_thr;
-  iVar61 = thr_info_create(control_thr + 3,(pthread_attr_t *)0x0,DAT_0000c71c,(void *)0x0);
-  if (iVar61 != 0) {
-    iVar58 = DAT_0000cef8[1];
-    iVar61 = DAT_0000cef8[2];
-    iVar20 = DAT_0000cef8[3];
-    *local_9c4 = (char *)*DAT_0000cef8;
-    local_9c4[1] = (char *)iVar58;
-    local_9c4[2] = (char *)iVar61;
-    local_9c4[3] = (char *)iVar20;
-    iVar58 = DAT_0000cef8[5];
-    iVar61 = DAT_0000cef8[6];
-    iVar20 = DAT_0000cef8[7];
-    local_9c4[4] = (char *)DAT_0000cef8[4];
-    local_9c4[5] = (char *)iVar58;
-    local_9c4[6] = (char *)iVar61;
-    *(short *)(local_9c4 + 7) = (short)iVar20;
-    _applog(3,(char *)local_9c4,true);
-                    /* WARNING: Subroutine does not return */
-    __quit(1,false);
-  }
-  pthread_detach(local_9e8[3].pth);
-  api_thr_id = 5;
-  ptVar41 = DAT_0000c720;
-  iVar61 = thr_info_create(control_thr + 5,(pthread_attr_t *)0x0,
-                           (_func_void_ptr_void_ptr *)DAT_0000c720,control_thr + 5);
-  if (iVar61 != 0) {
-    iVar58 = DAT_0000cf00[1];
-    iVar61 = DAT_0000cf00[2];
-    iVar20 = DAT_0000cf00[3];
-    *local_9c4 = (char *)*DAT_0000cf00;
-    local_9c4[1] = (char *)iVar58;
-    local_9c4[2] = (char *)iVar61;
-    local_9c4[3] = (char *)iVar20;
-    iVar58 = DAT_0000cf00[5];
-    iVar61 = DAT_0000cf00[6];
-    local_9c4[4] = (char *)DAT_0000cf00[4];
-    local_9c4[5] = (char *)iVar58;
-    *(char *)(local_9c4 + 6) = (char)iVar61;
+    *local_9c4 = (char *)0x20495041;
+    local_9c4[1] = (char *)0x65726874;
+    local_9c4[2] = (char *)0x63206461;
+    local_9c4[3] = (char *)0x74616572;
+    local_9c4[4] = (char *)0x61662065;
+    local_9c4[5] = (char *)0x64656c69;
+    *(undefined1 *)(local_9c4 + 6) = 0;
 LAB_0000cdee:
     _applog(3,(char *)local_9c4,true);
                     /* WARNING: Subroutine does not return */
     __quit(1,false);
   }
-  if (*(int *)(iVar58 + 0xe98) != 8) {
-    snprintf((char *)local_9c4,0x800,DAT_0000c724);
-    _applog(3,(char *)local_9c4,true);
-                    /* WARNING: Subroutine does not return */
-    __quit(1,false);
+  pppVar45 = *ppppStack_9d4;
+  iVar58 = 0;
+  while (iVar58 < iVar54) {
+    ppVar21 = pppVar45[iVar58];
+    iVar58 = iVar58 + 1;
+    ppVar21->idle = true;
+    bVar65 = ppVar21->enabled != POOL_ENABLED;
+    if (bVar65) {
+      enabled_pools = enabled_pools + 1;
+    }
+    if (bVar65) {
+      ppVar21->enabled = POOL_ENABLED;
+    }
   }
-  iVar20 = nice(-10);
-  iVar61 = DAT_0000ca28;
-  if (iVar20 == 0) {
-    local_9c8 = (block *)DAT_0000ca0c;
-    if (*DAT_0000ca0c == '\0') {
-      ppiStack_9e0 = (int **)DAT_0000d08c;
-      local_9d8 = DAT_0000d090;
-      pcStack_9dc = DAT_0000d094;
+  if (((*(char *)&local_9cc->id != '\0') || (*(_Bool *)local_9d0 != false)) || (4 < opt_log_level))
+  {
+    *local_9c4 = (char *)0x626f7250;
+    local_9c4[1] = (char *)0x20676e69;
+    local_9c4[2] = (char *)0x20726f66;
+    local_9c4[3] = (char *)0x61206e61;
+    local_9c4[4] = (char *)0x6576696c;
+    local_9c4[5] = (char *)0x6f6f7020;
+    *(undefined2 *)(local_9c4 + 6) = 0x6c;
+    _applog(5,(char *)local_9c4,false);
+  }
+  ppppVar9 = ppppStack_9d4;
+  for (iVar54 = 0; iVar54 < total_pools; iVar54 = iVar54 + 1) {
+    ppVar21 = (*ppppVar9)[iVar54];
+    ppVar21->testing = true;
+    pthread_create(&ppVar21->test_thread,(pthread_attr_t *)0x0,(__start_routine *)0x25f51,ppVar21);
+  }
+  iVar54 = 0x3c;
+  do {
+    sleep(1);
+    ppcVar10 = local_9c4;
+    pbVar19 = local_9d0;
+    if (pools_active != false) break;
+    iVar54 = iVar54 + -1;
+  } while (iVar54 != 0);
+  bVar65 = false;
+  ptVar27 = local_9cc;
+LAB_0000c78e:
+  do {
+    if (pools_active != false) goto LAB_0000c47c;
+    if (bVar65) {
+      puVar38 = &use_curses;
     }
     else {
-      if ((*(char *)&local_9cc->id == '\0') && (local_9d0->hash[0] == '\0')) {
-        local_9d8 = DAT_0000cf08;
-        if (*DAT_0000cf08 < 7) {
-          ppiStack_9e0 = (int **)DAT_0000cf04;
-          pcStack_9dc = DAT_0000cf10;
-          goto LAB_0000c830;
-        }
-      }
-      else {
-        local_9d8 = DAT_0000ca00;
-      }
-      ppiStack_9e0 = (int **)DAT_0000ca14;
-      pcStack_9dc = DAT_0000ca18;
-      iVar61 = DAT_0000ca10[1];
-      iVar20 = DAT_0000ca10[2];
-      iVar63 = DAT_0000ca10[3];
-      *local_9c4 = (char *)*DAT_0000ca10;
-      local_9c4[1] = (char *)iVar61;
-      local_9c4[2] = (char *)iVar20;
-      local_9c4[3] = (char *)iVar63;
-      iVar61 = DAT_0000ca10[5];
-      iVar20 = DAT_0000ca10[6];
-      iVar63 = DAT_0000ca10[7];
-      local_9c4[4] = (char *)DAT_0000ca10[4];
-      local_9c4[5] = (char *)iVar61;
-      local_9c4[6] = (char *)iVar20;
-      local_9c4[7] = (char *)iVar63;
-      ptVar41 = (thr_info *)0x0;
-      iVar61 = DAT_0000ca10[9];
-      local_9c4[8] = (char *)DAT_0000ca10[8];
-      *(short *)(local_9c4 + 9) = (short)iVar61;
-      _applog(7,(char *)local_9c4,false);
-      iVar61 = DAT_0000ca28;
-    }
-  }
-  else {
-    ppiStack_9e0 = (int **)DAT_0000cf04;
-    local_9d8 = DAT_0000cf08;
-    local_9c8 = (block *)DAT_0000cf0c;
-    pcStack_9dc = DAT_0000cf10;
-  }
-LAB_0000c830:
-  do {
-    cVar3 = *pcStack_9dc;
-    while( true ) {
-      if (cVar3 != '\0') {
-        if (((*(char *)&local_9cc->id != '\0') || (local_9d0->hash[0] != '\0')) ||
-           (pptVar32 = (thr_info **)*local_9d8, 5 < (int)pptVar32)) {
-          iVar20 = DAT_0000cebc[1];
-          iVar63 = DAT_0000cebc[2];
-          iVar59 = DAT_0000cebc[3];
-          *local_9c4 = (char *)*DAT_0000cebc;
-          ((int *)local_9c4)[1] = iVar20;
-          ((int *)local_9c4)[2] = iVar63;
-          ((int *)local_9c4)[3] = iVar59;
-          iVar20 = DAT_0000cebc[5];
-          iVar63 = DAT_0000cebc[6];
-          pptVar32 = (thr_info **)DAT_0000cebc[7];
-          ((int *)local_9c4)[4] = DAT_0000cebc[4];
-          ((int *)local_9c4)[5] = iVar20;
-          ((int *)local_9c4)[6] = iVar63;
-          ptVar41 = (thr_info *)0x0;
-          *(char *)((int *)local_9c4 + 7) = (char)pptVar32;
-          _applog(6,(char *)local_9c4,false);
-        }
-        cgtime(DAT_0000cec0);
-        iVar20 = pthread_rwlock_rdlock(DAT_0000cec4);
-        if (iVar20 != 0) {
-          _rd_lock(DAT_0000cedc,(char *)0x151a,(char *)ptVar41,(int)pptVar32);
-        }
-        if (0 < mining_threads) {
-          pptVar36 = mining_thr + mining_threads;
-          pptVar56 = mining_thr;
-          do {
-            pptVar32 = pptVar56 + 1;
-            ptVar41 = *pptVar56;
-            ptVar41->work_update = true;
-            pptVar56 = pptVar32;
-          } while (pptVar32 != pptVar36);
-        }
-        iVar20 = pthread_rwlock_unlock(DAT_0000cec4);
-        if (iVar20 != 0) {
-          _rw_unlock(DAT_0000d098,(char *)0x1521,(char *)ptVar41,(int)pptVar32);
-        }
-        (*(code *)*ppiStack_9e0)();
-      }
-      ppVar13 = stgd_lock;
-      pUVar45 = (UT_hash_table *)0x0;
-      *pcStack_9dc = '\0';
-      iVar20 = pthread_mutex_lock((pthread_mutex_t *)ppVar13);
-      if (iVar20 != 0) {
-        _mutex_lock((pthread_mutex_t *)DAT_0000cecc,(char *)0x2f3c,(char *)ptVar41,(int)pUVar45);
-      }
-      ppVar13 = stgd_lock;
-      __cond = DAT_0000ced0;
-      ts = (int)staged_work;
-      if (staged_work != (work *)0x0) {
-        pUVar45 = (staged_work->hh).tbl;
-        ts = pUVar45->num_items;
-        if (1 < ts) {
-          pUVar45 = (UT_hash_table *)0x1;
-          *(undefined *)(iVar58 + 0xea4) = 1;
-          pthread_cond_wait(__cond,(pthread_mutex_t *)ppVar13);
-          ts = (int)staged_work;
-          if (staged_work != (work *)0x0) {
-            pUVar45 = (staged_work->hh).tbl;
-            ts = pUVar45->num_items;
-          }
-        }
-      }
-      iVar20 = pthread_mutex_unlock((pthread_mutex_t *)stgd_lock);
-      if (iVar20 != 0) {
-        _mutex_unlock_noyield
-                  ((pthread_mutex_t *)DAT_0000cecc,(char *)0x2f47,(char *)ptVar41,(int)pUVar45);
-      }
-      (*(code *)*ppiStack_9e0)();
-      if (1 < ts) break;
-      if (work != (work *)0x0) {
-        ptVar41 = DAT_0000ca20;
-        _discard_work(&work,DAT_0000ca1c,(char *)DAT_0000ca20,0x2f5b);
-      }
-      work = make_work();
-LAB_0000c96a:
-      pool_6 = current_pool();
-      iVar20 = total_pools;
-      if (pool_strategy == POOL_BALANCE) {
-        ppVar24 = select_balanced(pool_6);
-      }
-      else {
-        ppVar24 = pool_6;
-        if (pool_strategy == POOL_LOADBALANCE) {
-          if (total_pools < 1) {
-LAB_0000c9d2:
-            iVar63 = *(int *)(iVar58 + 0xea8) + 1;
-            *(int *)(iVar58 + 0xea8) = iVar63;
-            if (iVar20 <= iVar63) {
-              *(undefined4 *)(iVar61 + 0xea8) = 0;
-            }
-          }
-          else {
-            ptVar41 = *pptStack_9d4;
-            if (*(int *)(ptVar41->id + 0x3c) <= *(int *)(ptVar41->id + 0x40)) {
-              iVar63 = 0;
-              ptVar68 = ptVar41;
-LAB_0000c9bc:
-              iVar63 = iVar63 + 1;
-              if (iVar63 != total_pools) goto LAB_0000c9b0;
-              piVar33 = &ptVar41->id + total_pools;
-              ptVar68 = ptVar41;
-              do {
-                piVar49 = &ptVar68->device_thread;
-                *(undefined4 *)(ptVar68->id + 0x40) = 0;
-                ptVar68 = (thr_info *)piVar49;
-              } while (piVar49 != piVar33);
-              goto LAB_0000c9d2;
-            }
-          }
-LAB_0000c9e4:
-          ptVar68 = *pptStack_9d4;
-          iVar63 = 0;
-          while (iVar63 < iVar20) {
-            iVar66 = *(int *)(iVar58 + 0xea8);
-            ppVar24 = (pool *)(&ptVar68->id)[iVar66];
-            iVar59 = ppVar24->quota_used;
-            ptVar41 = (thr_info *)ppVar24->quota_gcd;
-            ppVar24->quota_used = iVar59 + 1;
-            if ((iVar59 < (int)ptVar41) &&
-               (local_9e4 = ptVar68, _Var15 = pool_unusable(ppVar24), ptVar68 = local_9e4, !_Var15))
-            goto out;
-            iVar66 = iVar66 + 1;
-            iVar63 = iVar63 + 1;
-            *(int *)(iVar58 + 0xea8) = iVar66;
-            if (iVar20 <= iVar66) {
-              *(undefined4 *)(iVar61 + 0xea8) = 0;
-            }
-          }
-          ppVar24 = pool_6;
-          if (0 < iVar20) {
-            iVar20 = 0;
-            do {
-              ppVar35 = priority_pool(iVar20);
-              _Var15 = pool_unusable(ppVar35);
-              ppVar24 = pool_6;
-              if (!_Var15) {
-                if (ppVar35 != (pool *)0x0) {
-                  ppVar24 = ppVar35;
-                }
-                break;
-              }
-              iVar20 = iVar20 + 1;
-            } while (iVar20 < total_pools);
-          }
-        }
-      }
-out:
-      pool_6 = ppVar24;
-      if ((local_9c8->hash[0] != '\0') &&
-         (((*(char *)&local_9cc->id != '\0' || (local_9d0->hash[0] != '\0')) || (6 < *local_9d8))))
+      if (((*(char *)&ptVar27->id == '\0') && (*(_Bool *)pbVar19 == false)) && (opt_log_level < 3))
       {
-        snprintf((char *)local_9c4,0x800,DAT_0000ca24,pool_6->pool_no);
-        ptVar41 = (thr_info *)0x0;
-        _applog(7,(char *)local_9c4,false);
-      }
-      _Var15 = pool_unusable(pool_6);
-      if (_Var15) {
-        switch_pools((pool *)0x0);
-        pool_6 = current_pool();
-        iVar20 = total_pools;
-        if (pool_strategy == POOL_BALANCE) {
-          ppVar24 = select_balanced(pool_6);
-        }
-        else {
-          ppVar24 = pool_6;
-          if (pool_strategy == POOL_LOADBALANCE) {
-            if (total_pools < 1) {
-LAB_0000caee:
-              iVar63 = *(int *)(iVar58 + 0xea8) + 1;
-              *(int *)(iVar58 + 0xea8) = iVar63;
-              if (iVar20 <= iVar63) {
-                *(undefined4 *)(iVar61 + 0xea8) = 0;
-              }
-            }
-            else {
-              ptVar41 = *pptStack_9d4;
-              if (*(int *)(ptVar41->id + 0x3c) <= *(int *)(ptVar41->id + 0x40)) {
-                iVar63 = 0;
-                ptVar68 = ptVar41;
-LAB_0000cad8:
-                iVar63 = iVar63 + 1;
-                if (iVar63 != total_pools) goto LAB_0000cacc;
-                piVar33 = &ptVar41->id + total_pools;
-                ptVar68 = ptVar41;
-                do {
-                  piVar49 = &ptVar68->device_thread;
-                  *(undefined4 *)(ptVar68->id + 0x40) = 0;
-                  ptVar68 = (thr_info *)piVar49;
-                } while (piVar49 != piVar33);
-                goto LAB_0000caee;
-              }
-            }
-LAB_0000cb00:
-            ptVar68 = *pptStack_9d4;
-            iVar63 = 0;
-            while (iVar63 < iVar20) {
-              iVar66 = *(int *)(iVar58 + 0xea8);
-              ppVar24 = (pool *)(&ptVar68->id)[iVar66];
-              iVar59 = ppVar24->quota_used;
-              ptVar41 = (thr_info *)ppVar24->quota_gcd;
-              ppVar24->quota_used = iVar59 + 1;
-              if ((iVar59 < (int)ptVar41) &&
-                 (local_9e4 = ptVar68, _Var15 = pool_unusable(ppVar24), ptVar68 = local_9e4, !_Var15
-                 )) goto out;
-              iVar66 = iVar66 + 1;
-              iVar63 = iVar63 + 1;
-              *(int *)(iVar58 + 0xea8) = iVar66;
-              if (iVar20 <= iVar66) {
-                *(undefined4 *)(iVar61 + 0xea8) = 0;
-              }
-            }
-            ppVar24 = pool_6;
-            if (0 < iVar20) {
-              iVar20 = 0;
-              do {
-                ppVar35 = priority_pool(iVar20);
-                _Var15 = pool_unusable(ppVar35);
-                ppVar24 = pool_6;
-                if (!_Var15) {
-                  if (ppVar35 != (pool *)0x0) {
-                    ppVar24 = ppVar35;
-                  }
-                  break;
-                }
-                iVar20 = iVar20 + 1;
-              } while (iVar20 < total_pools);
-            }
-          }
-        }
-out:
-        pool_6 = ppVar24;
-        if ((local_9c8->hash[0] != '\0') &&
-           (((*(char *)&local_9cc->id != '\0' || (local_9d0->hash[0] != '\0')) || (6 < *local_9d8)))
-           ) {
-          snprintf((char *)local_9c4,0x800,DAT_0000ca24,pool_6->pool_no);
-          ptVar41 = (thr_info *)0x0;
-          _applog(7,(char *)local_9c4,false);
-        }
-        _Var15 = pool_unusable(pool_6);
-        if (_Var15) {
-          cgsleep_ms(0xb);
-        }
-        goto LAB_0000c96a;
-      }
-      if (pool_6->has_stratum == false) {
-        if (opt_benchfile == (char *)0x0) {
-          if (opt_benchmark == false) goto LAB_0000c830;
-          get_benchmark_work(work);
-          if (local_9c8->hash[0] != '\0') {
-            piVar33 = DAT_0000ced8;
-            if ((*(char *)&local_9cc->id == '\0') && (local_9d0->hash[0] == '\0')) {
-              iVar20 = *local_9d8;
-              goto joined_r0x0000cd7c;
-            }
-            goto LAB_0000cbe8;
-          }
-        }
-        else {
-          get_benchfile_work(work);
-          if (local_9c8->hash[0] != '\0') {
-            piVar33 = DAT_0000ceb8;
-            if ((*(char *)&local_9cc->id == '\0') && (local_9d0->hash[0] == '\0')) {
-              iVar20 = *local_9d8;
-joined_r0x0000cd7c:
-              if (iVar20 < 7) goto LAB_0000cc00;
-            }
-LAB_0000cbe8:
-            iVar20 = piVar33[1];
-            iVar63 = piVar33[2];
-            iVar59 = piVar33[3];
-            *local_9c4 = (char *)*piVar33;
-            local_9c4[1] = (char *)iVar20;
-            local_9c4[2] = (char *)iVar63;
-            local_9c4[3] = (char *)iVar59;
-            iVar20 = piVar33[5];
-            iVar63 = piVar33[6];
-            local_9c4[4] = (char *)piVar33[4];
-            local_9c4[5] = (char *)iVar20;
-            *(char *)(local_9c4 + 6) = (char)iVar63;
-            ptVar41 = (thr_info *)0x0;
-            _applog(7,(char *)local_9c4,false);
-          }
-        }
+LAB_0000cf8a:
+        if (2 < opt_log_level) goto LAB_0000cf90;
+LAB_0000cfb2:
+        if (2 < opt_log_level) goto LAB_0000cfb8;
       }
       else {
-        gen_stratum_work(pool_6,work);
-        if ((local_9c8->hash[0] != '\0') &&
-           (((*(char *)&local_9cc->id != '\0' || (local_9d0->hash[0] != '\0')) || (6 < *local_9d8)))
+        *ppcVar10 = (char *)0x73206f4e;
+        ppcVar10[1] = (char *)0x65767265;
+        ppcVar10[2] = (char *)0x77207372;
+        ppcVar10[3] = (char *)0x20657265;
+        ppcVar10[4] = (char *)0x6e756f66;
+        ppcVar10[5] = (char *)0x68742064;
+        ppcVar10[6] = (char *)0x63207461;
+        ppcVar10[7] = (char *)0x646c756f;
+        ppcVar10[8] = (char *)0x20656220;
+        ppcVar10[9] = (char *)0x64657375;
+        ppcVar10[10] = (char *)0x206f7420;
+        ppcVar10[0xb] = (char *)0x20746567;
+        ppcVar10[0xc] = (char *)0x6b726f77;
+        ppcVar10[0xd] = (char *)0x6f726620;
+        *(undefined2 *)(ppcVar10 + 0xe) = 0x2e6d;
+        *(undefined1 *)((int)ppcVar10 + 0x3a) = 0;
+        _applog(3,(char *)ppcVar10,false);
+        if ((*(char *)&ptVar27->id == '\0') && (*(_Bool *)pbVar19 == false)) goto LAB_0000cf8a;
+LAB_0000cf90:
+        memcpy(ppcVar10,"Please check the details from the list below of the servers you have input"
+               ,0x4b);
+        _applog(3,(char *)ppcVar10,false);
+        if ((*(char *)&ptVar27->id == '\0') && (*(_Bool *)pbVar19 == false)) goto LAB_0000cfb2;
+LAB_0000cfb8:
+        memcpy(ppcVar10,
+               "Most likely you have input the wrong URL, forgotten to add a port, or have not set up workers"
+               ,0x5e);
+        _applog(3,(char *)ppcVar10,false);
+      }
+      for (iVar54 = 0; iVar54 < total_pools; iVar54 = iVar54 + 1) {
+        ppVar21 = (*ppppStack_9d4)[iVar54];
+        if (((*(char *)&ptVar27->id != '\0') || (*(_Bool *)pbVar19 != false)) || (3 < opt_log_level)
            ) {
-          iVar20 = DAT_0000ced4[1];
-          iVar63 = DAT_0000ced4[2];
-          iVar59 = DAT_0000ced4[3];
-          *local_9c4 = (char *)*DAT_0000ced4;
-          local_9c4[1] = (char *)iVar20;
-          local_9c4[2] = (char *)iVar63;
-          local_9c4[3] = (char *)iVar59;
-          ptVar41 = (thr_info *)0x0;
-          iVar20 = DAT_0000ced4[5];
-          local_9c4[4] = (char *)DAT_0000ced4[4];
-          *(short *)(local_9c4 + 5) = (short)iVar20;
-          *(char *)((int)local_9c4 + 0x16) = (char)((uint)iVar20 >> 0x10);
-          _applog(7,(char *)local_9c4,false);
+          local_9e8 = ptVar27;
+          snprintf((char *)ppcVar10,0x800,"Pool: %d  URL: %s  User: %s  Password: %s",iVar54,
+                   ppVar21->rpc_url,ppVar21->rpc_user,ppVar21->rpc_pass);
+          _applog(4,(char *)ppcVar10,false);
+          ptVar27 = local_9e8;
         }
       }
-LAB_0000cc00:
-      _stage_work(work);
-      work = (work *)0x0;
-      cVar3 = *pcStack_9dc;
+      if (use_curses == false) goto LAB_0000c7ae;
+      if (((*(char *)&ptVar27->id == '\0') && (*(_Bool *)pbVar19 == false)) && (opt_log_level < 3))
+      {
+        bVar65 = true;
+        goto LAB_0000c78e;
+      }
+      local_9e4 = &use_curses;
+      memcpy(ppcVar10,"Press any key to exit, or cgminer will wait indefinitely for an alive pool.",
+             0x4c);
+      _applog(3,(char *)ppcVar10,false);
+      bVar65 = true;
+      puVar38 = local_9e4;
     }
-    *(undefined *)(iVar58 + 0xea4) = 1;
-    work = hash_pop(false);
-    if (work != (work *)0x0) {
-      ptVar41 = DAT_0000cecc;
-      _discard_work(&work,DAT_0000cec8,(char *)DAT_0000cecc,0x2f53);
+    if (*puVar38 == '\0') {
+LAB_0000c7ae:
+      *local_9c4 = (char *)0x73206f4e;
+      local_9c4[1] = (char *)0x65767265;
+      local_9c4[2] = (char *)0x63207372;
+      local_9c4[3] = (char *)0x646c756f;
+      local_9c4[4] = (char *)0x20656220;
+      local_9c4[5] = (char *)0x64657375;
+      local_9c4[6] = (char *)0x78452021;
+      local_9c4[7] = (char *)0x6e697469;
+      *(undefined2 *)(local_9c4 + 8) = 0x2e67;
+      *(undefined1 *)((int)local_9c4 + 0x22) = 0;
+      _applog(3,(char *)local_9c4,true);
+                    /* WARNING: Subroutine does not return */
+      __quit(0,false);
     }
   } while( true );
 LAB_0000c9b0:
-  ptVar68 = (thr_info *)&ptVar68->device_thread;
-  if (*(int *)(*(int *)ptVar68 + 0x40) < *(int *)(*(int *)ptVar68 + 0x3c)) goto LAB_0000c9e4;
+  pppVar31 = pppVar31 + 1;
+  if ((*pppVar31)->quota_used < (*pppVar31)->quota_gcd) goto LAB_0000c9e4;
   goto LAB_0000c9bc;
 LAB_0000cacc:
-  ptVar68 = (thr_info *)&ptVar68->device_thread;
-  if (*(int *)(*(int *)ptVar68 + 0x40) < *(int *)(*(int *)ptVar68 + 0x3c)) goto LAB_0000cb00;
+  pppVar31 = pppVar31 + 1;
+  if ((*pppVar31)->quota_used < (*pppVar31)->quota_gcd) goto LAB_0000cb00;
   goto LAB_0000cad8;
 }
 

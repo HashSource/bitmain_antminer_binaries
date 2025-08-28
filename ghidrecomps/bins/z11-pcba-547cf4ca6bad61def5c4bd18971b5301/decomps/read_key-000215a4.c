@@ -1,9 +1,9 @@
 
-undefined4 read_key(undefined param_1)
+undefined4 read_key(undefined1 param_1)
 
 {
   undefined4 uVar1;
-  undefined local_411 [5];
+  undefined1 local_411 [5];
   char acStack_40c [1024];
   ssize_t local_c;
   

@@ -25,8 +25,7 @@ int calculate_core_number(uint actual_core_number)
     if (actual_core_number - 0x41 < 0x40) {
       return 0x80;
     }
-    if ((*DAT_00033e20 != '\0') &&
-       (((*DAT_00033e24 != '\0' || (*DAT_00033e28 != '\0')) || (6 < *DAT_00033e2c)))) {
+    if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
       iVar1 = calculate_core_number(actual_core_number);
       return iVar1;
     }

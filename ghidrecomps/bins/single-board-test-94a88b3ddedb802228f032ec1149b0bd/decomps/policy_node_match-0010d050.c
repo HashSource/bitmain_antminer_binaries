@@ -1,5 +1,5 @@
 
-int policy_node_match(int param_1,uint **param_2,ASN1_OBJECT *param_3)
+int policy_node_match(int param_1,undefined4 *param_2,ASN1_OBJECT *param_3)
 
 {
   uint uVar1;
@@ -8,7 +8,7 @@ int policy_node_match(int param_1,uint **param_2,ASN1_OBJECT *param_3)
   int iVar3;
   uint *puVar4;
   
-  puVar4 = *param_2;
+  puVar4 = (uint *)*param_2;
   if (((*(uint *)(param_1 + 0xc) & 0x400) == 0) && (iVar2 = 0, (*puVar4 & 3) != 0)) {
     do {
       iVar3 = sk_num((_STACK *)puVar4[3]);

@@ -18,7 +18,7 @@ disconnect_if_dead(undefined4 *param_1,undefined4 param_2,undefined4 param_3,und
     }
     if (iVar1 != 0) {
       *param_1 = param_2;
-      Curl_infof(param_2,DAT_000456ac,param_1[0x11]);
+      Curl_infof(param_2,"Connection %ld seems to be dead!\n",param_1[0x11]);
       Curl_disconnect(param_1,1);
       return 1;
     }

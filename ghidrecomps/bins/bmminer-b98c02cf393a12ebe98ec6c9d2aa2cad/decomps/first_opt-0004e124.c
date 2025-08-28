@@ -2,12 +2,12 @@
 byte * first_opt(uint *param_1,int *param_2)
 
 {
-  byte **ppbVar1;
+  int *piVar1;
   byte bVar2;
-  byte **ppbVar3;
+  undefined4 *puVar3;
   int iVar4;
   byte *pbVar5;
-  byte **ppbVar6;
+  undefined4 *puVar6;
   int iVar7;
   byte *pbVar8;
   uint uVar9;
@@ -16,22 +16,22 @@ byte * first_opt(uint *param_1,int *param_2)
   if (opt_count == 0) {
     return (byte *)0x0;
   }
-  ppbVar6 = opt_table;
-  if (opt_table[1] == (byte *)0x8) {
+  puVar6 = opt_table;
+  if (opt_table[1] == 8) {
     uVar9 = 1;
-    ppbVar3 = opt_table;
+    puVar3 = opt_table;
     do {
-      ppbVar6 = ppbVar3 + 7;
+      puVar6 = puVar3 + 7;
       *param_1 = uVar9;
       if (opt_count <= uVar9) {
         return (byte *)0x0;
       }
-      ppbVar1 = ppbVar3 + 8;
+      piVar1 = puVar3 + 8;
       uVar9 = uVar9 + 1;
-      ppbVar3 = ppbVar6;
-    } while (*ppbVar1 == (byte *)0x8);
+      puVar3 = puVar6;
+    } while (*piVar1 == 8);
   }
-  pbVar5 = *ppbVar6;
+  pbVar5 = (byte *)*puVar6;
   iVar4 = 0;
   pbVar8 = pbVar5;
   do {

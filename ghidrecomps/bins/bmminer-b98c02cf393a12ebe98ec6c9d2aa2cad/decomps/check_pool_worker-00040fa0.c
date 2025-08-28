@@ -21,7 +21,7 @@ LAB_00040fdc:
         goto LAB_00040fdc;
       }
       if (log_level < 4) goto LAB_00040fdc;
-      pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
         fprintf(pFVar1,"%s:%d:%s: Blank worker exists.\n","mp_test_fw.c",0x39,"check_pool_worker");
       }
@@ -34,7 +34,7 @@ LAB_00041042:
     }
   }
   if (3 < log_level) {
-    pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
       fprintf(pFVar1,"%s:%d:%s: No valid pools, please configure them first!\n","mp_test_fw.c",0x40,
               "check_pool_worker");

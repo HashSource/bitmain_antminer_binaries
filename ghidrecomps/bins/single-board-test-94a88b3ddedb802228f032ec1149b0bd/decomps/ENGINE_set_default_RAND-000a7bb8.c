@@ -8,7 +8,7 @@ int ENGINE_set_default_RAND(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7bdc,DAT_000a7be0,e,DAT_000a7be4,1,1);
+    iVar1 = engine_table_register(&rand_table,0xa7b2d,e,&dummy_nid,1,1);
   }
   return iVar1;
 }

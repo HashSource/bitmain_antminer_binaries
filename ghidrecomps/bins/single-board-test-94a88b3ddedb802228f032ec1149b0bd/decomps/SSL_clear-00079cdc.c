@@ -7,7 +7,7 @@ int SSL_clear(SSL *s)
   SSL_METHOD *pSVar3;
   
   if (s->method == (SSL_METHOD *)0x0) {
-    ERR_put_error(0x14,0xa4,0xbc,DAT_00079e20,0xc2);
+    ERR_put_error(0x14,0xa4,0xbc,"ssl_lib.c",0xc2);
     iVar1 = 0;
   }
   else {
@@ -85,7 +85,7 @@ int SSL_clear(SSL *s)
       iVar1 = 1;
     }
     else {
-      ERR_put_error(0x14,0xa4,0x44,DAT_00079e20,0xdc);
+      ERR_put_error(0x14,0xa4,0x44,"ssl_lib.c",0xdc);
     }
   }
   return iVar1;

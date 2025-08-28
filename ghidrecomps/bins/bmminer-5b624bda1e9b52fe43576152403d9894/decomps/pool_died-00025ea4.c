@@ -13,14 +13,14 @@ void pool_died(pool *pool)
     cgtime(&pool->tv_idle);
     ppVar2 = current_pool();
     if (ppVar2 == pool) {
-      if (((*DAT_00025f3c != '\0') || (*DAT_00025f40 != '\0')) || (3 < *DAT_00025f48)) {
-        snprintf(tmp42,0x800,DAT_00025f4c,ppVar2->pool_no,ppVar2->rpc_url);
+      if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+        snprintf(tmp42,0x800,"Pool %d %s not responding!",ppVar2->pool_no,ppVar2->rpc_url);
         _applog(4,tmp42,false);
       }
       switch_pools((pool *)0x0);
     }
-    else if (((*DAT_00025f3c != '\0') || (*DAT_00025f40 != '\0')) || (5 < *DAT_00025f48)) {
-      snprintf(tmp42,0x800,DAT_00025f44,pool->pool_no,pool->rpc_url);
+    else if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
+      snprintf(tmp42,0x800,"Pool %d %s failed to return work",pool->pool_no,pool->rpc_url);
       _applog(6,tmp42,false);
     }
   }

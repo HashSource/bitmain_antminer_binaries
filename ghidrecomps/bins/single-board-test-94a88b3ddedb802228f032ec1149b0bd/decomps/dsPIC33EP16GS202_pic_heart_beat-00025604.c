@@ -1,7 +1,7 @@
 
 /* WARNING: Removing unreachable block (ram,0x00025790) */
 
-undefined4 dsPIC33EP16GS202_pic_heart_beat(undefined param_1)
+undefined4 dsPIC33EP16GS202_pic_heart_beat(undefined1 param_1)
 
 {
   char cVar1;

@@ -19,9 +19,9 @@ void BN_CTX_start(BN_CTX *ctx)
         uVar3 = (uint)(iVar1 * 3) >> 1;
         num = uVar3 << 2;
       }
-      __dest = CRYPTO_malloc(num,DAT_0009deac,0x152);
+      __dest = CRYPTO_malloc(num,"bn_ctx.c",0x152);
       if (__dest == (void *)0x0) {
-        ERR_put_error(3,0x81,0x6d,DAT_0009deac,0x106);
+        ERR_put_error(3,0x81,0x6d,"bn_ctx.c",0x106);
         iVar1 = *(int *)(ctx + 0x24);
         goto LAB_0009de36;
       }

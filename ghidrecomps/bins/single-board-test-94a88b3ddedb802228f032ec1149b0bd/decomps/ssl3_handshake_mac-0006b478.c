@@ -42,20 +42,20 @@ undefined4 ssl3_handshake_mac(int param_1,int param_2,void *param_3,size_t param
           }
           EVP_DigestUpdate(&EStack_78,(void *)(*(int *)(param_1 + 0xc0) + 0x14),
                            *(size_t *)(*(int *)(param_1 + 0xc0) + 0x10));
-          EVP_DigestUpdate(&EStack_78,DAT_0006b5a8,iVar4 * iVar2);
+          EVP_DigestUpdate(&EStack_78,&ssl3_pad_1,iVar4 * iVar2);
           EVP_DigestFinal_ex(&EStack_78,auStack_60,&local_7c);
           pEVar1 = EVP_MD_CTX_md(&EStack_78);
           EVP_DigestInit_ex(&EStack_78,pEVar1,(ENGINE *)0x0);
           EVP_DigestUpdate(&EStack_78,(void *)(*(int *)(param_1 + 0xc0) + 0x14),
                            *(size_t *)(*(int *)(param_1 + 0xc0) + 0x10));
-          EVP_DigestUpdate(&EStack_78,DAT_0006b5ac,iVar4 * iVar2);
+          EVP_DigestUpdate(&EStack_78,ssl3_pad_2,iVar4 * iVar2);
           EVP_DigestUpdate(&EStack_78,auStack_60,local_7c);
           EVP_DigestFinal_ex(&EStack_78,param_5,&local_80);
           EVP_MD_CTX_cleanup(&EStack_78);
           return local_80;
         }
 LAB_0006b4c4:
-        ERR_put_error(0x14,0x11d,0x144,DAT_0006b5a4,0x2ab);
+        ERR_put_error(0x14,0x11d,0x144,"s3_enc.c",0x2ab);
         return 0;
       }
     }

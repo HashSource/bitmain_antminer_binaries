@@ -12,7 +12,7 @@ X509at_add1_attr_by_NID(stack_st_X509_ATTRIBUTE **x,int nid,int type,uchar *byte
   
   o = OBJ_nid2obj(nid);
   if (o == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x88,0x6d,DAT_0010bd8c,0xe4);
+    ERR_put_error(0xb,0x88,0x6d,"x509_att.c",0xe4);
     return (stack_st_X509_ATTRIBUTE *)0x0;
   }
   attr = X509_ATTRIBUTE_new();
@@ -33,13 +33,13 @@ LAB_0010bd1e:
     }
   }
   if (x == (stack_st_X509_ATTRIBUTE **)0x0) {
-    ERR_put_error(0xb,0x87,0x43,DAT_0010bd8c,0x81);
+    ERR_put_error(0xb,0x87,0x43,"x509_att.c",0x81);
     st = (_STACK *)0x0;
   }
   else {
     st = &(*x)->stack;
     if ((st == (_STACK *)0x0) && (st = sk_new_null(), st == (_STACK *)0x0)) {
-      ERR_put_error(0xb,0x87,0x41,DAT_0010bd8c,0x93);
+      ERR_put_error(0xb,0x87,0x41,"x509_att.c",0x93);
     }
     else {
       a = X509_ATTRIBUTE_dup(attr);
@@ -49,7 +49,7 @@ LAB_0010bd1e:
       else {
         iVar2 = sk_push(st,a);
         if (iVar2 == 0) {
-          ERR_put_error(0xb,0x87,0x41,DAT_0010bd8c,0x93);
+          ERR_put_error(0xb,0x87,0x41,"x509_att.c",0x93);
           X509_ATTRIBUTE_free(a);
 LAB_0010bd02:
           sk_free(st);

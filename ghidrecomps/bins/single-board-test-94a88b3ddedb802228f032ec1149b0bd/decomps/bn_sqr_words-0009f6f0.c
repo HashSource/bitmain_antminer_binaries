@@ -3,9 +3,9 @@ void bn_sqr_words(ulong *rp,ulong *ap,int num)
 
 {
   longlong lVar1;
-  longlong *plVar2;
+  ulong *puVar2;
   ulong *puVar3;
-  undefined4 *puVar4;
+  ulong *puVar4;
   int iVar5;
   
   if (0 < num) {
@@ -13,12 +13,12 @@ void bn_sqr_words(ulong *rp,ulong *ap,int num)
       do {
         num = num - 4;
         *(ulonglong *)rp = (ulonglong)*ap * (ulonglong)*ap;
-        *(ulonglong *)((int)rp + 8) = (ulonglong)ap[1] * (ulonglong)ap[1];
-        *(ulonglong *)((int)rp + 0x10) = (ulonglong)ap[2] * (ulonglong)ap[2];
+        *(ulonglong *)(rp + 2) = (ulonglong)ap[1] * (ulonglong)ap[1];
+        *(ulonglong *)(rp + 4) = (ulonglong)ap[2] * (ulonglong)ap[2];
         puVar3 = ap + 3;
         ap = ap + 4;
-        *(ulonglong *)((int)rp + 0x18) = (ulonglong)*puVar3 * (ulonglong)*puVar3;
-        rp = (ulong *)((int)rp + 0x20);
+        *(ulonglong *)(rp + 6) = (ulonglong)*puVar3 * (ulonglong)*puVar3;
+        rp = rp + 8;
       } while ((num & 0xfffffffcU) != 0);
       if (num == 0) {
         return;
@@ -26,42 +26,42 @@ void bn_sqr_words(ulong *rp,ulong *ap,int num)
     }
     if (8 < num) {
       iVar5 = num - (num - 9U & 0xfffffff8);
-      puVar4 = (undefined4 *)((int)rp + 4);
-      plVar2 = (longlong *)rp;
-      puVar3 = ap;
+      puVar4 = rp + 1;
+      puVar3 = rp;
+      puVar2 = ap;
       do {
-        ap = puVar3 + 8;
-        rp = (ulong *)(plVar2 + 8);
+        ap = puVar2 + 8;
+        rp = puVar3 + 0x10;
         num = num - 8;
-        HintPreloadData(plVar2 + 0x14);
-        HintPreloadData(plVar2 + 0x18);
-        lVar1 = (ulonglong)*puVar3 * (ulonglong)*puVar3;
-        *(int *)plVar2 = (int)lVar1;
-        *puVar4 = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[1] * (ulonglong)puVar3[1];
-        *(int *)(plVar2 + 1) = (int)lVar1;
-        puVar4[2] = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[2] * (ulonglong)puVar3[2];
-        *(int *)(plVar2 + 2) = (int)lVar1;
-        puVar4[4] = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[3] * (ulonglong)puVar3[3];
-        *(int *)(plVar2 + 3) = (int)lVar1;
-        puVar4[6] = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[4] * (ulonglong)puVar3[4];
-        *(int *)(plVar2 + 4) = (int)lVar1;
-        puVar4[8] = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[5] * (ulonglong)puVar3[5];
-        *(int *)(plVar2 + 5) = (int)lVar1;
-        puVar4[10] = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[6] * (ulonglong)puVar3[6];
-        *(int *)(plVar2 + 6) = (int)lVar1;
-        puVar4[0xc] = (int)((ulonglong)lVar1 >> 0x20);
-        lVar1 = (ulonglong)puVar3[7] * (ulonglong)puVar3[7];
-        *(int *)(plVar2 + 7) = (int)lVar1;
-        puVar4[0xe] = (int)((ulonglong)lVar1 >> 0x20);
+        HintPreloadData(puVar3 + 0x28);
+        HintPreloadData(puVar3 + 0x30);
+        lVar1 = (ulonglong)*puVar2 * (ulonglong)*puVar2;
+        *puVar3 = (ulong)lVar1;
+        *puVar4 = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[1] * (ulonglong)puVar2[1];
+        puVar3[2] = (ulong)lVar1;
+        puVar4[2] = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[2] * (ulonglong)puVar2[2];
+        puVar3[4] = (ulong)lVar1;
+        puVar4[4] = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[3] * (ulonglong)puVar2[3];
+        puVar3[6] = (ulong)lVar1;
+        puVar4[6] = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[4] * (ulonglong)puVar2[4];
+        puVar3[8] = (ulong)lVar1;
+        puVar4[8] = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[5] * (ulonglong)puVar2[5];
+        puVar3[10] = (ulong)lVar1;
+        puVar4[10] = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[6] * (ulonglong)puVar2[6];
+        puVar3[0xc] = (ulong)lVar1;
+        puVar4[0xc] = (ulong)((ulonglong)lVar1 >> 0x20);
+        lVar1 = (ulonglong)puVar2[7] * (ulonglong)puVar2[7];
+        puVar3[0xe] = (ulong)lVar1;
+        puVar4[0xe] = (ulong)((ulonglong)lVar1 >> 0x20);
         puVar4 = puVar4 + 0x10;
-        plVar2 = (longlong *)rp;
-        puVar3 = ap;
+        puVar3 = rp;
+        puVar2 = ap;
       } while (num != iVar5 - 8U);
     }
     puVar3 = ap + -1;
@@ -69,7 +69,7 @@ void bn_sqr_words(ulong *rp,ulong *ap,int num)
       puVar3 = puVar3 + 1;
       num = num - 1;
       *(ulonglong *)rp = (ulonglong)*puVar3 * (ulonglong)*puVar3;
-      rp = (ulong *)((int)rp + 8);
+      rp = rp + 2;
     } while (num != 0);
   }
   return;

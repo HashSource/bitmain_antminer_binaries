@@ -6,7 +6,7 @@ ssize_t write(int __fd,void *__buf,size_t __n)
 {
   ssize_t sVar1;
   
-  sVar1 = (*(code *)PTR_write_00047960)();
+  sVar1 = write(__fd,__buf,__n);
   return sVar1;
 }
 

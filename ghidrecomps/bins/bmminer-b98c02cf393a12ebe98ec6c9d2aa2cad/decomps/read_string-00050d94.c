@@ -1,12 +1,11 @@
 
-char * read_string(int param_1,size_t **param_2,undefined4 param_3,size_t *param_4,
-                  undefined4 *param_5)
+char * read_string(int param_1,int *param_2,undefined4 param_3,size_t *param_4,undefined4 *param_5)
 
 {
   byte bVar1;
   size_t sVar2;
   int iVar3;
-  char **ppcVar4;
+  undefined4 *puVar4;
   undefined4 *puVar5;
   char *pcVar6;
   undefined4 *puVar7;
@@ -30,9 +29,9 @@ char * read_string(int param_1,size_t **param_2,undefined4 param_3,size_t *param
   if ((bVar1 & 0xf7) == 0x23 || bVar1 == 0x25) {
     strbuffer_init(&local_34);
     do {
-      ppcVar4 = (char **)*param_2;
-      *param_2 = (size_t *)(ppcVar4 + 1);
-      pcVar6 = *ppcVar4;
+      puVar4 = (undefined4 *)*param_2;
+      *param_2 = (int)(puVar4 + 1);
+      pcVar6 = (char *)*puVar4;
       if (pcVar6 == (char *)0x0) {
         set_error(param_1,"<args>","NULL string argument");
         strbuffer_close(&local_34);
@@ -40,8 +39,8 @@ char * read_string(int param_1,size_t **param_2,undefined4 param_3,size_t *param
       }
       next_token();
       if ((*(char *)(param_1 + 0x24) == '#') || (*(char *)(param_1 + 0x24) == '%')) {
-        sVar2 = **param_2;
-        *param_2 = *param_2 + 1;
+        sVar2 = *(size_t *)*param_2;
+        *param_2 = (int)((size_t *)*param_2 + 1);
       }
       else {
         *puVar8 = *puVar5;
@@ -82,9 +81,9 @@ char * read_string(int param_1,size_t **param_2,undefined4 param_3,size_t *param
     pcVar6 = (char *)0x0;
   }
   else {
-    ppcVar4 = (char **)*param_2;
-    *param_2 = (size_t *)(ppcVar4 + 1);
-    pcVar6 = *ppcVar4;
+    puVar5 = (undefined4 *)*param_2;
+    *param_2 = (int)(puVar5 + 1);
+    pcVar6 = (char *)*puVar5;
     if (pcVar6 == (char *)0x0) {
       set_error(param_1,"<args>","NULL string argument");
     }

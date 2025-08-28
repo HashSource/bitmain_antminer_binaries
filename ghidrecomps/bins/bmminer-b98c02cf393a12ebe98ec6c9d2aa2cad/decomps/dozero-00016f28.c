@@ -32,7 +32,7 @@ void dozero(undefined4 param_1,undefined4 param_2,char *param_3)
       bVar3 = false;
     }
     pp_Var7 = __ctype_tolower_loc();
-    cVar2 = *(char *)(*pp_Var7 + bVar1);
+    cVar2 = (char)(*pp_Var7)[bVar1];
     pcVar5[1] = cVar2;
     if (cVar2 != 't' && cVar2 != 'f') {
       message(param_1,0x4c,0);

@@ -24,7 +24,7 @@ int write_temperature_offset_PIC16F1704(uint which_i2c,uchar which_chain,uchar *
   send_data[8] = '\0';
   send_data[9] = '\0';
   send_data[10] = '\0';
-  send_data[11] = '\0';
+  send_data[0xb] = '\0';
   crc = 0x2e;
   for (i = '\0'; i < 8; i = i + '\x01') {
     crc = crc + buf[i];
@@ -36,8 +36,8 @@ int write_temperature_offset_PIC16F1704(uint which_i2c,uchar which_chain,uchar *
   for (i = '\0'; i < 8; i = i + '\x01') {
     send_data[i + 4] = buf[i];
   }
-  send_data[13] = (uchar)crc;
-  send_data[12] = (uchar)(crc >> 8);
+  send_data[0xd] = (uchar)crc;
+  send_data[0xc] = (uchar)(crc >> 8);
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (i = '\0'; i < 0xe; i = i + '\x01') {
     write_pic((uchar)which_i2c,which_chain,send_data[i]);

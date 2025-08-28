@@ -1,5 +1,5 @@
 
-void smtp_get_message(int param_1,char **param_2)
+void smtp_get_message(int param_1,undefined4 *param_2)
 
 {
   char cVar1;

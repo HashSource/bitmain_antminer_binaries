@@ -1,5 +1,5 @@
 
-undefined4 parse_bags_constprop_1(_STACK *param_1,char *param_2,EVP_PKEY **param_3,_STACK *param_4)
+undefined4 parse_bags_constprop_1(_STACK *param_1,char *param_2,int *param_3,_STACK *param_4)
 
 {
   int iVar1;
@@ -28,25 +28,24 @@ undefined4 parse_bags_constprop_1(_STACK *param_1,char *param_2,EVP_PKEY **param
       iVar1 = OBJ_obj2nid(bag->type);
       switch(iVar1) {
       case 0x96:
-        if ((param_3 != (EVP_PKEY **)0x0) && (*param_3 == (EVP_PKEY *)0x0)) {
-          pEVar3 = EVP_PKCS82PKEY((PKCS8_PRIV_KEY_INFO *)(bag->value).bag);
-          *param_3 = pEVar3;
+        if ((param_3 == (int *)0x0) || (*param_3 != 0)) break;
+        pEVar3 = EVP_PKCS82PKEY((PKCS8_PRIV_KEY_INFO *)(bag->value).bag);
+        *param_3 = (int)pEVar3;
 joined_r0x000d1acc:
-          if (pEVar3 == (EVP_PKEY *)0x0) {
-            return 0;
-          }
+        if (pEVar3 == (EVP_PKEY *)0x0) {
+          return 0;
         }
-        break;
+        goto LAB_000d1a26;
       case 0x97:
-        if ((param_3 != (EVP_PKEY **)0x0) && (*param_3 == (EVP_PKEY *)0x0)) {
+        if ((param_3 != (int *)0x0) && (*param_3 == 0)) {
           p8 = PKCS12_decrypt_skey(bag,param_2,-1);
           if (p8 == (PKCS8_PRIV_KEY_INFO *)0x0) {
             return 0;
           }
           pEVar3 = EVP_PKCS82PKEY(p8);
-          *param_3 = pEVar3;
+          *param_3 = (int)pEVar3;
           PKCS8_PRIV_KEY_INFO_free(p8);
-          pEVar3 = *param_3;
+          pEVar3 = (EVP_PKEY *)*param_3;
           goto joined_r0x000d1acc;
         }
         break;
@@ -79,6 +78,7 @@ LAB_000d1a96:
           return 0;
         }
       }
+LAB_000d1a26:
       iVar4 = iVar4 + 1;
       iVar1 = sk_num(param_1);
     } while (iVar4 < iVar1);

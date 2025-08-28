@@ -3,14 +3,14 @@ int dtls1_heartbeat(SSL *param_1)
 
 {
   uint uVar1;
-  undefined *buf;
+  undefined1 *buf;
   int iVar2;
   
   if (((uint)param_1->srtp_profile & 3) == 1) {
     if (param_1->tlsext_heartbeat == 0) {
       uVar1 = SSL_state(param_1);
       if (((uVar1 & 0x3000) == 0) && (param_1->in_handshake == 0)) {
-        buf = (undefined *)CRYPTO_malloc(0x25,DAT_0007951c,0x5eb);
+        buf = (undefined1 *)CRYPTO_malloc(0x25,"d1_both.c",0x5eb);
         *buf = 1;
         buf[1] = 0;
         buf[2] = 0x12;
@@ -34,17 +34,17 @@ int dtls1_heartbeat(SSL *param_1)
         CRYPTO_free(buf);
       }
       else {
-        ERR_put_error(0x14,0x131,0xf4,DAT_0007951c,0x5d7);
+        ERR_put_error(0x14,0x131,0xf4,"d1_both.c",0x5d7);
         iVar2 = -1;
       }
     }
     else {
-      ERR_put_error(0x14,0x131,0x16e,DAT_0007951c,0x5d1);
+      ERR_put_error(0x14,0x131,0x16e,"d1_both.c",0x5d1);
       iVar2 = -1;
     }
   }
   else {
-    ERR_put_error(0x14,0x131,0x16d,DAT_0007951c,0x5cb);
+    ERR_put_error(0x14,0x131,0x16d,"d1_both.c",0x5cb);
     iVar2 = -1;
   }
   return iVar2;

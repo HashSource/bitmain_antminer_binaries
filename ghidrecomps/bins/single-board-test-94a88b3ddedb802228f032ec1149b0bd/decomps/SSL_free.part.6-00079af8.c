@@ -75,7 +75,7 @@ void SSL_free_part_6(void *param_1)
   }
   iVar4 = *(int *)((int)param_1 + 0x170);
   if (iVar4 != 0) {
-    iVar1 = CRYPTO_add_lock((int *)(iVar4 + 0x60),-1,0xc,DAT_00079ccc,0x82a);
+    iVar1 = CRYPTO_add_lock((int *)(iVar4 + 0x60),-1,0xc,"ssl_lib.c",0x82a);
     if (iVar1 < 1) {
       SSL_CTX_free_part_5(iVar4);
     }
@@ -90,10 +90,10 @@ void SSL_free_part_6(void *param_1)
     CRYPTO_free(*(void **)((int)param_1 + 0x154));
   }
   if (*(_STACK **)((int)param_1 + 0x134) != (_STACK *)0x0) {
-    sk_pop_free(*(_STACK **)((int)param_1 + 0x134),DAT_00079cd0);
+    sk_pop_free(*(_STACK **)((int)param_1 + 0x134),(func *)0xbc31d);
   }
   if (*(_STACK **)((int)param_1 + 0x130) != (_STACK *)0x0) {
-    sk_pop_free(*(_STACK **)((int)param_1 + 0x130),DAT_00079cd4);
+    sk_pop_free(*(_STACK **)((int)param_1 + 0x130),(func *)0xd2795);
   }
   if (*(void **)((int)param_1 + 0x138) != (void *)0x0) {
     CRYPTO_free(*(void **)((int)param_1 + 0x138));
@@ -102,14 +102,14 @@ void SSL_free_part_6(void *param_1)
     CRYPTO_free(*(void **)((int)param_1 + 0x1d4));
   }
   if (*(_STACK **)((int)param_1 + 0xf8) != (_STACK *)0x0) {
-    sk_pop_free(*(_STACK **)((int)param_1 + 0xf8),DAT_00079cd8);
+    sk_pop_free(*(_STACK **)((int)param_1 + 0xf8),(func *)0xb7acd);
   }
   if (*(int *)((int)param_1 + 8) != 0) {
     (**(code **)(*(int *)((int)param_1 + 8) + 0xc))(param_1);
   }
   iVar4 = *(int *)((int)param_1 + 0xe4);
   if (iVar4 != 0) {
-    iVar1 = CRYPTO_add_lock((int *)(iVar4 + 0x60),-1,0xc,DAT_00079ccc,0x82a);
+    iVar1 = CRYPTO_add_lock((int *)(iVar4 + 0x60),-1,0xc,"ssl_lib.c",0x82a);
     if (iVar1 < 1) {
       SSL_CTX_free_part_5(iVar4);
     }

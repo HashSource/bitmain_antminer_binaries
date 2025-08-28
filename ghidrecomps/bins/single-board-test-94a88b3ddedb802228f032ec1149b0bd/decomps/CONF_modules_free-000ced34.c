@@ -4,31 +4,25 @@
 void CONF_modules_free(void)
 
 {
-  int iVar1;
   int *ptr;
   void *ptr_00;
-  int iVar2;
-  int iVar3;
+  int iVar1;
   
-  iVar1 = DAT_000ced88;
-  while( true ) {
-    iVar2 = sk_num(*(_STACK **)(iVar1 + 4));
-    iVar3 = DAT_000ced88;
-    if (iVar2 < 1) break;
-    ptr = (int *)sk_pop(*(_STACK **)(iVar1 + 4));
-    iVar3 = *ptr;
-    if (*(code **)(iVar3 + 0xc) != (code *)0x0) {
-      (**(code **)(iVar3 + 0xc))();
-      iVar3 = *ptr;
+  while (iVar1 = sk_num(initialized_modules), 0 < iVar1) {
+    ptr = (int *)sk_pop(initialized_modules);
+    iVar1 = *ptr;
+    if (*(code **)(iVar1 + 0xc) != (code *)0x0) {
+      (**(code **)(iVar1 + 0xc))();
+      iVar1 = *ptr;
     }
     ptr_00 = (void *)ptr[1];
-    *(int *)(iVar3 + 0x10) = *(int *)(iVar3 + 0x10) + -1;
+    *(int *)(iVar1 + 0x10) = *(int *)(iVar1 + 0x10) + -1;
     CRYPTO_free(ptr_00);
     CRYPTO_free((void *)ptr[2]);
     CRYPTO_free(ptr);
   }
-  sk_free(*(_STACK **)(DAT_000ced88 + 4));
-  *(undefined4 *)(iVar3 + 4) = 0;
+  sk_free(initialized_modules);
+  initialized_modules = (_STACK *)0x0;
   CONF_modules_unload(1);
   return;
 }

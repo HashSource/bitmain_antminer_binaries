@@ -1,5 +1,5 @@
 
-void set_temperature_offset_value(undefined param_1,undefined4 param_2)
+void set_temperature_offset_value(undefined1 param_1,undefined4 param_2)
 
 {
   send_pic_command(param_1);

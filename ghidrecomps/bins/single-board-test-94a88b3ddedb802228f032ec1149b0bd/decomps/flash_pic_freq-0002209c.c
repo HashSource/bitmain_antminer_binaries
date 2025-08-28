@@ -1,5 +1,5 @@
 
-undefined4 flash_pic_freq(undefined param_1,int param_2)
+undefined4 flash_pic_freq(undefined1 param_1,int param_2)
 
 {
   uint uVar1;

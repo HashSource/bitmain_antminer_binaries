@@ -10,7 +10,7 @@ int UI_dup_verify_string
     iVar1 = general_allocate_string(ui,prompt,1,2,flags,result_buf,minsize,maxsize,test_buf);
   }
   else {
-    ERR_put_error(0x28,0x6a,0x41,DAT_000d464c,0x115);
+    ERR_put_error(0x28,0x6a,0x41,"ui_lib.c",0x115);
     iVar1 = -1;
   }
   return iVar1;

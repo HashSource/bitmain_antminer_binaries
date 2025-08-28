@@ -19,8 +19,7 @@ _Bool io_add(io_data *io_data,char *buf)
   if (io_data->siz < uVar4) {
     new = io_data->siz + 0x20000;
     if (new < uVar4) {
-      new = ((uint)(0.0 < (float)(ulonglong)uVar4 / DAT_00061734) *
-             (int)((float)(ulonglong)uVar4 / DAT_00061734) + 2) * 0x10000;
+      new = ((uint)(0.0 < (float)uVar4 / 65536.0) * (int)((float)uVar4 / 65536.0) + 2) * 0x10000;
     }
     pcVar2 = (char *)_cgrealloc(io_data->ptr,new,"api-btm.c","io_add",0x2fe);
     io_data->ptr = pcVar2;

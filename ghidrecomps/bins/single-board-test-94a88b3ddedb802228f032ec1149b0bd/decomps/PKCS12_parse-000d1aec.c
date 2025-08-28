@@ -11,7 +11,7 @@ int PKCS12_parse(PKCS12 *p12,char *pass,EVP_PKEY **pkey,X509 **cert,stack_st_X50
   X509 *pXVar4;
   
   if (p12 == (PKCS12 *)0x0) {
-    ERR_put_error(0x23,0x76,0x69,DAT_000d1da0,0x5b);
+    ERR_put_error(0x23,0x76,0x69,"p12_kiss.c",0x5b);
     return 0;
   }
   if (pkey != (EVP_PKEY **)0x0) {
@@ -23,10 +23,10 @@ int PKCS12_parse(PKCS12 *p12,char *pass,EVP_PKEY **pkey,X509 **cert,stack_st_X50
   if ((pass == (char *)0x0) || (*pass == '\0')) {
     iVar1 = PKCS12_verify_mac(p12,(char *)0x0,0);
     if (iVar1 == 0) {
-      pXVar4 = (X509 *)PKCS12_verify_mac(p12,DAT_000d1d94,0);
+      pXVar4 = (X509 *)PKCS12_verify_mac(p12,"",0);
       iVar1 = 0x73;
-      pass = DAT_000d1d94;
       if (pXVar4 == (X509 *)0x0) goto LAB_000d1d0a;
+      pass = "";
     }
     else {
       pass = (char *)0x0;
@@ -34,13 +34,13 @@ int PKCS12_parse(PKCS12 *p12,char *pass,EVP_PKEY **pkey,X509 **cert,stack_st_X50
 LAB_000d1b34:
     st = (X509 *)sk_new_null();
     if (st == (X509 *)0x0) {
-      ERR_put_error(0x23,0x76,0x41,DAT_000d1da0,0x7f);
+      ERR_put_error(0x23,0x76,0x41,"p12_kiss.c",0x7f);
       return 0;
     }
     p_Var2 = &PKCS12_unpack_authsafes(p12)->stack;
     if (p_Var2 == (_STACK *)0x0) {
 LAB_000d1ce2:
-      ERR_put_error(0x23,0x76,0x72,DAT_000d1da0,0x84);
+      ERR_put_error(0x23,0x76,0x72,"p12_kiss.c",0x84);
       pXVar4 = (X509 *)0x0;
     }
     else {
@@ -53,12 +53,12 @@ LAB_000d1b7e:
           if (st_00 != (_STACK *)0x0) {
             iVar3 = parse_bags_constprop_1(st_00,pass,pkey,st);
             if (iVar3 != 0) {
-              sk_pop_free(st_00,DAT_000d1d90);
+              sk_pop_free(st_00,(func *)0xd1345);
               goto LAB_000d1b56;
             }
-            sk_pop_free(st_00,DAT_000d1d90);
+            sk_pop_free(st_00,(func *)0xd1345);
           }
-          sk_pop_free(p_Var2,DAT_000d1d98);
+          sk_pop_free(p_Var2,(func *)0xcef89);
           goto LAB_000d1ce2;
         }
         if (iVar3 == 0x1a) {
@@ -67,7 +67,7 @@ LAB_000d1b7e:
         }
 LAB_000d1b56:
       }
-      sk_pop_free(p_Var2,DAT_000d1d98);
+      sk_pop_free(p_Var2,(func *)0xcef89);
       if (ca == (stack_st_X509 **)0x0) {
         do {
           if ((cert == (X509 **)0x0) || (pkey == (EVP_PKEY **)0x0)) {
@@ -91,7 +91,7 @@ LAB_000d1b56:
           pXVar4 = (X509 *)sk_pop((_STACK *)st);
           if (pXVar4 == (X509 *)0x0) {
 LAB_000d1c86:
-            sk_pop_free((_STACK *)st,DAT_000d1d9c);
+            sk_pop_free((_STACK *)st,X509_free);
             return 1;
           }
           p_Var2 = &(*ca)->stack;
@@ -143,7 +143,7 @@ LAB_000d1c86:
     iVar1 = 0x77;
     pXVar4 = (X509 *)0x0;
 LAB_000d1d0a:
-    ERR_put_error(0x23,0x76,0x71,DAT_000d1da0,iVar1);
+    ERR_put_error(0x23,0x76,0x71,"p12_kiss.c",iVar1);
     st = pXVar4;
   }
   if ((pkey != (EVP_PKEY **)0x0) && (*pkey != (EVP_PKEY *)0x0)) {
@@ -157,7 +157,7 @@ LAB_000d1c20:
     X509_free(pXVar4);
   }
   if (st != (X509 *)0x0) {
-    sk_pop_free((_STACK *)st,DAT_000d1d9c);
+    sk_pop_free((_STACK *)st,X509_free);
     st = (X509 *)0x0;
   }
   return (int)st;

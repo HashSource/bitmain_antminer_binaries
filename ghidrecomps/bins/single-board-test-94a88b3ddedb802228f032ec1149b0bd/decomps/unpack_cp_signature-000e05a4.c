@@ -10,7 +10,7 @@ DSA_SIG * unpack_cp_signature(uchar *param_1,uint param_2,undefined4 param_3,und
   
   pDVar2 = DSA_SIG_new();
   if (pDVar2 == (DSA_SIG *)0x0) {
-    ERR_GOST_error(0x89,0x76,DAT_000e0640,0x146,param_4);
+    ERR_GOST_error(0x89,0x76,"gost_sign.c",0x146,param_4);
     return (DSA_SIG *)0x0;
   }
   param_2 = param_2 >> 1;

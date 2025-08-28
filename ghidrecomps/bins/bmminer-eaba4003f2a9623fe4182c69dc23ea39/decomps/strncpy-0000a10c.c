@@ -6,9 +6,7 @@ char * strncpy(char *__dest,char *__src,size_t __n)
 {
   char *pcVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a114. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pcVar1 = (char *)(*(code *)PTR_LAB_00085218)();
+  pcVar1 = (char *)(*(code *)(undefined *)0x0)(__dest);
   return pcVar1;
 }
 

@@ -14,7 +14,7 @@ LAB_000ff50a:
   else {
     if (param_2 < 0xc) {
       if (param_2 == 2) {
-        ERR_put_error(10,0x78,0x96,DAT_000ff5b8,0xd3);
+        ERR_put_error(10,0x78,0x96,"dsa_pmeth.c",0xd3);
         return 0xfffffffe;
       }
       if (param_2 < 3) {
@@ -28,7 +28,7 @@ LAB_000ff50a:
                (iVar1 = EVP_MD_type(param_4), iVar1 != 0x2a2)))))) {
             iVar1 = 0xc2;
 LAB_000ff4ea:
-            ERR_put_error(10,0x78,0x6a,DAT_000ff5b8,iVar1);
+            ERR_put_error(10,0x78,0x6a,"dsa_pmeth.c",iVar1);
             return 0;
           }
 LAB_000ff576:

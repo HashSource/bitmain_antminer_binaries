@@ -9,9 +9,10 @@ undefined4 get_hash_counting_number(void)
   if (log_level < 6) {
     return uVar1;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
-    fprintf(__stream,"%s:%d:%s: DHASH_ACC_CONTROL is 0x%x\n","znyq7010.c",0x330,DAT_0004dcec,uVar1);
+    fprintf(__stream,"%s:%d:%s: DHASH_ACC_CONTROL is 0x%x\n","znyq7010.c",0x330,
+            "get_hash_counting_number",uVar1);
   }
   fclose(__stream);
   return uVar1;

@@ -5,10 +5,10 @@ void power_set_da_value(short param_1)
   ushort uVar1;
   undefined4 local_38;
   undefined4 local_34;
-  undefined auStack_30 [32];
+  undefined1 auStack_30 [32];
   
-  local_38 = DAT_00065c20;
-  local_34 = DAT_00065c24;
+  local_38 = 0x8306aa55;
+  local_34 = 0;
   memset(auStack_30,0,0x20);
   uVar1 = (ushort)local_34._1_1_;
   local_34 = CONCAT31(local_34._1_3_,(char)param_1);

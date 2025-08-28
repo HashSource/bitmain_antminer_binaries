@@ -57,30 +57,7 @@ int user_read_iic(runtime_base_t *runtime,int chip_addr,uint8_t i2c_dev_addr,uin
   }
   else {
     if (((use_syslog != false) || (opt_log_output != false)) || (1 < opt_log_level)) {
-      tmp42[0] = s_i2c_state_check_failed_00034290[0];
-      tmp42[1] = s_i2c_state_check_failed_00034290[1];
-      tmp42[2] = s_i2c_state_check_failed_00034290[2];
-      tmp42[3] = s_i2c_state_check_failed_00034290[3];
-      tmp42[4] = s_i2c_state_check_failed_00034290[4];
-      tmp42[5] = s_i2c_state_check_failed_00034290[5];
-      tmp42[6] = s_i2c_state_check_failed_00034290[6];
-      tmp42[7] = s_i2c_state_check_failed_00034290[7];
-      tmp42[8] = s_i2c_state_check_failed_00034290[8];
-      tmp42[9] = s_i2c_state_check_failed_00034290[9];
-      tmp42[10] = s_i2c_state_check_failed_00034290[10];
-      tmp42[11] = s_i2c_state_check_failed_00034290[11];
-      tmp42[12] = s_i2c_state_check_failed_00034290[12];
-      tmp42[13] = s_i2c_state_check_failed_00034290[13];
-      tmp42[14] = s_i2c_state_check_failed_00034290[14];
-      tmp42[15] = s_i2c_state_check_failed_00034290[15];
-      tmp42[16] = s_i2c_state_check_failed_00034290[16];
-      tmp42[17] = s_i2c_state_check_failed_00034290[17];
-      tmp42[18] = s_i2c_state_check_failed_00034290[18];
-      tmp42[19] = s_i2c_state_check_failed_00034290[19];
-      tmp42[20] = s_i2c_state_check_failed_00034290[20];
-      tmp42[21] = s_i2c_state_check_failed_00034290[21];
-      tmp42[22] = s_i2c_state_check_failed_00034290[22];
-      tmp42[23] = s_i2c_state_check_failed_00034290[23];
+      builtin_strncpy(tmp42,"i2c state check failed\n",0x18);
       _applog(2,tmp42,false);
     }
     ret = 1;

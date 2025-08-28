@@ -1,5 +1,5 @@
 
-undefined4 Curl_protocol_doing(int param_1,undefined *param_2)
+undefined4 Curl_protocol_doing(int param_1,undefined1 *param_2)
 
 {
   undefined4 uVar1;

@@ -2,13 +2,13 @@
 pitem * pqueue_next(piterator *iter)
 
 {
-  pitem *ppVar1;
+  piterator p_Var1;
   
-  ppVar1 = (pitem *)iter;
-  if ((iter != (piterator *)0x0) && (ppVar1 = *iter, ppVar1 != (pitem *)0x0)) {
-    *iter = ppVar1->next;
-    return ppVar1;
+  p_Var1 = (piterator)iter;
+  if ((iter != (piterator *)0x0) && (p_Var1 = *iter, p_Var1 != (piterator)0x0)) {
+    *iter = p_Var1->next;
+    return p_Var1;
   }
-  return ppVar1;
+  return p_Var1;
 }
 

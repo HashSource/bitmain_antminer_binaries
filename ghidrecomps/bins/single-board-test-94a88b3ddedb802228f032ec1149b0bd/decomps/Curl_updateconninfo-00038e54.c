@@ -27,7 +27,7 @@ void Curl_updateconninfo(undefined4 *param_1,int param_2)
       piVar3 = __errno_location();
       iVar2 = *piVar3;
       uVar4 = Curl_strerror(param_1,iVar2);
-      Curl_failf(uVar9,DAT_00038f74,iVar2,uVar4);
+      Curl_failf(uVar9,"getpeername() failed with errno %d: %s",iVar2,uVar4);
       return;
     }
     local_11c = 0x80;
@@ -37,7 +37,7 @@ void Curl_updateconninfo(undefined4 *param_1,int param_2)
       piVar3 = __errno_location();
       iVar2 = *piVar3;
       uVar4 = Curl_strerror(param_1,iVar2);
-      Curl_failf(uVar9,DAT_00038f7c,iVar2,uVar4);
+      Curl_failf(uVar9,"getsockname() failed with errno %d: %s",iVar2,uVar4);
       return;
     }
     iVar2 = getaddressinfo(asStack_118,param_1 + 0x2e,param_1 + 0x3a);
@@ -45,7 +45,7 @@ void Curl_updateconninfo(undefined4 *param_1,int param_2)
       piVar3 = __errno_location();
       iVar2 = *piVar3;
       uVar4 = Curl_strerror(param_1,iVar2);
-      Curl_failf(uVar9,DAT_00038f78,iVar2,uVar4);
+      Curl_failf(uVar9,"ssrem inet_ntop() failed with errno %d: %s",iVar2,uVar4);
       return;
     }
     puVar7 = param_1 + 0x2e;
@@ -74,7 +74,7 @@ void Curl_updateconninfo(undefined4 *param_1,int param_2)
       piVar3 = __errno_location();
       iVar2 = *piVar3;
       uVar4 = Curl_strerror(param_1,iVar2);
-      Curl_failf(uVar9,DAT_00038f80,iVar2,uVar4);
+      Curl_failf(uVar9,"ssloc inet_ntop() failed with errno %d: %s",iVar2,uVar4);
       return;
     }
   }

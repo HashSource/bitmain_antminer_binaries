@@ -10,9 +10,9 @@ void Curl_cookie_loadfiles(int param_1)
     Curl_share_lock(param_1,2,2);
     do {
       iVar1 = Curl_cookie_init(param_1,*puVar2,*(undefined4 *)(param_1 + 0x468),
-                               *(undefined *)(param_1 + 0x24d));
+                               *(undefined1 *)(param_1 + 0x24d));
       if (iVar1 == 0) {
-        Curl_infof(param_1,DAT_0003f7f8,*puVar2);
+        Curl_infof(param_1,"ignoring failed cookie_init for %s\n",*puVar2);
       }
       else {
         *(int *)(param_1 + 0x468) = iVar1;

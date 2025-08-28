@@ -29,7 +29,7 @@ undefined4 SRP_generate_server_master_secret(int param_1,undefined4 param_2)
         iVar1 = iVar2 + 7;
       }
       len = iVar1 >> 3;
-      to = (uchar *)CRYPTO_malloc(len,DAT_00084164,0x162);
+      to = (uchar *)CRYPTO_malloc(len,"tls_srp.c",0x162);
       if (to != (uchar *)0x0) {
         BN_bn2bin(a_00,to);
         uVar3 = (**(code **)(*(int *)(*(int *)(param_1 + 8) + 100) + 0xc))(param_1,param_2,to,len);

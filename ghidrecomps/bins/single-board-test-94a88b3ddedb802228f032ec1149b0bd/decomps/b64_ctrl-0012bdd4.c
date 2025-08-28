@@ -48,7 +48,7 @@ LAB_0012bf3e:
         iVar3 = *outl;
         iVar4 = outl[1];
         if (iVar3 < iVar4) {
-          OpenSSLDie(DAT_0012bf74,0x1f9,DAT_0012bf78);
+          OpenSSLDie("bio_b64.c",0x1f9,"ctx->buf_len >= ctx->buf_off");
           iVar3 = *outl;
           iVar4 = outl[1];
         }
@@ -78,7 +78,7 @@ LAB_0012bf3e:
       iVar3 = *outl;
       iVar4 = outl[1];
       if (iVar3 < iVar4) {
-        OpenSSLDie(DAT_0012bf74,0x1f0,DAT_0012bf78);
+        OpenSSLDie("bio_b64.c",0x1f0,"ctx->buf_len >= ctx->buf_off");
         iVar3 = *outl;
         iVar4 = outl[1];
       }

@@ -1,88 +1,74 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void do8xPattenTest(void)
 
 {
-  int iVar1;
-  int iVar2;
-  int *piVar3;
-  int iVar4;
-  int *piVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  pthread_mutex_t *ppVar9;
-  uint uVar10;
-  int iVar11;
-  int iVar12;
+  uint *puVar1;
+  uint uVar2;
+  uchar (*pauVar3) [128];
+  uchar (*pauVar4) [256];
+  int iVar5;
+  all_parameters *paVar6;
   
-  iVar7 = DAT_00039700;
-  iVar4 = DAT_000396e4;
-  iVar11 = 0;
-  ppVar9 = (pthread_mutex_t *)(DAT_000396e4 + 0x9a0);
-  *(undefined *)(DAT_000396e4 + 0x980) = 0;
-  piVar5 = DAT_000396e8;
-  *(undefined *)(iVar7 + 0xdd4) = 1;
-  pthread_mutex_lock(ppVar9);
-  uVar10 = get_dhash_acc_control();
-  iVar6 = DAT_00039704;
-  set_dhash_acc_control(uVar10 & 0xffffffbf);
-  iVar8 = DAT_00039708;
+  iVar5 = 0;
+  startCheckNetworkJob = false;
+  doTestPatten = true;
+  pthread_mutex_lock((pthread_mutex_t *)&reinit_mutex);
+  uVar2 = get_dhash_acc_control();
+  set_dhash_acc_control(uVar2 & 0xffffffbf);
   sleep(3);
-  uVar10 = get_dhash_acc_control();
-  set_dhash_acc_control(uVar10 & 0xffffffbf);
+  uVar2 = get_dhash_acc_control();
+  set_dhash_acc_control(uVar2 & 0xffffffbf);
   sleep(2);
-  iVar12 = *piVar5;
+  paVar6 = dev;
   do {
-    while (piVar3 = (int *)(iVar12 + 8), iVar12 = iVar12 + 4, *piVar3 == 1) {
-      iVar1 = iVar11 * 0x80;
-      iVar2 = iVar11 * 0x100;
-      iVar11 = iVar11 + 1;
-      memcpy((void *)(iVar6 + iVar1),(void *)(iVar8 + iVar2),0x80);
-      if (iVar11 == 0x10) goto LAB_00039624;
+    while (puVar1 = paVar6->chain_exist, paVar6 = (all_parameters *)&paVar6->pwm_value, *puVar1 == 1
+          ) {
+      pauVar3 = chain_pic_buf + iVar5;
+      pauVar4 = chip_last_freq + iVar5;
+      iVar5 = iVar5 + 1;
+      memcpy(pauVar3,pauVar4,0x80);
+      if (iVar5 == 0x10) goto LAB_00039624;
     }
-    iVar11 = iVar11 + 1;
-  } while (iVar11 != 0x10);
+    iVar5 = iVar5 + 1;
+  } while (iVar5 != 0x10);
 LAB_00039624:
-  iVar6 = DAT_00039704;
   set_asic_ticket_mask(0);
-  iVar8 = DAT_0003970c;
   clement_doTestBoardOnce(true);
-  iVar11 = 0;
-  iVar12 = *piVar5;
+  iVar5 = 0;
+  paVar6 = dev;
   do {
-    while (piVar3 = (int *)(iVar12 + 8), iVar12 = iVar12 + 4, *piVar3 == 1) {
-      iVar1 = iVar11 * 0x80;
-      iVar2 = iVar11 * 0x100;
-      iVar11 = iVar11 + 1;
-      memcpy((void *)(iVar6 + iVar1),(void *)(iVar8 + iVar2),0x80);
-      if (iVar11 == 0x10) goto LAB_00039660;
+    while (puVar1 = paVar6->chain_exist, paVar6 = (all_parameters *)&paVar6->pwm_value, *puVar1 == 1
+          ) {
+      pauVar3 = chain_pic_buf + iVar5;
+      pauVar4 = show_last_freq + iVar5;
+      iVar5 = iVar5 + 1;
+      memcpy(pauVar3,pauVar4,0x80);
+      if (iVar5 == 0x10) goto LAB_00039660;
     }
-    iVar11 = iVar11 + 1;
-  } while (iVar11 != 0x10);
+    iVar5 = iVar5 + 1;
+  } while (iVar5 != 0x10);
 LAB_00039660:
-  iVar6 = DAT_000396ec;
-  set_nonce2_and_job_id_store_address(*(uint *)(DAT_000396ec + 0x8c));
-  set_job_start_address(*(int *)(iVar6 + 0x8c) + 0x200000);
+  set_nonce2_and_job_id_store_address(PHY_MEM_NONCE2_JOBID_ADDRESS);
+  set_job_start_address(PHY_MEM_NONCE2_JOBID_ADDRESS + 0x200000);
   set_asic_ticket_mask(0x3f);
   cgsleep_ms(10);
-  uVar10 = get_nonce_fifo_interrupt();
-  set_nonce_fifo_interrupt(uVar10 | 0x10000);
+  uVar2 = get_nonce_fifo_interrupt();
+  set_nonce_fifo_interrupt(uVar2 | 0x10000);
   clear_nonce_fifo();
-  if (*DAT_000396f0 == 0) {
-    set_time_out_control(*(uint *)(*piVar5 + 0x48) & 0x1ffff | 0x80000000);
+  if (opt_multi_version == 0) {
+    set_time_out_control(dev->timeout & 0x1ffff | 0x80000000);
   }
   else {
-    set_time_out_control(*(int *)(*piVar5 + 0x48) * *DAT_000396f0 & 0x1ffffU | 0x80000000);
+    set_time_out_control(dev->timeout * opt_multi_version & 0x1ffff | 0x80000000);
   }
-  ppVar9 = DAT_000396f4;
-  *(undefined *)(iVar7 + 0xdd4) = 0;
-  pthread_mutex_unlock(ppVar9);
+  doTestPatten = false;
+  pthread_mutex_unlock((pthread_mutex_t *)&reinit_mutex);
   re_send_last_job();
-  cgtime(DAT_000396f8);
-  cgtime(DAT_000396fc);
-  *(undefined *)(iVar4 + 0x980) = 1;
+  cgtime(&tv_send_job);
+  cgtime(&tv_send);
+  startCheckNetworkJob = true;
   return;
 }
 

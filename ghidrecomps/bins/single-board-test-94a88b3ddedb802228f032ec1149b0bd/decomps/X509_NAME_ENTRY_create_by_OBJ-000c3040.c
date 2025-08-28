@@ -10,7 +10,7 @@ X509_NAME_ENTRY_create_by_OBJ(X509_NAME_ENTRY **ne,ASN1_OBJECT *obj,int type,uch
   if (((ne != (X509_NAME_ENTRY **)0x0) && (ne_00 = *ne, ne_00 != (X509_NAME_ENTRY *)0x0)) ||
      (ne_00 = X509_NAME_ENTRY_new(), ne_00 != (X509_NAME_ENTRY *)0x0)) {
     if (obj == (ASN1_OBJECT *)0x0) {
-      ERR_put_error(0xb,0x73,0x43,DAT_000c30c4,0x160);
+      ERR_put_error(0xb,0x73,0x43,"x509name.c",0x160);
     }
     else {
       ASN1_OBJECT_free(ne_00->object);

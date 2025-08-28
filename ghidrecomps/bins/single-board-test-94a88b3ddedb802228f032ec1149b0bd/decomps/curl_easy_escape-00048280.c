@@ -17,7 +17,7 @@ int curl_easy_escape(undefined4 param_1,char *param_2,int param_3)
     sVar2 = strlen(param_2);
     uVar8 = sVar2 + 1;
   }
-  iVar3 = (**DAT_00048380)(uVar8);
+  iVar3 = (*Curl_cmalloc)(uVar8);
   if (iVar3 != 0) {
     if (uVar8 == 1) {
       iVar6 = 0;
@@ -106,20 +106,20 @@ int curl_easy_escape(undefined4 param_1,char *param_2,int param_3)
             uVar7 = uVar7 << 1;
             iVar4 = (*Curl_crealloc)(iVar3,uVar7);
             if (iVar4 == 0) {
-              (**DAT_00048388)(iVar3);
+              (*Curl_cfree)(iVar3);
               return 0;
             }
           }
           iVar3 = iVar4 + iVar6;
           iVar6 = iVar6 + 3;
-          curl_msnprintf(iVar3,4,DAT_00048384,cVar1);
+          curl_msnprintf(iVar3,4,"%%%02X",cVar1);
           iVar3 = iVar4;
         }
         iVar4 = -3 - (int)pcVar5;
         pcVar5 = pcVar5 + 1;
       } while (param_2 + uVar8 + iVar4 != (char *)0x0);
     }
-    *(undefined *)(iVar3 + iVar6) = 0;
+    *(undefined1 *)(iVar3 + iVar6) = 0;
   }
   return iVar3;
 }

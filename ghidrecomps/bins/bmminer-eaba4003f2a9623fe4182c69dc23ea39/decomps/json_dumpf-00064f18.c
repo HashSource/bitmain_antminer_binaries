@@ -7,7 +7,7 @@ int json_dumpf(json_t *json,FILE *output,size_t flags)
   FILE *output_local;
   json_t *json_local;
   
-  iVar1 = json_dump_callback(json,dump_to_file + 1,output,flags);
+  iVar1 = json_dump_callback(json,(json_dump_callback_t)0x64511,output,flags);
   return iVar1;
 }
 

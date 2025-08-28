@@ -6,7 +6,7 @@ void close_secondarysocket(int param_1)
     Curl_closesocket();
     *(undefined4 *)(param_1 + 0x158) = 0xffffffff;
   }
-  *(undefined *)(param_1 + 0x1f7) = 0;
+  *(undefined1 *)(param_1 + 0x1f7) = 0;
   *(undefined4 *)(param_1 + 0x46c) = 0;
   return;
 }

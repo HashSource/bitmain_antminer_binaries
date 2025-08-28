@@ -13,11 +13,11 @@ ASN1_STRING * s2i_skey_id(undefined4 param_1,int *param_2,char *param_3)
   uint local_54;
   uchar auStack_50 [64];
   
-  iVar1 = strcmp(param_3,DAT_000c95d4);
+  iVar1 = strcmp(param_3,"hash");
   if (iVar1 != 0) {
     pAVar2 = ASN1_STRING_type_new(4);
     if (pAVar2 == (ASN1_STRING *)0x0) {
-      ERR_put_error(0x22,0x70,0x41,DAT_000c95d8,0x57);
+      ERR_put_error(0x22,0x70,0x41,"v3_skey.c",0x57);
       return (ASN1_STRING *)0x0;
     }
     puVar3 = string_to_hex(param_3,&local_58);
@@ -31,7 +31,7 @@ ASN1_STRING * s2i_skey_id(undefined4 param_1,int *param_2,char *param_3)
   }
   pAVar2 = ASN1_STRING_type_new(4);
   if (pAVar2 == (ASN1_STRING *)0x0) {
-    ERR_put_error(0x22,0x73,0x41,DAT_000c95d8,0x72);
+    ERR_put_error(0x22,0x73,0x41,"v3_skey.c",0x72);
     return (ASN1_STRING *)0x0;
   }
   if (param_2 == (int *)0x0) {
@@ -59,13 +59,13 @@ LAB_000c95b2:
         if (iVar1 != 0) {
           return pAVar2;
         }
-        ERR_put_error(0x22,0x73,0x41,DAT_000c95d8,0x8d);
+        ERR_put_error(0x22,0x73,0x41,"v3_skey.c",0x8d);
       }
       goto LAB_000c9578;
     }
     iVar1 = 0x84;
   }
-  ERR_put_error(0x22,0x73,0x72,DAT_000c95d8,iVar1);
+  ERR_put_error(0x22,0x73,0x72,"v3_skey.c",iVar1);
 LAB_000c9578:
   ASN1_STRING_free(pAVar2);
   return (ASN1_STRING *)0x0;

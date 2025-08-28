@@ -1,10 +1,10 @@
 
-void asn1_item_combine_free(_STACK **param_1,ASN1_ITEM *param_2,int param_3)
+void asn1_item_combine_free(ASN1_VALUE **param_1,ASN1_ITEM *param_2,int param_3)
 
 {
   int iVar1;
   ASN1_TEMPLATE *pAVar2;
-  _STACK **pp_Var3;
+  ASN1_VALUE **ppAVar3;
   int iVar4;
   code *pcVar5;
   uint uVar6;
@@ -16,10 +16,10 @@ void asn1_item_combine_free(_STACK **param_1,ASN1_ITEM *param_2,int param_3)
   void *local_2c [2];
   
   pcVar5 = (code *)param_2->funcs;
-  if (param_1 == (_STACK **)0x0) {
+  if (param_1 == (ASN1_VALUE **)0x0) {
     return;
   }
-  if ((param_2->itype != '\0') && (*param_1 == (_STACK *)0x0)) {
+  if ((param_2->itype != '\0') && (*param_1 == (ASN1_VALUE *)0x0)) {
     return;
   }
   local_38 = pcVar5;
@@ -31,7 +31,7 @@ void asn1_item_combine_free(_STACK **param_1,ASN1_ITEM *param_2,int param_3)
     pAVar8 = param_2->templates;
     if (pAVar8 != (ASN1_TEMPLATE *)0x0) {
       if ((pAVar8->flags & 6) != 0) {
-        p_Var7 = *param_1;
+        p_Var7 = (_STACK *)*param_1;
         iVar1 = 0;
         while( true ) {
           iVar4 = sk_num(p_Var7);
@@ -41,7 +41,7 @@ void asn1_item_combine_free(_STACK **param_1,ASN1_ITEM *param_2,int param_3)
           iVar1 = iVar1 + 1;
         }
         sk_free(p_Var7);
-        *param_1 = (_STACK *)0x0;
+        *param_1 = (ASN1_VALUE *)0x0;
         return;
       }
       asn1_item_combine_free(param_1,pAVar8->item,pAVar8->flags & 0x400);
@@ -58,14 +58,14 @@ LAB_000b9566:
     break;
   case '\x01':
   case '\x06':
-    iVar1 = asn1_do_lock((ASN1_VALUE **)param_1,-1,param_2);
+    iVar1 = asn1_do_lock(param_1,-1,param_2);
     if (0 < iVar1) {
       return;
     }
     if ((local_38 != (code *)0x0) && (iVar1 = (*local_38)(2,param_1,param_2,0), iVar1 == 2)) {
       return;
     }
-    asn1_enc_free((ASN1_VALUE **)param_1,param_2);
+    asn1_enc_free(param_1,param_2);
     iVar1 = param_2->tcount;
     if (0 < iVar1) {
       unaff_r9 = 0;
@@ -74,14 +74,14 @@ LAB_000b9566:
     pAVar8 = param_2->templates + iVar1 + -1;
     if (0 < iVar1) {
       do {
-        pAVar2 = asn1_do_adb((ASN1_VALUE **)param_1,pAVar8,0);
+        pAVar2 = asn1_do_adb(param_1,pAVar8,0);
         if (pAVar2 != (ASN1_TEMPLATE *)0x0) {
-          pp_Var3 = (_STACK **)asn1_get_field_ptr((ASN1_VALUE **)param_1,pAVar2);
+          ppAVar3 = asn1_get_field_ptr(param_1,pAVar2);
           if ((pAVar2->flags & 6) == 0) {
-            asn1_item_combine_free(pp_Var3,pAVar2->item,pAVar2->flags & 0x400);
+            asn1_item_combine_free(ppAVar3,pAVar2->item,pAVar2->flags & 0x400);
           }
           else {
-            p_Var7 = *pp_Var3;
+            p_Var7 = (_STACK *)*ppAVar3;
             iVar1 = 0;
             while( true ) {
               iVar4 = sk_num(p_Var7);
@@ -91,7 +91,7 @@ LAB_000b9566:
               iVar1 = iVar1 + 1;
             }
             sk_free(p_Var7);
-            *pp_Var3 = (_STACK *)0x0;
+            *ppAVar3 = (ASN1_VALUE *)0x0;
           }
         }
         unaff_r9 = unaff_r9 + 1;
@@ -104,17 +104,17 @@ LAB_000b9566:
     if ((local_38 != (code *)0x0) && (iVar1 = (*local_38)(2,param_1,param_2,0), iVar1 == 2)) {
       return;
     }
-    iVar1 = asn1_get_choice_selector((ASN1_VALUE **)param_1,param_2);
+    iVar1 = asn1_get_choice_selector(param_1,param_2);
     if ((-1 < iVar1) && (iVar1 < param_2->tcount)) {
       pAVar8 = param_2->templates;
       pAVar2 = pAVar8 + iVar1;
-      pp_Var3 = (_STACK **)asn1_get_field_ptr((ASN1_VALUE **)param_1,pAVar2);
+      ppAVar3 = asn1_get_field_ptr(param_1,pAVar2);
       uVar6 = pAVar8[iVar1].flags;
       if ((uVar6 & 6) == 0) {
-        asn1_item_combine_free(pp_Var3,pAVar2->item,uVar6 & 0x400);
+        asn1_item_combine_free(ppAVar3,pAVar2->item,uVar6 & 0x400);
       }
       else {
-        p_Var7 = *pp_Var3;
+        p_Var7 = (_STACK *)*ppAVar3;
         iVar1 = 0;
         while( true ) {
           iVar4 = sk_num(p_Var7);
@@ -124,7 +124,7 @@ LAB_000b9566:
           iVar1 = iVar1 + 1;
         }
         sk_free(p_Var7);
-        *pp_Var3 = (_STACK *)0x0;
+        *ppAVar3 = (ASN1_VALUE *)0x0;
       }
     }
 LAB_000b9698:
@@ -133,7 +133,7 @@ LAB_000b9698:
     }
     if (param_3 == 0) {
       CRYPTO_free(*param_1);
-      *param_1 = (_STACK *)0x0;
+      *param_1 = (ASN1_VALUE *)0x0;
     }
     break;
   case '\x03':

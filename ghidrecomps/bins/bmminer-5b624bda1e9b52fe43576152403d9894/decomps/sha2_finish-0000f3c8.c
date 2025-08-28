@@ -5,13 +5,10 @@ void sha2_finish(sha2_context *ctx,uchar *output)
 
 {
   int iVar1;
-  uint high;
   uint uVar2;
-  uint last;
-  uint padn;
+  int ilen;
   uint uVar3;
   int iVar4;
-  uint low;
   uchar msglen [8];
   
   uVar3 = ctx->total[0];
@@ -21,10 +18,10 @@ void sha2_finish(sha2_context *ctx,uchar *output)
   msglen[3] = (byte)(uVar3 >> 0x1d) | (byte)iVar1;
   msglen[6] = (uchar)((uint)iVar4 >> 8);
   if (uVar2 < 0x38) {
-    padn = 0x38 - uVar2;
+    ilen = 0x38 - uVar2;
   }
   else {
-    padn = 0x78 - uVar2;
+    ilen = 0x78 - uVar2;
   }
   msglen[7] = (uchar)iVar4;
   msglen[1] = (uchar)((uint)iVar1 >> 0x10);
@@ -32,7 +29,7 @@ void sha2_finish(sha2_context *ctx,uchar *output)
   msglen[0] = (uchar)((uint)iVar1 >> 0x18);
   msglen[4] = (uchar)((uint)iVar4 >> 0x18);
   msglen[5] = (uchar)((uint)iVar4 >> 0x10);
-  sha2_update(ctx,DAT_0000f4cc,padn);
+  sha2_update(ctx,sha2_padding,ilen);
   sha2_update(ctx,msglen,8);
   *output = *(uchar *)((int)ctx->state + 3);
   output[1] = (uchar)*(undefined2 *)((int)ctx->state + 2);

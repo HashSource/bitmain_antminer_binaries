@@ -10,7 +10,7 @@ int * parse_version_rolling_mask(undefined4 *param_1,undefined4 param_2)
   undefined4 uVar5;
   int iVar6;
   undefined4 local_924 [23];
-  undefined auStack_8c8 [160];
+  undefined1 auStack_8c8 [160];
   char acStack_828 [2052];
   
   iVar1 = json_loads(param_2,0,local_924);
@@ -37,7 +37,7 @@ int * parse_version_rolling_mask(undefined4 *param_1,undefined4 param_2)
         iVar6 = strcasecmp(__s1,"version-rolling");
         if ((iVar6 == 0) && (sVar4 = strlen(__s1), sVar4 == 0xf)) {
           if (*piVar3 != 5) {
-            *(undefined *)(param_1 + 0xa1) = 0;
+            *(undefined1 *)(param_1 + 0xa1) = 0;
             param_1[0xa2] = 1;
             piVar2 = (int *)0x0;
             goto LAB_00046c86;

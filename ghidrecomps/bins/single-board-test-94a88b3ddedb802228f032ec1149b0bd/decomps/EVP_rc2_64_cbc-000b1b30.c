@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_rc2_64_cbc(void)
 
 {
-  return DAT_000b1b34;
+  return (EVP_CIPHER *)r2_64_cbc_cipher;
 }
 

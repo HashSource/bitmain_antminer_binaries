@@ -8,7 +8,7 @@ int i2d_DSA_PUBKEY(DSA *a,uchar **pp)
   if (a != (DSA *)0x0) {
     pkey = EVP_PKEY_new();
     if (pkey == (EVP_PKEY *)0x0) {
-      ERR_put_error(0xd,0xa1,0x41,DAT_000b6fb4,0x123);
+      ERR_put_error(0xd,0xa1,0x41,"x_pubkey.c",0x123);
       a = (DSA *)0x0;
     }
     else {
@@ -16,8 +16,8 @@ int i2d_DSA_PUBKEY(DSA *a,uchar **pp)
       local_14 = (X509_PUBKEY *)0x0;
       a = (DSA *)X509_PUBKEY_set(&local_14,pkey);
       if (a != (DSA *)0x0) {
-        a = (DSA *)ASN1_item_i2d((ASN1_VALUE *)local_14,pp,DAT_000b6fb0);
-        ASN1_item_free((ASN1_VALUE *)local_14,DAT_000b6fb0);
+        a = (DSA *)ASN1_item_i2d((ASN1_VALUE *)local_14,pp,(ASN1_ITEM *)&X509_PUBKEY_it);
+        ASN1_item_free((ASN1_VALUE *)local_14,(ASN1_ITEM *)&X509_PUBKEY_it);
       }
       EVP_PKEY_free(pkey);
     }

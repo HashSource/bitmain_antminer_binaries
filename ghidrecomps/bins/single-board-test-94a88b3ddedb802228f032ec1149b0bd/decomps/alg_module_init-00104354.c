@@ -12,7 +12,7 @@ undefined4 alg_module_init(CONF_IMODULE *param_1,CONF *param_2)
   section = CONF_imodule_get_value(param_1);
   p_Var1 = &NCONF_get_section(param_2,section)->stack;
   if (p_Var1 == (_STACK *)0x0) {
-    ERR_put_error(6,0xb1,0xa5,DAT_00104408,0x52);
+    ERR_put_error(6,0xb1,0xa5,"evp_cnf.c",0x52);
   }
   else {
     iVar3 = 0;
@@ -23,20 +23,20 @@ undefined4 alg_module_init(CONF_IMODULE *param_1,CONF *param_2)
           return 1;
         }
         value = (CONF_VALUE *)sk_value(p_Var1,iVar3);
-        iVar2 = strcmp(value->name,DAT_00104404);
+        iVar2 = strcmp(value->name,"fips_mode");
         if (iVar2 == 0) break;
-        ERR_put_error(6,0xb1,0xa9,DAT_00104408,0x6a);
-        ERR_add_error_data(4,DAT_0010440c,value->name,DAT_00104410,value->value);
+        ERR_put_error(6,0xb1,0xa9,"evp_cnf.c",0x6a);
+        ERR_add_error_data(4,"name=",value->name,", value=",value->value);
         iVar3 = iVar3 + 1;
       }
       iVar2 = X509V3_get_value_bool(value,local_1c);
       if (iVar2 == 0) {
-        ERR_put_error(6,0xb1,0xa8,DAT_00104408,0x5a);
+        ERR_put_error(6,0xb1,0xa8,"evp_cnf.c",0x5a);
         return 0;
       }
       iVar3 = iVar3 + 1;
     } while (local_1c[0] < 1);
-    ERR_put_error(6,0xb1,0xa7,DAT_00104408,0x65);
+    ERR_put_error(6,0xb1,0xa7,"evp_cnf.c",0x65);
   }
   return 0;
 }

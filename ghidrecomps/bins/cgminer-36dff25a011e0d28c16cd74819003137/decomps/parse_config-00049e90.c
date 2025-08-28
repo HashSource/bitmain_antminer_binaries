@@ -46,9 +46,9 @@ char * parse_config(json_t *config,_Bool fileconf)
       while (p != (char *)0x0) {
         err = (char *)0x0;
         if ((p[1] == '-') && (pjVar3 = json_object_get(config,p + 2), pjVar3 != (json_t *)0x0)) {
-          if (((opt->type & (OPT_HASARG|OPT_PROCESSARG)) == 0) ||
+          if (((opt->type & (OPT_PROCESSARG|OPT_HASARG)) == 0) ||
              ((pjVar3 == (json_t *)0x0 || (pjVar3->type != JSON_STRING)))) {
-            if (((opt->type & (OPT_HASARG|OPT_PROCESSARG)) == 0) ||
+            if (((opt->type & (OPT_PROCESSARG|OPT_HASARG)) == 0) ||
                ((pjVar3 == (json_t *)0x0 || (pjVar3->type != JSON_ARRAY)))) {
               if (((opt->type & OPT_NOARG) == 0) ||
                  (((pjVar3 == (json_t *)0x0 || (pjVar3->type != JSON_TRUE)) &&

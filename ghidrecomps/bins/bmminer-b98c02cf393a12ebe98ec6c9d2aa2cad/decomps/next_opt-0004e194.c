@@ -6,22 +6,22 @@ byte * next_opt(int param_1,uint *param_2,int *param_3,undefined4 param_4)
   int iVar2;
   byte *pbVar3;
   int iVar4;
-  byte **ppbVar5;
+  undefined4 *puVar5;
   uint uVar6;
   byte *pbVar7;
   
   uVar6 = *param_2;
   if (uVar6 < opt_count) {
     do {
-      ppbVar5 = (byte **)(opt_table + uVar6 * 0x1c);
-      if (ppbVar5[1] != (byte *)0x8) {
+      puVar5 = (undefined4 *)(opt_table + uVar6 * 0x1c);
+      if (puVar5[1] != 8) {
         if (param_1 == 0) {
-          pbVar7 = *ppbVar5;
+          pbVar7 = (byte *)*puVar5;
           iVar2 = 0;
           pbVar3 = pbVar7;
           goto LAB_0004e1fa;
         }
-        pbVar3 = (byte *)next_name(param_1,param_3,ppbVar5,uVar6,param_4);
+        pbVar3 = (byte *)next_name(param_1,param_3,puVar5,uVar6,param_4);
         if (pbVar3 != (byte *)0x0) {
           return pbVar3;
         }

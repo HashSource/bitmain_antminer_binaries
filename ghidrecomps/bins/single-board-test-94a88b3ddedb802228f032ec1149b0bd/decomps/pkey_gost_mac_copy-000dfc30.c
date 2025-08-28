@@ -9,7 +9,7 @@ void * pkey_gost_mac_copy(EVP_PKEY_CTX *param_1,EVP_PKEY_CTX *param_2)
   undefined4 uVar4;
   undefined4 uVar5;
   
-  __s = CRYPTO_malloc(0x28,DAT_000dfc7c,0x19a);
+  __s = CRYPTO_malloc(0x28,"gost_pmeth.c",0x19a);
   if (__s != (void *)0x0) {
     memset(__s,0,0x28);
     EVP_PKEY_CTX_set_data(param_1,__s);

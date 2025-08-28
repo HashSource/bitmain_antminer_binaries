@@ -9,6 +9,7 @@ BIO * cms_EncryptedContent_init_bio(int param_1)
   int iVar3;
   ASN1_OBJECT *pAVar4;
   size_t len;
+  ASN1_TYPE *type_00;
   void *ptr;
   char *name;
   EVP_CIPHER *pEVar5;
@@ -16,41 +17,41 @@ BIO * cms_EncryptedContent_init_bio(int param_1)
   uchar *iv;
   uchar *puVar6;
   uchar *enc;
-  ASN1_OBJECT **ppAVar7;
+  undefined4 *puVar7;
   EVP_CIPHER_CTX *local_3c;
   uchar auStack_38 [20];
   
   enc = *(uchar **)(param_1 + 0xc);
-  ppAVar7 = *(ASN1_OBJECT ***)(param_1 + 4);
+  puVar7 = *(undefined4 **)(param_1 + 4);
   if (enc != (uchar *)0x0) {
     enc = (uchar *)0x1;
   }
   type = BIO_f_cipher();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0x2e,0x78,0x41,DAT_000d62bc,0x58);
+    ERR_put_error(0x2e,0x78,0x41,"cms_enc.c",0x58);
     return (BIO *)0x0;
   }
   BIO_ctrl(bp,0x81,0,&local_3c);
   if (enc == (uchar *)0x0) {
-    iVar3 = OBJ_obj2nid(*ppAVar7);
+    iVar3 = OBJ_obj2nid((ASN1_OBJECT *)*puVar7);
     name = OBJ_nid2sn(iVar3);
     pEVar5 = EVP_get_cipherbyname(name);
     if (pEVar5 == (EVP_CIPHER *)0x0) {
-      ERR_put_error(0x2e,0x78,0x94,DAT_000d62bc,0x69);
+      ERR_put_error(0x2e,0x78,0x94,"cms_enc.c",0x69);
       puVar6 = (uchar *)0x0;
       len = 0;
     }
     else {
       iVar3 = EVP_CipherInit_ex(local_3c,pEVar5,(ENGINE *)0x0,(uchar *)0x0,(uchar *)0x0,0);
       if (iVar3 < 1) goto LAB_000d62a2;
-      iVar3 = EVP_CIPHER_asn1_to_param(local_3c,(ASN1_TYPE *)ppAVar7[1]);
+      iVar3 = EVP_CIPHER_asn1_to_param(local_3c,(ASN1_TYPE *)puVar7[1]);
       if (0 < iVar3) {
         len = EVP_CIPHER_CTX_key_length(local_3c);
         iv = (uchar *)0x0;
         goto LAB_000d61a0;
       }
-      ERR_put_error(0x2e,0x78,0x66,DAT_000d62bc,0x80);
+      ERR_put_error(0x2e,0x78,0x66,"cms_enc.c",0x80);
       len = 0;
       puVar6 = enc;
     }
@@ -73,14 +74,14 @@ joined_r0x000d6146:
     if (iVar3 < 1) {
 LAB_000d62a2:
       len = 0;
-      ERR_put_error(0x2e,0x78,0x65,DAT_000d62bc,0x70);
+      ERR_put_error(0x2e,0x78,0x65,"cms_enc.c",0x70);
       puVar6 = (uchar *)0x0;
       goto LAB_000d61d8;
     }
     pEVar5 = EVP_CIPHER_CTX_cipher(local_3c);
     iVar3 = EVP_CIPHER_type(pEVar5);
     pAVar4 = OBJ_nid2obj(iVar3);
-    *ppAVar7 = pAVar4;
+    *puVar7 = pAVar4;
     iVar3 = EVP_CIPHER_CTX_iv_length(local_3c);
     if (0 < iVar3) {
       iVar3 = RAND_pseudo_bytes(auStack_38,iVar3);
@@ -95,10 +96,10 @@ LAB_000d62a2:
     puVar6 = (uchar *)0x0;
     if (*(int *)(param_1 + 0x10) != 0) goto LAB_000d60ae;
 LAB_000d61a0:
-    key = (uchar *)CRYPTO_malloc(len,DAT_000d62bc,0x86);
+    key = (uchar *)CRYPTO_malloc(len,"cms_enc.c",0x86);
     puVar6 = key;
     if (key == (uchar *)0x0) {
-      ERR_put_error(0x2e,0x78,0x41,DAT_000d62bc,0x88);
+      ERR_put_error(0x2e,0x78,0x41,"cms_enc.c",0x88);
       goto LAB_000d61d8;
     }
     iVar3 = EVP_CIPHER_CTX_rand_key(local_3c,key);
@@ -122,7 +123,7 @@ LAB_000d60ae:
         puVar6 = enc;
         goto LAB_000d60c4;
       }
-      ERR_put_error(0x2e,0x78,0x76,DAT_000d62bc,0xa3);
+      ERR_put_error(0x2e,0x78,0x76,"cms_enc.c",0xa3);
       ptr = *(void **)(param_1 + 0x10);
       goto joined_r0x000d6146;
     }
@@ -138,7 +139,7 @@ LAB_000d60ae:
 LAB_000d60c4:
     iVar3 = EVP_CipherInit_ex(local_3c,(EVP_CIPHER *)0x0,(ENGINE *)0x0,key,iv,(int)enc);
     if (iVar3 < 1) {
-      ERR_put_error(0x2e,0x78,0x65,DAT_000d62bc,0xb3);
+      ERR_put_error(0x2e,0x78,0x65,"cms_enc.c",0xb3);
       bVar2 = false;
     }
     else if (iv == (uchar *)0x0) {
@@ -146,16 +147,16 @@ LAB_000d60fe:
       bVar2 = true;
     }
     else {
-      pAVar4 = (ASN1_OBJECT *)ASN1_TYPE_new();
-      ppAVar7[1] = pAVar4;
-      if (pAVar4 == (ASN1_OBJECT *)0x0) {
-        ERR_put_error(0x2e,0x78,0x41,DAT_000d62bc,0xba);
+      type_00 = ASN1_TYPE_new();
+      puVar7[1] = type_00;
+      if (type_00 == (ASN1_TYPE *)0x0) {
+        ERR_put_error(0x2e,0x78,0x41,"cms_enc.c",0xba);
         bVar2 = false;
       }
       else {
-        iVar3 = EVP_CIPHER_param_to_asn1(local_3c,(ASN1_TYPE *)pAVar4);
+        iVar3 = EVP_CIPHER_param_to_asn1(local_3c,type_00);
         if (0 < iVar3) goto LAB_000d60fe;
-        ERR_put_error(0x2e,0x78,0x66,DAT_000d62bc,0xbf);
+        ERR_put_error(0x2e,0x78,0x66,"cms_enc.c",0xbf);
         bVar2 = false;
       }
     }

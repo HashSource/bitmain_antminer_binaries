@@ -1,5 +1,5 @@
 
-void set_voltage_setting_time(undefined param_1,int param_2)
+void set_voltage_setting_time(undefined1 param_1,int param_2)
 
 {
   int local_c;

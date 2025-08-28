@@ -6,24 +6,24 @@ custom_ext_parse(int param_1,int param_2,uint param_3,undefined4 param_4,undefin
 {
   ushort uVar1;
   undefined4 uVar2;
-  ushort **ppuVar3;
+  undefined4 *puVar3;
   ushort *puVar4;
-  ushort *puVar5;
+  int iVar5;
   
   if (param_2 == 0) {
-    ppuVar3 = (ushort **)(*(int *)(param_1 + 0x98) + 0x15c);
+    puVar3 = (undefined4 *)(*(int *)(param_1 + 0x98) + 0x15c);
   }
   else {
-    ppuVar3 = (ushort **)(*(int *)(param_1 + 0x98) + 0x164);
+    puVar3 = (undefined4 *)(*(int *)(param_1 + 0x98) + 0x164);
   }
-  puVar4 = *ppuVar3;
-  if (ppuVar3[1] != (ushort *)0x0) {
+  puVar4 = (ushort *)*puVar3;
+  if (puVar3[1] != 0) {
     if (param_3 != *puVar4) {
-      puVar5 = (ushort *)0x0;
+      iVar5 = 0;
       do {
-        puVar5 = (ushort *)((int)puVar5 + 1);
+        iVar5 = iVar5 + 1;
         puVar4 = puVar4 + 0xc;
-        if (puVar5 == ppuVar3[1]) {
+        if (iVar5 == puVar3[1]) {
           return 1;
         }
       } while (param_3 != *puVar4);

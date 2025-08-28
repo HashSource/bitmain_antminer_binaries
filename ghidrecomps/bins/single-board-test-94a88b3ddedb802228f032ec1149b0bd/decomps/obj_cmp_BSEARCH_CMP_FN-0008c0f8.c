@@ -2,13 +2,11 @@
 void obj_cmp_BSEARCH_CMP_FN(int *param_1,int *param_2)
 
 {
-  int iVar1;
-  int iVar2;
+  size_t __n;
   
-  iVar2 = DAT_0008c120 + *param_2 * 0x18;
-  iVar1 = *(int *)(*param_1 + 0xc);
-  if ((iVar1 == *(int *)(iVar2 + 0xc)) && (iVar1 != 0)) {
-    (*(code *)PTR_memcmp_00194160)(*(undefined4 *)(*param_1 + 0x10),*(undefined4 *)(iVar2 + 0x10));
+  __n = *(size_t *)(*param_1 + 0xc);
+  if ((__n == *(size_t *)(&DAT_0014726c + *param_2 * 0x18)) && (__n != 0)) {
+    memcmp(*(void **)(*param_1 + 0x10),*(void **)(&DAT_00147270 + *param_2 * 0x18),__n);
     return;
   }
   return;

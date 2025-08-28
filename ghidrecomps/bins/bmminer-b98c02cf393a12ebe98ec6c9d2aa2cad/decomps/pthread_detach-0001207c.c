@@ -6,7 +6,7 @@ int pthread_detach(pthread_t __th)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_detach_0007ce74)();
+  iVar1 = pthread_detach(__th);
   return iVar1;
 }
 

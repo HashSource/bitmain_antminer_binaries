@@ -19,7 +19,7 @@ ulong ERR_peek_last_error_line(char **file,int *line)
         *line = pEVar1->err_line[iVar3];
         return uVar2;
       }
-      *file = DAT_000ae218;
+      *file = "NA";
       *line = 0;
       return uVar2;
     }

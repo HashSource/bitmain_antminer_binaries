@@ -6,7 +6,7 @@ SXNET * SXNET_new(void)
 {
   SXNET *pSVar1;
   
-  pSVar1 = (SXNET *)ASN1_item_new(DAT_000c9a30);
+  pSVar1 = (SXNET *)ASN1_item_new((ASN1_ITEM *)SXNET_it);
   return pSVar1;
 }
 

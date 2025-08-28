@@ -30,11 +30,11 @@ undefined4 ssl3_send_client_key_exchange(int *param_1)
   rsa_st *key_01;
   dh_st *dh_00;
   EVP_PKEY *local_2e0;
-  uint local_2d8;
+  size_t local_2d8;
   uint uStack_2d4;
   uchar auStack_2d0 [32];
   uchar auStack_2b0 [129];
-  undefined local_22f;
+  undefined1 local_22f;
   uchar local_22c [520];
   
   if (param_1[0xd] != 0x1180) goto LAB_00066d1a;
@@ -48,7 +48,7 @@ undefined4 ssl3_send_client_key_exchange(int *param_1)
     if (iVar10 == 0) {
       iVar13 = 0x99d;
 LAB_000672da:
-      ERR_put_error(0x14,0x98,0x44,DAT_00067464,iVar13);
+      ERR_put_error(0x14,0x98,0x44,"s3_clnt.c",iVar13);
     }
     else {
       rsa = *(RSA **)(iVar10 + 0xec);
@@ -95,7 +95,7 @@ LAB_00066d1a:
           uVar2 = (**(code **)(*(int *)(param_1[2] + 100) + 0x44))(param_1);
           return uVar2;
         }
-        ERR_put_error(0x14,0x98,0x77,DAT_00067584,0x9c7);
+        ERR_put_error(0x14,0x98,0x77,"s3_clnt.c",0x9c7);
       }
     }
 LAB_00066fa8:
@@ -107,7 +107,7 @@ LAB_00066fa8:
         x = *(X509 **)(*(int *)(param_1[0x30] + 0x98) + 0xd0);
         if ((x == (X509 *)0x0) &&
            (x = *(X509 **)(*(int *)(param_1[0x30] + 0x98) + 0xb4), x == (X509 *)0x0)) {
-          ERR_put_error(0x14,0x98,0x14a,DAT_00067464,0xb77);
+          ERR_put_error(0x14,0x98,0x14a,"s3_clnt.c",0xb77);
         }
         else {
           pEVar7 = X509_get_pubkey(x);
@@ -137,7 +137,7 @@ LAB_00066fa8:
               iVar13 = 0xbaa;
             }
             else {
-              *(undefined *)(iVar14 + iVar13) = 0x30;
+              *(undefined1 *)(iVar14 + iVar13) = 0x30;
               local_2d8 = 0xff;
               iVar13 = EVP_PKEY_encrypt(ctx,local_22c,&local_2d8,auStack_2d0,0x20);
               if (-1 < iVar13) {
@@ -167,7 +167,7 @@ LAB_00066fa8:
               }
               iVar13 = 0xbb6;
             }
-            ERR_put_error(0x14,0x98,0x112,DAT_00067584,iVar13);
+            ERR_put_error(0x14,0x98,0x112,"s3_clnt.c",iVar13);
           }
         }
       }
@@ -195,7 +195,7 @@ LAB_00066fa8:
           iVar14 = param_1[0x30];
           *(char **)(iVar13 + 0xf0) = pcVar6;
           if (*(int *)(iVar14 + 0xf0) == 0) {
-            ERR_put_error(0x14,0x98,0x41,DAT_00067584,0xbe4);
+            ERR_put_error(0x14,0x98,0x41,"s3_clnt.c",0xbe4);
             local_2e0 = (EVP_PKEY *)0x0;
             goto LAB_00066fac;
           }
@@ -213,12 +213,12 @@ LAB_00066fa8:
           iVar13 = 0xc4e;
 LAB_0006750e:
           local_2e0 = (EVP_PKEY *)0x0;
-          ERR_put_error(0x14,0x98,0x44,DAT_00067584,iVar13);
+          ERR_put_error(0x14,0x98,0x44,"s3_clnt.c",iVar13);
           goto LAB_00066fac;
         }
         pcVar15 = (code *)param_1[0x37];
         if (pcVar15 == (code *)0x0) {
-          ERR_put_error(0x14,0x98,0xe0,DAT_00067584,0xc03);
+          ERR_put_error(0x14,0x98,0xe0,"s3_clnt.c",0xc03);
           goto LAB_00066fa8;
         }
         memset(auStack_2b0,0,0x82);
@@ -226,7 +226,7 @@ LAB_0006750e:
                            ,0x204);
         if (uVar9 < 0x101) {
           if (uVar9 == 0) {
-            ERR_put_error(0x14,0x98,0xdf,DAT_00067464,0xc12);
+            ERR_put_error(0x14,0x98,0xdf,"s3_clnt.c",0xc12);
           }
           else {
             local_22f = 0;
@@ -264,7 +264,7 @@ LAB_0006750e:
                 uVar2 = (**(code **)(*(int *)(param_1[2] + 100) + 0xc))
                                   (param_1,iVar12 + 0x14,local_22c,uVar9 * 2 + 4);
                 *(undefined4 *)(iVar12 + 0x10) = uVar2;
-                *(undefined *)(iVar14 + iVar13) = 0;
+                *(undefined1 *)(iVar14 + iVar13) = 0;
                 key_00[1] = (uchar)sVar4;
                 memcpy(key_00 + 2,auStack_2b0,sVar4);
                 OPENSSL_cleanse(auStack_2b0,0x82);
@@ -276,13 +276,13 @@ LAB_0006750e:
             else {
               iVar13 = 0xc2c;
             }
-            ERR_put_error(0x14,0x98,0x41,DAT_00067584,iVar13);
+            ERR_put_error(0x14,0x98,0x41,"s3_clnt.c",iVar13);
           }
         }
         else {
           iVar13 = 0xc0e;
 LAB_00067202:
-          ERR_put_error(0x14,0x98,0x44,DAT_00067464,iVar13);
+          ERR_put_error(0x14,0x98,0x44,"s3_clnt.c",iVar13);
         }
         OPENSSL_cleanse(auStack_2b0,0x82);
         OPENSSL_cleanse(local_22c,0x204);
@@ -311,12 +311,12 @@ LAB_00066d5a:
       if (group != (EC_GROUP *)0x0 && pEVar3 != (EC_POINT *)0x0) {
         key = EC_KEY_new();
         if (key == (EC_KEY *)0x0) {
-          ERR_put_error(0x14,0x98,0x41,DAT_00067584,0xaf5);
+          ERR_put_error(0x14,0x98,0x41,"s3_clnt.c",0xaf5);
           goto LAB_00066fac;
         }
         iVar10 = EC_KEY_set_group(key,group);
         if (iVar10 == 0) {
-          ERR_put_error(0x14,0x98,0x10,DAT_00067464,0xafa);
+          ERR_put_error(0x14,0x98,0x10,"s3_clnt.c",0xafa);
 LAB_000672fc:
           BN_CTX_free((BN_CTX *)0x0);
         }
@@ -325,7 +325,7 @@ LAB_000672fc:
           iVar12 = 0xb12;
           if (iVar10 == 0) {
 LAB_000672ee:
-            ERR_put_error(0x14,0x98,0x2b,DAT_00067464,iVar12);
+            ERR_put_error(0x14,0x98,0x2b,"s3_clnt.c",iVar12);
             goto LAB_000672fc;
           }
           iVar10 = EC_GROUP_get_degree(group);
@@ -346,7 +346,7 @@ LAB_000672ee:
           pEVar3 = EC_KEY_get0_public_key(key);
           sVar4 = EC_POINT_point2oct(group,pEVar3,POINT_CONVERSION_UNCOMPRESSED,(uchar *)0x0,0,
                                      (BN_CTX *)0x0);
-          puVar5 = (uchar *)CRYPTO_malloc(sVar4,DAT_0006710c,0xb40);
+          puVar5 = (uchar *)CRYPTO_malloc(sVar4,"s3_clnt.c",0xb40);
           c = BN_CTX_new();
           if (puVar5 != (uchar *)0x0 && c != (BN_CTX *)0x0) {
             pEVar3 = EC_KEY_get0_public_key(key);
@@ -360,7 +360,7 @@ LAB_000672ee:
             EVP_PKEY_free(local_2e0);
             goto LAB_00066d02;
           }
-          ERR_put_error(0x14,0x98,0x41,DAT_00067464,0xb44);
+          ERR_put_error(0x14,0x98,0x41,"s3_clnt.c",0xb44);
           BN_CTX_free(c);
           if (puVar5 != (uchar *)0x0) {
             CRYPTO_free(puVar5);
@@ -371,7 +371,7 @@ LAB_000672ee:
       }
       iVar13 = 0xaef;
     }
-    ERR_put_error(0x14,0x98,0x44,DAT_00067464,iVar13);
+    ERR_put_error(0x14,0x98,0x44,"s3_clnt.c",iVar13);
   }
   else {
     iVar10 = *(int *)(param_1[0x30] + 0x98);
@@ -380,11 +380,11 @@ LAB_000672ee:
       iVar13 = 0xa64;
 LAB_000674f0:
       local_2e0 = (EVP_PKEY *)0x0;
-      ERR_put_error(0x14,0x98,0xf4,DAT_00067584,iVar13);
+      ERR_put_error(0x14,0x98,0xf4,"s3_clnt.c",iVar13);
     }
     else {
       dh_00 = *(dh_st **)(iVar10 + 0xf0);
-      if (dh_00 == (dh_st *)0x0) {
+      if (dh_00 == (DH *)0x0) {
         if ((-1 < *(int *)(iVar10 + 4)) &&
            (pEVar7 = X509_get_pubkey(*(X509 **)(iVar10 + *(int *)(iVar10 + 4) * 0x1c + 0xc)),
            pEVar7 != (EVP_PKEY *)0x0)) {
@@ -398,7 +398,7 @@ LAB_000674f0:
         iVar14 = 0x971;
         iVar13 = 0x154;
 LAB_00066fa0:
-        ERR_put_error(0x14,iVar13,0x44,DAT_0006710c,iVar14);
+        ERR_put_error(0x14,iVar13,0x44,"s3_clnt.c",iVar14);
         goto LAB_00066fa8;
       }
 LAB_00066e98:
@@ -437,20 +437,20 @@ LAB_00066eba:
           DH_free(dh);
           goto LAB_00066d02;
         }
-        ERR_put_error(0x14,0x98,5,DAT_00067584,0xa92);
+        ERR_put_error(0x14,0x98,5,"s3_clnt.c",0xa92);
         DH_free(dh);
         local_2e0 = (EVP_PKEY *)0x0;
       }
       else {
         dh = DHparams_dup(dh_00);
-        if (dh == (dh_st *)0x0) {
-          ERR_put_error(0x14,0x98,5,DAT_00067584,0xa7e);
+        if (dh == (DH *)0x0) {
+          ERR_put_error(0x14,0x98,5,"s3_clnt.c",0xa7e);
           local_2e0 = (EVP_PKEY *)0x0;
         }
         else {
           iVar12 = DH_generate_key(dh);
           if (iVar12 != 0) goto LAB_00066eba;
-          ERR_put_error(0x14,0x98,5,DAT_00067464,0xa82);
+          ERR_put_error(0x14,0x98,5,"s3_clnt.c",0xa82);
           DH_free(dh);
           local_2e0 = (EVP_PKEY *)0x0;
         }

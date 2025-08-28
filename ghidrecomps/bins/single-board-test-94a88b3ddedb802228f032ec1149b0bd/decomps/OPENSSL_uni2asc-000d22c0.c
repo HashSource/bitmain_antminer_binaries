@@ -18,7 +18,7 @@ char * OPENSSL_uni2asc(uchar *uni,int unilen)
   if ((unilen == 0) || (uni[unilen + -1] != '\0')) {
     local_30 = local_30 + 1;
   }
-  pcVar2 = (char *)CRYPTO_malloc(local_30,DAT_000d2414,99);
+  pcVar2 = (char *)CRYPTO_malloc(local_30,"p12_utl.c",99);
   if (pcVar2 != (char *)0x0) {
     if (0 < unilen) {
       if (unilen < 0x21) {

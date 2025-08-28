@@ -8,7 +8,7 @@ ASN1_UTCTIME * ASN1_UTCTIME_adj(ASN1_UTCTIME *s,time_t t,int offset_day,long off
   int iVar4;
   uchar *buf;
   time_t local_4c [2];
-  undefined auStack_44 [44];
+  undefined1 auStack_44 [44];
   
   local_4c[0] = t;
   if (s == (ASN1_UTCTIME *)0x0) {
@@ -28,9 +28,9 @@ ASN1_UTCTIME * ASN1_UTCTIME_adj(ASN1_UTCTIME *s,time_t t,int offset_day,long off
       (iVar4 = puVar2[5], iVar4 - 0x32U < 100)))) {
     buf = s->data;
     if ((buf == (uchar *)0x0) || ((uint)s->length < 0x14)) {
-      buf = (uchar *)CRYPTO_malloc(0x14,DAT_001058a8,0x108);
+      buf = (uchar *)CRYPTO_malloc(0x14,"a_utctm.c",0x108);
       if (buf == (uchar *)0x0) {
-        ERR_put_error(0xd,0xda,0x41,DAT_001058a8,0x10a);
+        ERR_put_error(0xd,0xda,0x41,"a_utctm.c",0x10a);
         goto joined_r0x0010586c;
       }
       if (s->data != (uchar *)0x0) {
@@ -39,8 +39,8 @@ ASN1_UTCTIME * ASN1_UTCTIME_adj(ASN1_UTCTIME *s,time_t t,int offset_day,long off
       iVar4 = puVar2[5];
       s->data = buf;
     }
-    BIO_snprintf((char *)buf,0x14,DAT_001058ac,iVar4 % 100,puVar2[4] + 1,puVar2[3],puVar2[2],
-                 puVar2[1],*puVar2);
+    BIO_snprintf((char *)buf,0x14,"%02d%02d%02d%02d%02d%02dZ",iVar4 % 100,puVar2[4] + 1,puVar2[3],
+                 puVar2[2],puVar2[1],*puVar2);
     sVar3 = strlen((char *)buf);
     s->length = sVar3;
     s->type = 0x17;

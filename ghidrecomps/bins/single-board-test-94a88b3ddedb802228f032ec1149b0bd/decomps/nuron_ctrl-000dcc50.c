@@ -2,50 +2,42 @@
 char * nuron_ctrl(undefined4 param_1,int param_2,undefined4 param_3,char *param_4)
 
 {
-  char **ppcVar1;
-  char *pcVar2;
+  char *pcVar1;
   
-  ppcVar1 = DAT_000dccdc;
   if (param_2 == 200) {
     if (param_4 == (char *)0x0) {
-      pcVar2 = DAT_000dccdc[1];
-      if (pcVar2 == (char *)0x0) {
-        pcVar2 = (char *)ERR_get_next_error_library();
-        ppcVar1[1] = pcVar2;
+      if (NURON_lib_error_code == 0) {
+        NURON_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error((int)pcVar2,100,0x43,DAT_000dcce0,0xae);
-      pcVar2 = (char *)0x0;
+      ERR_put_error(NURON_lib_error_code,100,0x43,"e_nuron.c",0xae);
+      pcVar1 = (char *)0x0;
     }
-    else if (DAT_000dccdc[2] == (char *)0x0) {
-      if (*DAT_000dccdc != (char *)0x0) {
-        CRYPTO_free(*DAT_000dccdc);
+    else if (pvDSOHandle == 0) {
+      if (NURON_LIBNAME != (char *)0x0) {
+        CRYPTO_free(NURON_LIBNAME);
       }
-      *ppcVar1 = (char *)0x0;
-      pcVar2 = BUF_strdup(param_4);
-      *ppcVar1 = pcVar2;
-      if (pcVar2 != (char *)0x0) {
-        pcVar2 = (char *)0x1;
+      NURON_LIBNAME = (char *)0x0;
+      NURON_LIBNAME = BUF_strdup(param_4);
+      pcVar1 = NURON_LIBNAME;
+      if (NURON_LIBNAME != (char *)0x0) {
+        pcVar1 = (char *)0x1;
       }
     }
     else {
-      pcVar2 = DAT_000dccdc[1];
-      if (pcVar2 == (char *)0x0) {
-        pcVar2 = (char *)ERR_get_next_error_library();
-        ppcVar1[1] = pcVar2;
+      if (NURON_lib_error_code == 0) {
+        NURON_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error((int)pcVar2,100,100,DAT_000dcce0,0xb2);
-      pcVar2 = (char *)0x0;
+      ERR_put_error(NURON_lib_error_code,100,100,"e_nuron.c",0xb2);
+      pcVar1 = (char *)0x0;
     }
   }
   else {
-    pcVar2 = DAT_000dccdc[1];
-    if (pcVar2 == (char *)0x0) {
-      pcVar2 = (char *)ERR_get_next_error_library();
-      ppcVar1[1] = pcVar2;
+    if (NURON_lib_error_code == 0) {
+      NURON_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error((int)pcVar2,100,0x65,DAT_000dcce0,0xb9);
-    pcVar2 = (char *)0x0;
+    ERR_put_error(NURON_lib_error_code,100,0x65,"e_nuron.c",0xb9);
+    pcVar1 = (char *)0x0;
   }
-  return pcVar2;
+  return pcVar1;
 }
 

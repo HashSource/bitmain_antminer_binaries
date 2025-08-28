@@ -127,7 +127,7 @@ LAB_000f798a:
         }
         if (!bVar1) {
 LAB_000f79a4:
-          ERR_put_error(0x10,0xee,0x95,DAT_000f7c10,0x32a);
+          ERR_put_error(0x10,0xee,0x95,"ec_ameth.c",0x32a);
           return 0;
         }
       }
@@ -149,7 +149,7 @@ LAB_000f79a4:
           pEVar8 = EVP_get_digestbyname(pcVar9);
           if ((pEVar8 != (EVP_MD *)0x0) &&
              (iVar13 = EVP_PKEY_CTX_ctrl(pEVar2,0x198,0x400,0x1005,0,pEVar8), 0 < iVar13)) {
-            if (*local_34->ln != (char *)0x10) goto LAB_000f79ea;
+            if (*local_34->ln != &DAT_00000010) goto LAB_000f79ea;
             plVar12 = (long *)local_34->ln[1];
             local_2c = (EVP_MD *)plVar12[2];
             pXVar14 = d2i_X509_ALGOR((X509_ALGOR **)0x0,(uchar **)&local_2c,*plVar12);
@@ -192,9 +192,9 @@ LAB_000f7b5a:
         }
       }
 LAB_000f7a72:
-      ERR_put_error(0x10,0xef,0x94,DAT_000f7c10,0x2ed);
+      ERR_put_error(0x10,0xef,0x94,"ec_ameth.c",0x2ed);
 LAB_000f79ea:
-      ERR_put_error(0x10,0xee,0x96,DAT_000f7c10,0x330);
+      ERR_put_error(0x10,0xee,0x96,"ec_ameth.c",0x330);
       return 0;
     }
     if (param_3 != (EVP_MD *)0x0) goto switchD_000f7696_caseD_2;
@@ -225,7 +225,7 @@ LAB_000f76fc:
         key = (pEVar3->pkey).rsa;
         iVar13 = i2o_ECPublicKey((EC_KEY *)key,(uchar **)0x0);
         if (((iVar13 < 1) ||
-            (local_2c = (EVP_MD *)CRYPTO_malloc(iVar13,DAT_000f7c10,0x359),
+            (local_2c = (EVP_MD *)CRYPTO_malloc(iVar13,"ec_ameth.c",0x359),
             local_2c == (EVP_MD *)0x0)) ||
            (local_24[0] = local_2c, iVar13 = i2o_ECPublicKey((EC_KEY *)key,(uchar **)local_24),
            iVar13 < 1)) goto LAB_000f76f4;

@@ -8,8 +8,8 @@ int do_dump(json_t *json,size_t flags,int depth,json_dump_callback_t dump,void *
   void *pvVar4;
   size_t sVar5;
   int iVar6;
+  double value_00;
   json_int_t jVar7;
-  double in_stack_ffffff28;
   json_dump_callback_t dump_local;
   int depth_local;
   size_t flags_local;
@@ -68,15 +68,15 @@ int do_dump(json_t *json,size_t flags,int depth,json_dump_callback_t dump,void *
                   sVar5 = strlen(pcVar2);
                   dump_string(pcVar2,sVar5,dump,data,flags);
                   iVar6 = (*dump)(separator,separator_length,data);
-                  if (iVar6 != 0) goto object_error;
+                  if (iVar6 != 0) goto LAB_00094420;
                   pjVar3 = json_object_iter_value(iter);
                   iVar6 = do_dump(pjVar3,flags,depth + 1,dump,data);
-                  if (iVar6 != 0) goto object_error;
+                  if (iVar6 != 0) goto LAB_00094420;
                   iter = pvVar4;
                   if (pvVar4 == (void *)0x0) break;
                   iVar6 = (*dump)(",",1,data);
                   if ((iVar6 != 0) || (iVar6 = dump_indent(flags,depth + 1,1,dump,data), iVar6 != 0)
-                     ) goto object_error;
+                     ) goto LAB_00094420;
                 }
                 iVar6 = dump_indent(flags,depth,0,dump,data);
               } while (iVar6 == 0);
@@ -142,7 +142,7 @@ LAB_000943c8:
           }
         }
       }
-object_error:
+LAB_00094420:
       json[4].refcount = 0;
       iVar6 = -1;
       break;
@@ -202,8 +202,8 @@ object_error:
       }
       break;
     case JSON_REAL:
-      json_real_value(json);
-      sVar1 = jsonp_dtostr(buffer,100,in_stack_ffffff28,flags >> 0xb & 0x1f);
+      value_00 = json_real_value(json);
+      sVar1 = jsonp_dtostr(buffer,100,value_00,flags >> 0xb & 0x1f);
       if ((int)sVar1 < 0) {
         iVar6 = -1;
       }

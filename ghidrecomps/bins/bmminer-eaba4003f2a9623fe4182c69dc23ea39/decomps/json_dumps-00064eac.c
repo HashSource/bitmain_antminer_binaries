@@ -11,7 +11,7 @@ char * json_dumps(json_t *json,size_t flags)
   
   iVar1 = strbuffer_init(&strbuff);
   if (iVar1 == 0) {
-    iVar1 = json_dump_callback(json,dump_to_strbuffer + 1,&strbuff,flags);
+    iVar1 = json_dump_callback(json,(json_dump_callback_t)0x644ed,&strbuff,flags);
     if (iVar1 == 0) {
       str = strbuffer_value(&strbuff);
       result = jsonp_strdup(str);

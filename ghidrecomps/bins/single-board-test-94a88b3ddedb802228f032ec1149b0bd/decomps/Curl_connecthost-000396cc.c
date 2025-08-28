@@ -6,13 +6,13 @@ int Curl_connecthost(int *param_1,int *param_2)
   int iVar2;
   int iVar3;
   int iVar4;
-  undefined auStack_20 [12];
+  undefined1 auStack_20 [12];
   
   iVar4 = *param_1;
   curlx_tvnow(auStack_20);
   iVar1 = Curl_timeleft(iVar4,auStack_20,1);
   if (iVar1 < 0) {
-    Curl_failf(iVar4,DAT_00039768);
+    Curl_failf(iVar4,"Connection time-out");
     iVar1 = 0x1c;
   }
   else {

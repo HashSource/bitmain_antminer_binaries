@@ -6,9 +6,7 @@ __sighandler_t signal(int __sig,__sighandler_t __handler)
 {
   __sighandler_t p_Var1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a0c8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  p_Var1 = (__sighandler_t)(*(code *)PTR_LAB_00085200)();
+  p_Var1 = (__sighandler_t)(*(code *)(undefined *)0x0)(__sig);
   return p_Var1;
 }
 

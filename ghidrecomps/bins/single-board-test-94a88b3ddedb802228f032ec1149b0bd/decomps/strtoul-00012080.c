@@ -6,7 +6,7 @@ ulong strtoul(char *__nptr,char **__endptr,int __base)
 {
   ulong uVar1;
   
-  uVar1 = (*(code *)PTR_strtoul_00194244)();
+  uVar1 = strtoul(__nptr,__endptr,__base);
   return uVar1;
 }
 

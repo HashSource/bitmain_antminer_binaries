@@ -9,7 +9,7 @@ undefined4 curl_multi_fdset(int *param_1,uint param_2,int param_3,undefined4 par
   uint uVar5;
   uint uVar6;
   uint uVar7;
-  int **ppiVar8;
+  int *piVar8;
   uint unaff_r11;
   uint local_3c [6];
   
@@ -17,12 +17,12 @@ undefined4 curl_multi_fdset(int *param_1,uint param_2,int param_3,undefined4 par
     uVar1 = 1;
   }
   else {
-    ppiVar8 = (int **)param_1[1];
+    piVar8 = (int *)param_1[1];
     uVar7 = 0xffffffff;
-    if (ppiVar8 != (int **)0x0) {
+    if (piVar8 != (int *)0x0) {
 LAB_0003a13a:
       do {
-        iVar2 = multi_getsock_constprop_6(ppiVar8,local_3c);
+        iVar2 = multi_getsock_constprop_6(piVar8,local_3c);
         iVar3 = 0;
         uVar4 = 0;
         do {
@@ -43,8 +43,8 @@ LAB_0003a13a:
           if ((iVar2 >> (uVar4 + 0x10 & 0xff) & 1U) == 0) {
 LAB_0003a1d2:
             if (uVar5 == 0xffffffff) {
-              ppiVar8 = (int **)*ppiVar8;
-              if (ppiVar8 == (int **)0x0) goto LAB_0003a1c6;
+              piVar8 = (int *)*piVar8;
+              if (piVar8 == (int *)0x0) goto LAB_0003a1c6;
               goto LAB_0003a13a;
             }
           }
@@ -62,8 +62,8 @@ LAB_0003a1d2:
           }
           iVar3 = iVar3 + 4;
         } while (uVar4 != 5);
-        ppiVar8 = (int **)*ppiVar8;
-      } while (ppiVar8 != (int **)0x0);
+        piVar8 = (int *)*piVar8;
+      } while (piVar8 != (int *)0x0);
     }
 LAB_0003a1c6:
     uVar1 = 0;

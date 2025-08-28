@@ -22,7 +22,7 @@ int do_print_ex_constprop_3(FILE *param_1,uint param_2,undefined4 *param_3)
       if (sVar2 != sVar3) {
         return -1;
       }
-      sVar3 = fwrite(DAT_000b6408,1,1,param_1);
+      sVar3 = fwrite(":",1,1,param_1);
       if (sVar3 != 1) {
         return -1;
       }
@@ -31,7 +31,7 @@ int do_print_ex_constprop_3(FILE *param_1,uint param_2,undefined4 *param_3)
   }
   if ((int)(param_2 << 0x18) < 0) {
 LAB_000b62f8:
-    iVar4 = do_dump(param_2,DAT_000b63fc,param_1,param_3);
+    iVar4 = do_dump(param_2,0xb5c0d,param_1,param_3);
     if (iVar4 < 0) {
       return -1;
     }
@@ -47,8 +47,7 @@ LAB_000b63bc:
     }
   }
   else {
-    if ((0x1d < iVar4 - 1U) ||
-       (uVar5 = (uint)*(char *)(DAT_000b6404 + iVar4 + 0x94), uVar5 == 0xffffffff)) {
+    if ((0x1d < iVar4 - 1U) || (uVar5 = (uint)(char)tag2nbyte[iVar4], uVar5 == 0xffffffff)) {
       if ((int)(param_2 << 0x17) < 0) goto LAB_000b62f8;
       goto LAB_000b6312;
     }
@@ -70,7 +69,7 @@ LAB_000b6318:
       if (param_1 == (FILE *)0x0) {
         return iVar4;
       }
-      sVar2 = fwrite(DAT_000b6400,1,1,param_1);
+      sVar2 = fwrite(&DAT_00183544,1,1,param_1);
       if (sVar2 != 1) {
         return -1;
       }
@@ -80,7 +79,7 @@ LAB_000b6318:
       if (local_28[0] == '\0') {
         return iVar4;
       }
-      sVar2 = fwrite(DAT_000b6400,1,1,param_1);
+      sVar2 = fwrite(&DAT_00183544,1,1,param_1);
       if (sVar2 != 1) {
         return -1;
       }

@@ -9,10 +9,10 @@ void set_dhash_acc_control(uint param_1)
   uVar1 = log_level;
   *(uint *)(axi_fpga_addr + 0x100) = param_1;
   if (5 < uVar1) {
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+    pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      fprintf(pFVar2,"%s:%d:%s: set DHASH_ACC_CONTROL is 0x%x\n","znyq7010.c",0x2fe,DAT_0004dc0c,
-              param_1);
+      fprintf(pFVar2,"%s:%d:%s: set DHASH_ACC_CONTROL is 0x%x\n","znyq7010.c",0x2fe,
+              "set_dhash_acc_control",param_1);
     }
     fclose(pFVar2);
   }
@@ -29,11 +29,12 @@ void set_dhash_acc_control(uint param_1)
   if (log_level < 6) {
     return;
   }
-  pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+  pFVar2 = fopen(log_file,"a+");
   if (pFVar2 != (FILE *)0x0) {
-    fprintf(pFVar2,"%s:%d:%s: set DHASH_ACC_CONTROL failed!","znyq7010.c",0x308,DAT_0004dc0c);
+    fprintf(pFVar2,"%s:%d:%s: set DHASH_ACC_CONTROL failed!","znyq7010.c",0x308,
+            "set_dhash_acc_control");
   }
-  (*(code *)PTR_fclose_0007cfe8)(pFVar2);
+  fclose(pFVar2);
   return;
 }
 

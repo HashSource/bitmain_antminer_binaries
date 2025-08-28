@@ -8,8 +8,6 @@ void tq_free(thread_q *tq)
   thread_q *ptVar2;
   thread_q *ptVar3;
   list_head *plVar4;
-  tq_ent *ent;
-  tq_ent *iter;
   
   if (tq == (thread_q *)0x0) {
     return;
@@ -29,9 +27,7 @@ void tq_free(thread_q *tq)
   pthread_cond_destroy((pthread_cond_t *)&tq->cond);
   pthread_mutex_destroy((pthread_mutex_t *)&tq->mutex);
   memset(tq,0,0x58);
-                    /* WARNING: Could not recover jumptable at 0x0000a260. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_0005f208)(tq);
+  (*(code *)(undefined *)0x0)(tq);
   return;
 }
 

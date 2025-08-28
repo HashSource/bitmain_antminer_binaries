@@ -14,19 +14,19 @@ ulong * compute_wNAF(BIGNUM *param_1,uint param_2,uint *param_3)
   uint uVar9;
   
   if (param_1->top == 0) {
-    ptr = (ulong *)CRYPTO_malloc(1,DAT_000a1ee4,0xc3);
+    ptr = (ulong *)CRYPTO_malloc(1,"ec_mult.c",0xc3);
     iVar5 = 0xc5;
     if (ptr != (ulong *)0x0) {
-      *(undefined *)ptr = 0;
+      *(undefined1 *)ptr = 0;
       *param_3 = 1;
       return ptr;
     }
 LAB_000a1eb2:
-    ERR_put_error(0x10,0x8f,0x41,DAT_000a1ee4,iVar5);
+    ERR_put_error(0x10,0x8f,0x41,"ec_mult.c",iVar5);
   }
   else {
     if (6 < param_2 - 1) {
-      ERR_put_error(0x10,0x8f,0x44,DAT_000a1ee4,0xcf);
+      ERR_put_error(0x10,0x8f,0x44,"ec_mult.c",0xcf);
       ptr = (ulong *)0x0;
       goto LAB_000a1e1e;
     }
@@ -40,7 +40,7 @@ LAB_000a1eb2:
     iVar5 = 0xdb;
     if (ptr != (ulong *)0x0) {
       uVar1 = BN_num_bits(param_1);
-      ptr = (ulong *)CRYPTO_malloc(uVar1 + 1,DAT_000a1ee4,0xe0);
+      ptr = (ulong *)CRYPTO_malloc(uVar1 + 1,"ec_mult.c",0xe0);
       if (ptr == (ulong *)0x0) {
         iVar5 = 0xe5;
         goto LAB_000a1eb2;
@@ -101,7 +101,7 @@ LAB_000a1eb2:
       iVar5 = 0x11f;
     }
 LAB_000a1e10:
-    ERR_put_error(0x10,0x8f,0x44,DAT_000a1ee4,iVar5);
+    ERR_put_error(0x10,0x8f,0x44,"ec_mult.c",iVar5);
   }
 LAB_000a1e1e:
   CRYPTO_free(ptr);

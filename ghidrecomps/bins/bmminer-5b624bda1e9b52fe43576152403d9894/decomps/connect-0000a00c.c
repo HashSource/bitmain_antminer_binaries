@@ -6,9 +6,7 @@ int connect(int __fd,sockaddr *__addr,socklen_t __len)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a014. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f150)();
+  iVar1 = (*(code *)(undefined *)0x0)(__fd);
   return iVar1;
 }
 

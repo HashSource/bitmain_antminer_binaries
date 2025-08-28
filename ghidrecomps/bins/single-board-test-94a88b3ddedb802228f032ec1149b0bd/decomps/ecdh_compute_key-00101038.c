@@ -20,7 +20,7 @@ uint ecdh_compute_key(void *param_1,uint param_2,EC_POINT *param_3,EC_KEY *param
   
   local_2c[0] = param_2;
   if ((int)param_2 < 0) {
-    ERR_put_error(0x2b,100,0x41,DAT_00101260,0x7b);
+    ERR_put_error(0x2b,100,0x41,"ech_ossl.c",0x7b);
     return 0xffffffff;
   }
   ctx = BN_CTX_new();
@@ -32,7 +32,7 @@ uint ecdh_compute_key(void *param_1,uint param_2,EC_POINT *param_3,EC_KEY *param
   y = BN_CTX_get(ctx);
   b = EC_KEY_get0_private_key(param_4);
   if (b == (BIGNUM *)0x0) {
-    ERR_put_error(0x2b,100,100,DAT_00101260,0x88);
+    ERR_put_error(0x2b,100,100,"ech_ossl.c",0x88);
   }
   else {
     group = EC_KEY_get0_group(param_4);
@@ -50,7 +50,7 @@ uint ecdh_compute_key(void *param_1,uint param_2,EC_POINT *param_3,EC_KEY *param
         if (__s == (void *)0x0) {
 LAB_0010111e:
           uVar6 = 0xffffffff;
-          ERR_put_error(0x2b,100,0x65,DAT_00101260,iVar1);
+          ERR_put_error(0x2b,100,0x65,"ech_ossl.c",iVar1);
         }
         else {
           meth = EC_GROUP_method_of(group);
@@ -84,14 +84,14 @@ LAB_0010111e:
           uVar6 = iVar1 >> 3;
           uVar5 = iVar2 >> 3;
           if (uVar6 < uVar5) {
-            ERR_put_error(0x2b,100,0x44,DAT_00101260,0xb4);
+            ERR_put_error(0x2b,100,0x44,"ech_ossl.c",0xb4);
             __s = (void *)0x0;
             uVar6 = 0xffffffff;
           }
           else {
-            __s = CRYPTO_malloc(uVar6,DAT_00101260,0xb7);
+            __s = CRYPTO_malloc(uVar6,"ech_ossl.c",0xb7);
             if (__s == (void *)0x0) {
-              ERR_put_error(0x2b,100,0x41,DAT_00101260,0xb8);
+              ERR_put_error(0x2b,100,0x41,"ech_ossl.c",0xb8);
               uVar6 = 0xffffffff;
             }
             else {
@@ -109,13 +109,13 @@ LAB_0010111e:
                   iVar1 = (*param_5)(__s,uVar6,param_1,local_2c);
                   uVar6 = local_2c[0];
                   if (iVar1 == 0) {
-                    ERR_put_error(0x2b,100,0x66,DAT_00101260,0xc4);
+                    ERR_put_error(0x2b,100,0x66,"ech_ossl.c",0xc4);
                     uVar6 = 0xffffffff;
                   }
                 }
               }
               else {
-                ERR_put_error(0x2b,100,3,DAT_00101260,0xbe);
+                ERR_put_error(0x2b,100,3,"ech_ossl.c",0xbe);
                 uVar6 = 0xffffffff;
               }
             }
@@ -126,7 +126,7 @@ LAB_0010111e:
       }
       iVar1 = 0x98;
     }
-    ERR_put_error(0x2b,100,0x41,DAT_00101260,iVar1);
+    ERR_put_error(0x2b,100,0x41,"ech_ossl.c",iVar1);
   }
   uVar6 = 0xffffffff;
   __s = (void *)0x0;

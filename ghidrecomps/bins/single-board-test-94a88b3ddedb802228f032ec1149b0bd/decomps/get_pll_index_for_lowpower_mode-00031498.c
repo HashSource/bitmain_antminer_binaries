@@ -1,5 +1,5 @@
 
-undefined4 get_pll_index_for_lowpower_mode(undefined param_1)
+undefined4 get_pll_index_for_lowpower_mode(undefined1 param_1)
 
 {
   FILE *__stream;

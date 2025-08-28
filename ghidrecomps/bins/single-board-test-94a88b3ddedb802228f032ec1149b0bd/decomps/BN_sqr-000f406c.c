@@ -10,7 +10,7 @@ int BN_sqr(BIGNUM *r,BIGNUM *a,BN_CTX *ctx)
   int iVar4;
   ulong uVar5;
   int iVar6;
-  undefined auStack_a0 [128];
+  undefined1 auStack_a0 [128];
   
   uVar5 = a->top;
   if ((int)uVar5 < 1) {

@@ -4,7 +4,7 @@ zynq_set_iic(byte param_1,byte param_2,char param_3,char param_4,byte param_5,by
 
 {
   undefined4 uVar1;
-  uint local_14;
+  undefined4 local_14;
   
   local_14 = 0;
   if (param_3 != '\0') {

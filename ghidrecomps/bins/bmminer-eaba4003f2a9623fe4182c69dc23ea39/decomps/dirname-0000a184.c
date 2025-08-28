@@ -6,9 +6,7 @@ char * dirname(char *__path)
 {
   char *pcVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a18c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pcVar1 = (char *)(*(code *)PTR_LAB_00085240)();
+  pcVar1 = (char *)(*(code *)(undefined *)0x0)(__path);
   return pcVar1;
 }
 

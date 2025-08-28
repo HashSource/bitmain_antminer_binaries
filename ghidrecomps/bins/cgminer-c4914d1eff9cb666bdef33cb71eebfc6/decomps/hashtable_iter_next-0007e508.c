@@ -7,7 +7,7 @@ void * hashtable_iter_next(hashtable_t *hashtable,void *iter)
   hashtable_t *hashtable_local;
   list_t *list;
   
-  if ((hashtable_list *)*(undefined **)((int)iter + 4) == &hashtable->ordered_list) {
+  if ((hashtable_list *)*(undefined1 **)((int)iter + 4) == &hashtable->ordered_list) {
     pvVar1 = (void *)0x0;
   }
   else {

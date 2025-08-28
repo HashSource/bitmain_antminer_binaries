@@ -17,7 +17,7 @@ undefined4 CMS_RecipientInfo_kari_get0_alg(int *param_1,undefined4 *param_2,unde
     }
   }
   else {
-    ERR_put_error(0x2e,0xaf,0xb5,DAT_000d6adc,0x4f);
+    ERR_put_error(0x2e,0xaf,0xb5,"cms_kari.c",0x4f);
     uVar1 = 0;
   }
   return uVar1;

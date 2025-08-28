@@ -23,7 +23,7 @@ int PKCS7_SIGNER_INFO_set(PKCS7_SIGNER_INFO *p7i,X509 *x509,EVP_PKEY *pkey,EVP_M
       pAVar2 = ASN1_STRING_dup(a);
       pPVar4->serial = pAVar2;
       if (pAVar2 != (ASN1_STRING *)0x0) {
-        CRYPTO_add_lock(&pkey->references,1,10,DAT_000cf6a4,0x179);
+        CRYPTO_add_lock(&pkey->references,1,10,"pk7_lib.c",0x179);
         alg = p7i->digest_alg;
         p7i->pkey = pkey;
         iVar1 = EVP_MD_type(dgst);
@@ -36,11 +36,11 @@ int PKCS7_SIGNER_INFO_set(PKCS7_SIGNER_INFO *p7i,X509 *x509,EVP_PKEY *pkey,EVP_M
             return 1;
           }
           if (iVar1 != -2) {
-            ERR_put_error(0x21,0x81,0x93,DAT_000cf6a4,0x187);
+            ERR_put_error(0x21,0x81,0x93,"pk7_lib.c",0x187);
             return 0;
           }
         }
-        ERR_put_error(0x21,0x81,0x94,DAT_000cf6a4,0x18c);
+        ERR_put_error(0x21,0x81,0x94,"pk7_lib.c",0x18c);
         return 0;
       }
     }

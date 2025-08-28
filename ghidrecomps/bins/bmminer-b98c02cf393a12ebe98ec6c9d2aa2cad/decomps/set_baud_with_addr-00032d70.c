@@ -1,5 +1,5 @@
 
-void set_baud_with_addr(uint param_1,int param_2,undefined param_3,int param_4,int param_5,
+void set_baud_with_addr(uint param_1,int param_2,undefined1 param_3,int param_4,int param_5,
                        int param_6,int param_7)
 
 {
@@ -7,7 +7,7 @@ void set_baud_with_addr(uint param_1,int param_2,undefined param_3,int param_4,i
   byte bVar2;
   undefined4 uVar3;
   uint uVar4;
-  uint local_828;
+  undefined4 local_828;
   undefined4 local_824;
   byte local_820;
   uint local_81c;
@@ -27,7 +27,7 @@ void set_baud_with_addr(uint param_1,int param_2,undefined param_3,int param_4,i
     else {
       local_828._0_1_ = 0x58;
     }
-    local_828._0_2_ = CONCAT11(9,(undefined)local_828);
+    local_828._0_2_ = CONCAT11(9,(undefined1)local_828);
     local_828 = CONCAT13(0x1c,CONCAT12(param_3,(undefined2)local_828));
     if (param_7 == 0) {
       local_824._0_2_ = 0x2140;
@@ -69,7 +69,7 @@ void set_baud_with_addr(uint param_1,int param_2,undefined param_3,int param_4,i
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
     snprintf(acStack_810,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
-             DAT_00032f0c,0x86,0x10,param_1 & 0x1f,uVar3);
+             "set_baud_with_addr",0x86,0x10,param_1 & 0x1f,uVar3);
     _applog(7,acStack_810,0);
   }
   local_81c = local_828 << 0x18 | (local_828 >> 8 & 0xff) << 0x10 | (local_828 >> 0x10 & 0xff) << 8

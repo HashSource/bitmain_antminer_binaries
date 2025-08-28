@@ -1,6 +1,4 @@
 
-/* WARNING: Type propagation algorithm not settling */
-
 undefined4
 rsa_pkey_ctrl(undefined4 param_1,undefined4 param_2,ASN1_STRING *param_3,PKCS7_SIGNER_INFO *param_4)
 
@@ -12,22 +10,20 @@ rsa_pkey_ctrl(undefined4 param_1,undefined4 param_2,ASN1_STRING *param_3,PKCS7_S
   char *pcVar5;
   EVP_MD *p2;
   EVP_MD *p2_00;
-  void *pval;
-  X509_ALGOR **obj;
-  int iVar6;
   ASN1_OCTET_STRING *str;
+  int iVar6;
   ASN1_OBJECT *pAVar7;
   ASN1_STRING *pAVar8;
   int *piVar9;
-  char **ppcVar10;
+  long *plVar10;
   undefined4 uVar11;
-  ASN1_OBJECT **ppAVar12;
-  char *p2_01;
+  undefined4 *puVar12;
+  void *pvVar13;
   X509_ALGOR *local_44;
   EVP_MD *local_40;
   undefined4 local_3c;
   int local_38;
-  ASN1_STRING *local_34;
+  ASN1_OCTET_STRING *local_34;
   X509_ALGOR *local_30;
   X509_ALGOR *local_2c [2];
   
@@ -89,10 +85,10 @@ rsa_pkey_ctrl(undefined4 param_1,undefined4 param_2,ASN1_STRING *param_3,PKCS7_S
       if (local_38 != 6) {
         return 0;
       }
-      pval = (void *)rsa_ctx_to_pss(pEVar1);
-      if (pval != (void *)0x0) {
+      pvVar13 = (void *)rsa_ctx_to_pss(pEVar1);
+      if (pvVar13 != (void *)0x0) {
         pAVar7 = OBJ_nid2obj(0x390);
-        X509_ALGOR_set0(local_2c[0],pAVar7,0x10,pval);
+        X509_ALGOR_set0(local_2c[0],pAVar7,0x10,pvVar13);
         return 1;
       }
       return 0;
@@ -118,40 +114,40 @@ rsa_pkey_ctrl(undefined4 param_1,undefined4 param_2,ASN1_STRING *param_3,PKCS7_S
         return 1;
       }
       if (iVar2 != 0x397) {
-        ERR_put_error(4,0x9e,0xa4,DAT_000fd640,0x328);
+        ERR_put_error(4,0x9e,0xa4,"rsa_ameth.c",0x328);
         return 0xffffffff;
       }
       piVar9 = (int *)local_34->type;
       if ((piVar9 == (int *)0x0) || (*piVar9 != 0x10)) {
 LAB_000fd520:
-        ERR_put_error(4,0x9e,0xa2,DAT_000fd640,0x32f);
+        ERR_put_error(4,0x9e,0xa2,"rsa_ameth.c",0x32f);
         RSA_OAEP_PARAMS_free(0);
         return 0xffffffff;
       }
       local_30 = (X509_ALGOR *)((undefined4 *)piVar9[1])[2];
       puVar3 = (undefined4 *)d2i_RSA_OAEP_PARAMS(0,&local_30,*(undefined4 *)piVar9[1]);
       if (puVar3 == (undefined4 *)0x0) goto LAB_000fd520;
-      ppAVar12 = (ASN1_OBJECT **)puVar3[1];
-      if (ppAVar12 == (ASN1_OBJECT **)0x0) {
+      puVar12 = (undefined4 *)puVar3[1];
+      if (puVar12 == (undefined4 *)0x0) {
 LAB_000fd556:
         pXVar4 = (X509_ALGOR *)0x0;
       }
       else {
-        iVar2 = OBJ_obj2nid(*ppAVar12);
-        if ((iVar2 != 0x38f) || (ppAVar12[1]->sn != (char *)0x10)) {
-          ppAVar12 = (ASN1_OBJECT **)puVar3[1];
+        iVar2 = OBJ_obj2nid((ASN1_OBJECT *)*puVar12);
+        if ((iVar2 != 0x38f) || (*(int *)puVar12[1] != 0x10)) {
+          puVar12 = (undefined4 *)puVar3[1];
           goto LAB_000fd556;
         }
-        ppcVar10 = ppAVar12[1]->ln;
-        local_2c[0] = (X509_ALGOR *)ppcVar10[2];
-        pXVar4 = d2i_X509_ALGOR((X509_ALGOR **)0x0,(uchar **)local_2c,(long)*ppcVar10);
-        ppAVar12 = (ASN1_OBJECT **)puVar3[1];
+        plVar10 = (long *)((int *)puVar12[1])[1];
+        local_2c[0] = (X509_ALGOR *)plVar10[2];
+        pXVar4 = d2i_X509_ALGOR((X509_ALGOR **)0x0,(uchar **)local_2c,*plVar10);
+        puVar12 = (undefined4 *)puVar3[1];
       }
-      if (ppAVar12 == (ASN1_OBJECT **)0x0) {
+      if (puVar12 == (undefined4 *)0x0) {
         p2 = EVP_sha1();
         if (p2 != (EVP_MD *)0x0) {
 LAB_000fd318:
-          if ((ASN1_OBJECT **)*puVar3 == (ASN1_OBJECT **)0x0) {
+          if ((undefined4 *)*puVar3 == (undefined4 *)0x0) {
             p2_00 = EVP_sha1();
             if (p2_00 == (EVP_MD *)0x0) goto LAB_000fd5fa;
           }
@@ -160,57 +156,57 @@ LAB_000fd318:
             pcVar5 = OBJ_nid2sn(iVar2);
             p2_00 = EVP_get_digestbyname(pcVar5);
             if (p2_00 == (EVP_MD *)0x0) {
-              ERR_put_error(4,0x9d,0xa3,DAT_000fd6dc,499);
+              ERR_put_error(4,0x9d,0xa3,"rsa_ameth.c",499);
               uVar11 = 0xffffffff;
               goto LAB_000fd36a;
             }
           }
-          ppAVar12 = (ASN1_OBJECT **)puVar3[2];
-          if (ppAVar12 == (ASN1_OBJECT **)0x0) {
-            pcVar5 = (char *)0x0;
-            p2_01 = (char *)0x0;
+          puVar12 = (undefined4 *)puVar3[2];
+          if (puVar12 == (undefined4 *)0x0) {
+            iVar2 = 0;
+            pvVar13 = (void *)0x0;
           }
           else {
-            iVar2 = OBJ_obj2nid(*ppAVar12);
+            iVar2 = OBJ_obj2nid((ASN1_OBJECT *)*puVar12);
             if (iVar2 != 0x3a7) {
               uVar11 = 0xffffffff;
-              ERR_put_error(4,0x9e,0xa5,DAT_000fd640,0x33d);
+              ERR_put_error(4,0x9e,0xa5,"rsa_ameth.c",0x33d);
               goto LAB_000fd36a;
             }
-            if (ppAVar12[1]->sn != (char *)0x4) {
-              ERR_put_error(4,0x9e,0xa1,DAT_000fd640,0x341);
+            if (*(int *)puVar12[1] != 4) {
+              ERR_put_error(4,0x9e,0xa1,"rsa_ameth.c",0x341);
               goto LAB_000fd5fa;
             }
-            ppcVar10 = ppAVar12[1]->ln;
-            pcVar5 = *ppcVar10;
-            p2_01 = ppcVar10[2];
-            ppcVar10[2] = (char *)0x0;
+            piVar9 = (int *)((int *)puVar12[1])[1];
+            iVar2 = *piVar9;
+            pvVar13 = (void *)piVar9[2];
+            piVar9[2] = 0;
           }
-          iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,-1,0x1001,4,(void *)0x0);
-          if ((((0 < iVar2) && (iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x300,0x1009,0,p2_00), 0 < iVar2)
-               ) && (iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x3f8,0x1005,0,p2), 0 < iVar2)) &&
-             (iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x300,0x100a,(int)pcVar5,p2_01), 0 < iVar2)) {
+          iVar6 = EVP_PKEY_CTX_ctrl(pEVar1,6,-1,0x1001,4,(void *)0x0);
+          if ((((0 < iVar6) && (iVar6 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x300,0x1009,0,p2_00), 0 < iVar6)
+               ) && (iVar6 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x3f8,0x1005,0,p2), 0 < iVar6)) &&
+             (iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x300,0x100a,iVar2,pvVar13), 0 < iVar2)) {
             uVar11 = 1;
             goto LAB_000fd36a;
           }
         }
       }
       else {
-        iVar2 = OBJ_obj2nid(*ppAVar12);
+        iVar2 = OBJ_obj2nid((ASN1_OBJECT *)*puVar12);
         if (iVar2 == 0x38f) {
           if (pXVar4 == (X509_ALGOR *)0x0) {
-            ERR_put_error(4,0x9f,0x9a,DAT_000fd6dc,0x203);
+            ERR_put_error(4,0x9f,0x9a,"rsa_ameth.c",0x203);
           }
           else {
             iVar2 = OBJ_obj2nid(pXVar4->algorithm);
             pcVar5 = OBJ_nid2sn(iVar2);
             p2 = EVP_get_digestbyname(pcVar5);
             if (p2 != (EVP_MD *)0x0) goto LAB_000fd318;
-            ERR_put_error(4,0x9f,0x97,DAT_000fd6dc,0x208);
+            ERR_put_error(4,0x9f,0x97,"rsa_ameth.c",0x208);
           }
         }
         else {
-          ERR_put_error(4,0x9f,0x99,DAT_000fd640,0x1ff);
+          ERR_put_error(4,0x9f,0x99,"rsa_ameth.c",0x1ff);
         }
       }
 LAB_000fd5fa:
@@ -240,18 +236,18 @@ LAB_000fd36a:
     iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x300,0x100b,0,&local_40);
     if (((iVar2 < 1) || (iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x3f8,0x1008,0,&local_3c), iVar2 < 1))
        || ((iVar2 = EVP_PKEY_CTX_ctrl(pEVar1,6,0x300,0x100c,0,local_2c), iVar2 < 0 ||
-           (obj = (X509_ALGOR **)RSA_OAEP_PARAMS_new(), obj == (X509_ALGOR **)0x0)))) {
+           (puVar3 = (undefined4 *)RSA_OAEP_PARAMS_new(), puVar3 == (undefined4 *)0x0)))) {
       uVar11 = 0;
       goto LAB_000fd508;
     }
     iVar6 = EVP_MD_type(local_40);
     if (iVar6 == 0x40) {
 LAB_000fd4be:
-      iVar6 = rsa_md_to_mgf1(obj + 1,local_3c);
+      iVar6 = rsa_md_to_mgf1(puVar3 + 1,local_3c);
       if (iVar6 == 0) goto LAB_000fd654;
       if (iVar2 == 0) {
 LAB_000fd6ae:
-        pAVar8 = ASN1_item_pack(obj,DAT_000fd6e0,&local_34);
+        pAVar8 = ASN1_item_pack(puVar3,(ASN1_ITEM *)RSA_OAEP_PARAMS_it,&local_34);
         if (pAVar8 == (ASN1_STRING *)0x0) goto LAB_000fd654;
         pAVar7 = OBJ_nid2obj(0x397);
         X509_ALGOR_set0(local_30,pAVar7,0x10,local_34);
@@ -261,11 +257,11 @@ LAB_000fd6ae:
       else {
         str = ASN1_OCTET_STRING_new();
         pXVar4 = X509_ALGOR_new();
-        obj[2] = pXVar4;
+        puVar3[2] = pXVar4;
         if ((pXVar4 == (X509_ALGOR *)0x0) || (str == (ASN1_OCTET_STRING *)0x0)) goto LAB_000fd654;
         iVar2 = ASN1_OCTET_STRING_set(str,local_2c[0],iVar2);
         if (iVar2 != 0) {
-          pXVar4 = obj[2];
+          pXVar4 = (X509_ALGOR *)puVar3[2];
           pAVar7 = OBJ_nid2obj(0x3a7);
           X509_ALGOR_set0(pXVar4,pAVar7,4,str);
           goto LAB_000fd6ae;
@@ -276,7 +272,7 @@ LAB_000fd6ae:
     }
     else {
       pXVar4 = X509_ALGOR_new();
-      *obj = pXVar4;
+      *puVar3 = pXVar4;
       if (pXVar4 != (X509_ALGOR *)0x0) {
         X509_ALGOR_set_md(pXVar4,local_40);
         goto LAB_000fd4be;
@@ -284,7 +280,7 @@ LAB_000fd6ae:
 LAB_000fd654:
       uVar11 = 0;
     }
-    RSA_OAEP_PARAMS_free(obj);
+    RSA_OAEP_PARAMS_free(puVar3);
 LAB_000fd508:
     if (local_34 != (ASN1_STRING *)0x0) {
       ASN1_STRING_free(local_34);

@@ -6,7 +6,7 @@ uint sleep(uint __seconds)
 {
   uint uVar1;
   
-  uVar1 = (*(code *)PTR_sleep_000c009c)();
+  uVar1 = sleep(__seconds);
   return uVar1;
 }
 

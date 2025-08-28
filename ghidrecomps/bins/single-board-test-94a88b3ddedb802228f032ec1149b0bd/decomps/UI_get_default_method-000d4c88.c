@@ -4,15 +4,10 @@
 UI_METHOD * UI_get_default_method(void)
 
 {
-  UI_METHOD **ppUVar1;
-  UI_METHOD *pUVar2;
-  
-  ppUVar1 = DAT_000d4c9c;
-  if (*DAT_000d4c9c != (UI_METHOD *)0x0) {
-    return *DAT_000d4c9c;
+  if (default_UI_meth != (UI_METHOD *)0x0) {
+    return default_UI_meth;
   }
-  pUVar2 = UI_OpenSSL();
-  *ppUVar1 = pUVar2;
-  return pUVar2;
+  default_UI_meth = UI_OpenSSL();
+  return default_UI_meth;
 }
 

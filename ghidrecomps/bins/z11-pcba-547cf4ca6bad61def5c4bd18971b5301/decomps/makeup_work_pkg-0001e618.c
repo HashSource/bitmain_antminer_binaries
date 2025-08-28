@@ -1,5 +1,5 @@
 
-undefined4 makeup_work_pkg(void *param_1,undefined *param_2)
+undefined4 makeup_work_pkg(void *param_1,undefined1 *param_2)
 
 {
   ushort uVar1;

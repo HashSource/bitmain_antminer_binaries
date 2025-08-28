@@ -8,7 +8,6 @@ _Bool isdupnonce(cgpu_info *cgpu,work *work,uint nonce)
   int *piVar4;
   void *pvVar5;
   double dVar6;
-  double dVar7;
   uint nonce_local;
   work *work_local;
   cgpu_info *cgpu_local;
@@ -53,10 +52,9 @@ _Bool isdupnonce(cgpu_info *cgpu,work *work,uint nonce)
       _k_add_head((K_LIST *)piVar4[2],pKVar1,"noncedup.c","isdupnonce",0x55);
     }
     item = *(K_ITEM **)(piVar4[2] + 0x10);
-    while (item != (K_ITEM *)0x0) {
-      dVar6 = tdiff((timeval *)((int)item->data + 8),&now);
-      dVar7 = (double)(longlong)*piVar4;
-      if (dVar6 == dVar7 || dVar6 < dVar7 != (NAN(dVar6) || NAN(dVar7))) break;
+    while ((item != (K_ITEM *)0x0 &&
+           (dVar6 = tdiff((timeval *)((int)item->data + 8),&now), (double)(longlong)*piVar4 < dVar6)
+           )) {
       pKVar1 = _k_unlink_tail((K_LIST *)piVar4[2],"noncedup.c","isdupnonce",0x59);
       _k_add_head((K_LIST *)piVar4[1],pKVar1,"noncedup.c","isdupnonce",0x5a);
       item = *(K_ITEM **)(piVar4[2] + 0x10);

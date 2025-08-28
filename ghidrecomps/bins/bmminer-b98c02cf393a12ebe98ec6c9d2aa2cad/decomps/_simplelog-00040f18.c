@@ -6,7 +6,7 @@ void _simplelog(uint param_1,undefined4 param_2,undefined4 param_3,undefined4 pa
   int iVar2;
   
   if (use_syslog != '\0') {
-    (*(code *)PTR_syslog_0007d034)(param_1 | 0x80,"%s",param_2,param_4);
+    syslog(param_1 | 0x80,"%s",param_2,param_4);
     return;
   }
   iVar2 = fileno(stderr);

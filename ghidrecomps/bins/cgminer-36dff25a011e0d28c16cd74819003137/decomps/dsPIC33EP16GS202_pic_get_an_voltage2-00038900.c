@@ -26,7 +26,7 @@ double dsPIC33EP16GS202_pic_get_an_voltage2(uchar which_iic)
   retry_count = 0;
   while( true ) {
     if (1 < retry_count) {
-      return DAT_00038c68;
+      return 0.0;
     }
     pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
     write_pic_iic(which_iic,'U');
@@ -47,9 +47,9 @@ double dsPIC33EP16GS202_pic_get_an_voltage2(uchar which_iic)
     uVar1 = read_pic_iic(which_iic);
     read_back_data[4] = uVar1;
     uVar1 = read_pic_iic(which_iic);
-    read_back_data._4_2_ = CONCAT11(uVar1,read_back_data[4]);
+    read_back_data[5] = uVar1;
     uVar1 = read_pic_iic(which_iic);
-    read_back_data._4_3_ = CONCAT12(uVar1,read_back_data._4_2_);
+    read_back_data[6] = uVar1;
     uVar1 = read_pic_iic(which_iic);
     read_back_data[7] = uVar1;
     read_back_data[8] = read_pic_iic(which_iic);

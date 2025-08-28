@@ -59,7 +59,7 @@ undefined4 get_works(void)
       }
       return uVar2;
     }
-    sprintf(acStack_134,"%s%02i.bin",DAT_0001be34,local_c + 1);
+    sprintf(acStack_134,"%s%02i.bin",0x13ca2d4,local_c + 1);
     pFVar1 = fopen(acStack_134,"rb");
     *(FILE **)(cgpu + local_c * 4) = pFVar1;
     if (*(int *)(cgpu + local_c * 4) == 0) break;

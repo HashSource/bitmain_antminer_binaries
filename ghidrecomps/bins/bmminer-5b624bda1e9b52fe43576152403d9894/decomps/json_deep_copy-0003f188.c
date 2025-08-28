@@ -4,18 +4,13 @@
 json_t * json_deep_copy(json_t *json)
 
 {
-  json_t *result;
-  void *iter_00;
   void *iter;
-  char *key_00;
   char *key;
-  json_t *result_1;
   json_t *pjVar1;
   json_type jVar2;
   uint uVar3;
   uint uVar4;
   json_t *pjVar5;
-  double in_stack_00000000;
   
   pjVar5 = json;
   if (json != (json_t *)0x0) {
@@ -23,12 +18,12 @@ json_t * json_deep_copy(json_t *json)
     if (jVar2 == JSON_OBJECT) {
       pjVar5 = json_object();
       if (pjVar5 != (json_t *)0x0) {
-        for (iter_00 = json_object_iter(json); iter_00 != (void *)0x0;
-            iter_00 = json_object_iter_next(json,iter_00)) {
-          key_00 = json_object_iter_key(iter_00);
-          pjVar1 = json_object_iter_value(iter_00);
+        for (iter = json_object_iter(json); iter != (void *)0x0;
+            iter = json_object_iter_next(json,iter)) {
+          key = json_object_iter_key(iter);
+          pjVar1 = json_object_iter_value(iter);
           pjVar1 = json_deep_copy(pjVar1);
-          json_object_set_new_nocheck(pjVar5,key_00,pjVar1);
+          json_object_set_new_nocheck(pjVar5,key,pjVar1);
         }
       }
       return pjVar5;
@@ -59,14 +54,14 @@ json_t * json_deep_copy(json_t *json)
         return pjVar5;
       }
       if (jVar2 == JSON_INTEGER) {
-        pjVar5 = json_integer((json_int_t)in_stack_00000000);
+        pjVar5 = json_integer((json_int_t)json[1]);
         return pjVar5;
       }
       if (jVar2 == JSON_REAL) {
-        pjVar5 = json_real(in_stack_00000000);
+        pjVar5 = json_real((double)json[1]);
         return pjVar5;
       }
-      if (2 < jVar2 + ~JSON_REAL) {
+      if (2 < jVar2 - JSON_TRUE) {
         pjVar5 = (json_t *)0x0;
       }
     }

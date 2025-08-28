@@ -1,10 +1,10 @@
 
-undefined4 check_one_asic_reg(uint param_1,undefined param_2,undefined param_3)
+undefined4 check_one_asic_reg(uint param_1,undefined1 param_2,undefined1 param_3)
 
 {
-  undefined local_2c;
-  undefined uStack_2b;
-  undefined uStack_2a;
+  undefined1 local_2c;
+  undefined1 uStack_2b;
+  undefined1 uStack_2a;
   undefined4 uStack_29;
   FILE *local_24;
   uint local_20;
@@ -56,13 +56,13 @@ undefined4 check_one_asic_reg(uint param_1,undefined param_2,undefined param_3)
             uStack_29 = CONCAT31(uStack_29._1_3_,
                                  (char)*(undefined4 *)
                                         (reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8));
-            uStack_2a = (undefined)
+            uStack_2a = (undefined1)
                         ((uint)*(undefined4 *)
                                 (reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8) >> 8);
-            uStack_2b = (undefined)
+            uStack_2b = (undefined1)
                         ((uint)*(undefined4 *)
                                 (reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8) >> 0x10);
-            local_2c = (undefined)
+            local_2c = (undefined1)
                        ((uint)*(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8)
                        >> 0x18);
             local_14 = *(undefined4 *)(reg_value_buf + (*(int *)(reg_value_buf + 4) + 5) * 8);

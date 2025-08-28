@@ -11,7 +11,7 @@ int CONF_parse_list(char *list,int sep,int nospc,list_cb *list_cb,void *arg)
   byte *pbVar7;
   
   if (list == (char *)0x0) {
-    ERR_put_error(0xe,0x77,0x73,DAT_000ceecc,0x237);
+    ERR_put_error(0xe,0x77,0x73,"conf_mod.c",0x237);
     return 0;
   }
   do {

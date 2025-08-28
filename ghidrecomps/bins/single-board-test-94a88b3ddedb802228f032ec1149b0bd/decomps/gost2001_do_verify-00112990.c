@@ -1,5 +1,5 @@
 
-BN_CTX * gost2001_do_verify(undefined4 param_1,undefined4 param_2,BIGNUM **param_3,EC_KEY *param_4)
+BN_CTX * gost2001_do_verify(undefined4 param_1,undefined4 param_2,int *param_3,EC_KEY *param_4)
 
 {
   BN_CTX *ctx;
@@ -22,7 +22,7 @@ BN_CTX * gost2001_do_verify(undefined4 param_1,undefined4 param_2,BIGNUM **param
   group = EC_KEY_get0_group(param_4);
   if (ctx == (BN_CTX *)0x0 || group == (EC_GROUP *)0x0) {
     m = (BIGNUM *)0x0;
-    ERR_GOST_error(0x6a,0x44,DAT_00112c38,0x112);
+    ERR_GOST_error(0x6a,0x44,"gost2001.c",0x112);
 LAB_001129c2:
     pBVar3 = ctx;
     if (ctx == (BN_CTX *)0x0) goto LAB_001129d4;
@@ -42,69 +42,69 @@ LAB_001129c2:
          (r == (BIGNUM *)0x0 || r_00 == (BIGNUM *)0x0)) ||
         (r_01 == (BIGNUM *)0x0 || x == (BIGNUM *)0x0)) ||
        (rem == (BIGNUM *)0x0 || ret == (BIGNUM *)0x0)) {
-      ERR_GOST_error(0x6a,0x41,DAT_00112c38,0x120);
+      ERR_GOST_error(0x6a,0x41,"gost2001.c",0x120);
       m = (BIGNUM *)0x0;
       goto LAB_001129c2;
     }
     q = EC_KEY_get0_public_key(param_4);
     if ((q == (EC_POINT *)0x0) || (iVar2 = EC_GROUP_get_order(group,order,ctx), iVar2 == 0)) {
-      ERR_GOST_error(0x6a,0x44,DAT_00112c38,0x126);
+      ERR_GOST_error(0x6a,0x44,"gost2001.c",0x126);
       m = (BIGNUM *)0x0;
       goto LAB_001129c2;
     }
-    if (((param_3[1]->top == 0) || ((*param_3)->top == 0)) ||
-       ((iVar2 = BN_cmp(param_3[1],order), 0 < iVar2 || (iVar2 = BN_cmp(*param_3,order), 0 < iVar2))
-       )) {
-      ERR_GOST_error(0x6a,0x7f,DAT_00112c38,0x12d);
+    if (((((BIGNUM *)param_3[1])->top == 0) || (*(int *)(*param_3 + 4) == 0)) ||
+       ((iVar2 = BN_cmp((BIGNUM *)param_3[1],order), 0 < iVar2 ||
+        (iVar2 = BN_cmp((BIGNUM *)*param_3,order), 0 < iVar2)))) {
+      ERR_GOST_error(0x6a,0x7f,"gost2001.c",0x12d);
       m = (BIGNUM *)0x0;
       goto LAB_001129c2;
     }
     m = (BIGNUM *)hashsum2bn(param_1);
     if ((m == (BIGNUM *)0x0) || (iVar2 = BN_div((BIGNUM *)0x0,pBVar1,m,order,ctx), iVar2 == 0)) {
-      ERR_GOST_error(0x6a,0x44,DAT_00112c38,0x134);
+      ERR_GOST_error(0x6a,0x44,"gost2001.c",0x134);
       goto LAB_001129c2;
     }
     if ((pBVar1->top == 0) && (iVar2 = BN_set_word(pBVar1,1), iVar2 == 0)) {
-      ERR_GOST_error(0x6a,0x44,DAT_00112c38,0x13e);
+      ERR_GOST_error(0x6a,0x44,"gost2001.c",0x13e);
       goto LAB_001129c2;
     }
     pBVar1 = BN_mod_inverse(ret,pBVar1,order,ctx);
     if ((((pBVar1 == (BIGNUM *)0x0) ||
-         (iVar2 = BN_mod_mul(r,param_3[1],pBVar1,order,ctx), iVar2 == 0)) ||
-        (iVar2 = BN_sub(r_01,order,*param_3), iVar2 == 0)) ||
+         (iVar2 = BN_mod_mul(r,(BIGNUM *)param_3[1],pBVar1,order,ctx), iVar2 == 0)) ||
+        (iVar2 = BN_sub(r_01,order,(BIGNUM *)*param_3), iVar2 == 0)) ||
        (iVar2 = BN_mod_mul(r_00,r_01,pBVar1,order,ctx), iVar2 == 0)) {
-      ERR_GOST_error(0x6a,0x44,DAT_00112c38,0x146);
+      ERR_GOST_error(0x6a,0x44,"gost2001.c",0x146);
       goto LAB_001129c2;
     }
     r_02 = EC_POINT_new(group);
     if (r_02 == (EC_POINT *)0x0) {
-      ERR_GOST_error(0x6a,0x41,DAT_00112c38,0x153);
+      ERR_GOST_error(0x6a,0x41,"gost2001.c",0x153);
       goto LAB_001129c2;
     }
     iVar2 = EC_POINT_mul(group,r_02,r,q,r_00,ctx);
     if (iVar2 == 0) {
-      ERR_GOST_error(0x6a,0x10,DAT_00112c38,0x157);
+      ERR_GOST_error(0x6a,0x10,"gost2001.c",0x157);
       pBVar3 = (BN_CTX *)0x0;
     }
     else {
       iVar2 = EC_POINT_get_affine_coordinates_GFp(group,r_02,x,(BIGNUM *)0x0,ctx);
       if (iVar2 == 0) {
-        ERR_GOST_error(0x6a,0x10,DAT_00112c38,0x15b);
+        ERR_GOST_error(0x6a,0x10,"gost2001.c",0x15b);
         pBVar3 = (BN_CTX *)0x0;
       }
       else {
         iVar2 = BN_div((BIGNUM *)0x0,rem,x,order,ctx);
         if (iVar2 == 0) {
-          ERR_GOST_error(0x6a,0x44,DAT_00112c38,0x15f);
+          ERR_GOST_error(0x6a,0x44,"gost2001.c",0x15f);
           pBVar3 = (BN_CTX *)0x0;
         }
         else {
-          iVar2 = BN_cmp(rem,*param_3);
+          iVar2 = BN_cmp(rem,(BIGNUM *)*param_3);
           if (iVar2 == 0) {
             pBVar3 = (BN_CTX *)0x1;
           }
           else {
-            ERR_GOST_error(0x6a,0x7e,DAT_00112c38,0x16a);
+            ERR_GOST_error(0x6a,0x7e,"gost2001.c",0x16a);
             pBVar3 = (BN_CTX *)0x0;
           }
         }

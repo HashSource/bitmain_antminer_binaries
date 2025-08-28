@@ -6,9 +6,7 @@ int shutdown(int __fd,int __how)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a45c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f2a8)();
+  iVar1 = (*(code *)(undefined *)0x0)(__fd);
   return iVar1;
 }
 

@@ -6,10 +6,10 @@ undefined4 ssl2_new(undefined4 *param_1)
   void *pvVar1;
   undefined4 uVar2;
   
-  __s = CRYPTO_malloc(0x120,DAT_00064c20,0x143);
+  __s = CRYPTO_malloc(0x120,"s2_lib.c",0x143);
   if (__s != (void *)0x0) {
     memset(__s,0,0x120);
-    pvVar1 = CRYPTO_malloc(0x8001,DAT_00064c20,0x14c);
+    pvVar1 = CRYPTO_malloc(0x8001,"s2_lib.c",0x14c);
     *(void **)((int)__s + 0x30) = pvVar1;
     if (pvVar1 == (void *)0x0) {
       if (*(void **)((int)__s + 0x34) != (void *)0x0) {
@@ -17,7 +17,7 @@ undefined4 ssl2_new(undefined4 *param_1)
       }
     }
     else {
-      pvVar1 = CRYPTO_malloc(0x8002,DAT_00064c20,0x153);
+      pvVar1 = CRYPTO_malloc(0x8002,"s2_lib.c",0x153);
       *(void **)((int)__s + 0x34) = pvVar1;
       if (pvVar1 != (void *)0x0) {
         uVar2 = *(undefined4 *)((int)__s + 0x30);

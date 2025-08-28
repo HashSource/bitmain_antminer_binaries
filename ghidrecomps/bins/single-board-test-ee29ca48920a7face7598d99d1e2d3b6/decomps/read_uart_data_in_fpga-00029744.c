@@ -2,8 +2,8 @@
 int read_uart_data_in_fpga(byte param_1,int param_2,uint param_3)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   char acStack_424 [1024];
   undefined4 local_24;
   uint local_20;
@@ -83,21 +83,21 @@ int read_uart_data_in_fpga(byte param_1,int param_2,uint param_3)
   local_20 = param_3 & 3;
   if (local_20 != 0) {
     local_24 = read_axi_fpga(local_10);
-    uVar2 = (undefined)((uint)local_24 >> 0x10);
-    uVar1 = (undefined)((uint)local_24 >> 0x18);
+    uVar2 = (undefined1)((uint)local_24 >> 0x10);
+    uVar1 = (undefined1)((uint)local_24 >> 0x18);
     if (local_20 == 2) {
-      *(undefined *)(local_14 * 4 + param_2) = uVar1;
-      *(undefined *)(local_14 * 4 + 1 + param_2) = uVar2;
+      *(undefined1 *)(local_14 * 4 + param_2) = uVar1;
+      *(undefined1 *)(local_14 * 4 + 1 + param_2) = uVar2;
       local_18 = local_18 + 2;
     }
     else if (local_20 == 3) {
-      *(undefined *)(local_14 * 4 + param_2) = uVar1;
-      *(undefined *)(local_14 * 4 + 1 + param_2) = uVar2;
+      *(undefined1 *)(local_14 * 4 + param_2) = uVar1;
+      *(undefined1 *)(local_14 * 4 + 1 + param_2) = uVar2;
       *(char *)(local_14 * 4 + 2 + param_2) = (char)((uint)local_24 >> 8);
       local_18 = local_18 + 3;
     }
     else if (local_20 == 1) {
-      *(undefined *)(local_14 * 4 + param_2) = uVar1;
+      *(undefined1 *)(local_14 * 4 + param_2) = uVar1;
       local_18 = local_18 + 1;
     }
     else if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {

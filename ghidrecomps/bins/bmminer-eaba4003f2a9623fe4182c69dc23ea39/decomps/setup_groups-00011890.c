@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void setup_groups(void)
 
@@ -39,14 +39,14 @@ void setup_groups(void)
   do {
     pcVar9 = next;
     if ((next == (char *)0x0) || (*next == '\0')) {
-      commands[0] = SEPARATOR;
+      commands[0] = '|';
       cmd = commands + 1;
       commands[1] = '\0';
       for (i = 0; cmds[i].name != (char *)0x0; i = i + 1) {
         if (cmds[i].iswritemode != true) {
           strcpy(cmd,cmds[i].name);
           sVar3 = strlen(cmds[i].name);
-          cmd[sVar3] = SEPARATOR;
+          cmd[sVar3] = '|';
           cmd = cmd + sVar3 + 1;
           *cmd = '\0';
         }
@@ -110,7 +110,7 @@ LAB_00011a5a:
       _applog(3,tmp42,true);
       _quit(1);
     }
-    commands[0] = SEPARATOR;
+    commands[0] = '|';
     cmd = commands + 1;
     commands[1] = '\0';
     bVar2 = false;
@@ -140,7 +140,7 @@ LAB_00011a5a:
           if (pcVar9 == (char *)0x0) {
             strcpy(cmd,cmds[i].name);
             sVar3 = strlen(cmds[i].name);
-            cmd[sVar3] = SEPARATOR;
+            cmd[sVar3] = '|';
             cmd = cmd + sVar3 + 1;
             *cmd = '\0';
           }
@@ -161,7 +161,7 @@ LAB_00011a5a:
           if (pcVar9 == (char *)0x0) {
             strcpy(cmd,cmds[i].name);
             sVar3 = strlen(cmds[i].name);
-            cmd[sVar3] = SEPARATOR;
+            cmd[sVar3] = '|';
             cmd = cmd + sVar3 + 1;
             *cmd = '\0';
           }

@@ -1,9 +1,9 @@
 
-undefined4 write_pic_iic(byte param_1,undefined param_2)
+undefined4 write_pic_iic(byte param_1,undefined1 param_2)
 
 {
   undefined4 uVar1;
-  byte local_11;
+  undefined1 local_11;
   
   if (param_1 == 1) {
     local_11 = 2;

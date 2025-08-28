@@ -6,17 +6,15 @@ undefined4 i2c_status(byte param_1,byte param_2)
   char acStack_420 [1024];
   byte local_20;
   byte local_1f;
-  undefined local_1e;
+  undefined1 local_1e;
   int local_1c;
-  byte local_14;
-  undefined local_13;
-  undefined local_12;
+  byte local_14 [8];
   int local_c;
   
-  local_13 = 0;
-  local_12 = 0x20;
-  local_14 = param_2;
-  midd_ioctl(*(undefined4 *)(g_chain + (uint)param_1 * 0x20),0,&local_14);
+  local_14[1] = 0;
+  local_14[2] = 0x20;
+  local_14[0] = param_2;
+  midd_ioctl(*(undefined4 *)(g_chain + (uint)param_1 * 0x20),0,local_14);
   local_1e = 0x20;
   local_1c = 0;
   local_20 = param_1;

@@ -12,7 +12,7 @@ int detect_stratum(int param_1,char *param_2)
     if (iVar2 == 0) {
       uVar3 = __strdup(param_2);
       *(undefined4 *)(param_1 + 0xa4) = uVar3;
-      *(undefined *)(param_1 + 0x280) = 1;
+      *(undefined1 *)(param_1 + 0x280) = 1;
       *(undefined4 *)(param_1 + 0x240) = *(undefined4 *)(param_1 + 600);
       return iVar1;
     }

@@ -1,5 +1,5 @@
 
-undefined4 erase_pic_badcore_num(undefined param_1)
+undefined4 erase_pic_badcore_num(undefined1 param_1)
 
 {
   bool bVar1;

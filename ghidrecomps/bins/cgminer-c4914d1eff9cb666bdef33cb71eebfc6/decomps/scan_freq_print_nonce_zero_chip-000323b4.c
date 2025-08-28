@@ -16,7 +16,7 @@ void scan_freq_print_nonce_zero_chip(int chain)
   int i;
   
   fVar3 = ((float)(longlong)scanfreq_info.valid_nonce_num[chain] /
-          (float)(longlong)scanfreq_info.RequiredChainNonce) * DAT_000325fc;
+          (float)(longlong)scanfreq_info.RequiredChainNonce) * 100.0;
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
     pFVar1 = fopen(log_file,"a+");
@@ -26,7 +26,7 @@ void scan_freq_print_nonce_zero_chip(int chain)
     }
     fclose(pFVar1);
   }
-  if ((int)((uint)(fVar3 < DAT_00032600) << 0x1f) < 0) {
+  if ((int)((uint)(fVar3 < 40.0) << 0x1f) < 0) {
     low_rate_error_now = true;
     low_rate_error = low_rate_error + 1;
     if (3 < log_level) {

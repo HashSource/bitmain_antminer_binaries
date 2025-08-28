@@ -11,7 +11,7 @@ int get_bt8d_fpga_divider(int baud)
   if (baud == 0x1c200) {
     divider = 0x1a;
   }
-  else if ((double)(longlong)baud == DAT_00078570) {
+  else if ((double)(longlong)baud == 1500000.0) {
     divider = 1;
   }
   else if (baud == 3000000) {

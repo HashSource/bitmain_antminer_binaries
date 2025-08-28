@@ -1,11 +1,11 @@
 
-undefined json_string_equal(undefined4 param_1,undefined4 param_2)
+undefined1 json_string_equal(undefined4 param_1,undefined4 param_2)
 
 {
   char *__s1;
   char *__s2;
   int iVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   bool bVar3;
   
   __s1 = (char *)json_string_value(param_1);
@@ -15,7 +15,7 @@ undefined json_string_equal(undefined4 param_1,undefined4 param_2)
   if (bVar3) {
     iVar1 = 0;
   }
-  uVar2 = (undefined)iVar1;
+  uVar2 = (undefined1)iVar1;
   if (!bVar3) {
     uVar2 = 1;
   }

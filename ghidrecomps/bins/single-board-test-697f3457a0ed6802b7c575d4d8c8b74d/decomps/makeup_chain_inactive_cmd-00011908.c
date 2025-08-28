@@ -22,7 +22,10 @@ int makeup_chain_inactive_cmd(uint8_t *str,uint32_t str_len)
     bVar1 = CRC5_v1((uchar *)&chain_inactive_cmd,' ');
     *str = 'U';
     str[1] = 0xaa;
-    *(undefined4 *)(str + 2) = chain_inactive_cmd._0_4_;
+    str[2] = chain_inactive_cmd._0_1_;
+    str[3] = chain_inactive_cmd.length;
+    str[4] = chain_inactive_cmd.reserve1;
+    str[5] = chain_inactive_cmd.reserve2;
     str[6] = chain_inactive_cmd._4_1_ & 0xe0 | bVar1 & 0x1f;
     iVar2 = 7;
   }

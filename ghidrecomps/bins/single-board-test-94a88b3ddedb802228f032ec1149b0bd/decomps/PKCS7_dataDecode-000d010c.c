@@ -3,7 +3,7 @@ BIO * PKCS7_dataDecode(PKCS7 *p7,EVP_PKEY *pkey,BIO *in_bio,X509 *pcert)
 
 {
   int iVar1;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   BIO_METHOD *pBVar3;
   BIO *pBVar4;
   char *pcVar5;
@@ -34,11 +34,11 @@ BIO * PKCS7_dataDecode(PKCS7 *p7,EVP_PKEY *pkey,BIO *in_bio,X509 *pcert)
   local_30 = (BIO *)0x0;
   local_2c[0] = (BIO *)0x0;
   if (p7 == (PKCS7 *)0x0) {
-    ERR_put_error(0x21,0x70,0x8f,DAT_000d05d0,0x1b2);
+    ERR_put_error(0x21,0x70,0x8f,"pk7_doit.c",0x1b2);
     return (BIO *)0x0;
   }
   if ((p7->d).ptr == (char *)0x0) {
-    ERR_put_error(0x21,0x70,0x7a,DAT_000d05d0,0x1b7);
+    ERR_put_error(0x21,0x70,0x7a,"pk7_doit.c",0x1b7);
     return (BIO *)0x0;
   }
   iVar1 = OBJ_obj2nid(p7->type);
@@ -56,7 +56,7 @@ BIO * PKCS7_dataDecode(PKCS7 *p7,EVP_PKEY *pkey,BIO *in_bio,X509 *pcert)
 LAB_000d050c:
       iVar9 = 0x6f;
 LAB_000d0156:
-      ERR_put_error(0x21,0x70,iVar9,DAT_000d0294,iVar1);
+      ERR_put_error(0x21,0x70,iVar9,"pk7_doit.c",iVar1);
       pBVar4 = pBVar15;
       b = pBVar15;
       len = pBVar15;
@@ -136,21 +136,21 @@ LAB_000d026a:
       else {
         for (; iVar1 = sk_num(p_Var16), (int)pBVar15 < iVar1;
             pBVar15 = (BIO *)((int)&pBVar15->method + 1)) {
-          ppAVar2 = (ASN1_OBJECT **)sk_value(p_Var16,(int)pBVar15);
+          puVar2 = (undefined4 *)sk_value(p_Var16,(int)pBVar15);
           pBVar3 = BIO_f_md();
           pBVar4 = BIO_new(pBVar3);
           if (pBVar4 == (BIO *)0x0) {
-            ERR_put_error(0x21,0x70,0x20,DAT_000d05d0,0x1f7);
+            ERR_put_error(0x21,0x70,0x20,"pk7_doit.c",0x1f7);
             pBVar15 = (BIO *)0x0;
             len = (BIO *)0x0;
             key = (BIO *)0x0;
             goto LAB_000d0164;
           }
-          iVar1 = OBJ_obj2nid(*ppAVar2);
+          iVar1 = OBJ_obj2nid((ASN1_OBJECT *)*puVar2);
           pcVar5 = OBJ_nid2sn(iVar1);
           parg = EVP_get_digestbyname(pcVar5);
           if (parg == (EVP_MD *)0x0) {
-            ERR_put_error(0x21,0x70,0x6d,DAT_000d05d0,0x1ff);
+            ERR_put_error(0x21,0x70,0x6d,"pk7_doit.c",0x1ff);
             pBVar15 = (BIO *)0x0;
             len = (BIO *)0x0;
             key = (BIO *)0x0;
@@ -173,7 +173,7 @@ LAB_000d02d2:
         pBVar3 = BIO_f_cipher();
         pBVar15 = BIO_new(pBVar3);
         if (pBVar15 == (BIO *)0x0) {
-          ERR_put_error(0x21,0x70,0x20,DAT_000d05d0,0x217);
+          ERR_put_error(0x21,0x70,0x20,"pk7_doit.c",0x217);
           len = (BIO *)0x0;
           key = (BIO *)0x0;
           pBVar4 = (BIO *)0x0;
@@ -203,12 +203,13 @@ LAB_000d02d2:
             if (iVar9 <= iVar1) {
               len = (BIO *)0x0;
               key = (BIO *)0x0;
-              ERR_put_error(0x21,0x70,0x73,DAT_000d05d0,0x22e);
+              ERR_put_error(0x21,0x70,0x73,"pk7_doit.c",0x22e);
               pBVar4 = (BIO *)0x0;
               goto LAB_000d0164;
             }
             pvVar6 = sk_value(p_Var17,iVar1);
-            iVar9 = X509_NAME_cmp(**(X509_NAME ***)((int)pvVar6 + 4),pcert->cert_info->issuer);
+            iVar9 = X509_NAME_cmp((X509_NAME *)**(undefined4 **)((int)pvVar6 + 4),
+                                  pcert->cert_info->issuer);
             iVar1 = iVar13;
           } while ((iVar9 != 0) ||
                   (iVar9 = ASN1_STRING_cmp(pcert->cert_info->serialNumber,
@@ -235,7 +236,7 @@ LAB_000d02d2:
           goto LAB_000d0164;
         }
         len = (BIO *)EVP_CIPHER_CTX_key_length(local_34);
-        key = (BIO *)CRYPTO_malloc((int)len,DAT_000d05d0,0x24f);
+        key = (BIO *)CRYPTO_malloc((int)len,"pk7_doit.c",0x24f);
         pBVar4 = key;
         if ((key == (BIO *)0x0) ||
            (iVar1 = EVP_CIPHER_CTX_rand_key(local_34,(uchar *)key), pBVar4 = (BIO *)0x0, iVar1 < 1))
@@ -299,7 +300,7 @@ LAB_000d042e:
   }
   len = (BIO *)0x0;
   key = (BIO *)0x0;
-  ERR_put_error(0x21,0x70,0x7a,DAT_000d05d0,0x1ee);
+  ERR_put_error(0x21,0x70,0x7a,"pk7_doit.c",0x1ee);
   pBVar15 = (BIO *)0x0;
   pBVar4 = (BIO *)0x0;
   b = (BIO *)0x0;

@@ -6,7 +6,7 @@ int fputc(int __c,FILE *__stream)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_fputc_000c0214)();
+  iVar1 = fputc(__c,__stream);
   return iVar1;
 }
 

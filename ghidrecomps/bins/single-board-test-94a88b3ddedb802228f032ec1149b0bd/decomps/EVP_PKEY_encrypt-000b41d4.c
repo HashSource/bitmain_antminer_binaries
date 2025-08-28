@@ -8,7 +8,7 @@ int EVP_PKEY_encrypt(EVP_PKEY_CTX *ctx,uchar *out,size_t *outlen,uchar *in,size_
   
   if (((ctx == (EVP_PKEY_CTX *)0x0) || (iVar1 = *(int *)ctx, iVar1 == 0)) ||
      (pcVar3 = *(code **)(iVar1 + 0x50), pcVar3 == (code *)0x0)) {
-    ERR_put_error(6,0x69,0x96,DAT_000b426c,0xcf);
+    ERR_put_error(6,0x69,0x96,"pmeth_fn.c",0xcf);
     iVar1 = -2;
   }
   else if (*(int *)(ctx + 0x10) == 0x100) {
@@ -19,7 +19,7 @@ int EVP_PKEY_encrypt(EVP_PKEY_CTX *ctx,uchar *out,size_t *outlen,uchar *in,size_
         return 1;
       }
       if (*outlen < uVar2) {
-        ERR_put_error(6,0x69,0x9b,DAT_000b426c,0xd6);
+        ERR_put_error(6,0x69,0x9b,"pmeth_fn.c",0xd6);
         return 0;
       }
       pcVar3 = *(code **)(*(int *)ctx + 0x50);
@@ -27,7 +27,7 @@ int EVP_PKEY_encrypt(EVP_PKEY_CTX *ctx,uchar *out,size_t *outlen,uchar *in,size_
     iVar1 = (*pcVar3)(ctx,out,outlen,in,inlen);
   }
   else {
-    ERR_put_error(6,0x69,0x97,DAT_000b426c,0xd3);
+    ERR_put_error(6,0x69,0x97,"pmeth_fn.c",0xd3);
     iVar1 = -1;
   }
   return iVar1;

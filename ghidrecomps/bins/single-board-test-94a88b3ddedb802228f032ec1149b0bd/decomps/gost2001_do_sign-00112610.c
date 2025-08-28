@@ -24,7 +24,7 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
   m = (BIGNUM *)hashsum2bn();
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0 || m == (BIGNUM *)0x0) {
-    ERR_GOST_error(0x69,0x41,DAT_001128a8,0x8a);
+    ERR_GOST_error(0x69,0x41,"gost2001.c",0x8a);
     if (ctx == (BN_CTX *)0x0) {
       pDVar5 = (DSA_SIG *)0x0;
       bVar1 = false;
@@ -41,19 +41,19 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
   else {
     BN_CTX_start(ctx);
     if (param_2 != 0x20) {
-      OpenSSLDie(DAT_001128a8,0x8e,DAT_001128ac);
+      OpenSSLDie("gost2001.c",0x8e,"dlen == 32");
     }
     local_2c = DSA_SIG_new();
     pDVar5 = local_2c;
     if (local_2c == (DSA_SIG *)0x0) {
-      ERR_GOST_error(0x69,0x76,DAT_0011298c,0x91);
+      ERR_GOST_error(0x69,0x76,"gost2001.c",0x91);
       bVar1 = false;
       r = (EC_POINT *)0x0;
     }
     else {
       group = EC_KEY_get0_group(param_3);
       if (group == (EC_GROUP *)0x0) {
-        ERR_GOST_error(0x69,0x44,DAT_0011298c,0x96);
+        ERR_GOST_error(0x69,0x44,"gost2001.c",0x96);
         bVar1 = true;
         r = (EC_POINT *)0x0;
         pDVar5 = (DSA_SIG *)0x0;
@@ -64,13 +64,13 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
         {
           r = (EC_POINT *)0x0;
           bVar1 = true;
-          ERR_GOST_error(0x69,0x44,DAT_001128a8,0x9b);
+          ERR_GOST_error(0x69,0x44,"gost2001.c",0x9b);
           pDVar5 = (DSA_SIG *)0x0;
         }
         else {
           a = EC_KEY_get0_private_key(param_3);
           if (a == (BIGNUM *)0x0) {
-            ERR_GOST_error(0x69,0x44,DAT_0011298c,0xa0);
+            ERR_GOST_error(0x69,0x44,"gost2001.c",0xa0);
             bVar1 = true;
             r = (EC_POINT *)0x0;
             pDVar5 = (DSA_SIG *)0x0;
@@ -81,7 +81,7 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
                (iVar4 = BN_div((BIGNUM *)0x0,rem,m,pBVar3,ctx), iVar4 == 0)) {
               r = (EC_POINT *)0x0;
               bVar1 = true;
-              ERR_GOST_error(0x69,0x44,DAT_0011298c,0xa5);
+              ERR_GOST_error(0x69,0x44,"gost2001.c",0xa5);
               pDVar5 = (DSA_SIG *)0x0;
             }
             else {
@@ -91,7 +91,7 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
               rnd = BN_CTX_get(ctx);
               r = EC_POINT_new(group);
               if (rnd == (BIGNUM *)0x0 || r == (EC_POINT *)0x0) {
-                ERR_GOST_error(0x69,0x41,DAT_0011298c,0xb5);
+                ERR_GOST_error(0x69,0x41,"gost2001.c",0xb5);
                 bVar1 = true;
                 pDVar5 = (DSA_SIG *)0x0;
               }
@@ -106,14 +106,14 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
                     iVar4 = BN_rand_range(rnd,pBVar3);
                     if (iVar4 == 0) {
                       bVar1 = true;
-                      ERR_GOST_error(0x69,0x7d,DAT_0011298c,0xbc);
+                      ERR_GOST_error(0x69,0x7d,"gost2001.c",0xbc);
                       pDVar5 = (DSA_SIG *)0x0;
                       goto LAB_0011284c;
                     }
                     iVar4 = EC_POINT_mul(group,r,rnd,(EC_POINT *)0x0,(BIGNUM *)0x0,ctx);
                     if (iVar4 == 0) {
                       bVar1 = true;
-                      ERR_GOST_error(0x69,0x10,DAT_0011298c,0xc0);
+                      ERR_GOST_error(0x69,0x10,"gost2001.c",0xc0);
                       pDVar5 = (DSA_SIG *)0x0;
                       goto LAB_0011284c;
                     }
@@ -124,7 +124,7 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
                       r_01 = BN_CTX_get(ctx);
                     }
                     if (x == (BIGNUM *)0x0 || r_01 == (BIGNUM *)0x0) {
-                      ERR_GOST_error(0x69,0x41,DAT_0011298c,200);
+                      ERR_GOST_error(0x69,0x41,"gost2001.c",200);
                       bVar1 = true;
                       pDVar5 = (DSA_SIG *)0x0;
                       goto LAB_0011284c;
@@ -132,14 +132,14 @@ DSA_SIG * gost2001_do_sign(undefined4 param_1,int param_2,EC_KEY *param_3)
                     iVar4 = EC_POINT_get_affine_coordinates_GFp(group,r,x,(BIGNUM *)0x0,ctx);
                     if (iVar4 == 0) {
                       bVar1 = true;
-                      ERR_GOST_error(0x69,0x10,DAT_0011298c,0xcc);
+                      ERR_GOST_error(0x69,0x10,"gost2001.c",0xcc);
                       pDVar5 = (DSA_SIG *)0x0;
                       goto LAB_0011284c;
                     }
                     iVar4 = BN_nnmod(r_01,x,pBVar3,ctx);
                     if (iVar4 == 0) {
                       bVar1 = true;
-                      ERR_GOST_error(0x69,0x44,DAT_0011298c,0xd1);
+                      ERR_GOST_error(0x69,0x44,"gost2001.c",0xd1);
                       pDVar5 = (DSA_SIG *)0x0;
                       goto LAB_0011284c;
                     }
@@ -155,7 +155,7 @@ LAB_001127b0:
                     pBVar2 = local_40;
                     if (local_3c != (BIGNUM *)0x0 && r_00 != (BIGNUM *)0x0) goto joined_r0x001127c6;
 LAB_00112762:
-                    ERR_GOST_error(0x69,0x41,DAT_001128a8,0xde);
+                    ERR_GOST_error(0x69,0x41,"gost2001.c",0xde);
                     bVar1 = true;
                     pDVar5 = (DSA_SIG *)0x0;
                     goto LAB_0011284c;
@@ -171,7 +171,7 @@ joined_r0x001127c6:
                   iVar4 = BN_mod_mul(local_3c,a,r_01,pBVar3,ctx);
                   if (((iVar4 == 0) || (iVar4 = BN_mod_mul(r_00,rnd,rem,pBVar3,ctx), iVar4 == 0)) ||
                      (iVar4 = BN_mod_add(local_40,local_3c,r_00,pBVar3,ctx), iVar4 == 0)) {
-                    ERR_GOST_error(0x69,0x44,DAT_001128a8,0xe5);
+                    ERR_GOST_error(0x69,0x44,"gost2001.c",0xe5);
                     bVar1 = true;
                     pDVar5 = (DSA_SIG *)0x0;
                     goto LAB_0011284c;
@@ -182,7 +182,7 @@ joined_r0x001127c6:
                 pBVar3 = BN_dup(r_01);
                 local_2c->r = pBVar3;
                 if ((local_2c->s == (BIGNUM *)0x0) || (bVar1 = false, pBVar3 == (BIGNUM *)0x0)) {
-                  ERR_GOST_error(0x69,0x41,DAT_001128a8,0xee);
+                  ERR_GOST_error(0x69,0x41,"gost2001.c",0xee);
                   bVar1 = true;
                   pDVar5 = (DSA_SIG *)0x0;
                 }

@@ -10,7 +10,7 @@ int PEM_write_PrivateKey
   
   bp = BIO_new_fp(fp,0);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(9,0x8b,7,DAT_000bfda8,0xee);
+    ERR_put_error(9,0x8b,7,"pem_pkey.c",0xee);
     iVar1 = 0;
   }
   else {
@@ -19,8 +19,8 @@ int PEM_write_PrivateKey
       iVar1 = PEM_write_bio_PKCS8PrivateKey(bp,x,enc,(char *)kstr,klen,cb,u);
     }
     else {
-      BIO_snprintf(acStack_68,0x50,DAT_000bfdac,*(undefined4 *)(pEVar2 + 0xc));
-      iVar1 = PEM_ASN1_write_bio(DAT_000bfdb0,acStack_68,bp,x,enc,kstr,klen,cb,u);
+      BIO_snprintf(acStack_68,0x50,"%s PRIVATE KEY",*(undefined4 *)(pEVar2 + 0xc));
+      iVar1 = PEM_ASN1_write_bio((undefined1 *)0x107fe5,acStack_68,bp,x,enc,kstr,klen,cb,u);
     }
     BIO_free(bp);
   }

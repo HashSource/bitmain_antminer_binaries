@@ -9,13 +9,14 @@ void AT24C02_read_bytes(uchar address,uchar *buf,uchar which_iic,uchar length)
   uint uVar3;
   uint uVar4;
   uchar *puVar5;
+  undefined4 unaff_lr;
   
-  printf(DAT_0002cd90,DAT_0002cd94);
+  printf("--- %s\n","AT24C02_read_bytes");
   uVar2 = (uint)address + (uint)length;
   if (0x100 < uVar2) {
-                    /* WARNING: Could not recover jumptable at 0x0000a420. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    (*(code *)PTR_LAB_0005f294)(DAT_0002cd98,DAT_0002cd94,uVar2,0x100);
+    (*(code *)(undefined *)0x0)
+              ("\n--- %s: address + length = %d > EEPROM_LENGTH(%d)\n","AT24C02_read_bytes",uVar2,
+               0x100,unaff_lr);
     return;
   }
   if (length == 0) {

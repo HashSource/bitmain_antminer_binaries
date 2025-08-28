@@ -3,7 +3,7 @@ ulong X509_subject_name_hash(X509 *x)
 
 {
   EVP_MD *type;
-  ulong uVar1;
+  uint uVar1;
   X509_NAME *a;
   size_t count;
   uchar *data;

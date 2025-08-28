@@ -21,9 +21,9 @@ BIO * BIO_dup_chain(BIO *in)
     pbVar10 = (bio_st *)0x0;
     while( true ) {
       pBVar9 = in->method;
-      a = (BIO *)CRYPTO_malloc(0x40,DAT_000a9428,0x46);
+      a = (BIO *)CRYPTO_malloc(0x40,"bio_lib.c",0x46);
       if (a == (BIO *)0x0) {
-        ERR_put_error(0x20,0x6c,0x41,DAT_000a9428,0x48);
+        ERR_put_error(0x20,0x6c,0x41,"bio_lib.c",0x48);
         goto joined_r0x000a9388;
       }
       ad = &a->ex_data;
@@ -83,7 +83,7 @@ joined_r0x000a9388:
       }
       iVar7 = pbVar10->references;
       pbVar8 = pbVar10->next_bio;
-      iVar2 = CRYPTO_add_lock(&pbVar10->references,-1,0x15,DAT_000a9428,0x72);
+      iVar2 = CRYPTO_add_lock(&pbVar10->references,-1,0x15,"bio_lib.c",0x72);
       if ((iVar2 < 1) &&
          ((pbVar10->callback == (_func_745 *)0x0 ||
           (lVar3 = (*pbVar10->callback)(pbVar10,1,(char *)0x0,0,0,1), 0 < lVar3)))) {

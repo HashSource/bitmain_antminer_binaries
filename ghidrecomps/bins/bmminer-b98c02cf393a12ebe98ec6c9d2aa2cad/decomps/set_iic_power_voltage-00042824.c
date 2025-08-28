@@ -3,90 +3,94 @@ char set_iic_power_voltage(int *param_1,int param_2)
 
 {
   char cVar1;
-  double dVar2;
-  double dVar3;
+  int iVar2;
+  FILE *pFVar3;
   uint uVar4;
   int iVar5;
-  FILE *pFVar6;
-  uint uVar7;
-  int iVar8;
-  undefined4 uVar9;
-  double dVar10;
+  undefined4 uVar6;
+  undefined4 uVar7;
+  uint uVar8;
+  undefined4 extraout_s1;
+  double dVar9;
   
-  dVar3 = DAT_00042a08;
-  dVar2 = DAT_00042a00;
-  uVar9 = 0;
-  iVar8 = 0;
-  *(undefined *)(param_1 + 1) = 0;
+  uVar6 = 0;
+  iVar5 = 0;
+  *(undefined1 *)(param_1 + 1) = 0;
   do {
     sleep(1);
-    iVar5 = is7007_Board();
-    if (iVar5 == 0) {
-      dVar10 = (double)get_avg_voltage();
+    iVar2 = is7007_Board();
+    if (iVar2 == 0) {
+      uVar8 = get_avg_voltage();
+      dVar9 = (double)(ulonglong)uVar8;
     }
     else {
-      dVar10 = (double)get_min_voltage();
+      uVar7 = get_min_voltage();
+      dVar9 = (double)CONCAT44(extraout_s1,uVar7);
       if (param_2 != 0) {
-        dVar10 = (dVar10 * dVar2) / dVar3;
+        dVar9 = (dVar9 * 324.0) / 330.0;
       }
     }
-    uVar4 = voltage_tunning(SUB84(dVar10,0),uVar9,param_1);
+    uVar8 = voltage_tunning(SUB84(dVar9,0),uVar6,param_1);
     if (log_level < 4) {
-      if (0x32 < iVar8) goto LAB_00042886;
+      if (0x32 < iVar5) goto LAB_00042886;
 LAB_000428ca:
-      iVar5 = iVar8 + 1;
-      iVar8 = iVar8 + 2;
-      if (0x14 < iVar5) {
+      iVar2 = iVar5 + 1;
+      iVar5 = iVar5 + 2;
+      if (0x14 < iVar2) {
         if (log_level < 6) {
-          uVar9 = 1;
+          uVar6 = 1;
         }
         else {
-          pFVar6 = fopen(log_file,(char *)&DAT_0005e760);
-          if (pFVar6 != (FILE *)0x0) {
-            fprintf(pFVar6,"%s:%d:%s: tuning up 20 times\n","power.c",0x27a,DAT_00042a10);
+          pFVar3 = fopen(log_file,"a+");
+          if (pFVar3 != (FILE *)0x0) {
+            fprintf(pFVar3,"%s:%d:%s: tuning up 20 times\n","power.c",0x27a,"set_iic_power_voltage")
+            ;
           }
-          uVar9 = 1;
-          fclose(pFVar6);
+          uVar6 = 1;
+          fclose(pFVar3);
         }
       }
     }
     else {
-      pFVar6 = fopen(log_file,(char *)&DAT_0005e760);
-      if (pFVar6 != (FILE *)0x0) {
-        fprintf(pFVar6,"%s:%d:%s: voltage_tunning, set to %f, N=%d\n","power.c",0x272,DAT_00042a10);
+      pFVar3 = fopen(log_file,"a+");
+      if (pFVar3 != (FILE *)0x0) {
+        fprintf(pFVar3,"%s:%d:%s: voltage_tunning, set to %f, N=%d\n","power.c",0x272,
+                "set_iic_power_voltage");
       }
-      fclose(pFVar6);
-      if (iVar8 < 0x33) goto LAB_000428ca;
+      fclose(pFVar3);
+      if (iVar5 < 0x33) goto LAB_000428ca;
       if (3 < log_level) {
-        pFVar6 = fopen(log_file,(char *)&DAT_0005e760);
-        if (pFVar6 != (FILE *)0x0) {
-          fprintf(pFVar6,"%s:%d:%s: power voltage abnormal\n","power.c",0x275,DAT_00042a10);
+        pFVar3 = fopen(log_file,"a+");
+        if (pFVar3 != (FILE *)0x0) {
+          fprintf(pFVar3,"%s:%d:%s: power voltage abnormal\n","power.c",0x275,
+                  "set_iic_power_voltage");
         }
-        fclose(pFVar6);
+        fclose(pFVar3);
       }
 LAB_00042886:
-      iVar8 = iVar8 + 1;
+      iVar5 = iVar5 + 1;
       stop_mining("power abnormal");
     }
     if (*param_1 == 1) {
-      uVar7 = 0x7f;
+      uVar4 = 0x7f;
     }
     else {
-      uVar7 = 0xff;
+      uVar4 = 0xff;
     }
-    if (uVar4 != 0 && uVar7 < uVar4 || (uVar4 == 0 || uVar7 == uVar4)) {
-      return *(char *)(param_1 + 1);
+    if (uVar8 == 0 || uVar4 <= uVar8) {
+      return (char)param_1[1];
     }
     if (log_level < 6) {
-      cVar1 = *(char *)(param_1 + 1);
+      cVar1 = (char)param_1[1];
     }
     else {
-      pFVar6 = fopen(log_file,(char *)&DAT_0005e760);
-      if (pFVar6 != (FILE *)0x0) {
-        fprintf(pFVar6,"%s:%d:%s: tunning %d times\n","power.c",0x283,DAT_00042a10,iVar8);
+      pFVar3 = fopen(log_file,"a+");
+      if (pFVar3 != (FILE *)0x0) {
+        fprintf(pFVar3,"%s:%d:%s: tunning %d times\n","power.c",0x283,"set_iic_power_voltage",iVar5)
+        ;
       }
-      fclose(pFVar6);
-      cVar1 = *(char *)(param_1 + 1);
+      fclose(pFVar3);
+      cVar1 = (char)param_1[1];
     }
     if (cVar1 != '\0') {
       return cVar1;

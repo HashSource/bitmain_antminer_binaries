@@ -10,86 +10,86 @@ void gen_stratum_work(pool *pool,work *work)
   char *pcVar4;
   time_t tVar5;
   char *__ptr;
-  char *header;
-  char *__ptr_00;
-  char *merkle_hash;
   uint uVar6;
-  char *in_r2;
-  char *pcVar7;
-  int in_r3;
-  int iVar8;
-  double *line;
-  int *piVar9;
+  char *func;
+  char *func_00;
+  uint uVar7;
+  char *func_01;
+  char *func_02;
+  char *func_03;
+  char *func_04;
+  int line;
+  int line_00;
+  int line_01;
+  int line_02;
+  int line_03;
+  int line_04;
   pthread_rwlock_t *__rwlock;
-  pthread_rwlock_t *lock;
-  undefined4 uVar10;
-  uint64_t nonce2le;
+  undefined4 local_890;
+  undefined4 uStack_88c;
   uchar merkle_root [32];
   uchar merkle_sha [64];
   uchar hash1 [32];
   
   iVar3 = pthread_mutex_lock((pthread_mutex_t *)&pool->data_lock);
   if (iVar3 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_000225bc,(char *)0x202e,in_r2,in_r3);
+    _mutex_lock((pthread_mutex_t *)"gen_stratum_work",(char *)0x202e,func,line);
   }
   __rwlock = &(pool->data_lock).rwlock;
   iVar3 = pthread_rwlock_wrlock((pthread_rwlock_t *)__rwlock);
   if (iVar3 != 0) {
-    _wr_lock(DAT_000225bc,(char *)0x202e,in_r2,in_r3);
+    _wr_lock((pthread_rwlock_t *)"gen_stratum_work",(char *)0x202e,func_00,line_00);
   }
-  lock = DAT_0002253c;
   puVar1 = &pool->nonce2;
-  nonce2le._0_4_ = *(undefined4 *)puVar1;
-  nonce2le._4_4_ = *(undefined4 *)((int)&pool->nonce2 + 4);
-  _cg_memcpy(pool->coinbase + pool->nonce2_offset,&nonce2le,pool->n2size,DAT_00022540,
-             DAT_0002253c->__size,0x2033);
-  pcVar7 = *(char **)puVar1;
-  iVar8 = *(int *)((int)&pool->nonce2 + 4);
+  local_890 = (undefined4)*puVar1;
+  uStack_88c = *(undefined4 *)((int)&pool->nonce2 + 4);
+  _cg_memcpy(pool->coinbase + pool->nonce2_offset,&local_890,pool->n2size,"cgminer.c",
+             "gen_stratum_work",0x2033);
+  uVar7 = (uint)*puVar1;
+  iVar3 = *(int *)((int)&pool->nonce2 + 4);
   uVar6 = pool->n2size;
-  *(char **)&work->nonce2 = pcVar7;
-  *(int *)((int)&work->nonce2 + 4) = iVar8;
-  *(char **)puVar1 = pcVar7 + 1;
-  *(uint *)((int)&pool->nonce2 + 4) = iVar8 + (uint)((char *)0xfffffffe < pcVar7);
+  *(uint *)&work->nonce2 = uVar7;
+  *(int *)((int)&work->nonce2 + 4) = iVar3;
+  *(uint *)puVar1 = uVar7 + 1;
+  *(uint *)((int)&pool->nonce2 + 4) = iVar3 + (uint)(0xfffffffe < uVar7);
   work->nonce2_len = uVar6;
   iVar3 = pthread_rwlock_unlock((pthread_rwlock_t *)__rwlock);
   if (iVar3 != 0) {
-    _rw_unlock(lock,(char *)0x2039,pcVar7,iVar8);
+    _rw_unlock((pthread_rwlock_t *)"gen_stratum_work",(char *)0x2039,func_01,line_01);
   }
   iVar3 = pthread_rwlock_rdlock((pthread_rwlock_t *)__rwlock);
   if (iVar3 != 0) {
-    _rd_lock(DAT_000225bc,(char *)0x2039,pcVar7,iVar8);
+    _rd_lock((pthread_rwlock_t *)"gen_stratum_work",(char *)0x2039,func_02,line_02);
   }
   iVar3 = pthread_mutex_unlock((pthread_mutex_t *)&pool->data_lock);
   if (iVar3 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_000225bc,(char *)0x2039,pcVar7,iVar8);
+    _mutex_unlock_noyield((pthread_mutex_t *)"gen_stratum_work",(char *)0x2039,func_03,line_03);
   }
   sha256(pool->coinbase,pool->coinbase_len,hash1);
   sha256(hash1,0x20,merkle_root);
-  _cg_memcpy(merkle_sha,merkle_root,0x20,DAT_00022540,lock->__size,0x203d);
+  _cg_memcpy(merkle_sha,merkle_root,0x20,"cgminer.c","gen_stratum_work",0x203d);
   if (0 < pool->merkles) {
     iVar3 = 0;
     do {
       ppuVar2 = (pool->swork).merkle_bin + iVar3;
       iVar3 = iVar3 + 1;
-      _cg_memcpy(merkle_sha + 0x20,*ppuVar2,0x20,DAT_00022540,lock->__size,0x2041);
+      _cg_memcpy(merkle_sha + 0x20,*ppuVar2,0x20,"cgminer.c","gen_stratum_work",0x2041);
       sha256(merkle_sha,0x40,hash1);
       sha256(hash1,0x20,merkle_root);
-      _cg_memcpy(merkle_sha,merkle_root,0x20,DAT_00022540,lock->__size,0x2043);
+      _cg_memcpy(merkle_sha,merkle_root,0x20,"cgminer.c","gen_stratum_work",0x2043);
     } while (iVar3 < pool->merkles);
   }
-  pcVar7 = (char *)0x0;
+  iVar3 = 0;
   do {
-    uVar6 = *(uint *)(merkle_sha + (int)pcVar7);
-    *(uint *)(merkle_root + (int)pcVar7) =
+    uVar6 = *(uint *)(merkle_sha + iVar3);
+    *(uint *)(merkle_root + iVar3) =
          uVar6 << 0x18 | (uVar6 >> 8 & 0xff) << 0x10 | (uVar6 >> 0x10 & 0xff) << 8 | uVar6 >> 0x18;
-    pcVar7 = pcVar7 + 4;
-  } while (pcVar7 != (char *)0x20);
-  _cg_memcpy(work,pool->header_bin,0x70,DAT_00022540,lock->__size,0x204c);
-  uVar10 = 0x204d;
-  _cg_memcpy(work->data + 0x24,merkle_root,0x20,DAT_00022540,lock->__size,0x204d);
-  line = &pool->sdiff;
+    iVar3 = iVar3 + 4;
+  } while (iVar3 != 0x20);
+  _cg_memcpy(work,pool->header_bin,0x70,"cgminer.c","gen_stratum_work",0x204c);
+  _cg_memcpy(work->data + 0x24,merkle_root,0x20,"cgminer.c","gen_stratum_work",0x204d);
   pcVar4 = (pool->swork).job_id;
-  work->sdiff = *line;
+  work->sdiff = pool->sdiff;
   pcVar4 = (char *)__strdup(pcVar4);
   work->job_id = pcVar4;
   pcVar4 = (char *)__strdup(pool->nonce1);
@@ -98,64 +98,55 @@ void gen_stratum_work(pool *pool,work *work)
   work->ntime = pcVar4;
   iVar3 = pthread_rwlock_unlock((pthread_rwlock_t *)__rwlock);
   if (iVar3 != 0) {
-    _rw_unlock(DAT_000225bc,(char *)0x2058,pcVar7,(int)line);
+    _rw_unlock((pthread_rwlock_t *)"gen_stratum_work",(char *)0x2058,func_04,line_04);
   }
-  pcVar7 = DAT_00022548;
-  (**DAT_00022544)();
-  if (*pcVar7 == '\0') goto LAB_000223f0;
-  __ptr = bin2hex(work->data,0x70);
-  __ptr_00 = bin2hex(merkle_root,0x20);
-  pcVar4 = DAT_00022554;
-  if (*pcVar7 != '\0') {
-    if (((*DAT_00022554 == '\0') && (*DAT_00022558 == '\0')) && (*DAT_0002255c < 7)) {
+  (*selective_yield)();
+  if (opt_debug == false) goto LAB_000223f0;
+  pcVar4 = bin2hex(work->data,0x70);
+  __ptr = bin2hex(merkle_root,0x20);
+  if (opt_debug != false) {
+    if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 7)) {
 LAB_0002252c:
-      piVar9 = DAT_0002255c;
-      if (*DAT_0002255c < 7) {
+      if (opt_log_level < 7) {
 LAB_00022532:
-        if (6 < *piVar9) {
+        if (6 < opt_log_level) {
 LAB_000224f0:
-          lock = *(pthread_rwlock_t **)&work->nonce2;
-          uVar10 = *(undefined4 *)((int)&work->nonce2 + 4);
-          snprintf((char *)hash1,0x800,DAT_00022568,work->job_id,lock,uVar10,work->ntime);
+          snprintf((char *)hash1,0x800,"Work job_id %s nonce2 %llu ntime %s",work->job_id,
+                   (int)work->nonce2,*(undefined4 *)((int)&work->nonce2 + 4),work->ntime);
           _applog(7,(char *)hash1,false);
         }
       }
       else {
 LAB_000224c8:
-        snprintf((char *)hash1,0x800,DAT_00022564,__ptr);
+        snprintf((char *)hash1,0x800,"Generated stratum header %s",pcVar4);
         _applog(7,(char *)hash1,false);
-        if (*pcVar7 != '\0') {
-          if ((*pcVar4 == '\0') && (piVar9 = DAT_000225b8, *DAT_00022558 == '\0'))
-          goto LAB_00022532;
+        if (opt_debug != false) {
+          if ((use_syslog == false) && (opt_log_output == false)) goto LAB_00022532;
           goto LAB_000224f0;
         }
       }
     }
     else {
-      snprintf((char *)hash1,0x800,DAT_00022560,__ptr_00);
+      snprintf((char *)hash1,0x800,"Generated stratum merkle %s",__ptr);
       _applog(7,(char *)hash1,false);
-      if (*pcVar7 != '\0') {
-        if ((*pcVar4 == '\0') && (*DAT_00022558 == '\0')) goto LAB_0002252c;
+      if (opt_debug != false) {
+        if ((use_syslog == false) && (opt_log_output == false)) goto LAB_0002252c;
         goto LAB_000224c8;
       }
     }
   }
+  free(pcVar4);
   free(__ptr);
-  free(__ptr_00);
 LAB_000223f0:
-  piVar9 = DAT_0002254c;
   calc_midstate(work);
-  set_target(work->target,(double)CONCAT44(uVar10,lock));
-  iVar3 = DAT_00022550;
-  *piVar9 = *piVar9 + 1;
+  set_target(work->target,work->sdiff);
+  local_work = local_work + 1;
   tVar5 = time((time_t *)0x0);
-  if (5 < tVar5 - *(int *)(iVar3 + 0x4ec)) {
-    tVar5 = time((time_t *)0x0);
-    iVar8 = *piVar9;
-    *(time_t *)(iVar3 + 0x4ec) = tVar5;
-    *(int *)(iVar3 + 0x4f0) = iVar8;
+  if (5 < tVar5 - local_work_lasttime) {
+    local_work_lasttime = time((time_t *)0x0);
+    local_work_last = local_work;
   }
-  uVar6 = *(uint *)(iVar3 + 0x4f4);
+  uVar6 = work_block;
   work->pool = pool;
   work->work_block = uVar6;
   work->stratum = true;
@@ -163,7 +154,7 @@ LAB_000223f0:
   work->longpoll = false;
   work->getwork_mode = 'S';
   work->drv_rolllimit = 0x3c;
-  calc_diff(work,(double)CONCAT44(uVar10,lock));
+  calc_diff(work,work->sdiff);
   cgtime(&work->tv_staged);
   return;
 }

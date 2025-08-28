@@ -1,5 +1,5 @@
 
-void BN_consttime_swap(int param_1,uint **param_2,uint **param_3,int param_4)
+void BN_consttime_swap(int param_1,int *param_2,undefined4 *param_3,int param_4)
 
 {
   bool bVar1;
@@ -14,57 +14,57 @@ void BN_consttime_swap(int param_1,uint **param_2,uint **param_3,int param_4)
   int iVar10;
   
   uVar2 = -param_1 >> 0x1f;
-  uVar7 = ((uint)param_3[1] ^ (uint)param_2[1]) & uVar2;
-  param_2[1] = (uint *)((uint)param_2[1] ^ uVar7);
-  param_3[1] = (uint *)(uVar7 ^ (uint)param_3[1]);
+  uVar7 = (param_3[1] ^ param_2[1]) & uVar2;
+  param_2[1] = param_2[1] ^ uVar7;
+  param_3[1] = uVar7 ^ param_3[1];
   switch(param_4) {
   case 1:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d9ec;
   case 2:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d9da;
   case 3:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d9c8;
   case 4:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d9b6;
   case 5:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d9a4;
   case 6:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d992;
   case 7:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d980;
   case 8:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d96e;
   case 9:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     goto LAB_0009d95c;
   case 10:
-    puVar3 = *param_2;
-    puVar5 = *param_3;
+    puVar3 = (uint *)*param_2;
+    puVar5 = (uint *)*param_3;
     break;
   default:
-    puVar3 = *param_2;
+    puVar3 = (uint *)*param_2;
     if (param_4 < 0xb) {
-      puVar5 = *param_3;
+      puVar5 = (uint *)*param_3;
     }
     else {
-      puVar5 = *param_3;
+      puVar5 = (uint *)*param_3;
       if (param_4 < 0x13) {
         iVar10 = 10;
         iVar8 = 0xb;

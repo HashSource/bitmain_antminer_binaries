@@ -1,7 +1,7 @@
 
-undefined4 json_null(void)
+undefined8 * json_null(void)
 
 {
-  return DAT_00052878;
+  return &the_null_7793;
 }
 

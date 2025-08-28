@@ -6,7 +6,7 @@ PKCS12_SAFEBAG * PKCS12_SAFEBAG_new(void)
 {
   PKCS12_SAFEBAG *pPVar1;
   
-  pPVar1 = (PKCS12_SAFEBAG *)ASN1_item_new(DAT_000d1340);
+  pPVar1 = (PKCS12_SAFEBAG *)ASN1_item_new((ASN1_ITEM *)PKCS12_SAFEBAG_it);
   return pPVar1;
 }
 

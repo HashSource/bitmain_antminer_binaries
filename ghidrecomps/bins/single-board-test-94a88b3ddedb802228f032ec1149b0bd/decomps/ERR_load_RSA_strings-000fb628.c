@@ -4,16 +4,14 @@
 void ERR_load_RSA_strings(void)
 
 {
-  ERR_STRING_DATA *str;
   char *pcVar1;
   
-  str = DAT_000fb64c;
-  pcVar1 = ERR_func_error_string(DAT_000fb64c->error);
+  pcVar1 = ERR_func_error_string(RSA_str_functs);
   if (pcVar1 != (char *)0x0) {
     return;
   }
-  ERR_load_strings(0,str);
-  ERR_load_strings(0,str + 0x40);
+  ERR_load_strings(0,(ERR_STRING_DATA *)&RSA_str_functs);
+  ERR_load_strings(0,(ERR_STRING_DATA *)RSA_str_reasons);
   return;
 }
 

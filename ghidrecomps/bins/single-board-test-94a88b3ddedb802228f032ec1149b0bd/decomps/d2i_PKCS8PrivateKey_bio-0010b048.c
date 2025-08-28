@@ -17,7 +17,7 @@ EVP_PKEY * d2i_PKCS8PrivateKey_bio(BIO *bp,EVP_PKEY **x,undefined1 *cb,void *u)
       passlen = (*(code *)cb)(acStack_418,0x400,0,u);
     }
     if (passlen < 1) {
-      ERR_put_error(9,0x78,0x68,DAT_0010b0e0,0xaf);
+      ERR_put_error(9,0x78,0x68,"pem_pk8.c",0xaf);
       X509_SIG_free(a);
     }
     else {

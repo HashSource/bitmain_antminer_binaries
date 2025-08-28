@@ -6,7 +6,7 @@ COMP_CTX * COMP_CTX_new(COMP_METHOD *meth)
   int iVar1;
   _func_711 *p_Var2;
   
-  ctx = (COMP_CTX *)CRYPTO_malloc(0x1c,DAT_000d2570,0xb);
+  ctx = (COMP_CTX *)CRYPTO_malloc(0x1c,"comp_lib.c",0xb);
   if (ctx != (COMP_CTX *)0x0) {
     memset(ctx,0,0x1c);
     p_Var2 = meth->init;

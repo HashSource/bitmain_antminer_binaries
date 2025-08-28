@@ -3,7 +3,7 @@ undefined4 json_loadf(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   int iVar1;
-  undefined auStack_50 [64];
+  undefined1 auStack_50 [64];
   undefined4 local_10;
   char *local_c;
   

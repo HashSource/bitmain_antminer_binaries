@@ -64,7 +64,7 @@ switchD_000178de_caseD_65:
     uVar3 = api_add_data_full(uVar3,"WorkTime",0xe,&opt_worktime,0);
     print_data(param_1,uVar3,1,0);
     if (iVar2 != 0) {
-      *(undefined *)(param_1 + 0xd) = 1;
+      *(undefined1 *)(param_1 + 0xd) = 1;
     }
     return;
   }

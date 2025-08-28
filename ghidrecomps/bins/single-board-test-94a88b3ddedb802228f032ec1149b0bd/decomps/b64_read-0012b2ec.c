@@ -2,39 +2,44 @@
 size_t b64_read(BIO *param_1,void *param_2,size_t param_3)
 
 {
-  undefined *puVar1;
+  BIO *pBVar1;
   BIO *pBVar2;
-  BIO *pBVar3;
-  uint uVar4;
+  uint uVar3;
+  undefined1 *puVar4;
   uint uVar5;
-  int iVar6;
+  undefined1 *puVar6;
   BIO *pBVar7;
-  size_t sVar8;
-  _func_745 *p_Var9;
-  BIO *pBVar10;
-  BIO *pBVar11;
-  CRYPTO_EX_DATA *pCVar12;
-  size_t sVar13;
-  BIO *pBVar14;
+  BIO *pBVar8;
+  undefined1 *puVar9;
+  size_t sVar10;
+  _func_745 *p_Var11;
+  uint extraout_r3;
+  undefined1 *puVar12;
+  undefined1 *puVar13;
+  uint extraout_r3_00;
+  CRYPTO_EX_DATA *pCVar14;
+  size_t sVar15;
+  undefined1 *puVar16;
   EVP_ENCODE_CTX *ctx;
-  BIO *pBVar15;
+  undefined1 *puVar17;
   BIO *in;
   BIO *out;
-  BIO *pBVar16;
-  BIO *pBVar17;
-  bio_st *pbVar18;
-  int iVar19;
-  ulong uVar20;
+  BIO *pBVar18;
+  BIO *pBVar19;
+  bio_st *pbVar20;
+  int iVar21;
+  ulong uVar22;
   size_t *outl;
-  undefined *puVar21;
-  uint uVar22;
-  int iVar23;
-  bool bVar24;
+  uint uVar23;
+  int iVar24;
+  undefined1 *puVar25;
+  undefined1 *puVar26;
+  bool bVar27;
   uchar *local_54;
   void *local_4c;
   size_t local_44;
   size_t local_3c;
-  BIO *local_2c [2];
+  undefined1 *local_2c [2];
   
   if (param_2 == (void *)0x0) {
     local_44 = 0;
@@ -62,26 +67,26 @@ size_t b64_read(BIO *param_1,void *param_2,size_t param_3)
         local_4c = param_2;
       }
       else {
-        sVar8 = outl[1];
-        if ((int)local_44 < (int)sVar8) {
-          OpenSSLDie(DAT_0012ba58,0xad,DAT_0012ba60);
+        sVar10 = outl[1];
+        if ((int)local_44 < (int)sVar10) {
+          OpenSSLDie("bio_b64.c",0xad,"ctx->buf_len >= ctx->buf_off");
           local_44 = *outl;
-          sVar8 = outl[1];
+          sVar10 = outl[1];
         }
-        local_44 = local_44 - sVar8;
+        local_44 = local_44 - sVar10;
         if ((int)param_3 <= (int)local_44) {
           local_44 = param_3;
         }
-        if (0x5dd < (int)(local_44 + sVar8)) {
-          OpenSSLDie(DAT_0012ba58,0xb1,DAT_0012ba5c);
-          sVar8 = outl[1];
+        if (0x5dd < (int)(local_44 + sVar10)) {
+          OpenSSLDie("bio_b64.c",0xb1,"ctx->buf_off + i < (int)sizeof(ctx->buf)");
+          sVar10 = outl[1];
         }
-        memcpy(param_2,(void *)((int)outl + sVar8 + 0x7c),local_44);
-        sVar8 = outl[1];
+        memcpy(param_2,(void *)((int)outl + sVar10 + 0x7c),local_44);
+        sVar10 = outl[1];
         param_3 = param_3 - local_44;
-        outl[1] = local_44 + sVar8;
+        outl[1] = local_44 + sVar10;
         local_4c = (void *)((int)param_2 + local_44);
-        if (local_44 + sVar8 == *outl) {
+        if (local_44 + sVar10 == *outl) {
           *outl = 0;
           outl[1] = 0;
         }
@@ -94,326 +99,323 @@ size_t b64_read(BIO *param_1,void *param_2,size_t param_3)
         if (0 < (int)outl[6]) {
           ctx = (EVP_ENCODE_CTX *)(outl + 7);
           out = (BIO *)(outl + 0x1f);
-          pBVar16 = out;
+          pBVar18 = out;
           do {
-            sVar8 = BIO_read(param_1->next_bio,(void *)((int)outl + outl[2] + 0x65a),0x400 - outl[2]
-                            );
-            if ((int)sVar8 < 1) {
-              iVar19 = BIO_test_flags(param_1->next_bio,8);
-              local_3c = sVar8;
-              if (iVar19 != 0) break;
-              sVar13 = outl[2];
-              outl[6] = sVar8;
-              if (sVar13 == 0) break;
-              sVar8 = 0;
-              pBVar16 = param_1;
+            sVar10 = BIO_read(param_1->next_bio,(void *)((int)outl + outl[2] + 0x65a),
+                              0x400 - outl[2]);
+            if ((int)sVar10 < 1) {
+              iVar21 = BIO_test_flags(param_1->next_bio,8);
+              local_3c = sVar10;
+              if (iVar21 != 0) break;
+              sVar15 = outl[2];
+              outl[6] = sVar10;
+              if (sVar15 == 0) break;
+              sVar10 = 0;
+              pBVar18 = param_1;
             }
             else {
-              sVar13 = outl[2];
+              sVar15 = outl[2];
             }
-            pBVar14 = (BIO *)(sVar8 + sVar13);
-            outl[2] = (size_t)pBVar14;
+            puVar16 = (undefined1 *)(sVar10 + sVar15);
+            outl[2] = (size_t)puVar16;
             if (outl[5] == 0) {
 LAB_0012b402:
-              if (0x3ff < (int)pBVar14) goto LAB_0012b412;
+              if (0x3ff < (int)puVar16) goto LAB_0012b412;
               if ((int)outl[6] < 1) {
-                pBVar16 = (BIO *)((int)outl + 0x65a);
+                pBVar18 = (BIO *)((int)outl + 0x65a);
                 goto LAB_0012b412;
               }
             }
             else {
-              uVar4 = BIO_test_flags(param_1,-1);
-              if ((uVar4 & 0x100) == 0) {
-                pBVar15 = (BIO *)outl[5];
-                if (pBVar15 == (BIO *)0x0) goto LAB_0012b402;
-                pBVar17 = (BIO *)((int)outl + 0x65a);
-                pBVar7 = (BIO *)0x0;
-                in = pBVar17;
-                pBVar16 = pBVar17;
-                pBVar10 = pBVar17;
-                local_2c[0] = pBVar7;
-                if (0 < (int)pBVar14) {
+              uVar3 = BIO_test_flags(param_1,-1);
+              if ((uVar3 & 0x100) == 0) {
+                uVar3 = outl[5];
+                if (uVar3 == 0) goto LAB_0012b402;
+                pBVar19 = (BIO *)((int)outl + 0x65a);
+                puVar17 = (undefined1 *)0x0;
+                in = pBVar19;
+                pBVar18 = pBVar19;
+                pBVar8 = pBVar19;
+                local_2c[0] = puVar17;
+                if (0 < (int)puVar16) {
 LAB_0012b538:
                   do {
-                    pBVar16 = (BIO *)((int)&pBVar10->method + 1);
-                    pBVar15 = (BIO *)(uint)*(byte *)&pBVar10->method;
-                    pBVar10 = pBVar16;
-                    if (pBVar15 != (BIO *)0xa) goto LAB_0012b532;
-                    pBVar15 = (BIO *)outl[3];
-                    if (pBVar15 == (BIO *)0x0) {
-                      pBVar15 = in;
-                      iVar19 = EVP_DecodeUpdate(ctx,(uchar *)out,(int *)local_2c,(uchar *)in,
-                                                (int)pBVar16 - (int)in);
-                      if (((iVar19 < 1) && (pBVar15 = local_2c[0], local_2c[0] == (BIO *)0x0)) &&
-                         (pBVar15 = (BIO *)outl[5], pBVar15 != (BIO *)0x0)) {
+                    pBVar18 = (BIO *)((int)&pBVar8->method + 1);
+                    uVar3 = (uint)*(byte *)&pBVar8->method;
+                    pBVar8 = pBVar18;
+                    if (uVar3 != 10) goto LAB_0012b532;
+                    uVar3 = outl[3];
+                    if (uVar3 == 0) {
+                      iVar21 = EVP_DecodeUpdate(ctx,(uchar *)out,(int *)local_2c,(uchar *)in,
+                                                (int)pBVar18 - (int)in);
+                      if (((iVar21 < 1) && (local_2c[0] == (undefined1 *)0x0)) && (outl[5] != 0)) {
                         EVP_DecodeInit(ctx);
-                        in = pBVar16;
+                        uVar3 = extraout_r3;
+                        in = pBVar18;
                         goto LAB_0012b532;
                       }
-                      if (pBVar17 == in) goto LAB_0012b9a8;
-                      pBVar15 = (BIO *)((int)pBVar17 - (int)in);
-                      pBVar14 = (BIO *)((int)pBVar14 + (int)pBVar15);
-                      if ((int)pBVar14 < 1) goto LAB_0012b9a8;
-                      uVar4 = (uint)pBVar14 >> 3;
-                      pBVar10 = (BIO *)((uint)pBVar14 & 0xfffffff8);
-                      if (uVar4 != 0 &&
-                          ((((uint)in | (uint)pBVar17) & 7) == 0 &&
-                          ((BIO *)0x7 < pBVar14 &&
-                          ((BIO *)((int)outl + 0x662) <= in || &in->cb_arg <= pBVar17)))) {
-                        if (uVar4 < 5) {
+                      if ((pBVar19 == in) ||
+                         (puVar16 = (undefined1 *)((int)pBVar19 + ((int)puVar16 - (int)in)),
+                         (int)puVar16 < 1)) goto LAB_0012b9a8;
+                      uVar3 = (uint)puVar16 >> 3;
+                      puVar12 = (undefined1 *)(uVar3 << 3);
+                      if (uVar3 != 0 &&
+                          ((((uint)in | (uint)pBVar19) & 7) == 0 &&
+                          (&DAT_00000007 < puVar16 &&
+                          ((BIO *)((int)outl + 0x662) <= in || &in->cb_arg <= pBVar19)))) {
+                        if (uVar3 < 5) {
                           uVar5 = 0;
-                          pBVar11 = pBVar17;
-                          pBVar15 = in;
+                          pBVar8 = pBVar19;
+                          pBVar7 = in;
                         }
                         else {
                           uVar5 = 0;
-                          pBVar3 = (BIO *)((int)outl + 0x67a);
+                          pBVar1 = (BIO *)((int)outl + 0x67a);
                           pBVar2 = in;
                           do {
-                            pBVar11 = pBVar3;
-                            pBVar15 = (BIO *)&pBVar2->ptr;
-                            pbVar18 = (bio_st *)pBVar2->callback;
-                            uVar22 = uVar5 + 5;
+                            pBVar8 = pBVar1;
+                            pBVar7 = (BIO *)&pBVar2->ptr;
+                            pbVar20 = (bio_st *)pBVar2->callback;
+                            uVar23 = uVar5 + 5;
                             uVar5 = uVar5 + 4;
                             HintPreloadData(&pBVar2[2].ex_data);
-                            pBVar11[-1].ptr = pBVar2->method;
-                            pBVar11[-1].next_bio = pbVar18;
-                            iVar19 = pBVar2->init;
-                            pBVar11[-1].prev_bio = (bio_st *)pBVar2->cb_arg;
-                            pBVar11[-1].references = iVar19;
-                            uVar20 = pBVar2->flags;
-                            pBVar11[-1].num_read = pBVar2->shutdown;
-                            pBVar11[-1].num_write = uVar20;
-                            iVar19 = pBVar2->num;
-                            pBVar11[-1].ex_data.sk = (stack_st_void *)pBVar2->retry_reason;
-                            pBVar11[-1].ex_data.dummy = iVar19;
-                            pBVar3 = (BIO *)&pBVar11->ptr;
-                            pBVar2 = pBVar15;
-                          } while (uVar22 < uVar4 - 3);
+                            pBVar8[-1].ptr = pBVar2->method;
+                            pBVar8[-1].next_bio = pbVar20;
+                            iVar21 = pBVar2->init;
+                            pBVar8[-1].prev_bio = (bio_st *)pBVar2->cb_arg;
+                            pBVar8[-1].references = iVar21;
+                            uVar22 = pBVar2->flags;
+                            pBVar8[-1].num_read = pBVar2->shutdown;
+                            pBVar8[-1].num_write = uVar22;
+                            iVar21 = pBVar2->num;
+                            pBVar8[-1].ex_data.sk = (stack_st_void *)pBVar2->retry_reason;
+                            pBVar8[-1].ex_data.dummy = iVar21;
+                            pBVar1 = (BIO *)&pBVar8->ptr;
+                            pBVar2 = pBVar7;
+                          } while (uVar23 < uVar3 - 3);
                         }
-                        pCVar12 = &pBVar15[-1].ex_data;
+                        pCVar14 = &pBVar7[-1].ex_data;
                         do {
-                          p_Var9 = *(_func_745 **)((int)(pCVar12 + 1) + 4);
+                          p_Var11 = *(_func_745 **)((int)(pCVar14 + 1) + 4);
                           uVar5 = uVar5 + 1;
-                          pBVar15 = (BIO *)&pBVar11->cb_arg;
-                          pBVar11->method = (BIO_METHOD *)pCVar12[1].sk;
-                          pBVar11->callback = p_Var9;
-                          pBVar11 = pBVar15;
-                          pCVar12 = pCVar12 + 1;
-                        } while (uVar5 < uVar4);
-                        if (pBVar14 != pBVar10) {
+                          pBVar8->method = (BIO_METHOD *)pCVar14[1].sk;
+                          pBVar8->callback = p_Var11;
+                          pBVar8 = (BIO *)&pBVar8->cb_arg;
+                          pCVar14 = pCVar14 + 1;
+                        } while (uVar5 < uVar3);
+                        if (puVar16 != puVar12) {
 LAB_0012b83e:
-                          puVar21 = (undefined *)((int)&pBVar14[-1].ptr + 1);
-                          pBVar11 = (BIO *)((int)&pBVar10->method + 1);
-                          if ((int)pBVar10 < (int)pBVar14 && (int)pBVar11 < (int)puVar21) {
-                            pCVar12 = (CRYPTO_EX_DATA *)&pBVar10[0x19].retry_reason;
-                            iVar19 = (int)&pBVar10->method + (int)&in->method;
-                            iVar6 = (int)outl + (int)pCVar12 + 2;
-                            pBVar15 = pBVar10;
+                          puVar13 = puVar12 + 1;
+                          if ((int)puVar12 < (int)puVar16 &&
+                              (int)(puVar12 + 1) < (int)(puVar16 + -0x1f)) {
+                            puVar4 = (undefined1 *)((int)&in->method + (int)puVar12);
+                            puVar6 = (undefined1 *)((int)outl + (int)(puVar12 + 0x65a));
+                            puVar9 = puVar12;
+                            puVar25 = puVar12 + 0x658;
                             do {
-                              HintPreloadData((undefined *)((int)&in->ptr + 2) + (int)pBVar15);
-                              pBVar10 = (BIO *)&pBVar15->ptr;
-                              iVar23 = (int)outl + (int)pCVar12;
-                              pCVar12 = &pBVar15[0x19].ex_data;
-                              *(undefined *)((int)outl + (int)pBVar15 + 0x65a) =
-                                   *(undefined *)((int)&pBVar15->method + (int)&in->method);
-                              pBVar11 = (BIO *)((int)&pBVar15->ptr + 1);
-                              HintPreloadData(iVar23 + 0x24);
-                              *(undefined *)(iVar6 + 1) = *(undefined *)(iVar19 + 1);
-                              *(undefined *)(iVar6 + 2) = *(undefined *)(iVar19 + 2);
-                              *(undefined *)(iVar6 + 3) = *(undefined *)(iVar19 + 3);
-                              *(undefined *)(iVar6 + 4) = *(undefined *)(iVar19 + 4);
-                              *(undefined *)(iVar6 + 5) = *(undefined *)(iVar19 + 5);
-                              *(undefined *)(iVar6 + 6) = *(undefined *)(iVar19 + 6);
-                              *(undefined *)(iVar6 + 7) = *(undefined *)(iVar19 + 7);
-                              *(undefined *)(iVar6 + 8) = *(undefined *)(iVar19 + 8);
-                              *(undefined *)(iVar6 + 9) = *(undefined *)(iVar19 + 9);
-                              *(undefined *)(iVar6 + 10) = *(undefined *)(iVar19 + 10);
-                              *(undefined *)(iVar6 + 0xb) = *(undefined *)(iVar19 + 0xb);
-                              *(undefined *)(iVar6 + 0xc) = *(undefined *)(iVar19 + 0xc);
-                              *(undefined *)(iVar6 + 0xd) = *(undefined *)(iVar19 + 0xd);
-                              *(undefined *)(iVar6 + 0xe) = *(undefined *)(iVar19 + 0xe);
-                              *(undefined *)(iVar6 + 0xf) = *(undefined *)(iVar19 + 0xf);
-                              *(undefined *)(iVar6 + 0x10) = *(undefined *)(iVar19 + 0x10);
-                              *(undefined *)(iVar6 + 0x11) = *(undefined *)(iVar19 + 0x11);
-                              *(undefined *)(iVar6 + 0x12) = *(undefined *)(iVar19 + 0x12);
-                              *(undefined *)(iVar6 + 0x13) = *(undefined *)(iVar19 + 0x13);
-                              *(undefined *)(iVar6 + 0x14) = *(undefined *)(iVar19 + 0x14);
-                              *(undefined *)(iVar6 + 0x15) = *(undefined *)(iVar19 + 0x15);
-                              *(undefined *)(iVar6 + 0x16) = *(undefined *)(iVar19 + 0x16);
-                              *(undefined *)(iVar6 + 0x17) = *(undefined *)(iVar19 + 0x17);
-                              *(undefined *)(iVar6 + 0x18) = *(undefined *)(iVar19 + 0x18);
-                              *(undefined *)(iVar6 + 0x19) = *(undefined *)(iVar19 + 0x19);
-                              *(undefined *)(iVar6 + 0x1a) = *(undefined *)(iVar19 + 0x1a);
-                              *(undefined *)(iVar6 + 0x1b) = *(undefined *)(iVar19 + 0x1b);
-                              *(undefined *)(iVar6 + 0x1c) = *(undefined *)(iVar19 + 0x1c);
-                              *(undefined *)(iVar6 + 0x1d) = *(undefined *)(iVar19 + 0x1d);
-                              *(undefined *)(iVar6 + 0x1e) = *(undefined *)(iVar19 + 0x1e);
-                              puVar1 = (undefined *)(iVar19 + 0x1f);
-                              iVar19 = iVar19 + 0x20;
-                              *(undefined *)(iVar6 + 0x1f) = *puVar1;
-                              iVar6 = iVar6 + 0x20;
-                              pBVar15 = pBVar10;
-                            } while ((int)pBVar11 < (int)puVar21);
+                              HintPreloadData((undefined1 *)((int)&in->ptr + (int)(puVar9 + 2)));
+                              puVar12 = puVar9 + 0x20;
+                              puVar26 = puVar9 + 0x678;
+                              *(undefined1 *)((int)outl + (int)(puVar9 + 0x65a)) =
+                                   *(undefined1 *)((int)&in->method + (int)puVar9);
+                              puVar13 = puVar9 + 0x21;
+                              HintPreloadData((undefined1 *)((int)outl + (int)(puVar25 + 0x24)));
+                              puVar6[1] = puVar4[1];
+                              puVar6[2] = puVar4[2];
+                              puVar6[3] = puVar4[3];
+                              puVar6[4] = puVar4[4];
+                              puVar6[5] = puVar4[5];
+                              puVar6[6] = puVar4[6];
+                              puVar6[7] = puVar4[7];
+                              puVar6[8] = puVar4[8];
+                              puVar6[9] = puVar4[9];
+                              puVar6[10] = puVar4[10];
+                              puVar6[0xb] = puVar4[0xb];
+                              puVar6[0xc] = puVar4[0xc];
+                              puVar6[0xd] = puVar4[0xd];
+                              puVar6[0xe] = puVar4[0xe];
+                              puVar6[0xf] = puVar4[0xf];
+                              puVar6[0x10] = puVar4[0x10];
+                              puVar6[0x11] = puVar4[0x11];
+                              puVar6[0x12] = puVar4[0x12];
+                              puVar6[0x13] = puVar4[0x13];
+                              puVar6[0x14] = puVar4[0x14];
+                              puVar6[0x15] = puVar4[0x15];
+                              puVar6[0x16] = puVar4[0x16];
+                              puVar6[0x17] = puVar4[0x17];
+                              puVar6[0x18] = puVar4[0x18];
+                              puVar6[0x19] = puVar4[0x19];
+                              puVar6[0x1a] = puVar4[0x1a];
+                              puVar6[0x1b] = puVar4[0x1b];
+                              puVar6[0x1c] = puVar4[0x1c];
+                              puVar6[0x1d] = puVar4[0x1d];
+                              puVar6[0x1e] = puVar4[0x1e];
+                              puVar9 = puVar4 + 0x1f;
+                              puVar4 = puVar4 + 0x20;
+                              puVar6[0x1f] = *puVar9;
+                              puVar6 = puVar6 + 0x20;
+                              puVar9 = puVar12;
+                              puVar25 = puVar26;
+                            } while ((int)puVar13 < (int)(puVar16 + -0x1f));
                           }
                           do {
-                            pBVar15 = (BIO *)((int)&pBVar11->method + 1);
-                            *(undefined *)((int)outl + (int)pBVar10 + 0x65a) =
-                                 *(undefined *)((int)&pBVar10->method + (int)&in->method);
-                            bVar24 = (int)pBVar11 < (int)pBVar14;
-                            pBVar10 = pBVar11;
-                            pBVar11 = pBVar15;
-                          } while (bVar24);
+                            *(undefined1 *)((int)outl + (int)(puVar12 + 0x65a)) =
+                                 *(undefined1 *)((int)&in->method + (int)puVar12);
+                            bVar27 = (int)puVar13 < (int)puVar16;
+                            puVar12 = puVar13;
+                            puVar13 = puVar13 + 1;
+                          } while (bVar27);
                         }
 LAB_0012b9a8:
                         EVP_DecodeInit(ctx);
                         outl[5] = 0;
+                        uVar3 = extraout_r3_00;
                         goto LAB_0012b9b4;
                       }
-                      pBVar10 = (BIO *)0x0;
+                      puVar12 = (undefined1 *)0x0;
                       goto LAB_0012b83e;
                     }
-                    pBVar7 = (BIO *)((int)&pBVar7->method + 1);
+                    puVar17 = puVar17 + 1;
                     outl[3] = 0;
-                    in = pBVar16;
-                  } while (pBVar7 != pBVar14);
+                    in = pBVar18;
+                  } while (puVar17 != puVar16);
                   goto LAB_0012b55a;
                 }
 LAB_0012b9b4:
-                if (pBVar7 == pBVar14) {
+                if (puVar17 == puVar16) {
 LAB_0012b55a:
-                  if (local_2c[0] == (BIO *)0x0) {
-                    if (in == pBVar17) {
-                      bVar24 = pBVar7 == (BIO *)0x400;
-                      if (bVar24) {
-                        pBVar15 = (BIO *)0x1;
+                  if (local_2c[0] == (undefined1 *)0x0) {
+                    if (in == pBVar19) {
+                      bVar27 = puVar17 == (undefined1 *)0x400;
+                      if (bVar27) {
+                        uVar3 = 1;
                       }
-                      if (bVar24) {
+                      if (bVar27) {
                         outl[2] = 0;
                       }
-                      if (bVar24) {
-                        outl[3] = (size_t)pBVar15;
+                      if (bVar27) {
+                        outl[3] = uVar3;
                       }
                     }
-                    else if (in != pBVar16) {
-                      pBVar16 = (BIO *)((int)pBVar16 - (int)in);
-                      if (0 < (int)pBVar16) {
-                        uVar4 = (uint)pBVar16 >> 3;
-                        pBVar14 = (BIO *)0x0;
-                        if (uVar4 != 0 &&
-                            ((((uint)in | (uint)pBVar17) & 7) == 0 &&
-                            ((BIO *)0x7 < pBVar16 &&
-                            ((BIO *)((int)outl + 0x662) <= in || &in->cb_arg <= pBVar17)))) {
-                          if (uVar4 < 5) {
+                    else if (in != pBVar18) {
+                      pBVar18 = (BIO *)((int)pBVar18 - (int)in);
+                      if (0 < (int)pBVar18) {
+                        uVar3 = (uint)pBVar18 >> 3;
+                        pBVar8 = (BIO *)0x0;
+                        if (uVar3 != 0 &&
+                            ((((uint)in | (uint)pBVar19) & 7) == 0 &&
+                            ((BIO *)&DAT_00000007 < pBVar18 &&
+                            ((BIO *)((int)outl + 0x662) <= in || &in->cb_arg <= pBVar19)))) {
+                          if (uVar3 < 5) {
                             uVar5 = 0;
-                            pBVar14 = in;
+                            pBVar8 = in;
                           }
                           else {
                             uVar5 = 0;
-                            pBVar7 = (BIO *)((int)outl + 0x67a);
-                            pBVar15 = in;
+                            pBVar2 = (BIO *)((int)outl + 0x67a);
+                            pBVar7 = in;
                             do {
-                              pBVar17 = pBVar7;
-                              pBVar14 = (BIO *)&pBVar15->ptr;
-                              pbVar18 = (bio_st *)pBVar15->callback;
-                              uVar22 = uVar5 + 5;
+                              pBVar19 = pBVar2;
+                              pBVar8 = (BIO *)&pBVar7->ptr;
+                              pbVar20 = (bio_st *)pBVar7->callback;
+                              uVar23 = uVar5 + 5;
                               uVar5 = uVar5 + 4;
-                              HintPreloadData(&pBVar15[2].ex_data);
-                              pBVar17[-1].ptr = pBVar15->method;
-                              pBVar17[-1].next_bio = pbVar18;
-                              iVar19 = pBVar15->init;
-                              pBVar17[-1].prev_bio = (bio_st *)pBVar15->cb_arg;
-                              pBVar17[-1].references = iVar19;
-                              uVar20 = pBVar15->flags;
-                              pBVar17[-1].num_read = pBVar15->shutdown;
-                              pBVar17[-1].num_write = uVar20;
-                              iVar19 = pBVar15->num;
-                              pBVar17[-1].ex_data.sk = (stack_st_void *)pBVar15->retry_reason;
-                              pBVar17[-1].ex_data.dummy = iVar19;
-                              pBVar7 = (BIO *)&pBVar17->ptr;
-                              pBVar15 = pBVar14;
-                            } while (uVar22 < uVar4 - 3);
+                              HintPreloadData(&pBVar7[2].ex_data);
+                              pBVar19[-1].ptr = pBVar7->method;
+                              pBVar19[-1].next_bio = pbVar20;
+                              iVar21 = pBVar7->init;
+                              pBVar19[-1].prev_bio = (bio_st *)pBVar7->cb_arg;
+                              pBVar19[-1].references = iVar21;
+                              uVar22 = pBVar7->flags;
+                              pBVar19[-1].num_read = pBVar7->shutdown;
+                              pBVar19[-1].num_write = uVar22;
+                              iVar21 = pBVar7->num;
+                              pBVar19[-1].ex_data.sk = (stack_st_void *)pBVar7->retry_reason;
+                              pBVar19[-1].ex_data.dummy = iVar21;
+                              pBVar2 = (BIO *)&pBVar19->ptr;
+                              pBVar7 = pBVar8;
+                            } while (uVar23 < uVar3 - 3);
                           }
-                          pCVar12 = &pBVar14[-1].ex_data;
+                          pCVar14 = &pBVar8[-1].ex_data;
                           do {
-                            p_Var9 = *(_func_745 **)((int)(pCVar12 + 1) + 4);
+                            p_Var11 = *(_func_745 **)((int)(pCVar14 + 1) + 4);
                             uVar5 = uVar5 + 1;
-                            pBVar17->method = (BIO_METHOD *)pCVar12[1].sk;
-                            pBVar17->callback = p_Var9;
-                            pBVar17 = (BIO *)&pBVar17->cb_arg;
-                            pCVar12 = pCVar12 + 1;
-                          } while (uVar5 < uVar4);
-                          pBVar14 = (BIO *)((uint)pBVar16 & 0xfffffff8);
-                          if (pBVar16 == (BIO *)((uint)pBVar16 & 0xfffffff8)) goto LAB_0012b710;
+                            pBVar19->method = (BIO_METHOD *)pCVar14[1].sk;
+                            pBVar19->callback = p_Var11;
+                            pBVar19 = (BIO *)&pBVar19->cb_arg;
+                            pCVar14 = pCVar14 + 1;
+                          } while (uVar5 < uVar3);
+                          pBVar8 = (BIO *)(uVar3 * 8);
+                          if (pBVar18 == (BIO *)(uVar3 * 8)) goto LAB_0012b710;
                         }
-                        puVar21 = (undefined *)((int)&pBVar16[-1].ptr + 1);
-                        pBVar15 = (BIO *)((int)&pBVar14->method + 1);
-                        if ((int)pBVar14 < (int)pBVar16 && (int)pBVar15 < (int)puVar21) {
-                          pCVar12 = (CRYPTO_EX_DATA *)&pBVar14[0x19].retry_reason;
-                          iVar19 = (int)&pBVar14->method + (int)&in->method;
-                          iVar6 = (int)outl + (int)pCVar12 + 2;
-                          pBVar7 = pBVar14;
+                        puVar16 = (undefined1 *)((int)&pBVar18[-1].ptr + 1);
+                        pBVar19 = (BIO *)((int)&pBVar8->method + 1);
+                        if ((int)pBVar8 < (int)pBVar18 && (int)pBVar19 < (int)puVar16) {
+                          pCVar14 = (CRYPTO_EX_DATA *)&pBVar8[0x19].retry_reason;
+                          puVar17 = (undefined1 *)((int)&pBVar8->method + (int)&in->method);
+                          iVar21 = (int)outl + (int)pCVar14 + 2;
+                          pBVar7 = pBVar8;
                           do {
-                            HintPreloadData((undefined *)((int)&in->ptr + 2) + (int)pBVar7);
-                            iVar23 = (int)outl + (int)pCVar12;
-                            pCVar12 = &pBVar7[0x19].ex_data;
-                            *(undefined *)((int)outl + (int)pBVar7 + 0x65a) =
-                                 *(undefined *)((int)&pBVar7->method + (int)&in->method);
-                            pBVar15 = (BIO *)((int)&pBVar7->ptr + 1);
-                            HintPreloadData(iVar23 + 0x24);
-                            *(undefined *)(iVar6 + 1) = *(undefined *)(iVar19 + 1);
-                            *(undefined *)(iVar6 + 2) = *(undefined *)(iVar19 + 2);
-                            *(undefined *)(iVar6 + 3) = *(undefined *)(iVar19 + 3);
-                            *(undefined *)(iVar6 + 4) = *(undefined *)(iVar19 + 4);
-                            *(undefined *)(iVar6 + 5) = *(undefined *)(iVar19 + 5);
-                            *(undefined *)(iVar6 + 6) = *(undefined *)(iVar19 + 6);
-                            *(undefined *)(iVar6 + 7) = *(undefined *)(iVar19 + 7);
-                            *(undefined *)(iVar6 + 8) = *(undefined *)(iVar19 + 8);
-                            *(undefined *)(iVar6 + 9) = *(undefined *)(iVar19 + 9);
-                            *(undefined *)(iVar6 + 10) = *(undefined *)(iVar19 + 10);
-                            *(undefined *)(iVar6 + 0xb) = *(undefined *)(iVar19 + 0xb);
-                            *(undefined *)(iVar6 + 0xc) = *(undefined *)(iVar19 + 0xc);
-                            *(undefined *)(iVar6 + 0xd) = *(undefined *)(iVar19 + 0xd);
-                            *(undefined *)(iVar6 + 0xe) = *(undefined *)(iVar19 + 0xe);
-                            *(undefined *)(iVar6 + 0xf) = *(undefined *)(iVar19 + 0xf);
-                            *(undefined *)(iVar6 + 0x10) = *(undefined *)(iVar19 + 0x10);
-                            *(undefined *)(iVar6 + 0x11) = *(undefined *)(iVar19 + 0x11);
-                            *(undefined *)(iVar6 + 0x12) = *(undefined *)(iVar19 + 0x12);
-                            *(undefined *)(iVar6 + 0x13) = *(undefined *)(iVar19 + 0x13);
-                            *(undefined *)(iVar6 + 0x14) = *(undefined *)(iVar19 + 0x14);
-                            *(undefined *)(iVar6 + 0x15) = *(undefined *)(iVar19 + 0x15);
-                            *(undefined *)(iVar6 + 0x16) = *(undefined *)(iVar19 + 0x16);
-                            *(undefined *)(iVar6 + 0x17) = *(undefined *)(iVar19 + 0x17);
-                            *(undefined *)(iVar6 + 0x18) = *(undefined *)(iVar19 + 0x18);
-                            *(undefined *)(iVar6 + 0x19) = *(undefined *)(iVar19 + 0x19);
-                            *(undefined *)(iVar6 + 0x1a) = *(undefined *)(iVar19 + 0x1a);
-                            *(undefined *)(iVar6 + 0x1b) = *(undefined *)(iVar19 + 0x1b);
-                            *(undefined *)(iVar6 + 0x1c) = *(undefined *)(iVar19 + 0x1c);
-                            *(undefined *)(iVar6 + 0x1d) = *(undefined *)(iVar19 + 0x1d);
-                            *(undefined *)(iVar6 + 0x1e) = *(undefined *)(iVar19 + 0x1e);
-                            puVar1 = (undefined *)(iVar19 + 0x1f);
-                            iVar19 = iVar19 + 0x20;
-                            *(undefined *)(iVar6 + 0x1f) = *puVar1;
-                            iVar6 = iVar6 + 0x20;
-                            pBVar14 = (BIO *)&pBVar7->ptr;
+                            HintPreloadData((undefined1 *)((int)&in->ptr + 2) + (int)pBVar7);
+                            iVar24 = (int)outl + (int)pCVar14;
+                            pCVar14 = &pBVar7[0x19].ex_data;
+                            ((undefined1 *)((int)outl + (int)pBVar7))[0x65a] =
+                                 *(undefined1 *)((int)&pBVar7->method + (int)&in->method);
+                            pBVar19 = (BIO *)((int)&pBVar7->ptr + 1);
+                            HintPreloadData(iVar24 + 0x24);
+                            *(undefined1 *)(iVar21 + 1) = puVar17[1];
+                            *(undefined1 *)(iVar21 + 2) = puVar17[2];
+                            *(undefined1 *)(iVar21 + 3) = puVar17[3];
+                            *(undefined1 *)(iVar21 + 4) = puVar17[4];
+                            *(undefined1 *)(iVar21 + 5) = puVar17[5];
+                            *(undefined1 *)(iVar21 + 6) = puVar17[6];
+                            *(undefined1 *)(iVar21 + 7) = puVar17[7];
+                            *(undefined1 *)(iVar21 + 8) = puVar17[8];
+                            *(undefined1 *)(iVar21 + 9) = puVar17[9];
+                            *(undefined1 *)(iVar21 + 10) = puVar17[10];
+                            *(undefined1 *)(iVar21 + 0xb) = puVar17[0xb];
+                            *(undefined1 *)(iVar21 + 0xc) = puVar17[0xc];
+                            *(undefined1 *)(iVar21 + 0xd) = puVar17[0xd];
+                            *(undefined1 *)(iVar21 + 0xe) = puVar17[0xe];
+                            *(undefined1 *)(iVar21 + 0xf) = puVar17[0xf];
+                            *(undefined1 *)(iVar21 + 0x10) = puVar17[0x10];
+                            *(undefined1 *)(iVar21 + 0x11) = puVar17[0x11];
+                            *(undefined1 *)(iVar21 + 0x12) = puVar17[0x12];
+                            *(undefined1 *)(iVar21 + 0x13) = puVar17[0x13];
+                            *(undefined1 *)(iVar21 + 0x14) = puVar17[0x14];
+                            *(undefined1 *)(iVar21 + 0x15) = puVar17[0x15];
+                            *(undefined1 *)(iVar21 + 0x16) = puVar17[0x16];
+                            *(undefined1 *)(iVar21 + 0x17) = puVar17[0x17];
+                            *(undefined1 *)(iVar21 + 0x18) = puVar17[0x18];
+                            *(undefined1 *)(iVar21 + 0x19) = puVar17[0x19];
+                            *(undefined1 *)(iVar21 + 0x1a) = puVar17[0x1a];
+                            *(undefined1 *)(iVar21 + 0x1b) = puVar17[0x1b];
+                            *(undefined1 *)(iVar21 + 0x1c) = puVar17[0x1c];
+                            *(undefined1 *)(iVar21 + 0x1d) = puVar17[0x1d];
+                            *(undefined1 *)(iVar21 + 0x1e) = puVar17[0x1e];
+                            puVar12 = puVar17 + 0x1f;
+                            puVar17 = puVar17 + 0x20;
+                            *(undefined1 *)(iVar21 + 0x1f) = *puVar12;
+                            iVar21 = iVar21 + 0x20;
+                            pBVar8 = (BIO *)&pBVar7->ptr;
                             pBVar7 = (BIO *)&pBVar7->ptr;
-                          } while ((int)pBVar15 < (int)puVar21);
+                          } while ((int)pBVar19 < (int)puVar16);
                         }
                         do {
-                          *(undefined *)((int)outl + (int)pBVar14 + 0x65a) =
-                               *(undefined *)((int)&pBVar14->method + (int)&in->method);
-                          bVar24 = (int)pBVar15 < (int)pBVar16;
-                          pBVar14 = pBVar15;
-                          pBVar15 = (BIO *)((int)&pBVar15->method + 1);
-                        } while (bVar24);
+                          ((undefined1 *)((int)outl + (int)pBVar8))[0x65a] =
+                               *(undefined1 *)((int)&pBVar8->method + (int)&in->method);
+                          bVar27 = (int)pBVar19 < (int)pBVar18;
+                          pBVar8 = pBVar19;
+                          pBVar19 = (BIO *)((int)&pBVar19->method + 1);
+                        } while (bVar27);
                       }
 LAB_0012b710:
-                      outl[2] = (size_t)pBVar16;
+                      outl[2] = (size_t)pBVar18;
                     }
                     goto joined_r0x0012b3c8;
                   }
                 }
-                pBVar16 = (BIO *)0x0;
+                pBVar18 = (BIO *)0x0;
                 outl[2] = 0;
               }
               else {
@@ -421,55 +423,55 @@ LAB_0012b710:
               }
 LAB_0012b412:
               local_54 = (uchar *)((int)outl + 0x65a);
-              uVar4 = BIO_test_flags(param_1,-1);
-              if ((uVar4 & 0x100) == 0) {
-                sVar8 = EVP_DecodeUpdate(ctx,(uchar *)out,(int *)outl,local_54,(int)pBVar14);
+              uVar3 = BIO_test_flags(param_1,-1);
+              if ((uVar3 & 0x100) == 0) {
+                sVar10 = EVP_DecodeUpdate(ctx,(uchar *)out,(int *)outl,local_54,(int)puVar16);
                 outl[2] = 0;
 LAB_0012b4de:
                 outl[1] = 0;
-                if ((int)sVar8 < 0) {
+                if ((int)sVar10 < 0) {
                   *outl = 0;
                   local_3c = 0;
                   break;
                 }
-                sVar8 = *outl;
+                sVar10 = *outl;
               }
               else {
-                pBVar15 = (BIO *)((uint)pBVar14 & 0xfffffffc);
-                sVar13 = EVP_DecodeBlock((uchar *)out,local_54,(int)pBVar15);
-                sVar8 = sVar13;
-                if (((2 < (int)pBVar15) && (*(char *)((int)outl + (int)pBVar15 + 0x659) == '=')) &&
-                   (sVar8 = sVar13 - 1, *(char *)((int)outl + (int)pBVar15 + 0x658) == '=')) {
-                  sVar8 = sVar13 - 2;
+                puVar17 = (undefined1 *)((uint)puVar16 & 0xfffffffc);
+                sVar15 = EVP_DecodeBlock((uchar *)out,local_54,(int)puVar17);
+                sVar10 = sVar15;
+                if (((2 < (int)puVar17) && (*(char *)((int)outl + (int)(puVar17 + 0x659)) == '='))
+                   && (sVar10 = sVar15 - 1, *(char *)((int)outl + (int)(puVar17 + 0x658)) == '=')) {
+                  sVar10 = sVar15 - 2;
                 }
-                if (pBVar15 != pBVar14) {
-                  memmove(local_54,(void *)((int)outl + (int)pBVar15 + 0x65a),
-                          (int)pBVar14 - (int)pBVar15);
-                  outl[2] = (int)pBVar14 - (int)pBVar15;
+                if (puVar17 != puVar16) {
+                  memmove(local_54,(undefined1 *)((int)outl + (int)(puVar17 + 0x65a)),
+                          (int)puVar16 - (int)puVar17);
+                  outl[2] = (int)puVar16 - (int)puVar17;
                 }
-                if ((int)sVar8 < 1) {
+                if ((int)sVar10 < 1) {
                   *outl = 0;
                   goto LAB_0012b4de;
                 }
-                *outl = sVar8;
+                *outl = sVar10;
                 outl[1] = 0;
               }
-              if ((int)param_3 <= (int)sVar8) {
-                sVar8 = param_3;
+              if ((int)param_3 <= (int)sVar10) {
+                sVar10 = param_3;
               }
-              memcpy(local_4c,out,sVar8);
-              param_3 = param_3 - sVar8;
-              sVar13 = *outl;
-              outl[1] = sVar8;
-              local_44 = local_44 + sVar8;
-              if (sVar13 == sVar8) {
-                pBVar16 = (BIO *)0x0;
+              memcpy(local_4c,out,sVar10);
+              param_3 = param_3 - sVar10;
+              sVar15 = *outl;
+              outl[1] = sVar10;
+              local_44 = local_44 + sVar10;
+              if (sVar15 == sVar10) {
+                pBVar18 = (BIO *)0x0;
                 *outl = 0;
               }
-              if (sVar13 == sVar8) {
-                outl[1] = (size_t)pBVar16;
+              if (sVar15 == sVar10) {
+                outl[1] = (size_t)pBVar18;
               }
-              local_4c = (void *)((int)local_4c + sVar8);
+              local_4c = (void *)((int)local_4c + sVar10);
             }
 joined_r0x0012b3c8:
             if (((int)param_3 < 1) || ((int)outl[6] < 1)) break;
@@ -484,8 +486,8 @@ joined_r0x0012b3c8:
   }
   return local_44;
 LAB_0012b532:
-  pBVar7 = (BIO *)((int)&pBVar7->method + 1);
-  if (pBVar7 == pBVar14) goto LAB_0012b55a;
+  puVar17 = puVar17 + 1;
+  if (puVar17 == puVar16) goto LAB_0012b55a;
   goto LAB_0012b538;
 }
 

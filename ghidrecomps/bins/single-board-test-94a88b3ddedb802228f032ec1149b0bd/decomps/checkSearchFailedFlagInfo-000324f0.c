@@ -9,7 +9,7 @@ void checkSearchFailedFlagInfo(void)
   if (pFVar1 != (FILE *)0x0) {
     fread(search_failed_info,1,0x40,pFVar1);
     fclose(pFVar1);
-    search_failed_info[63] = 0;
+    search_failed_info[0x3f] = 0;
     if (3 < log_level) {
       pFVar1 = fopen(log_file,"a+");
       if (pFVar1 != (FILE *)0x0) {
@@ -41,7 +41,7 @@ void checkSearchFailedFlagInfo(void)
     system("cat /tmp/err1.log >> /tmp/search");
     system("cat /tmp/err2.log >> /tmp/freq");
     system("cat /tmp/err3.log >> /tmp/lasttemp");
-    search_failed_info._0_4_ = DAT_00132880;
+    search_failed_info._0_4_ = 0x313a52;
     saveSearchFailedFlagInfo();
     searchStatus = 2;
     do {

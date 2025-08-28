@@ -8,9 +8,9 @@ undefined4 bn_rand_range(int param_1,BIGNUM *param_2,BIGNUM *param_3)
   int iVar4;
   code *pcVar5;
   
-  pcVar5 = DAT_000f2298;
+  pcVar5 = (code *)0xf244d;
   if (param_1 == 0) {
-    pcVar5 = DAT_000f2294;
+    pcVar5 = (code *)0xf23fd;
   }
   if ((param_3->neg == 0) && (param_3->top != 0)) {
     iVar2 = BN_num_bits(param_3);
@@ -35,7 +35,7 @@ undefined4 bn_rand_range(int param_1,BIGNUM *param_2,BIGNUM *param_3)
           if (iVar3 == 0) {
             iVar2 = 0x107;
 LAB_000f227a:
-            ERR_put_error(3,0x7a,0x71,DAT_000f229c,iVar2);
+            ERR_put_error(3,0x7a,0x71,"bn_rand.c",iVar2);
             return 0;
           }
           iVar4 = BN_cmp(param_2,param_3);
@@ -60,7 +60,7 @@ LAB_000f227a:
     }
   }
   else {
-    ERR_put_error(3,0x7a,0x73,DAT_000f229c,0xe6);
+    ERR_put_error(3,0x7a,0x73,"bn_rand.c",0xe6);
     uVar1 = 0;
   }
   return uVar1;

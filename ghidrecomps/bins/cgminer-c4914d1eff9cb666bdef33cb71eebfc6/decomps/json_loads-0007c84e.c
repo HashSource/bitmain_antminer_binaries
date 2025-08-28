@@ -19,7 +19,7 @@ json_t * json_loads(char *string,size_t flags,json_error_t *error)
   else {
     stream_data.pos = 0;
     stream_data.data = string;
-    iVar1 = lex_init(&lex,string_get + 1,flags,&stream_data);
+    iVar1 = lex_init(&lex,(get_func)0x7c811,flags,&stream_data);
     if (iVar1 == 0) {
       pjVar2 = parse_json(&lex,flags,error);
       lex_close(&lex);

@@ -1,5 +1,5 @@
 
-undefined4 gost_do_verify(int param_1,undefined4 param_2,BIGNUM **param_3,int param_4)
+undefined4 gost_do_verify(int param_1,undefined4 param_2,undefined4 *param_3,int param_4)
 
 {
   BN_CTX *ctx;
@@ -21,13 +21,14 @@ undefined4 gost_do_verify(int param_1,undefined4 param_2,BIGNUM **param_3,int pa
   
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0) {
-    ERR_GOST_error(0x71,0x41,DAT_000e0414,0xac);
+    ERR_GOST_error(0x71,0x41,"gost_sign.c",0xac);
     uVar3 = 0;
   }
   else {
     BN_CTX_start(ctx);
-    iVar1 = BN_cmp(param_3[1],*(BIGNUM **)(param_4 + 0x10));
-    if ((iVar1 < 1) && (iVar1 = BN_cmp(*param_3,*(BIGNUM **)(param_4 + 0x10)), iVar1 < 1)) {
+    iVar1 = BN_cmp((BIGNUM *)param_3[1],*(BIGNUM **)(param_4 + 0x10));
+    if ((iVar1 < 1) && (iVar1 = BN_cmp((BIGNUM *)*param_3,*(BIGNUM **)(param_4 + 0x10)), iVar1 < 1))
+    {
       puVar2 = (uchar *)(param_1 + -1);
       s = auStack_28;
       do {
@@ -67,7 +68,7 @@ LAB_000e028a:
           (r_01 == (BIGNUM *)0x0 || r_02 == (BIGNUM *)0x0)) ||
          (r_03 == (BIGNUM *)0x0 || rem_00 == (BIGNUM *)0x0)) {
         uVar3 = 0;
-        ERR_GOST_error(0x71,0x41,DAT_000e0414,0xc0);
+        ERR_GOST_error(0x71,0x41,"gost_sign.c",0xc0);
       }
       else {
         BN_div((BIGNUM *)0x0,rem,a,*(BIGNUM **)(param_4 + 0x10),ctx);
@@ -77,17 +78,17 @@ LAB_000e028a:
         BN_copy(a_00,*(BIGNUM **)(param_4 + 0x10));
         BN_sub_word(a_00,2);
         BN_mod_exp(r,a,a_00,*(BIGNUM **)(param_4 + 0x10),ctx);
-        BN_mod_mul(r_00,param_3[1],r,*(BIGNUM **)(param_4 + 0x10),ctx);
-        BN_sub(rem,*(BIGNUM **)(param_4 + 0x10),*param_3);
+        BN_mod_mul(r_00,(BIGNUM *)param_3[1],r,*(BIGNUM **)(param_4 + 0x10),ctx);
+        BN_sub(rem,*(BIGNUM **)(param_4 + 0x10),(BIGNUM *)*param_3);
         BN_mod_mul(r_01,rem,r,*(BIGNUM **)(param_4 + 0xc),ctx);
         BN_mod_exp(rem,*(BIGNUM **)(param_4 + 0x14),r_00,*(BIGNUM **)(param_4 + 0xc),ctx);
         BN_mod_exp(r_02,*(BIGNUM **)(param_4 + 0x18),r_01,*(BIGNUM **)(param_4 + 0xc),ctx);
         BN_mod_mul(r_03,rem,r_02,*(BIGNUM **)(param_4 + 0xc),ctx);
         uVar3 = 1;
         BN_div((BIGNUM *)0x0,rem_00,r_03,*(BIGNUM **)(param_4 + 0x10),ctx);
-        iVar1 = BN_cmp(rem_00,*param_3);
+        iVar1 = BN_cmp(rem_00,(BIGNUM *)*param_3);
         if (iVar1 != 0) {
-          ERR_GOST_error(0x71,0x7e,DAT_000e0414,0xd5);
+          ERR_GOST_error(0x71,0x7e,"gost_sign.c",0xd5);
           uVar3 = 0;
         }
       }
@@ -97,7 +98,7 @@ LAB_000e028a:
     }
     else {
       uVar3 = 0;
-      ERR_GOST_error(0x71,0x7f,DAT_000e0414,0xb2);
+      ERR_GOST_error(0x71,0x7f,"gost_sign.c",0xb2);
     }
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);

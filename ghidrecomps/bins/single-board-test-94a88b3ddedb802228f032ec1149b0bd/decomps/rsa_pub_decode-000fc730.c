@@ -12,7 +12,7 @@ int rsa_pub_decode(EVP_PKEY *param_1,X509_PUBKEY *param_2)
   if (iVar1 != 0) {
     key = d2i_RSAPublicKey((RSA **)0x0,&puStack_18,local_14[0]);
     if (key == (RSA *)0x0) {
-      ERR_put_error(4,0x8b,4,DAT_000fc77c,99);
+      ERR_put_error(4,0x8b,4,"rsa_ameth.c",99);
       iVar1 = 0;
     }
     else {

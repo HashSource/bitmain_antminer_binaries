@@ -13,7 +13,7 @@ void ssl3_clear(undefined4 *param_1)
   ssl3_cleanup_key_block();
   iVar1 = param_1[0x16];
   if (*(_STACK **)(iVar1 + 0x36c) != (_STACK *)0x0) {
-    sk_pop_free(*(_STACK **)(iVar1 + 0x36c),DAT_000695c0);
+    sk_pop_free(*(_STACK **)(iVar1 + 0x36c),(func *)0xb7acd);
     iVar1 = param_1[0x16];
   }
   if (*(void **)(iVar1 + 0x120) != (void *)0x0) {
@@ -31,7 +31,7 @@ void ssl3_clear(undefined4 *param_1)
     iVar1 = param_1[0x16];
     *(undefined4 *)(iVar1 + 0x34c) = 0;
   }
-  *(undefined *)(iVar1 + 0x420) = 0;
+  *(undefined1 *)(iVar1 + 0x420) = 0;
   pvVar2 = (void *)param_1[0x16];
   uVar7 = *(undefined4 *)((int)pvVar2 + 0xec);
   uVar6 = *(undefined4 *)((int)pvVar2 + 0xfc);
@@ -71,7 +71,7 @@ void ssl3_clear(undefined4 *param_1)
   if (pvVar2 != (void *)0x0) {
     CRYPTO_free(pvVar2);
     param_1[0x5d] = 0;
-    *(undefined *)(param_1 + 0x5e) = 0;
+    *(undefined1 *)(param_1 + 0x5e) = 0;
   }
   return;
 }

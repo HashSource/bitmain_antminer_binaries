@@ -9,7 +9,7 @@ int remove_session_lock_part_1(int param_1,void *param_2,int param_3)
   bool bVar5;
   
   if (param_3 != 0) {
-    CRYPTO_lock(9,0xc,DAT_0007e920,0x336);
+    CRYPTO_lock(9,0xc,"ssl_sess.c",0x336);
   }
   pvVar1 = lh_retrieve(*(_LHASH **)(param_1 + 0x10),param_2);
   if (param_2 == pvVar1) {
@@ -62,7 +62,7 @@ int remove_session_lock_part_1(int param_1,void *param_2,int param_3)
     iVar4 = 0;
   }
   if (param_3 != 0) {
-    CRYPTO_lock(10,0xc,DAT_0007e920,0x33e);
+    CRYPTO_lock(10,0xc,"ssl_sess.c",0x33e);
   }
   if (iVar4 != 0) {
     pcVar3 = *(code **)(param_1 + 0x2c);
@@ -70,7 +70,7 @@ int remove_session_lock_part_1(int param_1,void *param_2,int param_3)
     if (pcVar3 != (code *)0x0) {
       (*pcVar3)(param_1,pvVar1);
     }
-    iVar2 = CRYPTO_add_lock((int *)((int)pvVar1 + 0xa4),-1,0xe,DAT_0007e920,0x352);
+    iVar2 = CRYPTO_add_lock((int *)((int)pvVar1 + 0xa4),-1,0xe,"ssl_sess.c",0x352);
     if (iVar2 < 1) {
       SSL_SESSION_free_part_0(pvVar1);
     }

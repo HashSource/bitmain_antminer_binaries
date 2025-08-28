@@ -8,7 +8,7 @@ int ec_GFp_nist_field_mul
   
   if ((param_1 == 0 || param_2 == (BIGNUM *)0x0) ||
      (param_3 == (BIGNUM *)0x0 || param_4 == (BIGNUM *)0x0)) {
-    ERR_put_error(0x10,200,0x43,DAT_00124704,0xb1);
+    ERR_put_error(0x10,200,0x43,"ecp_nist.c",0xb1);
   }
   else {
     c = (BN_CTX *)0x0;

@@ -20,7 +20,7 @@ int dtls1_read_failed(SSL *param_1,int param_2,undefined4 param_3,undefined4 par
   }
   else {
     param_2 = 1;
-    fprintf(*DAT_00078bac,DAT_00078bb0,DAT_00078bb4,0x404,param_4);
+    fprintf(stderr,"invalid state reached %s:%d","d1_both.c",0x404,param_4);
   }
   return param_2;
 }

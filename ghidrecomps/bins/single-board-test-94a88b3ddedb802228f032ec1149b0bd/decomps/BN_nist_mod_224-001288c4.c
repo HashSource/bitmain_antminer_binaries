@@ -23,11 +23,11 @@ int BN_nist_mod_224(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   
   puVar9 = a->d;
   iVar10 = a->top;
-  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,DAT_00128920), -1 < iVar2)) {
-    iVar10 = BN_nnmod(r,a,DAT_00128924,ctx);
+  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,(BIGNUM *)_bignum_nist_p_224_sqr_8284), -1 < iVar2)) {
+    iVar10 = BN_nnmod(r,a,(BIGNUM *)_bignum_nist_p_224,ctx);
     return iVar10;
   }
-  iVar2 = BN_ucmp(DAT_00128924,a);
+  iVar2 = BN_ucmp((BIGNUM *)_bignum_nist_p_224,a);
   if (iVar2 == 0) {
     BN_set_word(r,0);
     return 1;
@@ -103,7 +103,7 @@ LAB_001289f4:
   uVar15 = -(uint)(uVar13 < local_60[4]) - (uint)(*rp < local_60[0]);
   uVar5 = uVar15 + rp[1];
   *rp = uVar13 - local_60[4];
-  pcVar14 = DAT_00128c38;
+  pcVar14 = bn_sub_words;
   uVar13 = uVar5 - local_60[1];
   uVar5 = ((((int)uVar15 >> 0x1f) + (uint)CARRY4(uVar15,rp[1])) - (uint)(uVar5 < local_60[1])) -
           (uint)(uVar13 < local_60[5]);
@@ -141,16 +141,16 @@ LAB_001289f4:
       uVar5 = 0xffffffff;
     }
     else {
-      uVar8 = bn_add_words(rp,rp,(ulong *)(DAT_00128c30 + ~uVar5 * 0x1c),7);
+      uVar8 = bn_add_words(rp,rp,(ulong *)(_nist_p_224 + ~uVar5 * 0x1c),7);
       uVar5 = -uVar8;
-      pcVar14 = (code *)(DAT_00128c34 & ~uVar5 | uVar5 & (uint)pcVar14);
+      pcVar14 = (code *)(~uVar5 & 0x9f81d | uVar5 & 0x9fa9d);
     }
   }
   else {
-    uVar8 = bn_sub_words(rp,rp,(ulong *)(DAT_00128c30 + (uVar5 - 1) * 0x1c),7);
+    uVar8 = bn_sub_words(rp,rp,(ulong *)(_nist_p_224 + (uVar5 - 1) * 0x1c),7);
     uVar5 = -uVar8;
   }
-  iVar10 = (*pcVar14)(local_44,rp,DAT_00128c30,7);
+  iVar10 = (*pcVar14)(local_44,rp,_nist_p_224,7);
   puVar9 = r->d;
   puVar7 = (ulong *)((uint)local_44 & ~(-iVar10 & uVar5) | -iVar10 & uVar5 & (uint)rp);
   *rp = *puVar7;

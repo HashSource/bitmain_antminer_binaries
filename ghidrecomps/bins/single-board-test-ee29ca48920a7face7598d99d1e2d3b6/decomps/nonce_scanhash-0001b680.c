@@ -9,16 +9,16 @@ undefined4 nonce_scanhash(void)
   uint uVar5;
   bool bVar6;
   longlong lVar7;
-  undefined auStack_b88 [360];
+  undefined1 auStack_b88 [360];
   char acStack_a20 [1024];
   undefined4 local_620;
   undefined4 local_61c;
-  undefined *local_618;
-  undefined auStack_614 [136];
+  undefined1 *local_618;
+  undefined1 auStack_614 [136];
   undefined4 uStack_58c;
-  undefined auStack_588 [1344];
+  undefined1 auStack_588 [1344];
   byte local_48;
-  undefined local_47;
+  undefined1 local_47;
   undefined4 local_40;
   byte local_3c;
   int local_38;
@@ -108,7 +108,7 @@ undefined4 nonce_scanhash(void)
           snprintf(acStack_a20,0x400,"Golden Nonce Found! %d\n",iVar2);
           _applog(3,acStack_a20,0);
         }
-        print_solver_line(auStack_588,auStack_614,g_work_info._428_4_,DAT_0001bcc4);
+        print_solver_line(auStack_588,auStack_614,g_work_info._428_4_,0xf32d4);
         bVar6 = 0xfffffffe < (uint)total_shares_8877;
         total_shares_8877._0_4_ = (uint)total_shares_8877 + 1;
         total_shares_8877._4_4_ = total_shares_8877._4_4_ + (uint)bVar6;

@@ -12,7 +12,7 @@ void ERR_add_error_vdata(int num,va_list args)
   char *addr;
   int iVar6;
   
-  dst = (char *)CRYPTO_malloc(0x51,DAT_000ae4f4,0x441);
+  dst = (char *)CRYPTO_malloc(0x51,"err.c",0x441);
   if (dst != (char *)0x0) {
     iVar3 = 0;
     *dst = '\0';
@@ -30,7 +30,7 @@ void ERR_add_error_vdata(int num,va_list args)
           sVar1 = strlen(__s);
           iVar3 = sVar1 + iVar3;
           if (iVar6 < iVar3) {
-            dst = (char *)CRYPTO_realloc(addr,iVar3 + 0x15,DAT_000ae4f4,0x44e);
+            dst = (char *)CRYPTO_realloc(addr,iVar3 + 0x15,"err.c",0x44e);
             iVar6 = iVar3 + 0x14;
             if (dst == (char *)0x0) {
               CRYPTO_free(addr);

@@ -17,7 +17,7 @@ undefined4 * policy_data_new(undefined4 *param_1,ASN1_OBJECT *param_2,int param_
         return (undefined4 *)0x0;
       }
     }
-    ptr = (undefined4 *)CRYPTO_malloc(0x10,DAT_000cd7bc,99);
+    ptr = (undefined4 *)CRYPTO_malloc(0x10,"pcy_data.c",99);
     if (ptr != (undefined4 *)0x0) {
       p_Var1 = sk_new_null();
       ptr[3] = p_Var1;

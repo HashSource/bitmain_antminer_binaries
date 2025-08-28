@@ -6,7 +6,7 @@ int pthread_rwlock_destroy(pthread_rwlock_t *__rwlock)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_rwlock_destroy_0007d008)();
+  iVar1 = pthread_rwlock_destroy(__rwlock);
   return iVar1;
 }
 

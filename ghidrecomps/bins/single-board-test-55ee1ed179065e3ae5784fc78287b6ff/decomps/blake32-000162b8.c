@@ -38,20 +38,20 @@ void blake32(int param_1,void *param_2,uint param_3)
   uint uVar34;
   uint uVar35;
   uint uVar36;
-  uint local_dc;
-  void *local_d8;
-  uint local_38;
-  uint local_34;
-  uint local_30;
-  uint local_2c;
-  uint local_28;
-  uint local_24;
-  uint local_20;
-  uint local_1c;
-  uint local_18;
-  uint local_14;
-  uint local_10;
-  int local_c;
+  undefined4 local_dc;
+  undefined4 local_d8;
+  undefined4 local_38;
+  undefined4 local_34;
+  undefined4 local_30;
+  undefined4 local_2c;
+  undefined4 local_28;
+  undefined4 local_24;
+  undefined4 local_20;
+  undefined4 local_1c;
+  undefined4 local_18;
+  undefined4 local_14;
+  undefined4 local_10;
+  undefined4 local_c;
   
   local_c = *(int *)(param_1 + 0x40);
   if (param_3 < 0x40U - local_c) {

@@ -1,12 +1,12 @@
 
-void BM1722_chain_inactive(undefined param_1)
+void BM1722_chain_inactive(undefined1 param_1)
 
 {
-  undefined local_10;
-  undefined local_f;
-  undefined local_e;
-  undefined local_d;
-  undefined local_c;
+  undefined1 local_10;
+  undefined1 local_f;
+  undefined1 local_e;
+  undefined1 local_d;
+  undefined1 local_c;
   
   local_10 = 0;
   local_f = 0;

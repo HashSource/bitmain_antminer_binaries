@@ -1,5 +1,5 @@
 
-void read_chain_data_from_file(undefined param_1,void *param_2,size_t param_3)
+void read_chain_data_from_file(undefined1 param_1,void *param_2,size_t param_3)
 
 {
   char acStack_d4 [200];

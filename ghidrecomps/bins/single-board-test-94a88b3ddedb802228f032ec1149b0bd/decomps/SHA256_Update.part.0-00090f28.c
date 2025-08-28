@@ -1,5 +1,5 @@
 
-void SHA256_Update_part_0(int param_1,void *param_2,uint param_3)
+void SHA256_Update_part_0(int param_1,void *param_2,size_t param_3)
 
 {
   int iVar1;
@@ -17,12 +17,12 @@ void SHA256_Update_part_0(int param_1,void *param_2,uint param_3)
   if (uVar3 < uVar4) {
     iVar2 = iVar2 + 1;
   }
-  *(uint *)(param_1 + 0x24) = iVar2 + (param_3 >> 0x1d);
+  *(size_t *)(param_1 + 0x24) = iVar2 + (param_3 >> 0x1d);
   if (iVar1 != 0) {
     __s = (void *)(param_1 + 0x28);
     if ((param_3 < 0x40) && (param_3 + iVar1 < 0x40)) {
       memcpy((void *)((int)__s + iVar1),param_2,param_3);
-      *(uint *)(param_1 + 0x68) = *(int *)(param_1 + 0x68) + param_3;
+      *(size_t *)(param_1 + 0x68) = *(int *)(param_1 + 0x68) + param_3;
       return;
     }
     __n = 0x40 - iVar1;
@@ -35,14 +35,13 @@ void SHA256_Update_part_0(int param_1,void *param_2,uint param_3)
   }
   uVar3 = param_3 >> 6;
   if (uVar3 != 0) {
-    uVar4 = param_3 & 0xffffffc0;
-    param_3 = param_3 - uVar4;
+    param_3 = param_3 + uVar3 * -0x40;
     sha256_block_data_order(param_1,param_2,uVar3);
-    param_2 = (void *)((int)param_2 + uVar4);
+    param_2 = (void *)((int)param_2 + uVar3 * 0x40);
   }
   if (param_3 != 0) {
-    *(uint *)(param_1 + 0x68) = param_3;
-    (*(code *)PTR_memcpy_00194250)(param_1 + 0x28,param_2,param_3);
+    *(size_t *)(param_1 + 0x68) = param_3;
+    memcpy((void *)(param_1 + 0x28),param_2,param_3);
     return;
   }
   return;

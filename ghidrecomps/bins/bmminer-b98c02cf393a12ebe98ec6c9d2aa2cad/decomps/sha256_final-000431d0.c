@@ -38,7 +38,7 @@ void sha256_final(int *param_1,int param_2)
   }
   iVar5 = (*param_1 + uVar2) * 8;
   memset((void *)((int)piVar4 + uVar2),0,iVar1 - uVar2);
-  *(undefined *)((int)param_1 + param_1[1] + 8) = 0x80;
+  *(undefined1 *)((int)param_1 + param_1[1] + 8) = 0x80;
   *(char *)((int)piVar4 + iVar8) = (char)iVar5;
   *(char *)((int)piVar4 + iVar7) = (char)((uint)iVar5 >> 8);
   *(char *)((int)piVar4 + iVar6) = (char)((uint)iVar5 >> 0x10);
@@ -51,7 +51,7 @@ void sha256_final(int *param_1,int param_2)
     *(char *)(iVar8 + 3) = (char)*piVar4;
     *(char *)(iVar8 + 2) = (char)((uint)*piVar4 >> 8);
     *(char *)(iVar8 + 1) = (char)((uint)*piVar4 >> 0x10);
-    *(undefined *)(param_2 + iVar1 * 4) = *(undefined *)((int)piVar4 + 3);
+    *(undefined1 *)(param_2 + iVar1 * 4) = *(undefined1 *)((int)piVar4 + 3);
     iVar1 = iVar1 + 1;
     piVar4 = piVar4 + 1;
   } while (iVar1 != 8);

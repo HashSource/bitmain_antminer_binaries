@@ -6,9 +6,7 @@ int atoi(char *__nptr)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a438. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_00085324)();
+  iVar1 = (*(code *)(undefined *)0x0)(__nptr);
   return iVar1;
 }
 

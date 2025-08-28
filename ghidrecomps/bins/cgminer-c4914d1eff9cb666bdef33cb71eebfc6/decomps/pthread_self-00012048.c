@@ -6,7 +6,7 @@ pthread_t pthread_self(void)
 {
   pthread_t pVar1;
   
-  pVar1 = (*(code *)PTR_pthread_self_000a806c)();
+  pVar1 = pthread_self();
   return pVar1;
 }
 

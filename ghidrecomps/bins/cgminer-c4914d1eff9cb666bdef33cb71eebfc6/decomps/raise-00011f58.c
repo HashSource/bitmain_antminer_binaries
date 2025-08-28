@@ -6,7 +6,7 @@ int raise(int __sig)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_raise_000a801c)();
+  iVar1 = raise(__sig);
   return iVar1;
 }
 

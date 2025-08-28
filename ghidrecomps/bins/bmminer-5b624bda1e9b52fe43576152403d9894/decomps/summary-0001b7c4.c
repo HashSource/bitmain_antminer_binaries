@@ -4,32 +4,24 @@
 void summary(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  double *pdVar1;
-  double *pdVar2;
-  undefined8 *puVar3;
-  int64_t *piVar4;
-  double *pdVar5;
-  uint *data;
-  _Bool _Var6;
-  int iVar7;
-  api_data *paVar8;
+  longlong lVar1;
+  int64_t iVar2;
+  ulonglong uVar3;
+  _Bool _Var4;
+  int iVar5;
+  undefined4 uVar6;
+  api_data *paVar7;
   char *buf;
-  uint uVar9;
   char *func;
-  uint uVar10;
-  time_t *func_00;
-  char *line;
-  uint uVar11;
+  char *func_00;
+  int line;
   int line_00;
-  double dVar12;
-  double dVar13;
-  double dVar14;
-  double dVar15;
-  undefined8 uVar16;
+  double dVar8;
+  double dVar9;
   _Bool io_open;
-  double utility;
-  double ghs;
-  double work_utility;
+  double local_68;
+  double local_60;
+  double local_58;
   undefined4 local_50;
   undefined4 uStack_4c;
   undefined4 local_48;
@@ -38,111 +30,108 @@ void summary(io_data *io_data,long c,char *param,_Bool isjson,char group)
   undefined4 uStack_3c;
   double dStack_38;
   
-  func = (char *)0x0;
   message(io_data,0xb,0,(char *)0x0,isjson);
-  buf = DAT_0001bac4;
+  buf = "SUMMARY,";
   if (isjson) {
-    buf = DAT_0001bac0;
+    buf = ",\"SUMMARY\":[";
   }
-  line = DAT_0001bac0;
-  _Var6 = io_add(io_data,buf);
-  iVar7 = pthread_mutex_lock(DAT_0001bac8);
-  if (iVar7 != 0) {
-    _mutex_lock(DAT_0001bc18,(char *)0xaf2,func,(int)line);
+  _Var4 = io_add(io_data,buf);
+  iVar5 = pthread_mutex_lock((pthread_mutex_t *)&hash_lock);
+  if (iVar5 != 0) {
+    _mutex_lock((pthread_mutex_t *)"summary",(char *)0xaf2,func,line);
   }
-  pdVar5 = DAT_0001bb64;
-  puVar3 = DAT_0001bad4;
-  pdVar2 = DAT_0001bad0;
-  pdVar1 = DAT_0001bacc;
-  dVar12 = *DAT_0001bacc + *DAT_0001bad0 + *DAT_0001bb64;
-  uVar16 = __aeabi_d2lz(SUB84(dVar12,0),(int)((ulonglong)dVar12 >> 0x20));
-  piVar4 = DAT_0001bad8;
-  *puVar3 = uVar16;
-  dVar12 = (double)__aeabi_l2d(*(undefined4 *)piVar4,*(undefined4 *)((int)piVar4 + 4));
-  data = DAT_0001bb8c;
-  dVar15 = *DAT_0001badc;
-  if (dVar15 == 0.0) {
-    dVar14 = *DAT_0001bc14;
-    utility = dVar12 * DAT_0001bc00;
-    dVar13 = (*DAT_0001bc1c - *DAT_0001bc10) / DAT_0001bbf8;
-    dVar12 = 1.0;
+  dVar8 = total_diff_accepted + total_diff_rejected + total_diff_stale;
+  total_diff1 = __aeabi_d2lz(SUB84(dVar8,0),(int)((ulonglong)dVar8 >> 0x20));
+  uVar3 = (ulonglong)total_diff1 >> 0x20;
+  uVar6 = (undefined4)total_diff1;
+  local_68 = (double)__aeabi_l2d((undefined4)total_accepted,total_accepted._4_4_);
+  if (total_secs == 0.0) {
+    dVar8 = 1.0;
   }
   else {
-    dVar14 = *DAT_0001bae4;
-    dVar13 = (*DAT_0001bb50 - *DAT_0001bae0) / DAT_0001bab0;
-    utility = (dVar12 / dVar15) * DAT_0001bab8;
-    dVar12 = dVar15;
+    local_68 = local_68 / total_secs;
+    dVar8 = total_secs;
   }
-  ghs = dVar13 / (dVar15 - dVar14);
-  dVar15 = (double)__aeabi_l2d((int)uVar16,(int)((ulonglong)uVar16 >> 0x20));
-  work_utility = (dVar15 / dVar12) * DAT_0001bab8;
-  paVar8 = api_add_elapsed((api_data *)0x0,DAT_0001bae8,DAT_0001badc,true);
-  paVar8 = api_add_string(paVar8,DAT_0001baec,DAT_0001baf0,false);
-  paVar8 = api_add_mhs(paVar8,DAT_0001baf4,&ghs,false);
-  paVar8 = api_add_uint(paVar8,DAT_0001baf8,DAT_0001bafc,true);
-  paVar8 = api_add_int64(paVar8,DAT_0001bb00,DAT_0001bb04,true);
-  paVar8 = api_add_int64(paVar8,DAT_0001bb08,DAT_0001bad8,true);
-  paVar8 = api_add_int64(paVar8,DAT_0001bb0c,DAT_0001bb10,true);
-  paVar8 = api_add_int(paVar8,DAT_0001bb14,(int *)data,true);
-  paVar8 = api_add_utility(paVar8,DAT_0001bb18,&utility,false);
-  paVar8 = api_add_int64(paVar8,DAT_0001bb1c,DAT_0001bb20,true);
-  paVar8 = api_add_int64(paVar8,DAT_0001bb24,DAT_0001bb28,true);
-  paVar8 = api_add_uint(paVar8,DAT_0001bb2c,DAT_0001bb30,true);
-  paVar8 = api_add_uint(paVar8,DAT_0001bb34,DAT_0001bb38,true);
-  paVar8 = api_add_uint(paVar8,DAT_0001bb3c,DAT_0001bb40,true);
-  paVar8 = api_add_uint(paVar8,DAT_0001bb44,DAT_0001bb48,true);
-  paVar8 = api_add_mhtotal(paVar8,DAT_0001bb4c,DAT_0001bb50,true);
-  paVar8 = api_add_utility(paVar8,DAT_0001bb54,&work_utility,false);
-  paVar8 = api_add_diff(paVar8,DAT_0001bb58,DAT_0001bacc,true);
-  paVar8 = api_add_diff(paVar8,DAT_0001bb5c,DAT_0001bad0,true);
-  paVar8 = api_add_diff(paVar8,DAT_0001bb60,DAT_0001bb64,true);
-  paVar8 = api_add_uint64(paVar8,DAT_0001bb68,DAT_0001bb6c,true);
-  uVar9 = *data;
-  uVar10 = *(uint *)puVar3 + uVar9;
-  uVar11 = *(uint *)((int)puVar3 + 4) + ((int)uVar9 >> 0x1f) + (uint)CARRY4(*(uint *)puVar3,uVar9);
-  dVar12 = DAT_0001bc08;
-  if ((uVar10 | uVar11) != 0) {
-    dVar12 = (double)__aeabi_l2d(uVar10,uVar11);
-    dVar12 = (double)(longlong)(int)uVar9 / dVar12;
+  local_68 = local_68 * 60.0;
+  local_60 = ((total_mhashes_done - new_total_mhashes_done) / 1000.0) /
+             (total_secs - new_total_secs);
+  dVar9 = (double)__aeabi_l2d(uVar6,(int)uVar3);
+  local_58 = (dVar9 / dVar8) * 60.0;
+  paVar7 = api_add_elapsed((api_data *)0x0,"Elapsed",&total_secs,true);
+  paVar7 = api_add_string(paVar7,"GHS 5s",displayed_hash_rate,false);
+  paVar7 = api_add_mhs(paVar7,"GHS av",&local_60,false);
+  paVar7 = api_add_uint(paVar7,"Found Blocks",&found_blocks,true);
+  paVar7 = api_add_int64(paVar7,"Getworks",&total_getworks,true);
+  paVar7 = api_add_int64(paVar7,"Accepted",&total_accepted,true);
+  paVar7 = api_add_int64(paVar7,"Rejected",&total_rejected,true);
+  paVar7 = api_add_int(paVar7,"Hardware Errors",&hw_errors,true);
+  paVar7 = api_add_utility(paVar7,"Utility",&local_68,false);
+  paVar7 = api_add_int64(paVar7,"Discarded",&total_discarded,true);
+  paVar7 = api_add_int64(paVar7,"Stale",&total_stale,true);
+  paVar7 = api_add_uint(paVar7,"Get Failures",&total_go,true);
+  paVar7 = api_add_uint(paVar7,"Local Work",&local_work,true);
+  paVar7 = api_add_uint(paVar7,"Remote Failures",&total_ro,true);
+  paVar7 = api_add_uint(paVar7,"Network Blocks",&new_blocks,true);
+  paVar7 = api_add_mhtotal(paVar7,"Total MH",&total_mhashes_done,true);
+  paVar7 = api_add_utility(paVar7,"Work Utility",&local_58,false);
+  paVar7 = api_add_diff(paVar7,"Difficulty Accepted",&total_diff_accepted,true);
+  paVar7 = api_add_diff(paVar7,"Difficulty Rejected",&total_diff_rejected,true);
+  paVar7 = api_add_diff(paVar7,"Difficulty Stale",&total_diff_stale,true);
+  paVar7 = api_add_uint64(paVar7,"Best Share",&best_diff,true);
+  iVar5 = total_diff1._4_4_ + (hw_errors >> 0x1f) + (uint)CARRY4((uint)total_diff1,hw_errors);
+  if ((uint)total_diff1 + hw_errors == 0 && iVar5 == 0) {
+    dVar8 = 0.0;
   }
-  uStack_4c = (undefined4)((ulonglong)dVar12 >> 0x20);
-  local_50 = SUB84(dVar12,0);
-  paVar8 = api_add_percent(paVar8,DAT_0001bb70,(double *)&local_50,false);
-  dVar12 = DAT_0001bc08;
-  if ((*(uint *)puVar3 | *(uint *)((int)puVar3 + 4)) != 0) {
-    dVar12 = (double)__aeabi_l2d();
-    dVar12 = *pdVar2 / dVar12;
+  else {
+    lVar1 = (longlong)hw_errors;
+    dVar8 = (double)__aeabi_l2d((uint)total_diff1 + hw_errors,iVar5);
+    dVar8 = (double)lVar1 / dVar8;
   }
-  uStack_44 = (undefined4)((ulonglong)dVar12 >> 0x20);
-  local_48 = SUB84(dVar12,0);
-  paVar8 = api_add_percent(paVar8,DAT_0001bb74,(double *)&local_48,false);
-  dVar15 = *pdVar2 + *pdVar1 + *pdVar5;
-  dVar12 = DAT_0001bc08;
-  if (dVar15 != 0.0) {
-    dVar12 = *pdVar2 / dVar15;
+  uStack_4c = (undefined4)((ulonglong)dVar8 >> 0x20);
+  local_50 = SUB84(dVar8,0);
+  paVar7 = api_add_percent(paVar7,"Device Hardware%",(double *)&local_50,false);
+  if (total_diff1 == 0) {
+    dVar8 = 0.0;
   }
-  uStack_3c = (undefined4)((ulonglong)dVar12 >> 0x20);
-  local_40 = SUB84(dVar12,0);
-  paVar8 = api_add_percent(paVar8,DAT_0001bb78,(double *)&local_40,false);
-  dVar12 = *pdVar5;
-  dVar15 = *pdVar1 + *pdVar2 + dVar12;
-  dStack_38 = DAT_0001bc08;
-  if (dVar15 != 0.0) {
-    dStack_38 = dVar12 / dVar15;
+  else {
+    dVar8 = (double)__aeabi_l2d();
+    dVar8 = total_diff_rejected / dVar8;
   }
-  paVar8 = api_add_percent(paVar8,DAT_0001bb7c,&dStack_38,false);
-  line_00 = 0;
-  func_00 = DAT_0001bb84;
-  paVar8 = api_add_time(paVar8,DAT_0001bb80,DAT_0001bb84,false);
-  iVar7 = pthread_mutex_unlock(DAT_0001bac8);
-  if (iVar7 != 0) {
-    _mutex_unlock_noyield(DAT_0001bc18,(char *)0xb24,(char *)func_00,line_00);
+  uStack_44 = (undefined4)((ulonglong)dVar8 >> 0x20);
+  local_48 = SUB84(dVar8,0);
+  paVar7 = api_add_percent(paVar7,"Device Rejected%",(double *)&local_48,false);
+  dVar8 = total_diff_rejected + total_diff_accepted + total_diff_stale;
+  if (dVar8 == 0.0) {
+    dVar8 = 0.0;
   }
-  (**DAT_0001bb88)();
-  print_data(io_data,paVar8,isjson,false);
-  if (_Var6 && isjson) {
+  else {
+    dVar8 = total_diff_rejected / dVar8;
+  }
+  uStack_3c = (undefined4)((ulonglong)dVar8 >> 0x20);
+  local_40 = SUB84(dVar8,0);
+  paVar7 = api_add_percent(paVar7,"Pool Rejected%",(double *)&local_40,false);
+  dStack_38 = total_diff_accepted + total_diff_rejected + total_diff_stale;
+  if (dStack_38 == 0.0) {
+    dStack_38 = 0.0;
+  }
+  else {
+    dStack_38 = total_diff_stale / dStack_38;
+  }
+  paVar7 = api_add_percent(paVar7,"Pool Stale%",&dStack_38,false);
+  paVar7 = api_add_time(paVar7,"Last getwork",&last_getwork,false);
+  iVar5 = pthread_mutex_unlock((pthread_mutex_t *)&hash_lock);
+  if (iVar5 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"summary",(char *)0xb24,func_00,line_00);
+  }
+  (*selective_yield)();
+  print_data(io_data,paVar7,isjson,false);
+  iVar2 = total_diff1;
+  if (_Var4 && isjson) {
     io_data->close = true;
+    iVar2 = total_diff1;
   }
+  total_diff1._4_4_ = (int)((ulonglong)iVar2 >> 0x20);
+  total_diff1._0_4_ = (uint)iVar2;
   return;
 }
 

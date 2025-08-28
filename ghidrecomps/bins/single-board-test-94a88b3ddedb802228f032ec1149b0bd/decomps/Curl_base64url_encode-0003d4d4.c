@@ -2,7 +2,7 @@
 void Curl_base64url_encode(void)
 
 {
-  base64_encode_isra_0(DAT_0003d4dc);
+  base64_encode_isra_0("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
   return;
 }
 

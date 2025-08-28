@@ -3,7 +3,7 @@ void _mutex_init_part_42_constprop_67(undefined4 param_1,undefined4 param_2)
 
 {
   int *piVar1;
-  char acStack_808 [2056];
+  char acStack_808 [2052];
   
   piVar1 = __errno_location();
   snprintf(acStack_808,0x800,"Failed to pthread_mutex_init errno=%d in %s %s():%d",*piVar1,

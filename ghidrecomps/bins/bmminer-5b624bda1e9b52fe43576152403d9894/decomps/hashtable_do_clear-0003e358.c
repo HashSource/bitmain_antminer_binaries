@@ -7,8 +7,6 @@ void hashtable_do_clear(hashtable_t *hashtable)
   hashtable_list *json;
   hashtable_list *phVar1;
   hashtable_list *phVar2;
-  list_t *list;
-  list_t *next;
   pair_t *pair;
   
   phVar2 = (hashtable->list).next;

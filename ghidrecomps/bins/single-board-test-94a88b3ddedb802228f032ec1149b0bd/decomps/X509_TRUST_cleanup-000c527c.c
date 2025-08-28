@@ -4,61 +4,56 @@
 void X509_TRUST_cleanup(void)
 
 {
-  int iVar1;
-  _STACK **pp_Var2;
-  
-  iVar1 = DAT_000c536c;
-  if (*(int *)(DAT_000c536c + 8) << 0x1f < 0) {
-    if (*(int *)(DAT_000c536c + 8) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0x10));
+  if ((int)(trstandard._4_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._4_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._12_4_);
     }
-    CRYPTO_free(DAT_000c5370);
+    CRYPTO_free(trstandard);
   }
-  if (*(int *)(iVar1 + 0x20) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0x20) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0x28));
+  if ((int)(trstandard._28_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._28_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._36_4_);
     }
-    CRYPTO_free(DAT_000c5374);
+    CRYPTO_free(trstandard + 0x18);
   }
-  if (*(int *)(iVar1 + 0x38) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0x38) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0x40));
+  if ((int)(trstandard._52_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._52_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._60_4_);
     }
-    CRYPTO_free(DAT_000c5378);
+    CRYPTO_free(trstandard + 0x30);
   }
-  if (*(int *)(iVar1 + 0x50) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0x50) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0x58));
+  if ((int)(trstandard._76_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._76_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._84_4_);
     }
-    CRYPTO_free(DAT_000c537c);
+    CRYPTO_free(trstandard + 0x48);
   }
-  if (*(int *)(iVar1 + 0x68) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0x68) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0x70));
+  if ((int)(trstandard._100_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._100_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._108_4_);
     }
-    CRYPTO_free(DAT_000c5380);
+    CRYPTO_free(trstandard + 0x60);
   }
-  if (*(int *)(iVar1 + 0x80) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0x80) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0x88));
+  if ((int)(trstandard._124_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._124_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._132_4_);
     }
-    CRYPTO_free(DAT_000c5384);
+    CRYPTO_free(trstandard + 0x78);
   }
-  if (*(int *)(iVar1 + 0x98) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0x98) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0xa0));
+  if ((int)(trstandard._148_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._148_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._156_4_);
     }
-    CRYPTO_free(DAT_000c5388);
+    CRYPTO_free(trstandard + 0x90);
   }
-  if (*(int *)(iVar1 + 0xb0) << 0x1f < 0) {
-    if (*(int *)(iVar1 + 0xb0) << 0x1e < 0) {
-      CRYPTO_free(*(void **)(DAT_000c536c + 0xb8));
+  if ((int)(trstandard._172_4_ << 0x1f) < 0) {
+    if ((int)(trstandard._172_4_ << 0x1e) < 0) {
+      CRYPTO_free((void *)trstandard._180_4_);
     }
-    CRYPTO_free(DAT_000c538c);
+    CRYPTO_free(trstandard + 0xa8);
   }
-  pp_Var2 = DAT_000c5390;
-  sk_pop_free(*DAT_000c5390,DAT_000c5394);
-  *pp_Var2 = (_STACK *)0x0;
+  sk_pop_free(trtable,(func *)0xc4e95);
+  trtable = (_STACK *)0x0;
   return;
 }
 

@@ -4,7 +4,6 @@
 void regen_hash(work *work)
 
 {
-  uint *data32;
   int iVar1;
   uint uVar2;
   uchar hash1 [32];

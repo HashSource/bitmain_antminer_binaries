@@ -4,7 +4,7 @@ void chain_inactive(int param_1)
 {
   undefined4 uVar1;
   uint uVar2;
-  uint local_824;
+  undefined4 local_824;
   byte local_820;
   uint local_81c;
   int local_818;
@@ -22,8 +22,8 @@ void chain_inactive(int param_1)
     if ((opt_debug != '\0') &&
        (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
       snprintf(acStack_810,0x800,
-               "%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x, buf[4]=0x%x\n",DAT_00034014,
-               0x55,5,0,0,uVar2);
+               "%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x, buf[4]=0x%x\n",
+               "chain_inactive",0x55,5,0,0,uVar2);
       _applog(7,acStack_810,0);
       uVar2 = (uint)local_820;
     }
@@ -43,7 +43,7 @@ void chain_inactive(int param_1)
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
     snprintf(acStack_810,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
-             DAT_00034014,0x85,0,0,uVar1);
+             "chain_inactive",0x85,0,0,uVar1);
     _applog(7,acStack_810,0);
   }
   local_81c = local_824 << 0x18 | (local_824 >> 8 & 0xff) << 0x10 | (local_824 >> 0x10 & 0xff) << 8

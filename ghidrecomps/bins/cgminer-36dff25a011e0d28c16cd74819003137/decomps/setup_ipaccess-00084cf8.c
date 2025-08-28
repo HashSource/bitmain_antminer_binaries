@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void setup_ipaccess(void)
 
@@ -63,7 +63,7 @@ void setup_ipaccess(void)
       *pcVar4 = '\0';
     }
     strncpy(original,ptr,0x40);
-    original[63] = '\0';
+    original[0x3f] = '\0';
     iVar5 = toupper(0x52);
     group = (char)iVar5;
     ppuVar6 = __ctype_b_loc();

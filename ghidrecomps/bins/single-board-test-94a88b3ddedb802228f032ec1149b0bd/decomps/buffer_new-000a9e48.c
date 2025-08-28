@@ -5,14 +5,14 @@ void * buffer_new(int param_1)
   undefined4 *ptr;
   void *pvVar1;
   
-  ptr = (undefined4 *)CRYPTO_malloc(0x20,DAT_000a9eb0,0x60);
+  ptr = (undefined4 *)CRYPTO_malloc(0x20,"bf_buff.c",0x60);
   if (ptr == (undefined4 *)0x0) {
     return (void *)0x0;
   }
-  pvVar1 = CRYPTO_malloc(0x1000,DAT_000a9eb0,99);
+  pvVar1 = CRYPTO_malloc(0x1000,"bf_buff.c",99);
   ptr[2] = pvVar1;
   if (pvVar1 != (void *)0x0) {
-    pvVar1 = CRYPTO_malloc(0x1000,DAT_000a9eb0,0x68);
+    pvVar1 = CRYPTO_malloc(0x1000,"bf_buff.c",0x68);
     ptr[5] = pvVar1;
     if (pvVar1 != (void *)0x0) {
       *ptr = 0x1000;

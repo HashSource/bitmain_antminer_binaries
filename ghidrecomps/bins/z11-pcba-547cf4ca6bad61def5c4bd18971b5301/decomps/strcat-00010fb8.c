@@ -6,7 +6,7 @@ char * strcat(char *__dest,char *__src)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strcat_00046e24)();
+  pcVar1 = strcat(__dest,__src);
   return pcVar1;
 }
 

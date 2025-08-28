@@ -14,7 +14,7 @@ undefined4 check_noproxy(char *param_1,char *param_2)
     if (*param_2 == '\0') {
       return 0;
     }
-    iVar1 = Curl_raw_equal(DAT_00043920);
+    iVar1 = Curl_raw_equal(&DAT_00136778);
     if (iVar1 != 0) {
       return 1;
     }
@@ -54,8 +54,7 @@ LAB_0004389a:
               return 0;
             }
 LAB_000438c2:
-            while (pcVar3 = strchr(DAT_00043924,(uint)(byte)param_2[sVar4]), pcVar3 != (char *)0x0)
-            {
+            while (pcVar3 = strchr(", ",(uint)(byte)param_2[sVar4]), pcVar3 != (char *)0x0) {
               sVar4 = sVar4 + 1;
               if (sVar2 <= sVar4) goto LAB_0004389a;
             }
@@ -65,7 +64,7 @@ LAB_000438c2:
             uVar5 = sVar4;
           } while (sVar2 <= sVar4);
           do {
-            pcVar3 = strchr(DAT_00043924,(uint)(byte)param_2[uVar5]);
+            pcVar3 = strchr(", ",(uint)(byte)param_2[uVar5]);
             if (pcVar3 != (char *)0x0) break;
             uVar5 = uVar5 + 1;
           } while (uVar5 < sVar2);

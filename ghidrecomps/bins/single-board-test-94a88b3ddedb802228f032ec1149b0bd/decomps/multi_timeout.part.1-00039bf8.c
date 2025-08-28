@@ -12,7 +12,7 @@ void multi_timeout_part_1(int param_1,int *param_2)
   curlx_tvnow(&local_20);
   iVar1 = local_1c;
   iVar3 = local_20;
-  iVar2 = Curl_splay(*DAT_00039c50,DAT_00039c50[1],*(undefined4 *)(param_1 + 0x44));
+  iVar2 = Curl_splay(0,0,*(undefined4 *)(param_1 + 0x44));
   iVar4 = *(int *)(iVar2 + 0xc);
   *(int *)(param_1 + 0x44) = iVar2;
   if ((iVar4 < iVar3) || ((iVar4 <= iVar3 && (*(int *)(iVar2 + 0x10) <= iVar1)))) {

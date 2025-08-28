@@ -20,10 +20,10 @@ void lex_scan_string(lex_t *lex,json_error_t *error)
   lex->token = -1;
   c = lex_get_save(lex,error);
   while (c != 0x22) {
-    if (c == -2) goto out;
+    if (c == -2) goto LAB_00066bb6;
     if (c == -1) {
       error_set(error,lex,"premature end of input");
-      goto out;
+      goto LAB_00066bb6;
     }
     if ((-1 < c) && (c < 0x20)) {
       lex_unget_unsave(lex,c);
@@ -33,7 +33,7 @@ void lex_scan_string(lex_t *lex,json_error_t *error)
       else {
         error_set(error,lex,"control character 0x%x",c);
       }
-      goto out;
+      goto LAB_00066bb6;
     }
     if (c == 0x5c) {
       c = lex_get_save(lex,error);
@@ -43,7 +43,7 @@ void lex_scan_string(lex_t *lex,json_error_t *error)
           if ((((c < 0x30) || (0x39 < c)) && ((c < 0x41 || (0x46 < c)))) &&
              ((c < 0x61 || (0x66 < c)))) {
             error_set(error,lex,"invalid escape");
-            goto out;
+            goto LAB_00066bb6;
           }
           c = lex_get_save(lex,error);
         }
@@ -52,7 +52,7 @@ void lex_scan_string(lex_t *lex,json_error_t *error)
         if (((((c != 0x22) && (c != 0x5c)) && (c != 0x2f)) && ((c != 0x62 && (c != 0x66)))) &&
            ((c != 0x6e && ((c != 0x72 && (c != 0x74)))))) {
           error_set(error,lex,"invalid escape");
-          goto out;
+          goto LAB_00066bb6;
         }
         c = lex_get_save(lex,error);
       }
@@ -63,7 +63,7 @@ void lex_scan_string(lex_t *lex,json_error_t *error)
   }
   t = (char *)jsonp_malloc((lex->saved_text).length + 1);
   if (t == (char *)0x0) {
-out:
+LAB_00066bb6:
     lex_free_string(lex);
   }
   else {
@@ -78,32 +78,32 @@ out:
           value = decode_unicode_escape((char *)str);
           if (value < 0) {
             error_set(error,lex,"invalid Unicode escape \'%.6s\'",p + -1);
-            goto out;
+            goto LAB_00066bb6;
           }
           pcVar2 = p + 5;
           if ((value < 0xd800) || (0xdbff < value)) {
             p = pcVar2;
             if ((0xdbff < value) && (value < 0xe000)) {
               error_set(error,lex,"invalid Unicode \'\\u%04X\'",value);
-              goto out;
+              goto LAB_00066bb6;
             }
           }
           else {
             if ((*pcVar2 != '\\') || (p[6] != 'u')) {
               p = pcVar2;
               error_set(error,lex,"invalid Unicode \'\\u%04X\'",value);
-              goto out;
+              goto LAB_00066bb6;
             }
             p = p + 6;
             value2 = decode_unicode_escape(p);
             if (value2 < 0) {
               error_set(error,lex,"invalid Unicode escape \'%.6s\'",p + -1);
-              goto out;
+              goto LAB_00066bb6;
             }
             p = p + 5;
             if ((value2 < 0xdc00) || (0xdfff < value2)) {
               error_set(error,lex,"invalid Unicode \'\\u%04X\\u%04X\'",value,value2);
-              goto out;
+              goto LAB_00066bb6;
             }
             value = (value + -0xd800) * 0x400 + value2 + 0x2400;
           }

@@ -8,8 +8,8 @@ void EVP_cleanup(void)
   OBJ_NAME_cleanup(1);
   OBJ_NAME_cleanup(-1);
   EVP_PBE_cleanup();
-  if (*DAT_000b1590 == 2) {
-    *DAT_000b1590 = 0;
+  if (obj_cleanup_defer == 2) {
+    obj_cleanup_defer = 0;
     OBJ_cleanup();
   }
   OBJ_sigid_free();

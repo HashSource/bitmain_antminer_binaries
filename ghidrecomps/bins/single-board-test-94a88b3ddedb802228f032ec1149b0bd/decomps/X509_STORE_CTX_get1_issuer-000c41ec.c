@@ -20,7 +20,7 @@ int X509_STORE_CTX_get1_issuer(X509 **issuer,X509_STORE_CTX *ctx,X509 *x)
       else if (local_28.type == 2) {
         X509_CRL_free(local_28.data.crl);
       }
-      CRYPTO_lock(9,0xb,DAT_000c4364,0x281);
+      CRYPTO_lock(9,0xb,"x509_lu.c",0x281);
       iVar1 = x509_object_idx_cnt(ctx->ctx->objs,1,name,0);
       if (iVar1 == -1) {
 LAB_000c42ac:
@@ -41,17 +41,17 @@ LAB_000c42ac:
         iVar2 = *piVar3;
         *issuer = (X509 *)piVar3[1];
         if (iVar2 == 1) {
-          CRYPTO_add_lock((int *)(piVar3[1] + 0x10),1,3,DAT_000c4364,0x197);
+          CRYPTO_add_lock((int *)(piVar3[1] + 0x10),1,3,"x509_lu.c",0x197);
           iVar1 = 1;
         }
         else {
           iVar1 = 1;
           if (iVar2 == 2) {
-            CRYPTO_add_lock((int *)(piVar3[1] + 0xc),1,6,DAT_000c4364,0x19a);
+            CRYPTO_add_lock((int *)(piVar3[1] + 0xc),1,6,"x509_lu.c",0x19a);
           }
         }
       }
-      CRYPTO_lock(10,0xb,DAT_000c4364,0x295);
+      CRYPTO_lock(10,0xb,"x509_lu.c",0x295);
     }
     else {
       *issuer = (X509 *)local_28.data;
@@ -64,7 +64,7 @@ LAB_000c42ac:
     else if (local_28.type == 2) {
       X509_CRL_free(local_28.data.crl);
     }
-    ERR_put_error(0xb,0x92,0x6a,DAT_000c4364,0x26f);
+    ERR_put_error(0xb,0x92,0x6a,"x509_lu.c",0x26f);
     iVar1 = -1;
   }
   else if (iVar1 != 0) {

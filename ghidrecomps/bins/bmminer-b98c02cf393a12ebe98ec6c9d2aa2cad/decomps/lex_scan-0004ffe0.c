@@ -65,7 +65,13 @@ LAB_000501e8:
             }
             if (uVar8 < 0x20) {
               lex_unget_unsave(param_1,uVar8);
-              error_set(param_2,param_1);
+              if (uVar8 == 10) {
+                pcVar3 = "unexpected newline";
+              }
+              else {
+                pcVar3 = "control character 0x%x";
+              }
+              error_set(param_2,param_1,pcVar3,uVar8);
               goto LAB_00050244;
             }
             if (uVar8 != 0x5c) goto LAB_000501e8;
@@ -126,13 +132,19 @@ LAB_00050244:
             *piVar4 = 0;
             lVar13 = strtoll(pcVar3,&local_30,10);
             if (*piVar4 == 0x22) {
-              error_set(param_2,param_1);
+              if (lVar13 < 0) {
+                pcVar3 = "too big negative integer";
+              }
+              else {
+                pcVar3 = "too big integer";
+              }
+              error_set(param_2,param_1,pcVar3);
               return *(uint *)(param_1 + 0x3c);
             }
             if (local_30 != pcVar3 + *(int *)(param_1 + 0x2c)) {
                     /* WARNING: Subroutine does not return */
               __assert_fail("end == saved_text + lex->saved_text.length",
-                            "compat/jansson-2.9/src/load.c",0x249,DAT_00050550);
+                            "compat/jansson-2.9/src/load.c",0x249,"lex_scan_number");
             }
             uVar8 = 0x101;
             *(longlong *)(param_1 + 0x40) = lVar13;
@@ -263,7 +275,7 @@ LAB_0005049c:
     iVar9 = utf8_encode(iVar9,pbVar5,&local_30);
     if (iVar9 != 0) {
                     /* WARNING: Subroutine does not return */
-      __assert_fail("0","compat/jansson-2.9/src/load.c",0x1db,DAT_0005054c);
+      __assert_fail("0","compat/jansson-2.9/src/load.c",0x1db,"lex_scan_string");
     }
     pbVar5 = pbVar5 + (int)local_30;
     goto LAB_0005032e;
@@ -283,7 +295,7 @@ LAB_00050444:
     if (bVar6 != 0x66) {
 LAB_000503c8:
                     /* WARNING: Subroutine does not return */
-      __assert_fail("0","compat/jansson-2.9/src/load.c",0x1f7,DAT_0005054c);
+      __assert_fail("0","compat/jansson-2.9/src/load.c",0x1f7,"lex_scan_string");
     }
     *pbVar5 = 0xc;
   }

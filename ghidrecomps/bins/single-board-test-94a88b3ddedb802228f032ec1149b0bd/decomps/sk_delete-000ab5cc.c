@@ -2,35 +2,34 @@
 void * sk_delete(_STACK *st,int loc)
 
 {
-  uint uVar1;
+  int iVar1;
   char *pcVar2;
   char **ppcVar3;
-  int iVar4;
-  undefined4 *puVar5;
-  int iVar6;
+  undefined4 *puVar4;
+  int iVar5;
   
-  uVar1 = 1 - (int)st;
+  iVar1 = 1 - (int)st;
   if ((_STACK *)0x1 < st) {
-    uVar1 = 0;
+    iVar1 = 0;
   }
-  if ((uVar1 | (uint)loc >> 0x1f) == 0) {
+  if (iVar1 == 0 && -1 < loc) {
     pcVar2 = (char *)0x0;
     if (loc < st->num) {
       ppcVar3 = st->data;
-      iVar6 = st->num + -1;
-      iVar4 = loc << 2;
+      iVar5 = st->num + -1;
+      iVar1 = loc << 2;
       pcVar2 = ppcVar3[loc];
-      if ((iVar6 != loc) && (loc < iVar6)) {
+      if ((iVar5 != loc) && (loc < iVar5)) {
         while( true ) {
-          puVar5 = (undefined4 *)((int)ppcVar3 + iVar4);
-          iVar4 = iVar4 + 4;
+          puVar4 = (undefined4 *)((int)ppcVar3 + iVar1);
+          iVar1 = iVar1 + 4;
           loc = loc + 1;
-          *puVar5 = *(undefined4 *)((int)ppcVar3 + iVar4);
-          if (iVar6 == loc) break;
+          *puVar4 = *(undefined4 *)((int)ppcVar3 + iVar1);
+          if (iVar5 == loc) break;
           ppcVar3 = st->data;
         }
       }
-      st->num = iVar6;
+      st->num = iVar5;
     }
   }
   else {

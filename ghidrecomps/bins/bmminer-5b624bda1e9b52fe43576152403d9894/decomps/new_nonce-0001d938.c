@@ -4,9 +4,8 @@
 _Bool new_nonce(thr_info *thr,uint nonce)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   cgpu_info *pcVar2;
-  cgpu_info *cgpu;
   bool bVar3;
   char tmp42 [2048];
   
@@ -18,8 +17,9 @@ _Bool new_nonce(thr_info *thr,uint nonce)
   }
   uVar1 = SUB41(thr,0);
   if ((bVar3) &&
-     (((*DAT_0001d990 != '\0' || (*DAT_0001d994 != '\0')) || (uVar1 = 0, 5 < *DAT_0001d998)))) {
-    snprintf(tmp42,0x800,DAT_0001d99c,pcVar2->drv->name,pcVar2->device_id);
+     (((use_syslog != false || (opt_log_output != false)) || (uVar1 = 0, 5 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s %d duplicate share detected as HW error",pcVar2->drv->name,
+             pcVar2->device_id);
     _applog(6,tmp42,false);
     uVar1 = 0;
   }

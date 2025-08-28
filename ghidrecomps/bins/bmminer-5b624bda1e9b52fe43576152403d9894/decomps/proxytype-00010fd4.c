@@ -4,21 +4,23 @@
 char * proxytype(proxytypes_t proxytype)
 
 {
-  int *piVar1;
+  anon_struct_8_2_f5308dc4 *paVar1;
   char *pcVar2;
-  int iVar3;
+  anon_struct_8_2_f5308dc4 *paVar3;
   
-  pcVar2 = DAT_00010ffc;
-  iVar3 = DAT_00010ff4;
-  if (proxytype != 0) {
+  if (proxytype == 0) {
+    pcVar2 = "http:";
+  }
+  else {
+    paVar3 = proxynames;
     do {
-      if (*(char **)(iVar3 + 8) == (char *)0x0) {
-        return DAT_00010ff8;
+      pcVar2 = paVar3[1].name;
+      if (pcVar2 == (char *)0x0) {
+        return "invalid";
       }
-      piVar1 = (int *)(iVar3 + 0xc);
-      pcVar2 = *(char **)(iVar3 + 8);
-      iVar3 = iVar3 + 8;
-    } while (*piVar1 != proxytype);
+      paVar1 = paVar3 + 1;
+      paVar3 = paVar3 + 1;
+    } while (paVar1->proxytype != proxytype);
   }
   return pcVar2;
 }

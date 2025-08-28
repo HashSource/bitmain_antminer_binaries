@@ -3,51 +3,42 @@ undefined4 hwcrhk_rand_bytes(undefined4 param_1,undefined4 param_2)
 
 {
   int iVar1;
-  int iVar2;
-  undefined4 uVar3;
-  int lib;
-  undefined *local_420;
+  undefined4 uVar2;
+  undefined1 *local_420;
   undefined4 local_41c;
-  undefined auStack_418 [1028];
+  undefined1 auStack_418 [1028];
   
-  iVar1 = DAT_000dc214;
   local_420 = auStack_418;
   local_41c = 0x400;
-  if (*(int *)(DAT_000dc214 + 0x14) == 0) {
-    iVar2 = *(int *)(DAT_000dc214 + 0x1c);
-    if (iVar2 == 0) {
-      iVar2 = ERR_get_next_error_library();
-      *(int *)(iVar1 + 0x1c) = iVar2;
+  if (hwcrhk_context == 0) {
+    if (HWCRHK_lib_error_code == 0) {
+      HWCRHK_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar2,0x6c,0x6a,DAT_000dc218,0x45a);
-    uVar3 = 0;
+    ERR_put_error(HWCRHK_lib_error_code,0x6c,0x6a,"e_chil.c",0x45a);
+    uVar2 = 0;
   }
   else {
-    iVar2 = (**(code **)(DAT_000dc214 + 0x38))
-                      (*(int *)(DAT_000dc214 + 0x14),param_1,param_2,&local_420);
-    if (iVar2 < 0) {
-      lib = *(int *)(iVar1 + 0x1c);
-      if (iVar2 == -2) {
-        if (lib == 0) {
-          lib = ERR_get_next_error_library();
-          *(int *)(iVar1 + 0x1c) = lib;
+    iVar1 = (*p_hwcrhk_RandomBytes)(hwcrhk_context,param_1,param_2,&local_420);
+    if (iVar1 < 0) {
+      if (iVar1 == -2) {
+        if (HWCRHK_lib_error_code == 0) {
+          HWCRHK_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error(lib,0x6c,0x70,DAT_000dc218,0x465);
+        ERR_put_error(HWCRHK_lib_error_code,0x6c,0x70,"e_chil.c",0x465);
       }
       else {
-        if (lib == 0) {
-          lib = ERR_get_next_error_library();
-          *(int *)(iVar1 + 0x1c) = lib;
+        if (HWCRHK_lib_error_code == 0) {
+          HWCRHK_lib_error_code = ERR_get_next_error_library();
         }
-        ERR_put_error(lib,0x6c,0x6f,DAT_000dc218,0x467);
+        ERR_put_error(HWCRHK_lib_error_code,0x6c,0x6f,"e_chil.c",0x467);
       }
       ERR_add_error_data(1,local_420);
-      uVar3 = 0;
+      uVar2 = 0;
     }
     else {
-      uVar3 = 1;
+      uVar2 = 1;
     }
   }
-  return uVar3;
+  return uVar2;
 }
 

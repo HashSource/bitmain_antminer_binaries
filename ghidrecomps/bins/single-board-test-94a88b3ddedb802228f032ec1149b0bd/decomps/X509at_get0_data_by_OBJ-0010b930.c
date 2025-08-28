@@ -3,7 +3,7 @@ void * X509at_get0_data_by_OBJ(stack_st_X509_ATTRIBUTE *x,ASN1_OBJECT *obj,int l
 
 {
   uint uVar1;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   int iVar3;
   void *pvVar4;
   uint uVar5;
@@ -19,8 +19,8 @@ void * X509at_get0_data_by_OBJ(stack_st_X509_ATTRIBUTE *x,ASN1_OBJECT *obj,int l
     return (void *)0x0;
   }
   while( true ) {
-    ppAVar2 = (ASN1_OBJECT **)sk_value(&x->stack,uVar5);
-    iVar3 = OBJ_cmp(*ppAVar2,obj);
+    puVar2 = (undefined4 *)sk_value(&x->stack,uVar5);
+    iVar3 = OBJ_cmp((ASN1_OBJECT *)*puVar2,obj);
     if (iVar3 == 0) break;
     uVar5 = uVar5 + 1;
     if (uVar5 == uVar1) {
@@ -32,9 +32,9 @@ void * X509at_get0_data_by_OBJ(stack_st_X509_ATTRIBUTE *x,ASN1_OBJECT *obj,int l
     uVar1 = sk_num(&x->stack);
     if ((int)uVar6 < (int)uVar1) {
       do {
-        ppAVar2 = (ASN1_OBJECT **)sk_value(&x->stack,uVar6);
+        puVar2 = (undefined4 *)sk_value(&x->stack,uVar6);
         uVar6 = uVar6 + 1;
-        iVar3 = OBJ_cmp(*ppAVar2,obj);
+        iVar3 = OBJ_cmp((ASN1_OBJECT *)*puVar2,obj);
         if (iVar3 == 0) {
           return (void *)0x0;
         }
@@ -91,7 +91,7 @@ LAB_0010b99a:
       if (type == iVar3) {
         return (a->value).ptr;
       }
-      ERR_put_error(0xb,0x8b,0x7a,DAT_0010ba38,0x170);
+      ERR_put_error(0xb,0x8b,0x7a,"x509_att.c",0x170);
       return (void *)0x0;
     }
   }

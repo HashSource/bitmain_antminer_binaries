@@ -7,7 +7,7 @@ void BIO_vfree(BIO *a)
   _func_743 *p_Var3;
   
   if ((a == (BIO *)0x0) ||
-     (iVar1 = CRYPTO_add_lock(&a->references,-1,0x15,DAT_000a8d84,0x72), 0 < iVar1)) {
+     (iVar1 = CRYPTO_add_lock(&a->references,-1,0x15,"bio_lib.c",0x72), 0 < iVar1)) {
     return;
   }
   if ((a->callback != (_func_745 *)0x0) &&

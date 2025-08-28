@@ -7,8 +7,8 @@ undefined4 curl_multi_cleanup(int *param_1)
   int iVar3;
   int iVar4;
   int *piVar5;
-  undefined auStack_140 [144];
-  undefined auStack_b0 [148];
+  undefined1 auStack_140 [144];
+  undefined1 auStack_b0 [148];
   
   if ((param_1 == (int *)0x0) || (*param_1 != 0xbab1e)) {
     uVar1 = 1;
@@ -20,14 +20,14 @@ undefined4 curl_multi_cleanup(int *param_1)
     while (piVar2 != (int *)0x0) {
       iVar4 = param_1[0x24];
       *piVar2 = iVar4;
-      sigpipe_ignore_isra_2(*(undefined *)(iVar4 + 0x324),auStack_b0);
+      sigpipe_ignore_isra_2(*(undefined1 *)(iVar4 + 0x324),auStack_b0);
       Curl_disconnect(piVar2,0);
       sigpipe_restore(auStack_b0);
       piVar2 = (int *)Curl_conncache_find_first_connection(piVar5);
     }
     iVar4 = param_1[0x24];
     if (iVar4 != 0) {
-      sigpipe_ignore_isra_2(*(undefined *)(iVar4 + 0x324),auStack_140);
+      sigpipe_ignore_isra_2(*(undefined1 *)(iVar4 + 0x324),auStack_140);
       iVar3 = param_1[0x24];
       iVar4 = 1;
       *(int **)(iVar3 + 0x38) = param_1 + 0xb;
@@ -56,7 +56,7 @@ LAB_0003a4e0:
     Curl_hash_destroy(param_1 + 0xb);
     Curl_pipeline_set_site_blacklist(0,param_1 + 0x2b);
     Curl_pipeline_set_server_blacklist(0,param_1 + 0x2c);
-    (**DAT_0003a514)(param_1);
+    (*Curl_cfree)(param_1);
     if (iVar4 != 0) {
       sigpipe_restore(auStack_140);
     }

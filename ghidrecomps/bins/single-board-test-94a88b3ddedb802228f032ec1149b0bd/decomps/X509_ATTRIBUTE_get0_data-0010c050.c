@@ -26,7 +26,7 @@ void * X509_ATTRIBUTE_get0_data(X509_ATTRIBUTE *attr,int idx,int atrtype,void *d
       }
       iVar2 = ASN1_TYPE_get(a);
       if (iVar2 != atrtype) {
-        ERR_put_error(0xb,0x8b,0x7a,DAT_0010c0b4,0x170);
+        ERR_put_error(0xb,0x8b,0x7a,"x509_att.c",0x170);
         return (void *)0x0;
       }
       return (a->value).ptr;

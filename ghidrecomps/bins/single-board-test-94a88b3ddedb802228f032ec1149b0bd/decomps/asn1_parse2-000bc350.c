@@ -1,6 +1,6 @@
 
 ASN1_STRING *
-asn1_parse2(BIO *param_1,byte **param_2,int param_3,int param_4,int param_5,int param_6,int param_7)
+asn1_parse2(BIO *param_1,int *param_2,int param_3,int param_4,int param_5,int param_6,int param_7)
 
 {
   uint uVar1;
@@ -12,7 +12,7 @@ asn1_parse2(BIO *param_1,byte **param_2,int param_3,int param_4,int param_5,int 
   ASN1_OCTET_STRING *a;
   ASN1_INTEGER *a_00;
   byte *pbVar7;
-  void *data;
+  char *data;
   byte *pbVar8;
   ASN1_STRING *pAVar9;
   int iVar10;
@@ -27,7 +27,7 @@ asn1_parse2(BIO *param_1,byte **param_2,int param_3,int param_4,int param_5,int 
   ASN1_OBJECT *local_ac;
   char acStack_a8 [132];
   
-  local_c0 = *param_2;
+  local_c0 = (byte *)*param_2;
   pbVar7 = local_c0 + param_3;
   local_ac = (ASN1_OBJECT *)0x0;
   if (local_c0 < pbVar7) {
@@ -35,64 +35,64 @@ LAB_000bc374:
     pbVar12 = local_c0;
     uVar3 = ASN1_get_object(&local_c0,&local_b8,(int *)&local_b4,(int *)&local_b0,param_3);
     if ((uVar3 & 0x80) != 0) {
-      BIO_write(param_1,DAT_000bc928,0x12);
+      BIO_write(param_1,"Error in encoding\n",0x12);
       pAVar9 = (ASN1_STRING *)0x0;
       a = (ASN1_STRING *)0x0;
       goto LAB_000bc3f8;
     }
     iVar10 = (int)local_c0 - (int)pbVar12;
-    iVar4 = BIO_printf(param_1,DAT_000bc5fc,pbVar12 + (param_4 - (int)*param_2));
+    iVar4 = BIO_printf(param_1,"%5ld:",pbVar12 + (param_4 - *param_2));
     if (iVar4 < 1) goto LAB_000bc3f2;
     if (uVar3 == 0x21) {
-      iVar4 = BIO_printf(param_1,DAT_000bc618,param_5,iVar10);
+      iVar4 = BIO_printf(param_1,"d=%-2d hl=%ld l=inf  ",param_5,iVar10);
       if (0 < iVar4) goto LAB_000bc3c4;
       goto LAB_000bc3f2;
     }
-    iVar4 = BIO_printf(param_1,DAT_000bc600,param_5,iVar10,local_b8);
+    iVar4 = BIO_printf(param_1,"d=%-2d hl=%ld l=%4ld ",param_5,iVar10,local_b8);
     if (iVar4 < 1) goto LAB_000bc3f2;
 LAB_000bc3c4:
     uVar2 = local_b0;
     uVar1 = local_b4;
+    data = "prim: ";
     iVar4 = param_5;
     if (param_6 == 0) {
       iVar4 = 0;
     }
-    data = DAT_000bc608;
     if ((uVar3 & 0x20) != 0) {
-      data = DAT_000bc604;
+      data = "cons: ";
     }
     iVar5 = BIO_write(param_1,data,6);
     if (iVar5 < 6) goto LAB_000bc3f2;
     BIO_indent(param_1,iVar4,0x80);
     if ((uVar2 & 0xc0) == 0xc0) {
-      BIO_snprintf(acStack_a8,0x80,DAT_000bc924);
+      BIO_snprintf(acStack_a8,0x80,"priv [ %d ] ");
     }
     else if ((uVar2 & 0x80) == 0) {
       if ((uVar2 & 0x40) == 0) {
         if (0x1e < (int)uVar1) {
-          BIO_snprintf(acStack_a8,0x80,DAT_000bc920);
+          BIO_snprintf(acStack_a8,0x80,"<ASN1 %d>");
         }
       }
       else {
-        BIO_snprintf(acStack_a8,0x80,DAT_000bc91c);
+        BIO_snprintf(acStack_a8,0x80,"appl [ %d ]");
       }
     }
     else {
-      BIO_snprintf(acStack_a8,0x80,DAT_000bc620);
+      BIO_snprintf(acStack_a8,0x80,"cont [ %d ]");
     }
-    iVar4 = BIO_printf(param_1,DAT_000bc610);
+    iVar4 = BIO_printf(param_1,"%-18s");
     if (iVar4 < 1) goto LAB_000bc3f2;
     param_3 = param_3 - iVar10;
     if ((uVar3 & 0x20) != 0) {
       pbVar11 = local_c0 + local_b8;
-      iVar4 = BIO_write(param_1,DAT_000bc614,1);
+      iVar4 = BIO_write(param_1,"\n",1);
       if (iVar4 < 1) goto LAB_000bc3f2;
       if (local_b8 <= param_3) {
         if ((uVar3 == 0x21) && (local_b8 == 0)) {
           while( true ) {
             pAVar9 = (ASN1_STRING *)
                      asn1_parse2(param_1,&local_c0,(int)pbVar7 - (int)local_c0,
-                                 local_c0 + (param_4 - (int)*param_2),param_5 + 1,param_6,param_7);
+                                 local_c0 + (param_4 - *param_2),param_5 + 1,param_6,param_7);
             a = pAVar9;
             if (pAVar9 == (ASN1_STRING *)0x0) goto LAB_000bc3f8;
             if (pAVar9 == (ASN1_STRING *)0x2) break;
@@ -102,7 +102,7 @@ LAB_000bc3c4:
         else {
           while (local_c0 < pbVar11) {
             pAVar9 = (ASN1_STRING *)
-                     asn1_parse2(param_1,&local_c0,local_b8,local_c0 + (param_4 - (int)*param_2),
+                     asn1_parse2(param_1,&local_c0,local_b8,local_c0 + (param_4 - *param_2),
                                  param_5 + 1,param_6,param_7);
             a = pAVar9;
             if (pAVar9 == (ASN1_STRING *)0x0) goto LAB_000bc3f8;
@@ -110,14 +110,14 @@ LAB_000bc3c4:
         }
         goto LAB_000bc53a;
       }
-      BIO_printf(param_1,DAT_000bc934,param_3);
+      BIO_printf(param_1,"length is greater than %ld\n",param_3);
       pAVar9 = (ASN1_STRING *)0x0;
       a = (ASN1_STRING *)0x0;
       goto LAB_000bc3f8;
     }
     if (local_b0 != 0) {
       local_c0 = local_c0 + local_b8;
-      iVar4 = BIO_write(param_1,DAT_000bc614,1);
+      iVar4 = BIO_write(param_1,"\n",1);
       if (0 < iVar4) goto LAB_000bc53a;
       pAVar9 = (ASN1_STRING *)0x0;
       a = (ASN1_STRING *)0x0;
@@ -129,7 +129,7 @@ LAB_000bc3c4:
     }
     if (((((!bVar13 || (local_b4 == 0x16 || local_b4 == 0x14)) || (local_b4 == 0x1a)) ||
          (local_b4 == 0x12)) || ((local_b4 == 0xc || (local_b4 == 0x17)))) || (local_b4 == 0x18)) {
-      iVar4 = BIO_write(param_1,DAT_000bc61c,1);
+      iVar4 = BIO_write(param_1,":",1);
       if ((iVar4 < 1) ||
          ((0 < local_b8 && (iVar4 = BIO_write(param_1,local_c0,local_b8), iVar4 != local_b8))))
       goto LAB_000bc3f2;
@@ -139,9 +139,9 @@ LAB_000bc3c4:
       if (local_b4 == 1) {
         local_bc = pbVar12;
         iVar4 = d2i_ASN1_BOOLEAN((int *)0x0,&local_bc,iVar10 + local_b8);
-        if ((iVar4 < 0) && (iVar10 = BIO_write(param_1,DAT_000bc940,0xc), iVar10 < 1))
+        if ((iVar4 < 0) && (iVar10 = BIO_write(param_1,"Bad boolean\n",0xc), iVar10 < 1))
         goto LAB_000bc3f2;
-        BIO_printf(param_1,DAT_000bc930,iVar4);
+        BIO_printf(param_1,":%d",iVar4);
         goto LAB_000bc514;
       }
       if (local_b4 == 0x1e) goto LAB_000bc514;
@@ -166,7 +166,7 @@ LAB_000bc3c4:
               if (0x7e < uVar3) {
 LAB_000bc77a:
                 if (param_7 == 0) {
-                  iVar4 = BIO_write(param_1,DAT_000bc938,0xb);
+                  iVar4 = BIO_write(param_1,"[HEX DUMP]:",0xb);
                   if (iVar4 < 1) {
                     pAVar9 = (ASN1_STRING *)0x0;
                     goto LAB_000bc3f8;
@@ -175,7 +175,7 @@ LAB_000bc77a:
                   iVar4 = 0;
                   goto LAB_000bc7a6;
                 }
-                iVar4 = BIO_write(param_1,DAT_000bc948,1);
+                iVar4 = BIO_write(param_1,"\n",1);
                 if (iVar4 < 1) goto LAB_000bc7b8;
                 iVar4 = a->length;
                 if ((param_7 != -1) && (param_7 <= iVar4)) {
@@ -190,7 +190,7 @@ LAB_000bc77a:
             else if ((uVar3 != 0xd) && (uVar3 != 9)) goto LAB_000bc77a;
             pbVar11 = pbVar8;
           } while (pbVar8 != local_bc + a->length);
-          iVar4 = BIO_write(param_1,DAT_000bc92c,1);
+          iVar4 = BIO_write(param_1,":",1);
           if ((iVar4 < 1) || (iVar4 = BIO_write(param_1,local_bc,a->length), iVar4 < 1))
           goto LAB_000bc7b8;
         }
@@ -201,16 +201,16 @@ LAB_000bc77a:
           local_bc = pbVar12;
           a_00 = d2i_ASN1_ENUMERATED((ASN1_ENUMERATED **)0x0,&local_bc,iVar10 + local_b8);
           if (a_00 != (ASN1_ENUMERATED *)0x0) {
-            iVar4 = BIO_write(param_1,DAT_000bc92c,1);
+            iVar4 = BIO_write(param_1,":",1);
             if ((0 < iVar4) &&
-               ((a_00->type != 0x10a || (iVar4 = BIO_write(param_1,DAT_000bc9a8,1), 0 < iVar4)))) {
+               ((a_00->type != 0x10a || (iVar4 = BIO_write(param_1,"-",1), 0 < iVar4)))) {
               iVar4 = a_00->length;
               if (0 < iVar4) {
                 iVar10 = 0;
                 do {
                   pbVar11 = a_00->data + iVar10;
                   iVar10 = iVar10 + 1;
-                  iVar4 = BIO_printf(param_1,DAT_000bc93c,(uint)*pbVar11);
+                  iVar4 = BIO_printf(param_1,"%02X",(uint)*pbVar11);
                   if (iVar4 < 1) goto LAB_000bc3f2;
                   iVar4 = a_00->length;
                 } while (iVar10 < iVar4);
@@ -219,11 +219,11 @@ LAB_000bc77a:
             }
             goto LAB_000bc3f2;
           }
-          iVar4 = BIO_write(param_1,DAT_000bc9ac,0xe);
+          iVar4 = BIO_write(param_1,"BAD ENUMERATED",0xe);
           goto joined_r0x000bc982;
         }
         if ((local_b8 < 1) || (param_7 == 0)) goto LAB_000bc514;
-        iVar4 = BIO_write(param_1,DAT_000bc614,1);
+        iVar4 = BIO_write(param_1,"\n",1);
         if (iVar4 < 1) goto LAB_000bc3f2;
         iVar4 = local_b8;
         if ((param_7 != -1) && (param_7 <= local_b8)) {
@@ -235,27 +235,26 @@ LAB_000bc77a:
       local_bc = pbVar12;
       a_00 = d2i_ASN1_INTEGER((ASN1_INTEGER **)0x0,&local_bc,iVar10 + local_b8);
       if (a_00 != (ASN1_INTEGER *)0x0) {
-        iVar4 = BIO_write(param_1,DAT_000bc92c,1);
-        if ((0 < iVar4) &&
-           ((a_00->type != 0x102 || (iVar4 = BIO_write(param_1,DAT_000bc9a8,1), 0 < iVar4)))) {
+        iVar4 = BIO_write(param_1,":",1);
+        if ((0 < iVar4) && ((a_00->type != 0x102 || (iVar4 = BIO_write(param_1,"-",1), 0 < iVar4))))
+        {
           iVar4 = a_00->length;
           if (0 < iVar4) {
             iVar10 = 0;
             do {
               pbVar11 = a_00->data + iVar10;
               iVar10 = iVar10 + 1;
-              iVar4 = BIO_printf(param_1,DAT_000bc93c,(uint)*pbVar11);
+              iVar4 = BIO_printf(param_1,"%02X",(uint)*pbVar11);
               if (iVar4 < 1) goto LAB_000bc3f2;
               iVar4 = a_00->length;
             } while (iVar10 < iVar4);
           }
 LAB_000bc820:
-          if ((iVar4 != 0) || (iVar4 = BIO_write(param_1,DAT_000bc94c,2), 0 < iVar4))
-          goto LAB_000bc824;
+          if ((iVar4 != 0) || (iVar4 = BIO_write(param_1,"00",2), 0 < iVar4)) goto LAB_000bc824;
         }
         goto LAB_000bc3f2;
       }
-      iVar4 = BIO_write(param_1,DAT_000bc9a4,0xb);
+      iVar4 = BIO_write(param_1,"BAD INTEGER",0xb);
 joined_r0x000bc982:
       if (0 < iVar4) {
 LAB_000bc824:
@@ -269,12 +268,12 @@ LAB_000bc824:
     local_bc = pbVar12;
     pAVar6 = d2i_ASN1_OBJECT(&local_ac,&local_bc,iVar10 + local_b8);
     if (pAVar6 != (ASN1_OBJECT *)0x0) {
-      iVar4 = BIO_write(param_1,DAT_000bc92c,1);
+      iVar4 = BIO_write(param_1,":",1);
       if (iVar4 < 1) goto LAB_000bc3f2;
       i2a_ASN1_OBJECT(param_1,local_ac);
       goto LAB_000bc514;
     }
-    iVar4 = BIO_write(param_1,DAT_000bc944,0xb);
+    iVar4 = BIO_write(param_1,":BAD OBJECT",0xb);
     if (iVar4 < 1) {
       a = (ASN1_OCTET_STRING *)0x0;
 LAB_000bc7b8:
@@ -289,13 +288,13 @@ LAB_000bc7b8:
 LAB_000bc7a6:
     pbVar11 = local_bc + iVar4;
     iVar4 = iVar4 + 1;
-    iVar10 = BIO_printf(param_1,DAT_000bc93c,(uint)*pbVar11);
+    iVar10 = BIO_printf(param_1,"%02X",(uint)*pbVar11);
     if (iVar10 < 1) goto LAB_000bc7b8;
   }
 LAB_000bc8aa:
   ASN1_STRING_free(a);
 LAB_000bc514:
-  iVar4 = BIO_write(param_1,DAT_000bc614,1);
+  iVar4 = BIO_write(param_1,"\n",1);
 joined_r0x000bc4e8:
   if (iVar4 < 1) {
 LAB_000bc3f2:
@@ -325,7 +324,7 @@ LAB_000bc3f8:
     ASN1_STRING_free(a);
   }
 LAB_000bc406:
-  *param_2 = local_c0;
+  *param_2 = (int)local_c0;
   return pAVar9;
 }
 

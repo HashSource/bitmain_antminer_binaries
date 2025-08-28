@@ -6,7 +6,7 @@ char * ctime(time_t *__timer)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_ctime_000a80a0)();
+  pcVar1 = ctime(__timer);
   return pcVar1;
 }
 

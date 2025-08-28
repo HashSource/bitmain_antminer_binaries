@@ -9,13 +9,13 @@ undefined4 json_loadb(int param_1,undefined4 param_2,undefined4 param_3,undefine
   undefined4 local_64;
   undefined4 local_60;
   int *local_5c;
-  undefined local_58;
+  undefined1 local_58;
   undefined4 local_50;
   undefined4 local_4c;
   undefined4 local_48;
   undefined4 local_44;
   undefined4 local_3c;
-  undefined auStack_38 [12];
+  undefined1 auStack_38 [12];
   undefined4 local_2c;
   undefined4 local_24;
   

@@ -11,7 +11,7 @@ void write_pending(int param_1,int param_2,int param_3)
   iVar4 = *(int *)(param_1 + 0x54);
   if ((param_3 < *(int *)(iVar4 + 0x14)) ||
      ((*(int *)(iVar4 + 0x18) != param_2 && (-1 < *(int *)(param_1 + 0x104) << 0x1e)))) {
-    ERR_put_error(0x14,0xd4,0x7f,DAT_000651fc,0x1c8);
+    ERR_put_error(0x14,0xd4,0x7f,"s2_pkt.c",0x1c8);
   }
   else {
     piVar1 = __errno_location();
@@ -32,7 +32,7 @@ void write_pending(int param_1,int param_2,int param_3)
       *(int *)(iVar4 + 0x20) = *(int *)(iVar4 + 0x20) - iVar2;
       *(int *)(iVar4 + 0x1c) = *(int *)(iVar4 + 0x1c) + iVar2;
     }
-    ERR_put_error(0x14,0xd4,0x104,DAT_000651fc,0x1d4);
+    ERR_put_error(0x14,0xd4,0x104,"s2_pkt.c",0x1d4);
     iVar4 = *(int *)(param_1 + 0x54);
     if (*(int *)(iVar4 + 0x20) == -1) {
 LAB_000651d8:

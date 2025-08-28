@@ -9,7 +9,7 @@ void check_chain(void)
   undefined4 *puVar5;
   char *pcVar6;
   
-  *(undefined *)(dev + 0x53fd) = 0;
+  *(undefined1 *)(dev + 0x53fd) = 0;
   iVar2 = get_hash_on_plug();
   if (iVar2 < 0) {
     if ((opt_debug != '\0') &&

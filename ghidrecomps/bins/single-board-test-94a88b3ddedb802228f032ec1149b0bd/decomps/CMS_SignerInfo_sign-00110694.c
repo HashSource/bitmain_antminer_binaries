@@ -15,7 +15,7 @@ int CMS_SignerInfo_sign(CMS_SignerInfo *si)
   
   ctx = (EVP_MD_CTX *)(si + 0x24);
   local_20 = (uchar *)0x0;
-  iVar2 = OBJ_obj2nid(**(ASN1_OBJECT ***)(si + 8));
+  iVar2 = OBJ_obj2nid((ASN1_OBJECT *)**(undefined4 **)(si + 8));
   name = OBJ_nid2sn(iVar2);
   type = EVP_get_digestbyname(name);
   if (type == (EVP_MD *)0x0) {
@@ -30,7 +30,7 @@ int CMS_SignerInfo_sign(CMS_SignerInfo *si)
       goto LAB_001106c8;
     }
     ASN1_TIME_free(a);
-    ERR_put_error(0x2e,0x67,0x41,DAT_001107f8,0x1b5);
+    ERR_put_error(0x2e,0x67,0x41,"cms_sd.c",0x1b5);
   }
   else {
 LAB_001106c8:
@@ -46,15 +46,15 @@ LAB_001106c8:
     if (iVar2 < 1) {
       iVar2 = 0x2bd;
 LAB_0011076e:
-      ERR_put_error(0x2e,0x97,0x6e,DAT_001107f8,iVar2);
+      ERR_put_error(0x2e,0x97,0x6e,"cms_sd.c",iVar2);
     }
     else {
-      cnt = ASN1_item_i2d(*(ASN1_VALUE **)(si + 0xc),&local_20,DAT_001107f4);
+      cnt = ASN1_item_i2d(*(ASN1_VALUE **)(si + 0xc),&local_20,(ASN1_ITEM *)CMS_Attributes_Sign_it);
       if (local_20 == (uchar *)0x0) goto LAB_00110784;
       iVar2 = EVP_DigestUpdate(ctx,local_20,cnt);
       if ((0 < iVar2) && (iVar2 = EVP_DigestSignFinal(ctx,(uchar *)0x0,local_1c), 0 < iVar2)) {
         CRYPTO_free(local_20);
-        local_20 = (uchar *)CRYPTO_malloc(local_1c[0],DAT_001107f8,0x2ca);
+        local_20 = (uchar *)CRYPTO_malloc(local_1c[0],"cms_sd.c",0x2ca);
         if (local_20 == (uchar *)0x0) goto LAB_00110784;
         iVar2 = EVP_DigestSignFinal(ctx,local_20,local_1c);
         if (0 < iVar2) {

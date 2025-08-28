@@ -17,7 +17,7 @@ int X509_load_crl_file(X509_LOOKUP *ctx,char *file,int type)
     type_00 = BIO_s_file();
     bp = BIO_new(type_00);
     if ((bp == (BIO *)0x0) || (lVar1 = BIO_ctrl(bp,0x6c,3,file), lVar1 < 1)) {
-      ERR_put_error(0xb,0x70,2,DAT_000c56c4,0xc4);
+      ERR_put_error(0xb,0x70,2,"by_file.c",0xc4);
       if (bp == (BIO *)0x0) {
         return 0;
       }
@@ -40,14 +40,14 @@ int X509_load_crl_file(X509_LOOKUP *ctx,char *file,int type)
         ERR_clear_error();
       }
       else {
-        ERR_put_error(0xb,0x70,9,DAT_000c56c4,0xd1);
+        ERR_put_error(0xb,0x70,9,"by_file.c",0xd1);
         iVar4 = 0;
       }
     }
     else if (type == 2) {
       x = d2i_X509_CRL_bio(bp,(X509_CRL **)0x0);
       if (x == (X509_CRL *)0x0) {
-        ERR_put_error(0xb,0x70,0xd,DAT_000c56c4,0xe0);
+        ERR_put_error(0xb,0x70,0xd,"by_file.c",0xe0);
         iVar4 = 0;
       }
       else {
@@ -58,7 +58,7 @@ LAB_000c5698:
     }
     else {
       iVar4 = 0;
-      ERR_put_error(0xb,0x70,100,DAT_000c56c4,0xe8);
+      ERR_put_error(0xb,0x70,100,"by_file.c",0xe8);
     }
     BIO_free(bp);
   }

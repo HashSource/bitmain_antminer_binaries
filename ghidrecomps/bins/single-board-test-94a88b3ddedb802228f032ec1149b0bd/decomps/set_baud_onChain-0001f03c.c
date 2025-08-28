@@ -2,7 +2,7 @@
 void set_baud_onChain(int param_1,byte param_2)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint local_34;
   uint local_30;
   int local_2c;
@@ -22,7 +22,7 @@ void set_baud_onChain(int param_1,byte param_2)
   local_30 = 0;
   local_2c = 0;
   printf("\n--- %s\n","set_baud_onChain");
-  if (param_2 == cgpu[2562356]) {
+  if (param_2 == cgpu[0x271934]) {
     if (3 < log_level) {
       local_1c = fopen(log_file,"a+");
       if (local_1c != (FILE *)0x0) {
@@ -77,7 +77,7 @@ void set_baud_onChain(int param_1,byte param_2)
     local_14 = get_BC_write_command();
     local_18 = param_2 & 0x1f | local_14 & 0xffffffe0;
     set_BC_write_command(local_18);
-    cgpu[2562356] = param_2;
+    cgpu[0x271934] = param_2;
     printf("%s: system baudrate is: 0x%x\n","set_baud_onChain",(uint)param_2);
   }
   return;

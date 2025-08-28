@@ -1,29 +1,29 @@
 
-void __left_rotate(int **param_1,int **param_2)
+void __left_rotate(undefined4 *param_1,undefined4 *param_2)
 
 {
-  int **ppiVar1;
+  int *piVar1;
   
-  ppiVar1 = (int **)param_2[1];
-  param_2[1] = *ppiVar1;
-  if ((int **)*ppiVar1 != param_1 + 1) {
-    (*ppiVar1)[2] = (int)param_2;
+  piVar1 = (int *)param_2[1];
+  param_2[1] = *piVar1;
+  if ((undefined4 *)*piVar1 != param_1 + 1) {
+    *(undefined4 **)(*piVar1 + 8) = param_2;
   }
-  if (param_1 + 1 != ppiVar1) {
-    ppiVar1[2] = param_2[2];
+  if (param_1 + 1 != piVar1) {
+    piVar1[2] = param_2[2];
   }
-  if (param_2[2] == (int *)0x0) {
-    *param_1 = (int *)ppiVar1;
+  if (param_2[2] == 0) {
+    *param_1 = piVar1;
   }
-  else if ((int **)*param_2[2] == param_2) {
-    *param_2[2] = (int)ppiVar1;
+  else if ((undefined4 *)*(int *)param_2[2] == param_2) {
+    *(int **)param_2[2] = piVar1;
   }
   else {
-    param_2[2][1] = (int)ppiVar1;
+    *(int **)(param_2[2] + 4) = piVar1;
   }
-  *ppiVar1 = (int *)param_2;
+  *piVar1 = (int)param_2;
   if (param_1 + 1 != param_2) {
-    param_2[2] = (int *)ppiVar1;
+    param_2[2] = piVar1;
   }
   return;
 }

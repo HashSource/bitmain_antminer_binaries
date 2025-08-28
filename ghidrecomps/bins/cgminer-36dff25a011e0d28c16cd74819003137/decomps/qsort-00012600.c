@@ -4,7 +4,7 @@
 void qsort(void *__base,size_t __nmemb,size_t __size,__compar_fn_t __compar)
 
 {
-  (*(code *)PTR_qsort_000c0238)();
+  qsort(__base,__nmemb,__size,__compar);
   return;
 }
 

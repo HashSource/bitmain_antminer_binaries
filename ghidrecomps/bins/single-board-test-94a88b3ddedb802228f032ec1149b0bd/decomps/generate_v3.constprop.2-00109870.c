@@ -25,7 +25,7 @@ _STACK * generate_v3_constprop_2(char *param_1,X509V3_CTX *param_2,undefined4 *p
   uchar *local_1d4;
   int local_1d0 [4];
   _STACK *local_1c0;
-  int aiStack_1bc [100];
+  int local_1bc [100];
   int local_2c;
   
   local_1d0[3] = 1;
@@ -33,7 +33,7 @@ _STACK * generate_v3_constprop_2(char *param_1,X509V3_CTX *param_2,undefined4 *p
   local_1d0[1] = -1;
   local_2c = 0;
   local_1ec = (uchar *)0x0;
-  puVar2 = (uchar *)CONF_parse_list(param_1,0x2c,1,DAT_00109b14,local_1d0);
+  puVar2 = (uchar *)CONF_parse_list(param_1,0x2c,1,(list_cb *)0x109b2d,local_1d0);
   if (puVar2 != (uchar *)0x0) {
     *param_3 = 0xc2;
     return (_STACK *)0x0;
@@ -97,7 +97,7 @@ LAB_0010997a:
       pAVar5->data = local_1d4;
       local_1d4 = (uchar *)0x0;
 LAB_001099be:
-      sk_pop_free(p_Var6,DAT_00109b18);
+      sk_pop_free(p_Var6,ASN1_TYPE_free);
     }
     if (section != (_STACK *)0x0) {
       X509V3_section_free(param_2,(stack_st_CONF_VALUE *)section);
@@ -129,13 +129,13 @@ LAB_001099de:
         piVar7 = piVar7 + -5;
       } while (iVar8 < local_2c);
     }
-    ptr = (uchar *)CRYPTO_malloc((int)puVar2,DAT_00109b1c,0xf5);
+    ptr = (uchar *)CRYPTO_malloc((int)puVar2,"asn1_gen.c",0xf5);
     if (ptr != (uchar *)0x0) {
       iVar8 = local_1d0[2];
       if (0 < local_2c) {
         iVar8 = 0;
       }
-      piVar7 = aiStack_1bc;
+      piVar7 = local_1bc;
       iVar9 = iVar8;
       local_1e4 = ptr;
       if (0 < local_2c) {

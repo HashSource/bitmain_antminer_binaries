@@ -12,25 +12,26 @@ int OCSP_REQUEST_print(BIO *bp,OCSP_REQUEST *a,ulong flags)
   
   pOVar6 = a->tbsRequest;
   pOVar7 = a->optionalSignature;
-  iVar1 = BIO_write(bp,DAT_000d3704,0x13);
+  iVar1 = BIO_write(bp,"OCSP Request Data:\n",0x13);
   if (0 < iVar1) {
     lVar2 = ASN1_INTEGER_get(pOVar6->version);
-    iVar1 = BIO_printf(bp,DAT_000d3708,lVar2 + 1);
+    iVar1 = BIO_printf(bp,"    Version: %lu (0x%lx)",lVar2 + 1);
     if (0 < iVar1) {
       if (pOVar6->requestorName != (GENERAL_NAME *)0x0) {
-        iVar1 = BIO_write(bp,DAT_000d370c,0x15);
+        iVar1 = BIO_write(bp,"\n    Requestor Name: ",0x15);
         if (iVar1 < 1) {
           return 0;
         }
         GENERAL_NAME_print(bp,pOVar6->requestorName);
       }
-      iVar1 = BIO_write(bp,DAT_000d3710,0x15);
+      iVar1 = BIO_write(bp,"\n    Requestor List:\n",0x15);
       if (0 < iVar1) {
         iVar1 = 0;
         do {
           iVar4 = sk_num(&pOVar6->requestList->stack);
           if (iVar4 <= iVar1) {
-            iVar1 = X509V3_extensions_print(bp,DAT_000d3718,pOVar6->requestExtensions,flags,4);
+            iVar1 = X509V3_extensions_print
+                              (bp,"Request Extensions",pOVar6->requestExtensions,flags,4);
             if (iVar1 == 0) {
               return 0;
             }
@@ -49,7 +50,8 @@ int OCSP_REQUEST_print(BIO *bp,OCSP_REQUEST *a,ulong flags)
           puVar3 = (undefined4 *)sk_value(&pOVar6->requestList->stack,iVar1);
           ocsp_certid_print(bp,*puVar3,8);
           iVar4 = X509V3_extensions_print
-                            (bp,DAT_000d3714,(stack_st_X509_EXTENSION *)puVar3[1],flags,8);
+                            (bp,"Request Single Extensions",(stack_st_X509_EXTENSION *)puVar3[1],
+                             flags,8);
           iVar1 = iVar1 + 1;
         } while (iVar4 != 0);
       }

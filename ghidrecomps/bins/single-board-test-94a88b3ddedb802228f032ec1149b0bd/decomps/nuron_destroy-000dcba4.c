@@ -2,21 +2,15 @@
 undefined4 nuron_destroy(void)
 
 {
-  void **ppvVar1;
-  int *piVar2;
-  
-  ppvVar1 = DAT_000dcbe0;
-  if (*DAT_000dcbe0 != (void *)0x0) {
-    CRYPTO_free(*DAT_000dcbe0);
+  if (NURON_LIBNAME != (void *)0x0) {
+    CRYPTO_free(NURON_LIBNAME);
   }
-  piVar2 = DAT_000dcbe4;
-  *ppvVar1 = (void *)0x0;
-  ppvVar1 = DAT_000dcbe0;
-  if (*piVar2 == 0) {
-    ERR_unload_strings((int)DAT_000dcbe0[1],(ERR_STRING_DATA *)(piVar2 + 1));
-    ERR_unload_strings((int)ppvVar1[1],(ERR_STRING_DATA *)(piVar2 + 0xb));
-    ERR_unload_strings(0,(ERR_STRING_DATA *)(piVar2 + 0x19));
-    *piVar2 = 1;
+  NURON_LIBNAME = (void *)0x0;
+  if (NURON_error_init == 0) {
+    ERR_unload_strings(NURON_lib_error_code,(ERR_STRING_DATA *)NURON_str_functs);
+    ERR_unload_strings(NURON_lib_error_code,(ERR_STRING_DATA *)NURON_str_reasons);
+    ERR_unload_strings(0,(ERR_STRING_DATA *)NURON_lib_name);
+    NURON_error_init = 1;
   }
   return 1;
 }

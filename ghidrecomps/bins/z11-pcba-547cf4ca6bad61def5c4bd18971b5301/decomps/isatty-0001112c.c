@@ -6,7 +6,7 @@ int isatty(int __fd)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_isatty_00046ea0)();
+  iVar1 = isatty(__fd);
   return iVar1;
 }
 

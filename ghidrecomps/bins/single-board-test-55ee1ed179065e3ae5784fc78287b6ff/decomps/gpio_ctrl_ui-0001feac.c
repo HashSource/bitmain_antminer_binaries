@@ -27,7 +27,7 @@ undefined4 gpio_ctrl_ui(undefined4 param_1,int param_2)
         local_c = gpio_write(iVar1,1);
       }
       else if (param_2 == 2) {
-        add_port_to_gpio_map(iVar1,default_flicker_interval,ui_flicker_map);
+        add_port_to_gpio_map(iVar1,200,ui_flicker_map);
       }
       else {
         printf("%s:%d","gpio_ctrl_ui",0xf3);

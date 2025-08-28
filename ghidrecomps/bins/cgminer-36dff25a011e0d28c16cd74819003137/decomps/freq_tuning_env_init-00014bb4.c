@@ -79,8 +79,7 @@ void freq_tuning_env_init(_Bool is_need_read_temp,freq_tuning_info *freq_info)
   set_pll(init_freq);
   iVar3 = calculate_core_number(dev->corenum);
   iVar3 = __aeabi_idiv(0x1000000,iVar3);
-  fVar4 = (((float)(longlong)(int)((uint)dev->addrInterval * iVar3) / init_freq) * DAT_0001501c) /
-          DAT_00015020;
+  fVar4 = (((float)(longlong)(int)((uint)dev->addrInterval * iVar3) / init_freq) * 50.0) / 100.0;
   dev->timeout = (uint)(0.0 < fVar4) * (int)fVar4;
   if (0x1ffff < dev->timeout) {
     dev->timeout = 0x1ffff;

@@ -5,11 +5,11 @@ _Bool parse_reconnect(pool *pool,json_t *val)
   _Bool _Var1;
   json_t *pjVar2;
   int iVar3;
-  char **ppcVar4;
+  int *piVar4;
   json_int_t jVar5;
-  undefined local_a40 [8];
+  undefined1 local_a40 [8];
   char acStack_a38 [256];
-  undefined auStack_938 [8];
+  undefined1 auStack_938 [8];
   json_t *val_local;
   pool *pool_local;
   char tmp42 [2048];
@@ -65,24 +65,24 @@ _Bool parse_reconnect(pool *pool,json_t *val)
   if (port_no == 0) {
     pjVar2 = json_array_get(val_local,1);
     port = json_string_value(pjVar2);
-    ppcVar4 = (char **)auStack_938;
+    piVar4 = (int *)auStack_938;
     if (port == (char *)0x0) {
       port = pool_local->stratum_port;
-      ppcVar4 = (char **)auStack_938;
+      piVar4 = (int *)auStack_938;
     }
   }
   else {
     port = acStack_a38;
     sprintf(port,"%d",port_no);
-    ppcVar4 = (char **)local_a40;
+    piVar4 = (int *)local_a40;
   }
-  *ppcVar4 = port;
+  *piVar4 = (int)port;
   snprintf(address,0xfe,"%s:%s",url);
   _Var1 = extract_sockaddr(address,&sockaddr_url,&stratum_port);
   if (_Var1) {
     if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
       iVar3 = pool_local->pool_no;
-      *ppcVar4 = address;
+      *piVar4 = (int)address;
       snprintf(tmp42,0x800,"Stratum reconnect requested from pool %d to %s",iVar3);
       _applog(4,tmp42,false);
     }

@@ -18,7 +18,7 @@ stack_st_CONF_VALUE * X509V3_parse_list(char *line)
   local_24 = (_STACK *)0x0;
   ptr = (byte *)BUF_strdup(line);
   if (ptr == (byte *)0x0) {
-    ERR_put_error(0x22,0x6d,0x41,DAT_000c7ff0,0x121);
+    ERR_put_error(0x22,0x6d,0x41,"v3_utl.c",0x121);
     goto LAB_000c7f4a;
   }
   uVar5 = (uint)*ptr;
@@ -185,7 +185,7 @@ LAB_000c7fc4:
 LAB_000c7fd6:
   iVar7 = 0x162;
 LAB_000c7f3c:
-  ERR_put_error(0x22,0x6d,0x6d,DAT_000c7ff0,iVar7);
+  ERR_put_error(0x22,0x6d,0x6d,"v3_utl.c",iVar7);
   goto LAB_000c7f4a;
   while (pbVar1 = pbVar8 + -1, (puVar9[*pbVar8] & 0x2000) != 0) {
 joined_r0x000c7e1e:
@@ -205,10 +205,10 @@ LAB_000c7e52:
 LAB_000c7f76:
   iVar7 = 0x16c;
 LAB_000c7f60:
-  ERR_put_error(0x22,0x6d,0x6c,DAT_000c7ff0,iVar7);
+  ERR_put_error(0x22,0x6d,0x6c,"v3_utl.c",iVar7);
 LAB_000c7f4a:
   CRYPTO_free(ptr);
-  sk_pop_free(local_24,DAT_000c7ff4);
+  sk_pop_free(local_24,(func *)0xc7009);
   return (stack_st_CONF_VALUE *)0x0;
 }
 

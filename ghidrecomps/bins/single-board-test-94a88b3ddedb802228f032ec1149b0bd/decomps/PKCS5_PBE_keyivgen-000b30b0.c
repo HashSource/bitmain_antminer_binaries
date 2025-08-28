@@ -14,19 +14,19 @@ int PKCS5_PBE_keyivgen(EVP_CIPHER_CTX *ctx,char *pass,int passlen,ASN1_TYPE *par
   uchar auStack_c8 [16];
   EVP_MD_CTX EStack_b8;
   uchar auStack_a0 [16];
-  undefined auStack_90 [48];
+  undefined1 auStack_90 [48];
   uchar auStack_60 [64];
   
   EVP_MD_CTX_init(&EStack_b8);
   if (((param == (ASN1_TYPE *)0x0) || (param->type != 0x10)) ||
      (pAVar3 = (param->value).asn1_string, pAVar3 == (ASN1_STRING *)0x0)) {
-    ERR_put_error(6,0x75,0x72,DAT_000b3264,0x5d);
+    ERR_put_error(6,0x75,0x72,"p5_crpt.c",0x5d);
     return 0;
   }
   local_cc = pAVar3->data;
   a = d2i_PBEPARAM((PBEPARAM **)0x0,&local_cc,pAVar3->length);
   if (a == (PBEPARAM *)0x0) {
-    ERR_put_error(6,0x75,0x72,DAT_000b3264,99);
+    ERR_put_error(6,0x75,0x72,"p5_crpt.c",99);
     return 0;
   }
   lVar5 = 1;
@@ -65,13 +65,13 @@ int PKCS5_PBE_keyivgen(EVP_CIPHER_CTX *ctx,char *pass,int passlen,ASN1_TYPE *par
       }
       iVar1 = EVP_CIPHER_key_length(cipher);
       if (0x40 < iVar1) {
-        OpenSSLDie(DAT_000b3264,0x87,DAT_000b3268);
+        OpenSSLDie("p5_crpt.c",0x87,"EVP_CIPHER_key_length(cipher) <= (int)sizeof(md_tmp)");
       }
       sVar4 = EVP_CIPHER_key_length(cipher);
       memcpy(auStack_60,auStack_a0,sVar4);
       iVar1 = EVP_CIPHER_iv_length(cipher);
       if (0x10 < iVar1) {
-        OpenSSLDie(DAT_000b3264,0x89,DAT_000b326c);
+        OpenSSLDie("p5_crpt.c",0x89,"EVP_CIPHER_iv_length(cipher) <= 16");
       }
       iVar1 = EVP_CIPHER_iv_length(cipher);
       sVar4 = EVP_CIPHER_iv_length(cipher);

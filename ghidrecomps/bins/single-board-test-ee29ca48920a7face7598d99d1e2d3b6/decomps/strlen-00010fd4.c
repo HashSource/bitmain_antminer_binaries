@@ -6,7 +6,7 @@ size_t strlen(char *__s)
 {
   size_t sVar1;
   
-  sVar1 = (*(code *)PTR_strlen_000473d4)();
+  sVar1 = strlen(__s);
   return sVar1;
 }
 

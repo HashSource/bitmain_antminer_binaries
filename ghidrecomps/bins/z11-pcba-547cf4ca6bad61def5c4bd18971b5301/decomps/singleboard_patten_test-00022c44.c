@@ -24,9 +24,9 @@ void singleboard_patten_test(void)
         send_work(__ptr,1,0);
         free(__ptr);
         usleep(app_conf._432_4_ * 1000);
-        pthread_mutex_lock(DAT_00022de0);
+        pthread_mutex_lock((pthread_mutex_t *)(g_patten + 0x80));
         g_patten._120_4_ = __aeabi_idiv(g_patten._112_4_,g_patten._116_4_);
-        pthread_mutex_unlock(DAT_00022de0);
+        pthread_mutex_unlock((pthread_mutex_t *)(g_patten + 0x80));
       }
     }
   }

@@ -2,8 +2,8 @@
 void V9_open_core(byte param_1)
 
 {
-  undefined local_5c [52];
-  undefined local_28;
+  undefined1 local_5c [52];
+  undefined1 local_28;
   undefined4 local_1c;
   undefined4 local_18;
   undefined4 local_14;

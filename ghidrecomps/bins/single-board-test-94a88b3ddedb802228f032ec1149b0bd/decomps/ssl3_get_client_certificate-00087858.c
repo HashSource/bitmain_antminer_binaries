@@ -6,7 +6,7 @@ int ssl3_get_client_certificate(int *param_1)
   X509 *a;
   void *pvVar2;
   int iVar3;
-  _STACK **pp_Var4;
+  undefined4 *puVar4;
   undefined4 uVar5;
   int iVar6;
   _STACK *st;
@@ -25,7 +25,7 @@ int ssl3_get_client_certificate(int *param_1)
   iVar3 = param_1[0x16];
   if (*(int *)(iVar3 + 0x340) == 0x10) {
     if ((param_1[0x32] & 3U) == 3) {
-      ERR_put_error(0x14,0x89,199,DAT_00087b4c,0xc59);
+      ERR_put_error(0x14,0x89,199,"s3_srvr.c",0xc59);
       st = (_STACK *)0x0;
       uVar5 = 0x28;
     }
@@ -34,7 +34,7 @@ int ssl3_get_client_certificate(int *param_1)
         *(undefined4 *)(iVar3 + 0x354) = 1;
         return 1;
       }
-      ERR_put_error(0x14,0x89,0xe9,DAT_00087b4c,0xc62);
+      ERR_put_error(0x14,0x89,0xe9,"s3_srvr.c",0xc62);
       st = (_STACK *)0x0;
       uVar5 = 10;
     }
@@ -45,7 +45,7 @@ int ssl3_get_client_certificate(int *param_1)
     iVar3 = 0xc72;
     if (st == (_STACK *)0x0) {
 LAB_00087a2c:
-      ERR_put_error(0x14,0x89,0x41,DAT_00087b4c,iVar3);
+      ERR_put_error(0x14,0x89,0x41,"s3_srvr.c",iVar3);
       goto LAB_000878b2;
     }
     uVar9 = (uint)local_28[1] << 8 | (uint)*local_28 << 0x10 | (uint)local_28[2];
@@ -57,11 +57,11 @@ LAB_00087a3c:
         iVar1 = sk_num(st);
         if (iVar1 < 1) {
           if (*param_1 == 0x300) {
-            ERR_put_error(0x14,0x89,0xb0,DAT_00087b4c,0xc9e);
+            ERR_put_error(0x14,0x89,0xb0,"s3_srvr.c",0xc9e);
             uVar5 = 0x28;
           }
           else if ((param_1[0x32] & 3U) == 3) {
-            ERR_put_error(0x14,0x89,199,DAT_00087b4c,0xca5);
+            ERR_put_error(0x14,0x89,199,"s3_srvr.c",0xca5);
             uVar5 = 0x28;
           }
           else {
@@ -86,12 +86,12 @@ LAB_00087a52:
             *(int *)(iVar6 + 0xa0) = iVar3;
             if (*(int *)(iVar6 + 0x98) != 0) {
 LAB_00087a82:
-              pp_Var4 = *(_STACK ***)(iVar6 + 0x98);
-              if (*pp_Var4 != (_STACK *)0x0) {
-                sk_pop_free(*pp_Var4,DAT_00087b50);
-                pp_Var4 = *(_STACK ***)(param_1[0x30] + 0x98);
+              puVar4 = *(undefined4 **)(iVar6 + 0x98);
+              if ((_STACK *)*puVar4 != (_STACK *)0x0) {
+                sk_pop_free((_STACK *)*puVar4,X509_free);
+                puVar4 = *(undefined4 **)(param_1[0x30] + 0x98);
               }
-              *pp_Var4 = st;
+              *puVar4 = st;
               return 1;
             }
             uVar5 = ssl_sess_cert_new();
@@ -102,7 +102,7 @@ LAB_00087a82:
             goto LAB_00087a2c;
           }
           uVar5 = ssl_verify_alarm_type(param_1[0x3b]);
-          ERR_put_error(0x14,0x89,0x86,DAT_00087b4c,0xcb3);
+          ERR_put_error(0x14,0x89,0x86,"s3_srvr.c",0xcb3);
         }
       }
       else {
@@ -112,11 +112,11 @@ LAB_00087a82:
           pbVar7 = local_28 + len;
           a = d2i_X509((X509 **)0x0,&local_28,len);
           if (a == (X509 *)0x0) {
-            ERR_put_error(0x14,0x89,0xd,DAT_00087b4c,0xc88);
+            ERR_put_error(0x14,0x89,0xd,"s3_srvr.c",0xc88);
             goto LAB_000878b2;
           }
           if (local_28 != pbVar7) {
-            ERR_put_error(0x14,0x89,0x87,DAT_00087b4c,0xc8e);
+            ERR_put_error(0x14,0x89,0x87,"s3_srvr.c",0xc8e);
             ssl3_send_alert(param_1,2,0x32);
             param_1[0xd] = 5;
 LAB_000878da:
@@ -125,7 +125,7 @@ LAB_000878da:
           }
           iVar1 = sk_push(st,a);
           if (iVar1 == 0) {
-            ERR_put_error(0x14,0x89,0x41,DAT_00087b4c,0xc92);
+            ERR_put_error(0x14,0x89,0x41,"s3_srvr.c",0xc92);
             param_1[0xd] = 5;
             goto LAB_000878da;
           }
@@ -134,27 +134,27 @@ LAB_000878da:
           len = (uint)local_28[1] << 8 | (uint)*local_28 << 0x10 | (uint)local_28[2];
           local_28 = local_28 + 3;
         }
-        ERR_put_error(0x14,0x89,0x87,DAT_00087b4c,0xc81);
+        ERR_put_error(0x14,0x89,0x87,"s3_srvr.c",0xc81);
         uVar5 = 0x32;
       }
     }
     else {
       local_28 = local_28 + 3;
-      ERR_put_error(0x14,0x89,0x9f,DAT_00087b4c,0xc79);
+      ERR_put_error(0x14,0x89,0x9f,"s3_srvr.c",0xc79);
       uVar5 = 0x32;
     }
   }
   else {
     st = (_STACK *)0x0;
     uVar5 = 10;
-    ERR_put_error(0x14,0x89,0x106,DAT_00087b4c,0xc6c);
+    ERR_put_error(0x14,0x89,0x106,"s3_srvr.c",0xc6c);
   }
   ssl3_send_alert(param_1,2,uVar5);
 LAB_000878b2:
   param_1[0xd] = 5;
   if (st != (_STACK *)0x0) {
 LAB_000878e0:
-    sk_pop_free(st,DAT_00087b50);
+    sk_pop_free(st,X509_free);
   }
   return -1;
 }

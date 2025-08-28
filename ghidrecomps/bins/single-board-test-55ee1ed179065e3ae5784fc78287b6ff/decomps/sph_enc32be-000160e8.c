@@ -1,5 +1,5 @@
 
-void sph_enc32be(undefined *param_1,undefined4 param_2)
+void sph_enc32be(undefined1 *param_1,undefined4 param_2)
 
 {
   *param_1 = (char)((uint)param_2 >> 0x18);

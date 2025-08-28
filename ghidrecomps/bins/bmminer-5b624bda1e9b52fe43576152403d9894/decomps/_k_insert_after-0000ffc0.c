@@ -10,14 +10,15 @@ void _k_insert_after(K_LIST *list,K_ITEM *item,K_ITEM *after,char *file,char *fu
   char tmp42 [2048];
   
   if (item->name != list->name) {
-    snprintf(tmp42,0x800,DAT_0001009c,list->name,DAT_00010098,item->name,file,func,line,DAT_000100a4
-             ,DAT_00010098,0x11e);
+    snprintf(tmp42,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_insert_after",item->name,file,func,line,"klist.c","_k_insert_after",
+             0x11e);
     _applog(3,tmp42,true);
     _quit(1);
   }
   if (after == (K_ITEM *)0x0) {
-    snprintf(tmp42,0x800,DAT_000100a0,DAT_00010098,list->name,file,func,line,DAT_000100a4,
-             DAT_00010098,0x123);
+    snprintf(tmp42,0x800,"%s() (%s) can\'t after a null item - from %s %s() line %d in %s %s():%d",
+             "_k_insert_after",list->name,file,func,line,"klist.c","_k_insert_after",0x123);
     _applog(3,tmp42,true);
     _quit(1);
   }

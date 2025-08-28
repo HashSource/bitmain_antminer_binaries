@@ -5,7 +5,7 @@ uchar * SHA256(uchar *d,size_t n,uchar *md)
   uchar *md_00;
   SHA256_CTX local_90;
   
-  md_00 = DAT_0009133c;
+  md_00 = &m_6250;
   if (md != (uchar *)0x0) {
     md_00 = md;
   }

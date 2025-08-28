@@ -16,7 +16,7 @@ uint BN_GF2m_mod_mul(undefined4 param_1,undefined4 param_2,undefined4 param_3,BI
   
   iVar1 = BN_num_bits(param_4);
   iVar1 = iVar1 + 1;
-  ptr = CRYPTO_malloc(iVar1 * 4,DAT_001234d0,0x229);
+  ptr = CRYPTO_malloc(iVar1 * 4,"bn_gf2m.c",0x229);
   if (ptr == (void *)0x0) {
     return 0;
   }
@@ -75,7 +75,7 @@ uint BN_GF2m_mod_mul(undefined4 param_1,undefined4 param_2,undefined4 param_3,BI
       goto LAB_001234a6;
     }
   }
-  ERR_put_error(3,0x85,0x6a,DAT_001234d0,0x22d);
+  ERR_put_error(3,0x85,0x6a,"bn_gf2m.c",0x22d);
 LAB_001234a6:
   CRYPTO_free(ptr);
   return uVar7;

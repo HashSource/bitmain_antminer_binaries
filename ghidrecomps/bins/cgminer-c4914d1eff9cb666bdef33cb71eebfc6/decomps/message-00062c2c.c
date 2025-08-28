@@ -34,7 +34,7 @@ void message(io_data *io_data,int messageid,int paramid,char *param2,_Bool isjso
       paVar2 = api_add_escape(paVar2,"Description",opt_api_description,false);
       print_data(io_data_local,paVar2,isjson,false);
       if (isjson) {
-        io_add(io_data_local,(char *)&DAT_00092f40);
+        io_add(io_data_local,"]");
       }
       return;
     }
@@ -110,7 +110,7 @@ void message(io_data *io_data,int messageid,int paramid,char *param2,_Bool isjso
   if (!isjson) {
     return;
   }
-  io_add(io_data_local,(char *)&DAT_00092f40);
+  io_add(io_data_local,"]");
   return;
 }
 

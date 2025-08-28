@@ -19,7 +19,7 @@ undefined4 Curl_client_chop_write(int *param_1,uint param_2,void *param_3,size_t
         return 0x38;
       }
       iVar7 = param_4 + *(int *)(iVar5 + 0x85bc);
-      iVar3 = (**DAT_00043054)(*(undefined4 *)(iVar5 + 0x85b8),iVar7);
+      iVar3 = (*Curl_crealloc)(*(undefined4 *)(iVar5 + 0x85b8),iVar7);
       if (iVar3 == 0) {
         return 0x1b;
       }
@@ -47,10 +47,10 @@ undefined4 Curl_client_chop_write(int *param_1,uint param_2,void *param_3,size_t
         uVar1 = (uint)uVar9;
         if (uVar1 == 0x10000001) {
           if ((*(uint *)(param_1[0x86] + 0x40) & 0x10) != 0) {
-            Curl_failf(iVar5,DAT_00043044);
+            Curl_failf(iVar5,"Write callback asked for PAUSE when not supported!");
             return 0x17;
           }
-          pvVar2 = (void *)(**DAT_0004304c)(param_4,(int)((ulonglong)uVar9 >> 0x20),0x10000001);
+          pvVar2 = (void *)(*Curl_cmalloc)(param_4,(int)((ulonglong)uVar9 >> 0x20),0x10000001);
           if (pvVar2 == (void *)0x0) {
             return 0x1b;
           }
@@ -62,14 +62,14 @@ undefined4 Curl_client_chop_write(int *param_1,uint param_2,void *param_3,size_t
           return 0;
         }
         if (uVar1 != uVar4) {
-          Curl_failf(iVar5,DAT_00043048,uVar1,uVar4);
+          Curl_failf(iVar5,"Failed writing body (%zu != %zu)",uVar1,uVar4);
           return 0x17;
         }
       }
       if (pcVar8 != (code *)0x0) {
         uVar1 = (*pcVar8)(param_3,1,uVar4,*(undefined4 *)(iVar5 + 0x168));
         if (uVar1 == 0x10000001) {
-          pvVar2 = (void *)(**DAT_0004304c)(param_4);
+          pvVar2 = (void *)(*Curl_cmalloc)(param_4);
           if (pvVar2 == (void *)0x0) {
             return 0x1b;
           }
@@ -81,7 +81,7 @@ undefined4 Curl_client_chop_write(int *param_1,uint param_2,void *param_3,size_t
           return 0;
         }
         if (uVar1 != uVar4) {
-          Curl_failf(iVar5,DAT_00043050);
+          Curl_failf(iVar5,"Failed writing header");
           return 0x17;
         }
       }

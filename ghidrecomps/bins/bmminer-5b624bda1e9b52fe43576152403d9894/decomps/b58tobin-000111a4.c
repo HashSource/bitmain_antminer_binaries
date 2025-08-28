@@ -6,7 +6,6 @@ void b58tobin(uchar *b58bin,char *b58)
 {
   longlong lVar1;
   size_t sVar2;
-  int len;
   uint *puVar3;
   uchar *puVar4;
   uint uVar5;
@@ -29,7 +28,7 @@ void b58tobin(uchar *b58bin,char *b58)
     sVar8 = 0;
     do {
       iVar7 = 6;
-      uVar5 = *(uint *)(DAT_0001124c + (uint)(byte)b58[sVar8] * 4 + 0x46c);
+      uVar5 = b58tobin_tbl[(byte)b58[sVar8]];
       puVar3 = bin32;
       while( true ) {
         lVar1 = (ulonglong)uVar6 * 0x3a + (ulonglong)uVar5;

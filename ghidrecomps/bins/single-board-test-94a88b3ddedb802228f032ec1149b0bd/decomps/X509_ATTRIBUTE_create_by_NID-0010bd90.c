@@ -10,7 +10,7 @@ X509_ATTRIBUTE_create_by_NID(X509_ATTRIBUTE **attr,int nid,int atrtype,void *dat
   
   o = OBJ_nid2obj(nid);
   if (o == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x88,0x6d,DAT_0010be40,0xe4);
+    ERR_put_error(0xb,0x88,0x6d,"x509_att.c",0xe4);
     return (X509_ATTRIBUTE *)0x0;
   }
   if ((attr == (X509_ATTRIBUTE **)0x0) || (pXVar3 = *attr, pXVar3 == (X509_ATTRIBUTE *)0x0)) {

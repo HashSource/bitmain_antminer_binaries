@@ -6,7 +6,7 @@ __int32_t ** __ctype_toupper_loc(void)
 {
   __int32_t **pp_Var1;
   
-  pp_Var1 = (__int32_t **)(*(code *)PTR___ctype_toupper_loc_00194134)();
+  pp_Var1 = __ctype_toupper_loc();
   return pp_Var1;
 }
 

@@ -14,7 +14,7 @@ uint ssl3_write_bytes(SSL *param_1,int param_2,int param_3,uint param_4)
   param_1->rwstate = 1;
   psVar2 = psVar4;
   if ((int)uVar1 < 0) {
-    OpenSSLDie(DAT_0006c294,0x287,DAT_0006c298);
+    OpenSSLDie("s3_pkt.c",0x287,"s->s3->wnum <= INT_MAX");
     psVar2 = param_1->s3;
   }
   uVar5 = psVar2->wnum;
@@ -26,12 +26,12 @@ uint ssl3_write_bytes(SSL *param_1,int param_2,int param_3,uint param_4)
       return uVar1;
     }
     if (uVar1 == 0) {
-      ERR_put_error(0x14,0x9e,0xe5,DAT_0006c294,0x290);
+      ERR_put_error(0x14,0x9e,0xe5,"s3_pkt.c",0x290);
       return 0xffffffff;
     }
   }
   if ((int)param_4 < (int)uVar5) {
-    ERR_put_error(0x14,0x9e,0x10f,DAT_0006c294,0x29f);
+    ERR_put_error(0x14,0x9e,0x10f,"s3_pkt.c",0x29f);
     return 0xffffffff;
   }
   if ((psVar4->wbuf).left != 0) {

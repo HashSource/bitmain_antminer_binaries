@@ -4,7 +4,7 @@ int dtls1_process_heartbeat(undefined4 *param_1)
 {
   char cVar1;
   char cVar2;
-  undefined *ptr;
+  undefined1 *ptr;
   int iVar3;
   uint uVar4;
   char *pcVar5;
@@ -26,7 +26,7 @@ int dtls1_process_heartbeat(undefined4 *param_1)
     num = __n + 0x13;
     if (num <= uVar4) {
       if (*pcVar5 == '\x01') {
-        ptr = (undefined *)CRYPTO_malloc(num,DAT_00079410,0x596);
+        ptr = (undefined1 *)CRYPTO_malloc(num,"d1_both.c",0x596);
         *ptr = 2;
         ptr[1] = cVar1;
         ptr[2] = cVar2;

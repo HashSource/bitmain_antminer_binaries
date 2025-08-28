@@ -4,13 +4,10 @@
 char * BN_options(void)
 
 {
-  int *buf;
-  
-  if (*DAT_0009e8d8 == 0) {
-    buf = DAT_0009e8d8 + 1;
-    *DAT_0009e8d8 = 1;
-    BIO_snprintf((char *)buf,0x10,DAT_0009e8dc,0x40,0x20);
+  if (init_8408 == 0) {
+    init_8408 = 1;
+    BIO_snprintf(data_8409,0x10,"bn(%d,%d)",0x40,0x20);
   }
-  return DAT_0009e8e0;
+  return data_8409;
 }
 

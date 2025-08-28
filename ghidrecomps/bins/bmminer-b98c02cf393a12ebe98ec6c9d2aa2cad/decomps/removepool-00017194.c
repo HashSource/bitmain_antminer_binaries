@@ -43,9 +43,7 @@ void removepool(undefined4 param_1,undefined4 param_2,char *param_3,undefined4 p
         if (iVar3 != *(int *)(iVar4 + 0xa4)) {
           remove_pool(iVar4);
           message(param_1,0x44,lVar2,iVar3,param_4);
-                    /* WARNING: Could not recover jumptable at 0x00012060. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-          (*(code *)PTR_LAB_0007ce68)(iVar3);
+          (*(code *)(undefined *)0x0)(iVar3);
           return;
         }
         remove_pool(iVar4);

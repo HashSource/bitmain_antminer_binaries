@@ -5,7 +5,7 @@ int SSL_do_handshake(SSL *s)
   int iVar1;
   
   if (s->handshake_func == (_func_3291 *)0x0) {
-    ERR_put_error(0x14,0xb4,0x90,DAT_0007bf40,0xac9);
+    ERR_put_error(0x14,0xb4,0x90,"ssl_lib.c",0xac9);
     iVar1 = -1;
   }
   else {

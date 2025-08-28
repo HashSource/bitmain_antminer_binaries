@@ -44,7 +44,7 @@ joined_r0x0004523c:
         return;
       }
     }
-    (*(code *)PTR_memcpy_0007ce84)((int)param_1 + uVar3 + 0x28,param_2,param_3);
+    memcpy((void *)((int)param_1 + uVar3 + 0x28),param_2,param_3);
     return;
   }
   __dest = (void *)((int)(param_1 + 10) + uVar3);

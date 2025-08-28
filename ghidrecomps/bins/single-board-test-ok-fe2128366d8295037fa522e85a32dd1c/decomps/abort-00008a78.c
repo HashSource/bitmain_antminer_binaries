@@ -4,9 +4,7 @@
 void abort(void)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00008a80. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_00024534)();
+  (*(code *)(undefined *)0x0)();
   return;
 }
 

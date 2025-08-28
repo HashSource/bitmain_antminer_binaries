@@ -58,8 +58,9 @@ _Bool extract_sockaddr(char *url,char **sockaddr_url,char **sockaddr_port)
     }
     snprintf(url_address,0xfe,"%.*s",url_len,url_begin);
     if (port_len == 0) {
-      port._0_2_ = (undefined2)DAT_0009f208;
-      port[2] = (char)((uint)DAT_0009f208 >> 0x10);
+      port[0] = '8';
+      port[1] = '0';
+      port[2] = '\0';
     }
     else {
       snprintf(port,6,"%.*s",port_len,port_start);

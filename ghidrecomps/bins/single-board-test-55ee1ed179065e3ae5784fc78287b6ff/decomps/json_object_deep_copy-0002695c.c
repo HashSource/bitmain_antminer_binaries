@@ -5,7 +5,7 @@ int json_object_deep_copy(undefined4 param_1)
   int iVar1;
   undefined4 uVar2;
   undefined4 uVar3;
-  int local_c;
+  undefined4 local_c;
   
   iVar1 = json_object();
   if (iVar1 == 0) {

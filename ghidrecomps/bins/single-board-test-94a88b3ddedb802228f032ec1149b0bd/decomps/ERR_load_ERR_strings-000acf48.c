@@ -4,60 +4,55 @@
 void ERR_load_ERR_strings(void)
 
 {
-  int iVar1;
+  undefined **ppuVar1;
   int iVar2;
-  int iVar3;
-  uint uVar4;
-  int *piVar5;
-  uint *puVar6;
+  uint uVar3;
+  undefined1 *puVar4;
   
-  iVar1 = DAT_000ad000;
-  if (*(int *)(DAT_000ad000 + 0x2f4) == 0) {
-    CRYPTO_lock(9,1,DAT_000ad014,0x127);
-    if (*(int *)(iVar1 + 0x2f4) == 0) {
-      *(undefined4 *)(iVar1 + 0x2f4) = DAT_000ad018;
+  if (err_fns == (undefined **)0x0) {
+    CRYPTO_lock(9,1,"err.c",0x127);
+    if (err_fns == (undefined **)0x0) {
+      err_fns = &err_defaults;
     }
-    CRYPTO_lock(10,1,DAT_000ad014,0x12a);
+    CRYPTO_lock(10,1,"err.c",0x12a);
   }
-  iVar2 = DAT_000ad004;
-  piVar5 = (int *)(DAT_000ad004 + 8);
-  iVar3 = *(int *)(DAT_000ad004 + 8);
-  while (iVar3 != 0) {
-    (**(code **)(*(int *)(iVar1 + 0x2f4) + 0xc))(piVar5);
-    piVar5 = piVar5 + 2;
-    iVar3 = *piVar5;
+  puVar4 = ERR_str_libraries;
+  iVar2 = ERR_str_libraries._0_4_;
+  while (iVar2 != 0) {
+    (*(code *)err_fns[3])(puVar4);
+    puVar4 = (undefined1 *)((int)puVar4 + 8);
+    iVar2 = *(int *)puVar4;
   }
-  iVar3 = *(int *)(iVar2 + 0xf0);
-  piVar5 = DAT_000ad008;
-  while (iVar3 != 0) {
-    (**(code **)(*(int *)(iVar1 + 0x2f4) + 0xc))(piVar5);
-    piVar5 = piVar5 + 2;
-    iVar3 = *piVar5;
+  puVar4 = ERR_str_reasons;
+  iVar2 = ERR_str_reasons._0_4_;
+  while (iVar2 != 0) {
+    (*(code *)err_fns[3])(puVar4);
+    puVar4 = (undefined1 *)((int)puVar4 + 8);
+    iVar2 = *(int *)puVar4;
   }
-  uVar4 = *(uint *)(iVar2 + 0x218);
-  puVar6 = DAT_000ad00c;
-  iVar2 = DAT_000ad010;
-  while (DAT_000ad010 = iVar2, uVar4 != 0) {
-    iVar2 = *(int *)(iVar1 + 0x2f4);
-    *puVar6 = uVar4 | 0x2000000;
-    (**(code **)(iVar2 + 0xc))(puVar6);
-    puVar6 = puVar6 + 2;
-    iVar2 = DAT_000ad010;
-    uVar4 = *puVar6;
+  puVar4 = ERR_str_functs;
+  ppuVar1 = err_fns;
+  uVar3 = ERR_str_functs._0_4_;
+  while (err_fns = ppuVar1, uVar3 != 0) {
+    *(uint *)puVar4 = uVar3 | 0x2000000;
+    (*(code *)ppuVar1[3])(puVar4);
+    puVar4 = (undefined1 *)((int)puVar4 + 8);
+    ppuVar1 = err_fns;
+    uVar3 = *(uint *)puVar4;
   }
   build_SYS_str_reasons();
-  uVar4 = *(uint *)(iVar2 + 0xc);
-  if (uVar4 == 0) {
+  if (SYS_str_reasons._0_4_ == 0) {
     return;
   }
-  puVar6 = (uint *)(iVar2 + 0xc);
+  puVar4 = SYS_str_reasons;
+  uVar3 = SYS_str_reasons._0_4_;
   do {
-    iVar2 = *(int *)(iVar1 + 0x2f4);
-    *puVar6 = uVar4 | 0x2000000;
-    (**(code **)(iVar2 + 0xc))(puVar6);
-    puVar6 = puVar6 + 2;
-    uVar4 = *puVar6;
-  } while (uVar4 != 0);
+    ppuVar1 = err_fns;
+    *(uint *)puVar4 = uVar3 | 0x2000000;
+    (*(code *)ppuVar1[3])(puVar4);
+    puVar4 = (undefined1 *)((int)puVar4 + 8);
+    uVar3 = *(uint *)puVar4;
+  } while (uVar3 != 0);
   return;
 }
 

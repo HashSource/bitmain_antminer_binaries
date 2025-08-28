@@ -10,7 +10,7 @@ int submit_tested_work(int param_1,int param_2)
   iVar1 = fulltest(param_2 + 0xc0,param_2 + 0xa0);
   if (iVar1 == 0) {
     if (((use_syslog != '\0') || (opt_log_output != '\0')) || (5 < opt_log_level)) {
-      snprintf(acStack_810,0x800,"%s %s %d: Share above target",DAT_00029358,
+      snprintf(acStack_810,0x800,"%s %s %d: Share above target","submit_tested_work",
                *(undefined4 *)(*(int *)(*(int *)(param_1 + 0x24) + 4) + 8),
                *(undefined4 *)(*(int *)(param_1 + 0x24) + 8));
       _applog(6,acStack_810,0);

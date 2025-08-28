@@ -1,9 +1,9 @@
 
-void sigpipe_restore(int param_1)
+void sigpipe_restore(sigaction *param_1)
 
 {
-  if (*(char *)(param_1 + 0x8c) == '\0') {
-    (*(code *)PTR_sigaction_001942d8)(0xd,param_1);
+  if (*(char *)&param_1[1].__sigaction_handler == '\0') {
+    sigaction(0xd,param_1,(sigaction *)0x0);
     return;
   }
   return;

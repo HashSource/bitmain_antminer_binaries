@@ -11,7 +11,7 @@ int CRYPTO_set_ex_data(CRYPTO_EX_DATA *ad,int idx,void *val)
     p_Var3 = sk_new_null();
     ad->sk = (stack_st_void *)p_Var3;
     if (p_Var3 == (_STACK *)0x0) {
-      ERR_put_error(0xf,0x66,0x41,DAT_0008b8ec,0x267);
+      ERR_put_error(0xf,0x66,0x41,"ex_data.c",0x267);
       return 0;
     }
   }
@@ -24,7 +24,7 @@ int CRYPTO_set_ex_data(CRYPTO_EX_DATA *ad,int idx,void *val)
     iVar2 = sk_push(&ad->sk->stack,(void *)0x0);
     iVar1 = iVar1 + 1;
   } while (iVar2 != 0);
-  ERR_put_error(0xf,0x66,0x41,DAT_0008b8ec,0x26f);
+  ERR_put_error(0xf,0x66,0x41,"ex_data.c",0x26f);
   return 0;
 }
 

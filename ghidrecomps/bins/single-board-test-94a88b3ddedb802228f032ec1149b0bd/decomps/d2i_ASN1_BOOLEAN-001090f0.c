@@ -28,7 +28,7 @@ int d2i_ASN1_BOOLEAN(int *a,uchar **pp,long length)
   else {
     iVar2 = 0x75;
   }
-  ERR_put_error(0xd,0x8e,iVar2,DAT_0010914c,0x6d);
+  ERR_put_error(0xd,0x8e,iVar2,"a_bool.c",0x6d);
   return -1;
 }
 

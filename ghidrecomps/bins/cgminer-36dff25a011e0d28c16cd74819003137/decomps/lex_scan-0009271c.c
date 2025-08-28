@@ -51,7 +51,7 @@ LAB_000928c0:
       lex_scan_number(lex,iVar1,error);
     }
   }
-out:
+LAB_000929c8:
   return lex->token;
 LAB_00092900:
   lex_unget_unsave(lex,iVar1);
@@ -75,6 +75,6 @@ LAB_00092900:
       }
     }
   }
-  goto out;
+  goto LAB_000929c8;
 }
 

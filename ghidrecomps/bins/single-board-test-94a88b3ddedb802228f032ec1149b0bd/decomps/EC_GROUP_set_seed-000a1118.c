@@ -14,7 +14,7 @@ size_t EC_GROUP_set_seed(EC_GROUP *param_1,uchar *param_2,size_t len)
     sVar1 = 1;
   }
   else {
-    __dest = CRYPTO_malloc(len,DAT_000a1160,0x192);
+    __dest = CRYPTO_malloc(len,"ec_lib.c",0x192);
     *(void **)(param_1 + 0x3c) = __dest;
     if (__dest != (void *)0x0) {
       memcpy(__dest,param_2,len);

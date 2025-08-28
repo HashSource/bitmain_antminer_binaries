@@ -19,9 +19,9 @@ find_queued_work_bymidstate
     }
   }
   else {
-    _rd_lock_part_39_constprop_80(DAT_0001f34c,0x24af);
+    _rd_lock_part_39_constprop_80("find_queued_work_bymidstate",0x24af);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_0001f34c,0x24b1);
+  _rw_unlock_part_40_constprop_79("find_queued_work_bymidstate",0x24b1);
 }
 

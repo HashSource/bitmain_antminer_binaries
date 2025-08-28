@@ -64,7 +64,7 @@ undefined4 gost_mac(undefined4 param_1,uint param_2,int param_3,uint param_4,und
   }
   else {
     uVar10 = uVar4 >> 2;
-    uVar7 = uVar4 & 0xfffffffc;
+    uVar7 = uVar10 * 4;
     if (uVar10 == 0 || (uVar4 < 4 || ((uint)param_5 & 3) != 0)) {
       uVar7 = 0;
     }
@@ -111,7 +111,7 @@ undefined4 gost_mac(undefined4 param_1,uint param_2,int param_3,uint param_4,und
       if (uVar4 == uVar7) goto LAB_00114ada;
     }
     do {
-      *(undefined *)((int)param_5 + uVar7) = *(undefined *)((int)&local_38 + uVar7);
+      *(undefined1 *)((int)param_5 + uVar7) = *(undefined1 *)((int)&local_38 + uVar7);
       uVar7 = uVar7 + 1;
     } while ((int)uVar7 < (int)uVar4);
   }

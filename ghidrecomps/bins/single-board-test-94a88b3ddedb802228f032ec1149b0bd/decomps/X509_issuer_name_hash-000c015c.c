@@ -3,7 +3,7 @@ ulong X509_issuer_name_hash(X509 *a)
 
 {
   EVP_MD *type;
-  ulong uVar1;
+  uint uVar1;
   X509_NAME *a_00;
   size_t count;
   uchar *data;

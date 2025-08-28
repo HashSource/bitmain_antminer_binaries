@@ -1,25 +1,25 @@
 
-uint rc2_get_asn1_type_and_iv(EVP_CIPHER_CTX *param_1,ASN1_TYPE *param_2)
+undefined1 * rc2_get_asn1_type_and_iv(EVP_CIPHER_CTX *param_1,ASN1_TYPE *param_2)
 
 {
-  uint max_len;
-  uint uVar1;
+  undefined1 *max_len;
+  undefined1 *puVar1;
   int iVar2;
   int keylen;
   int arg;
-  int local_2c;
+  long local_2c;
   uchar auStack_28 [20];
   
   local_2c = 0;
   if (param_2 == (ASN1_TYPE *)0x0) {
-    return 0;
+    return (undefined1 *)0x0;
   }
-  max_len = EVP_CIPHER_CTX_iv_length(param_1);
-  if (0x10 < max_len) {
-    OpenSSLDie(DAT_000b18a4,0xb3,DAT_000b18a8);
+  max_len = (undefined1 *)EVP_CIPHER_CTX_iv_length(param_1);
+  if (&DAT_00000010 < max_len) {
+    OpenSSLDie("e_rc2.c",0xb3,"l <= sizeof(iv)");
   }
-  uVar1 = ASN1_TYPE_get_int_octetstring(param_2,&local_2c,auStack_28,max_len);
-  if (max_len == uVar1) {
+  puVar1 = (undefined1 *)ASN1_TYPE_get_int_octetstring(param_2,&local_2c,auStack_28,(int)max_len);
+  if (max_len == puVar1) {
     if (local_2c == 0x3a) {
       keylen = 0x10;
       arg = 0x80;
@@ -30,8 +30,8 @@ uint rc2_get_asn1_type_and_iv(EVP_CIPHER_CTX *param_1,ASN1_TYPE *param_2)
     }
     else {
       if (local_2c != 0xa0) {
-        ERR_put_error(6,0x6d,0x6c,DAT_000b18a4,0xa4);
-        return 0xffffffff;
+        ERR_put_error(6,0x6d,0x6c,"e_rc2.c",0xa4);
+        return (undefined1 *)0xffffffff;
       }
       keylen = 5;
       arg = 0x28;
@@ -44,6 +44,6 @@ uint rc2_get_asn1_type_and_iv(EVP_CIPHER_CTX *param_1,ASN1_TYPE *param_2)
       return max_len;
     }
   }
-  return 0xffffffff;
+  return (undefined1 *)0xffffffff;
 }
 

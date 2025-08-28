@@ -1,7 +1,7 @@
 
 undefined4
-asn1_check_tlen(uchar **param_1,int *param_2,undefined *param_3,undefined *param_4,byte *param_5,
-               uchar **param_6,int param_7,int param_8,int param_9,char param_10,char *param_11)
+asn1_check_tlen(int *param_1,int *param_2,undefined1 *param_3,undefined1 *param_4,byte *param_5,
+               int *param_6,int param_7,int param_8,int param_9,char param_10,char *param_11)
 
 {
   uint uVar1;
@@ -12,7 +12,7 @@ asn1_check_tlen(uchar **param_1,int *param_2,undefined *param_3,undefined *param
   uchar *local_30;
   uchar *local_2c [2];
   
-  puVar3 = *param_6;
+  puVar3 = (uchar *)*param_6;
   local_2c[0] = puVar3;
   if (param_11 == (char *)0x0) {
     uVar1 = ASN1_get_object(local_2c,(long *)&local_30,&local_38,&local_34,param_7);
@@ -26,7 +26,7 @@ asn1_check_tlen(uchar **param_1,int *param_2,undefined *param_3,undefined *param
     *param_11 = '\x01';
     *(int *)(param_11 + 0xc) = local_38;
     if (((uVar1 & 0x81) == 0) && (param_7 < (int)(local_30 + ((int)local_2c[0] - (int)puVar3)))) {
-      ERR_put_error(0xd,0x68,0x9b,DAT_000ba730,0x49a);
+      ERR_put_error(0xd,0x68,0x9b,"tasn_dec.c",0x49a);
       *param_11 = '\0';
       return 0;
     }
@@ -47,7 +47,7 @@ asn1_check_tlen(uchar **param_1,int *param_2,undefined *param_3,undefined *param
         if (param_11 != (char *)0x0) {
           *param_11 = '\0';
         }
-        ERR_put_error(0xd,0x68,0xa8,DAT_000ba730,0x4ae);
+        ERR_put_error(0xd,0x68,0xa8,"tasn_dec.c",0x4ae);
         goto LAB_000ba638;
       }
       if (param_11 != (char *)0x0) {
@@ -57,26 +57,26 @@ asn1_check_tlen(uchar **param_1,int *param_2,undefined *param_3,undefined *param
     if ((uVar1 & 1) != 0) {
       local_30 = puVar3 + (param_7 - (int)local_2c[0]);
     }
-    if (param_4 != (undefined *)0x0) {
+    if (param_4 != (undefined1 *)0x0) {
       *param_4 = (char)(uVar1 & 1);
     }
     if (param_5 != (byte *)0x0) {
       *param_5 = (byte)uVar1 & 0x20;
     }
-    if (param_1 != (uchar **)0x0) {
-      *param_1 = local_30;
+    if (param_1 != (int *)0x0) {
+      *param_1 = (int)local_30;
     }
-    if (param_3 != (undefined *)0x0) {
+    if (param_3 != (undefined1 *)0x0) {
       *param_3 = (char)local_34;
     }
     if (param_2 != (int *)0x0) {
       *param_2 = local_38;
     }
     uVar2 = 1;
-    *param_6 = local_2c[0];
+    *param_6 = (int)local_2c[0];
   }
   else {
-    ERR_put_error(0xd,0x68,0x66,DAT_000ba730,0x4a2);
+    ERR_put_error(0xd,0x68,0x66,"tasn_dec.c",0x4a2);
     if (param_11 != (char *)0x0) {
       *param_11 = '\0';
       return 0;

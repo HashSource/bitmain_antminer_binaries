@@ -17,7 +17,7 @@ undefined4 Curl_resolv(int *param_1,undefined4 param_2,undefined4 param_3,int *p
   iVar1 = fetch_addr(param_1,param_2,param_3);
   if (iVar1 != 0) {
     uVar4 = 0;
-    Curl_infof(iVar3,DAT_0003d848,param_2);
+    Curl_infof(iVar3,"Hostname %s was found in DNS cache\n",param_2);
     *(int *)(iVar1 + 8) = *(int *)(iVar1 + 8) + 1;
   }
   if (*(int *)(iVar3 + 0x48) != 0) {

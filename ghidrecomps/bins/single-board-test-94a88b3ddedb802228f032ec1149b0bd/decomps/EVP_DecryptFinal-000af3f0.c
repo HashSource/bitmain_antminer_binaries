@@ -3,118 +3,117 @@ int EVP_DecryptFinal(EVP_CIPHER_CTX *ctx,uchar *outm,int *outl)
 
 {
   EVP_CIPHER_CTX *pEVar1;
-  undefined4 *puVar2;
-  undefined4 *puVar3;
-  uchar *puVar4;
+  uchar *puVar2;
+  uint uVar3;
+  uint uVar4;
   uint uVar5;
-  uint uVar6;
-  uint uVar7;
-  int iVar8;
-  EVP_CIPHER *pEVar9;
-  uint uVar10;
-  uint uVar11;
-  EVP_CIPHER_CTX *pEVar12;
+  int iVar6;
+  EVP_CIPHER *pEVar7;
+  uint uVar8;
+  uint uVar9;
+  EVP_CIPHER_CTX *pEVar10;
+  uchar *puVar11;
   
-  pEVar9 = ctx->cipher;
+  pEVar7 = ctx->cipher;
   *outl = 0;
-  if ((pEVar9->flags & 0x100000) != 0) {
-    iVar8 = (*pEVar9->do_cipher)(ctx,outm,(uchar *)0x0,0);
-    if (iVar8 < 0) {
+  if ((pEVar7->flags & 0x100000) != 0) {
+    iVar6 = (*pEVar7->do_cipher)(ctx,outm,(uchar *)0x0,0);
+    if (iVar6 < 0) {
       return 0;
     }
-    *outl = iVar8;
+    *outl = iVar6;
     return 1;
   }
-  uVar10 = pEVar9->block_size;
+  uVar8 = pEVar7->block_size;
   if ((int)(ctx->flags << 0x17) < 0) {
     if (ctx->buf_len != 0) {
-      ERR_put_error(6,0x65,0x8a,DAT_000af3e8,0x1fe);
+      ERR_put_error(6,0x65,0x8a,"evp_enc.c",0x1fe);
       return 0;
     }
   }
-  else if (1 < uVar10) {
+  else if (1 < uVar8) {
     if ((ctx->buf_len != 0) || (ctx->final_used == 0)) {
-      ERR_put_error(6,0x65,0x6d,DAT_000af3e8,0x206);
+      ERR_put_error(6,0x65,0x6d,"evp_enc.c",0x206);
       return 0;
     }
-    if (0x20 < uVar10) {
-      OpenSSLDie(DAT_000af3e8,0x209,DAT_000af3ec);
+    if (0x20 < uVar8) {
+      OpenSSLDie("evp_enc.c",0x209,"b <= sizeof ctx->final");
     }
-    uVar5 = (uint)ctx->final[uVar10 - 1];
-    puVar4 = ctx->final + uVar10;
-    uVar6 = 1 - uVar5;
-    if (1 < uVar5) {
-      uVar6 = 0;
+    uVar3 = (uint)ctx->final[uVar8 - 1];
+    puVar2 = ctx->final + uVar8;
+    uVar4 = 1 - uVar3;
+    if (1 < uVar3) {
+      uVar4 = 0;
     }
-    if ((int)uVar10 < (int)uVar5) {
-      uVar6 = uVar6 | 1;
+    if ((int)uVar8 < (int)uVar3) {
+      uVar4 = uVar4 | 1;
     }
-    if (uVar6 != 0) {
-      iVar8 = 0x211;
+    if (uVar4 != 0) {
+      iVar6 = 0x211;
 LAB_000af3ba:
-      ERR_put_error(6,0x65,100,DAT_000af3e8,iVar8);
+      ERR_put_error(6,0x65,100,"evp_enc.c",iVar6);
       return 0;
     }
     do {
-      puVar4 = puVar4 + -1;
-      uVar6 = uVar6 + 1;
-      if (*puVar4 != uVar5) {
-        iVar8 = 0x216;
+      puVar2 = puVar2 + -1;
+      uVar4 = uVar4 + 1;
+      if (*puVar2 != uVar3) {
+        iVar6 = 0x216;
         goto LAB_000af3ba;
       }
-    } while ((int)uVar6 < (int)uVar5);
-    uVar5 = ctx->cipher->block_size - uVar5;
-    if (0 < (int)uVar5) {
-      pEVar12 = (EVP_CIPHER_CTX *)ctx->final;
-      uVar6 = uVar5 >> 2;
-      uVar10 = uVar5 & 0xfffffffc;
-      if (uVar6 == 0 ||
-          (outm < ctx->final + 4 && pEVar12 < outm + 4 || (uVar5 < 4 || ((uint)outm & 3) != 0))) {
-        uVar10 = 0;
+    } while ((int)uVar4 < (int)uVar3);
+    uVar3 = ctx->cipher->block_size - uVar3;
+    if (0 < (int)uVar3) {
+      pEVar10 = (EVP_CIPHER_CTX *)ctx->final;
+      uVar4 = uVar3 >> 2;
+      uVar8 = uVar4 << 2;
+      if (uVar4 == 0 ||
+          (outm < ctx->final + 4 && pEVar10 < outm + 4 || (uVar3 < 4 || ((uint)outm & 3) != 0))) {
+        uVar8 = 0;
       }
       else {
-        if (uVar6 < 9) {
-          uVar7 = 0;
-          puVar3 = (undefined4 *)outm;
+        if (uVar4 < 9) {
+          uVar5 = 0;
+          puVar2 = outm;
         }
         else {
-          uVar7 = 0;
+          uVar5 = 0;
           pEVar1 = ctx + 1;
-          puVar2 = (undefined4 *)(outm + 0x20);
+          puVar11 = outm + 0x20;
           do {
-            puVar3 = puVar2;
-            pEVar12 = pEVar1;
-            uVar11 = uVar7 + 9;
-            uVar7 = uVar7 + 8;
-            HintPreloadData(&pEVar12->app_data);
-            puVar3[-8] = *(undefined4 *)pEVar12[-1].final;
-            puVar3[-7] = *(undefined4 *)(pEVar12[-1].final + 4);
-            puVar3[-6] = *(undefined4 *)(pEVar12[-1].final + 8);
-            puVar3[-5] = *(undefined4 *)(pEVar12[-1].final + 0xc);
-            puVar3[-4] = *(undefined4 *)(pEVar12[-1].final + 0x10);
-            puVar3[-3] = *(undefined4 *)(pEVar12[-1].final + 0x14);
-            puVar3[-2] = *(undefined4 *)(pEVar12[-1].final + 0x18);
-            puVar3[-1] = *(undefined4 *)(pEVar12[-1].final + 0x1c);
-            pEVar1 = (EVP_CIPHER_CTX *)pEVar12->iv;
-            puVar2 = puVar3 + 8;
-          } while (uVar11 < uVar6 - 7);
+            puVar2 = puVar11;
+            pEVar10 = pEVar1;
+            uVar9 = uVar5 + 9;
+            uVar5 = uVar5 + 8;
+            HintPreloadData(&pEVar10->app_data);
+            *(undefined4 *)(puVar2 + -0x20) = *(undefined4 *)pEVar10[-1].final;
+            *(undefined4 *)(puVar2 + -0x1c) = *(undefined4 *)(pEVar10[-1].final + 4);
+            *(undefined4 *)(puVar2 + -0x18) = *(undefined4 *)(pEVar10[-1].final + 8);
+            *(undefined4 *)(puVar2 + -0x14) = *(undefined4 *)(pEVar10[-1].final + 0xc);
+            *(undefined4 *)(puVar2 + -0x10) = *(undefined4 *)(pEVar10[-1].final + 0x10);
+            *(undefined4 *)(puVar2 + -0xc) = *(undefined4 *)(pEVar10[-1].final + 0x14);
+            *(undefined4 *)(puVar2 + -8) = *(undefined4 *)(pEVar10[-1].final + 0x18);
+            *(undefined4 *)(puVar2 + -4) = *(undefined4 *)(pEVar10[-1].final + 0x1c);
+            pEVar1 = (EVP_CIPHER_CTX *)pEVar10->iv;
+            puVar11 = puVar2 + 0x20;
+          } while (uVar9 < uVar4 - 7);
         }
-        puVar4 = pEVar12[-1].final + 0x1c;
+        puVar11 = pEVar10[-1].final + 0x1c;
         do {
-          puVar4 = puVar4 + 4;
-          uVar7 = uVar7 + 1;
-          *puVar3 = *(undefined4 *)puVar4;
-          puVar3 = puVar3 + 1;
-        } while (uVar7 < uVar6);
-        if (uVar5 == uVar10) goto LAB_000af36e;
+          puVar11 = puVar11 + 4;
+          uVar5 = uVar5 + 1;
+          *(undefined4 *)puVar2 = *(undefined4 *)puVar11;
+          puVar2 = puVar2 + 4;
+        } while (uVar5 < uVar4);
+        if (uVar3 == uVar8) goto LAB_000af36e;
       }
       do {
-        outm[uVar10] = ctx->final[uVar10];
-        uVar10 = uVar10 + 1;
-      } while ((int)uVar10 < (int)uVar5);
+        outm[uVar8] = ctx->final[uVar8];
+        uVar8 = uVar8 + 1;
+      } while ((int)uVar8 < (int)uVar3);
     }
 LAB_000af36e:
-    *outl = uVar5;
+    *outl = uVar3;
     return 1;
   }
   return 1;

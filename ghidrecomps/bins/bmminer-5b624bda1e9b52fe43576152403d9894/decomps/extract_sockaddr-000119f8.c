@@ -7,22 +7,16 @@ _Bool extract_sockaddr(char *url,char **sockaddr_url,char **sockaddr_port)
 {
   char cVar1;
   char *pcVar2;
-  char *url_begin;
-  char *ipv6_begin;
   char *__s;
-  char *ipv6_end;
   char *pcVar3;
-  char *url_end;
   size_t sVar4;
-  char *slash;
   size_t sVar5;
-  int url_len;
   char *pcVar6;
   char port [6];
   char url_address [256];
   
   *sockaddr_url = url;
-  pcVar2 = strstr(url,DAT_00011b14);
+  pcVar2 = strstr(url,"//");
   if (pcVar2 != (char *)0x0) {
     url = pcVar2 + 2;
   }
@@ -34,7 +28,7 @@ _Bool extract_sockaddr(char *url,char **sockaddr_url,char **sockaddr_port)
 LAB_00011a44:
     sVar5 = (int)pcVar3 - (int)url;
     sVar4 = strlen(url);
-    if ((int)(char *)(~sVar5 + sVar4) < 1) {
+    if ((int)(~sVar5 + sVar4) < 1) {
       return false;
     }
     pcVar6 = pcVar3 + 1;
@@ -54,14 +48,15 @@ LAB_00011ad0:
     sVar5 = sVar5 - 2;
     url = url + 1;
   }
-  snprintf(url_address,0xfe,DAT_00011b18,sVar5,url);
+  snprintf(url_address,0xfe,"%.*s",sVar5,url);
   if (pcVar3 == (char *)0x0) {
-    port._0_2_ = (undefined2)*DAT_00011b1c;
-    port[2] = (char)((uint)*DAT_00011b1c >> 0x10);
+    port[0] = '8';
+    port[1] = '0';
+    port[2] = '\0';
   }
   else {
     pcVar2 = port;
-    snprintf(pcVar2,6,DAT_00011b18,pcVar3,pcVar6);
+    snprintf(pcVar2,6,"%.*s",pcVar3,pcVar6);
     if (port[0] != '\0') {
       if ((port[0] != '/') && (port[0] != '#')) {
         pcVar2 = port;

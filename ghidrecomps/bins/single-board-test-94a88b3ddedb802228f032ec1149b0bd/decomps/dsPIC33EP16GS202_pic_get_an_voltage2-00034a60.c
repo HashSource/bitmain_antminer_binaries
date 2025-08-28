@@ -1,19 +1,19 @@
 
-undefined8 dsPIC33EP16GS202_pic_get_an_voltage2(byte param_1)
+undefined4 dsPIC33EP16GS202_pic_get_an_voltage2(byte param_1)
 
 {
   undefined2 uVar1;
-  undefined uVar2;
-  undefined8 uVar3;
+  undefined1 uVar2;
+  undefined4 uVar3;
   undefined4 local_28;
   undefined4 local_24;
-  undefined local_20;
-  undefined local_1c;
-  undefined uStack_1b;
+  undefined1 local_20;
+  undefined1 local_1c;
+  undefined1 uStack_1b;
   FILE *local_18;
   FILE *local_14;
   undefined2 local_10;
-  undefined local_d;
+  undefined1 local_d;
   int local_c;
   
   local_d = 4;
@@ -24,10 +24,10 @@ undefined8 dsPIC33EP16GS202_pic_get_an_voltage2(byte param_1)
   local_10 = 0x2d;
   uVar1 = local_10;
   while( true ) {
-    local_1c = (undefined)((ushort)uVar1 >> 8);
-    uStack_1b = (undefined)uVar1;
+    local_1c = (undefined1)((ushort)uVar1 >> 8);
+    uStack_1b = (undefined1)uVar1;
     if (1 < local_c) {
-      return DAT_00034ce8;
+      return 0;
     }
     local_c = local_c + 1;
     T9_plus_write_pic_iic(0,0,0,param_1,0x55);
@@ -40,7 +40,7 @@ undefined8 dsPIC33EP16GS202_pic_get_an_voltage2(byte param_1)
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
     local_28 = CONCAT31(local_28._1_3_,uVar2);
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
-    local_28._0_2_ = CONCAT11(uVar2,(undefined)local_28);
+    local_28._0_2_ = CONCAT11(uVar2,(undefined1)local_28);
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
     local_28._0_3_ = CONCAT12(uVar2,(undefined2)local_28);
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
@@ -48,7 +48,7 @@ undefined8 dsPIC33EP16GS202_pic_get_an_voltage2(byte param_1)
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
     local_24 = CONCAT31(local_24._1_3_,uVar2);
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
-    local_24._0_2_ = CONCAT11(uVar2,(undefined)local_24);
+    local_24._0_2_ = CONCAT11(uVar2,(undefined1)local_24);
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);
     local_24._0_3_ = CONCAT12(uVar2,(undefined2)local_24);
     uVar2 = T9_plus_write_pic_iic(1,0,0,param_1,0);

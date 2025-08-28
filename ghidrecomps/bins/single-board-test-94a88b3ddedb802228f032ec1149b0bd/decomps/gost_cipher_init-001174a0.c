@@ -7,47 +7,49 @@ undefined4 gost_cipher_init(EVP_CIPHER_CTX *param_1,int param_2,void *param_3)
   int iVar2;
   int iVar3;
   int iVar4;
-  int *piVar5;
+  undefined4 *puVar5;
   int *piVar6;
-  int *piVar7;
+  undefined4 *puVar7;
   
   piVar6 = (int *)param_1->cipher_data;
   if (param_1->app_data == (void *)0x0) {
     s = (char *)get_gost_engine_param();
     if ((s == (char *)0x0) || (*s == '\0')) {
-      iVar3 = DAT_00117568[3];
-      iVar2 = DAT_00117568[4];
-      piVar7 = DAT_00117568 + 3;
+      puVar7 = &DAT_0019e524;
+      iVar2 = DAT_0019e528;
+      iVar3 = DAT_0019e524;
     }
     else {
       iVar4 = OBJ_txt2nid(s);
       if (iVar4 == 0) {
-        ERR_GOST_error(0x67,0x6b,DAT_0011756c,0x97);
+        ERR_GOST_error(0x67,0x6b,"gost_crypt.c",0x97);
         return 0;
       }
-      iVar2 = DAT_00117568[1];
-      if (iVar2 == 0) {
+      if (DAT_0019e51c == 0) {
 LAB_00117542:
-        ERR_GOST_error(0x67,0x6a,DAT_0011756c,0xa0);
+        ERR_GOST_error(0x67,0x6a,"gost_crypt.c",0xa0);
         return 0;
       }
-      iVar3 = *DAT_00117568;
-      piVar5 = DAT_00117568;
-      piVar7 = DAT_00117568;
-      if (iVar4 != iVar3) {
+      puVar5 = &gost_cipher_list;
+      if (iVar4 == gost_cipher_list) {
+        puVar7 = &gost_cipher_list;
+        iVar2 = DAT_0019e51c;
+        iVar3 = gost_cipher_list;
+      }
+      else {
         do {
-          iVar2 = piVar5[4];
-          piVar7 = piVar5 + 3;
+          iVar2 = puVar5[4];
+          puVar7 = puVar5 + 3;
           if (iVar2 == 0) goto LAB_00117542;
-          iVar3 = piVar5[3];
-          piVar5 = piVar7;
+          iVar3 = puVar5[3];
+          puVar5 = puVar7;
         } while (iVar4 != iVar3);
-        if (piVar7 == (int *)0x0) {
+        if (puVar7 == (undefined4 *)0x0) {
           return 0;
         }
       }
     }
-    iVar4 = piVar7[2];
+    iVar4 = puVar7[2];
     piVar6[1] = 0;
     *piVar6 = iVar3;
     piVar6[2] = iVar4;

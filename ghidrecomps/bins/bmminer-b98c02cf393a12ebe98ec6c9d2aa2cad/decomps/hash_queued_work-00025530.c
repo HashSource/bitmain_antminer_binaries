@@ -18,7 +18,6 @@ void hash_queued_work(undefined4 *param_1)
   uint uVar12;
   bool bVar13;
   longlong lVar14;
-  undefined4 uVar15;
   undefined4 local_83c;
   int local_838;
   int local_834;
@@ -39,7 +38,7 @@ LAB_00025558:
       *(undefined4 *)(iVar10 + 0x20) = 1;
       return;
     }
-    *(undefined *)((int)param_1 + 0x3f) = 0;
+    *(undefined1 *)((int)param_1 + 0x3f) = 0;
     do {
       if (*(int *)(iVar10 + 0x164) != 0) goto LAB_00025574;
       __rwlock = (pthread_rwlock_t *)(iVar10 + 0x140);
@@ -49,8 +48,7 @@ LAB_00025558:
         piVar5 = __errno_location();
         iVar10 = *piVar5;
         __format = "WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d";
-        uVar15 = 0x2438;
-        uVar7 = DAT_00025754;
+        uVar7 = 0x2438;
         goto LAB_000256f6;
       }
       if (*(int *)(iVar10 + 0x164) == 0) {
@@ -58,13 +56,12 @@ LAB_00025558:
         iVar4 = pthread_rwlock_unlock(__rwlock);
         if (iVar4 != 0) {
 LAB_0002572e:
-          uVar7 = DAT_00025754;
           piVar5 = __errno_location();
           iVar10 = *piVar5;
           __format = "WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d";
-          uVar15 = 0x2443;
+          uVar7 = 0x2443;
 LAB_000256f6:
-          snprintf(acStack_828,0x800,__format,iVar10,"cgminer.c",uVar7,uVar15);
+          snprintf(acStack_828,0x800,__format,iVar10,"cgminer.c","fill_queue",uVar7);
           _applog(3,acStack_828,1);
                     /* WARNING: Subroutine does not return */
           __quit(1);
@@ -75,14 +72,14 @@ LAB_000256f6:
         iVar4 = pthread_rwlock_unlock(__rwlock);
         if (iVar4 != 0) goto LAB_0002572e;
         (*selective_yield)();
-        _discard_work(&local_83c,"cgminer.c",DAT_00025754,0x2447);
+        _discard_work(&local_83c,"cgminer.c","fill_queue",0x2447);
       }
 LAB_00025574:
       iVar4 = (**(code **)(iVar11 + 0x48))(iVar10);
     } while (iVar4 == 0);
     lVar14 = (**(code **)(iVar11 + 0x44))(param_1);
-    *(undefined *)((int)param_1 + 0x3e) = 0;
-    if ((int)((ulonglong)lVar14 >> 0x20) == -1 && (int)lVar14 == -1) {
+    *(undefined1 *)((int)param_1 + 0x3e) = 0;
+    if (lVar14 == -1) {
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (2 < opt_log_level)) {
         snprintf(acStack_828,0x800,"%s %d failure, disabling!",*(undefined4 *)(iVar11 + 8),
                  *(undefined4 *)(iVar10 + 8));
@@ -103,7 +100,7 @@ LAB_00025574:
       puVar9 = &DAT_000f4240 + (int)puVar9;
     }
     uVar6 = (uint)lVar3 | uVar12;
-    if (lVar3 == 0) {
+    if (uVar6 == 0) {
 LAB_00025616:
       if (opt_log_interval <= (int)puVar8) goto LAB_000255d0;
       lVar14 = lVar3;

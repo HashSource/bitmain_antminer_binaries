@@ -21,7 +21,7 @@ uint ssl3_get_cert_status(int param_1)
   else {
     pcVar5 = *(char **)(param_1 + 0x40);
     if (*pcVar5 != '\x01') {
-      ERR_put_error(0x14,0x121,0x149,DAT_00066bd8,0x923);
+      ERR_put_error(0x14,0x121,0x149,"s3_clnt.c",0x923);
       uVar3 = 0x32;
       goto LAB_00066b78;
     }
@@ -41,7 +41,7 @@ uint ssl3_get_cert_status(int param_1)
         }
         iVar4 = (*pcVar6)(param_1,*(undefined4 *)(*(int *)(param_1 + 0xe4) + 0x140));
         if (iVar4 == 0) {
-          ERR_put_error(0x14,0x121,0x148,DAT_00066bd8,0x93a);
+          ERR_put_error(0x14,0x121,0x148,"s3_clnt.c",0x93a);
           uVar3 = 0x71;
           goto LAB_00066b78;
         }
@@ -50,13 +50,13 @@ uint ssl3_get_cert_status(int param_1)
         }
         iVar4 = 0x93f;
       }
-      ERR_put_error(0x14,0x121,0x41,DAT_00066bd8,iVar4);
+      ERR_put_error(0x14,0x121,0x41,"s3_clnt.c",iVar4);
       uVar3 = 0x50;
       goto LAB_00066b78;
     }
     iVar4 = 0x929;
   }
-  ERR_put_error(0x14,0x121,0x9f,DAT_00066bd8,iVar4);
+  ERR_put_error(0x14,0x121,0x9f,"s3_clnt.c",iVar4);
   uVar3 = 0x32;
 LAB_00066b78:
   ssl3_send_alert(param_1,2,uVar3);

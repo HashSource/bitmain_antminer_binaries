@@ -20,7 +20,7 @@ LAB_0007bc2a:
       return iVar3 + iVar1 * 0x1c + 0x3c;
     }
     if (iVar1 == -1) {
-      ERR_put_error(0x14,0x142,0x44,DAT_0007bc64,0x9d1);
+      ERR_put_error(0x14,0x142,0x44,"ssl_lib.c",0x9d1);
     }
     else if (-1 < iVar1) goto LAB_0007bc2a;
   }

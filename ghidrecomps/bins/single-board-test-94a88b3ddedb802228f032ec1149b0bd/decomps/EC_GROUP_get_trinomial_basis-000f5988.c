@@ -16,7 +16,7 @@ undefined4 EC_GROUP_get_trinomial_basis(EC_GROUP *param_1,int *param_2)
       }
       return 1;
     }
-    ERR_put_error(0x10,0xc2,0x42,DAT_000f59d0,0x61);
+    ERR_put_error(0x10,0xc2,0x42,"ec_asn1.c",0x61);
   }
   return 0;
 }

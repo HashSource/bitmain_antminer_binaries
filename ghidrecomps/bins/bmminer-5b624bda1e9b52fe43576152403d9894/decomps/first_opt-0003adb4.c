@@ -4,57 +4,57 @@
 char * first_opt(uint *i,uint *len)
 
 {
-  int *piVar1;
-  char cVar2;
-  int *piVar3;
-  uint *puVar4;
-  int iVar5;
-  char *pcVar6;
-  uint uVar7;
-  int *piVar8;
-  bool bVar9;
+  char cVar1;
+  opt_table *poVar2;
+  opt_table *poVar3;
+  char *pcVar4;
+  uint uVar5;
+  uint uVar6;
+  opt_table *poVar7;
+  bool bVar8;
   
-  puVar4 = DAT_0003ae2c;
   *i = 0;
-  if (*puVar4 == 0) {
+  if (opt_count == 0) {
 LAB_0003ae22:
-    pcVar6 = (char *)0x0;
+    pcVar4 = (char *)0x0;
   }
   else {
-    piVar8 = *DAT_0003ae30;
-    if (piVar8[1] == 8) {
-      uVar7 = 1;
-      piVar3 = piVar8;
+    poVar7 = opt_table;
+    if (opt_table->type == OPT_SUBTABLE) {
+      uVar5 = 1;
+      poVar2 = opt_table;
       do {
-        piVar8 = piVar3 + 7;
-        *i = uVar7;
-        if (*puVar4 <= uVar7) goto LAB_0003ae22;
-        piVar1 = piVar3 + 8;
-        uVar7 = uVar7 + 1;
-        piVar3 = piVar8;
-      } while (*piVar1 == 8);
+        poVar7 = poVar2 + 1;
+        *i = uVar5;
+        if (opt_count <= uVar5) goto LAB_0003ae22;
+        poVar3 = poVar2 + 1;
+        uVar5 = uVar5 + 1;
+        poVar2 = poVar7;
+      } while (poVar3->type == OPT_SUBTABLE);
     }
-    iVar5 = *piVar8;
-    uVar7 = (uint)*(byte *)(iVar5 + 1);
-    if (uVar7 != 0) {
-      if ((uVar7 == 0x7c) || (uVar7 == 0x3d)) {
-        uVar7 = 0;
+    pcVar4 = poVar7->names;
+    uVar5 = (uint)(byte)pcVar4[1];
+    if (uVar5 != 0) {
+      if ((uVar5 == 0x7c) || (uVar5 == 0x3d)) {
+        uVar5 = 0;
       }
       else {
-        bVar9 = uVar7 != 0x20;
-        uVar7 = 0;
-        if (bVar9) {
+        bVar8 = uVar5 != 0x20;
+        uVar5 = 0;
+        uVar6 = uVar5;
+        if (bVar8) {
           do {
-            uVar7 = uVar7 + 1;
-            cVar2 = *(char *)(iVar5 + uVar7 + 1);
-            if (((cVar2 == '\0') || (cVar2 == '|')) || (cVar2 == '=')) break;
-          } while (cVar2 != ' ');
+            uVar5 = uVar6 + 1;
+            cVar1 = pcVar4[uVar6 + 2];
+            if (((cVar1 == '\0') || (cVar1 == '|')) || (cVar1 == '=')) break;
+            uVar6 = uVar5;
+          } while (cVar1 != ' ');
         }
       }
     }
-    pcVar6 = (char *)(iVar5 + 1);
-    *len = uVar7;
+    pcVar4 = pcVar4 + 1;
+    *len = uVar5;
   }
-  return pcVar6;
+  return pcVar4;
 }
 

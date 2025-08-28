@@ -190,41 +190,43 @@ LAB_000e169c:
           uVar10 = uVar10 ^ local_3c;
           puVar16 = local_58;
           switch(uVar2) {
-          case 2:
+          case 0:
+                    /* WARNING: This code block may not be properly labeled as switch case */
             goto LAB_000e18ac;
+          case 1:
+            goto switchD_000e1872_caseD_1;
+          case 2:
+            goto LAB_000e189c;
           case 3:
             goto switchD_000e1872_caseD_3;
           case 4:
-            goto LAB_000e189c;
-          case 5:
-            goto switchD_000e1872_caseD_5;
-          case 6:
             break;
-          case 8:
+          case 6:
             local_58[-1] = (uchar)(uVar10 >> 0x18);
             puVar16 = local_58 + -1;
-          case 7:
+          case 5:
             local_58 = puVar16 + -1;
             puVar16[-1] = (uchar)(uVar10 >> 0x10);
             break;
           default:
-            goto switchD_000e1872_caseD_7;
+            goto switchD_000e1872_default;
           }
           puVar16 = local_58 + -1;
           local_58[-1] = (uchar)(uVar10 >> 8);
-switchD_000e1872_caseD_5:
+switchD_000e1872_caseD_3:
           local_58 = puVar16 + -1;
           puVar16[-1] = (uchar)uVar10;
 LAB_000e189c:
           puVar16 = local_58 + -1;
           local_58[-1] = (uchar)(uVar20 >> 0x18);
-switchD_000e1872_caseD_3:
+switchD_000e1872_caseD_1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
           local_58 = puVar16 + -1;
           puVar16[-1] = (uchar)(uVar20 >> 0x10);
 LAB_000e18ac:
           puVar16 = local_58 + -1;
           local_58[-1] = (uchar)(uVar20 >> 8);
-switchD_000e1872_caseD_7:
+switchD_000e1872_default:
           local_58 = puVar16 + (uVar2 - 1);
           puVar16[-1] = (uchar)uVar20;
           bVar1 = uVar2 <= local_54;
@@ -300,12 +302,12 @@ LAB_000e193e:
         local_58 = local_58 + uVar2;
         uVar12 = local_40 ^ (puVar16[-1] | uVar11);
         uVar10 = uVar10 ^ local_3c;
-        uVar4 = (uchar)(uVar10 >> 8);
-        uVar5 = (uchar)(uVar10 >> 0x10);
-        uVar6 = (uchar)(uVar10 >> 0x18);
-        uVar7 = (uchar)(uVar12 >> 8);
-        uVar8 = (uchar)(uVar12 >> 0x10);
-        uVar9 = (uchar)(uVar12 >> 0x18);
+        uVar4 = (uchar)(uVar12 >> 8);
+        uVar5 = (uchar)(uVar12 >> 0x10);
+        uVar6 = (uchar)(uVar12 >> 0x18);
+        uVar7 = (uchar)(uVar10 >> 8);
+        uVar8 = (uchar)(uVar10 >> 0x10);
+        uVar9 = (uchar)(uVar10 >> 0x18);
         puVar16 = local_58;
         switch(uVar2 - 2) {
         case 0:
@@ -319,30 +321,30 @@ LAB_000e193e:
         case 4:
           break;
         case 6:
-          local_58[-1] = uVar6;
+          local_58[-1] = uVar9;
           puVar16 = local_58 + -1;
         case 5:
           local_58 = puVar16 + -1;
-          puVar16[-1] = uVar5;
+          puVar16[-1] = uVar8;
           break;
         default:
-          goto switchD_000e1960_caseD_7;
+          goto switchD_000e1960_default;
         }
         puVar16 = local_58 + -1;
-        local_58[-1] = uVar4;
+        local_58[-1] = uVar7;
 switchD_000e1960_caseD_3:
         local_58 = puVar16 + -1;
         puVar16[-1] = (uchar)uVar10;
 LAB_000e19b8:
         puVar16 = local_58 + -1;
-        local_58[-1] = uVar9;
+        local_58[-1] = uVar6;
 switchD_000e1960_caseD_1:
         local_58 = puVar16 + -1;
-        puVar16[-1] = uVar8;
+        puVar16[-1] = uVar5;
 LAB_000e19c8:
         puVar16 = local_58 + -1;
-        local_58[-1] = uVar7;
-switchD_000e1960_caseD_7:
+        local_58[-1] = uVar4;
+switchD_000e1960_default:
         local_58 = puVar16 + (uVar2 - 1);
         puVar16[-1] = (byte)uVar12;
         uVar11 = uVar12;
@@ -358,12 +360,12 @@ switchD_000e1960_caseD_7:
           local_38[6] = (byte)(uVar18 >> 0x10);
           local_38[5] = (byte)(uVar18 >> 8);
           local_38[7] = (byte)(uVar18 >> 0x18);
-          local_2f = uVar7;
-          local_2e = uVar8;
-          local_2d = uVar9;
-          local_2b = uVar4;
-          local_2a = uVar5;
-          local_29 = uVar6;
+          local_2f = uVar4;
+          local_2e = uVar5;
+          local_2d = uVar6;
+          local_2b = uVar7;
+          local_2a = uVar8;
+          local_29 = uVar9;
           if (uVar21 == 0) {
             memmove(local_38,local_38 + iVar17,8);
             uVar18 = (uint)local_38[0];

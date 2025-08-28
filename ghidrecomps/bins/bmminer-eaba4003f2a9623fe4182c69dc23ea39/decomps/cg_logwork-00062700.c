@@ -45,27 +45,27 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
     data_tmp[8] = '\0';
     data_tmp[9] = '\0';
     data_tmp[10] = '\0';
-    data_tmp[11] = '\0';
-    data_tmp[12] = '\0';
-    data_tmp[13] = '\0';
-    data_tmp[14] = '\0';
-    data_tmp[15] = '\0';
-    data_tmp[16] = '\0';
-    data_tmp[17] = '\0';
-    data_tmp[18] = '\0';
-    data_tmp[19] = '\0';
-    data_tmp[20] = '\0';
-    data_tmp[21] = '\0';
-    data_tmp[22] = '\0';
-    data_tmp[23] = '\0';
-    data_tmp[24] = '\0';
-    data_tmp[25] = '\0';
-    data_tmp[26] = '\0';
-    data_tmp[27] = '\0';
-    data_tmp[28] = '\0';
-    data_tmp[29] = '\0';
-    data_tmp[30] = '\0';
-    data_tmp[31] = '\0';
+    data_tmp[0xb] = '\0';
+    data_tmp[0xc] = '\0';
+    data_tmp[0xd] = '\0';
+    data_tmp[0xe] = '\0';
+    data_tmp[0xf] = '\0';
+    data_tmp[0x10] = '\0';
+    data_tmp[0x11] = '\0';
+    data_tmp[0x12] = '\0';
+    data_tmp[0x13] = '\0';
+    data_tmp[0x14] = '\0';
+    data_tmp[0x15] = '\0';
+    data_tmp[0x16] = '\0';
+    data_tmp[0x17] = '\0';
+    data_tmp[0x18] = '\0';
+    data_tmp[0x19] = '\0';
+    data_tmp[0x1a] = '\0';
+    data_tmp[0x1b] = '\0';
+    data_tmp[0x1c] = '\0';
+    data_tmp[0x1d] = '\0';
+    data_tmp[0x1e] = '\0';
+    data_tmp[0x1f] = '\0';
     hash_tmp[0] = '\0';
     hash_tmp[1] = '\0';
     hash_tmp[2] = '\0';
@@ -77,27 +77,27 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
     hash_tmp[8] = '\0';
     hash_tmp[9] = '\0';
     hash_tmp[10] = '\0';
-    hash_tmp[11] = '\0';
-    hash_tmp[12] = '\0';
-    hash_tmp[13] = '\0';
-    hash_tmp[14] = '\0';
-    hash_tmp[15] = '\0';
-    hash_tmp[16] = '\0';
-    hash_tmp[17] = '\0';
-    hash_tmp[18] = '\0';
-    hash_tmp[19] = '\0';
-    hash_tmp[20] = '\0';
-    hash_tmp[21] = '\0';
-    hash_tmp[22] = '\0';
-    hash_tmp[23] = '\0';
-    hash_tmp[24] = '\0';
-    hash_tmp[25] = '\0';
-    hash_tmp[26] = '\0';
-    hash_tmp[27] = '\0';
-    hash_tmp[28] = '\0';
-    hash_tmp[29] = '\0';
-    hash_tmp[30] = '\0';
-    hash_tmp[31] = '\0';
+    hash_tmp[0xb] = '\0';
+    hash_tmp[0xc] = '\0';
+    hash_tmp[0xd] = '\0';
+    hash_tmp[0xe] = '\0';
+    hash_tmp[0xf] = '\0';
+    hash_tmp[0x10] = '\0';
+    hash_tmp[0x11] = '\0';
+    hash_tmp[0x12] = '\0';
+    hash_tmp[0x13] = '\0';
+    hash_tmp[0x14] = '\0';
+    hash_tmp[0x15] = '\0';
+    hash_tmp[0x16] = '\0';
+    hash_tmp[0x17] = '\0';
+    hash_tmp[0x18] = '\0';
+    hash_tmp[0x19] = '\0';
+    hash_tmp[0x1a] = '\0';
+    hash_tmp[0x1b] = '\0';
+    hash_tmp[0x1c] = '\0';
+    hash_tmp[0x1d] = '\0';
+    hash_tmp[0x1e] = '\0';
+    hash_tmp[0x1f] = '\0';
     midstate_tmp._0_4_ = *(undefined4 *)work->midstate;
     midstate_tmp._4_4_ = *(undefined4 *)(work->midstate + 4);
     midstate_tmp._8_4_ = *(undefined4 *)(work->midstate + 8);
@@ -129,7 +129,7 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
       puVar3 = &DAT_0007c27c;
     }
     else {
-      puVar3 = &DAT_0007c280;
+      puVar3 = &UNK_0007c280;
     }
     worksharediff._0_4_ = (uint)uVar4;
     worksharediff._4_4_ = (uint)(uVar4 >> 0x20);
@@ -153,7 +153,7 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
           puVar3 = &DAT_0007c27c;
         }
         else {
-          puVar3 = &DAT_0007c280;
+          puVar3 = &UNK_0007c280;
         }
         sprintf(szmsg,"%s %08x work %s midstate %s data %s nonce %s hash %s diff %I64d",puVar3,
                 work->id,__ptr,__ptr_00,__ptr_01,__ptr_03,__ptr_04,uVar5,(uint)worksharediff,
@@ -188,7 +188,7 @@ void cg_logwork(work *work,uchar *nonce_bin,_Bool ok)
               uVar5 = difftmp._4_4_ & 1;
               difftmp._4_4_ = difftmp._4_4_ >> 1;
               difftmp._0_4_ = (uint)(uVar5 != 0) << 0x1f | (uint)difftmp >> 1;
-              if (((uint)difftmp | difftmp._4_4_) == 0) break;
+              if ((uint)difftmp == 0 && difftmp._4_4_ == 0) break;
               diffnum = diffnum + 1;
             } while (diffnum < 0x40);
             if ((opt_debug != false) &&

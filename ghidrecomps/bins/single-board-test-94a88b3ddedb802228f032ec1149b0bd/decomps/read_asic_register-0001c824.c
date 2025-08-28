@@ -1,17 +1,17 @@
 
-void read_asic_register(byte param_1,char param_2,undefined param_3,undefined param_4)
+void read_asic_register(byte param_1,char param_2,undefined1 param_3,undefined1 param_4)
 
 {
   uint3 uVar1;
   uint uVar2;
   byte bVar3;
-  undefined uVar4;
+  undefined1 uVar4;
   uint local_30;
   int local_2c;
   undefined4 local_28;
-  uint local_24;
+  undefined4 local_24;
   undefined4 local_20;
-  undefined local_1c;
+  undefined1 local_1c;
   uint local_18;
   uint local_14;
   

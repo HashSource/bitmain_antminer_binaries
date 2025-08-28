@@ -19,27 +19,30 @@ dtls1_retransmit_message(SSL *param_1,undefined4 param_2,undefined4 param_3,unde
   EVP_MD_CTX *pEVar13;
   SSL_SESSION *pSVar14;
   ssl3_state_st *psVar15;
-  undefined *puVar16;
+  undefined1 *puVar16;
   uint uVar17;
   int iVar18;
   SSL_SESSION *pSVar19;
   EVP_MD_CTX *pEVar20;
   EVP_CIPHER_CTX *pEVar21;
-  undefined4 local_38;
+  uchar local_38 [4];
   int local_34;
   undefined4 local_30;
   undefined4 uStack_2c;
   
-  local_38 = 0;
+  local_38[0] = '\0';
+  local_38[1] = '\0';
+  local_38[2] = '\0';
+  local_38[3] = '\0';
   local_34 = (uint)CONCAT11((char)param_2,(char)((uint)param_2 >> 8)) << 0x10;
-  ppVar4 = pqueue_find(param_1->d1->sent_messages,(uchar *)&local_38);
+  ppVar4 = pqueue_find(param_1->d1->sent_messages,local_38);
   if (ppVar4 == (pitem *)0x0) {
-    fprintf(*DAT_00079190,DAT_00079194,param_2);
+    fprintf(stderr,"retransmit:  message %d non-existant\n",param_2);
     *param_4 = 0;
     uVar6 = 0;
   }
   else {
-    puVar16 = (undefined *)ppVar4->data;
+    puVar16 = (undefined1 *)ppVar4->data;
     *param_4 = 1;
     if (*(int *)(puVar16 + 0x14) == 0) {
       iVar18 = 0xc;
@@ -53,7 +56,7 @@ dtls1_retransmit_message(SSL *param_1,undefined4 param_2,undefined4 param_3,unde
     pdVar11 = param_1->d1;
     uVar1 = *(ushort *)(puVar16 + 0x28);
     param_1->init_num = iVar18 + uVar7;
-    *(undefined *)&(pdVar11->w_msg_hdr).seq = *puVar16;
+    *(undefined1 *)&(pdVar11->w_msg_hdr).seq = *puVar16;
     pdVar5 = param_1->d1;
     pEVar21 = param_1->enc_write_ctx;
     pEVar20 = param_1->write_hash;

@@ -9,7 +9,7 @@ ASN1_ENUMERATED * BN_to_ASN1_ENUMERATED(BIGNUM *bn,ASN1_ENUMERATED *ai)
   
   a = ai;
   if ((ai == (ASN1_ENUMERATED *)0x0) && (a = ASN1_STRING_type_new(10), a == (ASN1_STRING *)0x0)) {
-    ERR_put_error(0xd,0x8a,0x3a,DAT_00106700,0x92);
+    ERR_put_error(0xd,0x8a,0x3a,"a_enum.c",0x92);
     return (ASN1_ENUMERATED *)0x0;
   }
   if (bn->neg == 0) {
@@ -36,9 +36,9 @@ LAB_001066ba:
       goto LAB_00106696;
     }
   }
-  to = (uchar *)CRYPTO_realloc(a->data,iVar2 + 4,DAT_00106700,0x9c);
+  to = (uchar *)CRYPTO_realloc(a->data,iVar2 + 4,"a_enum.c",0x9c);
   if (to == (uchar *)0x0) {
-    ERR_put_error(0xd,0x8a,0x41,DAT_00106700,0x9e);
+    ERR_put_error(0xd,0x8a,0x41,"a_enum.c",0x9e);
     if (ai == a) {
       return (ASN1_ENUMERATED *)0x0;
     }

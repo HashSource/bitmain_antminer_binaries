@@ -15,7 +15,7 @@ void BF_set_key(BF_KEY *key,int len,uchar *data)
   uint local_20;
   uint local_1c;
   
-  memcpy(key,DAT_0011e0c0,0x1048);
+  memcpy(key,&bf_init,0x1048);
   if (len < 0x49) {
     puVar6 = data + len;
   }

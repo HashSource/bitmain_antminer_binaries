@@ -14,14 +14,14 @@ int RSA_eay_public_decrypt(int param_1,uchar *param_2,uchar *param_3,int param_4
   
   iVar1 = BN_num_bits(*(BIGNUM **)(param_4 + 0x10));
   if (0x4000 < iVar1) {
-    ERR_put_error(4,0x67,0x69,DAT_000faab8,0x273);
+    ERR_put_error(4,0x67,0x69,"rsa_eay.c",0x273);
     return -1;
   }
   iVar1 = BN_ucmp(*(BIGNUM **)(param_4 + 0x10),*(BIGNUM **)(param_4 + 0x14));
   if (iVar1 < 1) {
     iVar1 = 0x278;
 LAB_000fa95e:
-    ERR_put_error(4,0x67,0x65,DAT_000faab8,iVar1);
+    ERR_put_error(4,0x67,0x65,"rsa_eay.c",iVar1);
     return -1;
   }
   iVar1 = BN_num_bits(*(BIGNUM **)(param_4 + 0x10));
@@ -42,10 +42,10 @@ LAB_000fa95e:
     iVar1 = iVar2 + 7;
   }
   len = iVar1 >> 3;
-  to = (uchar *)CRYPTO_malloc(len,DAT_000faab8,0x28a);
+  to = (uchar *)CRYPTO_malloc(len,"rsa_eay.c",0x28a);
   if ((ret == (BIGNUM *)0x0 || a == (BIGNUM *)0x0) || (to == (uchar *)0x0)) {
     iVar1 = -1;
-    ERR_put_error(4,0x67,0x41,DAT_000faab8,0x28c);
+    ERR_put_error(4,0x67,0x41,"rsa_eay.c",0x28c);
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     if (to == (uchar *)0x0) {
@@ -54,7 +54,7 @@ LAB_000fa95e:
     goto LAB_000fa996;
   }
   if ((int)len < param_1) {
-    ERR_put_error(4,0x67,0x6c,DAT_000faab8,0x295);
+    ERR_put_error(4,0x67,0x6c,"rsa_eay.c",0x295);
     iVar1 = -1;
   }
   else {
@@ -89,7 +89,7 @@ LAB_000faa28:
           else {
             if (param_5 == 5) goto LAB_000faa28;
             if (param_5 != 1) {
-              ERR_put_error(4,0x67,0x76,DAT_000faab8,0x2bd);
+              ERR_put_error(4,0x67,0x76,"rsa_eay.c",0x2bd);
               iVar1 = -1;
               goto LAB_000fa942;
             }
@@ -97,12 +97,12 @@ LAB_000faa28:
           }
         }
         if (iVar1 < 0) {
-          ERR_put_error(4,0x67,0x72,DAT_000faab8,0x2c1);
+          ERR_put_error(4,0x67,0x72,"rsa_eay.c",0x2c1);
         }
       }
       else {
         iVar1 = -1;
-        ERR_put_error(4,0x67,0x84,DAT_000faab8,0x29e);
+        ERR_put_error(4,0x67,0x84,"rsa_eay.c",0x29e);
       }
     }
   }

@@ -11,12 +11,12 @@ PKCS12_item_i2d_encrypt(X509_ALGOR *algor,ASN1_ITEM *it,char *pass,int passlen,v
   local_24[0] = (uchar *)0x0;
   a = ASN1_STRING_type_new(4);
   if (a == (ASN1_STRING *)0x0) {
-    ERR_put_error(0x23,0x6c,0x41,DAT_0010f110,0xb2);
+    ERR_put_error(0x23,0x6c,0x41,"p12_decr.c",0xb2);
   }
   else {
     len = ASN1_item_i2d((ASN1_VALUE *)obj,local_24,it);
     if (local_24[0] == (uchar *)0x0) {
-      ERR_put_error(0x23,0x6c,0x66,DAT_0010f110,0xb7);
+      ERR_put_error(0x23,0x6c,0x66,"p12_decr.c",0xb7);
     }
     else {
       puVar1 = PKCS12_pbe_crypt(algor,pass,passlen,local_24[0],len,&a->data,&a->length,1);
@@ -27,7 +27,7 @@ PKCS12_item_i2d_encrypt(X509_ALGOR *algor,ASN1_ITEM *it,char *pass,int passlen,v
         CRYPTO_free(local_24[0]);
         return a;
       }
-      ERR_put_error(0x23,0x6c,0x67,DAT_0010f110,0xbc);
+      ERR_put_error(0x23,0x6c,0x67,"p12_decr.c",0xbc);
       CRYPTO_free(local_24[0]);
     }
     ASN1_OCTET_STRING_free(a);

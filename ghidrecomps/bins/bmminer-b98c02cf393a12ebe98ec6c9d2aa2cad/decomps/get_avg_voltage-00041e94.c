@@ -1,49 +1,51 @@
 
-double get_avg_voltage(void)
+undefined4 get_avg_voltage(void)
 
 {
-  longlong lVar1;
-  FILE *pFVar2;
-  undefined1 *puVar3;
-  int iVar4;
-  double dVar5;
+  FILE *pFVar1;
+  undefined1 *puVar2;
+  int iVar3;
+  undefined4 uVar4;
+  undefined4 extraout_s1;
   double dVar6;
+  double dVar5;
   
-  dVar6 = DAT_00041fd0;
+  dVar6 = 0.0;
   if (0 < total_exist_chain_num) {
-    puVar3 = exist_chain;
-    iVar4 = 0;
+    puVar2 = exist_chain;
+    iVar3 = 0;
     do {
       while( true ) {
-        iVar4 = iVar4 + 1;
+        iVar3 = iVar3 + 1;
         pthread_mutex_lock((pthread_mutex_t *)iic_mutex);
-        dVar5 = (double)dsPIC33EP16GS202_pic_get_an_voltage2(*puVar3);
+        uVar4 = dsPIC33EP16GS202_pic_get_an_voltage2(*puVar2);
+        dVar5 = (double)CONCAT44(extraout_s1,uVar4);
         pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
         if (log_level < 4) break;
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
-        if (pFVar2 != (FILE *)0x0) {
-          fprintf(pFVar2,"%s:%d:%s: board[%d] voltage: %f\n","power.c",0x235,DAT_00041fd8,
-                  *(undefined4 *)puVar3,dVar5);
+        pFVar1 = fopen(log_file,"a+");
+        if (pFVar1 != (FILE *)0x0) {
+          fprintf(pFVar1,"%s:%d:%s: board[%d] voltage: %f\n","power.c",0x235,"get_avg_voltage",
+                  *(undefined4 *)puVar2,dVar5);
         }
-        puVar3 = (undefined1 *)((int)puVar3 + 4);
-        fclose(pFVar2);
+        puVar2 = (undefined1 *)((int)puVar2 + 4);
+        fclose(pFVar1);
         dVar6 = dVar6 + dVar5;
-        if (total_exist_chain_num <= iVar4) goto LAB_00041f52;
+        if (total_exist_chain_num <= iVar3) goto LAB_00041f52;
       }
-      puVar3 = (undefined1 *)((int)puVar3 + 4);
+      puVar2 = (undefined1 *)((int)puVar2 + 4);
       dVar6 = dVar6 + dVar5;
-    } while (iVar4 < total_exist_chain_num);
+    } while (iVar3 < total_exist_chain_num);
   }
 LAB_00041f52:
-  lVar1 = (longlong)total_exist_chain_num;
+  uVar4 = SUB84(dVar6 / (double)(longlong)total_exist_chain_num,0);
   if (3 < log_level) {
-    pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
-    if (pFVar2 != (FILE *)0x0) {
-      fprintf(pFVar2,"%s:%d:%s: avg voltage: %f\n","power.c",0x23b,DAT_00041fd8);
+    pFVar1 = fopen(log_file,"a+");
+    if (pFVar1 != (FILE *)0x0) {
+      fprintf(pFVar1,"%s:%d:%s: avg voltage: %f\n","power.c",0x23b,"get_avg_voltage");
     }
-    fclose(pFVar2);
-    return dVar6 / (double)lVar1;
+    fclose(pFVar1);
+    return uVar4;
   }
-  return dVar6 / (double)lVar1;
+  return uVar4;
 }
 

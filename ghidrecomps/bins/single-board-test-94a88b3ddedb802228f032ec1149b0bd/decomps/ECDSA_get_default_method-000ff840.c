@@ -4,15 +4,10 @@
 ECDSA_METHOD * ECDSA_get_default_method(void)
 
 {
-  ECDSA_METHOD **ppEVar1;
-  ECDSA_METHOD *pEVar2;
-  
-  ppEVar1 = DAT_000ff854;
-  if (*DAT_000ff854 != (ECDSA_METHOD *)0x0) {
-    return *DAT_000ff854;
+  if (default_ECDSA_method != (ECDSA_METHOD *)0x0) {
+    return default_ECDSA_method;
   }
-  pEVar2 = ECDSA_OpenSSL();
-  *ppEVar1 = pEVar2;
-  return pEVar2;
+  default_ECDSA_method = ECDSA_OpenSSL();
+  return default_ECDSA_method;
 }
 

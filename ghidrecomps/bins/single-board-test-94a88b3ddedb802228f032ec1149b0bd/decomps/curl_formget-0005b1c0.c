@@ -8,12 +8,12 @@ int curl_formget(undefined4 param_1,undefined4 param_2,code *param_3)
   int iVar4;
   int *piVar5;
   int *local_203c;
-  undefined auStack_2038 [8];
+  undefined1 auStack_2038 [8];
   int *local_2030;
   undefined4 uStack_202c;
   FILE *local_2028;
   undefined4 local_2024;
-  undefined auStack_2020 [8196];
+  undefined1 auStack_2020 [8196];
   
   iVar1 = Curl_getformdata(0,&local_203c,param_1,0,auStack_2038);
   if (iVar1 == 0) {

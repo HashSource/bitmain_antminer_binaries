@@ -9,15 +9,15 @@ void print_freq_table(void)
   int local_34;
   int *local_30;
   
-  local_30 = DAT_000359a4;
+  local_30 = (int *)freq_table;
   local_34 = 0;
   do {
     if (*(int *)(dev + (local_34 + 2) * 4) == 1) {
       if (3 < log_level) {
-        pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar1 = fopen(log_file,"a+");
         if (pFVar1 != (FILE *)0x0) {
-          fprintf(pFVar1,"%s:%d:%s: chain[%d] freq table:\n","driver-btm-c5.c",0x27d8,DAT_000359a8,
-                  local_34);
+          fprintf(pFVar1,"%s:%d:%s: chain[%d] freq table:\n","driver-btm-c5.c",0x27d8,
+                  "print_freq_table",local_34);
         }
         fclose(pFVar1);
       }
@@ -27,7 +27,7 @@ void print_freq_table(void)
 LAB_000358ce:
       do {
         if (3 < uVar2) {
-          pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+          pFVar1 = fopen(log_file,"a+");
           if (pFVar1 != (FILE *)0x0) {
             fprintf(pFVar1,"Asic[%2d]:%s ",uVar3 - 1,*(undefined4 *)(freq_pll_1385 + *piVar4 * 0x10)
                    );
@@ -35,7 +35,7 @@ LAB_000358ce:
           fclose(pFVar1);
           uVar2 = log_level;
           if (((uVar3 & 7) == 0) && (3 < log_level)) {
-            pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+            pFVar1 = fopen(log_file,"a+");
             if (pFVar1 != (FILE *)0x0) {
               fputc(10,pFVar1);
             }
@@ -51,7 +51,7 @@ LAB_000358ce:
         piVar4 = piVar4 + 1;
       } while (uVar3 != 0x55);
       if (3 < uVar2) {
-        pFVar1 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar1 = fopen(log_file,"a+");
         if (pFVar1 != (FILE *)0x0) {
           fwrite(&DAT_00060a5c,1,2,pFVar1);
         }

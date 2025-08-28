@@ -20,16 +20,16 @@ uchar * b64_write(BIO *param_1,uchar *param_2,uchar *param_3)
     EVP_EncodeInit((EVP_ENCODE_CTX *)(outl + 7));
   }
   if (0x5dd < outl[1]) {
-    OpenSSLDie(DAT_0012bdbc,0x17a,DAT_0012bdcc);
+    OpenSSLDie("bio_b64.c",0x17a,"ctx->buf_off < (int)sizeof(ctx->buf)");
   }
   iVar5 = *outl;
   if (0x5de < iVar5) {
-    OpenSSLDie(DAT_0012bdbc,0x17b,DAT_0012bdc8);
+    OpenSSLDie("bio_b64.c",0x17b,"ctx->buf_len <= (int)sizeof(ctx->buf)");
     iVar5 = *outl;
   }
   iVar1 = outl[1];
   if (iVar5 < iVar1) {
-    OpenSSLDie(DAT_0012bdbc,0x17c,DAT_0012bdc4);
+    OpenSSLDie("bio_b64.c",0x17c,"ctx->buf_len >= ctx->buf_off");
     iVar5 = *outl;
     iVar1 = outl[1];
   }
@@ -63,22 +63,22 @@ LAB_0012bb30:
             iVar5 = EVP_EncodeBlock((uchar *)(outl + 0x1f),param_2,(int)puVar3);
             *outl = iVar5;
             if (0x5de < iVar5) {
-              OpenSSLDie(DAT_0012bdbc,0x1b7,DAT_0012bdc8);
+              OpenSSLDie("bio_b64.c",0x1b7,"ctx->buf_len <= (int)sizeof(ctx->buf)");
               iVar5 = *outl;
             }
             if (iVar5 < outl[1]) {
-              OpenSSLDie(DAT_0012bdbc,0x1b8,DAT_0012bdc4);
+              OpenSSLDie("bio_b64.c",0x1b8,"ctx->buf_len >= ctx->buf_off");
               iVar5 = *outl;
             }
             local_30 = local_30 + (int)puVar3;
           }
           else {
             if (3 < iVar5) {
-              OpenSSLDie(DAT_0012bdbc,0x196,DAT_0012bdd0);
+              OpenSSLDie("bio_b64.c",0x196,"ctx->tmp_len <= 3");
               iVar5 = outl[2];
             }
             puVar3 = (uchar *)(3 - iVar5);
-            if ((int)param_3 <= (int)(uchar *)(3 - iVar5)) {
+            if ((int)param_3 <= 3 - iVar5) {
               puVar3 = param_3;
             }
             memcpy((void *)((int)outl + iVar5 + 0x65a),param_2,(size_t)puVar3);
@@ -92,11 +92,11 @@ LAB_0012bb30:
             ;
             *outl = iVar5;
             if (0x5de < iVar5) {
-              OpenSSLDie(DAT_0012bdbc,0x1a5,DAT_0012bdc8);
+              OpenSSLDie("bio_b64.c",0x1a5,"ctx->buf_len <= (int)sizeof(ctx->buf)");
               iVar5 = *outl;
             }
             if (iVar5 < outl[1]) {
-              OpenSSLDie(DAT_0012bdbc,0x1a6,DAT_0012bdc4);
+              OpenSSLDie("bio_b64.c",0x1a6,"ctx->buf_len >= ctx->buf_off");
               iVar5 = *outl;
             }
             outl[2] = 0;
@@ -107,11 +107,11 @@ LAB_0012bb30:
                            (int)puVar3);
           iVar5 = *outl;
           if (0x5de < iVar5) {
-            OpenSSLDie(DAT_0012bdbc,0x1bf,DAT_0012bdc8);
+            OpenSSLDie("bio_b64.c",0x1bf,"ctx->buf_len <= (int)sizeof(ctx->buf)");
             iVar5 = *outl;
           }
           if (iVar5 < outl[1]) {
-            OpenSSLDie(DAT_0012bdbc,0x1c0,DAT_0012bdc4);
+            OpenSSLDie("bio_b64.c",0x1c0,"ctx->buf_len >= ctx->buf_off");
             iVar5 = *outl;
           }
           local_30 = local_30 + (int)puVar3;
@@ -130,12 +130,12 @@ LAB_0012bb30:
               return puVar2;
             }
             if (iVar5 < (int)puVar2) {
-              OpenSSLDie(DAT_0012bdbc,0x1ce,DAT_0012bdb8);
+              OpenSSLDie("bio_b64.c",0x1ce,"i <= n");
               puVar4 = puVar2 + outl[1];
               outl[1] = (int)puVar4;
               if ((int)puVar4 < 0x5df) goto LAB_0012bbee;
 LAB_0012bc2e:
-              OpenSSLDie(DAT_0012bdbc,0x1d1,DAT_0012bdc0);
+              OpenSSLDie("bio_b64.c",0x1d1,"ctx->buf_off <= (int)sizeof(ctx->buf)");
               if (*outl < outl[1]) goto LAB_0012bc42;
             }
             else {
@@ -145,7 +145,7 @@ LAB_0012bc2e:
 LAB_0012bbee:
               if (*outl < (int)puVar4) {
 LAB_0012bc42:
-                OpenSSLDie(DAT_0012bdbc,0x1d2,DAT_0012bdc4);
+                OpenSSLDie("bio_b64.c",0x1d2,"ctx->buf_len >= ctx->buf_off");
               }
             }
             if (iVar5 - (int)puVar2 < 1) break;
@@ -163,12 +163,12 @@ LAB_0012bc42:
     while (local_30 = (uchar *)BIO_write(param_1->next_bio,(void *)((int)outl + iVar1 + 0x7c),iVar5)
           , 0 < (int)local_30) {
       if (iVar5 < (int)local_30) {
-        OpenSSLDie(DAT_0012bdbc,0x184,DAT_0012bdb8);
+        OpenSSLDie("bio_b64.c",0x184,"i <= n");
         puVar3 = local_30 + outl[1];
         outl[1] = (int)puVar3;
         if ((int)puVar3 < 0x5df) goto LAB_0012bacc;
 LAB_0012bb0c:
-        OpenSSLDie(DAT_0012bdbc,0x186,DAT_0012bdc0);
+        OpenSSLDie("bio_b64.c",0x186,"ctx->buf_off <= (int)sizeof(ctx->buf)");
         if (*outl < outl[1]) goto LAB_0012bb20;
       }
       else {
@@ -178,7 +178,7 @@ LAB_0012bb0c:
 LAB_0012bacc:
         if (*outl < (int)puVar3) {
 LAB_0012bb20:
-          OpenSSLDie(DAT_0012bdbc,0x187,DAT_0012bdc4);
+          OpenSSLDie("bio_b64.c",0x187,"ctx->buf_len >= ctx->buf_off");
         }
       }
       if (iVar5 - (int)local_30 < 1) goto LAB_0012bb30;

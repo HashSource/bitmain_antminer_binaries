@@ -1,10 +1,10 @@
 
-undefined4 ssl3_put_cipher_by_char(int param_1,undefined *param_2)
+undefined4 ssl3_put_cipher_by_char(int param_1,undefined1 *param_2)
 
 {
   uint uVar1;
   
-  if (param_2 == (undefined *)0x0) {
+  if (param_2 == (undefined1 *)0x0) {
     return 2;
   }
   uVar1 = *(uint *)(param_1 + 8);

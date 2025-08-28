@@ -18,7 +18,7 @@ int X509_REQ_add_extensions_nid(X509_REQ *req,stack_st_X509_EXTENSION *exts,int 
     ((_union_263 *)&p_Var1->data)->asn1_string = a;
     if (a != (ASN1_STRING *)0x0) {
       p_Var1->num = 0x10;
-      iVar2 = ASN1_item_i2d((ASN1_VALUE *)exts,&a->data,DAT_0010b6d8);
+      iVar2 = ASN1_item_i2d((ASN1_VALUE *)exts,&a->data,(ASN1_ITEM *)X509_EXTENSIONS_it);
       a->length = iVar2;
       a = (ASN1_STRING *)X509_ATTRIBUTE_new();
       if (a != (ASN1_STRING *)0x0) {

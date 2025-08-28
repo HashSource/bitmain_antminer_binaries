@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_rc2_cfb64(void)
 
 {
-  return DAT_000b1b1c;
+  return (EVP_CIPHER *)rc2_cfb64;
 }
 

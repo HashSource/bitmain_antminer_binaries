@@ -10,14 +10,15 @@ void _k_insert_before(K_LIST *list,K_ITEM *item,K_ITEM *before,char *file,char *
   char tmp42 [2048];
   
   if (item->name != list->name) {
-    snprintf(tmp42,0x800,DAT_0000ffb4,list->name,DAT_0000ffb0,item->name,file,func,line,DAT_0000ffbc
-             ,DAT_0000ffb0,0x106);
+    snprintf(tmp42,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_insert_before",item->name,file,func,line,"klist.c","_k_insert_before",
+             0x106);
     _applog(3,tmp42,true);
     _quit(1);
   }
   if (before == (K_ITEM *)0x0) {
-    snprintf(tmp42,0x800,DAT_0000ffb8,DAT_0000ffb0,list->name,file,func,line,DAT_0000ffbc,
-             DAT_0000ffb0,0x10b);
+    snprintf(tmp42,0x800,"%s() (%s) can\'t before a null item - from %s %s() line %d in %s %s():%d",
+             "_k_insert_before",list->name,file,func,line,"klist.c","_k_insert_before",0x10b);
     _applog(3,tmp42,true);
     _quit(1);
   }

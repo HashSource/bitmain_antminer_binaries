@@ -1,18 +1,18 @@
 
-undefined4 blake2b_update(int param_1,void *param_2,uint param_3,uint param_4)
+undefined4 blake2b_update(int param_1,void *param_2,uint param_3,int param_4)
 
 {
   int iVar1;
   uint __n;
   bool bVar2;
-  uint local_28;
-  uint uStack_24;
-  void *local_20;
+  undefined4 local_28;
+  undefined4 uStack_24;
+  undefined4 local_20;
   
   local_28 = param_3;
   uStack_24 = param_4;
   local_20 = param_2;
-  while ((local_28 | uStack_24) != 0) {
+  while (local_28 != 0 || uStack_24 != 0) {
     iVar1 = *(int *)(param_1 + 0x160);
     __n = 0x100 - iVar1;
     bVar2 = uStack_24 == 0;
@@ -36,7 +36,7 @@ undefined4 blake2b_update(int param_1,void *param_2,uint param_3,uint param_4)
       local_20 = (void *)(__n + (int)local_20);
       bVar2 = local_28 < __n;
       local_28 = local_28 - __n;
-      uStack_24 = uStack_24 - bVar2;
+      uStack_24 = uStack_24 - (uint)bVar2;
     }
   }
   return 0;

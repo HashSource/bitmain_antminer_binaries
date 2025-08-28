@@ -4,60 +4,48 @@
 void tidyup(void *arg)
 
 {
-  undefined *puVar1;
-  undefined *puVar2;
-  int iVar3;
-  char *in_r2;
+  io_list *piVar1;
+  int iVar2;
   char *func;
-  int in_r3;
+  char *func_00;
   int line;
-  long *apisock;
-  io_list *io_list;
-  io_list *piVar4;
-  io_list *io_next;
-  io_list *piVar5;
+  int line_00;
+  io_list *__ptr;
+  io_list *piVar3;
   
-  iVar3 = pthread_mutex_lock(DAT_00019604);
-  if (iVar3 != 0) {
-    _mutex_lock(DAT_00019610,(char *)0x1218,in_r2,in_r3);
+  iVar2 = pthread_mutex_lock((pthread_mutex_t *)&quit_restart_lock);
+  if (iVar2 != 0) {
+    _mutex_lock((pthread_mutex_t *)"tidyup",(char *)0x1218,func,line);
   }
-  puVar1 = DAT_00019608;
                     /* WARNING: Load size is inaccurate */
-  iVar3 = *arg;
-  line = 1;
-  func = (char *)(iVar3 + 1);
-  *DAT_00019608 = 1;
-  if (func != (char *)0x0) {
-    shutdown(iVar3,2);
+  bye = true;
+  if (*arg != -1) {
+    shutdown(*arg,2);
                     /* WARNING: Load size is inaccurate */
     close(*arg);
-    line = -1;
     *(undefined4 *)arg = 0xffffffff;
   }
-  puVar2 = DAT_00019608;
-  if (*(void **)(puVar1 + 8) != (void *)0x0) {
-    free(*(void **)(puVar1 + 8));
-    line = 0;
-    *(undefined4 *)(puVar2 + 8) = 0;
+  if (ipaccess != (IPACCESS *)0x0) {
+    free(ipaccess);
+    ipaccess = (IPACCESS *)0x0;
   }
-  piVar5 = *(io_list **)(puVar1 + 0x24);
-  io_list = piVar5;
-  if (piVar5 != (io_list *)0x0) {
+  piVar1 = io_head;
+  __ptr = io_head;
+  if (io_head != (io_list *)0x0) {
     do {
-      piVar4 = io_list->next;
-      free(io_list->io_data->ptr);
-      free(io_list->io_data);
-      free(io_list);
-      io_list = piVar4;
-    } while (piVar5 != piVar4);
-    line = 0;
-    *(undefined4 *)(puVar1 + 0x24) = 0;
+      piVar3 = __ptr->next;
+      free(__ptr->io_data->ptr);
+      free(__ptr->io_data);
+      free(__ptr);
+      __ptr = piVar3;
+    } while (piVar1 != piVar3);
+    io_head = (io_list *)0x0;
   }
-  iVar3 = pthread_mutex_unlock(DAT_00019604);
-  if (iVar3 != 0) {
-    _mutex_unlock_noyield(DAT_00019610,(char *)0x122d,func,line);
+  iVar2 = pthread_mutex_unlock((pthread_mutex_t *)&quit_restart_lock);
+  if (iVar2 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"tidyup",(char *)0x122d,func_00,line_00);
   }
-  (**DAT_0001960c)();
+  (*selective_yield)();
   return;
 }
 

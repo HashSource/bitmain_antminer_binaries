@@ -8,7 +8,7 @@ int i2d_PKCS8PrivateKey_fp
   
   a = BIO_new_fp(fp,0);
   if (a == (BIO *)0x0) {
-    ERR_put_error(9,0x7d,7,DAT_0010b138,0xe7);
+    ERR_put_error(9,0x7d,7,"pem_pk8.c",0xe7);
     iVar1 = 0;
   }
   else {

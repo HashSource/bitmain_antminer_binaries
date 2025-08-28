@@ -1,13 +1,15 @@
 
-undefined4 curl_multi_strerror(int param_1)
+char * curl_multi_strerror(int param_1)
 
 {
-  undefined4 uVar1;
+  char *pcVar1;
   
-  uVar1 = DAT_0003b950;
   if (param_1 + 1U < 9) {
-    uVar1 = *(undefined4 *)(DAT_0003b94c + (param_1 + 1U) * 4 + 0x170);
+    pcVar1 = *(char **)(CSWTCH_7 + (param_1 + 1U) * 4);
   }
-  return uVar1;
+  else {
+    pcVar1 = "Unknown error";
+  }
+  return pcVar1;
 }
 

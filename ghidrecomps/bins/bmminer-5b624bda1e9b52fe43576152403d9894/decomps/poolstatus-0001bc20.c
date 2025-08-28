@@ -4,154 +4,152 @@
 void poolstatus(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  int *piVar1;
-  int *piVar2;
-  _Bool _Var3;
-  time_t tVar4;
-  uint uVar5;
-  char *pcVar6;
-  undefined precom;
-  int iVar7;
-  pool *pool;
-  int iVar8;
-  api_data *paVar9;
-  char *lp;
-  double dVar10;
-  double dVar11;
-  char *status;
-  int i;
+  _Bool _Var1;
+  time_t tVar2;
+  uint uVar3;
+  undefined1 precom;
+  pool_enable pVar4;
+  pool *ppVar5;
+  int iVar6;
+  api_data *paVar7;
+  char *pcVar8;
+  double dVar9;
+  char *local_150;
+  int local_13c;
   undefined4 local_138;
   undefined4 uStack_134;
   undefined4 local_130;
   undefined4 uStack_12c;
   char lasttime [256];
   
-  piVar1 = DAT_0001c004;
   memset(lasttime,0,0x100);
-  if (*piVar1 == 0) {
+  if (total_pools == 0) {
     message(io_data,8,0,(char *)0x0,isjson);
   }
   else {
     message(io_data,7,0,(char *)0x0,isjson);
     if (isjson) {
-      _Var3 = io_add(io_data,DAT_0001c028);
+      _Var1 = io_add(io_data,",\"POOLS\":[");
     }
     else {
-      _Var3 = false;
+      _Var1 = false;
     }
-    piVar2 = DAT_0001c008;
-    i = 0;
-    if (0 < *piVar1) {
-      paVar9 = (api_data *)0x0;
+    local_13c = 0;
+    if (0 < total_pools) {
+      paVar7 = (api_data *)0x0;
       do {
-        iVar8 = *(int *)(*piVar2 + i * 4);
-        if (*(char *)(iVar8 + 0x69) == '\0') {
-          iVar7 = *(int *)(iVar8 + 100);
-          if (iVar7 == 1) {
-            status = DAT_0001bffc;
-            if (*(char *)(iVar8 + 0x61) != '\0') {
-              status = DAT_0001c000;
+        ppVar5 = pools[local_13c];
+        if (ppVar5->removed == false) {
+          pVar4 = ppVar5->enabled;
+          if (pVar4 == POOL_ENABLED) {
+            local_150 = "Alive";
+            if (ppVar5->idle != false) {
+              local_150 = "Dead";
             }
           }
-          else if (iVar7 == 0) {
-            status = DAT_0001bf78;
+          else if (pVar4 == POOL_DISABLED) {
+            local_150 = "Disabled";
           }
           else {
-            status = DAT_0001bff4;
-            if (iVar7 != 2) {
-              status = DAT_0001bff8;
+            local_150 = "Rejecting";
+            if (pVar4 != POOL_REJECTING) {
+              local_150 = "Unknown";
             }
           }
-          pcVar6 = DAT_0001bf7c;
-          if (*(int *)(iVar8 + 0x6c) != 0) {
-            pcVar6 = DAT_0001bf80;
+          if (ppVar5->hdr_path == (char *)0x0) {
+            pcVar8 = "N";
           }
-          if (*(int *)(iVar8 + 0x160) < 1) {
+          else {
+            pcVar8 = "Y";
+          }
+          if (ppVar5->last_share_time < 1) {
             lasttime[0] = '0';
             lasttime[1] = '\0';
           }
           else {
-            tVar4 = time((time_t *)0x0);
-            uVar5 = tVar4 - *(int *)(iVar8 + 0x160);
-            uVar5 = uVar5 & ~((int)uVar5 >> 0x1f);
-            iVar7 = (int)uVar5 % 0xe10;
-            sprintf(lasttime,DAT_0001bf84,(int)uVar5 / 0xe10,iVar7 / 0x3c,iVar7 % 0x3c);
+            tVar2 = time((time_t *)0x0);
+            uVar3 = tVar2 - ppVar5->last_share_time;
+            uVar3 = uVar3 & ~((int)uVar3 >> 0x1f);
+            iVar6 = (int)uVar3 % 0xe10;
+            sprintf(lasttime,"%d:%02d:%02d",(int)uVar3 / 0xe10,iVar6 / 0x3c,iVar6 % 0x3c);
           }
-          paVar9 = api_add_int(paVar9,DAT_0001bf88,&i,false);
-          paVar9 = api_add_escape(paVar9,DAT_0001bf8c,*(char **)(iVar8 + 0xa4),false);
-          paVar9 = api_add_string(paVar9,DAT_0001bf90,status,false);
-          paVar9 = api_add_int(paVar9,DAT_0001bf94,(int *)(iVar8 + 4),false);
-          paVar9 = api_add_int(paVar9,DAT_0001bf98,(int *)(iVar8 + 0x38),false);
-          paVar9 = api_add_string(paVar9,DAT_0001bf9c,pcVar6,false);
-          paVar9 = api_add_uint(paVar9,DAT_0001bfa0,(uint *)(iVar8 + 0x74),false);
-          paVar9 = api_add_int64(paVar9,DAT_0001bfa4,(int64_t *)(iVar8 + 8),false);
-          paVar9 = api_add_int64(paVar9,DAT_0001bfa8,(int64_t *)(iVar8 + 0x10),false);
-          paVar9 = api_add_uint(paVar9,DAT_0001bfac,(uint *)(iVar8 + 0x7c),false);
-          paVar9 = api_add_uint(paVar9,DAT_0001bfb0,(uint *)(iVar8 + 0x78),false);
-          paVar9 = api_add_uint(paVar9,DAT_0001bfb4,(uint *)(iVar8 + 0x80),false);
-          paVar9 = api_add_uint(paVar9,DAT_0001bfb8,(uint *)(iVar8 + 0x84),false);
-          paVar9 = api_add_escape(paVar9,DAT_0001bfbc,*(char **)(iVar8 + 0xac),false);
-          paVar9 = api_add_string(paVar9,DAT_0001bfc0,lasttime,false);
-          paVar9 = api_add_string(paVar9,DAT_0001bfc4,(char *)(iVar8 + 0x30),false);
-          paVar9 = api_add_int64(paVar9,DAT_0001bfc8,(int64_t *)(iVar8 + 0x28),false);
-          if (*(int *)(iVar8 + 0xb8) == 0) {
-            paVar9 = api_add_const(paVar9,DAT_0001bfcc,DAT_0001bff0,false);
-            paVar9 = api_add_const(paVar9,DAT_0001bfd0,DAT_0001bff0,false);
-          }
-          else {
-            pcVar6 = proxytype(*(proxytypes_t *)(iVar8 + 0xb4));
-            paVar9 = api_add_const(paVar9,DAT_0001bfcc,pcVar6,false);
-            paVar9 = api_add_escape(paVar9,DAT_0001bfd0,*(char **)(iVar8 + 0xb8),false);
-          }
-          paVar9 = api_add_diff(paVar9,DAT_0001bfd4,(double *)(iVar8 + 0x48),false);
-          paVar9 = api_add_diff(paVar9,DAT_0001bfd8,(double *)(iVar8 + 0x50),false);
-          paVar9 = api_add_diff(paVar9,DAT_0001bfdc,(double *)(iVar8 + 0x58),false);
-          paVar9 = api_add_diff(paVar9,DAT_0001bfe0,(double *)(iVar8 + 0x168),false);
-          paVar9 = api_add_bool(paVar9,DAT_0001bfe4,(_Bool *)(iVar8 + 0x280),false);
-          paVar9 = api_add_bool(paVar9,DAT_0001bfe8,(_Bool *)(iVar8 + 0x281),false);
-          if (*(char *)(iVar8 + 0x281) == '\0') {
-            paVar9 = api_add_const(paVar9,DAT_0001bfec,DAT_0001bff0,false);
+          paVar7 = api_add_int(paVar7,"POOL",&local_13c,false);
+          paVar7 = api_add_escape(paVar7,"URL",ppVar5->rpc_url,false);
+          paVar7 = api_add_string(paVar7,"Status",local_150,false);
+          paVar7 = api_add_int(paVar7,"Priority",&ppVar5->prio,false);
+          paVar7 = api_add_int(paVar7,"Quota",&ppVar5->quota,false);
+          paVar7 = api_add_string(paVar7,"Long Poll",pcVar8,false);
+          paVar7 = api_add_uint(paVar7,"Getworks",&ppVar5->getwork_requested,false);
+          paVar7 = api_add_int64(paVar7,"Accepted",&ppVar5->accepted,false);
+          paVar7 = api_add_int64(paVar7,"Rejected",&ppVar5->rejected,false);
+          paVar7 = api_add_uint(paVar7,"Discarded",&ppVar5->discarded_work,false);
+          paVar7 = api_add_uint(paVar7,"Stale",&ppVar5->stale_shares,false);
+          paVar7 = api_add_uint(paVar7,"Get Failures",&ppVar5->getfail_occasions,false);
+          paVar7 = api_add_uint(paVar7,"Remote Failures",&ppVar5->remotefail_occasions,false);
+          paVar7 = api_add_escape(paVar7,"User",ppVar5->rpc_user,false);
+          paVar7 = api_add_string(paVar7,"Last Share Time",lasttime,false);
+          paVar7 = api_add_string(paVar7,"Diff",ppVar5->diff,false);
+          paVar7 = api_add_int64(paVar7,"Diff1 Shares",&ppVar5->diff1,false);
+          if (ppVar5->rpc_proxy == (char *)0x0) {
+            paVar7 = api_add_const(paVar7,"Proxy Type","",false);
+            paVar7 = api_add_const(paVar7,"Proxy","",false);
           }
           else {
-            paVar9 = api_add_escape(paVar9,DAT_0001bfec,*(char **)(iVar8 + 0x240),false);
+            pcVar8 = proxytype(ppVar5->rpc_proxytype);
+            paVar7 = api_add_const(paVar7,"Proxy Type",pcVar8,false);
+            paVar7 = api_add_escape(paVar7,"Proxy",ppVar5->rpc_proxy,false);
           }
-          paVar9 = api_add_bool(paVar9,DAT_0001bf68,(_Bool *)(iVar8 + 0x2e0),false);
-          paVar9 = api_add_uint64(paVar9,DAT_0001bf6c,(uint64_t *)(iVar8 + 0x170),true);
-          dVar10 = *(double *)(iVar8 + 0x50) + *(double *)(iVar8 + 0x48) + *(double *)(iVar8 + 0x58)
-          ;
-          dVar11 = DAT_0001bf60;
-          if (dVar10 != 0.0) {
-            dVar11 = *(double *)(iVar8 + 0x50) / dVar10;
+          paVar7 = api_add_diff(paVar7,"Difficulty Accepted",&ppVar5->diff_accepted,false);
+          paVar7 = api_add_diff(paVar7,"Difficulty Rejected",&ppVar5->diff_rejected,false);
+          paVar7 = api_add_diff(paVar7,"Difficulty Stale",&ppVar5->diff_stale,false);
+          paVar7 = api_add_diff(paVar7,"Last Share Difficulty",&ppVar5->last_share_diff,false);
+          paVar7 = api_add_bool(paVar7,"Has Stratum",&ppVar5->has_stratum,false);
+          paVar7 = api_add_bool(paVar7,"Stratum Active",&ppVar5->stratum_active,false);
+          if (ppVar5->stratum_active == false) {
+            paVar7 = api_add_const(paVar7,"Stratum URL","",false);
           }
-          uStack_134 = (undefined4)((ulonglong)dVar11 >> 0x20);
-          local_138 = SUB84(dVar11,0);
-          paVar9 = api_add_percent(paVar9,DAT_0001bf70,(double *)&local_138,false);
-          dVar10 = *(double *)(iVar8 + 0x48) + *(double *)(iVar8 + 0x50) + *(double *)(iVar8 + 0x58)
-          ;
-          dVar11 = DAT_0001bf60;
-          if (dVar10 != 0.0) {
-            dVar11 = *(double *)(iVar8 + 0x58) / dVar10;
+          else {
+            paVar7 = api_add_escape(paVar7,"Stratum URL",ppVar5->stratum_url,false);
           }
-          uStack_12c = (undefined4)((ulonglong)dVar11 >> 0x20);
-          local_130 = SUB84(dVar11,0);
-          paVar9 = api_add_percent(paVar9,DAT_0001bf74,(double *)&local_130,false);
+          paVar7 = api_add_bool(paVar7,"Has GBT",&ppVar5->has_gbt,false);
+          paVar7 = api_add_uint64(paVar7,"Best Share",&ppVar5->best_diff,true);
+          dVar9 = ppVar5->diff_rejected + ppVar5->diff_accepted + ppVar5->diff_stale;
+          if (dVar9 == 0.0) {
+            dVar9 = 0.0;
+          }
+          else {
+            dVar9 = ppVar5->diff_rejected / dVar9;
+          }
+          uStack_134 = (undefined4)((ulonglong)dVar9 >> 0x20);
+          local_138 = SUB84(dVar9,0);
+          paVar7 = api_add_percent(paVar7,"Pool Rejected%",(double *)&local_138,false);
+          dVar9 = ppVar5->diff_accepted + ppVar5->diff_rejected + ppVar5->diff_stale;
+          if (dVar9 == 0.0) {
+            dVar9 = 0.0;
+          }
+          else {
+            dVar9 = ppVar5->diff_stale / dVar9;
+          }
+          uStack_12c = (undefined4)((ulonglong)dVar9 >> 0x20);
+          local_130 = SUB84(dVar9,0);
+          paVar7 = api_add_percent(paVar7,"Pool Stale%",(double *)&local_130,false);
           precom = isjson;
           if (isjson) {
-            iVar8 = i;
-            if (i < 1) {
-              iVar8 = 0;
+            iVar6 = local_13c;
+            if (local_13c < 1) {
+              iVar6 = 0;
             }
-            precom = (undefined)iVar8;
-            if (0 < i) {
+            precom = (undefined1)iVar6;
+            if (0 < local_13c) {
               precom = true;
             }
           }
-          paVar9 = print_data(io_data,paVar9,isjson,(_Bool)precom);
+          paVar7 = print_data(io_data,paVar7,isjson,(_Bool)precom);
         }
-        i = i + 1;
-      } while (i < *piVar1);
+        local_13c = local_13c + 1;
+      } while (local_13c < total_pools);
     }
-    if (_Var3 != false) {
+    if (_Var1 != false) {
       io_data->close = true;
     }
   }

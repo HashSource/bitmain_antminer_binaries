@@ -40,7 +40,7 @@ long dtls1_send_change_cipher_spec(SSL *param_1,int param_2,int param_3)
     (pdVar10->w_msg_hdr).is_ccs = 0;
     (pdVar10->w_msg_hdr).saved_retransmit_state.enc_write_ctx = (EVP_CIPHER_CTX *)0x0;
     *(ushort *)&(pdVar10->w_msg_hdr).frag_len = uVar1;
-    *(undefined *)&(pdVar10->w_msg_hdr).seq = 1;
+    *(undefined1 *)&(pdVar10->w_msg_hdr).seq = 1;
     dtls1_buffer_message(param_1,1);
     pdVar10 = param_1->d1;
     param_1->state = param_3;
@@ -69,7 +69,7 @@ long dtls1_send_change_cipher_spec(SSL *param_1,int param_2,int param_3)
   pBVar3 = SSL_get_wbio(param_1);
   lVar4 = BIO_ctrl(pBVar3,0x31,0,(void *)0x0);
   if (uVar11 < 0x100U - lVar4) {
-    OpenSSLDie(DAT_0007902c,0x112,DAT_00079034);
+    OpenSSLDie("d1_both.c",0x112,"s->d1->mtu >= dtls1_min_mtu(s)");
   }
   ctx = param_1->write_hash;
   if (ctx == (EVP_MD_CTX *)0x0) {
@@ -112,7 +112,7 @@ LAB_00078f48:
         }
         uVar11 = (param_1->d1->w_msg_hdr).msg_len;
         if (uVar11 <= iVar12 + iVar6 + 0x19U) {
-          return 0xffffffff;
+          return -1;
         }
         uVar11 = (uVar11 - 0xd) - (iVar12 + iVar6);
       }
@@ -125,7 +125,7 @@ LAB_00078f48:
       uVar7 = dtls1_write_bytes(param_1,0x14,param_1->init_buf->data + param_1->init_off);
       if ((int)uVar7 < 0) break;
       if (uVar7 != uVar11) {
-        OpenSSLDie(DAT_0007902c,400,DAT_00079030);
+        OpenSSLDie("d1_both.c",400,"len == (unsigned int)ret");
       }
       if (uVar7 == param_1->init_num) {
         if (param_1->msg_callback != (_func_3292 *)0x0) {
@@ -142,14 +142,14 @@ LAB_00078f48:
       param_1->init_off = param_1->init_off + uVar7;
     }
     if (!bVar2) {
-      return 0xffffffff;
+      return -1;
     }
     pBVar3 = SSL_get_wbio(param_1);
     lVar4 = BIO_ctrl(pBVar3,0x2b,0,(void *)0x0);
     if (lVar4 < 1) break;
     uVar11 = SSL_ctrl(param_1,0x20,0,(void *)0x0);
     if ((uVar11 & 0x1000) != 0) {
-      return 0xffffffff;
+      return -1;
     }
     pdVar10 = param_1->d1;
     iVar9 = *(int *)&pdVar10->w_msg_hdr;
@@ -166,11 +166,11 @@ LAB_00078f48:
     if (uVar11 < 0x100U - lVar4) {
       uVar11 = SSL_ctrl(param_1,0x20,0,(void *)0x0);
       if ((uVar11 & 0x1000) != 0) {
-        return 0xffffffff;
+        return -1;
       }
       iVar9 = dtls1_query_mtu_part_0(param_1);
       if (iVar9 == 0) {
-        return 0xffffffff;
+        return -1;
       }
       iVar9 = param_1->init_num;
       bVar2 = false;
@@ -180,6 +180,6 @@ LAB_00078f48:
       bVar2 = false;
     }
   }
-  return 0xffffffff;
+  return -1;
 }
 

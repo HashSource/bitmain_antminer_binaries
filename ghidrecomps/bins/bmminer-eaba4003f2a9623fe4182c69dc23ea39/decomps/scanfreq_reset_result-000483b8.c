@@ -1,6 +1,5 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void scanfreq_reset_result(void)
 
@@ -9,12 +8,9 @@ void scanfreq_reset_result(void)
   int chain;
   
   if (((use_syslog) || (opt_log_output)) || (4 < opt_log_level)) {
-    tmp42._0_4_ = scanfreq_reset_result::__FUNCTION__._0_4_;
-    tmp42._4_4_ = scanfreq_reset_result::__FUNCTION__._4_4_;
-    tmp42._8_4_ = scanfreq_reset_result::__FUNCTION__._8_4_;
-    tmp42._12_4_ = scanfreq_reset_result::__FUNCTION__._12_4_;
-    tmp42._16_4_ = scanfreq_reset_result::__FUNCTION__._16_4_;
-    tmp42._20_2_ = (undefined2)ram0x000797f4;
+    builtin_strncpy(tmp42,"scanfreq_reset_resul",0x14);
+    tmp42[0x14] = 't';
+    tmp42[0x15] = '\0';
     _applog(5,tmp42,false);
   }
   for (chain = 0; chain < 0x10; chain = chain + 1) {

@@ -11,7 +11,7 @@ void set_frequency(int param_1,ushort param_2)
   uint local_30;
   int local_2c;
   undefined4 local_28;
-  uint local_24;
+  undefined4 local_24;
   byte local_20;
   uint local_1c;
   uint local_18;

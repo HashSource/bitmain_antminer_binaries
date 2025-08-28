@@ -4,127 +4,113 @@
 void bitmain_c5_update(cgpu_info *bitmain_c5)
 
 {
-  code **ppcVar1;
-  int iVar2;
-  pool *pool_00;
+  int iVar1;
   pool *pool;
-  uint *puVar3;
-  char *in_r2;
-  pthread_rwlock_t *func;
-  thr_info **line;
-  uint uVar4;
+  int *piVar2;
+  char *func;
   char *func_00;
-  code *pcVar5;
+  char *func_01;
+  char *func_02;
+  char *func_03;
+  char *func_04;
+  char *func_05;
+  char *func_06;
+  int line;
+  int line_00;
+  int line_01;
+  int line_02;
+  int line_03;
+  int line_04;
+  int line_05;
+  int line_06;
   bitmain_c5_info *info;
   pthread_mutex_t *__mutex;
-  thr_info *thr_00;
   thr_info *thr;
   pthread_rwlock_t *__rwlock;
-  work *work;
-  uchar *buf;
+  work *local_830;
+  uchar *local_82c;
   char tmp42 [2048];
   
   __mutex = (pthread_mutex_t *)bitmain_c5->device_data;
-  line = bitmain_c5->thr;
-  thr_00 = *line;
-  iVar2 = pthread_mutex_lock((pthread_mutex_t *)((int)__mutex + 0x1a4));
-  if (iVar2 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_0003933c,(char *)0x2f07,in_r2,(int)line);
+  thr = *bitmain_c5->thr;
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)((int)__mutex + 0x1a4));
+  if (iVar1 != 0) {
+    _mutex_lock((pthread_mutex_t *)"bitmain_c5_update",(char *)0x2f07,func,line);
   }
-  thr_00->work_update = false;
-  thr_00->work_restart = false;
-  buf = (uchar *)0x0;
-  work = get_work(thr_00,thr_00->id);
-  func = DAT_0003933c;
-  _discard_work(&work,DAT_00039338,DAT_0003933c->__size,0x2f0f);
-  pool_00 = current_pool();
-  uVar4 = (uint)pool_00->has_stratum;
-  if (uVar4 == 0) {
-    tmp42._0_4_ = *DAT_0003934c;
-    tmp42._4_4_ = DAT_0003934c[1];
-    tmp42._8_4_ = DAT_0003934c[2];
-    tmp42._12_4_ = DAT_0003934c[3];
-    tmp42._16_4_ = DAT_0003934c[4];
-    tmp42._20_4_ = DAT_0003934c[5];
-    tmp42._24_4_ = DAT_0003934c[6];
-    uVar4 = DAT_0003934c[7];
-    tmp42._32_4_ = DAT_0003934c[8];
-    func = (pthread_rwlock_t *)0x1;
-    tmp42._28_4_ = uVar4;
+  thr->work_update = false;
+  thr->work_restart = false;
+  local_82c = (uchar *)0x0;
+  local_830 = get_work(thr,thr->id);
+  _discard_work(&local_830,"driver-btm-c5.c","bitmain_c5_update",0x2f0f);
+  pool = current_pool();
+  if (pool->has_stratum == false) {
+    builtin_strncpy(tmp42,"Bitmain S9 has to use stratum pools",0x24);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  iVar2 = pthread_mutex_lock(__mutex);
-  if (iVar2 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_0003933c,(char *)0x2f16,func->__size,uVar4);
+  iVar1 = pthread_mutex_lock(__mutex);
+  if (iVar1 != 0) {
+    _mutex_lock((pthread_mutex_t *)"bitmain_c5_update",(char *)0x2f16,func_00,line_00);
   }
-  iVar2 = pthread_rwlock_wrlock((pthread_rwlock_t *)(__mutex + 1));
-  if (iVar2 != 0) {
-    puVar3 = (uint *)__errno_location();
-    uVar4 = *puVar3;
-    snprintf(tmp42,0x800,DAT_00039354,uVar4,DAT_00039338,DAT_0003933c,0x2f16);
-    func = (pthread_rwlock_t *)0x1;
+  iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)(__mutex + 1));
+  if (iVar1 != 0) {
+    piVar2 = __errno_location();
+    snprintf(tmp42,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar2,
+             "driver-btm-c5.c","bitmain_c5_update",0x2f16);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  iVar2 = pthread_mutex_lock((pthread_mutex_t *)&pool_00->data_lock);
-  if (iVar2 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_0003933c,(char *)0x2f17,func->__size,uVar4);
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&pool->data_lock);
+  if (iVar1 != 0) {
+    _mutex_lock((pthread_mutex_t *)"bitmain_c5_update",(char *)0x2f17,func_01,line_01);
   }
-  __rwlock = &(pool_00->data_lock).rwlock;
-  iVar2 = pthread_rwlock_rdlock((pthread_rwlock_t *)__rwlock);
-  if (iVar2 != 0) {
-    puVar3 = (uint *)__errno_location();
-    uVar4 = *puVar3;
-    snprintf(tmp42,0x800,DAT_00039350,uVar4,DAT_00039338,DAT_0003933c,0x2f17);
-    func = (pthread_rwlock_t *)0x1;
+  __rwlock = &(pool->data_lock).rwlock;
+  iVar1 = pthread_rwlock_rdlock((pthread_rwlock_t *)__rwlock);
+  if (iVar1 != 0) {
+    piVar2 = __errno_location();
+    snprintf(tmp42,0x800,"WTF RDLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar2,
+             "driver-btm-c5.c","bitmain_c5_update",0x2f17);
     _applog(3,tmp42,true);
     _quit(1);
   }
-  iVar2 = pthread_mutex_unlock((pthread_mutex_t *)&pool_00->data_lock);
-  if (iVar2 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_0003933c,(char *)0x2f17,func->__size,uVar4);
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&pool->data_lock);
+  if (iVar1 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"bitmain_c5_update",(char *)0x2f17,func_02,line_02);
   }
-  *(int *)((int)__mutex + 0x1dc) = pool_00->pool_no;
-  copy_pool_stratum((pool *)(__mutex + 0xae),(pool *)(__mutex + 0x61));
+  *(int *)((int)__mutex + 0x1dc) = pool->pool_no;
+  copy_pool_stratum((pool *)&__mutex[0xae].__data,(pool *)&__mutex[0x61].__data);
   *(undefined4 *)((int)__mutex + 0x1790) = *(undefined4 *)((int)__mutex + 0x178c);
-  copy_pool_stratum((pool *)(__mutex + 0x61),(pool *)(__mutex + 0x14));
+  copy_pool_stratum((pool *)&__mutex[0x61].__data,(pool *)&__mutex[0x14].__data);
   *(int *)((int)__mutex + 0x178c) = __mutex[0xfb].__data.__lock;
-  copy_pool_stratum((pool *)(__mutex + 0x14),pool_00);
-  iVar2 = DAT_00039358;
-  func_00 = (char *)(*(int *)(DAT_00039358 + 0x78) + 1);
-  __mutex[0xfb].__data.__lock = (int)func_00;
-  *(char **)(iVar2 + 0x78) = func_00;
-  parse_job_to_c5(&buf,pool_00,(uint)func_00);
-  uVar4 = (uint)*(byte *)(DAT_00039340 + 8);
-  if (uVar4 == 0) {
-    pthread_mutex_lock(DAT_00039344);
-    send_job(buf);
-    pthread_mutex_unlock(DAT_00039344);
+  copy_pool_stratum((pool *)&__mutex[0x14].__data,pool);
+  given_id = given_id + 1;
+  __mutex[0xfb].__data.__lock = given_id;
+  parse_job_to_c5(&local_82c,pool,given_id);
+  if (status_error == false) {
+    pthread_mutex_lock((pthread_mutex_t *)&reinit_mutex);
+    send_job(local_82c);
+    pthread_mutex_unlock((pthread_mutex_t *)&reinit_mutex);
   }
-  iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)__rwlock);
-  if (iVar2 != 0) {
-    _rw_unlock(DAT_0003933c,(char *)0x2f29,func_00,uVar4);
+  iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)__rwlock);
+  if (iVar1 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"bitmain_c5_update",(char *)0x2f29,func_03,line_03);
   }
-  ppcVar1 = DAT_00039348;
-  pcVar5 = *DAT_00039348;
-  (*pcVar5)();
-  iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)(__mutex + 1));
-  if (iVar2 != 0) {
-    _rw_unlock(DAT_0003933c,(char *)0x2f2a,func_00,(int)pcVar5);
+  (*selective_yield)();
+  iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)(__mutex + 1));
+  if (iVar1 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"bitmain_c5_update",(char *)0x2f2a,func_04,line_04);
   }
-  iVar2 = pthread_mutex_unlock(__mutex);
-  if (iVar2 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_0003933c,(char *)0x2f2a,func_00,(int)pcVar5);
+  iVar1 = pthread_mutex_unlock(__mutex);
+  if (iVar1 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"bitmain_c5_update",(char *)0x2f2a,func_05,line_05);
   }
-  pcVar5 = *ppcVar1;
-  (*pcVar5)();
-  free(buf);
-  iVar2 = pthread_mutex_unlock((pthread_mutex_t *)((int)__mutex + 0x1a4));
-  if (iVar2 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_0003933c,(char *)0x2f2c,func_00,(int)pcVar5);
+  (*selective_yield)();
+  free(local_82c);
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)((int)__mutex + 0x1a4));
+  if (iVar1 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"bitmain_c5_update",(char *)0x2f2c,func_06,line_06);
   }
-  (**ppcVar1)();
+  (*selective_yield)();
   return;
 }
 

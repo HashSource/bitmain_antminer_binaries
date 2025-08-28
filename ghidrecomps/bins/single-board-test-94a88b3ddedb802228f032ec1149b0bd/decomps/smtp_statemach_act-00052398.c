@@ -1,4 +1,6 @@
 
+/* WARNING: Type propagation algorithm not settling */
+
 int smtp_statemach_act(int *param_1)
 
 {
@@ -20,47 +22,45 @@ int smtp_statemach_act(int *param_1)
   void *__s1;
   bool bVar16;
   undefined8 uVar17;
-  int local_38;
-  undefined4 local_34;
-  uint local_30;
+  int local_38 [3];
   int local_2c [2];
   
   piVar12 = param_1 + 0xf0;
   iVar13 = param_1[0x55];
   iVar14 = *param_1;
-  local_34 = 0;
+  local_38[1] = 0;
   if (param_1[0xfe] == 5) {
     iVar9 = smtp_perform_upgrade_tls();
   }
   else if (param_1[0xf6] == 0) {
     while( true ) {
-      uVar17 = Curl_pp_readresp(iVar13,piVar12,&local_38,&local_34);
-      iVar7 = local_38;
+      uVar17 = Curl_pp_readresp(iVar13,piVar12,local_38,local_38 + 1);
+      iVar7 = local_38[0];
       iVar9 = (int)uVar17;
       if (iVar9 != 0) break;
       iVar9 = param_1[0xfe];
       if (iVar9 == 0xc) {
-        if (local_38 == 0) {
+        if (local_38[0] == 0) {
           return 0;
         }
 switchD_000523f6_caseD_5:
         param_1[0xfe] = 0;
         return 0;
       }
-      if ((local_38 != 1) && (*(int *)(iVar14 + 0x86f4) = local_38, local_38 == 0)) {
+      if ((local_38[0] != 1) && (*(int *)(iVar14 + 0x86f4) = local_38[0], local_38[0] == 0)) {
         return 0;
       }
       switch(iVar9) {
       case 1:
-        if (99 < local_38 - 200U) {
-          Curl_failf(*param_1,DAT_000526c8,local_38);
+        if (99 < local_38[0] - 200U) {
+          Curl_failf(*param_1,"Got unexpected smtp-server response: %d",local_38[0]);
           return 8;
         }
         param_1[0x103] = 0;
         param_1[0x105] = 0;
-        *(undefined *)(param_1 + 0x107) = 0;
-        *(undefined *)((int)param_1 + 0x41e) = 0;
-        iVar9 = Curl_pp_sendf(piVar12,DAT_00052834,param_1[0x100]);
+        *(undefined1 *)(param_1 + 0x107) = 0;
+        *(undefined1 *)((int)param_1 + 0x41e) = 0;
+        iVar9 = Curl_pp_sendf(piVar12,"EHLO %s",param_1[0x100]);
         if (iVar9 != 0) {
           return iVar9;
         }
@@ -68,7 +68,7 @@ switchD_000523f6_caseD_5:
         break;
       case 2:
         iVar2 = *param_1;
-        iVar9 = local_38 + -1;
+        iVar9 = local_38[0] + -1;
         if (iVar9 != 0) {
           iVar9 = 1;
         }
@@ -84,19 +84,19 @@ switchD_000523f6_caseD_5:
             if (3 < uVar10) goto LAB_00052644;
           }
           else {
-            iVar7 = memcmp(__s1,DAT_000526cc,8);
+            iVar7 = memcmp(__s1,"STARTTLS",8);
             if (iVar7 == 0) {
-              *(undefined *)(param_1 + 0x107) = 1;
+              *(undefined1 *)(param_1 + 0x107) = 1;
             }
             else {
 LAB_00052644:
-              iVar7 = memcmp(__s1,DAT_000526d8,4);
+              iVar7 = memcmp(__s1,"SIZE",4);
               if (iVar7 == 0) {
-                *(undefined *)((int)param_1 + 0x41d) = 1;
+                *(undefined1 *)((int)param_1 + 0x41d) = 1;
               }
-              else if ((4 < uVar10) && (iVar7 = memcmp(__s1,DAT_000526dc,5), iVar7 == 0)) {
+              else if ((4 < uVar10) && (iVar7 = memcmp(__s1,"AUTH ",5), iVar7 == 0)) {
                 uVar10 = sVar3 - 9;
-                *(undefined *)((int)param_1 + 0x41e) = 1;
+                *(undefined1 *)((int)param_1 + 0x41e) = 1;
                 if (uVar10 != 0) {
                   pcVar4 = (char *)(iVar2 + 0x5a5);
                   do {
@@ -122,13 +122,13 @@ LAB_00052644:
                       pcVar6 = pcVar4 + uVar11;
                     }
 LAB_00052700:
-                    uVar5 = Curl_sasl_decode_mech(pcVar4,uVar11,&local_30);
+                    uVar5 = Curl_sasl_decode_mech(pcVar4,uVar11,local_38 + 2);
                     if (uVar5 != 0) {
-                      uVar8 = local_30;
-                      if (uVar11 == local_30) {
+                      uVar8 = local_38[2];
+                      if (uVar11 == local_38[2]) {
                         uVar8 = param_1[0x103] | uVar5;
                       }
-                      if (uVar11 == local_30) {
+                      if (uVar11 == local_38[2]) {
                         param_1[0x103] = uVar8;
                       }
                     }
@@ -141,9 +141,9 @@ LAB_00052700:
           }
 LAB_00052734:
           if (iVar9 != 0) {
-            if ((*(int *)(iVar2 + 0x318) != 0) && (*(char *)(param_1 + 0x5e) == '\0')) {
-              if (*(char *)(param_1 + 0x107) != '\0') {
-                iVar9 = Curl_pp_sendf(piVar12,DAT_00052840,DAT_00052848);
+            if ((*(int *)(iVar2 + 0x318) != 0) && ((char)param_1[0x5e] == '\0')) {
+              if ((char)param_1[0x107] != '\0') {
+                iVar9 = Curl_pp_sendf(piVar12,"%s","STARTTLS");
                 if (iVar9 != 0) {
                   return iVar9;
                 }
@@ -151,7 +151,7 @@ LAB_00052734:
                 break;
               }
               if (*(int *)(iVar2 + 0x318) != 1) {
-                Curl_failf(iVar2,DAT_0005283c);
+                Curl_failf(iVar2,"STARTTLS not supported.");
                 return 0x40;
               }
             }
@@ -161,12 +161,12 @@ LAB_00052748:
           }
         }
         else {
-          if ((1 < *(uint *)(iVar2 + 0x318)) && (*(char *)(param_1 + 0x5e) == '\0')) {
-            Curl_failf(iVar2,DAT_00052838,iVar7);
+          if ((1 < *(uint *)(iVar2 + 0x318)) && ((char)param_1[0x5e] == '\0')) {
+            Curl_failf(iVar2,"Remote access denied: %d",iVar7);
             return 9;
           }
           param_1[0x105] = 0;
-          iVar9 = Curl_pp_sendf(piVar12,DAT_000526c4,param_1[0x100]);
+          iVar9 = Curl_pp_sendf(piVar12,"HELO %s",param_1[0x100]);
           if (iVar9 != 0) {
             return iVar9;
           }
@@ -174,16 +174,16 @@ LAB_00052748:
         }
         break;
       case 3:
-        if (99 < local_38 - 200U) {
-          Curl_failf(*param_1,DAT_000526d4,local_38);
+        if (99 < local_38[0] - 200U) {
+          Curl_failf(*param_1,"Remote access denied: %d",local_38[0]);
           return 9;
         }
         param_1[0xfe] = 0;
         break;
       case 4:
-        if (local_38 != 0xdc) {
+        if (local_38[0] != 0xdc) {
           if (*(int *)(*param_1 + 0x318) != 1) {
-            Curl_failf(*param_1,DAT_000526c0,local_38);
+            Curl_failf(*param_1,"STARTTLS denied. %c",local_38[0]);
             return 0x40;
           }
           goto LAB_00052748;
@@ -194,12 +194,12 @@ LAB_00052748:
         goto switchD_000523f6_caseD_5;
       case 6:
         iVar7 = *param_1;
-        iVar9 = Curl_sasl_continue(param_1 + 0x101,param_1,local_38,local_2c);
+        iVar9 = Curl_sasl_continue(param_1 + 0x101,param_1,local_38[0],local_2c);
         if (iVar9 != 0) {
           return iVar9;
         }
         if (local_2c[0] == 0) {
-          Curl_failf(iVar7,DAT_000526bc);
+          Curl_failf(iVar7,"Authentication cancelled");
           return 0x43;
         }
         if (local_2c[0] == 2) {
@@ -215,13 +215,13 @@ LAB_00052748:
         }
         else if ((99 < iVar7 - 200U) && (iVar7 != 1 && iVar7 != 0x229)) {
 LAB_000524c0:
-          Curl_failf(iVar9,DAT_000526b8,iVar7);
+          Curl_failf(iVar9,"Command failed: %d",iVar7);
           return 0x38;
         }
         if (*(char *)(iVar9 + 0x307) == '\0') {
-          *(undefined *)(iVar9 + sVar3 + 0x59c) = 10;
+          *(undefined1 *)(iVar9 + sVar3 + 0x59c) = 10;
           iVar2 = Curl_client_write(param_1,1,(char *)(iVar9 + 0x59c),sVar3 + 1);
-          *(undefined *)(iVar9 + sVar3 + 0x59c) = 0;
+          *(undefined1 *)(iVar9 + sVar3 + 0x59c) = 0;
         }
         else {
           iVar2 = 0;
@@ -240,8 +240,8 @@ LAB_000524c0:
         }
         goto LAB_0005243c;
       case 8:
-        if (99 < local_38 - 200U) {
-          Curl_failf(*param_1,DAT_000526b4,local_38);
+        if (99 < local_38[0] - 200U) {
+          Curl_failf(*param_1,"MAIL failed: %d",local_38[0]);
           return 0x37;
         }
 LAB_00052470:
@@ -249,14 +249,14 @@ LAB_00052470:
         goto LAB_0005243c;
       case 9:
         iVar9 = *(int *)(*param_1 + 0x14c);
-        if (99 < local_38 - 200U) {
-          Curl_failf(*param_1,DAT_000526d0,local_38);
+        if (99 < local_38[0] - 200U) {
+          Curl_failf(*param_1,"RCPT failed: %d",local_38[0]);
           return 0x37;
         }
         iVar7 = *(int *)(*(int *)(iVar9 + 8) + 4);
         *(int *)(iVar9 + 8) = iVar7;
         if (iVar7 != 0) goto LAB_00052470;
-        iVar9 = Curl_pp_sendf(piVar12,DAT_00052840,DAT_00052844);
+        iVar9 = Curl_pp_sendf(piVar12,"%s","DATA");
         if (iVar9 != 0) {
           return iVar9;
         }
@@ -264,8 +264,8 @@ LAB_00052470:
         break;
       case 10:
         iVar9 = *param_1;
-        if (local_38 != 0x162) {
-          Curl_failf(iVar9,DAT_000526b0,local_38);
+        if (local_38[0] != 0x162) {
+          Curl_failf(iVar9,"DATA failed: %d",local_38[0]);
           return 0x37;
         }
         Curl_pgrsSetUploadSize
@@ -276,7 +276,7 @@ LAB_00052470:
         break;
       case 0xb:
         iVar9 = 0;
-        if (local_38 == 0xfa) {
+        if (local_38[0] == 0xfa) {
           iVar2 = 0;
         }
         else {

@@ -7,10 +7,10 @@ int UI_add_info_string(UI *ui,char *text)
   int iVar2;
   
   if (text == (char *)0x0) {
-    ERR_put_error(0x28,0x6d,0x43,DAT_000d47d0,0x8f);
+    ERR_put_error(0x28,0x6d,0x43,"ui_lib.c",0x8f);
   }
   else {
-    ptr = (int *)CRYPTO_malloc(0x20,DAT_000d47d0,0x93);
+    ptr = (int *)CRYPTO_malloc(0x20,"ui_lib.c",0x93);
     if (ptr != (int *)0x0) {
       iVar2 = *(int *)(ui + 4);
       ptr[1] = (int)text;

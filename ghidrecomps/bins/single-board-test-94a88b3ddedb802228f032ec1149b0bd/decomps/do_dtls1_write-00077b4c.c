@@ -5,7 +5,7 @@ int do_dtls1_write(int param_1,undefined4 param_2,undefined4 param_3,int param_4
   int iVar1;
   
   if (*(int *)(*(int *)(param_1 + 0x58) + 0x108) != 0) {
-    OpenSSLDie(DAT_00077bb4,0x5e1,DAT_00077bb8);
+    OpenSSLDie("d1_pkt.c",0x5e1,"0");
     iVar1 = ssl3_write_pending(param_1,param_2,param_3,param_4);
     return iVar1;
   }

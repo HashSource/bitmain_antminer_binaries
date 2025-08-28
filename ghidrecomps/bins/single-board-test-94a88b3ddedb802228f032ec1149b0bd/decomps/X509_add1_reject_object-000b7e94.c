@@ -11,7 +11,7 @@ int X509_add1_reject_object(X509 *x,ASN1_OBJECT *obj)
   if ((data != (ASN1_OBJECT *)0x0) && (x != (X509 *)0x0)) {
     pAVar2 = *(ASN1_VALUE **)(x->sha1_hash + 0xc);
     if (pAVar2 == (ASN1_VALUE *)0x0) {
-      pAVar2 = ASN1_item_new(DAT_000b7ed4);
+      pAVar2 = ASN1_item_new((ASN1_ITEM *)&X509_CERT_AUX_it);
       *(ASN1_VALUE **)(x->sha1_hash + 0xc) = pAVar2;
       if (pAVar2 == (ASN1_VALUE *)0x0) {
         return 0;

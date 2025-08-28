@@ -16,7 +16,9 @@ int jsonp_dtostr(char *buffer,size_t size,double value,int precision)
   if (precision == 0) {
     precision_local = 0x11;
   }
-  length = snprintf(buffer,size,"%.*g",precision_local);
+  value_local._0_4_ = SUB84(value,0);
+  value_local._4_4_ = (undefined4)((ulonglong)value >> 0x20);
+  length = snprintf(buffer,size,"%.*g",precision_local,value_local._0_4_,value_local._4_4_);
   if ((int)length < 0) {
     length = 0xffffffff;
   }

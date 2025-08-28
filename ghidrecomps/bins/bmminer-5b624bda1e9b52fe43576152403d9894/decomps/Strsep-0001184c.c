@@ -5,7 +5,6 @@ char * Strsep(char **stringp,char *delim)
 
 {
   char *pcVar1;
-  char *p;
   char *ret;
   char *__s;
   

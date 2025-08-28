@@ -26,7 +26,7 @@ _Bool check_single_asic_reg(uint reg)
   reg_buf[4] = '\0';
   reg_buf[5] = '\0';
   reg_buf[6] = '\0';
-rerun_all:
+LAB_00025490:
   clear_register_value_buf();
   i = 0;
   do {
@@ -44,7 +44,7 @@ rerun_all:
            (not_reg_data_time < 3)) {
           not_reg_data_time = not_reg_data_time + 1;
           pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
-          goto rerun_all;
+          goto LAB_00025490;
         }
         if (not_reg_data_time == 3) {
           pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);

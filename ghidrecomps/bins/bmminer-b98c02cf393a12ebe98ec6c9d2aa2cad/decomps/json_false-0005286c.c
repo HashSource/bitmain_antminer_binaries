@@ -1,7 +1,7 @@
 
-undefined4 json_false(void)
+undefined8 * json_false(void)
 
 {
-  return DAT_00052870;
+  return &the_false_7789;
 }
 

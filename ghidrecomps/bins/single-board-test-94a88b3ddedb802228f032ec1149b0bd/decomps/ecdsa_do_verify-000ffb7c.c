@@ -1,5 +1,5 @@
 
-int ecdsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,EC_KEY *param_4)
+int ecdsa_do_verify(uchar *param_1,int param_2,undefined4 *param_3,EC_KEY *param_4)
 
 {
   EC_GROUP *group;
@@ -19,13 +19,13 @@ int ecdsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,EC_KEY *param_4)
   
   if ((((param_4 == (EC_KEY *)0x0) || (group = EC_KEY_get0_group(param_4), group == (EC_GROUP *)0x0)
        ) || (q = EC_KEY_get0_public_key(param_4), q == (EC_POINT *)0x0)) ||
-     (param_3 == (BIGNUM **)0x0)) {
-    ERR_put_error(0x2a,0x66,0x67,DAT_000ffe14,0x16c);
+     (param_3 == (undefined4 *)0x0)) {
+    ERR_put_error(0x2a,0x66,0x67,"ecs_ossl.c",0x16c);
     return -1;
   }
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0) {
-    ERR_put_error(0x2a,0x66,0x41,DAT_000ffe14,0x172);
+    ERR_put_error(0x2a,0x66,0x41,"ecs_ossl.c",0x172);
     return -1;
   }
   BN_CTX_start(ctx);
@@ -38,20 +38,20 @@ int ecdsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,EC_KEY *param_4)
   if (x == (BIGNUM *)0x0) goto LAB_000ffcd6;
   iVar3 = EC_GROUP_get_order(group,order,ctx);
   if (iVar3 == 0) {
-    ERR_put_error(0x2a,0x66,0x10,DAT_000ffe14,0x181);
+    ERR_put_error(0x2a,0x66,0x10,"ecs_ossl.c",0x181);
     iVar4 = -1;
     goto LAB_000ffc1c;
   }
-  pBVar1 = *param_3;
+  pBVar1 = (BIGNUM *)*param_3;
   if ((((pBVar1->top == 0) || (pBVar1->neg != 0)) ||
       ((iVar3 = BN_ucmp(pBVar1,order), -1 < iVar3 ||
-       ((pBVar1 = param_3[1], pBVar1->top == 0 || (pBVar1->neg != 0)))))) ||
+       ((pBVar1 = (BIGNUM *)param_3[1], pBVar1->top == 0 || (pBVar1->neg != 0)))))) ||
      (iVar3 = BN_ucmp(pBVar1,order), -1 < iVar3)) {
     iVar4 = 0;
-    ERR_put_error(0x2a,0x66,100,DAT_000ffe14,0x188);
+    ERR_put_error(0x2a,0x66,100,"ecs_ossl.c",0x188);
     goto LAB_000ffc1c;
   }
-  pBVar1 = BN_mod_inverse(ret,param_3[1],order,ctx);
+  pBVar1 = BN_mod_inverse(ret,(BIGNUM *)param_3[1],order,ctx);
   if (pBVar1 == (BIGNUM *)0x0) {
     iVar3 = 0x18e;
   }
@@ -75,11 +75,11 @@ int ecdsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,EC_KEY *param_4)
         iVar3 = 0x1a3;
       }
       else {
-        iVar3 = BN_mod_mul(ret,*param_3,ret,order,ctx);
+        iVar3 = BN_mod_mul(ret,(BIGNUM *)*param_3,ret,order,ctx);
         if (iVar3 != 0) {
           r_00 = EC_POINT_new(group);
           if (r_00 == (EC_POINT *)0x0) {
-            ERR_put_error(0x2a,0x66,0x41,DAT_000ffe14,0x1ad);
+            ERR_put_error(0x2a,0x66,0x41,"ecs_ossl.c",0x1ad);
             iVar4 = -1;
             goto LAB_000ffc1c;
           }
@@ -101,11 +101,11 @@ int ecdsa_do_verify(uchar *param_1,int param_2,BIGNUM **param_3,EC_KEY *param_4)
 LAB_000ffdae:
                 iVar3 = BN_nnmod(r,x,order,ctx);
                 if (iVar3 == 0) {
-                  ERR_put_error(0x2a,0x66,3,DAT_000ffe14,0x1c5);
+                  ERR_put_error(0x2a,0x66,3,"ecs_ossl.c",0x1c5);
                   iVar4 = -1;
                 }
                 else {
-                  uVar2 = BN_ucmp(r,*param_3);
+                  uVar2 = BN_ucmp(r,(BIGNUM *)*param_3);
                   iVar4 = 1 - uVar2;
                   if (1 < uVar2) {
                     iVar4 = 0;
@@ -117,7 +117,7 @@ LAB_000ffdae:
             }
           }
           iVar4 = -1;
-          ERR_put_error(0x2a,0x66,0x10,DAT_000ffe14,iVar3);
+          ERR_put_error(0x2a,0x66,0x10,"ecs_ossl.c",iVar3);
 LAB_000ffd72:
           BN_CTX_end(ctx);
           BN_CTX_free(ctx);
@@ -133,7 +133,7 @@ LAB_000ffd72:
   }
 LAB_000ffcd6:
   iVar4 = -1;
-  ERR_put_error(0x2a,0x66,3,DAT_000ffe14,iVar3);
+  ERR_put_error(0x2a,0x66,3,"ecs_ossl.c",iVar3);
 LAB_000ffc1c:
   BN_CTX_end(ctx);
   BN_CTX_free(ctx);

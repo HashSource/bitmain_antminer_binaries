@@ -4,37 +4,33 @@
 void set_led(_Bool stop)
 
 {
-  char cVar1;
-  int iVar2;
   char cmd [100];
   
-  iVar2 = DAT_0003462c;
-  cVar1 = *(char *)(DAT_00034630 + 0x674);
-  *(byte *)(DAT_0003462c + 0x90) = *(byte *)(DAT_0003462c + 0x90) ^ 1;
-  if (cVar1 == '\0') {
+  set_led::blink = !set_led::blink;
+  if (isC5_CtrlBoard) {
     if (stop) {
-      sprintf(cmd,DAT_00034634,0,DAT_00034644);
+      sprintf(cmd,"echo %d > %s",0,"/sys/class/leds/hps_led0/brightness");
       system(cmd);
-      sprintf(cmd,DAT_00034634,(uint)*(byte *)(iVar2 + 0x90),DAT_00034640);
+      sprintf(cmd,"echo %d > %s",(uint)set_led::blink,"/sys/class/leds/hps_led2/brightness");
       system(cmd);
     }
     else {
-      sprintf(cmd,DAT_00034634,0,DAT_00034640);
+      sprintf(cmd,"echo %d > %s",0,"/sys/class/leds/hps_led2/brightness");
       system(cmd);
-      sprintf(cmd,DAT_00034634,(uint)*(byte *)(iVar2 + 0x90),DAT_00034644);
+      sprintf(cmd,"echo %d > %s",(uint)set_led::blink,"/sys/class/leds/hps_led0/brightness");
       system(cmd);
     }
   }
   else if (stop) {
-    sprintf(cmd,DAT_00034634,0,DAT_00034638);
+    sprintf(cmd,"echo %d > %s",0,"/sys/class/gpio/gpio38/value");
     system(cmd);
-    sprintf(cmd,DAT_00034634,(uint)*(byte *)(iVar2 + 0x90),DAT_0003463c);
+    sprintf(cmd,"echo %d > %s",(uint)set_led::blink,"/sys/class/gpio/gpio37/value");
     system(cmd);
   }
   else {
-    sprintf(cmd,DAT_00034634,0,DAT_0003463c);
+    sprintf(cmd,"echo %d > %s",0,"/sys/class/gpio/gpio37/value");
     system(cmd);
-    sprintf(cmd,DAT_00034634,(uint)*(byte *)(iVar2 + 0x90),DAT_00034638);
+    sprintf(cmd,"echo %d > %s",(uint)set_led::blink,"/sys/class/gpio/gpio38/value");
     system(cmd);
   }
   return;

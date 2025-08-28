@@ -1,5 +1,5 @@
 
-void write_host_MAC_and_time(undefined param_1,int param_2)
+void write_host_MAC_and_time(undefined1 param_1,int param_2)
 
 {
   uint local_c;

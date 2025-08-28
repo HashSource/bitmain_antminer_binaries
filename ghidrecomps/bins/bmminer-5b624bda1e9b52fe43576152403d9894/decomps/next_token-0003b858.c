@@ -8,7 +8,6 @@ void next_token(scanner_t *s)
   undefined3 uVar2;
   int iVar3;
   size_t sVar4;
-  char *t;
   char *pcVar5;
   int iVar6;
   

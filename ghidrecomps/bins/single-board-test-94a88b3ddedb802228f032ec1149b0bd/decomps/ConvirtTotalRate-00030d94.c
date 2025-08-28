@@ -2,7 +2,7 @@
 int ConvirtTotalRate(int param_1)
 
 {
-  int local_c;
+  undefined4 local_c;
   
   if (param_1 % 1000 < 500) {
     local_c = 0;

@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void singleboard_pattern_test(void)
 
@@ -56,7 +56,7 @@ void singleboard_pattern_test(void)
     for (which_core = 0; which_core < g_patten.core_num; which_core = which_core + 1) {
       for (which_patten = 0; which_patten < g_patten.patten_num; which_patten = which_patten + 1) {
         if (hardware_exception == 0) {
-          pthread_mutex_lock(DAT_00021334);
+          pthread_mutex_lock((pthread_mutex_t *)&g_patten.patten_mutex);
           g_patten.cur_work =
                g_patten.patten_start +
                iVar4 * which_core * g_patten.patten_num +
@@ -64,18 +64,18 @@ void singleboard_pattern_test(void)
           g_patten.cur_asic = which_asic;
           g_patten.cur_core = which_core;
           g_patten.cur_patten = which_patten;
-          pthread_mutex_unlock(DAT_00021334);
+          pthread_mutex_unlock((pthread_mutex_t *)&g_patten.patten_mutex);
           user_send_work(cgpu.runtime,g_patten.cur_work,1,0);
           iVar3 = __aeabi_idiv(app_conf->send_pattern_timeout,50000);
           counter = 0;
           do {
             usleep(50000);
-            pthread_mutex_lock(DAT_00021334);
+            pthread_mutex_lock((pthread_mutex_t *)&g_patten.patten_mutex);
             uVar2 = g_patten.is_nonce_match
                     [g_patten.cur_patten +
                      g_patten.patten_num *
                      (g_patten.core_num * g_patten.cur_asic + g_patten.cur_core)];
-            pthread_mutex_unlock(DAT_00021334);
+            pthread_mutex_unlock((pthread_mutex_t *)&g_patten.patten_mutex);
             if (uVar2 == '\x01') break;
             bVar1 = counter < iVar3;
             counter = counter + 1;

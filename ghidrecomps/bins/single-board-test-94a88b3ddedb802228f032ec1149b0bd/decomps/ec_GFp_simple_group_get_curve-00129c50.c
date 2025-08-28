@@ -20,7 +20,7 @@ int ec_GFp_simple_group_get_curve
     if (param_4 != (BIGNUM *)0x0) {
       pBVar4 = (BIGNUM *)0x1;
     }
-    if (((uint)pBVar4 | (uint)pBVar1) != 0) {
+    if (pBVar4 != (BIGNUM *)0x0 || pBVar1 != (BIGNUM *)0x0) {
       if (*(int *)(*param_1 + 0x94) != 0) {
         c = (BN_CTX *)0x0;
         if ((param_5 != (BN_CTX *)0x0) || (c = BN_CTX_new(), param_5 = c, c != (BN_CTX *)0x0)) {

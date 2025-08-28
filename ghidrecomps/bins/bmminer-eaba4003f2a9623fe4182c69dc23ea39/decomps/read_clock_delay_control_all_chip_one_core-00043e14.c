@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void read_clock_delay_control_all_chip_one_core(void)
 
@@ -19,11 +19,12 @@ void read_clock_delay_control_all_chip_one_core(void)
   core.reserved = '\0';
   core.reg_data = 0;
   memset(core_hash_clock_delay_control,0xff,0x100000);
-  core._0_2_ = (ushort)core._0_4_ & 0xff;
+  core._0_2_ = core._0_2_ & 0xff;
   core.mode = '\x01';
   core.core_mode = '\0';
   core.reg_data = 0xff;
-  core._4_3_ = CONCAT21(0,core.core_id);
+  core.cmd_type = '\0';
+  core.rw_falg = '\0';
   for (i = 0; i < 0x10; i = i + 1) {
     if ((dev->chain_exist[i] == 1) && (dev->chain_asic_num[i] != '\0')) {
       for (m = 0; m < 0xd0; m = m + 1) {

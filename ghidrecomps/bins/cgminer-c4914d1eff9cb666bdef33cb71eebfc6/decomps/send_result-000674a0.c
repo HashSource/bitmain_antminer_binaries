@@ -2,15 +2,13 @@
 void send_result(io_data *io_data,long c,_Bool isjson)
 
 {
-  undefined4 uVar1;
-  _Bool _Var2;
-  size_t sVar3;
-  ssize_t sVar4;
-  int *piVar5;
-  char *pcVar6;
-  undefined4 *puVar7;
-  int iVar8;
-  uint uVar9;
+  _Bool _Var1;
+  size_t sVar2;
+  ssize_t sVar3;
+  int *piVar4;
+  char *pcVar5;
+  int iVar6;
+  uint uVar7;
   _Bool isjson_local;
   long c_local;
   io_data *io_data_local;
@@ -30,26 +28,23 @@ void send_result(io_data *io_data,long c,_Bool isjson)
   buf = io_data->ptr;
   strcpy(buf,io_data->ptr);
   if (io_data->close != false) {
-    sVar3 = strlen(buf);
-    *(undefined2 *)(buf + sVar3) = DAT_00092f40;
+    sVar2 = strlen(buf);
+    (buf + sVar2)[0] = ']';
+    (buf + sVar2)[1] = '\0';
   }
   if (isjson) {
-    sVar3 = strlen(buf);
-    uVar1 = DAT_000939a4;
-    puVar7 = (undefined4 *)(buf + sVar3);
-    *puVar7 = DAT_000939a0;
-    puVar7[1] = uVar1;
-    *(undefined *)(puVar7 + 2) = DAT_000939a8;
+    sVar2 = strlen(buf);
+    builtin_strncpy(buf + sVar2,",\"id\":1}",9);
   }
-  len = strlen(buf);
-  tosend = len + 1;
+  sVar2 = strlen(buf);
+  tosend = sVar2 + 1;
   if ((opt_debug != false) &&
      (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-    pcVar6 = BLANK;
-    if (10 < len) {
-      pcVar6 = "...";
+    pcVar5 = BLANK;
+    if (10 < (int)sVar2) {
+      pcVar5 = "...";
     }
-    snprintf(tmp42,0x800,"API: send reply: (%d) \'%.10s%s\'",tosend,buf,pcVar6);
+    snprintf(tmp42,0x800,"API: send reply: (%d) \'%.10s%s\'",tosend,buf,pcVar5);
     _applog(7,tmp42,false);
   }
   sendc = 0;
@@ -64,34 +59,35 @@ void send_result(io_data *io_data,long c,_Bool isjson)
     for (__i = 0; __i < 0x20; __i = __i + 1) {
       wd.fds_bits[__i] = 0;
     }
-    iVar8 = c + 0x1f;
+    iVar6 = c + 0x1f;
     if (-1 < c) {
-      iVar8 = c;
+      iVar6 = c;
     }
-    uVar9 = c & 0x1f;
+    uVar7 = c & 0x1f;
     if (c < 1) {
-      uVar9 = -(-c & 0x1fU);
+      uVar7 = -(-c & 0x1fU);
     }
-    wd.fds_bits[iVar8 >> 5] = wd.fds_bits[iVar8 >> 5] | 1 << (uVar9 & 0xff);
-    iVar8 = select(c + 1,(fd_set *)0x0,(fd_set *)&wd,(fd_set *)0x0,(timeval *)&timeout);
-    if (iVar8 < 1) {
+    wd.fds_bits[iVar6 >> 5] = wd.fds_bits[iVar6 >> 5] | 1 << (uVar7 & 0xff);
+    iVar6 = select(c + 1,(fd_set *)0x0,(fd_set *)&wd,(fd_set *)0x0,(timeval *)&timeout);
+    if (iVar6 < 1) {
       if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 4)) {
         return;
       }
-      snprintf(tmp42,0x800,"API: send select failed (%d)",iVar8);
+      snprintf(tmp42,0x800,"API: send select failed (%d)",iVar6);
       _applog(4,tmp42,false);
       return;
     }
-    sVar4 = send(c,buf,tosend,0);
+    sVar3 = send(c,buf,tosend,0);
     sendc = sendc + 1;
-    if (sVar4 < 0) {
+    if (sVar3 < 0) {
       count = count + 1;
-      _Var2 = sock_blocks();
-      if (!_Var2) {
+      _Var1 = sock_blocks();
+      if (!_Var1) {
         if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
-          piVar5 = __errno_location();
-          pcVar6 = strerror(*piVar5);
-          snprintf(tmp42,0x800,"API: send (%d:%d) failed: %s",len + 1,(len + 1) - tosend,pcVar6);
+          piVar4 = __errno_location();
+          pcVar5 = strerror(*piVar4);
+          snprintf(tmp42,0x800,"API: send (%d:%d) failed: %s",sVar2 + 1,(sVar2 + 1) - tosend,pcVar5)
+          ;
           _applog(4,tmp42,false);
         }
         return;
@@ -99,7 +95,7 @@ void send_result(io_data *io_data,long c,_Bool isjson)
     }
     else {
       if (sendc < 2) {
-        if (sVar4 == tosend) {
+        if (sVar3 == tosend) {
           if ((opt_debug != false) &&
              (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
             snprintf(tmp42,0x800,"API: sent all of %d first go",tosend);
@@ -108,11 +104,11 @@ void send_result(io_data *io_data,long c,_Bool isjson)
         }
         else if ((opt_debug != false) &&
                 (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-          snprintf(tmp42,0x800,"API: sent %d of %d first go",sVar4,tosend);
+          snprintf(tmp42,0x800,"API: sent %d of %d first go",sVar3,tosend);
           _applog(7,tmp42,false);
         }
       }
-      else if (sVar4 == tosend) {
+      else if (sVar3 == tosend) {
         if ((opt_debug != false) &&
            (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
           snprintf(tmp42,0x800,"API: sent all of remaining %d (sendc=%d)",tosend,sendc);
@@ -121,12 +117,12 @@ void send_result(io_data *io_data,long c,_Bool isjson)
       }
       else if ((opt_debug != false) &&
               (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-        snprintf(tmp42,0x800,"API: sent %d of remaining %d (sendc=%d)",sVar4,tosend,sendc);
+        snprintf(tmp42,0x800,"API: sent %d of remaining %d (sendc=%d)",sVar3,tosend,sendc);
         _applog(7,tmp42,false);
       }
-      tosend = tosend - sVar4;
-      buf = buf + sVar4;
-      if (sVar4 == 0) {
+      tosend = tosend - sVar3;
+      buf = buf + sVar3;
+      if (sVar3 == 0) {
         count = count + 1;
       }
     }

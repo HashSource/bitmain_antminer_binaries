@@ -9,9 +9,9 @@ X509_STORE * X509_STORE_new(void)
   X509_VERIFY_PARAM *pXVar2;
   int iVar3;
   
-  obj = (X509_STORE *)CRYPTO_malloc(0x48,DAT_000c3a80,0xba);
+  obj = (X509_STORE *)CRYPTO_malloc(0x48,"x509_lu.c",0xba);
   if (obj != (X509_STORE *)0x0) {
-    p_Var1 = sk_new(DAT_000c3a84);
+    p_Var1 = sk_new((cmp *)0xc3805);
     obj->objs = (stack_st_X509_OBJECT *)p_Var1;
     obj->cache = 1;
     p_Var1 = sk_new_null();

@@ -4,73 +4,63 @@
 int CRYPTO_get_new_dynlockid(void)
 
 {
-  int iVar1;
+  code *pcVar1;
   undefined4 *ptr;
-  int iVar2;
-  uint uVar3;
-  _STACK *p_Var4;
-  int iVar5;
-  code *pcVar6;
+  uint uVar2;
+  int iVar3;
   
-  iVar1 = DAT_00089a18;
-  if (*(int *)(DAT_00089a18 + 4) == 0) {
-    ERR_put_error(0xf,0x67,100,DAT_00089a1c,0xf8);
-    return 0;
+  if (dynlock_create_callback == (code *)0x0) {
+    ERR_put_error(0xf,0x67,100,"cryptlib.c",0xf8);
   }
-  if (*(code **)(DAT_00089a18 + 0x10) != (code *)0x0) {
-    (**(code **)(DAT_00089a18 + 0x10))(9,0x1d,DAT_00089a1c,0xfb);
-  }
-  iVar5 = DAT_00089a18;
-  if (*(int *)(iVar1 + 0x20) == 0) {
-    p_Var4 = sk_new_null();
-    *(_STACK **)(iVar5 + 0x20) = p_Var4;
-    if (p_Var4 == (_STACK *)0x0) {
-      pcVar6 = *(code **)(iVar5 + 0x10);
-      if (pcVar6 != (code *)0x0) {
-        (*pcVar6)(10,0x1d,DAT_00089a1c,0xfe);
-      }
-      iVar5 = 0xff;
-      goto LAB_000899ce;
+  else {
+    if (locking_callback != (code *)0x0) {
+      (*locking_callback)(9,0x1d,"cryptlib.c",0xfb);
     }
-  }
-  if (*(code **)(iVar1 + 0x10) != (code *)0x0) {
-    (**(code **)(iVar1 + 0x10))(10,0x1d,DAT_00089a1c,0x102);
-  }
-  ptr = (undefined4 *)CRYPTO_malloc(8,DAT_00089a1c,0x104);
-  iVar5 = 0x106;
-  if (ptr != (undefined4 *)0x0) {
-    pcVar6 = *(code **)(iVar1 + 4);
-    *ptr = 1;
-    iVar2 = (*pcVar6)(DAT_00089a1c,0x10a);
-    iVar5 = DAT_00089a18;
-    ptr[1] = iVar2;
-    if (iVar2 != 0) {
-      if (*(code **)(iVar5 + 0x10) != (code *)0x0) {
-        (**(code **)(iVar5 + 0x10))(9,0x1d,DAT_00089a1c,0x111);
+    if ((dyn_locks == (_STACK *)0x0) && (dyn_locks = sk_new_null(), dyn_locks == (_STACK *)0x0)) {
+      if (locking_callback != (code *)0x0) {
+        (*locking_callback)(10,0x1d,"cryptlib.c",0xfe);
       }
-      uVar3 = sk_find(*(_STACK **)(iVar1 + 0x20),(void *)0x0);
-      if (uVar3 == 0xffffffff) {
-        iVar5 = sk_push(*(_STACK **)(DAT_00089a18 + 0x20),ptr);
-        uVar3 = iVar5 - 1;
+      iVar3 = 0xff;
+    }
+    else {
+      if (locking_callback != (code *)0x0) {
+        (*locking_callback)(10,0x1d,"cryptlib.c",0x102);
       }
-      else {
-        sk_set(*(_STACK **)(DAT_00089a18 + 0x20),uVar3,ptr);
-      }
-      if (*(code **)(iVar1 + 0x10) != (code *)0x0) {
-        (**(code **)(iVar1 + 0x10))(10,0x1d,DAT_00089a1c,0x121);
-      }
-      if (uVar3 == 0xffffffff) {
-        (**(code **)(iVar1 + 0xc))(ptr[1],DAT_00089a1c,0x124);
+      ptr = (undefined4 *)CRYPTO_malloc(8,"cryptlib.c",0x104);
+      pcVar1 = dynlock_create_callback;
+      iVar3 = 0x106;
+      if (ptr != (undefined4 *)0x0) {
+        *ptr = 1;
+        iVar3 = (*pcVar1)("cryptlib.c",0x10a);
+        ptr[1] = iVar3;
+        if (iVar3 != 0) {
+          if (locking_callback != (code *)0x0) {
+            (*locking_callback)(9,0x1d,"cryptlib.c",0x111);
+          }
+          uVar2 = sk_find(dyn_locks,(void *)0x0);
+          if (uVar2 == 0xffffffff) {
+            iVar3 = sk_push(dyn_locks,ptr);
+            uVar2 = iVar3 - 1;
+          }
+          else {
+            sk_set(dyn_locks,uVar2,ptr);
+          }
+          if (locking_callback != (code *)0x0) {
+            (*locking_callback)(10,0x1d,"cryptlib.c",0x121);
+          }
+          if (uVar2 == 0xffffffff) {
+            (*dynlock_destroy_callback)(ptr[1],"cryptlib.c",0x124);
+            CRYPTO_free(ptr);
+            return 1;
+          }
+          return ~uVar2;
+        }
         CRYPTO_free(ptr);
-        return 1;
+        iVar3 = 0x10d;
       }
-      return ~uVar3;
     }
-    CRYPTO_free(ptr);
-    iVar5 = 0x10d;
+    ERR_put_error(0xf,0x67,0x41,"cryptlib.c",iVar3);
   }
-LAB_000899ce:
-  ERR_put_error(0xf,0x67,0x41,DAT_00089a1c,iVar5);
   return 0;
 }
 

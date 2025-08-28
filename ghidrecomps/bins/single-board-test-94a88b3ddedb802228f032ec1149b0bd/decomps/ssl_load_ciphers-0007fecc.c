@@ -2,91 +2,58 @@
 void ssl_load_ciphers(void)
 
 {
-  int iVar1;
-  char *str;
-  EVP_CIPHER *pEVar2;
-  EVP_MD *pEVar3;
-  int iVar4;
-  int iVar5;
   EVP_PKEY_ASN1_METHOD *ameth;
   ENGINE *local_18;
   int local_14 [2];
   
-  iVar1 = DAT_00080000;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080004);
-  *(EVP_CIPHER **)(iVar1 + 4) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080008);
-  *(EVP_CIPHER **)(iVar1 + 8) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_0008000c);
-  *(EVP_CIPHER **)(iVar1 + 0xc) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080010);
-  *(EVP_CIPHER **)(iVar1 + 0x10) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080014);
-  *(EVP_CIPHER **)(iVar1 + 0x14) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080018);
-  *(EVP_CIPHER **)(iVar1 + 0x1c) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_0008001c);
-  *(EVP_CIPHER **)(iVar1 + 0x20) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080020);
-  *(EVP_CIPHER **)(iVar1 + 0x24) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080024);
-  *(EVP_CIPHER **)(iVar1 + 0x28) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080028);
-  *(EVP_CIPHER **)(iVar1 + 0x2c) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_0008002c);
-  *(EVP_CIPHER **)(iVar1 + 0x30) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080030);
-  *(EVP_CIPHER **)(iVar1 + 0x34) = pEVar2;
-  pEVar2 = EVP_get_cipherbyname(DAT_00080034);
-  *(EVP_CIPHER **)(iVar1 + 0x38) = pEVar2;
-  pEVar3 = EVP_get_digestbyname(DAT_00080038);
-  *(EVP_MD **)(iVar1 + 0x3c) = pEVar3;
-  iVar4 = EVP_MD_size(pEVar3);
-  *(int *)(iVar1 + 0x54) = iVar4;
-  if (iVar4 < 0) {
-    OpenSSLDie(DAT_00080054,0x1b3,DAT_00080058);
+  ssl_cipher_methods._0_4_ = EVP_get_cipherbyname("DES-CBC");
+  ssl_cipher_methods._4_4_ = EVP_get_cipherbyname("DES-EDE3-CBC");
+  ssl_cipher_methods._8_4_ = EVP_get_cipherbyname("RC4");
+  ssl_cipher_methods._12_4_ = EVP_get_cipherbyname("RC2-CBC");
+  ssl_cipher_methods._16_4_ = EVP_get_cipherbyname("IDEA-CBC");
+  ssl_cipher_methods._24_4_ = EVP_get_cipherbyname("AES-128-CBC");
+  ssl_cipher_methods._28_4_ = EVP_get_cipherbyname("AES-256-CBC");
+  ssl_cipher_methods._32_4_ = EVP_get_cipherbyname("CAMELLIA-128-CBC");
+  ssl_cipher_methods._36_4_ = EVP_get_cipherbyname("CAMELLIA-256-CBC");
+  ssl_cipher_methods._40_4_ = EVP_get_cipherbyname("gost89-cnt");
+  ssl_cipher_methods._44_4_ = EVP_get_cipherbyname("SEED-CBC");
+  ssl_cipher_methods._48_4_ = EVP_get_cipherbyname("id-aes128-GCM");
+  ssl_cipher_methods._52_4_ = EVP_get_cipherbyname("id-aes256-GCM");
+  ssl_digest_methods._0_4_ = EVP_get_digestbyname("MD5");
+  ssl_mac_secret_size._0_4_ = EVP_MD_size((EVP_MD *)ssl_digest_methods._0_4_);
+  if ((int)ssl_mac_secret_size._0_4_ < 0) {
+    OpenSSLDie("ssl_ciph.c",0x1b3,"ssl_mac_secret_size[SSL_MD_MD5_IDX] >= 0");
   }
-  pEVar3 = EVP_get_digestbyname(DAT_0008003c);
-  *(EVP_MD **)(iVar1 + 0x40) = pEVar3;
-  iVar4 = EVP_MD_size(pEVar3);
-  *(int *)(iVar1 + 0x58) = iVar4;
-  if (iVar4 < 0) {
-    OpenSSLDie(DAT_00080054,0x1b7,DAT_0008005c);
+  ssl_digest_methods._4_4_ = EVP_get_digestbyname("SHA1");
+  ssl_mac_secret_size._4_4_ = EVP_MD_size((EVP_MD *)ssl_digest_methods._4_4_);
+  if ((int)ssl_mac_secret_size._4_4_ < 0) {
+    OpenSSLDie("ssl_ciph.c",0x1b7,"ssl_mac_secret_size[SSL_MD_SHA1_IDX] >= 0");
   }
-  pEVar3 = EVP_get_digestbyname(DAT_00080040);
-  iVar4 = DAT_00080000;
-  *(EVP_MD **)(iVar1 + 0x44) = pEVar3;
-  if (pEVar3 != (EVP_MD *)0x0) {
-    iVar5 = EVP_MD_size(pEVar3);
-    *(int *)(iVar4 + 0x5c) = iVar5;
-    if (iVar5 < 0) {
-      OpenSSLDie(DAT_00080054,0x1bd,DAT_00080060);
+  ssl_digest_methods._8_4_ = EVP_get_digestbyname("md_gost94");
+  if ((EVP_MD *)ssl_digest_methods._8_4_ != (EVP_MD *)0x0) {
+    ssl_mac_secret_size._8_4_ = EVP_MD_size((EVP_MD *)ssl_digest_methods._8_4_);
+    if ((int)ssl_mac_secret_size._8_4_ < 0) {
+      OpenSSLDie("ssl_ciph.c",0x1bd,"ssl_mac_secret_size[SSL_MD_GOST94_IDX] >= 0");
     }
   }
-  pEVar3 = EVP_get_digestbyname(DAT_00080044);
-  str = DAT_00080044;
-  *(EVP_MD **)(iVar1 + 0x48) = pEVar3;
+  ssl_digest_methods._12_4_ = EVP_get_digestbyname("gost-mac");
   local_18 = (ENGINE *)0x0;
   local_14[0] = 0;
-  ameth = EVP_PKEY_asn1_find_str(&local_18,str,-1);
+  ameth = EVP_PKEY_asn1_find_str(&local_18,"gost-mac",-1);
   if (ameth != (EVP_PKEY_ASN1_METHOD *)0x0) {
     EVP_PKEY_asn1_get0_info(local_14,(int *)0x0,(int *)0x0,(char **)0x0,(char **)0x0,ameth);
   }
   if (local_18 != (ENGINE *)0x0) {
     ENGINE_finish(local_18);
   }
-  *(int *)(DAT_00080048 + 0xc) = local_14[0];
+  DAT_001968b4 = local_14[0];
   if (local_14[0] != 0) {
-    *(undefined4 *)(iVar1 + 0x60) = 0x20;
+    ssl_mac_secret_size._12_4_ = 0x20;
   }
-  pEVar3 = EVP_get_digestbyname(DAT_0008004c);
-  *(EVP_MD **)(iVar1 + 0x4c) = pEVar3;
-  iVar4 = EVP_MD_size(pEVar3);
-  *(int *)(iVar1 + 100) = iVar4;
-  pEVar3 = EVP_get_digestbyname(DAT_00080050);
-  *(EVP_MD **)(iVar1 + 0x50) = pEVar3;
-  iVar4 = EVP_MD_size(pEVar3);
-  *(int *)(iVar1 + 0x68) = iVar4;
+  ssl_digest_methods._16_4_ = EVP_get_digestbyname("SHA256");
+  ssl_mac_secret_size._16_4_ = EVP_MD_size((EVP_MD *)ssl_digest_methods._16_4_);
+  ssl_digest_methods._20_4_ = EVP_get_digestbyname("SHA384");
+  ssl_mac_secret_size._20_4_ = EVP_MD_size((EVP_MD *)ssl_digest_methods._20_4_);
   return;
 }
 

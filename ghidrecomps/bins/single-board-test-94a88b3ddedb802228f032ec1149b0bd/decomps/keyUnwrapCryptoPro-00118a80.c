@@ -4,8 +4,8 @@ int keyUnwrapCryptoPro(undefined4 param_1,undefined4 param_2,int param_3,undefin
 {
   uint uVar1;
   int iVar2;
-  undefined auStack_3c [4];
-  undefined auStack_38 [36];
+  undefined1 auStack_3c [4];
+  undefined1 auStack_38 [36];
   
   keyDiversifyCryptoPro();
   gost_key(param_1,auStack_38);

@@ -6,7 +6,7 @@ int setlogmask(int __mask)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_setlogmask_000c0084)();
+  iVar1 = setlogmask(__mask);
   return iVar1;
 }
 

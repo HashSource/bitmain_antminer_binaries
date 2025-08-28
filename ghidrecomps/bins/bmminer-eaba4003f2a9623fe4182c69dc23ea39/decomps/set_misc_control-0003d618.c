@@ -29,8 +29,9 @@ void set_misc_control(uchar chain,uchar mode,uchar addr,int i2c)
   buf[1] = '\t';
   buf[2] = addr;
   buf[3] = '\x18';
-  buf._4_2_ = CONCAT11((uchar)(temp_misc >> 0x10),(uchar)(temp_misc >> 0x18));
-  buf._4_3_ = CONCAT12((uchar)(temp_misc >> 8),buf._4_2_);
+  buf[5] = (uchar)(temp_misc >> 0x10);
+  buf[4] = (uchar)(temp_misc >> 0x18);
+  buf[6] = (uchar)(temp_misc >> 8);
   buf[7] = (uchar)temp_misc;
   buf[8] = CRC5(buf,'@');
   cmd_buf[0] = (uint)buf._0_4_ >> 0x18 |

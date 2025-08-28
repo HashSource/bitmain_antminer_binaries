@@ -1,6 +1,6 @@
 
 byte znyq_set_iic(undefined4 param_1,undefined4 param_2,char param_3,undefined4 param_4,
-                 undefined param_5)
+                 undefined1 param_5)
 
 {
   byte local_9;

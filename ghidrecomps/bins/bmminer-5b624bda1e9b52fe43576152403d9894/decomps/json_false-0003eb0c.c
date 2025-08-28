@@ -4,6 +4,6 @@
 json_t * json_false(void)
 
 {
-  return DAT_0003eb10;
+  return &json_false::the_false;
 }
 

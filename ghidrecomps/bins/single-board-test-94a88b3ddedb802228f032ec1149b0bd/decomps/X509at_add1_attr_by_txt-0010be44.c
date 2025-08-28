@@ -13,8 +13,8 @@ X509at_add1_attr_by_txt(stack_st_X509_ATTRIBUTE **x,char *attrname,int type,ucha
   
   a = OBJ_txt2obj(attrname,0);
   if (a == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x8c,0x77,DAT_0010bf60,0x116);
-    ERR_add_error_data(2,DAT_0010bf64,attrname);
+    ERR_put_error(0xb,0x8c,0x77,"x509_att.c",0x116);
+    ERR_add_error_data(2,"name=",attrname);
     p_Var3 = (_STACK *)0x0;
   }
   else {
@@ -39,14 +39,14 @@ X509at_add1_attr_by_txt(stack_st_X509_ATTRIBUTE **x,char *attrname,int type,ucha
       ASN1_OBJECT_free(a);
     }
     if (x == (stack_st_X509_ATTRIBUTE **)0x0) {
-      ERR_put_error(0xb,0x87,0x43,DAT_0010bf60,0x81);
+      ERR_put_error(0xb,0x87,0x43,"x509_att.c",0x81);
       p_Var3 = (_STACK *)0x0;
     }
     else {
       st = &(*x)->stack;
       if ((&(*x)->stack == (_STACK *)0x0) &&
          (p_Var3 = sk_new_null(), st = p_Var3, p_Var3 == (_STACK *)0x0)) {
-        ERR_put_error(0xb,0x87,0x41,DAT_0010bf60,0x93);
+        ERR_put_error(0xb,0x87,0x41,"x509_att.c",0x93);
       }
       else {
         a_00 = X509_ATTRIBUTE_dup(attr);
@@ -60,7 +60,7 @@ X509at_add1_attr_by_txt(stack_st_X509_ATTRIBUTE **x,char *attrname,int type,ucha
         else {
           iVar2 = sk_push(st,a_00);
           if (iVar2 == 0) {
-            ERR_put_error(0xb,0x87,0x41,DAT_0010bf60,0x93);
+            ERR_put_error(0xb,0x87,0x41,"x509_att.c",0x93);
             X509_ATTRIBUTE_free(a_00);
             sk_free(st);
             p_Var3 = (_STACK *)0x0;

@@ -6,8 +6,10 @@ int ssl3_send_client_certificate(SSL *param_1)
   undefined4 uVar1;
   int iVar2;
   code *pcVar3;
-  ssl3_state_st *psVar4;
-  _func_3296 *p_Var5;
+  int extraout_r3;
+  int iVar4;
+  ssl3_state_st *psVar5;
+  _func_3296 *p_Var6;
   ENGINE *e;
   X509 *local_18;
   EVP_PKEY *local_14 [2];
@@ -26,11 +28,12 @@ LAB_0006788a:
     }
     iVar2 = (*pcVar3)(param_1,*(undefined4 *)(param_1->cert + 0x148));
     if (iVar2 < 0) goto LAB_000679b8;
+    iVar4 = extraout_r3;
     if (iVar2 != 0) {
-      pcVar3 = (code *)0x1;
+      iVar4 = 1;
     }
     if (iVar2 != 0) {
-      param_1->rwstate = (int)pcVar3;
+      param_1->rwstate = iVar4;
       goto LAB_0006788a;
     }
 LAB_000678c8:
@@ -40,12 +43,12 @@ LAB_000678c8:
   else {
     if (iVar2 == 0x1171) {
 LAB_000678e0:
-      p_Var5 = param_1->psk_server_callback;
-      e = *(ENGINE **)(p_Var5 + 0xfc);
+      p_Var6 = param_1->psk_server_callback;
+      e = *(ENGINE **)(p_Var6 + 0xfc);
       if (e == (ENGINE *)0x0) {
 LAB_00067910:
-        if (*(code **)(p_Var5 + 0x74) != (code *)0x0) {
-          iVar2 = (**(code **)(p_Var5 + 0x74))(param_1,&local_18,local_14);
+        if (*(code **)(p_Var6 + 0x74) != (code *)0x0) {
+          iVar2 = (**(code **)(p_Var6 + 0x74))(param_1,&local_18,local_14);
           goto LAB_00067920;
         }
         param_1->rwstate = 1;
@@ -57,7 +60,7 @@ LAB_00067910:
                           (e,param_1,ca_dn,&local_18,local_14,(stack_st_X509 **)0x0,(UI_METHOD *)0x0
                            ,(void *)0x0);
         if (iVar2 == 0) {
-          p_Var5 = param_1->psk_server_callback;
+          p_Var6 = param_1->psk_server_callback;
           goto LAB_00067910;
         }
 LAB_00067920:
@@ -69,7 +72,7 @@ LAB_000679b8:
         param_1->rwstate = 1;
         if (iVar2 == 1) {
           if ((local_14[0] == (EVP_PKEY *)0x0) || (local_18 == (X509 *)0x0)) {
-            ERR_put_error(0x14,0x97,0x6a,DAT_000679c4,0xd41);
+            ERR_put_error(0x14,0x97,0x6a,"s3_clnt.c",0xd41);
             iVar2 = 0;
           }
           else {
@@ -94,10 +97,10 @@ LAB_000679b8:
         ssl3_send_alert(param_1,1,0x29);
         return 1;
       }
-      psVar4 = param_1->s3;
-      (psVar4->tmp).cert_req = 2;
+      psVar5 = param_1->s3;
+      (psVar5->tmp).cert_req = 2;
 LAB_00067894:
-      iVar2 = (psVar4->tmp).cert_req;
+      iVar2 = (psVar5->tmp).cert_req;
       param_1->state = 0x1173;
       if (iVar2 == 2) {
         uVar1 = 0;
@@ -107,14 +110,14 @@ LAB_00067894:
       }
       iVar2 = ssl3_output_cert_chain(param_1,uVar1);
       if (iVar2 == 0) {
-        ERR_put_error(0x14,0x97,0x44,DAT_000679c4,0xd5d);
+        ERR_put_error(0x14,0x97,0x44,"s3_clnt.c",0xd5d);
         iVar2 = 0;
         goto LAB_000678c8;
       }
     }
     else if (iVar2 == 0x1172) {
 LAB_00067892:
-      psVar4 = param_1->s3;
+      psVar5 = param_1->s3;
       goto LAB_00067894;
     }
     iVar2 = (**(code **)(param_1->method->ssl3_enc + 0x44))(param_1);

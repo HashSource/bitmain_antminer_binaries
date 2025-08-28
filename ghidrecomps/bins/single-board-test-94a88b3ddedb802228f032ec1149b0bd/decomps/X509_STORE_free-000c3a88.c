@@ -8,7 +8,7 @@ void X509_STORE_free(X509_STORE *v)
   _STACK *p_Var3;
   
   if (v != (X509_STORE *)0x0) {
-    iVar1 = CRYPTO_add_lock(&v->references,-1,0xb,DAT_000c3b10,0xf1);
+    iVar1 = CRYPTO_add_lock(&v->references,-1,0xb,"x509_lu.c",0xf1);
     if (iVar1 < 1) {
       p_Var3 = &v->get_cert_methods->stack;
       iVar1 = 0;
@@ -16,7 +16,7 @@ void X509_STORE_free(X509_STORE *v)
         iVar2 = sk_num(p_Var3);
         if (iVar2 <= iVar1) {
           sk_free(p_Var3);
-          sk_pop_free(&v->objs->stack,DAT_000c3b14);
+          sk_pop_free(&v->objs->stack,(func *)0xc3835);
           CRYPTO_free_ex_data(4,v,&v->ex_data);
           if (v->param != (X509_VERIFY_PARAM *)0x0) {
             X509_VERIFY_PARAM_free(v->param);

@@ -23,7 +23,7 @@ int CMS_RecipientInfo_ktri_get0_algs
     }
   }
   else {
-    ERR_put_error(0x2e,0x8e,0x7c,DAT_000d58c4,0x127);
+    ERR_put_error(0x2e,0x8e,0x7c,"cms_env.c",0x127);
     iVar2 = 0;
   }
   return iVar2;

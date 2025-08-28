@@ -16,10 +16,10 @@ BIO * BIO_new_NDEF(BIO *out,ASN1_VALUE *val,ASN1_ITEM *it)
   pvVar3 = it->funcs;
   local_34[0] = (BIO_METHOD *)val;
   if ((pvVar3 == (void *)0x0) || (*(int *)((int)pvVar3 + 0x10) == 0)) {
-    ERR_put_error(0xd,0xd0,0xca,DAT_00127004,0x6a);
+    ERR_put_error(0xd,0xd0,0xca,"bio_ndef.c",0x6a);
     return (BIO *)0x0;
   }
-  parg = (BIO *)CRYPTO_malloc(0x18,DAT_00127004,0x6d);
+  parg = (BIO *)CRYPTO_malloc(0x18,"bio_ndef.c",0x6d);
   type = BIO_f_asn1();
   b = BIO_new(type);
   pBVar1 = BIO_push(b,out);
@@ -27,8 +27,8 @@ BIO * BIO_new_NDEF(BIO *out,ASN1_VALUE *val,ASN1_ITEM *it)
     if (b == (BIO *)0x0) goto LAB_00126f8c;
   }
   else if (pBVar1 != (BIO *)0x0) {
-    BIO_asn1_set_prefix(b,DAT_00127008,DAT_0012700c);
-    BIO_asn1_set_suffix(b,DAT_00127010,DAT_00127014);
+    BIO_asn1_set_prefix(b,(undefined1 *)0x126ebd,(undefined1 *)0x126e19);
+    BIO_asn1_set_suffix(b,(undefined1 *)0x126e3d,(undefined1 *)0x126f09);
     local_28 = (BIO *)0x0;
     local_24 = 0;
     local_2c = pBVar1;

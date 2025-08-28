@@ -17,7 +17,7 @@ void Curl_ssl_free_certinfo(int param_1)
       iVar2 = iVar2 + 1;
     } while (iVar2 < iVar1);
   }
-  (**DAT_0003cd68)(*(undefined4 *)(param_1 + 0x8790));
+  (*Curl_cfree)(*(undefined4 *)(param_1 + 0x8790));
   *(undefined4 *)(param_1 + 0x8790) = 0;
   *(undefined4 *)(param_1 + 0x878c) = 0;
   return;

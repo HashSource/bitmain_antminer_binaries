@@ -47,7 +47,7 @@ undefined4 ipv6_cb(byte *param_1,int param_2,int param_3)
       } while( true );
     }
     if ((((((iVar5 < 0xd) && (param_1[param_2] == 0)) &&
-          (iVar1 = __isoc99_sscanf(param_1,DAT_000c7000,&local_28,&local_24,&local_20,local_1c),
+          (iVar1 = __isoc99_sscanf(param_1,"%d.%d.%d.%d",&local_28,&local_24,&local_20,local_1c),
           iVar1 == 4)) && ((local_28 < 0x100 && (-1 < local_24)))) &&
         ((local_24 < 0x100 && ((-1 < local_20 && (local_20 < 0x100)))))) &&
        ((-1 < local_1c[0] && (local_1c[0] < 0x100)))) {

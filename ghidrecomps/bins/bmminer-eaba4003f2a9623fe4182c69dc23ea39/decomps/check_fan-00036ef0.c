@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void check_fan(void)
 
@@ -17,11 +17,11 @@ void check_fan(void)
   paVar1 = dev;
   fan_id = '\0';
   *(uint *)&dev->temp_num = *(uint *)&dev->temp_num & 0xff;
-  *(undefined *)((int)&paVar1->fan_speed_top1 + 3) = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_top1 + 3) = 0;
   paVar1 = dev;
   puVar4 = (uint *)((int)&dev->fan_speed_top1 + 3);
   *puVar4 = *puVar4 & 0xff;
-  *(undefined *)((int)&paVar1->fan_speed_low1 + 3) = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_low1 + 3) = 0;
   for (j = 0; j < 2; j = j + 1) {
     for (i = 0; i < 8; i = i + 1) {
       iVar2 = get_fan_speed(&fan_id,&fan_speed);

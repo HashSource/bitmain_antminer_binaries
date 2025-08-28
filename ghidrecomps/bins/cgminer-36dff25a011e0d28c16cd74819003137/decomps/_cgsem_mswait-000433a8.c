@@ -5,8 +5,6 @@ int _cgsem_mswait(cgsem_t *cgsem,int ms,char *file,char *func,int line)
   _Bool _Var1;
   int iVar2;
   int *piVar3;
-  undefined4 in_stack_fffff7b8;
-  undefined4 in_stack_fffff7bc;
   char *func_local;
   char *file_local;
   int ms_local;
@@ -19,7 +17,7 @@ int _cgsem_mswait(cgsem_t *cgsem,int ms,char *file,char *func,int line)
   
   cgtime(&tv_now);
   timeval_to_spec(&ts_now,&tv_now);
-  ms_to_timespec(&abs_timeout,CONCAT44(in_stack_fffff7bc,in_stack_fffff7b8));
+  ms_to_timespec(&abs_timeout,(longlong)ms);
   while( true ) {
     timeraddspec(&abs_timeout,&ts_now);
     iVar2 = sem_timedwait((sem_t *)cgsem,(timespec *)&abs_timeout);

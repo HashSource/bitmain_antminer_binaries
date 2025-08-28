@@ -2,8 +2,9 @@
 int sweep_freq_get_ideal_hashrate(working_mode_e working_mode)
 
 {
-  FILE *pFVar1;
-  int iVar2;
+  _Bool _Var1;
+  FILE *pFVar2;
+  int iVar3;
   working_mode_e working_mode_local;
   int ideal_hash_rate [16];
   int max_hash_rate [16];
@@ -21,17 +22,17 @@ int sweep_freq_get_ideal_hashrate(working_mode_e working_mode)
   int ret;
   _Bool check_column_nonce_bak;
   
-  check_column_nonce_bak = check_column_nonce;
+  _Var1 = check_column_nonce;
   memset(max_hash_rate,0,0x40);
   memset(ideal_hash_rate,0,0x40);
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);
-    pFVar1 = fopen(log_file,"a+");
-    if (pFVar1 != (FILE *)0x0) {
-      fprintf(pFVar1,"%s:%d:%s: \nget ideal hash rate\n","freq_scan.c",0xce9,
+    pFVar2 = fopen(log_file,"a+");
+    if (pFVar2 != (FILE *)0x0) {
+      fprintf(pFVar2,"%s:%d:%s: \nget ideal hash rate\n","freq_scan.c",0xce9,
               "sweep_freq_get_ideal_hashrate");
     }
-    fclose(pFVar1);
+    fclose(pFVar2);
   }
   check_column_nonce = false;
   for (chain = 0; chain < 0x10; chain = chain + 1) {
@@ -50,8 +51,8 @@ int sweep_freq_get_ideal_hashrate(working_mode_e working_mode)
     }
   }
   need_set_final_freq = true;
-  iVar2 = scan_freq_board_init(working_mode);
-  if (iVar2 == 0) {
+  iVar3 = scan_freq_board_init(working_mode);
+  if (iVar3 == 0) {
     need_set_final_freq = false;
     scan_freq_reset_result();
     scan_freq_send_work();
@@ -67,82 +68,82 @@ int sweep_freq_get_ideal_hashrate(working_mode_e working_mode)
         scanfreq_info.ideal_hashrate[chain] = ideal_hash_rate[chain];
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] nonce rate:            %.2f\n","freq_scan.c",0xd10,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] nonce rate:            %.2f\n","freq_scan.c",0xd10,
                     "sweep_freq_get_ideal_hashrate",chain,
                     (double)scanfreq_info.chain_nonce_rate[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] max hashrate:          %d\n","freq_scan.c",0xd11,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] max hashrate:          %d\n","freq_scan.c",0xd11,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.max_hashrate[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] ideal hashrate:        %d\n","freq_scan.c",0xd12,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] ideal hashrate:        %d\n","freq_scan.c",0xd12,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.ideal_hashrate[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] valid nonce number:    %d\n","freq_scan.c",0xd13,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] valid nonce number:    %d\n","freq_scan.c",0xd13,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.valid_nonce_num[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] send work number:      %d\n","freq_scan.c",0xd14,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] send work number:      %d\n","freq_scan.c",0xd14,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.send_work_num[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] hw nonce number:       %d\n","freq_scan.c",0xd15,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] hw nonce number:       %d\n","freq_scan.c",0xd15,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.HW_nonce_num[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] repeated nonce number: %d\n","freq_scan.c",0xd16,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] repeated nonce number: %d\n","freq_scan.c",0xd16,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.repeated_nonce_num[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
         if (3 < log_level) {
           print_crt_time_to_file(log_file,3);
-          pFVar1 = fopen(log_file,"a+");
-          if (pFVar1 != (FILE *)0x0) {
-            fprintf(pFVar1,"%s:%d:%s: chain[%d] other nonce number:    %d\n\n","freq_scan.c",0xd17,
+          pFVar2 = fopen(log_file,"a+");
+          if (pFVar2 != (FILE *)0x0) {
+            fprintf(pFVar2,"%s:%d:%s: chain[%d] other nonce number:    %d\n\n","freq_scan.c",0xd17,
                     "sweep_freq_get_ideal_hashrate",chain,scanfreq_info.other_nonce_num[chain]);
           }
-          fclose(pFVar1);
+          fclose(pFVar2);
         }
       }
     }
-    check_column_nonce = check_column_nonce_bak;
-    iVar2 = 0;
+    iVar3 = 0;
+    check_column_nonce = _Var1;
   }
-  return iVar2;
+  return iVar3;
 }
 

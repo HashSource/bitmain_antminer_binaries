@@ -5,7 +5,7 @@ _Bool is_cgminer_already_started(void)
 
 {
   int iVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   int iVar3;
   
   iVar1 = cnt_of_proc("cgminer");
@@ -13,7 +13,7 @@ _Bool is_cgminer_already_started(void)
   if (1 < iVar1) {
     iVar3 = 1;
   }
-  uVar2 = (undefined)iVar3;
+  uVar2 = (undefined1)iVar3;
   if (iVar1 < 2) {
     uVar2 = 0;
   }

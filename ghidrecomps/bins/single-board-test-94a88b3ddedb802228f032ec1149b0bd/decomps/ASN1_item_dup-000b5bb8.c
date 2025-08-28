@@ -14,7 +14,7 @@ void * ASN1_item_dup(ASN1_ITEM *it,void *x)
   else {
     len = ASN1_item_i2d((ASN1_VALUE *)x,&local_18,it);
     if (local_18 == (uchar *)0x0) {
-      ERR_put_error(0xd,0xbf,0x41,DAT_000b5c08,0x6e);
+      ERR_put_error(0xd,0xbf,0x41,"a_dup.c",0x6e);
       pAVar1 = (ASN1_VALUE *)0x0;
     }
     else {

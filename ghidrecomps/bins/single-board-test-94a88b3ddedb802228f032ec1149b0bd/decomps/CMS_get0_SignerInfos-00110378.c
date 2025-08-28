@@ -13,7 +13,7 @@ stack_st_CMS_SignerInfo * CMS_get0_SignerInfos(CMS_ContentInfo *cms)
     }
   }
   else {
-    ERR_put_error(0x2e,0x85,0x6c,DAT_001103a8,0x48);
+    ERR_put_error(0x2e,0x85,0x6c,"cms_sd.c",0x48);
     psVar2 = (stack_st_CMS_SignerInfo *)0x0;
   }
   return psVar2;

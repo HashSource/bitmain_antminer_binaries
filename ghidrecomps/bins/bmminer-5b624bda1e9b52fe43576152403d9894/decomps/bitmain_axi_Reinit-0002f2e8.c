@@ -4,29 +4,21 @@
 int bitmain_axi_Reinit(void)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  uint uVar4;
-  uint data;
+  uint uVar1;
   char logstr [256];
   
-  uVar4 = **(uint **)(DAT_0002f354 + 0x8d4);
-  if ((undefined *)(uVar4 & 0xffff) != &LAB_0000c500_1) {
-    sprintf(logstr,DAT_0002f358,uVar4);
+  uVar1 = *axi_fpga_addr;
+  if ((undefined1 *)(uVar1 & 0xffff) != &LAB_0000c500_1) {
+    sprintf(logstr,"data = 0x%x, and it\'s not equal to HARDWARE_VERSION_VALUE : 0x%x\n",uVar1);
     writeInitLogFile(logstr);
   }
-  iVar1 = DAT_0002f360;
-  sprintf(logstr,DAT_0002f35c,uVar4);
+  sprintf(logstr,"axi_fpga_addr data = 0x%x\n",uVar1);
   writeInitLogFile(logstr);
-  iVar2 = DAT_0002f364;
-  uVar4 = *(uint *)(iVar1 + 0x8c);
-  iVar3 = *(int *)(DAT_0002f364 + 0x200);
-  *(int *)(DAT_0002f364 + 0x204) = iVar3;
-  *(int *)(iVar2 + 0x208) = iVar3 + 0x200000;
-  *(int *)(iVar2 + 0x20c) = iVar3 + 0x210000;
-  set_nonce2_and_job_id_store_address(uVar4);
-  set_job_start_address(*(int *)(iVar1 + 0x8c) + 0x200000);
+  job_start_address_1 = fpga_mem_addr + 0x80000;
+  job_start_address_2 = fpga_mem_addr + 0x84000;
+  nonce2_jobid_address = fpga_mem_addr;
+  set_nonce2_and_job_id_store_address(PHY_MEM_NONCE2_JOBID_ADDRESS);
+  set_job_start_address(PHY_MEM_NONCE2_JOBID_ADDRESS + 0x200000);
   return 0;
 }
 

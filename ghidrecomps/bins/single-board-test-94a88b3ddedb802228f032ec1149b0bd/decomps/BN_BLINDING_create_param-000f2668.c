@@ -7,54 +7,57 @@ BN_BLINDING_create_param
   BIGNUM *pBVar1;
   int iVar2;
   ulong uVar3;
-  BIGNUM **ptr;
-  BIGNUM **ppBVar4;
+  BN_BLINDING *ptr;
+  BN_BLINDING *pBVar4;
   int iVar5;
   
-  ptr = (BIGNUM **)b;
+  ptr = b;
   if ((b == (BN_BLINDING *)0x0) &&
-     (ptr = (BIGNUM **)BN_BLINDING_new((BIGNUM *)0x0,(BIGNUM *)0x0,m), ptr == (BIGNUM **)0x0)) {
+     (ptr = BN_BLINDING_new((BIGNUM *)0x0,(BIGNUM *)0x0,m), ptr == (BN_BLINDING *)0x0)) {
     return (BN_BLINDING *)0x0;
   }
-  if (*ptr == (BIGNUM *)0x0) {
+  if (*(int *)ptr == 0) {
     pBVar1 = BN_new();
-    *ptr = pBVar1;
+    *(BIGNUM **)ptr = pBVar1;
     if (pBVar1 == (BIGNUM *)0x0) goto LAB_000f26ee;
   }
-  if (ptr[1] == (BIGNUM *)0x0) {
+  if (*(int *)(ptr + 4) == 0) {
     pBVar1 = BN_new();
-    ptr[1] = pBVar1;
+    *(BIGNUM **)(ptr + 4) = pBVar1;
     if (pBVar1 == (BIGNUM *)0x0) goto LAB_000f26ee;
   }
   if (e == (BIGNUM *)0x0) {
-    pBVar1 = ptr[2];
+    pBVar1 = *(BIGNUM **)(ptr + 8);
   }
   else {
-    if (ptr[2] != (BIGNUM *)0x0) {
-      BN_free(ptr[2]);
+    if (*(BIGNUM **)(ptr + 8) != (BIGNUM *)0x0) {
+      BN_free(*(BIGNUM **)(ptr + 8));
     }
     pBVar1 = BN_dup(e);
-    ptr[2] = pBVar1;
+    *(BIGNUM **)(ptr + 8) = pBVar1;
   }
   if (pBVar1 != (BIGNUM *)0x0) {
     if (bn_mod_exp != (bn_mod_exp *)0x0) {
-      ptr[10] = (BIGNUM *)bn_mod_exp;
+      *(bn_mod_exp **)(ptr + 0x28) = bn_mod_exp;
     }
     if (m_ctx != (BN_MONT_CTX *)0x0) {
-      ptr[9] = (BIGNUM *)m_ctx;
+      *(BN_MONT_CTX **)(ptr + 0x24) = m_ctx;
     }
     iVar5 = 0x21;
-    while (iVar2 = BN_rand_range(*ptr,ptr[3]), iVar2 != 0) {
-      pBVar1 = BN_mod_inverse(ptr[1],*ptr,ptr[3],ctx);
+    while (iVar2 = BN_rand_range(*(BIGNUM **)ptr,*(BIGNUM **)(ptr + 0xc)), iVar2 != 0) {
+      pBVar1 = BN_mod_inverse(*(BIGNUM **)(ptr + 4),*(BIGNUM **)ptr,*(BIGNUM **)(ptr + 0xc),ctx);
       if (pBVar1 != (BIGNUM *)0x0) {
-        if ((ptr[10] == (BIGNUM *)0x0) || (ptr[9] == (BIGNUM *)0x0)) {
-          iVar5 = BN_mod_exp(*ptr,*ptr,ptr[2],ptr[3],ctx);
+        if ((*(code **)(ptr + 0x28) == (code *)0x0) || (*(int *)(ptr + 0x24) == 0)) {
+          iVar5 = BN_mod_exp(*(BIGNUM **)ptr,*(BIGNUM **)ptr,*(BIGNUM **)(ptr + 8),
+                             *(BIGNUM **)(ptr + 0xc),ctx);
         }
         else {
-          iVar5 = (*(code *)ptr[10])(*ptr,*ptr,ptr[2],ptr[3],ctx,ptr[9]);
+          iVar5 = (**(code **)(ptr + 0x28))
+                            (*(undefined4 *)ptr,*(undefined4 *)ptr,*(undefined4 *)(ptr + 8),
+                             *(undefined4 *)(ptr + 0xc),ctx,*(int *)(ptr + 0x24));
         }
         if (iVar5 != 0) {
-          return (BN_BLINDING *)ptr;
+          return ptr;
         }
         break;
       }
@@ -62,30 +65,30 @@ BN_BLINDING_create_param
       if ((uVar3 & 0xfff) != 0x6c) break;
       iVar5 = iVar5 + -1;
       if (iVar5 == 0) {
-        ERR_put_error(3,0x80,0x71,DAT_000f2784,0x166);
+        ERR_put_error(3,0x80,0x71,"bn_blind.c",0x166);
         break;
       }
       ERR_clear_error();
     }
   }
 LAB_000f26ee:
-  ppBVar4 = ptr;
+  pBVar4 = ptr;
   if (b == (BN_BLINDING *)0x0) {
-    if (*ptr != (BIGNUM *)0x0) {
-      BN_free(*ptr);
+    if (*(BIGNUM **)ptr != (BIGNUM *)0x0) {
+      BN_free(*(BIGNUM **)ptr);
     }
-    if (ptr[1] != (BIGNUM *)0x0) {
-      BN_free(ptr[1]);
+    if (*(BIGNUM **)(ptr + 4) != (BIGNUM *)0x0) {
+      BN_free(*(BIGNUM **)(ptr + 4));
     }
-    if (ptr[2] != (BIGNUM *)0x0) {
-      BN_free(ptr[2]);
+    if (*(BIGNUM **)(ptr + 8) != (BIGNUM *)0x0) {
+      BN_free(*(BIGNUM **)(ptr + 8));
     }
-    if (ptr[3] != (BIGNUM *)0x0) {
-      BN_free(ptr[3]);
+    if (*(BIGNUM **)(ptr + 0xc) != (BIGNUM *)0x0) {
+      BN_free(*(BIGNUM **)(ptr + 0xc));
     }
-    ppBVar4 = (BIGNUM **)0x0;
+    pBVar4 = (BN_BLINDING *)0x0;
     CRYPTO_free(ptr);
   }
-  return (BN_BLINDING *)ppBVar4;
+  return pBVar4;
 }
 

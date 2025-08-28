@@ -13,7 +13,7 @@ int X509_get_pubkey_parameters(EVP_PKEY *pkey,stack_st_X509 *chain)
       pXVar2 = (X509 *)sk_value(&chain->stack,iVar1);
       pkey_00 = X509_get_pubkey(pXVar2);
       if (pkey_00 == (EVP_PKEY *)0x0) {
-        ERR_put_error(0xb,0x6e,0x6c,DAT_000c1934,0x797);
+        ERR_put_error(0xb,0x6e,0x6c,"x509_vfy.c",0x797);
         return 0;
       }
       iVar3 = EVP_PKEY_missing_parameters(pkey_00);
@@ -36,7 +36,7 @@ int X509_get_pubkey_parameters(EVP_PKEY *pkey,stack_st_X509 *chain)
       }
       EVP_PKEY_free(pkey_00);
     }
-    ERR_put_error(0xb,0x6e,0x6b,DAT_000c1934,0x7a3);
+    ERR_put_error(0xb,0x6e,0x6b,"x509_vfy.c",0x7a3);
     iVar1 = 0;
   }
   else {

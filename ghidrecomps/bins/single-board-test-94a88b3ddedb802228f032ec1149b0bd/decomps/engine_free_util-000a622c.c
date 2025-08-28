@@ -6,7 +6,7 @@ undefined4 engine_free_util(void *param_1,int param_2)
   undefined4 uVar2;
   
   if (param_1 == (void *)0x0) {
-    ERR_put_error(0x26,0x6c,0x43,DAT_000a62a4,0x70);
+    ERR_put_error(0x26,0x6c,0x43,"eng_lib.c",0x70);
     uVar2 = 0;
   }
   else {
@@ -18,7 +18,7 @@ undefined4 engine_free_util(void *param_1,int param_2)
       }
     }
     else {
-      iVar1 = CRYPTO_add_lock((int *)((int)param_1 + 0x58),-1,0x1e,DAT_000a62a4,0x74);
+      iVar1 = CRYPTO_add_lock((int *)((int)param_1 + 0x58),-1,0x1e,"eng_lib.c",0x74);
       if (0 < iVar1) {
         return 1;
       }

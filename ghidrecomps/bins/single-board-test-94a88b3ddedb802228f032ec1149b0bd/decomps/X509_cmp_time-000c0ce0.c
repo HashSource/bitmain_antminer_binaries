@@ -37,7 +37,7 @@ int X509_cmp_time(ASN1_TIME *s,time_t *t)
     puVar10 = (uint *)((int)puVar7 + 10);
     iVar4 = -10;
     pbVar11 = (byte *)((int)&local_48 + 2);
-    local_48 = CONCAT22(local_48._2_2_,*(undefined2 *)(puVar7 + 2));
+    local_48 = CONCAT22(local_48._2_2_,(short)puVar7[2]);
   }
   else {
     if (10 < iVar6 - 0xdU) {
@@ -51,7 +51,7 @@ int X509_cmp_time(ASN1_TIME *s,time_t *t)
     puVar10 = puVar7 + 3;
   }
   iVar6 = iVar6 + iVar4;
-  bVar1 = *(byte *)puVar10;
+  bVar1 = (byte)*puVar10;
   if ((bVar1 == 0x5a || bVar1 == 0x2d) || (iVar4 = 0, bVar1 == 0x2b)) {
     *pbVar11 = 0x30;
     pbVar11[1] = 0x30;
@@ -87,7 +87,7 @@ LAB_000c0db4:
         iVar4 = iVar4 + 1;
         if (2 < iVar4 || iVar6 == 0) break;
         puVar10 = (uint *)((int)puVar7 + 1);
-      } while (*(byte *)puVar7 - 0x30 < 10);
+      } while ((byte)*puVar7 - 0x30 < 10);
       pbVar11[2] = 0x5a;
       pbVar11[3] = 0;
       if (iVar6 == 0) {
@@ -99,7 +99,7 @@ LAB_000c0db4:
       pbVar11[2] = 0x5a;
     }
   }
-  bVar1 = *(byte *)puVar7;
+  bVar1 = (byte)*puVar7;
   if (bVar1 == 0x5a) {
     if (iVar6 != 1) {
       return 0;
@@ -130,7 +130,7 @@ LAB_000c0db4:
     if (0x39 < uVar2) {
       return 0;
     }
-    uVar9 = (uint)*(byte *)(puVar7 + 1);
+    uVar9 = (uint)(byte)puVar7[1];
     if (uVar9 < 0x30) {
       return 0;
     }

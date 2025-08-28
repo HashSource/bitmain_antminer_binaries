@@ -2,7 +2,7 @@
 void X509_VERIFY_PARAM_free(X509_VERIFY_PARAM *param)
 
 {
-  _STACK **pp_Var1;
+  char *pcVar1;
   
   if (param != (X509_VERIFY_PARAM *)0x0) {
     param->name = (char *)0x0;
@@ -12,26 +12,41 @@ void X509_VERIFY_PARAM_free(X509_VERIFY_PARAM *param)
     param->flags = 0;
     param->depth = -1;
     if (&param->policies->stack != (_STACK *)0x0) {
-      sk_pop_free(&param->policies->stack,DAT_000c5df8);
+      sk_pop_free(&param->policies->stack,(func *)0xb543d);
       param->policies = (stack_st_ASN1_OBJECT *)0x0;
     }
-    pp_Var1 = (_STACK **)param[1].name;
-    if (*pp_Var1 != (_STACK *)0x0) {
-      sk_pop_free(*pp_Var1,DAT_000c5dfc);
-      *pp_Var1 = (_STACK *)0x0;
+    pcVar1 = param[1].name;
+    if (*(_STACK **)pcVar1 != (_STACK *)0x0) {
+      sk_pop_free(*(_STACK **)pcVar1,(func *)0xc5c99);
+      pcVar1[0] = '\0';
+      pcVar1[1] = '\0';
+      pcVar1[2] = '\0';
+      pcVar1[3] = '\0';
     }
-    if (pp_Var1[2] != (_STACK *)0x0) {
-      CRYPTO_free(pp_Var1[2]);
+    if (*(void **)(pcVar1 + 8) != (void *)0x0) {
+      CRYPTO_free(*(void **)(pcVar1 + 8));
     }
-    if (pp_Var1[3] != (_STACK *)0x0) {
-      CRYPTO_free(pp_Var1[3]);
-      pp_Var1[3] = (_STACK *)0x0;
-      pp_Var1[4] = (_STACK *)0x0;
+    if (*(void **)(pcVar1 + 0xc) != (void *)0x0) {
+      CRYPTO_free(*(void **)(pcVar1 + 0xc));
+      pcVar1[0xc] = '\0';
+      pcVar1[0xd] = '\0';
+      pcVar1[0xe] = '\0';
+      pcVar1[0xf] = '\0';
+      pcVar1[0x10] = '\0';
+      pcVar1[0x11] = '\0';
+      pcVar1[0x12] = '\0';
+      pcVar1[0x13] = '\0';
     }
-    if (pp_Var1[5] != (_STACK *)0x0) {
-      CRYPTO_free(pp_Var1[5]);
-      pp_Var1[5] = (_STACK *)0x0;
-      pp_Var1[6] = (_STACK *)0x0;
+    if (*(void **)(pcVar1 + 0x14) != (void *)0x0) {
+      CRYPTO_free(*(void **)(pcVar1 + 0x14));
+      pcVar1[0x14] = '\0';
+      pcVar1[0x15] = '\0';
+      pcVar1[0x16] = '\0';
+      pcVar1[0x17] = '\0';
+      pcVar1[0x18] = '\0';
+      pcVar1[0x19] = '\0';
+      pcVar1[0x1a] = '\0';
+      pcVar1[0x1b] = '\0';
     }
     CRYPTO_free(param[1].name);
     CRYPTO_free(param);

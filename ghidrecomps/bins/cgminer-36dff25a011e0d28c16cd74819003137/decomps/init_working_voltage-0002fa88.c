@@ -1,18 +1,16 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void init_working_voltage(void)
 
 {
   _Bool _Var1;
   FILE *__stream;
-  undefined4 in_stack_ffffffe0;
-  undefined4 in_stack_ffffffe4;
   FILE *pFile;
   
   _Var1 = is_fixed_freq_mode();
   if ((_Var1) && ((config_parameter._4_1_ & 0x10) != 0)) {
-    set_working_voltage((double)CONCAT44(in_stack_ffffffe4,in_stack_ffffffe0));
+    set_working_voltage((double)config_parameter.voltage / 100.0);
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);
       __stream = fopen(log_file,"a+");

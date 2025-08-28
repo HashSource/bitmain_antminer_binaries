@@ -1,5 +1,5 @@
 
-int smb_connection_state(int param_1,undefined *param_2)
+int smb_connection_state(int param_1,undefined1 *param_2)
 
 {
   undefined2 uVar1;
@@ -19,14 +19,14 @@ int smb_connection_state(int param_1,undefined *param_2)
         return 0;
       }
     }
-    iVar2 = smb_send_message(param_1,0x72,DAT_00057410,0xf);
+    iVar2 = smb_send_message(param_1,0x72,&DAT_0013aa3c,0xf);
     if (iVar2 != 0) goto LAB_0005736a;
     *(undefined4 *)(param_1 + 0x3c0) = 2;
   }
   iVar2 = smb_send_and_recv(param_1,local_14);
   if (iVar2 != 0x51 && iVar2 != 0) {
 LAB_0005736a:
-    *(undefined *)(param_1 + 0x1ed) = 1;
+    *(undefined1 *)(param_1 + 0x1ed) = 1;
     return iVar2;
   }
   if (local_14[0] == 0) {
@@ -34,7 +34,7 @@ LAB_0005736a:
   }
   if (*(int *)(param_1 + 0x3c0) == 2) {
     if (*(int *)(local_14[0] + 9) != 0) {
-      *(undefined *)(param_1 + 0x1ed) = 1;
+      *(undefined1 *)(param_1 + 0x1ed) = 1;
       return 7;
     }
     uVar3 = *(undefined4 *)(local_14[0] + 0x4d);
@@ -51,7 +51,7 @@ LAB_0005736a:
       return 0;
     }
     if (*(int *)(local_14[0] + 9) != 0) {
-      *(undefined *)(param_1 + 0x1ed) = 1;
+      *(undefined1 *)(param_1 + 0x1ed) = 1;
       return 0x43;
     }
     uVar1 = *(undefined2 *)(local_14[0] + 0x20);

@@ -6,7 +6,7 @@ int access(char *__name,int __type)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_access_0007cfe4)();
+  iVar1 = access(__name,__type);
   return iVar1;
 }
 

@@ -4,7 +4,7 @@
 void perror(char *__s)
 
 {
-  (*(code *)PTR_perror_00023d0c)();
+  perror(__s);
   return;
 }
 

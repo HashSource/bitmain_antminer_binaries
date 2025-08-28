@@ -71,11 +71,10 @@ void * nonce_scanhash(void *args)
       }
       if ((app_conf->work_mode == 1) &&
          (_Var1 = (*runtime->nonce_verify_target_match)
-                            ((runtime->nonce_verify_info).target,g_work_info.target), _Var1 != false
-         )) {
+                            ((runtime->nonce_verify_info).target,g_work_info.target), _Var1)) {
         (*runtime->nonce_submit)
                   (nonce_tmp.Nonce,(runtime->nonce_verify_info).work,g_work_info.fixed_nonce_bytes,
-                   DAT_00033020);
+                   (char *)0x4b608);
       }
     }
     else {
@@ -85,8 +84,9 @@ void * nonce_scanhash(void *args)
         if (iVar2 == asic) {
           runtime->chain_status[chainid].nonce_invalid_num_each_asic[asic] =
                runtime->chain_status[chainid].nonce_invalid_num_each_asic[asic] + 1;
-          runtime->chain_status[chainid].one_work_invalid_nonce_each_asic[asic] =
-               runtime->chain_status[chainid].one_work_invalid_nonce_each_asic[asic] + 1;
+          *(int *)((runtime->nonce_verify_info).work + (chainid * 0x24 + asic) * 4 + -0x4c) =
+               *(int *)((runtime->nonce_verify_info).work + (chainid * 0x24 + asic) * 4 + -0x4c) + 1
+          ;
           if (valid == 1) {
             runtime->chain_status[chainid].one_work_invalid_nonce_each_asic_type[asic][1] =
                  runtime->chain_status[chainid].one_work_invalid_nonce_each_asic_type[asic][1] + 1;
@@ -99,7 +99,8 @@ void * nonce_scanhash(void *args)
             snprintf(tmp42,0x400,
                      "Fail:invalid nonce: chainid=%d chipaddr=%02x nonces=%d tm=%d errtype=%d\n",
                      chainid,(uint)nonce_tmp.chip_addr,
-                     runtime->chain_status[chainid].one_work_invalid_nonce_each_asic[asic],
+                     *(undefined4 *)
+                      ((runtime->nonce_verify_info).work + (chainid * 0x24 + asic) * 4 + -0x4c),
                      ticket_mask,valid);
             _applog(0,tmp42,false);
           }

@@ -1,21 +1,21 @@
 
-int SetBlobCmp(void **param_1,void **param_2)
+int SetBlobCmp(undefined4 *param_1,undefined4 *param_2)
 
 {
   int iVar1;
-  void *__n;
-  void *pvVar2;
-  void *pvVar3;
+  size_t __n;
+  size_t sVar2;
+  size_t sVar3;
   
-  pvVar2 = param_2[1];
-  pvVar3 = param_1[1];
-  __n = pvVar3;
-  if ((int)pvVar2 <= (int)pvVar3) {
-    __n = pvVar2;
+  sVar2 = param_2[1];
+  sVar3 = param_1[1];
+  __n = sVar3;
+  if ((int)sVar2 <= (int)sVar3) {
+    __n = sVar2;
   }
-  iVar1 = memcmp(*param_1,*param_2,(size_t)__n);
+  iVar1 = memcmp((void *)*param_1,(void *)*param_2,__n);
   if (iVar1 == 0) {
-    iVar1 = (int)pvVar3 - (int)pvVar2;
+    iVar1 = sVar3 - sVar2;
   }
   return iVar1;
 }

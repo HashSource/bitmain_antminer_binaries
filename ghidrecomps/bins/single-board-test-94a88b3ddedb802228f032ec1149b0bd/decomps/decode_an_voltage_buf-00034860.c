@@ -1,5 +1,5 @@
 
-double decode_an_voltage_buf(int param_1)
+undefined4 decode_an_voltage_buf(int param_1)
 
 {
   char cVar1;
@@ -12,12 +12,12 @@ double decode_an_voltage_buf(int param_1)
   undefined4 uStack_24;
   
   if (param_1 == 0) {
-    dVar4 = 0.0;
+    local_38 = 0;
   }
   else {
     cVar1 = check_pic_crc(param_1);
     if (cVar1 == '\x01') {
-      uVar3 = CONCAT11(*(undefined *)(param_1 + 3),*(undefined *)(param_1 + 4));
+      uVar3 = CONCAT11(*(undefined1 *)(param_1 + 3),*(undefined1 *)(param_1 + 4));
       if (5 < log_level) {
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
@@ -25,7 +25,7 @@ double decode_an_voltage_buf(int param_1)
         }
         fclose(pFVar2);
       }
-      dVar4 = ((double)(longlong)(int)(uint)uVar3 * DAT_00034a50) / DAT_00034a58;
+      dVar4 = ((double)uVar3 * 3.3) / 4096.0;
       if (5 < log_level) {
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
@@ -35,12 +35,11 @@ double decode_an_voltage_buf(int param_1)
         }
         fclose(pFVar2);
       }
-      dVar4 = dVar4 * 4.0;
-      local_38 = SUB84(dVar4,0);
-      uStack_34 = (undefined4)((ulonglong)dVar4 >> 0x20);
+      local_38 = SUB84(dVar4 * 4.0,0);
       if (5 < log_level) {
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
+          uStack_34 = (undefined4)((ulonglong)(dVar4 * 4.0) >> 0x20);
           fprintf(pFVar2,"%s:%d: v_10 = %f\n","power.c",499,local_38,uStack_34);
         }
         fclose(pFVar2);
@@ -54,9 +53,9 @@ double decode_an_voltage_buf(int param_1)
         }
         fclose(pFVar2);
       }
-      dVar4 = 0.0;
+      local_38 = 0;
     }
   }
-  return dVar4;
+  return local_38;
 }
 

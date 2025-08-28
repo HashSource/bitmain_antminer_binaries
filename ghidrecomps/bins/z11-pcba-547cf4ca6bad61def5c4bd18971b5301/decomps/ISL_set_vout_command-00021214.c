@@ -1,6 +1,6 @@
 
 undefined4
-ISL_set_vout_command(undefined param_1,undefined param_2,undefined param_3,ushort param_4)
+ISL_set_vout_command(undefined1 param_1,undefined1 param_2,undefined1 param_3,ushort param_4)
 
 {
   byte local_14;

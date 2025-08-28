@@ -1,5 +1,5 @@
 
-undefined4 jump_to_app_from_loader(undefined param_1)
+undefined4 jump_to_app_from_loader(undefined1 param_1)
 
 {
   puts("jump_to_app_from_loader");

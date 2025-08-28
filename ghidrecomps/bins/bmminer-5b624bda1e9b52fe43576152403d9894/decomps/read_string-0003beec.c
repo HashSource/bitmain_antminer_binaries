@@ -7,16 +7,14 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,int *ours)
   byte bVar1;
   char cVar2;
   undefined3 uVar3;
-  char *result;
   int iVar4;
   size_t sVar5;
-  size_t length;
-  char **ppcVar6;
+  size_t size;
+  undefined4 *puVar6;
   token_t *ptVar7;
   token_t *ptVar8;
   token_t *ptVar9;
   char *pcVar10;
-  char *str;
   strbuffer_t strbuff;
   
   ptVar7 = &s->token;
@@ -45,18 +43,18 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,int *ours)
   if ((bVar1 & 0xf7) == 0x23) {
     strbuffer_init(&strbuff);
     do {
-      ppcVar6 = (char **)ap->__ap;
-      ap->__ap = ppcVar6 + 1;
-      pcVar10 = *ppcVar6;
+      puVar6 = (undefined4 *)ap->__ap;
+      ap->__ap = puVar6 + 1;
+      pcVar10 = (char *)*puVar6;
       if (pcVar10 == (char *)0x0) {
-        set_error(s,DAT_0003c030,DAT_0003c038);
+        set_error(s,"<args>","NULL string argument");
         strbuffer_close(&strbuff);
         return (char *)0x0;
       }
       next_token(s);
       if ((s->token).token == '#') {
                     /* WARNING: Load size is inaccurate */
-        length = *ap->__ap;
+        size = *ap->__ap;
         ap->__ap = (size_t *)((int)ap->__ap + 4);
       }
       else {
@@ -78,11 +76,11 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,int *ours)
         (s->token).pos = sVar5;
         (s->token).token = cVar2;
         *(undefined3 *)&(s->token).field_0xd = uVar3;
-        length = strlen(pcVar10);
+        size = strlen(pcVar10);
       }
-      iVar4 = strbuffer_append_bytes(&strbuff,pcVar10,length);
+      iVar4 = strbuffer_append_bytes(&strbuff,pcVar10,size);
       if (iVar4 == -1) {
-        set_error(s,DAT_0003c03c,DAT_0003c040);
+        set_error(s,"<internal>","Out of memory");
         strbuffer_close(&strbuff);
         return (char *)0x0;
       }
@@ -107,18 +105,18 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,int *ours)
     (s->token).token = cVar2;
     *(undefined3 *)&(s->token).field_0xd = uVar3;
     pcVar10 = strbuffer_steal_value(&strbuff);
-    result = (char *)utf8_check_string(pcVar10,-1);
-    if (result != (char *)0x0) {
+    iVar4 = utf8_check_string(pcVar10,-1);
+    if (iVar4 != 0) {
       *ours = 1;
       return pcVar10;
     }
   }
   else {
-    ppcVar6 = (char **)ap->__ap;
-    ap->__ap = ppcVar6 + 1;
-    pcVar10 = *ppcVar6;
+    puVar6 = (undefined4 *)ap->__ap;
+    ap->__ap = puVar6 + 1;
+    pcVar10 = (char *)*puVar6;
     if (pcVar10 == (char *)0x0) {
-      set_error(s,DAT_0003c030,DAT_0003c038);
+      set_error(s,"<args>","NULL string argument");
       return (char *)0x0;
     }
     iVar4 = utf8_check_string(pcVar10,-1);
@@ -127,7 +125,7 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,int *ours)
       return pcVar10;
     }
   }
-  set_error(s,DAT_0003c030,DAT_0003c034,purpose);
+  set_error(s,"<args>","Invalid UTF-8 %s",purpose);
   return (char *)0x0;
 }
 

@@ -25,7 +25,7 @@ LAB_000fdb34:
   else {
     m_length = EVP_MD_size(*(EVP_MD **)(iVar4 + 0x14));
     if (m_length != param_5) {
-      ERR_put_error(4,0x8e,0x8f,DAT_000fdc40,0xe4);
+      ERR_put_error(4,0x8e,0x8f,"rsa_pmeth.c",0xe4);
       return -1;
     }
     iVar1 = EVP_MD_type(*(EVP_MD **)(iVar4 + 0x14));
@@ -46,10 +46,10 @@ joined_r0x000fdb72:
         __dest = *(void **)(iVar4 + 0x20);
         if (__dest == (void *)0x0) {
           iVar1 = EVP_PKEY_size(*(EVP_PKEY **)(param_1 + 8));
-          __dest = CRYPTO_malloc(iVar1,DAT_000fdc40,0x9c);
+          __dest = CRYPTO_malloc(iVar1,"rsa_pmeth.c",0x9c);
           *(void **)(iVar4 + 0x20) = __dest;
           if (__dest == (void *)0x0) {
-            ERR_put_error(4,0x8e,0x41,DAT_000fdc40,0x106);
+            ERR_put_error(4,0x8e,0x41,"rsa_pmeth.c",0x106);
             return -1;
           }
         }
@@ -61,7 +61,7 @@ joined_r0x000fdb72:
         local_2c[0] = RSA_private_encrypt(m_length + 1,*(uchar **)(iVar4 + 0x20),param_2,rsa,5);
         goto LAB_000fdb34;
       }
-      ERR_put_error(4,0x8e,0x78,DAT_000fdc40,0x102);
+      ERR_put_error(4,0x8e,0x78,"rsa_pmeth.c",0x102);
     }
     else {
       if (iVar3 == 1) {
@@ -73,7 +73,7 @@ joined_r0x000fdb72:
         EM = *(uchar **)(iVar4 + 0x20);
         if (EM == (uchar *)0x0) {
           iVar1 = EVP_PKEY_size(*(EVP_PKEY **)(param_1 + 8));
-          EM = (uchar *)CRYPTO_malloc(iVar1,DAT_000fdc40,0x9c);
+          EM = (uchar *)CRYPTO_malloc(iVar1,"rsa_pmeth.c",0x9c);
           *(uchar **)(iVar4 + 0x20) = EM;
           if (EM == (uchar *)0x0) goto LAB_000fdb56;
         }

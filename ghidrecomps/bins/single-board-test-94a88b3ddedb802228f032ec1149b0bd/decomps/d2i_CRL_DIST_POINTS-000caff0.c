@@ -2,9 +2,9 @@
 CRL_DIST_POINTS * d2i_CRL_DIST_POINTS(CRL_DIST_POINTS **a,uchar **in,long len)
 
 {
-  CRL_DIST_POINTS *pCVar1;
+  ASN1_VALUE *pAVar1;
   
-  pCVar1 = (CRL_DIST_POINTS *)ASN1_item_d2i((ASN1_VALUE **)a,in,len,DAT_000caff8);
-  return pCVar1;
+  pAVar1 = ASN1_item_d2i((ASN1_VALUE **)a,in,len,(ASN1_ITEM *)CRL_DIST_POINTS_it);
+  return (CRL_DIST_POINTS *)pAVar1;
 }
 

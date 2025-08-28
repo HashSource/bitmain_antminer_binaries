@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable err:char *[r0:4] conflicts with parameter, skipped. */
 
 char * opt_set_invbool_arg(char *arg,_Bool *b)
 

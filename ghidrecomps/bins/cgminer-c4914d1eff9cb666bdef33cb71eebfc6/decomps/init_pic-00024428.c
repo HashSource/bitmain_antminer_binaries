@@ -22,7 +22,7 @@ int init_pic(void)
   }
   if (pic_heart_beat == (thr_info *)0x0) {
     pic_heart_beat = (thr_info *)calloc(1,0x40);
-    iVar1 = thr_info_create(pic_heart_beat,(pthread_attr_t *)0x0,pic_heart_beat_func + 1,
+    iVar1 = thr_info_create(pic_heart_beat,(pthread_attr_t *)0x0,(_func_void_ptr_void_ptr *)0x1d7e9,
                             pic_heart_beat);
     if (iVar1 != 0) {
       if (1 < log_level) {

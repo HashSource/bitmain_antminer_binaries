@@ -1,7 +1,7 @@
 
 undefined4
 makeup_set_config_cmd
-          (undefined *param_1,uint param_2,byte param_3,undefined param_4,undefined param_5,
+          (undefined1 *param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5,
           uint param_6)
 
 {

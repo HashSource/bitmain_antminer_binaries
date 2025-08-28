@@ -40,7 +40,7 @@ undefined4 configMiner(void)
   printf("TempSensor2:%d\n",Conf._164_4_);
   printf("TempSensor3:%d\n",Conf._168_4_);
   printf("TempSensor4:%d\n",Conf._172_4_);
-  printf("DefaultTempOffset:%d\n",(int)Conf[176]);
+  printf("DefaultTempOffset:%d\n",(int)Conf[0xb0]);
   printf("StartSensor:%d\n",Conf._204_4_);
   printf("StartTemp:%d\n",Conf._208_4_);
   printf("year:%04d\n",Conf._212_4_);
@@ -49,7 +49,7 @@ undefined4 configMiner(void)
   printf("hour:%02d\n",Conf._224_4_);
   printf("minute:%02d\n",Conf._228_4_);
   printf("second:%02d\n",Conf._232_4_);
-  puts((char *)&DAT_00065a34);
+  puts("\n");
   iVar1 = process_config();
   if (-1 < iVar1) {
     puts("\n\nparameter processed after Reading Config.ini");
@@ -81,20 +81,20 @@ undefined4 configMiner(void)
     printf("OpenCoreNum4 = %ud = 0x%x\n",conf._120_4_);
     printf("GetTempFrom:%d\n",conf._128_4_);
     printf("TempSel:%d\n",conf._132_4_);
-    printf("TempSensor1:%d\n",(uint)conf[136]);
-    printf("TempSensor2:%d\n",(uint)conf[137]);
-    printf("TempSensor3:%d\n",(uint)conf[138]);
-    printf("TempSensor4:%d\n",(uint)conf[139]);
-    printf("DefaultTempOffset:%d\n",(int)conf[140]);
-    printf("StartSensor:%d\n",(uint)conf[168]);
-    printf("StartTemp:%d\n",(int)conf[169]);
+    printf("TempSensor1:%d\n",(uint)conf[0x88]);
+    printf("TempSensor2:%d\n",(uint)conf[0x89]);
+    printf("TempSensor3:%d\n",(uint)conf[0x8a]);
+    printf("TempSensor4:%d\n",(uint)conf[0x8b]);
+    printf("DefaultTempOffset:%d\n",(int)conf[0x8c]);
+    printf("StartSensor:%d\n",(uint)conf[0xa8]);
+    printf("StartTemp:%d\n",(int)conf[0xa9]);
     printf("year:%04d\n",conf._172_4_);
     printf("month:%02d\n",conf._176_4_);
     printf("date:%02d\n",conf._180_4_);
     printf("hour:%02d\n",conf._184_4_);
     printf("minute:%02d\n",conf._188_4_);
     printf("second:%02d\n",conf._192_4_);
-    puts((char *)&DAT_00065a34);
+    puts("\n");
     iVar1 = get_works();
     if (-1 < iVar1) {
       return 0;

@@ -12,7 +12,7 @@ int PKCS7_set_cipher(PKCS7 *p7,EVP_CIPHER *cipher)
   }
   else {
     if (iVar1 != 0x18) {
-      ERR_put_error(0x21,0x6c,0x71,DAT_000cf9f4,0x24d);
+      ERR_put_error(0x21,0x6c,0x71,"pk7_lib.c",0x24d);
       return 0;
     }
     ppVar2 = ((p7->d).sign)->contents;
@@ -22,7 +22,7 @@ int PKCS7_set_cipher(PKCS7 *p7,EVP_CIPHER *cipher)
     ppVar2->detached = (int)cipher;
   }
   else {
-    ERR_put_error(0x21,0x6c,0x90,DAT_000cf9f4,0x255);
+    ERR_put_error(0x21,0x6c,0x90,"pk7_lib.c",0x255);
   }
   return (uint)(iVar1 != 0);
 }

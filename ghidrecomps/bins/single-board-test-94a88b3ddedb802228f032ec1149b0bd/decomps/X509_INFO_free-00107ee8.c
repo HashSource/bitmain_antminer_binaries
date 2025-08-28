@@ -5,7 +5,7 @@ void X509_INFO_free(X509_INFO *a)
   int iVar1;
   
   if (a != (X509_INFO *)0x0) {
-    iVar1 = CRYPTO_add_lock(&a->references,-1,4,DAT_00107f38,0x5d);
+    iVar1 = CRYPTO_add_lock(&a->references,-1,4,"x_info.c",0x5d);
     if (iVar1 < 1) {
       if (a->x509 != (X509 *)0x0) {
         X509_free(a->x509);

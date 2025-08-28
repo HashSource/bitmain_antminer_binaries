@@ -3,7 +3,7 @@ int X509_NAME_get_index_by_OBJ(X509_NAME *name,ASN1_OBJECT *obj,int lastpos)
 
 {
   int iVar1;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   int iVar3;
   int iVar4;
   _STACK *p_Var5;
@@ -19,8 +19,8 @@ int X509_NAME_get_index_by_OBJ(X509_NAME *name,ASN1_OBJECT *obj,int lastpos)
     iVar1 = sk_num(p_Var5);
     if (iVar4 < iVar1) {
       do {
-        ppAVar2 = (ASN1_OBJECT **)sk_value(p_Var5,iVar4);
-        iVar3 = OBJ_cmp(*ppAVar2,obj);
+        puVar2 = (undefined4 *)sk_value(p_Var5,iVar4);
+        iVar3 = OBJ_cmp((ASN1_OBJECT *)*puVar2,obj);
         if (iVar3 == 0) {
           return iVar4;
         }

@@ -1,9 +1,9 @@
 
-void software_set_address_onChain(undefined param_1)
+void software_set_address_onChain(undefined1 param_1)
 
 {
   char cVar1;
-  int local_c;
+  undefined4 local_c;
   
   cVar1 = '\0';
   chain_inactive(param_1);

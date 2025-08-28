@@ -5,8 +5,8 @@ int X509_REQ_extension_nid(int nid)
   int *piVar1;
   int iVar2;
   
-  piVar1 = *DAT_0010b5a0;
-  iVar2 = *piVar1;
+  iVar2 = *ext_nids;
+  piVar1 = ext_nids;
   if (iVar2 == 0) {
     iVar2 = 0;
   }

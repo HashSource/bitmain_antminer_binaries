@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 _Bool block_exists(char *hexstr,uchar *bedata,work *work)
 
 {
@@ -148,23 +146,8 @@ _Bool block_exists(char *hexstr,uchar *bedata,work *work)
   if (s == (block *)0x0) {
     __dest = (block *)_cgcalloc(0x68,1,"cgminer.c","block_exists",0x156a);
     if (__dest == (block *)0x0) {
-      tmp42[0] = s_block_exists_OOM_00073174[0];
-      tmp42[1] = s_block_exists_OOM_00073174[1];
-      tmp42[2] = s_block_exists_OOM_00073174[2];
-      tmp42[3] = s_block_exists_OOM_00073174[3];
-      tmp42[4] = s_block_exists_OOM_00073174[4];
-      tmp42[5] = s_block_exists_OOM_00073174[5];
-      tmp42[6] = s_block_exists_OOM_00073174[6];
-      tmp42[7] = s_block_exists_OOM_00073174[7];
-      tmp42[8] = s_block_exists_OOM_00073174[8];
-      tmp42[9] = s_block_exists_OOM_00073174[9];
-      tmp42[10] = s_block_exists_OOM_00073174[10];
-      tmp42[11] = s_block_exists_OOM_00073174[11];
-      tmp42[12] = s_block_exists_OOM_00073174[12];
-      tmp42[13] = s_block_exists_OOM_00073174[13];
-      tmp42[14] = s_block_exists_OOM_00073174[14];
-      tmp42[15] = s_block_exists_OOM_00073174[15];
-      tmp42[16] = (char)ram0x00073184;
+      builtin_strncpy(tmp42,"block_exists OOM",0x10);
+      tmp42[0x10] = '\0';
       _applog(3,tmp42,true);
       _quit(1);
     }

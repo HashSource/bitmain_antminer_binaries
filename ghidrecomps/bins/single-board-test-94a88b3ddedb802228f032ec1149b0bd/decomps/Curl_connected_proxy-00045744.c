@@ -24,11 +24,11 @@ undefined4 Curl_connected_proxy(int param_1,int param_2)
                           *(undefined4 *)(param_1 + 0xb4),0,param_1,1);
       break;
     default:
-      goto switchD_0004575c_caseD_4;
+      goto switchD_0004575c_default;
     }
   }
   else {
-switchD_0004575c_caseD_4:
+switchD_0004575c_default:
     uVar1 = 0;
   }
   return uVar1;

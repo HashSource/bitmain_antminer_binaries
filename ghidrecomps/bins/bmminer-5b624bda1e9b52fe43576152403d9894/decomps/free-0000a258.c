@@ -4,9 +4,7 @@
 void free(void *__ptr)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x0000a260. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_0005f208)();
+  (*(code *)(undefined *)0x0)(__ptr);
   return;
 }
 

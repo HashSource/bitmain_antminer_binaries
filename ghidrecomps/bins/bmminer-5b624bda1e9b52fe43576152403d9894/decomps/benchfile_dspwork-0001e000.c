@@ -19,8 +19,8 @@ void benchfile_dspwork(work *work,uint nonce)
     iVar3 = uVar2 + iVar3 * 0x100;
   } while (iVar1 != 0);
   __bin2hex(buf,work->data,0x80);
-  if (((*DAT_0001e064 != '\0') || (*DAT_0001e068 != '\0')) || (2 < *DAT_0001e070)) {
-    snprintf(tmp42,0x800,DAT_0001e06c,iVar3,iVar3,buf);
+  if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
+    snprintf(tmp42,0x800,"BENCHFILE nonce %u=0x%08x for work=%s",iVar3,iVar3,buf);
     _applog(3,tmp42,false);
   }
   return;

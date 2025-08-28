@@ -4,6 +4,6 @@
 uint get_crc_count(void)
 
 {
-  return (uint)*(ushort *)(axi_fpga_addr + 0x3e);
+  return (uint)(ushort)axi_fpga_addr[0x3e];
 }
 

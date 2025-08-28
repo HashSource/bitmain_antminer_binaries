@@ -17,7 +17,7 @@ d2i_ASN1_SET(stack_st_OPENSSL_BLOCK **a,uchar **pp,long length,undefined1 *d2i,f
   
   if (((a == (stack_st_OPENSSL_BLOCK **)0x0) || (st = &(*a)->stack, st == (_STACK *)0x0)) &&
      (st = sk_new_null(), st == (_STACK *)0x0)) {
-    ERR_put_error(0xd,0x94,0x41,DAT_00126e14,0xaf);
+    ERR_put_error(0xd,0x94,0x41,"a_set.c",0xaf);
   }
   else {
     local_4c = *pp;
@@ -31,7 +31,7 @@ d2i_ASN1_SET(stack_st_OPENSSL_BLOCK **a,uchar **pp,long length,undefined1 *d2i,f
       if (local_38 == ex_class) {
         if (local_3c == ex_tag) {
           if (local_30 < local_4c + (int)local_34) {
-            ERR_put_error(0xd,0x94,0x88,DAT_00126e14,0xc4);
+            ERR_put_error(0xd,0x94,0x88,"a_set.c",0xc4);
           }
           else {
             local_30 = local_4c + (int)local_34;
@@ -64,7 +64,7 @@ LAB_00126de8:
               if (iVar1 != 0) goto LAB_00126de8;
               data = (void *)(*(code *)d2i)(0,&local_4c,local_34);
               if (data == (void *)0x0) {
-                ERR_put_error(0xd,0x94,0x71,DAT_00126e14,0xd9);
+                ERR_put_error(0xd,0x94,0x71,"a_set.c",0xd9);
                 asn1_add_error(*pp,(int)local_4c - (int)*pp);
                 break;
               }
@@ -73,11 +73,11 @@ LAB_00126de8:
           }
         }
         else {
-          ERR_put_error(0xd,0x94,0x68,DAT_00126e14,0xc0);
+          ERR_put_error(0xd,0x94,0x68,"a_set.c",0xc0);
         }
       }
       else {
-        ERR_put_error(0xd,0x94,0x65,DAT_00126e14,0xbc);
+        ERR_put_error(0xd,0x94,0x65,"a_set.c",0xbc);
       }
     }
     if ((a == (stack_st_OPENSSL_BLOCK **)0x0) || (st != &(*a)->stack)) {

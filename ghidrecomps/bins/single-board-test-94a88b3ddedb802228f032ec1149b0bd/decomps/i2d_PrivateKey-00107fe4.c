@@ -19,7 +19,7 @@ int i2d_PrivateKey(EVP_PKEY *a,uchar **pp)
       return iVar1;
     }
   }
-  ERR_put_error(0xd,0xa3,0xa7,DAT_0010802c,0x4c);
+  ERR_put_error(0xd,0xa3,0xa7,"i2d_pr.c",0x4c);
   return -1;
 }
 

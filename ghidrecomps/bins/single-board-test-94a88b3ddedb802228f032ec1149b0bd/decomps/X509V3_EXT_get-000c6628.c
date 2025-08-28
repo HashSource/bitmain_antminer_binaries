@@ -2,10 +2,9 @@
 X509V3_EXT_METHOD * X509V3_EXT_get(X509_EXTENSION *ext)
 
 {
-  _STACK **pp_Var1;
-  X509V3_EXT_METHOD **ppXVar2;
-  int iVar3;
-  X509V3_EXT_METHOD *pXVar4;
+  undefined4 *puVar1;
+  int iVar2;
+  X509V3_EXT_METHOD *pXVar3;
   int *local_4c;
   int local_48 [14];
   
@@ -15,15 +14,13 @@ X509V3_EXT_METHOD * X509V3_EXT_get(X509_EXTENSION *ext)
   }
   if (-1 < local_48[0]) {
     local_4c = local_48;
-    ppXVar2 = (X509V3_EXT_METHOD **)OBJ_bsearch_(&local_4c,DAT_000c667c,0x2a,4,DAT_000c6678);
-    pp_Var1 = DAT_000c6680;
-    if (ppXVar2 != (X509V3_EXT_METHOD **)0x0) {
-      return *ppXVar2;
+    puVar1 = (undefined4 *)OBJ_bsearch_(&local_4c,&standard_exts,0x2a,4,(cmp *)0xc656d);
+    if (puVar1 != (undefined4 *)0x0) {
+      return (X509V3_EXT_METHOD *)*puVar1;
     }
-    if ((*DAT_000c6680 != (_STACK *)0x0) && (iVar3 = sk_find(*DAT_000c6680,local_48), iVar3 != -1))
-    {
-      pXVar4 = (X509V3_EXT_METHOD *)sk_value(*pp_Var1,iVar3);
-      return pXVar4;
+    if ((ext_list != (_STACK *)0x0) && (iVar2 = sk_find(ext_list,local_48), iVar2 != -1)) {
+      pXVar3 = (X509V3_EXT_METHOD *)sk_value(ext_list,iVar2);
+      return pXVar3;
     }
   }
   return (X509V3_EXT_METHOD *)0x0;

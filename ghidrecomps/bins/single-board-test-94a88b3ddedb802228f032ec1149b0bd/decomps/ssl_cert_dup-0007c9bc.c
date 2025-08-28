@@ -15,9 +15,9 @@ int * ssl_cert_dup(int *param_1)
   int iVar9;
   int iVar10;
   
-  __s = (int *)CRYPTO_malloc(0x170,DAT_0007cc6c,0xde);
+  __s = (int *)CRYPTO_malloc(0x170,"ssl_cert.c",0xde);
   if (__s == (int *)0x0) {
-    ERR_put_error(0x14,0xdd,0x41,DAT_0007d2fc,0xe0);
+    ERR_put_error(0x14,0xdd,0x41,"ssl_cert.c",0xe0);
     return (int *)0x0;
   }
   memset(__s,0,0x170);
@@ -43,7 +43,7 @@ int * ssl_cert_dup(int *param_1)
   pDVar1 = DHparams_dup(pDVar1);
   __s[9] = (int)pDVar1;
   if (pDVar1 == (DH *)0x0) {
-    ERR_put_error(0x14,0xdd,5,DAT_0007d2fc,0xfe);
+    ERR_put_error(0x14,0xdd,5,"ssl_cert.c",0xfe);
     goto LAB_0007cff4;
   }
   iVar6 = param_1[9];
@@ -56,7 +56,7 @@ int * ssl_cert_dup(int *param_1)
       goto LAB_0007ca44;
     }
 LAB_0007d27c:
-    ERR_put_error(0x14,0xdd,3,DAT_0007d2ac,iVar6);
+    ERR_put_error(0x14,0xdd,3,"ssl_cert.c",iVar6);
     goto LAB_0007cff4;
   }
 LAB_0007ca44:
@@ -75,7 +75,7 @@ LAB_0007ca56:
     pEVar3 = EC_KEY_dup(pEVar3);
     __s[0xb] = (int)pEVar3;
     if (pEVar3 == (EC_KEY *)0x0) {
-      ERR_put_error(0x14,0xdd,0x10,DAT_0007d2fc,0x119);
+      ERR_put_error(0x14,0xdd,0x10,"ssl_cert.c",0x119);
       goto LAB_0007cff4;
     }
   }
@@ -85,25 +85,25 @@ LAB_0007ca56:
   __s[0xd] = iVar8;
   if (iVar6 != 0) {
     __s[0xf] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cc6c,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x10] != 0) {
     __s[0x10] = param_1[0x10];
-    CRYPTO_add_lock((int *)(param_1[0x10] + 8),1,10,DAT_0007cc6c,299);
+    CRYPTO_add_lock((int *)(param_1[0x10] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x12] != 0) {
     iVar6 = X509_chain_up_ref();
     __s[0x12] = iVar6;
     if (iVar6 != 0) goto LAB_0007cab4;
 LAB_0007cfda:
-    ERR_put_error(0x14,0xdd,0x41,DAT_0007d2ac,0x131);
+    ERR_put_error(0x14,0xdd,0x41,"ssl_cert.c",0x131);
     goto LAB_0007cff4;
   }
 LAB_0007cab4:
   iVar6 = param_1[0x13];
   __s[0x15] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x14],DAT_0007cc6c,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x14],"ssl_cert.c",0x13a);
     __s[0x13] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x13];
@@ -113,11 +113,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x16];
   if (iVar6 != 0) {
     __s[0x16] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cc6c,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x17] != 0) {
     __s[0x17] = param_1[0x17];
-    CRYPTO_add_lock((int *)(param_1[0x17] + 8),1,10,DAT_0007cc6c,299);
+    CRYPTO_add_lock((int *)(param_1[0x17] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x19] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -127,7 +127,7 @@ LAB_0007cab4:
   iVar6 = param_1[0x1a];
   __s[0x1c] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x1b],DAT_0007cc6c,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x1b],"ssl_cert.c",0x13a);
     __s[0x1a] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x1a];
@@ -137,11 +137,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x1d];
   if (iVar6 != 0) {
     __s[0x1d] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cc6c,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x1e] != 0) {
     __s[0x1e] = param_1[0x1e];
-    CRYPTO_add_lock((int *)(param_1[0x1e] + 8),1,10,DAT_0007cc6c,299);
+    CRYPTO_add_lock((int *)(param_1[0x1e] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x20] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -151,7 +151,7 @@ LAB_0007cab4:
   iVar6 = param_1[0x21];
   __s[0x23] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x22],DAT_0007cc6c,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x22],"ssl_cert.c",0x13a);
     __s[0x21] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x21];
@@ -161,11 +161,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x24];
   if (iVar6 != 0) {
     __s[0x24] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cc6c,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x25] != 0) {
     __s[0x25] = param_1[0x25];
-    CRYPTO_add_lock((int *)(param_1[0x25] + 8),1,10,DAT_0007cc6c,299);
+    CRYPTO_add_lock((int *)(param_1[0x25] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x27] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -175,7 +175,7 @@ LAB_0007cab4:
   iVar6 = param_1[0x28];
   __s[0x2a] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x29],DAT_0007cc6c,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x29],"ssl_cert.c",0x13a);
     __s[0x28] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x28];
@@ -185,11 +185,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x2b];
   if (iVar6 != 0) {
     __s[0x2b] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cc6c,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x2c] != 0) {
     __s[0x2c] = param_1[0x2c];
-    CRYPTO_add_lock((int *)(param_1[0x2c] + 8),1,10,DAT_0007cf98,299);
+    CRYPTO_add_lock((int *)(param_1[0x2c] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x2e] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -199,7 +199,7 @@ LAB_0007cab4:
   iVar6 = param_1[0x2f];
   __s[0x31] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x30],DAT_0007cf98,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x30],"ssl_cert.c",0x13a);
     __s[0x2f] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x2f];
@@ -209,11 +209,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x32];
   if (iVar6 != 0) {
     __s[0x32] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cf98,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x33] != 0) {
     __s[0x33] = param_1[0x33];
-    CRYPTO_add_lock((int *)(param_1[0x33] + 8),1,10,DAT_0007cf98,299);
+    CRYPTO_add_lock((int *)(param_1[0x33] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x35] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -223,7 +223,7 @@ LAB_0007cab4:
   iVar6 = param_1[0x36];
   __s[0x38] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x37],DAT_0007cf98,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x37],"ssl_cert.c",0x13a);
     __s[0x36] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x36];
@@ -233,11 +233,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x39];
   if (iVar6 != 0) {
     __s[0x39] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cf98,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x3a] != 0) {
     __s[0x3a] = param_1[0x3a];
-    CRYPTO_add_lock((int *)(param_1[0x3a] + 8),1,10,DAT_0007cf98,299);
+    CRYPTO_add_lock((int *)(param_1[0x3a] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x3c] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -247,7 +247,7 @@ LAB_0007cab4:
   iVar6 = param_1[0x3d];
   __s[0x3f] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x3e],DAT_0007cf98,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x3e],"ssl_cert.c",0x13a);
     __s[0x3d] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007d294;
     pvVar7 = (void *)param_1[0x3d];
@@ -257,11 +257,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x40];
   if (iVar6 != 0) {
     __s[0x40] = iVar6;
-    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,DAT_0007cf98,0x126);
+    CRYPTO_add_lock((int *)(iVar6 + 0x10),1,3,"ssl_cert.c",0x126);
   }
   if (param_1[0x41] != 0) {
     __s[0x41] = param_1[0x41];
-    CRYPTO_add_lock((int *)(param_1[0x41] + 8),1,10,DAT_0007cf98,299);
+    CRYPTO_add_lock((int *)(param_1[0x41] + 8),1,10,"ssl_cert.c",299);
   }
   if (param_1[0x43] != 0) {
     iVar6 = X509_chain_up_ref();
@@ -271,11 +271,11 @@ LAB_0007cab4:
   iVar6 = param_1[0x44];
   __s[0x46] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x45],DAT_0007cf98,0x13a);
+    pvVar4 = CRYPTO_malloc(param_1[0x45],"ssl_cert.c",0x13a);
     __s[0x44] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) {
 LAB_0007d294:
-      ERR_put_error(0x14,0xdd,0x41,DAT_0007d2ac,0x13c);
+      ERR_put_error(0x14,0xdd,0x41,"ssl_cert.c",0x13c);
       return (int *)0x0;
     }
     pvVar7 = (void *)param_1[0x44];
@@ -302,7 +302,7 @@ LAB_0007cfd4:
     __s[0x4d] = iVar6;
   }
   else {
-    pvVar4 = CRYPTO_malloc(param_1[0x4c],DAT_0007cf98,0x154);
+    pvVar4 = CRYPTO_malloc(param_1[0x4c],"ssl_cert.c",0x154);
     __s[0x4b] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007cff4;
     memcpy(pvVar4,(void *)param_1[0x4b],param_1[0x4c]);
@@ -310,7 +310,7 @@ LAB_0007cfd4:
     iVar6 = param_1[0x4d];
     if (iVar6 == 0) goto LAB_0007cfd4;
 LAB_0007cedc:
-    pvVar4 = CRYPTO_malloc(param_1[0x4e],DAT_0007cf98,0x15d);
+    pvVar4 = CRYPTO_malloc(param_1[0x4e],"ssl_cert.c",0x15d);
     __s[0x4d] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007cff4;
     memcpy(pvVar4,(void *)param_1[0x4d],param_1[0x4e]);
@@ -319,7 +319,7 @@ LAB_0007cedc:
   iVar6 = param_1[0x47];
   __s[0x4f] = 0;
   if (iVar6 != 0) {
-    pvVar4 = CRYPTO_malloc(param_1[0x48],DAT_0007cf98,0x169);
+    pvVar4 = CRYPTO_malloc(param_1[0x48],"ssl_cert.c",0x169);
     __s[0x47] = (int)pvVar4;
     if (pvVar4 == (void *)0x0) goto LAB_0007cff4;
     memcpy(pvVar4,(void *)param_1[0x47],param_1[0x48]);
@@ -332,11 +332,11 @@ LAB_0007cedc:
   __s[0x51] = iVar8;
   __s[0x52] = iVar9;
   if (iVar6 != 0) {
-    CRYPTO_add_lock((int *)(iVar6 + 0x44),1,0xb,DAT_0007cf98,0x177);
+    CRYPTO_add_lock((int *)(iVar6 + 0x44),1,0xb,"ssl_cert.c",0x177);
     __s[0x54] = param_1[0x54];
   }
   if (param_1[0x53] != 0) {
-    CRYPTO_add_lock((int *)(param_1[0x53] + 0x44),1,0xb,DAT_0007cf98,0x17c);
+    CRYPTO_add_lock((int *)(param_1[0x53] + 0x44),1,0xb,"ssl_cert.c",0x17c);
     __s[0x53] = param_1[0x53];
   }
   __s[0x55] = 0;
@@ -365,7 +365,7 @@ LAB_0007cff4:
     __s[0x10] = 0;
   }
   if ((_STACK *)__s[0x12] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x12],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x12],X509_free);
     __s[0x12] = 0;
   }
   if ((void *)__s[0x13] != (void *)0x0) {
@@ -383,7 +383,7 @@ LAB_0007cff4:
     __s[0x17] = 0;
   }
   if ((_STACK *)__s[0x19] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x19],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x19],X509_free);
     __s[0x19] = 0;
   }
   if ((void *)__s[0x1a] != (void *)0x0) {
@@ -401,7 +401,7 @@ LAB_0007cff4:
     __s[0x1e] = 0;
   }
   if ((_STACK *)__s[0x20] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x20],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x20],X509_free);
     __s[0x20] = 0;
   }
   if ((void *)__s[0x21] != (void *)0x0) {
@@ -419,7 +419,7 @@ LAB_0007cff4:
     __s[0x25] = 0;
   }
   if ((_STACK *)__s[0x27] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x27],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x27],X509_free);
     __s[0x27] = 0;
   }
   if ((void *)__s[0x28] != (void *)0x0) {
@@ -437,7 +437,7 @@ LAB_0007cff4:
     __s[0x2c] = 0;
   }
   if ((_STACK *)__s[0x2e] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x2e],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x2e],X509_free);
     __s[0x2e] = 0;
   }
   if ((void *)__s[0x2f] != (void *)0x0) {
@@ -455,7 +455,7 @@ LAB_0007cff4:
     __s[0x33] = 0;
   }
   if ((_STACK *)__s[0x35] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x35],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x35],X509_free);
     __s[0x35] = 0;
   }
   if ((void *)__s[0x36] != (void *)0x0) {
@@ -473,7 +473,7 @@ LAB_0007cff4:
     __s[0x3a] = 0;
   }
   if ((_STACK *)__s[0x3c] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x3c],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x3c],X509_free);
     __s[0x3c] = 0;
   }
   if ((void *)__s[0x3d] != (void *)0x0) {
@@ -491,7 +491,7 @@ LAB_0007cff4:
     __s[0x41] = 0;
   }
   if ((_STACK *)__s[0x43] != (_STACK *)0x0) {
-    sk_pop_free((_STACK *)__s[0x43],DAT_0007d2b0);
+    sk_pop_free((_STACK *)__s[0x43],X509_free);
     __s[0x43] = 0;
   }
   if ((void *)__s[0x44] != (void *)0x0) {

@@ -1,5 +1,5 @@
 
-undefined4 dsPIC33EP16GS202_send_data_to_pic(undefined4 param_1,undefined *param_2)
+undefined4 dsPIC33EP16GS202_send_data_to_pic(undefined4 param_1,undefined1 *param_2)
 
 {
   int iVar1;
@@ -49,10 +49,10 @@ undefined4 dsPIC33EP16GS202_send_data_to_pic(undefined4 param_1,undefined *param
       return 1;
     }
     if (3 < log_level) {
-      __stream = fopen(log_file,(char *)&DAT_0005e760);
+      __stream = fopen(log_file,"a+");
       if (__stream != (FILE *)0x0) {
         fprintf(__stream,"%s:%d:%s: %s failed on Chain[%d]!\n","dsPIC33EP16GS202.c",0x140,
-                DAT_0003fca0,DAT_0003fca0,param_1);
+                "dsPIC33EP16GS202_send_data_to_pic","dsPIC33EP16GS202_send_data_to_pic",param_1);
       }
       fclose(__stream);
     }

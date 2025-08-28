@@ -6,7 +6,7 @@ int pthread_cond_wait(pthread_cond_t *__cond,pthread_mutex_t *__mutex)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_cond_wait_0007d060)();
+  iVar1 = pthread_cond_wait(__cond,__mutex);
   return iVar1;
 }
 

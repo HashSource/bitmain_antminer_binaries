@@ -16,7 +16,7 @@ uint BN_GF2m_mod_solve_quad
   
   iVar1 = BN_num_bits(param_3);
   iVar1 = iVar1 + 1;
-  ptr = CRYPTO_malloc(iVar1 * 4,DAT_0012426c,0x4c9);
+  ptr = CRYPTO_malloc(iVar1 * 4,"bn_gf2m.c",0x4c9);
   if (ptr == (void *)0x0) {
     return 0;
   }
@@ -74,7 +74,7 @@ uint BN_GF2m_mod_solve_quad
       goto LAB_00124244;
     }
   }
-  ERR_put_error(3,0x86,0x6a,DAT_0012426c,0x4cd);
+  ERR_put_error(3,0x86,0x6a,"bn_gf2m.c",0x4cd);
 LAB_00124244:
   CRYPTO_free(ptr);
   return uVar6;

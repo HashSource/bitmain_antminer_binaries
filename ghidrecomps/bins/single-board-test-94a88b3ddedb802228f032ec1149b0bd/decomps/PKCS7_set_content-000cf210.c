@@ -25,7 +25,7 @@ int PKCS7_set_content(PKCS7 *p7,PKCS7 *p7_data)
     iVar1 = 1;
   }
   else {
-    ERR_put_error(0x21,0x6d,0x70,DAT_000cf260,0x96);
+    ERR_put_error(0x21,0x6d,0x70,"pk7_lib.c",0x96);
     iVar1 = 0;
   }
   return iVar1;

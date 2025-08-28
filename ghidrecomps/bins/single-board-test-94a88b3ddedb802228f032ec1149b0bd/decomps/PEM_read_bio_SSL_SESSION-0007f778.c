@@ -4,7 +4,8 @@ SSL_SESSION * PEM_read_bio_SSL_SESSION(BIO *bp,SSL_SESSION **x,undefined1 *cb,vo
 {
   SSL_SESSION *pSVar1;
   
-  pSVar1 = (SSL_SESSION *)PEM_ASN1_read_bio(d2i_SSL_SESSION + 1,"SSL SESSION PARAMETERS",bp,x,cb,u);
+  pSVar1 = (SSL_SESSION *)
+           PEM_ASN1_read_bio((undefined1 *)0x82ae1,"SSL SESSION PARAMETERS",bp,x,cb,u);
   return pSVar1;
 }
 

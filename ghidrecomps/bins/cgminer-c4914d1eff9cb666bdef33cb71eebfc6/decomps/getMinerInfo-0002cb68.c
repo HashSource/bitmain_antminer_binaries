@@ -20,14 +20,14 @@ void getMinerInfo(char *infoStr)
     for (i = 0; i < 0x10; i = i + 1) {
       if (dev->chain_exist[i] != 0) {
         dVar4 = get_working_voltage_by_chain((uint8_t)i);
-        voltage = voltage + dVar4 * DAT_0002cd48;
+        voltage = voltage + dVar4 * 100.0;
       }
     }
     voltage = voltage / (double)(longlong)i;
   }
   else {
     dVar4 = get_working_voltage();
-    voltage = dVar4 * DAT_0002cd48;
+    voltage = dVar4 * 100.0;
   }
   for (i = 0; i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] != 0) {

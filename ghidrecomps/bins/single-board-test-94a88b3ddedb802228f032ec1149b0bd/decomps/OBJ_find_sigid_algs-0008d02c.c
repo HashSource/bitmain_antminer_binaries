@@ -3,28 +3,26 @@ int OBJ_find_sigid_algs(int signid,int *pdig_nid,int *ppkey_nid)
 
 {
   int *piVar1;
-  _STACK **pp_Var2;
-  int iVar3;
-  void *pvVar4;
+  int iVar2;
+  void *pvVar3;
   int local_24 [4];
   
-  pp_Var2 = DAT_0008d07c;
   local_24[0] = signid;
-  if ((((*DAT_0008d07c != (_STACK *)0x0) && (iVar3 = sk_find(*DAT_0008d07c,local_24), -1 < iVar3))
-      && (pvVar4 = sk_value(*pp_Var2,iVar3), pvVar4 != (void *)0x0)) ||
-     (pvVar4 = OBJ_bsearch_(local_24,DAT_0008d084,0x28,0xc,DAT_0008d080), pvVar4 != (void *)0x0)) {
+  if ((((sig_app != (_STACK *)0x0) && (iVar2 = sk_find(sig_app,local_24), -1 < iVar2)) &&
+      (pvVar3 = sk_value(sig_app,iVar2), pvVar3 != (void *)0x0)) ||
+     (pvVar3 = OBJ_bsearch_(local_24,&sigoid_srt,0x28,0xc,(cmp *)0x8cfe5), pvVar3 != (void *)0x0)) {
     if (pdig_nid != (int *)0x0) {
-      *pdig_nid = *(int *)((int)pvVar4 + 4);
+      *pdig_nid = *(int *)((int)pvVar3 + 4);
     }
     if (ppkey_nid == (int *)0x0) {
-      pvVar4 = (void *)0x1;
+      pvVar3 = (void *)0x1;
     }
     else {
-      piVar1 = (int *)((int)pvVar4 + 8);
-      pvVar4 = (void *)0x1;
+      piVar1 = (int *)((int)pvVar3 + 8);
+      pvVar3 = (void *)0x1;
       *ppkey_nid = *piVar1;
     }
   }
-  return (int)pvVar4;
+  return (int)pvVar3;
 }
 

@@ -1,9 +1,9 @@
 
-undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_2,int param_3)
+undefined4 read_temperature_offset_PIC16F1704(undefined1 param_1,undefined1 param_2,int param_3)
 
 {
   byte bVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   uint uVar3;
   uint uVar4;
   uint uVar5;
@@ -23,7 +23,7 @@ undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_
   undefined4 local_2c;
   undefined2 local_28;
   ushort local_24;
-  undefined local_22;
+  undefined1 local_22;
   byte local_21;
   
   local_22 = 4;
@@ -37,13 +37,13 @@ undefined4 read_temperature_offset_PIC16F1704(undefined param_1,undefined param_
   local_38 = 0x2700;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_21 = 0; local_21 < 6; local_21 = local_21 + 1) {
-    write_pic(param_1,param_2,*(undefined *)((int)&local_3c + (uint)local_21));
+    write_pic(param_1,param_2,*(undefined1 *)((int)&local_3c + (uint)local_21));
   }
   usleep(200000);
   for (local_21 = 0; local_21 < 0xc; local_21 = local_21 + 1) {
     uVar12 = (uint)local_21;
     uVar2 = read_pic(param_1,param_2);
-    *(undefined *)((int)&local_34 + uVar12) = uVar2;
+    *(undefined1 *)((int)&local_34 + uVar12) = uVar2;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   uVar3 = local_34 >> 0x10 & 0xff;

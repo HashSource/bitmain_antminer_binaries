@@ -6,7 +6,7 @@ X509_LOOKUP * X509_LOOKUP_new(X509_LOOKUP_METHOD *method)
   int iVar1;
   _func_1976 *p_Var2;
   
-  ctx = (X509_LOOKUP *)CRYPTO_malloc(0x14,DAT_000c3934,0x45);
+  ctx = (X509_LOOKUP *)CRYPTO_malloc(0x14,"x509_lu.c",0x45);
   if (ctx != (X509_LOOKUP *)0x0) {
     p_Var2 = method->new_item;
     ctx->method = method;

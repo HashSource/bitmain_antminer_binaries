@@ -48,14 +48,6 @@ void bn_mul_recursive_constprop_0
 LAB_000f0ea4:
     bn_sub_words(param_5 + num,puVar11,param_3,num);
     break;
-  default:
-    if (num != 8) {
-      bVar1 = false;
-      bVar2 = false;
-      goto LAB_000f0dc6;
-    }
-    bVar2 = false;
-    goto LAB_000f0d26;
   case -4:
     bn_sub_words(param_5,ap_01,param_2,num);
     bVar2 = false;
@@ -78,6 +70,14 @@ LAB_000f0ea4:
     bVar2 = true;
     bn_sub_words(param_5,ap_01,param_2,num);
     goto LAB_000f0ea4;
+  default:
+    if (num != 8) {
+      bVar1 = false;
+      bVar2 = false;
+      goto LAB_000f0dc6;
+    }
+    bVar2 = false;
+    goto LAB_000f0d26;
   }
   if (num == 8) {
 LAB_000f0d26:
@@ -119,11 +119,6 @@ LAB_000f0dc6:
 LAB_000f10cc:
     bn_sub_words(rp + iVar4,ap,puVar11,iVar4);
     break;
-  default:
-    bVar1 = false;
-    bVar3 = false;
-    if (iVar4 != 8) goto LAB_000f1060;
-    goto LAB_000f0f90;
   case -4:
     bn_sub_words(rp,ap_02,ap_01,iVar4);
     bVar3 = false;
@@ -146,6 +141,11 @@ LAB_000f10cc:
     bVar3 = true;
     bn_sub_words(rp,ap_02,ap_01,iVar4);
     goto LAB_000f10cc;
+  default:
+    bVar1 = false;
+    bVar3 = false;
+    if (iVar4 != 8) goto LAB_000f1060;
+    goto LAB_000f0f90;
   }
   if (iVar4 == 8) {
 LAB_000f0f90:

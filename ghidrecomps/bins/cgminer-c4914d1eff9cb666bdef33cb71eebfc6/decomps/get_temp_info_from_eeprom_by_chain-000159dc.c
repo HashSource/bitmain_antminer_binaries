@@ -2,7 +2,6 @@
 void get_temp_info_from_eeprom_by_chain(uint32_t chain)
 
 {
-  uint8_t chain_00;
   _Bool _Var1;
   FILE *pFVar2;
   uint32_t chain_local;
@@ -17,6 +16,7 @@ void get_temp_info_from_eeprom_by_chain(uint32_t chain)
   FILE *pFile_1;
   FILE *pFile;
   int i;
+  uint8_t chain_00;
   
   chain_00 = (uint8_t)chain;
   _Var1 = eeprom_get_temp_sensor_type(chain_00,&temp_info[chain].type);

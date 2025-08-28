@@ -30,7 +30,7 @@ int scan_freq_get_work_of_core_one_file(int which_asic,int which_core,FILE **str
       __ptr = scanfreq_info.works[which_asic] + subid + count * which_core;
       pcVar2 = strstr(str,"nonce");
       if (pcVar2 == (char *)0x0) {
-err:
+LAB_00030144:
         free(__ptr);
         if (log_level < 4) {
           return subid;
@@ -50,12 +50,12 @@ err:
       uVar1 = htonl(__ptr->nonce);
       __ptr->nonce = uVar1;
       pcVar2 = strstr(str,"midstate");
-      if (pcVar2 == (char *)0x0) goto err;
+      if (pcVar2 == (char *)0x0) goto LAB_00030144;
       for (temp = (uint8_t *)(pcVar2 + 8); *temp == ' '; temp = temp + 1) {
       }
       s2hex(__ptr->midstate,temp,0x40);
       pcVar2 = strstr(str,"data");
-      if (pcVar2 == (char *)0x0) goto err;
+      if (pcVar2 == (char *)0x0) goto LAB_00030144;
       for (temp = (uint8_t *)(pcVar2 + 4); *temp == ' '; temp = temp + 1) {
       }
       s2hex(__ptr->data,temp,0x18);

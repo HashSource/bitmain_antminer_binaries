@@ -3,7 +3,11 @@ uchar CRC5(uchar *ptr,uchar len)
 
 {
   uchar uVar1;
-  bool bVar2;
+  uchar uVar2;
+  uchar uVar3;
+  byte bVar4;
+  BADSPACEBASE *unaff_sp;
+  bool bVar5;
   uchar len_local;
   uchar *ptr_local;
   uchar crcout [5];
@@ -14,20 +18,18 @@ uchar CRC5(uchar *ptr,uchar len)
   uchar j;
   uchar i;
   
-  crcin._0_4_ = DAT_00034c18;
-  crcin[4] = DAT_00034c1c;
+  builtin_memcpy(crcin,"\x01\x01\x01\x01\x01",5);
   j = 0x80;
   k = '\0';
   i = '\0';
   ptr_local = ptr;
   while( true ) {
-    uVar1 = crcin[3];
+    uVar1 = crcin[0];
+    uVar2 = crcin[2];
+    uVar3 = crcin[3];
     if (len <= i) break;
-    bVar2 = (j & *ptr_local) != 0;
-    crcout[1] = crcin[0];
-    crcout[0] = bVar2 ^ crcin[4];
-    crcout[2] = bVar2 ^ crcin[4] ^ crcin[1];
-    crcout[3] = crcin[2];
+    bVar5 = (j & *ptr_local) != 0;
+    bVar4 = crcin[4] ^ crcin[1];
     j = j >> 1;
     k = k + '\x01';
     if (k == '\b') {
@@ -35,11 +37,11 @@ uchar CRC5(uchar *ptr,uchar len)
       k = '\0';
       ptr_local = ptr_local + 1;
     }
-    crcin[0] = crcout[0];
-    crcin[1] = crcout[1];
-    crcin[2] = crcout[2];
-    crcin[3] = crcout[3];
-    crcin[4] = uVar1;
+    crcin[0] = bVar5 ^ crcin[4];
+    crcin[1] = uVar1;
+    crcin[2] = bVar5 ^ bVar4;
+    crcin[3] = uVar2;
+    crcin[4] = uVar3;
     i = i + '\x01';
   }
   crc = '\0';

@@ -11,10 +11,9 @@ byte get_power_iic_value_from_voltage(int *param_1)
   double local_18;
   
   if (*param_1 == 2) {
-    local_18 = DAT_00034528 - in_d0 * DAT_00034520;
-    dVar1 = (double)CONCAT44(DAT_00034530._4_4_,(undefined4)DAT_00034530);
-    if (local_18 != dVar1 && local_18 < dVar1 == (NAN(local_18) || NAN(dVar1))) {
-      local_18 = (double)CONCAT44(DAT_00034530._4_4_,(undefined4)DAT_00034530);
+    local_18 = 1925.735 - in_d0 * 171.875;
+    if (255.0 < local_18) {
+      local_18 = 255.0;
     }
     if ((int)((uint)(local_18 < 0.0) << 0x1f) < 0) {
       local_18 = 0.0;
@@ -24,8 +23,8 @@ byte get_power_iic_value_from_voltage(int *param_1)
     local_28 = in_d0;
   }
   else {
-    local_28 = in_d0 * DAT_00034538;
-    dVar1 = (local_28 * DAT_00034540 - DAT_00034548) / (DAT_00034558 - local_28 * DAT_00034550);
+    local_28 = in_d0 * 100.0;
+    dVar1 = (local_28 * 11128.32 - 6233779.2) / (243507.0 - local_28 * 180.9);
     local_30 = (0.0 < dVar1) * (char)(longlong)dVar1;
     local_19 = local_30;
     if ((char)local_30 < '\0') {

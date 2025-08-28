@@ -9,11 +9,11 @@ char * set_temp_cutoff(char *arg)
   if ((arg != (char *)0x0) && (*arg != '\0')) {
     uVar1 = strtol(arg,(char **)0x0,10);
     if (200 < uVar1) {
-      return DAT_0001ec58;
+      return "Invalid value passed to set temp cutoff";
     }
-    *(char **)(DAT_0001ec5c + 0x420) = arg;
+    temp_cutoff_str = arg;
     return (char *)0x0;
   }
-  return DAT_0001ec54;
+  return "Invalid parameters for set temp cutoff";
 }
 

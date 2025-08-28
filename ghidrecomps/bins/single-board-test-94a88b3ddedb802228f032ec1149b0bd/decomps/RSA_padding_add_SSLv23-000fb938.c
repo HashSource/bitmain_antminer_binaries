@@ -42,7 +42,7 @@ LAB_000fb9a4:
     }
   }
   else {
-    ERR_put_error(4,0x6e,0x6e,DAT_000fb9e0,0x49);
+    ERR_put_error(4,0x6e,0x6e,"rsa_ssl.c",0x49);
     iVar1 = 0;
   }
   return iVar1;

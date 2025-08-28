@@ -18,14 +18,14 @@ undefined4 print_gost_01_isra_1(BIO *param_1,EVP_PKEY *param_2,int param_3,int p
     if (iVar4 == 0) {
       return 0;
     }
-    BIO_printf(param_1,DAT_00115d64);
+    BIO_printf(param_1,"Private key: ");
     iVar4 = EVP_PKEY_base_id(param_2);
     if (iVar4 == 0x32b) {
       pEVar2 = (EC_KEY *)EVP_PKEY_get0(param_2);
       if ((pEVar2 != (EC_KEY *)0x0) &&
          (pBVar1 = EC_KEY_get0_private_key(pEVar2), pBVar1 != (BIGNUM *)0x0)) goto LAB_00115d32;
 LAB_00115cfa:
-      BIO_printf(param_1,DAT_00115d68);
+      BIO_printf(param_1,"<undefined)");
     }
     else {
       if ((iVar4 != 0x32c) ||
@@ -34,12 +34,12 @@ LAB_00115cfa:
 LAB_00115d32:
       BN_print(param_1,pBVar1);
     }
-    BIO_printf(param_1,DAT_00115d58);
+    BIO_printf(param_1,"\n");
   }
   else if (param_4 < 1) goto LAB_00115ca0;
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0) {
-    ERR_GOST_error(0x83,0x41,DAT_00115d4c,0x1b8);
+    ERR_GOST_error(0x83,0x41,"gost_ameth.c",0x1b8);
     return 0;
   }
   BN_CTX_start(ctx);
@@ -51,7 +51,7 @@ LAB_00115d32:
   pEVar3 = EC_KEY_get0_group(pEVar2);
   iVar4 = EC_POINT_get_affine_coordinates_GFp(pEVar3,p,pBVar1,y,ctx);
   if (iVar4 == 0) {
-    ERR_GOST_error(0x83,0x10,DAT_00115d4c,0x1c2);
+    ERR_GOST_error(0x83,0x10,"gost_ameth.c",0x1c2);
     BN_CTX_free(ctx);
     return 0;
   }
@@ -59,18 +59,18 @@ LAB_00115d32:
   if (iVar4 == 0) {
     return 0;
   }
-  BIO_printf(param_1,DAT_00115d50);
+  BIO_printf(param_1,"Public key:\n");
   iVar4 = BIO_indent(param_1,param_3 + 3,0x80);
   if (iVar4 == 0) {
     return 0;
   }
-  BIO_printf(param_1,DAT_00115d54);
+  BIO_printf(param_1,"X:");
   BN_print(param_1,pBVar1);
-  BIO_printf(param_1,DAT_00115d58);
+  BIO_printf(param_1,"\n");
   BIO_indent(param_1,param_3 + 3,0x80);
-  BIO_printf(param_1,DAT_00115d5c);
+  BIO_printf(param_1,"Y:");
   BN_print(param_1,y);
-  BIO_printf(param_1,DAT_00115d58);
+  BIO_printf(param_1,"\n");
   BN_CTX_end(ctx);
   BN_CTX_free(ctx);
 LAB_00115ca0:
@@ -82,7 +82,7 @@ LAB_00115ca0:
     return 0;
   }
   pcVar6 = OBJ_nid2ln(iVar4);
-  BIO_printf(param_1,DAT_00115d60,pcVar6);
+  BIO_printf(param_1,"Parameter set: %s\n",pcVar6);
   return 1;
 }
 

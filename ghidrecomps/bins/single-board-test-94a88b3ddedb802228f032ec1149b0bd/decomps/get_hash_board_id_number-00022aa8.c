@@ -1,5 +1,5 @@
 
-void get_hash_board_id_number(undefined param_1,undefined4 param_2)
+void get_hash_board_id_number(undefined1 param_1,undefined4 param_2)
 
 {
   puts("get_hash_board_id_number");

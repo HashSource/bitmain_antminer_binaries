@@ -4,35 +4,27 @@ int surewarehk_modexp_isra_2
 
 {
   int iVar1;
-  int lib;
   ulong *puVar2;
-  undefined4 local_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
+  char local_60 [12];
   undefined2 local_54;
-  undefined auStack_52 [50];
+  undefined1 auStack_52 [50];
   
-  iVar1 = DAT_000dd2e4;
-  local_60 = *DAT_000dd2dc;
-  uStack_5c = DAT_000dd2dc[1];
-  uStack_58 = DAT_000dd2dc[2];
-  local_54 = (undefined2)DAT_000dd2dc[3];
+  builtin_strncpy(local_60,"ENGINE_modex",0xc);
+  local_54 = 0x70;
   memset(auStack_52,0,0x32);
-  if (*(int *)(iVar1 + 0x10) == 0) {
-    lib = *(int *)(iVar1 + 4);
-    if (lib == 0) {
-      lib = ERR_get_next_error_library();
-      *(int *)(iVar1 + 4) = lib;
+  if (p_surewarehk_Mod_Exp == (code *)0x0) {
+    if (SUREWARE_lib_error_code == 0) {
+      SUREWARE_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(lib,0x6b,0x75,DAT_000dd2e0,0x435);
+    ERR_put_error(SUREWARE_lib_error_code,0x6b,0x75,"e_sureware.c",0x435);
   }
   else if (param_1 != (BIGNUM *)0x0) {
     bn_expand2(param_1,param_4[1]);
     if (param_1->dmax == param_4[1]) {
-      iVar1 = (**(code **)(iVar1 + 0x10))
-                        (&local_60,param_1->dmax << 2,*param_4,param_3[1] << 2,*param_3,
+      iVar1 = (*p_surewarehk_Mod_Exp)
+                        (local_60,param_1->dmax << 2,*param_4,param_3[1] << 2,*param_3,
                          param_2[1] << 2,*param_2,param_1->d);
-      surewarehk_error_handling(&local_60,0x6b,iVar1);
+      surewarehk_error_handling(local_60,0x6b,iVar1);
       if (iVar1 != 1) {
         return iVar1;
       }

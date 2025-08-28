@@ -10,9 +10,9 @@ void getPICChainIndexOffset(int chainIndex,int *pChain,int *pOffset)
   int iVar2;
   
   if (chainIndex - 1U < 0xd) {
-    iVar1 = DAT_0002babc + (chainIndex - 1U) * 4;
-    iVar2 = *(int *)(iVar1 + 0x9b8);
-    iVar1 = *(int *)(iVar1 + 0x9ec);
+    iVar1 = (chainIndex - 1U) * 4;
+    iVar2 = *(int *)(CSWTCH_824 + iVar1);
+    iVar1 = *(int *)(CSWTCH_825 + iVar1);
   }
   else {
     iVar1 = 0;

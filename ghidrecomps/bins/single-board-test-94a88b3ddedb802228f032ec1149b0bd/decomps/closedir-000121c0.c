@@ -6,7 +6,7 @@ int closedir(DIR *__dirp)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_closedir_001942ac)();
+  iVar1 = closedir(__dirp);
   return iVar1;
 }
 

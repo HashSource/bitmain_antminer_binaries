@@ -54,10 +54,10 @@ dsa_builtin_paramgen2
     if (param_6 == 0) {
       param_6 = len;
     }
-    buf = (uchar *)CRYPTO_malloc(param_6,DAT_00125f80,0x1c2);
+    buf = (uchar *)CRYPTO_malloc(param_6,"dsa_gen.c",0x1c2);
     __dest = param_8;
     if (param_8 == (void *)0x0) {
-      __dest = CRYPTO_malloc(param_6,DAT_00126398,0x1c7);
+      __dest = CRYPTO_malloc(param_6,"dsa_gen.c",0x1c7);
     }
     if (buf == (uchar *)0x0 || __dest == (void *)0x0) {
       ctx = (BN_CTX *)0x0;
@@ -187,14 +187,14 @@ dsa_builtin_paramgen2
             iVar4 = iVar4 + 1;
             if (do_trial_division != (void *)0x0) {
               uVar9 = 0;
-              ERR_put_error(10,0x7e,0x70,DAT_00126398,0x26d);
+              ERR_put_error(10,0x7e,0x70,"dsa_gen.c",0x26d);
               goto LAB_00125dea;
             }
           }
           if (iVar6 != 0) goto LAB_00125de6;
           iVar4 = iVar4 + 1;
         } while (do_trial_division == (void *)0x0);
-        ERR_put_error(10,0x7e,0x71,DAT_00126398,0x214);
+        ERR_put_error(10,0x7e,0x71,"dsa_gen.c",0x214);
         uVar9 = 0;
         goto LAB_00125dea;
       }
@@ -230,7 +230,7 @@ LAB_00125dd4:
               iVar4 = EVP_DigestInit_ex(&EStack_80,param_4,(ENGINE *)0x0);
               if (((((iVar4 == 0) ||
                     (iVar4 = EVP_DigestUpdate(&EStack_80,__dest,param_6), iVar4 == 0)) ||
-                   (iVar4 = EVP_DigestUpdate(&EStack_80,DAT_00125f84,4), iVar4 == 0)) ||
+                   (iVar4 = EVP_DigestUpdate(&EStack_80,"ggendsa_gen.c",4), iVar4 == 0)) ||
                   ((iVar4 = EVP_DigestUpdate(&EStack_80,local_68,3), iVar4 == 0 ||
                    (iVar4 = EVP_DigestFinal_ex(&EStack_80,local_68,(uint *)0x0), iVar4 == 0)))) ||
                  (pBVar3 = BN_bin2bn(local_68,len,r_00), pBVar3 == (BIGNUM *)0x0))

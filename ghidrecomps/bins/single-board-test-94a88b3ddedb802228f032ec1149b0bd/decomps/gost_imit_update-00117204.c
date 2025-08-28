@@ -1,19 +1,19 @@
 
-undefined4 gost_imit_update(int param_1,undefined *param_2,uint param_3)
+undefined4 gost_imit_update(int param_1,undefined1 *param_2,uint param_3)
 
 {
   uint uVar1;
   int iVar2;
   undefined4 uVar3;
-  undefined *puVar4;
+  undefined1 *puVar4;
   uint uVar5;
   uint *puVar6;
   int iVar7;
-  undefined auStack_30 [12];
+  undefined1 auStack_30 [12];
   
   iVar7 = *(int *)(param_1 + 0xc);
   if (*(int *)(iVar7 + 0x103c) == 0) {
-    ERR_GOST_error(0x73,0x74,DAT_00117338,0x21b);
+    ERR_GOST_error(0x73,0x74,"gost_crypt.c",0x21b);
     uVar3 = 0;
   }
   else {
@@ -33,7 +33,7 @@ undefined4 gost_imit_update(int param_1,undefined *param_2,uint param_3)
           param_2 = puVar4 + 1;
           iVar2 = iVar7 + uVar5;
           uVar5 = uVar5 + 1;
-          *(undefined *)(iVar2 + 0x1028) = *puVar4;
+          *(undefined1 *)(iVar2 + 0x1028) = *puVar4;
           puVar4 = param_2;
         } while (uVar5 < 8 && param_3 != 0);
       }
@@ -60,9 +60,9 @@ undefined4 gost_imit_update(int param_1,undefined *param_2,uint param_3)
         *puVar6 = (*puVar6 & 0x3ff) + 8;
         puVar4 = puVar4 + 8;
       } while (8 < uVar5);
-      uVar5 = param_3 - 9;
-      param_3 = (param_3 - 8) - (uVar5 & 0xfffffff8);
-      param_2 = param_2 + ((uVar5 >> 3) + 1) * 8;
+      uVar5 = param_3 - 9 >> 3;
+      param_3 = (param_3 - 8) + uVar5 * -8;
+      param_2 = param_2 + (uVar5 + 1) * 8;
     }
     if (param_3 != 0) {
       memcpy((void *)(iVar7 + 0x1028),param_2,param_3);

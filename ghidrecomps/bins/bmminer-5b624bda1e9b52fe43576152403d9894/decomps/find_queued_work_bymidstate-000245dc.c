@@ -8,22 +8,21 @@ work * find_queued_work_bymidstate
 {
   int iVar1;
   work *pwVar2;
-  work *ret;
   char *func;
-  char *line;
+  char *func_00;
+  int line;
+  int line_00;
   
-  func = (char *)midstatelen;
-  line = data;
   iVar1 = pthread_rwlock_rdlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar1 != 0) {
-    _rd_lock(DAT_00024640,(char *)0x248e,func,(int)line);
+    _rd_lock((pthread_rwlock_t *)"find_queued_work_bymidstate",(char *)0x248e,func,line);
   }
   pwVar2 = __find_work_bymidstate(cgpu->queued_work,midstate,midstatelen,data,offset,datalen);
   iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar1 != 0) {
-    _rw_unlock(DAT_00024640,(char *)0x2490,(char *)midstatelen,(int)data);
+    _rw_unlock((pthread_rwlock_t *)"find_queued_work_bymidstate",(char *)0x2490,func_00,line_00);
   }
-  (**DAT_0002463c)();
+  (*selective_yield)();
   return pwVar2;
 }
 

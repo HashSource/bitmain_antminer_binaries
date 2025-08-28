@@ -6,7 +6,7 @@ int * __errno_location(void)
 {
   int *piVar1;
   
-  piVar1 = (int *)(*(code *)PTR___errno_location_000a8180)();
+  piVar1 = __errno_location();
   return piVar1;
 }
 

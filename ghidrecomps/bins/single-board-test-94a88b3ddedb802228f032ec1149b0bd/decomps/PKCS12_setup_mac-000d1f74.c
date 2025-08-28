@@ -2,7 +2,6 @@
 int PKCS12_setup_mac(PKCS12 *p12,int iter,uchar *salt,int saltlen,EVP_MD *md_type)
 
 {
-  char *file;
   PKCS12_MAC_DATA *pPVar1;
   ASN1_STRING *pAVar2;
   int iVar3;
@@ -21,13 +20,12 @@ LAB_000d2042:
   else {
     if (iter < 2) {
 LAB_000d1fb4:
-      file = DAT_000d2060;
       pAVar8 = pPVar1->salt;
       if (saltlen == 0) {
         saltlen = 8;
       }
       pAVar8->length = saltlen;
-      puVar4 = (uchar *)CRYPTO_malloc(saltlen,file,0xb1);
+      puVar4 = (uchar *)CRYPTO_malloc(saltlen,"p12_mutl.c",0xb1);
       iVar3 = 0xb2;
       pAVar8->data = puVar4;
       if (puVar4 != (uchar *)0x0) {
@@ -58,7 +56,7 @@ LAB_000d1fb4:
       pAVar2 = ASN1_STRING_type_new(2);
       pPVar1->iter = pAVar2;
       if (pAVar2 == (ASN1_STRING *)0x0) {
-        ERR_put_error(0x23,0x7a,0x41,DAT_000d2060,0xa6);
+        ERR_put_error(0x23,0x7a,0x41,"p12_mutl.c",0xa6);
         return 0;
       }
       iVar3 = ASN1_INTEGER_set(p12->mac->iter,iter);
@@ -69,7 +67,7 @@ LAB_000d1fb4:
       iVar3 = 0xaa;
       puVar4 = (uchar *)0x0;
     }
-    ERR_put_error(0x23,0x7a,0x41,DAT_000d2060,iVar3);
+    ERR_put_error(0x23,0x7a,0x41,"p12_mutl.c",iVar3);
   }
   return (int)puVar4;
 }

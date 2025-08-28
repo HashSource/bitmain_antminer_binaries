@@ -26,7 +26,7 @@ undefined4 eckey_priv_decode(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
   if (local_20 != (EC_KEY *)0x0) {
     pEVar2 = d2i_ECPrivateKey(&local_20,&local_30,local_24);
     if (pEVar2 == (EC_KEY *)0x0) {
-      ERR_put_error(0x10,0xd5,0x8e,DAT_000f8070,0xfb);
+      ERR_put_error(0x10,0xd5,0x8e,"ec_ameth.c",0xfb);
       goto LAB_000f7ff0;
     }
     pEVar3 = EC_KEY_get0_public_key(local_20);
@@ -63,9 +63,9 @@ LAB_000f7faa:
         }
       }
     }
-    ERR_put_error(0x10,0xd5,0x10,DAT_000f8070,iVar1);
+    ERR_put_error(0x10,0xd5,0x10,"ec_ameth.c",iVar1);
   }
-  ERR_put_error(0x10,0xd5,0x10,DAT_000f8070,0x125);
+  ERR_put_error(0x10,0xd5,0x10,"ec_ameth.c",0x125);
 LAB_000f7ff0:
   if (local_20 != (EC_KEY *)0x0) {
     EC_KEY_free(local_20);

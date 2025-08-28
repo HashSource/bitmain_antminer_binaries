@@ -10,39 +10,39 @@ EVP_MD * pkey_rsa_ctrl_str(EVP_PKEY_CTX *param_1,char *param_2,char *param_3)
   int local_1c [2];
   
   if (param_3 == (char *)0x0) {
-    ERR_put_error(4,0x90,0x93,DAT_000fd98c,0x282);
+    ERR_put_error(4,0x90,0x93,"rsa_pmeth.c",0x282);
     pEVar2 = (EVP_MD *)0x0;
   }
   else {
-    iVar1 = strcmp(param_2,DAT_000fd958);
+    iVar1 = strcmp(param_2,"rsa_padding_mode");
     if (iVar1 == 0) {
-      iVar1 = strcmp(param_3,DAT_000fd974);
+      iVar1 = strcmp(param_3,"pkcs1");
       if (iVar1 == 0) {
         iVar1 = 1;
       }
       else {
-        iVar1 = strcmp(param_3,DAT_000fd978);
+        iVar1 = strcmp(param_3,"sslv23");
         if (iVar1 == 0) {
           iVar1 = 2;
         }
         else {
-          iVar1 = strcmp(param_3,DAT_000fd97c);
+          iVar1 = strcmp(param_3,"none");
           if (iVar1 == 0) {
             iVar1 = 3;
           }
           else {
-            iVar1 = strcmp(param_3,DAT_000fd980);
-            if ((iVar1 == 0) || (iVar1 = strcmp(param_3,DAT_000fd984), iVar1 == 0)) {
+            iVar1 = strcmp(param_3,"oeap");
+            if ((iVar1 == 0) || (iVar1 = strcmp(param_3,"oaep"), iVar1 == 0)) {
               iVar1 = 4;
             }
             else {
-              iVar1 = strcmp(param_3,DAT_000fd988);
+              iVar1 = strcmp(param_3,"x931");
               if (iVar1 == 0) {
                 iVar1 = 5;
               }
               else if ((((*param_3 != 'p') || (param_3[1] != 's')) || (param_3[2] != 's')) ||
                       (iVar1 = 6, param_3[3] != '\0')) {
-                ERR_put_error(4,0x90,0x76,DAT_000fd98c,0x296);
+                ERR_put_error(4,0x90,0x76,"rsa_pmeth.c",0x296);
                 return (EVP_MD *)0xfffffffe;
               }
             }
@@ -52,19 +52,19 @@ EVP_MD * pkey_rsa_ctrl_str(EVP_PKEY_CTX *param_1,char *param_2,char *param_3)
       pEVar2 = (EVP_MD *)EVP_PKEY_CTX_ctrl(param_1,6,-1,0x1001,iVar1,(void *)0x0);
     }
     else {
-      iVar1 = strcmp(param_2,DAT_000fd95c);
+      iVar1 = strcmp(param_2,"rsa_pss_saltlen");
       if (iVar1 == 0) {
         lVar3 = strtol(param_3,(char **)0x0,10);
         pEVar2 = (EVP_MD *)EVP_PKEY_CTX_ctrl(param_1,6,0x18,0x1002,lVar3,(void *)0x0);
       }
       else {
-        iVar1 = strcmp(param_2,DAT_000fd960);
+        iVar1 = strcmp(param_2,"rsa_keygen_bits");
         if (iVar1 == 0) {
           lVar3 = strtol(param_3,(char **)0x0,10);
           pEVar2 = (EVP_MD *)EVP_PKEY_CTX_ctrl(param_1,6,4,0x1003,lVar3,(void *)0x0);
         }
         else {
-          local_20 = (BIGNUM *)strcmp(param_2,DAT_000fd964);
+          local_20 = (BIGNUM *)strcmp(param_2,"rsa_keygen_pubexp");
           if (local_20 == (BIGNUM *)0x0) {
             pEVar2 = (EVP_MD *)BN_asc2bn(&local_20,param_3);
             if ((pEVar2 != (EVP_MD *)0x0) &&
@@ -74,7 +74,7 @@ EVP_MD * pkey_rsa_ctrl_str(EVP_PKEY_CTX *param_1,char *param_2,char *param_3)
             }
           }
           else {
-            iVar1 = strcmp(param_2,DAT_000fd968);
+            iVar1 = strcmp(param_2,"rsa_mgf1_md");
             if (iVar1 == 0) {
               pEVar2 = EVP_get_digestbyname(param_3);
               iVar1 = 0x2b6;
@@ -84,9 +84,9 @@ EVP_MD * pkey_rsa_ctrl_str(EVP_PKEY_CTX *param_1,char *param_2,char *param_3)
               }
             }
             else {
-              iVar1 = strcmp(param_2,DAT_000fd96c);
+              iVar1 = strcmp(param_2,"rsa_oaep_md");
               if (iVar1 != 0) {
-                iVar1 = strcmp(param_2,DAT_000fd970);
+                iVar1 = strcmp(param_2,"rsa_oaep_label");
                 if (iVar1 != 0) {
                   return (EVP_MD *)0xfffffffe;
                 }
@@ -109,7 +109,7 @@ EVP_MD * pkey_rsa_ctrl_str(EVP_PKEY_CTX *param_1,char *param_2,char *param_3)
               iVar1 = 0x2bf;
               pEVar2 = (EVP_MD *)0x0;
             }
-            ERR_put_error(4,0x90,0xa0,DAT_000fd98c,iVar1);
+            ERR_put_error(4,0x90,0xa0,"rsa_pmeth.c",iVar1);
           }
         }
       }

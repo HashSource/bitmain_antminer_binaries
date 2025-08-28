@@ -1,20 +1,18 @@
 
-int mime_param_cmp(int **param_1,int **param_2)
+int mime_param_cmp(undefined4 *param_1,undefined4 *param_2)
 
 {
   int iVar1;
   
-  iVar1 = **param_2;
-  if ((**param_1 != 0) && (iVar1 != 0)) {
-                    /* WARNING: Could not recover jumptable at 0x00012410. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    iVar1 = (*(code *)PTR_LAB_00194368)();
+  iVar1 = *(int *)*param_2;
+  if ((*(int *)*param_1 != 0) && (iVar1 != 0)) {
+    iVar1 = (*(code *)(undefined *)0x0)();
     return iVar1;
   }
   if (iVar1 != 0) {
     iVar1 = 1;
   }
-  if (**param_1 == 0) {
+  if (*(int *)*param_1 == 0) {
     iVar1 = -iVar1;
   }
   else {

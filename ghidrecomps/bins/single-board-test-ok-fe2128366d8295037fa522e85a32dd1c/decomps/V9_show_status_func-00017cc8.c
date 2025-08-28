@@ -13,17 +13,17 @@ void V9_show_status_func(byte *param_1)
     memset(lcd_buffer + 0x20,0x20,0x40);
     uVar3 = read_temperature_through_fpga_iic_register(bVar1,bVar2);
     sprintf(lcd_buffer + 0x20,"   time %ds",time_counter);
-    sprintf(DAT_00017e50,"   nonce=%d",*(undefined4 *)(gValid_Nonce_Num + (uint)bVar1 * 4));
-    sprintf(DAT_00017e54,"   temp %d `C",uVar3);
+    sprintf(&DAT_00024d44,"   nonce=%d",*(undefined4 *)(gValid_Nonce_Num + (uint)bVar1 * 4));
+    sprintf(&DAT_00024d54,"   temp %d `C",uVar3);
     if (gHighest_Temp < uVar3) {
       gHighest_Temp = uVar3;
     }
     time_counter = time_counter + 1;
     write(lcd_fd,lcd_buffer + 0x20,0x40);
-    if ((int)uVar3 < (int)Conf[224]) {
+    if ((int)uVar3 < (int)Conf[0xe0]) {
       if (gStartTest != '\x01') {
         printf("\nHash Board temperature is %d, waiting it raise to start temperature %d\n",uVar3,
-               (int)Conf[224]);
+               (int)Conf[0xe0]);
       }
     }
     else {

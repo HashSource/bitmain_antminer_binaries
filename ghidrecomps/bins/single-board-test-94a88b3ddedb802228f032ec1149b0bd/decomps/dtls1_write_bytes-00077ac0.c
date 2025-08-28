@@ -5,7 +5,7 @@ int dtls1_write_bytes(int param_1,undefined4 param_2,undefined4 param_3,int para
   int iVar1;
   
   if (0x4000 < param_4) {
-    OpenSSLDie(DAT_00077b40,0x5cb,DAT_00077b44);
+    OpenSSLDie("d1_pkt.c",0x5cb,"len <= SSL3_RT_MAX_PLAIN_LENGTH");
   }
   *(undefined4 *)(param_1 + 0x18) = 1;
   if (*(int *)(*(int *)(param_1 + 0x58) + 0x108) == 0) {
@@ -16,7 +16,7 @@ int dtls1_write_bytes(int param_1,undefined4 param_2,undefined4 param_3,int para
     }
     return iVar1;
   }
-  OpenSSLDie(DAT_00077b40,0x5e1,DAT_00077b48);
+  OpenSSLDie("d1_pkt.c",0x5e1,"0");
   iVar1 = ssl3_write_pending(param_1,param_2,param_3,param_4);
   return iVar1;
 }

@@ -11,7 +11,7 @@ undefined4 ssl_ui_reader(UI *param_1,UI_STRING *param_2)
   UI_STRING *extraout_r1;
   
   UVar1 = UI_get_string_type(param_2);
-  if (((UVar1 + ~UIT_NONE < 2) &&
+  if (((UVar1 - UIT_PROMPT < 2) &&
       (result = (char *)UI_get0_user_data(param_1), result != (char *)0x0)) &&
      (iVar2 = UI_get_input_flags(param_2), iVar2 << 0x1e < 0)) {
     UI_set_result(param_1,param_2,result);

@@ -4,6 +4,6 @@
 BIGNUM * BN_get0_nist_prime_521(void)
 
 {
-  return DAT_001285c4;
+  return (BIGNUM *)_bignum_nist_p_521;
 }
 

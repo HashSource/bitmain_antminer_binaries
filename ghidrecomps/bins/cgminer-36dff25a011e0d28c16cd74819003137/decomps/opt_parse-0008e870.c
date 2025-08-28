@@ -2,7 +2,7 @@
 _Bool opt_parse(int *argc,char **argv,_func_void_char_ptr_varargs *errlog)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   bool bVar2;
   _func_void_char_ptr_varargs *errlog_local;
   char **argv_local;
@@ -19,7 +19,7 @@ _Bool opt_parse(int *argc,char **argv,_func_void_char_ptr_varargs *errlog)
   if (bVar2) {
     ret = 1;
   }
-  uVar1 = (undefined)ret;
+  uVar1 = (undefined1)ret;
   if (!bVar2) {
     uVar1 = 0;
   }

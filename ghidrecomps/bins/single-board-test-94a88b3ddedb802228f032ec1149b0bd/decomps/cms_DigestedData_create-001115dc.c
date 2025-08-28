@@ -1,27 +1,27 @@
 
-ASN1_OBJECT ** cms_DigestedData_create(undefined4 param_1)
+CMS_ContentInfo * cms_DigestedData_create(undefined4 param_1)
 
 {
-  ASN1_OBJECT **a;
-  ASN1_OBJECT *pAVar1;
+  CMS_ContentInfo *a;
+  ASN1_VALUE *pAVar1;
   ASN1_OBJECT *pAVar2;
-  ASN1_OBJECT **ppAVar3;
+  undefined4 *puVar3;
   
-  a = (ASN1_OBJECT **)CMS_ContentInfo_new();
-  if (a != (ASN1_OBJECT **)0x0) {
-    pAVar1 = (ASN1_OBJECT *)ASN1_item_new(DAT_00111624);
-    if (pAVar1 == (ASN1_OBJECT *)0x0) {
-      CMS_ContentInfo_free((CMS_ContentInfo *)a);
-      return (ASN1_OBJECT **)0x0;
+  a = CMS_ContentInfo_new();
+  if (a != (CMS_ContentInfo *)0x0) {
+    pAVar1 = ASN1_item_new((ASN1_ITEM *)CMS_DigestedData_it);
+    if (pAVar1 == (ASN1_VALUE *)0x0) {
+      CMS_ContentInfo_free(a);
+      return (CMS_ContentInfo *)0x0;
     }
     pAVar2 = OBJ_nid2obj(0x19);
-    a[1] = pAVar1;
-    ppAVar3 = (ASN1_OBJECT **)pAVar1->nid;
-    *a = pAVar2;
-    pAVar1->sn = (char *)0x0;
+    *(ASN1_VALUE **)(a + 4) = pAVar1;
+    puVar3 = *(undefined4 **)(pAVar1 + 8);
+    *(ASN1_OBJECT **)a = pAVar2;
+    *(undefined4 *)pAVar1 = 0;
     pAVar2 = OBJ_nid2obj(0x15);
-    *ppAVar3 = pAVar2;
-    cms_DigestAlgorithm_set(pAVar1->ln,param_1);
+    *puVar3 = pAVar2;
+    cms_DigestAlgorithm_set(*(undefined4 *)(pAVar1 + 4),param_1);
   }
   return a;
 }

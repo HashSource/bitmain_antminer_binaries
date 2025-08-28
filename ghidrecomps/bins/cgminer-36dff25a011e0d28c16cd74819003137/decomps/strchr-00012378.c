@@ -6,7 +6,7 @@ char * strchr(char *__s,int __c)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strchr_000c0160)();
+  pcVar1 = strchr(__s,__c);
   return pcVar1;
 }
 

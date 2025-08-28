@@ -1,14 +1,15 @@
 
-/* WARNING: Variable defined which should be unmapped: work-local */
-
 void update_work_stats(thr_info *thr,work *work)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  time_t tVar3;
-  cgpu_info *pcVar4;
-  pool *ppVar5;
+  double dVar1;
+  time_t tVar2;
+  cgpu_info *pcVar3;
+  pool *ppVar4;
+  undefined4 uVar5;
+  undefined4 extraout_s1;
+  undefined4 extraout_s1_00;
+  undefined4 extraout_s1_01;
   double dVar6;
   uint64_t uVar7;
   DItype DVar8;
@@ -17,13 +18,11 @@ void update_work_stats(thr_info *thr,work *work)
   char tmp42 [2048];
   double test_diff;
   
-  uVar2 = current_diff._4_4_;
-  uVar1 = current_diff._0_4_;
+  dVar1 = current_diff;
   uVar7 = share_diff(work);
   work->share_diff = uVar7;
-  dVar6 = (double)__floatundidf(*(undefined4 *)&work->share_diff,
-                                *(undefined4 *)((int)&work->share_diff + 4));
-  if ((double)CONCAT44(uVar2,uVar1) <= dVar6) {
+  dVar6 = (double)__floatundidf((int)work->share_diff,*(undefined4 *)((int)&work->share_diff + 4));
+  if (dVar1 <= dVar6) {
     work->block = true;
     work->pool->solved = work->pool->solved + 1;
     found_blocks = found_blocks + 1;
@@ -34,19 +33,19 @@ void update_work_stats(thr_info *thr,work *work)
     }
   }
   _mutex_lock(&stats_lock,"cgminer.c","update_work_stats",0x225f);
-  __aeabi_l2d((undefined4)total_diff1,total_diff1._4_4_);
-  total_diff1 = __fixdfdi((DFtype)CONCAT44(thr,work));
-  __aeabi_l2d(*(undefined4 *)&thr->cgpu->diff1,*(undefined4 *)((int)&thr->cgpu->diff1 + 4));
-  pcVar4 = thr->cgpu;
-  DVar8 = __fixdfdi((DFtype)CONCAT44(thr,work));
-  pcVar4->diff1 = DVar8;
-  __aeabi_l2d(*(undefined4 *)&work->pool->diff1,*(undefined4 *)((int)&work->pool->diff1 + 4));
-  ppVar5 = work->pool;
-  DVar8 = __fixdfdi((DFtype)CONCAT44(thr,work));
-  ppVar5->diff1 = DVar8;
-  pcVar4 = thr->cgpu;
-  tVar3 = time((time_t *)0x0);
-  pcVar4->last_device_valid_work = tVar3;
+  uVar5 = __aeabi_l2d((undefined4)total_diff1,total_diff1._4_4_);
+  total_diff1 = __fixdfdi((DFtype)CONCAT44(extraout_s1,uVar5));
+  uVar5 = __aeabi_l2d((int)thr->cgpu->diff1,*(undefined4 *)((int)&thr->cgpu->diff1 + 4));
+  pcVar3 = thr->cgpu;
+  DVar8 = __fixdfdi((DFtype)CONCAT44(extraout_s1_00,uVar5));
+  pcVar3->diff1 = DVar8;
+  uVar5 = __aeabi_l2d((int)work->pool->diff1,*(undefined4 *)((int)&work->pool->diff1 + 4));
+  ppVar4 = work->pool;
+  DVar8 = __fixdfdi((DFtype)CONCAT44(extraout_s1_01,uVar5));
+  ppVar4->diff1 = DVar8;
+  pcVar3 = thr->cgpu;
+  tVar2 = time((time_t *)0x0);
+  pcVar3->last_device_valid_work = tVar2;
   _mutex_unlock(&stats_lock,"cgminer.c","update_work_stats",0x2264);
   return;
 }

@@ -2,11 +2,11 @@
 void BM1722_open_core(byte param_1)
 
 {
-  undefined local_cc;
-  undefined local_cb;
-  undefined auStack_ca [180];
-  undefined local_16;
-  undefined local_15;
+  undefined1 local_cc;
+  undefined1 local_cb;
+  undefined1 auStack_ca [180];
+  undefined1 local_16;
+  undefined1 local_15;
   undefined2 local_12;
   uint local_10;
   uint local_c;
@@ -15,14 +15,14 @@ void BM1722_open_core(byte param_1)
   memset(&local_cc,0,0xb8);
   local_cc = 0xff;
   printf("\n--- %s: Chain : %d\n","BM1722_open_core",(uint)param_1);
-  *(undefined *)((int)&gIsOpenCoreEnd + (uint)param_1) = 0;
-  *(undefined *)((int)&gIsOpeningCore + (uint)param_1) = 1;
+  *(undefined1 *)((int)&gIsOpenCoreEnd + (uint)param_1) = 0;
+  *(undefined1 *)((int)&gIsOpeningCore + (uint)param_1) = 1;
   local_cc = 0x20;
   local_cb = 0;
   memset(auStack_ca,0,0xb4);
   local_12 = CRC16(&local_cc,0xb6);
-  local_16 = (undefined)((ushort)local_12 >> 8);
-  local_15 = (undefined)local_12;
+  local_16 = (undefined1)((ushort)local_12 >> 8);
+  local_15 = (undefined1)local_12;
   for (local_c = 0; local_c < (uint)Conf._112_4_; local_c = local_c + 1) {
     if (local_c < 0x20) {
       if (local_c == 0) {
@@ -56,8 +56,8 @@ void BM1722_open_core(byte param_1)
     usleep(Conf._196_4_);
   }
   uart_flush_rx(param_1);
-  *(undefined *)((int)&gIsOpeningCore + (uint)param_1) = 0;
-  *(undefined *)((int)&gIsOpenCoreEnd + (uint)param_1) = 1;
+  *(undefined1 *)((int)&gIsOpeningCore + (uint)param_1) = 0;
+  *(undefined1 *)((int)&gIsOpenCoreEnd + (uint)param_1) = 1;
   return;
 }
 

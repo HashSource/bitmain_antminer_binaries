@@ -54,7 +54,7 @@ LAB_000b7414:
   }
   line = 0xb9;
 LAB_000b7432:
-  ERR_put_error(0xd,0xa6,0x80,DAT_000b7464,line);
+  ERR_put_error(0xd,0xa6,0x80,"x_long.c",line);
   return 0;
 }
 

@@ -4,15 +4,17 @@ void set_baud_chain(undefined4 param_1)
 {
   byte bVar1;
   char acStack_418 [1024];
-  undefined local_18;
-  undefined local_17;
-  undefined local_16;
+  undefined1 local_18;
+  undefined1 local_17;
+  undefined1 local_16;
   undefined4 local_14;
   undefined4 local_10;
   byte local_9;
   
   local_10._1_1_ = (byte)((uint)g_misc_control >> 8);
   bVar1 = local_10._1_1_ & 0xe0;
+  local_10._2_2_ = (undefined2)((uint)g_misc_control >> 0x10);
+  local_10._0_2_ = CONCAT11(bVar1 | (byte)param_1 & 0x1f,(char)g_misc_control);
   local_17 = 1;
   local_18 = 0;
   local_16 = 0x1c;

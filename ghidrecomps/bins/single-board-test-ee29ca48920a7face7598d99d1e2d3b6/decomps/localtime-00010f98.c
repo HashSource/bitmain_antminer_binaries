@@ -6,7 +6,7 @@ tm * localtime(time_t *__timer)
 {
   tm *ptVar1;
   
-  ptVar1 = (tm *)(*(code *)PTR_localtime_000473c0)();
+  ptVar1 = localtime(__timer);
   return ptVar1;
 }
 

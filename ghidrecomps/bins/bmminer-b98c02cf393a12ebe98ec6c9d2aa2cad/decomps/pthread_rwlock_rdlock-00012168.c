@@ -6,7 +6,7 @@ int pthread_rwlock_rdlock(pthread_rwlock_t *__rwlock)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_rwlock_rdlock_0007cec0)();
+  iVar1 = pthread_rwlock_rdlock(__rwlock);
   return iVar1;
 }
 

@@ -18,16 +18,16 @@ json_t * pack_array(scanner_t *s,va_list *ap)
     }
     if ((s->token).token == '\0') break;
     value_00 = pack(s,ap);
-    if (value_00 == (json_t *)0x0) goto error;
+    if (value_00 == (json_t *)0x0) goto LAB_00067f9e;
     iVar1 = json_array_append_new(json,value_00);
     if (iVar1 != 0) {
       set_error(s,"<internal>","Unable to append to array");
-      goto error;
+      goto LAB_00067f9e;
     }
     next_token(s);
   }
   set_error(s,"<format>","Unexpected end of format string");
-error:
+LAB_00067f9e:
   json_decref(json);
   return (json_t *)0x0;
 }

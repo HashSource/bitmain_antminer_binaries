@@ -24,7 +24,7 @@ undefined4 dtls1_check_timeout_num(SSL *param_1)
       uVar3 = (param_1->d1->next_timeout).tv_usec;
     }
     if (0xc < uVar3) {
-      ERR_put_error(0x14,0x13c,0x138,DAT_00076370,0x1e0);
+      ERR_put_error(0x14,0x13c,0x138,"d1_lib.c",0x1e0);
       return 0xffffffff;
     }
   }

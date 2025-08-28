@@ -12,7 +12,7 @@ void * ASN1_item_d2i_fp(ASN1_ITEM *it,FILE *in,void *x)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0xd,0xce,7,DAT_0010632c,0x85);
+    ERR_put_error(0xd,0xce,7,"a_d2i_fp.c",0x85);
     pAVar1 = (ASN1_VALUE *)0x0;
   }
   else {

@@ -1,9 +1,9 @@
 
 undefined4
-read_PIC16F1704_flash_point32_ter(undefined param_1,undefined param_2,byte *param_3,byte *param_4)
+read_PIC16F1704_flash_point32_ter(undefined1 param_1,undefined1 param_2,byte *param_3,byte *param_4)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined4 uVar2;
   uint uVar3;
   undefined4 local_28;
@@ -12,7 +12,7 @@ read_PIC16F1704_flash_point32_ter(undefined param_1,undefined param_2,byte *para
   undefined2 local_1c;
   undefined2 local_18;
   short local_14;
-  undefined local_12;
+  undefined1 local_12;
   byte local_11;
   
   local_12 = 4;
@@ -24,13 +24,13 @@ read_PIC16F1704_flash_point32_ter(undefined param_1,undefined param_2,byte *para
   local_24 = 0xc00;
   pthread_mutex_lock((pthread_mutex_t *)i2c_mutex);
   for (local_11 = 0; local_11 < 6; local_11 = local_11 + 1) {
-    write_pic(param_1,param_2,*(undefined *)((int)&local_28 + (uint)local_11));
+    write_pic(param_1,param_2,*(undefined1 *)((int)&local_28 + (uint)local_11));
   }
   usleep(100000);
   for (local_11 = 0; local_11 < 6; local_11 = local_11 + 1) {
     uVar3 = (uint)local_11;
     uVar1 = read_pic(param_1,param_2);
-    *(undefined *)((int)&local_20 + uVar3) = uVar1;
+    *(undefined1 *)((int)&local_20 + uVar3) = uVar1;
   }
   pthread_mutex_unlock((pthread_mutex_t *)i2c_mutex);
   if ((local_20._1_1_ == 8) && ((char)local_20 == '\x06')) {

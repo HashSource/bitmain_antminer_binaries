@@ -22,9 +22,9 @@ undefined4 process_config(void)
   }
   else {
     if ((Conf._128_4_ == 0) && (Conf._208_4_ == 1)) {
-      cgpu[2562396] = (undefined)Conf._212_4_;
-      cgpu[2562397] = 1;
-      cgpu[2562398] = 3;
+      cgpu[0x27195c] = (undefined1)Conf._212_4_;
+      cgpu[0x27195d] = 1;
+      cgpu[0x27195e] = 3;
       if (Conf._228_4_ + Conf._216_4_ + Conf._220_4_ + Conf._224_4_ == 0) {
         if (1 < log_level) {
           pFVar1 = fopen(log_file,"a+");
@@ -36,16 +36,16 @@ undefined4 process_config(void)
         }
         return 0xffffffff;
       }
-      conf[120] = (undefined)Conf._216_4_;
-      conf[121] = (undefined)Conf._220_4_;
-      conf[122] = (undefined)Conf._224_4_;
-      conf[123] = (undefined)Conf._228_4_;
-      conf[124] = Conf[232];
-      cgpu[2562399] = Conf[232];
-      cgpu[2562400] = Conf[232];
-      cgpu[2562401] = Conf[232];
-      cgpu[2562402] = Conf[232];
-      conf[152] = (undefined)Conf._260_4_;
+      conf[0x78] = (undefined1)Conf._216_4_;
+      conf[0x79] = (undefined1)Conf._220_4_;
+      conf[0x7a] = (undefined1)Conf._224_4_;
+      conf[0x7b] = (undefined1)Conf._228_4_;
+      conf[0x7c] = Conf[0xe8];
+      cgpu[0x27195f] = Conf[0xe8];
+      cgpu[0x271960] = Conf[0xe8];
+      cgpu[0x271961] = Conf[0xe8];
+      cgpu[0x271962] = Conf[0xe8];
+      conf[0x98] = (undefined1)Conf._260_4_;
     }
     conf._128_4_ = Conf._236_4_;
     conf._132_4_ = Conf._240_4_;

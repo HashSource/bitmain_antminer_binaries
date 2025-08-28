@@ -17,9 +17,9 @@ int BN_mod_mul(BIGNUM *r,BIGNUM *a,BIGNUM *b,BIGNUM *m,BN_CTX *ctx)
     }
     if ((iVar1 != 0) && (iVar1 = BN_div((BIGNUM *)0x0,r,r_00,m,ctx), iVar1 != 0)) {
       if (r->neg != 0) {
-        pcVar2 = DAT_000f1fd8;
+        pcVar2 = (code *)0xef09d;
         if (m->neg != 0) {
-          pcVar2 = DAT_000f1fdc;
+          pcVar2 = (code *)0xef101;
         }
         iVar1 = (*pcVar2)(r,r,m);
         if (iVar1 == 0) goto LAB_000f1fc6;

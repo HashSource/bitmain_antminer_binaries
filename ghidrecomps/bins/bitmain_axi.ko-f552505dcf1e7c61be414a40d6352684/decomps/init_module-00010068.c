@@ -1,64 +1,62 @@
 
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int init_module(undefined4 param_1,undefined4 param_2)
 
 {
-  undefined4 *puVar1;
-  undefined4 *puVar2;
-  int iVar3;
-  uint uVar4;
-  undefined4 uVar5;
+  undefined4 uVar1;
+  int iVar2;
+  char *pcVar3;
   
-  puVar1 = DAT_000101d4;
-  printk(DAT_000101d8);
-  iVar3 = alloc_chrdev_region(puVar1,0,1,DAT_000101dc,param_1,param_2);
-  uVar5 = DAT_000101e0;
-  if (iVar3 < 0) {
+  printk("In axi fpga driver!\n");
+  iVar2 = alloc_chrdev_region(&axi_fpga_dev_num,0,1,"axi_fpga_dev",param_1,param_2);
+  if (iVar2 < 0) {
+    pcVar3 = "alloc axi_fpga_dev fail!\n";
 LAB_000100e8:
-    printk(uVar5);
+    printk(pcVar3);
   }
   else {
-    iVar3 = kmem_cache_alloc(*(undefined4 *)(DAT_000101e4 + 0x18),DAT_000101e8);
-    puVar1[1] = iVar3;
-    uVar5 = DAT_000101ec;
-    if (iVar3 != 0) {
-      cdev_init(iVar3,DAT_000101f0);
-      iVar3 = puVar1[1];
-      uVar5 = *puVar1;
-      *(undefined4 *)(iVar3 + 0x24) = DAT_000101f4;
-      iVar3 = cdev_add(iVar3,uVar5,1);
-      uVar5 = DAT_000101f8;
-      if (iVar3 != 0) goto LAB_000100e8;
-      iVar3 = __request_region(DAT_000101fc,0x40000000,0x1400,DAT_00010200,0);
-      puVar1[2] = iVar3;
-      uVar5 = DAT_00010204;
-      if (iVar3 != 0) {
-        printk(DAT_00010208);
-        iVar3 = ioremap(0x40000000,0x1400);
-        puVar1[3] = iVar3;
-        if (iVar3 == 0) {
-          printk(DAT_0001020c,0);
-          printk(DAT_00010210,puVar1[3]);
+    p_axi_fpga_dev = kmem_cache_alloc(_DAT_00011060,0x24000c0);
+    if (p_axi_fpga_dev == 0) {
+      pcVar3 = "kmalloc cdev fail!\n";
+    }
+    else {
+      cdev_init(p_axi_fpga_dev,&axi_fpga_dev_fops);
+      iVar2 = p_axi_fpga_dev;
+      uVar1 = axi_fpga_dev_num;
+      *(undefined1 **)(p_axi_fpga_dev + 0x24) = &__this_module;
+      iVar2 = cdev_add(iVar2,uVar1,1);
+      if (iVar2 != 0) {
+        pcVar3 = "add axi_fpga_dev fail!\n";
+        goto LAB_000100e8;
+      }
+      base_vir_mem_addr = __request_region(&iomem_resource,0x40000000,0x1400,"axi_fpga_vir_mem",0);
+      if (base_vir_mem_addr != 0) {
+        printk("request_mem_region OK!\n");
+        base_vir_addr = (undefined4 *)ioremap(0x40000000,0x1400);
+        if (base_vir_addr == (undefined4 *)0x0) {
+          printk("ioremap fail!\n",0);
+          printk("!!!*base_vir_addr = 0x%x\n",base_vir_addr);
         }
         else {
-          printk(DAT_00010214,iVar3);
-          uVar5 = DAT_000101dc;
-          puVar2 = DAT_000101d4;
+          printk("AXI fpga dev virtual address is 0x%x\n",base_vir_addr);
           DataSynchronizationBarrier(0xf);
-          printk(DAT_00010218,*(undefined4 *)puVar1[3]);
-          uVar4 = __class_create(DAT_000101f4,uVar5,puVar2 + 4);
-          puVar1[4] = uVar4;
-          if (uVar4 < 0xfffff001) {
-            device_create(uVar4,0,*puVar2,0,uVar5);
+          printk("*base_vir_addr = 0x%x\n",*base_vir_addr);
+          axi_fpga_class = __class_create(&__this_module,"axi_fpga_dev",&axi_fpga_class);
+          if (axi_fpga_class < 0xfffff001) {
+            device_create(axi_fpga_class,0,axi_fpga_dev_num,0,"axi_fpga_dev");
             return 0;
           }
-          printk(DAT_0001021c);
+          printk("Err:failed in creating axi fpga class.\n");
         }
         return -1;
       }
+      pcVar3 = "request_mem_region failed!\n";
+      base_vir_mem_addr = 0;
     }
-    printk(uVar5);
-    iVar3 = 1;
+    printk(pcVar3);
+    iVar2 = 1;
   }
-  return iVar3;
+  return iVar2;
 }
 

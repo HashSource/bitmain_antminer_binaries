@@ -24,7 +24,7 @@ undefined4 ssl_init_wbio_buffer(int param_1,int param_2)
   BIO_ctrl(pBVar3,1,0,(void *)0x0);
   lVar1 = BIO_int_ctrl(pBVar3,0x75,1,0);
   if (lVar1 == 0) {
-    ERR_put_error(0x14,0xb8,7,DAT_0007c4b4,0xc06);
+    ERR_put_error(0x14,0xb8,7,"ssl_lib.c",0xc06);
     uVar4 = 0;
   }
   else {

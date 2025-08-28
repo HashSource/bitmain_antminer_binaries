@@ -1,6 +1,5 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void scanfreq_find_all_error_clock_delay_control_asic(void)
 
@@ -15,15 +14,8 @@ void scanfreq_find_all_error_clock_delay_control_asic(void)
   int chain;
   
   if (((use_syslog) || (opt_log_output)) || (4 < opt_log_level)) {
-    tmp42._0_4_ = s_find_all_clock_delay_error_chips_000786ac._0_4_;
-    tmp42._4_4_ = s_find_all_clock_delay_error_chips_000786ac._4_4_;
-    tmp42._8_4_ = s_find_all_clock_delay_error_chips_000786ac._8_4_;
-    tmp42._12_4_ = s_find_all_clock_delay_error_chips_000786ac._12_4_;
-    tmp42._16_4_ = s_find_all_clock_delay_error_chips_000786ac._16_4_;
-    tmp42._20_4_ = s_find_all_clock_delay_error_chips_000786ac._20_4_;
-    tmp42._24_4_ = s_find_all_clock_delay_error_chips_000786ac._24_4_;
-    tmp42._28_4_ = s_find_all_clock_delay_error_chips_000786ac._28_4_;
-    tmp42[32] = (char)ram0x000786cc;
+    builtin_strncpy(tmp42,"find all clock delay error chips",0x20);
+    tmp42[0x20] = '\0';
     _applog(5,tmp42,false);
   }
   memset(clock_delay_control_error_asic,0,0x1000);

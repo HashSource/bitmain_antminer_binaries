@@ -7,7 +7,7 @@ void lex_scan_string(int param_1,undefined4 param_2)
   int iVar3;
   byte *pbVar4;
   size_t local_28;
-  undefined auStack_24 [4];
+  undefined1 auStack_24 [4];
   int local_20;
   int local_1c;
   int local_18;

@@ -4,11 +4,8 @@
 int json_object_clear(json_t *json)
 
 {
-  json_object_t *object;
-  
   if ((json != (json_t *)0x0) && (json->type == JSON_OBJECT)) {
-    object = (json_object_t *)(json + 1);
-    hashtable_clear((hashtable_t *)object);
+    hashtable_clear((hashtable_t *)(json + 1));
     json[3].refcount = 0;
     return 0;
   }

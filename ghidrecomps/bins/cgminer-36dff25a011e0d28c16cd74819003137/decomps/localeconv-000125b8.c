@@ -6,7 +6,7 @@ lconv * localeconv(void)
 {
   lconv *plVar1;
   
-  plVar1 = (lconv *)(*(code *)PTR_localeconv_000c0220)();
+  plVar1 = localeconv();
   return plVar1;
 }
 

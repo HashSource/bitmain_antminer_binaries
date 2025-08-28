@@ -6,7 +6,7 @@ int nice(int __inc)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_nice_0007cf88)();
+  iVar1 = nice(__inc);
   return iVar1;
 }
 

@@ -10,7 +10,7 @@ int PKCS7_simple_smimecap(stack_st_X509_ALGOR *sk,int nid,int arg)
   
   data = X509_ALGOR_new();
   if (data == (X509_ALGOR *)0x0) {
-    ERR_put_error(0x21,0x77,0x41,DAT_000d11e0,0x68);
+    ERR_put_error(0x21,0x77,0x41,"pk7_attr.c",0x68);
     return 0;
   }
   ASN1_OBJECT_free(data->algorithm);
@@ -28,7 +28,7 @@ LAB_000d1194:
     if (pAVar2 != (ASN1_TYPE *)0x0) {
       a = ASN1_INTEGER_new();
       if (a == (ASN1_INTEGER *)0x0) {
-        ERR_put_error(0x21,0x77,0x41,DAT_000d11e0,0x74);
+        ERR_put_error(0x21,0x77,0x41,"pk7_attr.c",0x74);
         return 0;
       }
       iVar3 = ASN1_INTEGER_set(a,arg);
@@ -41,7 +41,7 @@ LAB_000d1194:
       iVar3 = 0x78;
       pAVar2 = (ASN1_TYPE *)0x0;
     }
-    ERR_put_error(0x21,0x77,0x41,DAT_000d11e0,iVar3);
+    ERR_put_error(0x21,0x77,0x41,"pk7_attr.c",iVar3);
   }
   return (int)pAVar2;
 }

@@ -27,7 +27,7 @@ uint voltage_tunning(char param_1,int *param_2)
       }
       fclose(pFVar2);
     }
-    if ((int)((uint)(dVar4 < DAT_00034838) << 0x1f) < 0) {
+    if ((int)((uint)(dVar4 < 0.02) << 0x1f) < 0) {
       iVar3 = is7007_Board();
       if (iVar3 == 0) {
         if (3 < log_level) {
@@ -38,7 +38,7 @@ uint voltage_tunning(char param_1,int *param_2)
           }
           fclose(pFVar2);
         }
-        *(undefined *)(param_2 + 1) = 1;
+        *(undefined1 *)(param_2 + 1) = 1;
       }
       else {
         param_2[9] = param_2[9] + 1;
@@ -51,20 +51,17 @@ uint voltage_tunning(char param_1,int *param_2)
             }
             fclose(pFVar2);
           }
-          *(undefined *)(param_2 + 1) = 1;
+          *(undefined1 *)(param_2 + 1) = 1;
           param_2[9] = 0;
         }
       }
     }
     else {
       if (param_1 == '\0') {
-        if ((dVar4 == 0.25 || dVar4 < 0.25 != NAN(dVar4)) || (*param_2 != 2)) {
-          if ((dVar4 == DAT_00034840 || dVar4 < DAT_00034840 != (NAN(dVar4) || NAN(DAT_00034840)))
-             || (*param_2 != 2)) {
-            if (dVar4 == DAT_00034848 || dVar4 < DAT_00034848 != (NAN(dVar4) || NAN(DAT_00034848)))
-            {
-              if (dVar4 == DAT_00034850 || dVar4 < DAT_00034850 != (NAN(dVar4) || NAN(DAT_00034850))
-                 ) {
+        if ((dVar4 <= 0.25) || (*param_2 != 2)) {
+          if ((dVar4 <= 0.13) || (*param_2 != 2)) {
+            if (dVar4 <= 0.07) {
+              if (dVar4 <= 0.05) {
                 local_10 = 1;
               }
               else {
@@ -87,14 +84,14 @@ uint voltage_tunning(char param_1,int *param_2)
         local_10 = 1;
       }
       if (*param_2 == 2) {
-        if ((int)((uint)(dVar4 < DAT_00034858) << 0x1f) < 0) {
+        if ((int)((uint)(dVar4 < 0.03) << 0x1f) < 0) {
           local_10 = 1;
         }
         else {
           local_10 = local_10 << 1;
         }
       }
-      if (in_d1 == in_d0 || in_d1 < in_d0 != (NAN(in_d1) || NAN(in_d0))) {
+      if (in_d1 <= in_d0) {
         if (*param_2 == 1) {
           local_c = local_c - local_10;
           if ((int)local_c < 0) {

@@ -6,9 +6,9 @@ X509_INFO * X509_INFO_new(void)
 {
   X509_INFO *pXVar1;
   
-  pXVar1 = (X509_INFO *)CRYPTO_malloc(0x2c,DAT_00107ee4,0x45);
+  pXVar1 = (X509_INFO *)CRYPTO_malloc(0x2c,"x_info.c",0x45);
   if (pXVar1 == (X509_INFO *)0x0) {
-    ERR_put_error(0xd,0xaa,0x41,DAT_00107ee4,0x47);
+    ERR_put_error(0xd,0xaa,0x41,"x_info.c",0x47);
   }
   else {
     (pXVar1->enc_cipher).cipher = (EVP_CIPHER *)0x0;

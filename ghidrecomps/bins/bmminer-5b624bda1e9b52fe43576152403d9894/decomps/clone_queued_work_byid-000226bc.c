@@ -6,26 +6,27 @@ work * clone_queued_work_byid(cgpu_info *cgpu,uint id)
 {
   work *pwVar1;
   int iVar2;
-  work *tmp;
-  char *in_r2;
-  int in_r3;
+  char *func;
+  uint uVar3;
+  char *func_00;
+  int line;
+  int line_00;
   work *base_work;
-  work *work;
   
   iVar2 = pthread_rwlock_rdlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar2 != 0) {
-    _rd_lock(DAT_00022730,(char *)0x24c9,in_r2,in_r3);
+    _rd_lock((pthread_rwlock_t *)"clone_queued_work_byid",(char *)0x24c9,func,line);
   }
   base_work = cgpu->queued_work;
   if (base_work != (work *)0x0) {
-    in_r2 = (char *)base_work->id;
+    uVar3 = base_work->id;
     pwVar1 = (work *)(base_work->hh).next;
-    while ((char *)id != in_r2) {
+    while (id != uVar3) {
       if (pwVar1 == (work *)0x0) {
         base_work = (work *)0x0;
         goto LAB_000226f6;
       }
-      in_r2 = (char *)pwVar1->id;
+      uVar3 = pwVar1->id;
       base_work = pwVar1;
       pwVar1 = (work *)(pwVar1->hh).next;
     }
@@ -34,9 +35,9 @@ work * clone_queued_work_byid(cgpu_info *cgpu,uint id)
 LAB_000226f6:
   iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)&cgpu->qlock);
   if (iVar2 != 0) {
-    _rw_unlock(DAT_00022730,(char *)0x24cd,in_r2,in_r3);
+    _rw_unlock((pthread_rwlock_t *)"clone_queued_work_byid",(char *)0x24cd,func_00,line_00);
   }
-  (**DAT_0002272c)();
+  (*selective_yield)();
   return base_work;
 }
 

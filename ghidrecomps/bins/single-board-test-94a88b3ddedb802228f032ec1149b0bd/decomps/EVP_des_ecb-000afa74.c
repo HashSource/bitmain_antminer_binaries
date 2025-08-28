@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_des_ecb(void)
 
 {
-  return DAT_000afa78;
+  return (EVP_CIPHER *)des_ecb;
 }
 

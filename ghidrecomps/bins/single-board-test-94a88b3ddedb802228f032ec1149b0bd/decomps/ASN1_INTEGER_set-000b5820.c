@@ -17,7 +17,7 @@ int ASN1_INTEGER_set(ASN1_INTEGER *a,long v)
     if (a->data != (uchar *)0x0) {
       CRYPTO_free(a->data);
     }
-    puVar1 = (uchar *)CRYPTO_malloc(5,DAT_000b58e0,0x164);
+    puVar1 = (uchar *)CRYPTO_malloc(5,"a_int.c",0x164);
     a->data = puVar1;
     if (puVar1 == (uchar *)0x0) goto LAB_000b58be;
     *puVar1 = '\0';
@@ -31,7 +31,7 @@ int ASN1_INTEGER_set(ASN1_INTEGER *a,long v)
   puVar1 = a->data;
   if (puVar1 == (uchar *)0x0) {
 LAB_000b58be:
-    ERR_put_error(0xd,0x76,0x41,DAT_000b58e0,0x168);
+    ERR_put_error(0xd,0x76,0x41,"a_int.c",0x168);
     return 0;
   }
   if (v < 0) {

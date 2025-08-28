@@ -6,7 +6,7 @@ __pid_t fork(void)
 {
   __pid_t _Var1;
   
-  _Var1 = (*(code *)PTR_fork_000a81ec)();
+  _Var1 = fork();
   return _Var1;
 }
 

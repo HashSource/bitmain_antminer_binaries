@@ -7,8 +7,6 @@ int re_open_core_by_chain(int fan_pwm,int chain,_Bool is_low_temp)
   uint16_t uVar2;
   FILE *pFVar3;
   uint uVar4;
-  char *in_stack_ffffffb0;
-  int in_stack_ffffffb4;
   _Bool is_low_temp_local;
   int chain_local;
   int fan_pwm_local;
@@ -24,9 +22,8 @@ int re_open_core_by_chain(int fan_pwm,int chain,_Bool is_low_temp)
     print_crt_time_to_file(log_file,3);
     pFVar3 = fopen(log_file,"a+");
     if (pFVar3 != (FILE *)0x0) {
-      in_stack_ffffffb0 = "re_open_core_by_chain";
-      in_stack_ffffffb4 = fan_pwm;
-      fprintf(pFVar3,"%s:%d:%s: \nre_open_core start!PWM %d\n","driver-btm-soc.c",0x1ae2);
+      fprintf(pFVar3,"%s:%d:%s: \nre_open_core start!PWM %d\n","driver-btm-soc.c",0x1ae2,
+              "re_open_core_by_chain",fan_pwm);
     }
     fclose(pFVar3);
   }
@@ -45,7 +42,7 @@ int re_open_core_by_chain(int fan_pwm,int chain,_Bool is_low_temp)
   set_dhash_acc_control(uVar4 & 0xffff70df | 0x8100);
   cgsleep_ms(10);
   chain_00 = (uint8_t)chain;
-  set_highest_voltage_by_chain(chain_00,(double)CONCAT44(in_stack_ffffffb4,in_stack_ffffffb0));
+  set_highest_voltage_by_chain(chain_00,10.199999809265137);
   set_iic_power_to_highest_voltage_by_chain(chain_00);
   init_address_info();
   set_default_uart_baud();
@@ -80,7 +77,7 @@ int re_open_core_by_chain(int fan_pwm,int chain,_Bool is_low_temp)
   }
   else {
     uVar2 = increase_freq_by_eeprom_slowly((int)init_freq,(int)freq_step);
-    max_freq = (float)(ulonglong)uVar2;
+    max_freq = (float)uVar2;
   }
   set_timeout((int)max_freq,0x32);
   check_chain();

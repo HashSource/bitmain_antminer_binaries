@@ -9,10 +9,10 @@ void gost94_param_encode(EVP_PKEY *param_1,uchar **param_2)
   char *str;
   BIGNUM *local_14;
   
-  piVar1 = DAT_00115bb4;
   pvVar2 = EVP_PKEY_get0(param_1);
   local_14 = BN_new();
-  str = (char *)piVar1[3];
+  piVar1 = (int *)R3410_paramset;
+  str = (char *)R3410_paramset._12_4_;
   do {
     if (str == (char *)0x0) {
       BN_free(local_14);

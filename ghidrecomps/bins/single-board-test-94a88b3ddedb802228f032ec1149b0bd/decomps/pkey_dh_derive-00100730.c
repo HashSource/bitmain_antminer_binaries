@@ -11,7 +11,7 @@ int pkey_dh_derive(int param_1,uchar *param_2,int *param_3)
   
   iVar2 = *(int *)(param_1 + 0x14);
   if ((*(int *)(param_1 + 8) == 0) || (*(int *)(param_1 + 0xc) == 0)) {
-    ERR_put_error(5,0x70,0x6c,DAT_00100820,0x1b4);
+    ERR_put_error(5,0x70,0x6c,"dh_pmeth.c",0x1b4);
     iVar2 = 0;
   }
   else {
@@ -40,7 +40,7 @@ int pkey_dh_derive(int param_1,uchar *param_2,int *param_3)
         }
         if (iVar1 == *param_3) {
           len = DH_size(dh);
-          key = (uchar *)CRYPTO_malloc(len,DAT_00100820,0x1d0);
+          key = (uchar *)CRYPTO_malloc(len,"dh_pmeth.c",0x1d0);
           if (key != (uchar *)0x0) {
             iVar1 = DH_compute_key_padded(key,pub_key,dh);
             if ((iVar1 < 1) ||

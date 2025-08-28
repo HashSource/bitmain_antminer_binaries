@@ -16,10 +16,10 @@ int OBJ_txt2nid(char *s)
     iVar3 = a->nid;
     if (iVar3 != 0) goto LAB_0008cafe;
     if (a->length != 0) {
-      if (*(_LHASH **)(DAT_0008cb28 + 4) != (_LHASH *)0x0) {
+      if (added != (_LHASH *)0x0) {
         local_18 = iVar3;
         local_14 = a;
-        pvVar1 = lh_retrieve(*(_LHASH **)(DAT_0008cb28 + 4),&local_18);
+        pvVar1 = lh_retrieve(added,&local_18);
         if (pvVar1 != (void *)0x0) {
           iVar3 = *(int *)(*(int *)((int)pvVar1 + 4) + 8);
           goto LAB_0008cafe;
@@ -27,7 +27,7 @@ int OBJ_txt2nid(char *s)
       }
       piVar2 = (int *)OBJ_bsearch_ex__constprop_9(&local_1c);
       if (piVar2 != (int *)0x0) {
-        iVar3 = *(int *)(DAT_0008cb2c + *piVar2 * 0x18 + 8);
+        iVar3 = *(int *)(&DAT_00147268 + *piVar2 * 0x18);
         goto LAB_0008cafe;
       }
     }

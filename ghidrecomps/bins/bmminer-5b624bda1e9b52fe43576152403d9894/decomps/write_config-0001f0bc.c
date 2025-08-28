@@ -4,177 +4,159 @@
 void write_config(FILE *fcfg)
 
 {
-  undefined4 *puVar1;
-  int *piVar2;
-  char **ppcVar3;
-  pool *ppVar4;
+  int *piVar1;
+  JE *__ptr;
+  pool *ppVar2;
+  char *pcVar3;
+  char *pcVar4;
   char *pcVar5;
-  char *pcVar6;
-  char *pcVar7;
-  char *pcVar8;
-  char *name;
-  char *p;
-  char *pcVar9;
-  char *carg;
-  void *pvVar10;
-  uint uVar11;
-  int iVar12;
-  int iVar13;
-  pool *pool;
-  void **__ptr;
-  JE *jeptr;
-  int iVar14;
-  void **ppvVar15;
-  int iVar16;
-  char *local_2c;
+  uint uVar6;
+  int iVar7;
+  int iVar8;
+  JE *pJVar9;
+  undefined1 *puVar10;
+  undefined2 *puVar11;
+  undefined2 *local_2c;
   
-  piVar2 = DAT_0001f408;
-  fwrite(DAT_0001f380,1,0xd,(FILE *)fcfg);
-  if (0 < *piVar2) {
-    iVar14 = 0;
+  fwrite(&DAT_0004bea8,1,0xd,(FILE *)fcfg);
+  if (0 < total_pools) {
+    iVar8 = 0;
     do {
-      ppVar4 = priority_pool(iVar14);
-      iVar16 = ppVar4->quota;
-      if (iVar16 == 1) {
-        pcVar8 = DAT_0001f390;
-        if (iVar14 == 0) {
-          pcVar8 = DAT_0001f38c;
+      ppVar2 = priority_pool(iVar8);
+      iVar7 = ppVar2->quota;
+      if (iVar7 == 1) {
+        puVar10 = &DAT_0004bf30;
+        if (iVar8 == 0) {
+          puVar10 = &DAT_00046bb8;
         }
-        pcVar9 = DAT_0001f4c4;
-        pcVar5 = DAT_0001f38c;
-        if (ppVar4->rpc_proxy == (char *)0x0) {
+        if (ppVar2->rpc_proxy == (char *)0x0) {
+          pcVar4 = "";
+LAB_0001f454:
+          pcVar3 = "";
 LAB_0001f458:
-          pcVar6 = DAT_0001f4c4;
+          puVar11 = (undefined2 *)&DAT_00046bb8;
         }
         else {
-          pcVar9 = proxytype(ppVar4->rpc_proxytype);
-          pcVar5 = json_escape(pcVar9);
-          pcVar9 = DAT_0001f4c4;
-          if ((ppVar4->rpc_proxy == (char *)0x0) ||
-             (pcVar9 = json_escape(ppVar4->rpc_proxy), pcVar6 = DAT_0001f394,
-             ppVar4->rpc_proxy == (char *)0x0)) goto LAB_0001f458;
+          pcVar4 = proxytype(ppVar2->rpc_proxytype);
+          pcVar4 = json_escape(pcVar4);
+          if (ppVar2->rpc_proxy == (char *)0x0) goto LAB_0001f454;
+          pcVar3 = json_escape(ppVar2->rpc_proxy);
+          puVar11 = &DAT_000472e4;
+          if (ppVar2->rpc_proxy == (char *)0x0) goto LAB_0001f458;
         }
-        pcVar7 = json_escape(ppVar4->rpc_url);
-        fprintf((FILE *)fcfg,DAT_0001f3a0,pcVar8,pcVar5,pcVar9,pcVar6,pcVar7);
+        pcVar5 = json_escape(ppVar2->rpc_url);
+        fprintf((FILE *)fcfg,"%s\n\t{\n\t\t\"url\" : \"%s%s%s%s\",",puVar10,pcVar4,pcVar3,puVar11,
+                pcVar5);
       }
       else {
-        pcVar8 = DAT_0001f38c;
-        if (iVar14 != 0) {
-          pcVar8 = DAT_0001f390;
-        }
-        pcVar9 = DAT_0001f38c;
-        pcVar5 = DAT_0001f38c;
-        if (ppVar4->rpc_proxy == (char *)0x0) {
-LAB_0001f1f8:
-          local_2c = DAT_0001f38c;
+        if (iVar8 == 0) {
+          puVar10 = &DAT_00046bb8;
         }
         else {
-          pcVar9 = proxytype(ppVar4->rpc_proxytype);
-          pcVar9 = json_escape(pcVar9);
-          if (ppVar4->rpc_proxy == (char *)0x0) {
-            iVar16 = ppVar4->quota;
-            pcVar5 = DAT_0001f38c;
-            goto LAB_0001f1f8;
+          puVar10 = &DAT_0004bf30;
+        }
+        if (ppVar2->rpc_proxy == (char *)0x0) {
+          pcVar4 = "";
+LAB_0001f1f4:
+          pcVar3 = "";
+LAB_0001f1f8:
+          local_2c = (undefined2 *)&DAT_00046bb8;
+        }
+        else {
+          pcVar4 = proxytype(ppVar2->rpc_proxytype);
+          pcVar4 = json_escape(pcVar4);
+          if (ppVar2->rpc_proxy == (char *)0x0) {
+            iVar7 = ppVar2->quota;
+            goto LAB_0001f1f4;
           }
-          pcVar5 = json_escape(ppVar4->rpc_proxy);
-          iVar16 = ppVar4->quota;
-          if (ppVar4->rpc_proxy == (char *)0x0) goto LAB_0001f1f8;
-          local_2c = DAT_0001f394;
+          pcVar3 = json_escape(ppVar2->rpc_proxy);
+          iVar7 = ppVar2->quota;
+          if (ppVar2->rpc_proxy == (char *)0x0) goto LAB_0001f1f8;
+          local_2c = &DAT_000472e4;
         }
-        pcVar6 = json_escape(ppVar4->rpc_url);
-        fprintf((FILE *)fcfg,DAT_0001f398,pcVar8,pcVar9,pcVar5,local_2c,iVar16,pcVar6);
+        pcVar5 = json_escape(ppVar2->rpc_url);
+        fprintf((FILE *)fcfg,"%s\n\t{\n\t\t\"quota\" : \"%s%s%s%d;%s\",",puVar10,pcVar4,pcVar3,
+                local_2c,iVar7,pcVar5);
       }
-      if (ppVar4->extranonce_subscribe != false) {
-        fwrite(DAT_0001f39c,1,0x21,(FILE *)fcfg);
+      if (ppVar2->extranonce_subscribe != false) {
+        fwrite("\n\t\t\"extranonce-subscribe\" : true,",1,0x21,(FILE *)fcfg);
       }
-      iVar14 = iVar14 + 1;
-      pcVar8 = json_escape(ppVar4->rpc_user);
-      fprintf((FILE *)fcfg,DAT_0001f384,pcVar8);
-      pcVar8 = json_escape(ppVar4->rpc_pass);
-      fprintf((FILE *)fcfg,DAT_0001f388,pcVar8);
-    } while (iVar14 < *piVar2);
+      iVar8 = iVar8 + 1;
+      pcVar4 = json_escape(ppVar2->rpc_user);
+      fprintf((FILE *)fcfg,"\n\t\t\"user\" : \"%s\",",pcVar4);
+      pcVar4 = json_escape(ppVar2->rpc_pass);
+      fprintf((FILE *)fcfg,"\n\t\t\"pass\" : \"%s\"\n\t}",pcVar4);
+    } while (iVar8 < total_pools);
   }
-  puVar1 = DAT_0001f3a4;
-  fwrite(DAT_0001f3a8,1,3,(FILE *)fcfg);
-  iVar16 = DAT_0001f410;
-  ppcVar3 = DAT_0001f40c;
-  iVar14 = DAT_0001f3ac;
-  iVar12 = puVar1[1];
-  ppvVar15 = DAT_0001f400;
-  do {
-    DAT_0001f400 = ppvVar15;
-    if (iVar12 == 0x10) {
-      pvVar10 = ppvVar15[0x107];
-      if (pvVar10 == (void *)0x4) {
-        fwrite(DAT_0001f4bc,1,0x12,(FILE *)fcfg);
-        pvVar10 = ppvVar15[0x107];
-      }
-      if (pvVar10 == (void *)0x3) {
-        fwrite(DAT_0001f4c0,1,0x17,(FILE *)fcfg);
-        pvVar10 = ppvVar15[0x107];
-      }
-      if (pvVar10 == (void *)0x1) {
-        fwrite(DAT_0001f4b8,1,0x16,(FILE *)fcfg);
-        pvVar10 = ppvVar15[0x107];
-      }
-      if (pvVar10 == (void *)0x2) {
-        fprintf((FILE *)fcfg,DAT_0001f4b4,*DAT_0001f4b0);
-      }
-      fwrite(DAT_0001f404,1,3,(FILE *)fcfg);
-      __ptr = (void **)*ppvVar15;
-      *ppvVar15 = (void *)0x0;
-      while (__ptr != (void **)0x0) {
-        ppvVar15 = (void **)__ptr[1];
-        free(*__ptr);
-        free(__ptr);
-        __ptr = ppvVar15;
-      }
-      return;
-    }
-    pcVar8 = (char *)__strdup(*puVar1);
-    name = strtok(pcVar8,DAT_0001f394);
-    iVar12 = DAT_0001f414;
-    while (name != (char *)0x0) {
-      if ((name[1] == '-') && (puVar1[6] != iVar14)) {
-        uVar11 = puVar1[1];
-        if (((int)(uVar11 << 0x1f) < 0) &&
-           (((iVar13 = puVar1[2], iVar13 == DAT_0001f3b0 || (iVar13 == DAT_0001f3b4)) &&
-            ((bool)*(char *)puVar1[5] == (iVar13 == DAT_0001f3b0))))) {
-          fprintf((FILE *)fcfg,DAT_0001f4a8,name + 2);
-        }
-        else if ((int)(uVar11 << 0x1e) < 0) {
-          iVar13 = puVar1[3];
-          if (((((iVar13 == iVar16) || (iVar13 == iVar12)) ||
-               ((iVar13 == DAT_0001f3b8 || ((iVar13 == DAT_0001f3bc || (iVar13 == DAT_0001f3c0))))))
-              || (iVar13 == DAT_0001f3c4)) ||
-             ((((((iVar13 == DAT_0001f3c8 || (iVar13 == DAT_0001f3cc)) || (iVar13 == DAT_0001f3d0))
-                || ((iVar13 == DAT_0001f3d4 || (iVar13 == DAT_0001f3d8)))) ||
-               ((iVar13 == DAT_0001f3dc || ((iVar13 == DAT_0001f3e0 || (iVar13 == DAT_0001f3e4))))))
-              || ((iVar13 == DAT_0001f3e8 || (iVar13 == DAT_0001f3ec)))))) {
-            fprintf((FILE *)fcfg,DAT_0001f3fc,name + 2,*(undefined4 *)puVar1[5]);
+  fwrite(&DAT_0004beb8,1,3,(FILE *)fcfg);
+  if (opt_config_table[0].type != OPT_END) {
+    iVar8 = 0x5ffec;
+    do {
+      pcVar3 = (char *)__strdup(*(undefined4 *)(iVar8 + -0x1c));
+      pcVar4 = strtok(pcVar3,"|");
+      while (pcVar4 != (char *)0x0) {
+        if ((pcVar4[1] == '-') && (*(char **)(iVar8 + -4) != opt_hidden)) {
+          uVar6 = *(uint *)(iVar8 + -0x18);
+          if (((int)(uVar6 << 0x1f) < 0) &&
+             (((iVar7 = *(int *)(iVar8 + -0x14), iVar7 == 0x3aa85 || (iVar7 == 0x3aa95)) &&
+              ((bool)**(char **)(iVar8 + -8) == (iVar7 == 0x3aa85))))) {
+            fprintf((FILE *)fcfg,",\n\"%s\" : true",pcVar4 + 2);
+          }
+          else if ((int)(uVar6 << 0x1e) < 0) {
+            iVar7 = *(int *)(iVar8 + -0x10);
+            if (((((iVar7 == 0x3aba9) || (iVar7 == 0x1eab1)) ||
+                 ((iVar7 == 0x1eac5 || ((iVar7 == 0x1eb2d || (iVar7 == 0x1eb25)))))) ||
+                (iVar7 == 0x1eabd)) ||
+               ((((((iVar7 == 0x1eb1d || (iVar7 == 0x1eb15)) || (iVar7 == 0x1eb09)) ||
+                  ((iVar7 == 0x1eb01 || (iVar7 == 0x1eaf9)))) ||
+                 ((iVar7 == 0x1eaf1 || ((iVar7 == 0x1eae9 || (iVar7 == 0x1eae1)))))) ||
+                ((iVar7 == 0x1ead9 || (iVar7 == 0x1ead1)))))) {
+              fprintf((FILE *)fcfg,",\n\"%s\" : \"%d\"",pcVar4 + 2,**(undefined4 **)(iVar8 + -8));
+            }
+            else {
+              if ((iVar7 != 0x1e83d) && (iVar7 != 0x1e801)) goto LAB_0001f2e8;
+              fprintf((FILE *)fcfg,",\n\"%s\" : \"%.1f\"",pcVar4 + 2,*(float **)(iVar8 + -8),
+                      (double)**(float **)(iVar8 + -8));
+            }
           }
           else {
-            if ((iVar13 != DAT_0001f3f0) && (iVar13 != DAT_0001f3f4)) goto LAB_0001f2e8;
-            fprintf((FILE *)fcfg,DAT_0001f4ac,name + 2,(float *)puVar1[5],
-                    (double)*(float *)puVar1[5]);
-          }
-        }
-        else {
 LAB_0001f2e8:
-          if (((uVar11 & 6) != 0) &&
-             (((char **)puVar1[5] != ppcVar3 &&
-              (pcVar9 = *(char **)puVar1[5], pcVar9 != (char *)0x0)))) {
-            pcVar9 = json_escape(pcVar9);
-            fprintf((FILE *)fcfg,DAT_0001f3f8,name + 2,pcVar9);
+            if (((uVar6 & 6) != 0) &&
+               ((*(char ***)(iVar8 + -8) != &opt_set_null &&
+                (pcVar5 = **(char ***)(iVar8 + -8), pcVar5 != (char *)0x0)))) {
+              pcVar5 = json_escape(pcVar5);
+              fprintf((FILE *)fcfg,",\n\"%s\" : \"%s\"",pcVar4 + 2,pcVar5);
+            }
           }
         }
+        pcVar4 = strtok((char *)0x0,"|");
       }
-      name = strtok((char *)0x0,DAT_0001f394);
-    }
-    free(pcVar8);
-    iVar12 = puVar1[8];
-    puVar1 = puVar1 + 7;
-    ppvVar15 = DAT_0001f400;
-  } while( true );
+      free(pcVar3);
+      piVar1 = (int *)(iVar8 + 4);
+      iVar8 = iVar8 + 0x1c;
+    } while (*piVar1 != 0x10);
+  }
+  if (pool_strategy == POOL_BALANCE) {
+    fwrite(",\n\"balance\" : true",1,0x12,(FILE *)fcfg);
+  }
+  if (pool_strategy == POOL_LOADBALANCE) {
+    fwrite(",\n\"load-balance\" : true",1,0x17,(FILE *)fcfg);
+  }
+  if (pool_strategy == POOL_ROUNDROBIN) {
+    fwrite(",\n\"round-robin\" : true",1,0x16,(FILE *)fcfg);
+  }
+  if (pool_strategy == POOL_ROTATE) {
+    fprintf((FILE *)fcfg,",\n\"rotate\" : \"%d\"",opt_rotate_period);
+  }
+  fwrite(&DAT_0004bfe0,1,3,(FILE *)fcfg);
+  __ptr = jedata;
+  jedata = (JE *)0x0;
+  while (__ptr != (JE *)0x0) {
+    pJVar9 = __ptr->next;
+    free(__ptr->buf);
+    free(__ptr);
+    __ptr = pJVar9;
+  }
+  return;
 }
 

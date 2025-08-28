@@ -3,12 +3,9 @@ void suffix_string(uint64_t val,char *buf,size_t bufsiz,int sigdigits)
 
 {
   bool bVar1;
-  size_t in_r3;
   bool bVar2;
   double dVar3;
   undefined8 uVar4;
-  undefined4 in_stack_ffffff70;
-  undefined4 in_stack_ffffff74;
   size_t bufsiz_local;
   char *buf_local;
   uint64_t val_local;
@@ -27,91 +24,91 @@ void suffix_string(uint64_t val,char *buf,size_t bufsiz,int sigdigits)
   suffix[0] = '\0';
   suffix[1] = '\0';
   bVar1 = true;
-  bVar2 = DAT_0004a9c4 <= bufsiz;
-  if (bufsiz == DAT_0004a9c4) {
-    bVar2 = DAT_0004a9c0 <= buf;
+  val_local._0_4_ = (uint)val;
+  val_local._4_4_ = (uint)(val >> 0x20);
+  bVar2 = 0xde0b6b2 < val_local._4_4_;
+  if (val_local._4_4_ == 0xde0b6b3) {
+    bVar2 = 0xa763ffff < (uint)val_local;
   }
   if (bVar2) {
-    uVar4 = __aeabi_uldivmod(buf,bufsiz,DAT_0004a9b8,DAT_0004a9bc);
+    uVar4 = __aeabi_uldivmod((uint)val_local,val_local._4_4_,0xa4c68000,0x38d7e);
     dVar3 = (double)__floatundidf((int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
     dval = dVar3 / 1000.0;
     suffix[0] = 'E';
     suffix[1] = '\0';
   }
   else {
-    bVar2 = DAT_0004a9bc <= bufsiz;
-    if (bufsiz == DAT_0004a9bc) {
-      bVar2 = DAT_0004a9b8 <= buf;
+    bVar2 = 0x38d7d < val_local._4_4_;
+    if (val_local._4_4_ == 0x38d7e) {
+      bVar2 = 0xa4c67fff < (uint)val_local;
     }
     if (bVar2) {
-      uVar4 = __aeabi_uldivmod(buf,bufsiz,DAT_0004a9b0,DAT_0004a9b4);
+      uVar4 = __aeabi_uldivmod((uint)val_local,val_local._4_4_,0xd4a51000,0xe8);
       dVar3 = (double)__floatundidf((int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
       dval = dVar3 / 1000.0;
       suffix[0] = 'P';
       suffix[1] = '\0';
     }
     else {
-      bVar2 = DAT_0004a9b4 <= bufsiz;
-      if (bufsiz == DAT_0004a9b4) {
-        bVar2 = DAT_0004a9b0 <= buf;
+      bVar2 = 0xe7 < val_local._4_4_;
+      if (val_local._4_4_ == 0xe8) {
+        bVar2 = 0xd4a50fff < (uint)val_local;
       }
       if (bVar2) {
-        uVar4 = __aeabi_uldivmod(buf,bufsiz,DAT_0004a9a8,DAT_0004a9ac);
+        uVar4 = __aeabi_uldivmod((uint)val_local,val_local._4_4_,1000000000,0);
         dVar3 = (double)__floatundidf((int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
         dval = dVar3 / 1000.0;
         suffix[0] = 'T';
         suffix[1] = '\0';
       }
-      else {
-        bVar2 = DAT_0004a9ac <= bufsiz;
-        if (bufsiz == DAT_0004a9ac) {
-          bVar2 = DAT_0004a9a8 <= buf;
-        }
-        if (bVar2) {
-          uVar4 = __aeabi_uldivmod(buf,bufsiz,1000000,0);
-          dVar3 = (double)__floatundidf((int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
-          dval = dVar3 / 1000.0;
-          suffix[0] = 'G';
-          suffix[1] = '\0';
-        }
-        else if (bufsiz == 0 && buf < calc_nonce_info.chain_asic_core_nonce_num[5][0x30] + 0xbe) {
-          if (bufsiz == 0 && buf < (char *)0x3e8) {
-            dval = (double)__floatundidf(buf,bufsiz);
+      else if (val_local._4_4_ == 0 && (uint)val_local < 1000000000) {
+        if (val_local._4_4_ == 0 && (uint)val_local < 1000000) {
+          if (val_local._4_4_ == 0 && (uint)val_local < 1000) {
+            dval = (double)__floatundidf((uint)val_local,val_local._4_4_);
             bVar1 = false;
           }
           else {
-            dVar3 = (double)__floatundidf(buf,bufsiz);
+            dVar3 = (double)__floatundidf((uint)val_local,val_local._4_4_);
             dval = dVar3 / 1000.0;
             suffix[0] = 'K';
             suffix[1] = '\0';
           }
         }
         else {
-          uVar4 = __aeabi_uldivmod(buf,bufsiz,1000,0);
+          uVar4 = __aeabi_uldivmod((uint)val_local,val_local._4_4_,1000,0);
           dVar3 = (double)__floatundidf((int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
           dval = dVar3 / 1000.0;
           suffix[0] = 'M';
           suffix[1] = '\0';
         }
       }
+      else {
+        uVar4 = __aeabi_uldivmod((uint)val_local,val_local._4_4_,1000000,0);
+        dVar3 = (double)__floatundidf((int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
+        dval = dVar3 / 1000.0;
+        suffix[0] = 'G';
+        suffix[1] = '\0';
+      }
     }
   }
-  if ((int)val == 0) {
+  if (sigdigits == 0) {
     if (bVar1) {
-      snprintf((char *)sigdigits,in_r3,"%.3g%s",dval._0_4_,dval._0_4_,dval._4_4_,suffix);
+      snprintf(buf,bufsiz,"%.3g%s",dval._0_4_,dval._0_4_,dval._4_4_,suffix);
     }
     else {
-      snprintf((char *)sigdigits,in_r3,"%d%s",(uint)(0.0 < dval) * (int)(longlong)dval,suffix);
+      snprintf(buf,bufsiz,"%d%s",(uint)(0.0 < dval) * (int)(longlong)dval,suffix);
     }
   }
   else {
-    dVar3 = DAT_0004a9a0;
-    if (dval != 0.0 && dval < 0.0 == NAN(dval)) {
-      log10((double)CONCAT44(in_stack_ffffff74,in_stack_ffffff70));
-      dVar3 = floor((double)CONCAT44(in_stack_ffffff74,in_stack_ffffff70));
+    if (dval <= 0.0) {
+      dVar3 = 0.0;
     }
-    snprintf((char *)sigdigits,in_r3,"%*.*f%s",(int)val + 1,
-             (int)(longlong)((double)(longlong)((int)val + -1) - dVar3));
+    else {
+      dVar3 = log10(dval);
+      dVar3 = floor(dVar3);
+    }
+    snprintf(buf,bufsiz,"%*.*f%s",sigdigits + 1,
+             (int)(longlong)((double)(longlong)(sigdigits + -1) - dVar3));
   }
   return;
 }

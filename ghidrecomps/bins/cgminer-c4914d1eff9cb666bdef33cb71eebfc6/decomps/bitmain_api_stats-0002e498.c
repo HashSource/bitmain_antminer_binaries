@@ -1,20 +1,19 @@
 
-/* WARNING: Variable defined which should be unmapped: cgpu-local */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 api_data * bitmain_api_stats(cgpu_info *cgpu)
 
 {
   longlong lVar1;
-  _Bool _Var2;
-  int iVar3;
-  size_t sVar4;
-  api_data *paVar5;
-  int iVar6;
-  bool bVar7;
-  double dVar8;
-  int64_t iVar9;
-  undefined4 uStack_a28;
+  undefined4 uVar2;
+  _Bool _Var3;
+  int iVar4;
+  size_t sVar5;
+  api_data *paVar6;
+  char *pcVar7;
+  int iVar8;
+  bool bVar9;
+  DFtype a;
+  double dVar10;
+  DItype DVar11;
   cgpu_info *cgpu_local;
   char temp_pcb_value [64];
   char tmp_3 [20];
@@ -110,10 +109,12 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
     no_value[1] = '\0';
     len = 0;
     for (j_1 = 0; j_1 < dev->chain_asic_temp_num[i]; j_1 = j_1 + 1) {
-      iVar3 = sprintf(temp_pcb_value + len,"%d",(int)dev->chain_asic_temp[i][j_1][0]);
-      len = len + iVar3;
+      iVar4 = sprintf(temp_pcb_value + len,"%d",(int)dev->chain_asic_temp[i][j_1][0]);
+      len = len + iVar4;
       if (j_1 + 1 < (int)dev->chain_asic_temp_num[i]) {
-        *(undefined2 *)(temp_pcb_value + len) = DAT_000844a0;
+        pcVar7 = temp_pcb_value + len;
+        pcVar7[0] = '-';
+        pcVar7[1] = '\0';
         len = len + 1;
       }
     }
@@ -130,10 +131,12 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
     no_value_1[1] = '\0';
     len_1 = 0;
     for (j_2 = 0; j_2 < dev->chain_asic_temp_num[i]; j_2 = j_2 + 1) {
-      iVar3 = sprintf(temp_pcb_value + len_1,"%d",(int)dev->chain_asic_temp[i][j_2][1]);
-      len_1 = len_1 + iVar3;
+      iVar4 = sprintf(temp_pcb_value + len_1,"%d",(int)dev->chain_asic_temp[i][j_2][1]);
+      len_1 = len_1 + iVar4;
       if (j_2 + 1 < (int)dev->chain_asic_temp_num[i]) {
-        *(undefined2 *)(temp_pcb_value + len_1) = DAT_000844a0;
+        pcVar7 = temp_pcb_value + len_1;
+        pcVar7[0] = '-';
+        pcVar7[1] = '\0';
         len_1 = len_1 + 1;
       }
     }
@@ -151,54 +154,39 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
     if (dev->chain_exist[i] == 1) {
       if (last_freq[i][1] == '}') {
         for (j = 0; j < (int)(uint)dev->chain_asic_num[i]; j = j + 1) {
-          iVar3 = freq_pll_1393[12].freq;
+          iVar4 = freq_pll_1393[0xc].freq;
           if (chain_badcore_num[i][j] < 0xf) {
-            iVar3 = freq_pll_1393[*(byte *)(i * 0x100 + j * 2 + 0xb3b797)].freq;
+            iVar4 = freq_pll_1393[*(byte *)(i * 0x100 + j * 2 + 0xb3b797)].freq;
           }
-          dev_sum_freq = (double)(longlong)iVar3 + dev_sum_freq;
+          dev_sum_freq = (double)(longlong)iVar4 + dev_sum_freq;
         }
         if (dev->chain_asic_num[i] != '\0') {
-          dev_sum_freq = dev_sum_freq / (double)(longlong)(int)(uint)dev->chain_asic_num[i];
+          dev_sum_freq = dev_sum_freq / (double)dev->chain_asic_num[i];
         }
-        temp = (int)(longlong)(dev_sum_freq * DAT_0002eef0);
-        dev_sum_freq = (double)(longlong)temp / DAT_0002eef0;
+        temp = (int)(longlong)(dev_sum_freq * 100.0);
+        dev_sum_freq = (double)(longlong)temp / 100.0;
         root = api_add_mhs(root,freq_sum,&dev_sum_freq,true);
       }
       else {
-        temp = (int)(longlong)(dev_sum_freq * DAT_0002eef0);
-        dev_sum_freq = (double)(longlong)temp / DAT_0002eef0;
+        temp = (int)(longlong)(dev_sum_freq * 100.0);
+        dev_sum_freq = (double)(longlong)temp / 100.0;
         root = api_add_mhs(root,freq_sum,&dev_sum_freq,true);
       }
     }
     else {
-      temp = (int)(longlong)(dev_sum_freq * DAT_0002eef0);
-      dev_sum_freq = (double)(longlong)temp / DAT_0002eef0;
+      temp = (int)(longlong)(dev_sum_freq * 100.0);
+      dev_sum_freq = (double)(longlong)temp / 100.0;
       root = api_add_mhs(root,freq_sum,&dev_sum_freq,true);
     }
   }
   dev_sum_freq_1 = 0.0;
-  temp_pcb_value[0] = s_total_rateideal_000844c8[0];
-  temp_pcb_value[1] = s_total_rateideal_000844c8[1];
-  temp_pcb_value[2] = s_total_rateideal_000844c8[2];
-  temp_pcb_value[3] = s_total_rateideal_000844c8[3];
-  temp_pcb_value[4] = s_total_rateideal_000844c8[4];
-  temp_pcb_value[5] = s_total_rateideal_000844c8[5];
-  temp_pcb_value[6] = s_total_rateideal_000844c8[6];
-  temp_pcb_value[7] = s_total_rateideal_000844c8[7];
-  temp_pcb_value[8] = s_total_rateideal_000844c8[8];
-  temp_pcb_value[9] = s_total_rateideal_000844c8[9];
-  temp_pcb_value[10] = s_total_rateideal_000844c8[10];
-  temp_pcb_value[11] = s_total_rateideal_000844c8[11];
-  temp_pcb_value[12] = s_total_rateideal_000844c8[12];
-  temp_pcb_value[13] = s_total_rateideal_000844c8[13];
-  temp_pcb_value[14] = s_total_rateideal_000844c8[14];
-  temp_pcb_value[15] = s_total_rateideal_000844c8[15];
+  builtin_strncpy(temp_pcb_value,"total_rateideal",0x10);
   t11_eco_rate = GetTotalRate();
   t11a_eco_rate = 0x445c;
-  _Var2 = is_economic_mode();
-  if (_Var2) {
-    _Var2 = is_T11();
-    if (_Var2) {
+  _Var3 = is_economic_mode();
+  if (_Var3) {
+    _Var3 = is_T11();
+    if (_Var3) {
       dev_sum_freq_1 = (double)(longlong)t11_eco_rate;
     }
     else {
@@ -206,76 +194,54 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
     }
   }
   else {
-    iVar3 = GetTotalRate();
-    dev_sum_freq_1 = (double)(longlong)iVar3;
+    iVar4 = GetTotalRate();
+    dev_sum_freq_1 = (double)(longlong)iVar4;
   }
   root = api_add_mhs(root,temp_pcb_value,&dev_sum_freq_1,true);
   j_3 = 0;
   total_acn_num = 0;
   dev_sum_freq_2 = 0.0;
-  temp_pcb_value[0] = s_total_freqavg_000844d8[0];
-  temp_pcb_value[1] = s_total_freqavg_000844d8[1];
-  temp_pcb_value[2] = s_total_freqavg_000844d8[2];
-  temp_pcb_value[3] = s_total_freqavg_000844d8[3];
-  temp_pcb_value[4] = s_total_freqavg_000844d8[4];
-  temp_pcb_value[5] = s_total_freqavg_000844d8[5];
-  temp_pcb_value[6] = s_total_freqavg_000844d8[6];
-  temp_pcb_value[7] = s_total_freqavg_000844d8[7];
-  temp_pcb_value[8] = s_total_freqavg_000844d8[8];
-  temp_pcb_value[9] = s_total_freqavg_000844d8[9];
-  temp_pcb_value[10] = s_total_freqavg_000844d8[10];
-  temp_pcb_value[11] = s_total_freqavg_000844d8[11];
-  temp_pcb_value[12] = (char)(short)ram0x000844e4;
-  temp_pcb_value[13] = (char)((ushort)(short)ram0x000844e4 >> 8);
+  builtin_strncpy(temp_pcb_value,"total_freqav",0xc);
+  temp_pcb_value[0xc] = 'g';
+  temp_pcb_value[0xd] = '\0';
   for (i = 0; i < 0x10; i = i + 1) {
     if ((dev->chain_exist[i] == 1) && (last_freq[i][1] == '}')) {
       for (j_3 = 0; j_3 < (int)(uint)dev->chain_asic_num[i]; j_3 = j_3 + 1) {
-        iVar3 = freq_pll_1393[12].freq;
+        iVar4 = freq_pll_1393[0xc].freq;
         if (chain_badcore_num[i][j_3] < 0xf) {
-          iVar3 = freq_pll_1393[*(byte *)(i * 0x100 + j_3 * 2 + 0xb3b797)].freq;
+          iVar4 = freq_pll_1393[*(byte *)(i * 0x100 + j_3 * 2 + 0xb3b797)].freq;
         }
-        dev_sum_freq_2 = (double)(longlong)iVar3 + dev_sum_freq_2;
+        dev_sum_freq_2 = (double)(longlong)iVar4 + dev_sum_freq_2;
         total_acn_num = total_acn_num + 1;
       }
     }
   }
-  temp_1 = (int)(longlong)((dev_sum_freq_2 / (double)(longlong)total_acn_num) * DAT_0002eef0);
-  dev_sum_freq_2 = (double)(longlong)temp_1 / DAT_0002eef0;
+  temp_1 = (int)(longlong)((dev_sum_freq_2 / (double)(longlong)total_acn_num) * 100.0);
+  dev_sum_freq_2 = (double)(longlong)temp_1 / 100.0;
   root = api_add_mhs(root,temp_pcb_value,&dev_sum_freq_2,true);
+  uVar2 = temp_pcb_value._8_4_;
   asic_num_total = 0;
-  temp_pcb_value[0] = s_total_acn_000844e8[0];
-  temp_pcb_value[1] = s_total_acn_000844e8[1];
-  temp_pcb_value[2] = s_total_acn_000844e8[2];
-  temp_pcb_value[3] = s_total_acn_000844e8[3];
-  temp_pcb_value[4] = s_total_acn_000844e8[4];
-  temp_pcb_value[5] = s_total_acn_000844e8[5];
-  temp_pcb_value[6] = s_total_acn_000844e8[6];
-  temp_pcb_value[7] = s_total_acn_000844e8[7];
+  builtin_strncpy(temp_pcb_value,"total_acn",10);
+  temp_pcb_value._10_2_ = SUB42(uVar2,2);
   for (i = 0; i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] == 1) {
       asic_num_total = asic_num_total + (ushort)dev->chain_asic_num[i];
     }
   }
-  temp_pcb_value._8_2_ = (short)ram0x000844f0;
   root = api_add_int16(root,temp_pcb_value,&asic_num_total,true);
   total_rate = 0.0;
-  temp_pcb_value[0] = s_total_rate_000844f4[0];
-  temp_pcb_value[1] = s_total_rate_000844f4[1];
-  temp_pcb_value[2] = s_total_rate_000844f4[2];
-  temp_pcb_value[3] = s_total_rate_000844f4[3];
-  temp_pcb_value[4] = s_total_rate_000844f4[4];
-  temp_pcb_value[5] = s_total_rate_000844f4[5];
-  temp_pcb_value[6] = s_total_rate_000844f4[6];
-  temp_pcb_value[7] = s_total_rate_000844f4[7];
-  temp_pcb_value._8_3_ = (undefined3)ram0x000844fc;
+  builtin_strncpy(temp_pcb_value,"total_ra",8);
+  temp_pcb_value[8] = 't';
+  temp_pcb_value[9] = 'e';
+  temp_pcb_value[10] = '\0';
   for (i = 0; i < 0x10; i = i + 1) {
     if ((dev->chain_exist[i] == 1) && (displayed_rate[i][0] != '\0')) {
-      dVar8 = atof(displayed_rate[i]);
-      total_rate = dVar8 + total_rate;
+      dVar10 = atof(displayed_rate[i]);
+      total_rate = dVar10 + total_rate;
     }
   }
-  temp_2 = (int)(longlong)(total_rate * DAT_0002eef0);
-  total_rate = (double)(longlong)temp_2 / DAT_0002eef0;
+  temp_2 = (int)(longlong)(total_rate * 100.0);
+  total_rate = (double)(longlong)temp_2 / 100.0;
   root = api_add_mhs(root,temp_pcb_value,&total_rate,true);
   for (i = 0; i < 0x10; i = i + 1) {
     j_4 = 0;
@@ -292,39 +258,39 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
                  dev_sum_freq_3;
           }
         }
-        temp_3 = (int)(longlong)((dev_sum_freq_3 / DAT_0002eee8) * DAT_0002eef0);
-        dev_sum_freq_3 = (double)(longlong)temp_3 / DAT_0002eef0;
+        temp_3 = (int)(longlong)((dev_sum_freq_3 / 1000.0) * 100.0);
+        dev_sum_freq_3 = (double)(longlong)temp_3 / 100.0;
         root = api_add_mhs(root,temp_pcb_value,&dev_sum_freq_3,true);
       }
       else {
-        temp_3 = (int)(longlong)((dev_sum_freq_3 / DAT_0002eee8) * DAT_0002eef0);
-        dev_sum_freq_3 = (double)(longlong)temp_3 / DAT_0002eef0;
+        temp_3 = (int)(longlong)((dev_sum_freq_3 / 1000.0) * 100.0);
+        dev_sum_freq_3 = (double)(longlong)temp_3 / 100.0;
         root = api_add_mhs(root,temp_pcb_value,&dev_sum_freq_3,true);
       }
     }
     else {
-      temp_3 = (int)(longlong)((dev_sum_freq_3 / DAT_0002eee8) * DAT_0002eef0);
-      dev_sum_freq_3 = (double)(longlong)temp_3 / DAT_0002eef0;
+      temp_3 = (int)(longlong)((dev_sum_freq_3 / 1000.0) * 100.0);
+      dev_sum_freq_3 = (double)(longlong)temp_3 / 100.0;
       root = api_add_mhs(root,temp_pcb_value,&dev_sum_freq_3,true);
     }
   }
   root = api_add_int(root,"temp_max",dev->temp_top1,copy_data);
-  iVar9 = __fixdfdi((DFtype)CONCAT44(cgpu,uStack_a28));
-  total_diff1._0_4_ = (uint)iVar9;
-  total_diff1._4_4_ = (int)((ulonglong)iVar9 >> 0x20);
-  dev_hwp = DAT_0002f6c8;
-  if ((hw_errors_temp + (uint)total_diff1 |
-      (hw_errors_temp >> 0x1f) + total_diff1._4_4_ + (uint)CARRY4(hw_errors_temp,(uint)total_diff1))
-      != 0) {
-    lVar1 = (longlong)hw_errors_temp;
-    iVar6 = hw_errors_temp + (uint)total_diff1;
-    iVar3 = total_diff1._4_4_ + (uint)CARRY4(hw_errors_temp,(uint)total_diff1);
-    total_diff1 = iVar9;
-    dVar8 = (double)__aeabi_l2d(iVar6,(hw_errors_temp >> 0x1f) + iVar3);
-    dev_hwp = (double)lVar1 / dVar8;
-    iVar9 = total_diff1;
+  DVar11 = __fixdfdi(a);
+  total_diff1._0_4_ = (uint)DVar11;
+  total_diff1._4_4_ = (int)((ulonglong)DVar11 >> 0x20);
+  total_diff1 = DVar11;
+  if (hw_errors_temp + (uint)total_diff1 == 0 &&
+      (hw_errors_temp >> 0x1f) + total_diff1._4_4_ + (uint)CARRY4(hw_errors_temp,(uint)total_diff1)
+      == 0) {
+    dev_hwp = 0.0;
   }
-  total_diff1 = iVar9;
+  else {
+    lVar1 = (longlong)hw_errors_temp;
+    iVar8 = hw_errors_temp + (uint)total_diff1;
+    iVar4 = total_diff1._4_4_ + (uint)CARRY4(hw_errors_temp,(uint)total_diff1);
+    dVar10 = (double)__aeabi_l2d(iVar8,(hw_errors_temp >> 0x1f) + iVar4);
+    dev_hwp = (double)lVar1 / dVar10;
+  }
   root = api_add_percent(root,"Device Hardware%",&dev_hwp,true);
   root = api_add_int(root,"no_matching_work",&hw_errors_temp,copy_data);
   for (i = 0; i < 0x10; i = i + 1) {
@@ -369,15 +335,15 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
       tmp_1[8] = '\0';
       tmp_1[9] = '\0';
       tmp_1[10] = '\0';
-      tmp_1[11] = '\0';
-      tmp_1[12] = '\0';
-      tmp_1[13] = '\0';
-      tmp_1[14] = '\0';
-      tmp_1[15] = '\0';
-      tmp_1[16] = '\0';
-      tmp_1[17] = '\0';
-      tmp_1[18] = '\0';
-      tmp_1[19] = '\0';
+      tmp_1[0xb] = '\0';
+      tmp_1[0xc] = '\0';
+      tmp_1[0xd] = '\0';
+      tmp_1[0xe] = '\0';
+      tmp_1[0xf] = '\0';
+      tmp_1[0x10] = '\0';
+      tmp_1[0x11] = '\0';
+      tmp_1[0x12] = '\0';
+      tmp_1[0x13] = '\0';
       sprintf(chain_xtime,"chain_xtime%d",i + 1);
       if (x_time[i][0] != 0) {
         sprintf(tmp_1,"X%d=%d",0,x_time[i][0]);
@@ -396,8 +362,9 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
           strcat(temp_pcb_value,tmp_1);
         }
       }
-      sVar4 = strlen(temp_pcb_value);
-      *(undefined2 *)(temp_pcb_value + sVar4) = DAT_000845b4;
+      sVar5 = strlen(temp_pcb_value);
+      (temp_pcb_value + sVar5)[0] = '}';
+      (temp_pcb_value + sVar5)[1] = '\0';
       root = api_add_string(root,chain_xtime,temp_pcb_value,copy_data);
     }
   }
@@ -408,7 +375,7 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
       root = api_add_string(root,chain_offside,tmp_2,copy_data);
     }
   }
-  for (i = 0; i < 0x10; i = i + 1) {
+  for (i = 0; uVar2 = temp_pcb_value._12_4_, i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] == 1) {
       sprintf(chain_opencore,"chain_opencore_%d",i + 1);
       if (isChainAllCoresOpened[i] == false) {
@@ -424,36 +391,17 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
   }
   for (i = 0; i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] == 1) {
-      bVar7 = CARRY4((uint)hash_rate_all,*(uint *)(rate + i));
-      hash_rate_all._0_4_ = (uint)hash_rate_all + *(uint *)(rate + i);
-      hash_rate_all._4_4_ = hash_rate_all._4_4_ + *(int *)((int)rate + i * 8 + 4) + (uint)bVar7;
+      bVar9 = CARRY4((uint)hash_rate_all,(uint)rate[i]);
+      hash_rate_all._0_4_ = (uint)hash_rate_all + (uint)rate[i];
+      hash_rate_all._4_4_ = hash_rate_all._4_4_ + *(int *)((int)rate + i * 8 + 4) + (uint)bVar9;
     }
   }
-  temp_pcb_value[0] = s_miner_version_000845e0[0];
-  temp_pcb_value[1] = s_miner_version_000845e0[1];
-  temp_pcb_value[2] = s_miner_version_000845e0[2];
-  temp_pcb_value[3] = s_miner_version_000845e0[3];
-  temp_pcb_value[4] = s_miner_version_000845e0[4];
-  temp_pcb_value[5] = s_miner_version_000845e0[5];
-  temp_pcb_value[6] = s_miner_version_000845e0[6];
-  temp_pcb_value[7] = s_miner_version_000845e0[7];
-  temp_pcb_value[8] = s_miner_version_000845e0[8];
-  temp_pcb_value[9] = s_miner_version_000845e0[9];
-  temp_pcb_value[10] = s_miner_version_000845e0[10];
-  temp_pcb_value[11] = s_miner_version_000845e0[11];
-  temp_pcb_value[12] = (char)(short)ram0x000845ec;
-  temp_pcb_value[13] = (char)((ushort)(short)ram0x000845ec >> 8);
+  builtin_strncpy(temp_pcb_value,"miner_version",0xe);
+  temp_pcb_value._14_2_ = SUB42(uVar2,2);
   root = api_add_string(root,temp_pcb_value,g_miner_version,copy_data);
-  temp_pcb_value[0] = s_miner_id_000845f0[0];
-  temp_pcb_value[1] = s_miner_id_000845f0[1];
-  temp_pcb_value[2] = s_miner_id_000845f0[2];
-  temp_pcb_value[3] = s_miner_id_000845f0[3];
-  temp_pcb_value[4] = s_miner_id_000845f0[4];
-  temp_pcb_value[5] = s_miner_id_000845f0[5];
-  temp_pcb_value[6] = s_miner_id_000845f0[6];
-  temp_pcb_value[7] = s_miner_id_000845f0[7];
-  temp_pcb_value[8] = (char)ram0x000845f8;
-  paVar5 = api_add_string(root,temp_pcb_value,FPGA_ID_str,copy_data);
-  return paVar5;
+  builtin_strncpy(temp_pcb_value,"miner_id",8);
+  temp_pcb_value._8_4_ = temp_pcb_value._8_4_ & 0xffffff00;
+  paVar6 = api_add_string(root,temp_pcb_value,FPGA_ID_str,copy_data);
+  return paVar6;
 }
 

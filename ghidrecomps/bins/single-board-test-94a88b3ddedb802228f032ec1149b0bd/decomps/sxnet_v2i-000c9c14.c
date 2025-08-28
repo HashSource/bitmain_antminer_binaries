@@ -26,7 +26,7 @@ undefined4 sxnet_v2i(undefined4 param_1,undefined4 param_2,_STACK *param_3)
       return 0;
     }
   }
-  ERR_put_error(0x22,0x7d,0x83,DAT_000c9c7c,0x9d);
+  ERR_put_error(0x22,0x7d,0x83,"v3_sxnet.c",0x9d);
   return 0;
 }
 

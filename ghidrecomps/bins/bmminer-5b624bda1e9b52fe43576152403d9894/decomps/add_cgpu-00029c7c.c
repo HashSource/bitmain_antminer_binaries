@@ -11,390 +11,377 @@ _Bool add_cgpu(cgpu_info *cgpu)
   byte *pbVar5;
   byte *pbVar6;
   byte *pbVar7;
-  byte *pbVar8;
-  byte *pbVar9;
-  byte *pbVar10;
-  byte *pbVar11;
-  byte bVar12;
-  code **ppcVar13;
-  int iVar14;
-  char *pcVar15;
-  uint _hj_k;
-  uchar *_hj_key_1;
-  uint _hj_k_1;
-  time_t tVar16;
-  size_t sVar17;
-  void *pvVar18;
-  UT_hash_bucket *_he_new_buckets;
-  void *pvVar19;
-  undefined4 uVar20;
-  undefined4 *puVar21;
+  int *piVar8;
+  byte bVar9;
+  char *pcVar10;
+  char *pcVar11;
+  int *piVar12;
+  int *piVar13;
+  char *pcVar14;
+  UT_hash_handle *pUVar15;
+  char *pcVar16;
+  int *piVar17;
+  UT_hash_table *__n;
+  _cgpu_devid_counter *__s;
+  size_t sVar18;
+  time_t tVar19;
+  int iVar20;
+  UT_hash_bucket *pUVar21;
+  char *func;
+  char *func_00;
+  char *func_01;
+  char *func_02;
   byte *pbVar22;
-  code *line;
-  int iVar23;
-  void **ppvVar24;
+  _cgpu_devid_counter *p_Var23;
+  int line;
+  int line_00;
+  int line_01;
+  int line_02;
+  UT_hash_handle *pUVar24;
   uint uVar25;
   uint uVar26;
-  uint uVar27;
-  uchar *puVar28;
-  int iVar29;
-  int iVar30;
-  void *pvVar31;
-  UT_hash_handle *_he_thh;
-  uint uVar32;
-  int iVar33;
-  uchar *puVar34;
-  void *pvVar35;
-  char *pcVar36;
-  int *piVar37;
-  UT_hash_bucket *_he_newbkt;
-  uint uVar38;
-  char *pcVar39;
-  byte *pbVar40;
-  uchar *_hj_key;
-  UT_hash_handle *_he_hh_nxt;
+  UT_hash_handle *pUVar27;
+  uint uVar28;
+  uint uVar29;
+  uint uVar30;
+  int iVar31;
+  void *pvVar32;
+  UT_hash_table *pUVar33;
+  uint uVar34;
+  byte *__s_00;
+  UT_hash_handle *pUVar35;
   int local_34;
-  void *local_30;
+  UT_hash_bucket *local_30;
   
-  uVar32 = 0x9e3779b9;
-  pbVar40 = (byte *)cgpu->drv->name;
-  uVar38 = 0xfeedbeef;
-  pcVar15 = (char *)strlen((char *)pbVar40);
-  iVar14 = DAT_0002a074;
-  uVar25 = uVar32;
-  pbVar22 = pbVar40;
-  for (pcVar36 = pcVar15; (char *)0xb < pcVar36; pcVar36 = pcVar36 + -0xc) {
+  uVar30 = 0x9e3779b9;
+  __s_00 = (byte *)cgpu->drv->name;
+  uVar34 = 0xfeedbeef;
+  __n = (UT_hash_table *)strlen((char *)__s_00);
+  uVar25 = uVar30;
+  pbVar22 = __s_00;
+  for (pUVar33 = __n; (UT_hash_table *)0xb < pUVar33;
+      pUVar33 = (UT_hash_table *)&pUVar33[-1].ineff_expands) {
     pbVar6 = pbVar22 + 2;
     pbVar7 = pbVar22 + 6;
     pbVar1 = pbVar22 + 1;
     pbVar2 = pbVar22 + 5;
-    bVar12 = *pbVar22;
+    bVar9 = *pbVar22;
     pbVar3 = pbVar22 + 3;
     pbVar4 = pbVar22 + 4;
     pbVar5 = pbVar22 + 7;
-    uVar38 = (uint)pbVar22[10] * 0x10000 + (uint)pbVar22[9] * 0x100 + (uint)pbVar22[8] +
-             (uint)pbVar22[0xb] * 0x1000000 + uVar38;
+    uVar34 = (uint)pbVar22[10] * 0x10000 + (uint)pbVar22[9] * 0x100 + (uint)pbVar22[8] +
+             (uint)pbVar22[0xb] * 0x1000000 + uVar34;
     pbVar22 = pbVar22 + 0xc;
-    iVar33 = uVar25 + (uint)*pbVar7 * 0x10000 + (uint)*pbVar2 * 0x100 + (uint)*pbVar4 +
+    iVar31 = uVar25 + (uint)*pbVar7 * 0x10000 + (uint)*pbVar2 * 0x100 + (uint)*pbVar4 +
                       (uint)*pbVar5 * 0x1000000;
-    uVar25 = uVar32 + ((((uint)*pbVar6 * 0x10000 + (uint)*pbVar1 * 0x100 + (uint)bVar12 +
-                        (uint)*pbVar3 * 0x1000000) - uVar38) - iVar33) ^ uVar38 >> 0xd;
-    uVar32 = (iVar33 - uVar38) - uVar25 ^ uVar25 << 8;
-    uVar38 = (uVar38 - uVar25) - uVar32 ^ uVar32 >> 0xd;
-    uVar26 = (uVar25 - uVar32) - uVar38 ^ uVar38 >> 0xc;
-    uVar25 = (uVar32 - uVar38) - uVar26 ^ uVar26 << 0x10;
-    uVar38 = (uVar38 - uVar26) - uVar25 ^ uVar25 >> 5;
-    uVar32 = (uVar26 - uVar25) - uVar38 ^ uVar38 >> 3;
-    uVar25 = (uVar25 - uVar38) - uVar32 ^ uVar32 << 10;
-    uVar38 = (uVar38 - uVar32) - uVar25 ^ uVar25 >> 0xf;
+    uVar25 = uVar30 + ((((uint)*pbVar6 * 0x10000 + (uint)*pbVar1 * 0x100 + (uint)bVar9 +
+                        (uint)*pbVar3 * 0x1000000) - uVar34) - iVar31) ^ uVar34 >> 0xd;
+    uVar30 = (iVar31 - uVar34) - uVar25 ^ uVar25 << 8;
+    uVar34 = (uVar34 - uVar25) - uVar30 ^ uVar30 >> 0xd;
+    uVar26 = (uVar25 - uVar30) - uVar34 ^ uVar34 >> 0xc;
+    uVar25 = (uVar30 - uVar34) - uVar26 ^ uVar26 << 0x10;
+    uVar34 = (uVar34 - uVar26) - uVar25 ^ uVar25 >> 5;
+    uVar30 = (uVar26 - uVar25) - uVar34 ^ uVar34 >> 3;
+    uVar25 = (uVar25 - uVar34) - uVar30 ^ uVar30 << 10;
+    uVar34 = (uVar34 - uVar30) - uVar25 ^ uVar25 >> 0xf;
   }
-  pcVar39 = pcVar15 + uVar38;
-  switch(pcVar36) {
-  case (char *)0xb:
-    pcVar39 = pcVar39 + (uint)pbVar22[10] * 0x1000000;
-  case (char *)0xa:
-    pcVar39 = pcVar39 + (uint)pbVar22[9] * 0x10000;
-  case (char *)0x9:
-    pcVar39 = pcVar39 + (uint)pbVar22[8] * 0x100;
-  case (char *)0x8:
+  uVar34 = (int)&__n->buckets + uVar34;
+  switch(pUVar33) {
+  case (UT_hash_table *)0xb:
+    uVar34 = uVar34 + (uint)pbVar22[10] * 0x1000000;
+  case (UT_hash_table *)0xa:
+    uVar34 = uVar34 + (uint)pbVar22[9] * 0x10000;
+  case (UT_hash_table *)0x9:
+    uVar34 = uVar34 + (uint)pbVar22[8] * 0x100;
+  case (UT_hash_table *)0x8:
     uVar25 = uVar25 + (uint)pbVar22[7] * 0x1000000;
-  case (char *)0x7:
+  case (UT_hash_table *)0x7:
     uVar25 = uVar25 + (uint)pbVar22[6] * 0x10000;
-  case (char *)0x6:
+  case (UT_hash_table *)0x6:
     uVar25 = uVar25 + (uint)pbVar22[5] * 0x100;
-  case (char *)0x5:
+  case (UT_hash_table *)0x5:
     uVar25 = uVar25 + pbVar22[4];
-  case (char *)0x4:
-    uVar32 = uVar32 + (uint)pbVar22[3] * 0x1000000;
-  case (char *)0x3:
-    uVar32 = uVar32 + (uint)pbVar22[2] * 0x10000;
-  case (char *)0x2:
-    uVar32 = uVar32 + (uint)pbVar22[1] * 0x100;
-  case (char *)0x1:
-    uVar32 = uVar32 + *pbVar22;
+  case (UT_hash_table *)0x4:
+    uVar30 = uVar30 + (uint)pbVar22[3] * 0x1000000;
+  case (UT_hash_table *)0x3:
+    uVar30 = uVar30 + (uint)pbVar22[2] * 0x10000;
+  case (UT_hash_table *)0x2:
+    uVar30 = uVar30 + (uint)pbVar22[1] * 0x100;
+  case (UT_hash_table *)0x1:
+    uVar30 = uVar30 + *pbVar22;
   }
-  uVar32 = (uVar32 - uVar25) - (int)pcVar39 ^ (uint)pcVar39 >> 0xd;
-  uVar25 = (uVar25 - (int)pcVar39) - uVar32 ^ uVar32 << 8;
-  uVar38 = (uint)(pcVar39 + (-uVar25 - uVar32)) ^ uVar25 >> 0xd;
-  uVar32 = (uVar32 - uVar25) - uVar38 ^ uVar38 >> 0xc;
-  uVar25 = (uVar25 - uVar38) - uVar32 ^ uVar32 << 0x10;
-  uVar38 = (uVar38 - uVar32) - uVar25 ^ uVar25 >> 5;
-  uVar32 = (uVar32 - uVar25) - uVar38 ^ uVar38 >> 3;
-  uVar25 = (uVar25 - uVar38) - uVar32 ^ uVar32 << 10;
-  uVar32 = (uVar38 - uVar32) - uVar25 ^ uVar25 >> 0xf;
-  if (*(int *)(DAT_0002a074 + 0xa6c) != 0) {
-    piVar37 = *(int **)(*(int *)(DAT_0002a074 + 0xa6c) + 8);
-    iVar33 = *(int *)(*piVar37 + (piVar37[1] - 1U & uVar32) * 0xc);
-    if (iVar33 != 0) {
-      iVar33 = iVar33 - piVar37[5];
+  uVar30 = (uVar30 - uVar25) - uVar34 ^ uVar34 >> 0xd;
+  uVar25 = (uVar25 - uVar34) - uVar30 ^ uVar30 << 8;
+  uVar34 = (uVar34 - uVar30) - uVar25 ^ uVar25 >> 0xd;
+  uVar30 = (uVar30 - uVar25) - uVar34 ^ uVar34 >> 0xc;
+  uVar25 = (uVar25 - uVar34) - uVar30 ^ uVar30 << 0x10;
+  uVar34 = (uVar34 - uVar30) - uVar25 ^ uVar25 >> 5;
+  uVar30 = (uVar30 - uVar25) - uVar34 ^ uVar34 >> 3;
+  uVar25 = (uVar25 - uVar34) - uVar30 ^ uVar30 << 10;
+  pvVar32 = (void *)((uVar34 - uVar30) - uVar25 ^ uVar25 >> 0xf);
+  if (add_cgpu::devids != (_cgpu_devid_counter *)0x0) {
+    pUVar33 = (add_cgpu::devids->hh).tbl;
+    pUVar27 = pUVar33->buckets[pUVar33->num_buckets - 1 & (uint)pvVar32].hh_head;
+    if (pUVar27 != (UT_hash_handle *)0x0) {
+      pUVar27 = (UT_hash_handle *)((int)pUVar27 - pUVar33->hho);
     }
-    for (; iVar33 != 0; iVar33 = *(int *)(iVar33 + 0x18) - piVar37[5]) {
-      if (((*(uint *)(iVar33 + 0x24) == uVar32) && (pcVar15 == *(char **)(iVar33 + 0x20))) &&
-         (pcVar36 = pcVar15, iVar29 = memcmp(*(void **)(iVar33 + 0x1c),pbVar40,(size_t)pcVar15),
-         iVar29 == 0)) {
-        ppvVar24 = (void **)(*(int *)(iVar33 + 4) + 1);
-        *(void ***)(iVar33 + 4) = ppvVar24;
-        cgpu->device_id = (int)ppvVar24;
+    for (; pUVar27 != (UT_hash_handle *)0x0;
+        pUVar27 = (UT_hash_handle *)(pUVar27->keylen - pUVar33->hho)) {
+      if (((pUVar27[1].prev == pvVar32) && (__n == pUVar27[1].tbl)) &&
+         (iVar31 = memcmp((void *)pUVar27->hashv,__s_00,(size_t)__n), iVar31 == 0)) {
+        pvVar32 = (void *)((int)pUVar27->prev + 1);
+        pUVar27->prev = pvVar32;
+        cgpu->device_id = (int)pvVar32;
         goto LAB_00029fa6;
       }
-      if (*(int *)(iVar33 + 0x18) == 0) break;
+      if (pUVar27->keylen == 0) break;
     }
   }
-  pcVar36 = DAT_0002a050;
-  pbVar40 = (byte *)_cgmalloc(0x28,DAT_0002a054,DAT_0002a050,0x2b80);
-  _cg_memcpy(pbVar40,cgpu->drv->name,4,DAT_0002a054,pcVar36,0x2b81);
-  uVar32 = 0xfeedbeef;
-  *(undefined4 *)(pbVar40 + 4) = 0;
+  __s = (_cgpu_devid_counter *)_cgmalloc(0x28,"cgminer.c","add_cgpu",0x2b80);
+  _cg_memcpy(__s,cgpu->drv->name,4,"cgminer.c","add_cgpu",0x2b81);
+  uVar30 = 0xfeedbeef;
+  __s->lastid = 0;
   cgpu->device_id = 0;
-  _hj_key_1 = (uchar *)strlen((char *)pbVar40);
+  sVar18 = strlen((char *)__s);
   uVar25 = 0x9e3779b9;
-  uVar38 = uVar25;
-  pbVar22 = pbVar40;
-  for (puVar34 = _hj_key_1; (uchar *)0xb < puVar34; puVar34 = puVar34 + -0xc) {
-    pbVar8 = pbVar22 + 10;
-    pbVar1 = pbVar22 + 2;
-    pbVar2 = pbVar22 + 9;
-    pbVar3 = pbVar22 + 1;
-    pbVar9 = pbVar22 + 6;
-    pbVar4 = pbVar22 + 5;
-    pbVar10 = pbVar22 + 8;
-    bVar12 = *pbVar22;
-    pbVar5 = pbVar22 + 0xb;
-    pbVar6 = pbVar22 + 3;
-    pbVar11 = pbVar22 + 4;
-    pbVar7 = pbVar22 + 7;
-    pbVar22 = pbVar22 + 0xc;
-    uVar32 = (uint)*pbVar10 + (uint)*pbVar8 * 0x10000 + (uint)*pbVar2 * 0x100 +
-             (uint)*pbVar5 * 0x1000000 + uVar32;
-    iVar33 = uVar38 + (uint)*pbVar11 + (uint)*pbVar9 * 0x10000 + (uint)*pbVar4 * 0x100 +
-                      (uint)*pbVar7 * 0x1000000;
-    uVar25 = uVar25 + ((((uint)*pbVar1 * 0x10000 + (uint)*pbVar3 * 0x100 + (uint)bVar12 +
-                        (uint)*pbVar6 * 0x1000000) - uVar32) - iVar33) ^ uVar32 >> 0xd;
-    uVar26 = (iVar33 - uVar32) - uVar25 ^ uVar25 << 8;
-    uVar38 = (uVar32 - uVar25) - uVar26 ^ uVar26 >> 0xd;
-    uVar32 = (uVar25 - uVar26) - uVar38 ^ uVar38 >> 0xc;
-    uVar27 = (uVar26 - uVar38) - uVar32 ^ uVar32 << 0x10;
-    uVar26 = (uVar38 - uVar32) - uVar27 ^ uVar27 >> 5;
-    uVar25 = (uVar32 - uVar27) - uVar26 ^ uVar26 >> 3;
-    uVar38 = (uVar27 - uVar26) - uVar25 ^ uVar25 << 10;
-    uVar32 = (uVar26 - uVar25) - uVar38 ^ uVar38 >> 0xf;
+  uVar34 = uVar25;
+  p_Var23 = __s;
+  for (uVar26 = sVar18; 0xb < uVar26; uVar26 = uVar26 - 0xc) {
+    pUVar35 = &p_Var23->hh;
+    pcVar10 = p_Var23->name;
+    pUVar24 = &p_Var23->hh;
+    pcVar11 = p_Var23->name;
+    piVar12 = &p_Var23->lastid;
+    piVar13 = &p_Var23->lastid;
+    pUVar27 = &p_Var23->hh;
+    pcVar14 = p_Var23->name;
+    pUVar15 = &p_Var23->hh;
+    pcVar16 = p_Var23->name;
+    piVar8 = &p_Var23->lastid;
+    piVar17 = &p_Var23->lastid;
+    p_Var23 = (_cgpu_devid_counter *)&(p_Var23->hh).prev;
+    uVar30 = (uint)*(byte *)&pUVar27->tbl +
+             (uint)*(byte *)((int)&pUVar35->tbl + 2) * 0x10000 +
+             (uint)*(byte *)((int)&pUVar24->tbl + 1) * 0x100 +
+             (uint)*(byte *)((int)&pUVar15->tbl + 3) * 0x1000000 + uVar30;
+    iVar31 = uVar34 + (uint)(byte)*piVar8 +
+                      (uint)*(byte *)((int)piVar12 + 2) * 0x10000 +
+                      (uint)*(byte *)((int)piVar13 + 1) * 0x100 +
+                      (uint)*(byte *)((int)piVar17 + 3) * 0x1000000;
+    uVar25 = uVar25 + ((((uint)(byte)pcVar10[2] * 0x10000 + (uint)(byte)pcVar11[1] * 0x100 +
+                         (uint)(byte)*pcVar14 + (uint)(byte)pcVar16[3] * 0x1000000) - uVar30) -
+                      iVar31) ^ uVar30 >> 0xd;
+    uVar28 = (iVar31 - uVar30) - uVar25 ^ uVar25 << 8;
+    uVar34 = (uVar30 - uVar25) - uVar28 ^ uVar28 >> 0xd;
+    uVar30 = (uVar25 - uVar28) - uVar34 ^ uVar34 >> 0xc;
+    uVar29 = (uVar28 - uVar34) - uVar30 ^ uVar30 << 0x10;
+    uVar28 = (uVar34 - uVar30) - uVar29 ^ uVar29 >> 5;
+    uVar25 = (uVar30 - uVar29) - uVar28 ^ uVar28 >> 3;
+    uVar34 = (uVar29 - uVar28) - uVar25 ^ uVar25 << 10;
+    uVar30 = (uVar28 - uVar25) - uVar34 ^ uVar34 >> 0xf;
   }
-  puVar28 = _hj_key_1 + uVar32;
-  switch(puVar34) {
-  case (uchar *)0xb:
-    puVar28 = puVar28 + (uint)pbVar22[10] * 0x1000000;
-  case (uchar *)0xa:
-    puVar28 = puVar28 + (uint)pbVar22[9] * 0x10000;
-  case (uchar *)0x9:
-    puVar28 = puVar28 + (uint)pbVar22[8] * 0x100;
-  case (uchar *)0x8:
-    uVar38 = uVar38 + (uint)pbVar22[7] * 0x1000000;
-  case (uchar *)0x7:
-    uVar38 = uVar38 + (uint)pbVar22[6] * 0x10000;
-  case (uchar *)0x6:
-    uVar38 = uVar38 + (uint)pbVar22[5] * 0x100;
-  case (uchar *)0x5:
-    uVar38 = uVar38 + pbVar22[4];
-  case (uchar *)0x4:
-    uVar25 = uVar25 + (uint)pbVar22[3] * 0x1000000;
-  case (uchar *)0x3:
-    uVar25 = uVar25 + (uint)pbVar22[2] * 0x10000;
-  case (uchar *)0x2:
-    uVar25 = uVar25 + (uint)pbVar22[1] * 0x100;
-  case (uchar *)0x1:
-    uVar25 = uVar25 + *pbVar22;
+  uVar30 = uVar30 + sVar18;
+  switch(uVar26) {
+  case 0xb:
+    uVar30 = uVar30 + (uint)*(byte *)((int)&(p_Var23->hh).tbl + 2) * 0x1000000;
+  case 10:
+    uVar30 = uVar30 + (uint)*(byte *)((int)&(p_Var23->hh).tbl + 1) * 0x10000;
+  case 9:
+    uVar30 = uVar30 + (uint)*(byte *)&(p_Var23->hh).tbl * 0x100;
+  case 8:
+    uVar34 = uVar34 + (uint)*(byte *)((int)&p_Var23->lastid + 3) * 0x1000000;
+  case 7:
+    uVar34 = uVar34 + (uint)*(byte *)((int)&p_Var23->lastid + 2) * 0x10000;
+  case 6:
+    uVar34 = uVar34 + (uint)*(byte *)((int)&p_Var23->lastid + 1) * 0x100;
+  case 5:
+    uVar34 = uVar34 + (byte)p_Var23->lastid;
+  case 4:
+    uVar25 = uVar25 + (uint)(byte)p_Var23->name[3] * 0x1000000;
+  case 3:
+    uVar25 = uVar25 + (uint)(byte)p_Var23->name[2] * 0x10000;
+  case 2:
+    uVar25 = uVar25 + (uint)(byte)p_Var23->name[1] * 0x100;
+  case 1:
+    uVar25 = uVar25 + (byte)p_Var23->name[0];
   }
-  uVar32 = (uVar25 - uVar38) - (int)puVar28 ^ (uint)puVar28 >> 0xd;
-  uVar25 = (uVar38 - (int)puVar28) - uVar32 ^ uVar32 << 8;
-  *(byte **)(pbVar40 + 0x1c) = pbVar40;
-  uVar38 = (uint)(puVar28 + (-uVar25 - uVar32)) ^ uVar25 >> 0xd;
-  uVar32 = (uVar32 - uVar25) - uVar38 ^ uVar38 >> 0xc;
-  uVar25 = (uVar25 - uVar38) - uVar32 ^ uVar32 << 0x10;
-  uVar38 = (uVar38 - uVar32) - uVar25 ^ uVar25 >> 5;
-  uVar32 = (uVar32 - uVar25) - uVar38 ^ uVar38 >> 3;
-  uVar25 = (uVar25 - uVar38) - uVar32 ^ uVar32 << 10;
-  uVar32 = (uVar38 - uVar32) - uVar25 ^ uVar25 >> 0xf;
-  *(uint *)(pbVar40 + 0x24) = uVar32;
-  sVar17 = strlen((char *)pbVar40);
-  iVar33 = DAT_0002a358;
-  iVar29 = *(int *)(iVar14 + 0xa6c);
-  *(size_t *)(pbVar40 + 0x20) = sVar17;
-  if (iVar29 == 0) {
-    *(undefined4 *)(pbVar40 + 0x10) = 0;
-    *(undefined4 *)(pbVar40 + 0xc) = 0;
-    *(byte **)(iVar33 + 0xa6c) = pbVar40;
-    puVar21 = (undefined4 *)malloc(0x2c);
-    *(undefined4 **)(pbVar40 + 8) = puVar21;
-    if (puVar21 == (undefined4 *)0x0) goto LAB_0002a320;
-    *puVar21 = 0;
-    puVar21[1] = 0;
-    puVar21[2] = 0;
-    puVar21[3] = 0;
-    puVar21[4] = 0;
-    puVar21[5] = 0;
-    puVar21[6] = 0;
-    puVar21[7] = 0;
-    puVar21[8] = 0;
-    puVar21[9] = 0;
-    puVar21[10] = 0;
-    ppvVar24 = *(void ***)(pbVar40 + 8);
-    ppvVar24[4] = pbVar40 + 8;
-    ppvVar24[1] = (void *)0x20;
-    ppvVar24[2] = (void *)0x5;
-    ppvVar24[5] = (void *)0x8;
-    pvVar18 = malloc(0x180);
-    *ppvVar24 = pvVar18;
-    if (pvVar18 == (void *)0x0) goto LAB_0002a320;
-    memset(pvVar18,0,0x180);
-    piVar37 = *(int **)(pbVar40 + 8);
-    piVar37[10] = -0x5feee01f;
+  uVar25 = (uVar25 - uVar34) - uVar30 ^ uVar30 >> 0xd;
+  uVar34 = (uVar34 - uVar30) - uVar25 ^ uVar25 << 8;
+  (__s->hh).key = __s;
+  uVar26 = (uVar30 - uVar25) - uVar34 ^ uVar34 >> 0xd;
+  uVar30 = (uVar25 - uVar34) - uVar26 ^ uVar26 >> 0xc;
+  uVar25 = (uVar34 - uVar26) - uVar30 ^ uVar30 << 0x10;
+  uVar34 = (uVar26 - uVar30) - uVar25 ^ uVar25 >> 5;
+  uVar30 = (uVar30 - uVar25) - uVar34 ^ uVar34 >> 3;
+  uVar25 = (uVar25 - uVar34) - uVar30 ^ uVar30 << 10;
+  uVar30 = (uVar34 - uVar30) - uVar25 ^ uVar25 >> 0xf;
+  (__s->hh).hashv = uVar30;
+  sVar18 = strlen((char *)__s);
+  p_Var23 = add_cgpu::devids;
+  (__s->hh).keylen = sVar18;
+  if (p_Var23 == (_cgpu_devid_counter *)0x0) {
+    (__s->hh).next = (void *)0x0;
+    (__s->hh).prev = (void *)0x0;
+    add_cgpu::devids = __s;
+    pUVar33 = (UT_hash_table *)malloc(0x2c);
+    (__s->hh).tbl = pUVar33;
+    if (pUVar33 == (UT_hash_table *)0x0) goto LAB_0002a320;
+    pUVar33->buckets = (UT_hash_bucket *)0x0;
+    pUVar33->num_buckets = 0;
+    pUVar33->log2_num_buckets = 0;
+    pUVar33->num_items = 0;
+    pUVar33->tail = (UT_hash_handle *)0x0;
+    pUVar33->hho = 0;
+    pUVar33->ideal_chain_maxlen = 0;
+    pUVar33->nonideal_items = 0;
+    pUVar33->ineff_expands = 0;
+    pUVar33->noexpand = 0;
+    pUVar33->signature = 0;
+    pUVar33 = (__s->hh).tbl;
+    pUVar33->tail = &__s->hh;
+    pUVar33->num_buckets = 0x20;
+    pUVar33->log2_num_buckets = 5;
+    pUVar33->hho = 8;
+    pUVar21 = (UT_hash_bucket *)malloc(0x180);
+    pUVar33->buckets = pUVar21;
+    if (pUVar21 == (UT_hash_bucket *)0x0) goto LAB_0002a320;
+    memset(pUVar21,0,0x180);
+    pUVar33 = (__s->hh).tbl;
+    pUVar33->signature = 0xa0111fe1;
   }
   else {
-    *(undefined4 *)(pbVar40 + 8) = *(undefined4 *)(iVar29 + 8);
-    *(undefined4 *)(pbVar40 + 0x10) = 0;
-    piVar37 = *(int **)(iVar29 + 8);
-    iVar33 = piVar37[4];
-    iVar29 = piVar37[5];
-    *(byte **)(iVar33 + 8) = pbVar40;
-    *(int *)(pbVar40 + 0xc) = iVar33 - iVar29;
-    piVar37[4] = (int)(pbVar40 + 8);
+    (__s->hh).tbl = (p_Var23->hh).tbl;
+    (__s->hh).next = (void *)0x0;
+    pUVar33 = (p_Var23->hh).tbl;
+    pUVar27 = pUVar33->tail;
+    iVar31 = pUVar33->hho;
+    pUVar27->next = __s;
+    (__s->hh).prev = (void *)((int)pUVar27 - iVar31);
+    pUVar33->tail = &__s->hh;
   }
-  iVar33 = *piVar37;
-  piVar37[3] = piVar37[3] + 1;
-  iVar23 = (uVar32 & piVar37[1] - 1U) * 0xc;
-  iVar29 = iVar33 + iVar23;
-  iVar30 = *(int *)(iVar33 + iVar23);
-  uVar32 = *(int *)(iVar29 + 4) + 1;
-  *(uint *)(iVar29 + 4) = uVar32;
-  *(int *)(pbVar40 + 0x18) = iVar30;
-  *(undefined4 *)(pbVar40 + 0x14) = 0;
-  if (iVar30 != 0) {
-    *(byte **)(iVar30 + 0xc) = pbVar40 + 8;
+  pUVar21 = pUVar33->buckets;
+  uVar30 = uVar30 & pUVar33->num_buckets - 1;
+  pUVar33->num_items = pUVar33->num_items + 1;
+  pUVar27 = pUVar21[uVar30].hh_head;
+  uVar25 = pUVar21[uVar30].count + 1;
+  pUVar21[uVar30].count = uVar25;
+  (__s->hh).hh_next = pUVar27;
+  (__s->hh).hh_prev = (UT_hash_handle *)0x0;
+  if (pUVar27 != (UT_hash_handle *)0x0) {
+    pUVar27->hh_prev = &__s->hh;
   }
-  pcVar36 = *(char **)(iVar29 + 8);
-  *(byte **)(iVar33 + iVar23) = pbVar40 + 8;
-  ppvVar24 = (void **)((int)(pcVar36 + 1) * 5);
-  if ((uint)((int)(pcVar36 + 1) * 10) <= uVar32) {
-    ppvVar24 = *(void ***)(pbVar40 + 8);
-    pcVar36 = (char *)ppvVar24[9];
-    if (pcVar36 != (char *)0x1) {
-      pvVar31 = ppvVar24[1];
-      pvVar18 = malloc((int)pvVar31 * 0x18);
-      if (pvVar18 == (void *)0x0) {
+  pUVar21[uVar30].hh_head = &__s->hh;
+  if (((pUVar21[uVar30].expand_mult + 1) * 10 <= uVar25) &&
+     (pUVar33 = (__s->hh).tbl, pUVar33->noexpand != 1)) {
+    sVar18 = pUVar33->num_buckets * 0x18;
+    pUVar21 = (UT_hash_bucket *)malloc(sVar18);
+    if (pUVar21 == (UT_hash_bucket *)0x0) {
 LAB_0002a320:
                     /* WARNING: Subroutine does not return */
-        exit(-1);
-      }
-      memset(pvVar18,0,(int)pvVar31 * 0x18);
-      ppvVar24 = *(void ***)(pbVar40 + 8);
-      pvVar31 = ppvVar24[1];
-      ppvVar24[7] = (void *)0x0;
-      pvVar35 = (void *)((uint)ppvVar24[3] >> ((int)ppvVar24[2] + 1U & 0xff));
-      uVar32 = (int)pvVar31 * 2 - 1;
-      if (((uint)ppvVar24[3] & uVar32) != 0) {
-        pvVar35 = (void *)((int)pvVar35 + 1);
-      }
-      ppvVar24[6] = pvVar35;
-      if (pvVar31 == (void *)0x0) {
-        local_30 = *ppvVar24;
-      }
-      else {
-        local_30 = *ppvVar24;
-        local_34 = 0;
-        do {
-          iVar33 = *(int *)((int)local_30 + local_34);
-          while (iVar33 != 0) {
-            iVar29 = *(int *)(iVar33 + 0x10);
-            uVar25 = *(uint *)(iVar33 + 0x1c) & uVar32;
-            pvVar19 = (void *)(*(int *)((int)pvVar18 + uVar25 * 0xc + 4) + 1);
-            *(void **)((int)pvVar18 + uVar25 * 0xc + 4) = pvVar19;
-            if (pvVar35 < pvVar19) {
-              ppvVar24[7] = (void *)((int)ppvVar24[7] + 1);
-              uVar20 = __aeabi_uidiv(pvVar19,pvVar35);
-              *(undefined4 *)((int)pvVar18 + uVar25 * 0xc + 8) = uVar20;
-            }
-            iVar23 = *(int *)((int)pvVar18 + uVar25 * 0xc);
-            *(undefined4 *)(iVar33 + 0xc) = 0;
-            *(int *)(iVar33 + 0x10) = iVar23;
-            if (iVar23 != 0) {
-              *(int *)(iVar23 + 0xc) = iVar33;
-            }
-            *(int *)((int)pvVar18 + uVar25 * 0xc) = iVar33;
-            iVar33 = iVar29;
+      exit(-1);
+    }
+    memset(pUVar21,0,sVar18);
+    pUVar33 = (__s->hh).tbl;
+    uVar25 = pUVar33->num_buckets;
+    pUVar33->nonideal_items = 0;
+    uVar34 = pUVar33->num_items >> (pUVar33->log2_num_buckets + 1 & 0xff);
+    uVar30 = uVar25 * 2 - 1;
+    if ((pUVar33->num_items & uVar30) != 0) {
+      uVar34 = uVar34 + 1;
+    }
+    pUVar33->ideal_chain_maxlen = uVar34;
+    if (uVar25 == 0) {
+      local_30 = pUVar33->buckets;
+    }
+    else {
+      local_30 = pUVar33->buckets;
+      local_34 = 0;
+      do {
+        pUVar27 = *(UT_hash_handle **)((int)&local_30->hh_head + local_34);
+        while (pUVar27 != (UT_hash_handle *)0x0) {
+          pUVar35 = pUVar27->hh_next;
+          uVar28 = pUVar27->hashv & uVar30;
+          uVar26 = pUVar21[uVar28].count + 1;
+          pUVar21[uVar28].count = uVar26;
+          if (uVar34 < uVar26) {
+            pUVar33->nonideal_items = pUVar33->nonideal_items + 1;
+            uVar26 = __aeabi_uidiv(uVar26,uVar34);
+            pUVar21[uVar28].expand_mult = uVar26;
           }
-          local_34 = local_34 + 0xc;
-        } while (local_34 != (int)pvVar31 * 0xc);
-      }
-      free(local_30);
-      ppvVar24 = *(void ***)(pbVar40 + 8);
-      pcVar15 = (char *)ppvVar24[7];
-      *ppvVar24 = pvVar18;
-      pcVar36 = pcVar15;
-      if (pcVar15 <= (char *)((uint)ppvVar24[3] >> 1)) {
-        pcVar36 = (char *)0x0;
-      }
-      ppvVar24[2] = (void *)((int)ppvVar24[2] + 1);
-      ppvVar24[1] = (void *)((int)ppvVar24[1] << 1);
-      if ((char *)((uint)ppvVar24[3] >> 1) < pcVar15) {
-        pcVar15 = (char *)((int)ppvVar24[8] + 1);
-        ppvVar24[8] = pcVar15;
-        pcVar36 = pcVar15;
-        if ((char *)0x1 < pcVar15) {
-          pcVar36 = (char *)0x1;
+          pUVar24 = pUVar21[uVar28].hh_head;
+          pUVar27->hh_prev = (UT_hash_handle *)0x0;
+          pUVar27->hh_next = pUVar24;
+          if (pUVar24 != (UT_hash_handle *)0x0) {
+            pUVar24->hh_prev = pUVar27;
+          }
+          pUVar21[uVar28].hh_head = pUVar27;
+          pUVar27 = pUVar35;
         }
-        if ((char *)0x1 < pcVar15) {
-          ppvVar24[9] = pcVar36;
-        }
+        local_34 = local_34 + 0xc;
+      } while (local_34 != uVar25 * 0xc);
+    }
+    free(local_30);
+    pUVar33 = (__s->hh).tbl;
+    uVar34 = pUVar33->nonideal_items;
+    pUVar33->buckets = pUVar21;
+    uVar30 = pUVar33->num_items >> 1;
+    uVar25 = uVar34;
+    if (uVar34 <= uVar30) {
+      uVar25 = 0;
+    }
+    pUVar33->log2_num_buckets = pUVar33->log2_num_buckets + 1;
+    pUVar33->num_buckets = pUVar33->num_buckets << 1;
+    if (uVar30 < uVar34) {
+      uVar25 = pUVar33->ineff_expands + 1;
+      pUVar33->ineff_expands = uVar25;
+      uVar30 = uVar25;
+      if (1 < uVar25) {
+        uVar30 = 1;
       }
-      else {
-        ppvVar24[8] = pcVar36;
+      if (1 < uVar25) {
+        pUVar33->noexpand = uVar30;
       }
+    }
+    else {
+      pUVar33->ineff_expands = uVar25;
     }
   }
 LAB_00029fa6:
-  iVar33 = pthread_rwlock_wrlock(DAT_0002a058);
-  if (iVar33 != 0) {
-    _wr_lock(DAT_0002a35c,(char *)0x2b86,pcVar36,(int)ppvVar24);
+  iVar31 = pthread_rwlock_wrlock((pthread_rwlock_t *)&devices_lock);
+  if (iVar31 != 0) {
+    _wr_lock((pthread_rwlock_t *)"add_cgpu",(char *)0x2b86,func,line);
   }
-  ppvVar24 = DAT_0002a060;
-  piVar37 = DAT_0002a05c;
-  pcVar36 = DAT_0002a054;
-  pcVar15 = DAT_0002a050;
-  pvVar18 = _cgrealloc(*DAT_0002a060,(*DAT_0002a05c + *(int *)(iVar14 + 0xa70) + 2) * 4,DAT_0002a054
-                       ,DAT_0002a050,0x2b87);
-  *ppvVar24 = pvVar18;
-  iVar33 = pthread_rwlock_unlock(DAT_0002a058);
-  if (iVar33 != 0) {
-    _rw_unlock(DAT_0002a35c,(char *)0x2b88,pcVar36,(int)pcVar15);
+  devices = (cgpu_info **)
+            _cgrealloc(devices,(total_devices + new_devices + 2) * 4,"cgminer.c","add_cgpu",0x2b87);
+  iVar31 = pthread_rwlock_unlock((pthread_rwlock_t *)&devices_lock);
+  if (iVar31 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"add_cgpu",(char *)0x2b88,func_00,line_00);
   }
-  ppcVar13 = DAT_0002a064;
-  line = *DAT_0002a064;
-  (*line)();
-  iVar33 = pthread_mutex_lock(DAT_0002a068);
-  if (iVar33 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_0002a35c,(char *)0x2b8a,pcVar36,(int)line);
+  (*selective_yield)();
+  iVar31 = pthread_mutex_lock((pthread_mutex_t *)&stats_lock);
+  if (iVar31 != 0) {
+    _mutex_lock((pthread_mutex_t *)"add_cgpu",(char *)0x2b8a,func_01,line_01);
   }
-  tVar16 = time((time_t *)0x0);
-  cgpu->last_device_valid_work = tVar16;
-  iVar33 = pthread_mutex_unlock(DAT_0002a068);
-  if (iVar33 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_0002a35c,(char *)0x2b8c,pcVar36,(int)line);
+  tVar19 = time((time_t *)0x0);
+  cgpu->last_device_valid_work = tVar19;
+  iVar31 = pthread_mutex_unlock((pthread_mutex_t *)&stats_lock);
+  if (iVar31 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"add_cgpu",(char *)0x2b8c,func_02,line_02);
   }
-  (**ppcVar13)();
-  if (*DAT_0002a06c == '\0') {
-    iVar33 = *piVar37 + 1;
-    *(cgpu_info **)((int)*ppvVar24 + *piVar37 * 4) = cgpu;
-    *piVar37 = iVar33;
+  (*selective_yield)();
+  iVar31 = total_devices;
+  if (hotplug_mode == false) {
+    iVar31 = total_devices + 1;
+    devices[total_devices] = cgpu;
+    total_devices = iVar31;
   }
   else {
-    iVar29 = *(int *)(iVar14 + 0xa70);
-    iVar33 = *piVar37;
-    pvVar18 = *ppvVar24;
-    *(int *)(iVar14 + 0xa70) = iVar29 + 1;
-    *(cgpu_info **)((int)pvVar18 + (iVar29 + iVar33) * 4) = cgpu;
+    iVar20 = new_devices + total_devices;
+    new_devices = new_devices + 1;
+    devices[iVar20] = cgpu;
   }
-  if (*(int *)(iVar14 + 0xa74) < iVar33 - *DAT_0002a070) {
-    *(int *)(DAT_0002a074 + 0xa74) = iVar33 - *DAT_0002a070;
+  if (most_devices < iVar31 - zombie_devs) {
+    most_devices = iVar31 - zombie_devs;
   }
   return true;
 }

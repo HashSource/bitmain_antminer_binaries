@@ -5,7 +5,6 @@ int callback_get(void *data)
 
 {
   byte bVar1;
-  callback_data_t *stream;
   int iVar2;
   uint uVar3;
   

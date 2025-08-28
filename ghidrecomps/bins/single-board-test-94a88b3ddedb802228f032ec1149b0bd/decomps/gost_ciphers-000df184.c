@@ -2,21 +2,23 @@
 bool gost_ciphers(undefined4 param_1,undefined4 *param_2,undefined4 *param_3,int param_4)
 
 {
-  undefined4 uVar1;
+  undefined1 *puVar1;
   
   if (param_2 == (undefined4 *)0x0) {
-    *param_3 = DAT_000df1b8;
+    *param_3 = gost_cipher_nids;
     return (bool)2;
   }
-  if (param_4 != 0x32d) {
-    uVar1 = DAT_000df1b4;
-    if (param_4 != 0x32e) {
-      uVar1 = 0;
-    }
-    *param_2 = uVar1;
-    return param_4 == 0x32e;
+  if (param_4 == 0x32d) {
+    *param_2 = cipher_gost;
+    return true;
   }
-  *param_2 = DAT_000df1bc;
-  return true;
+  if (param_4 == 0x32e) {
+    puVar1 = cipher_gost_cpacnt;
+  }
+  else {
+    puVar1 = (undefined1 *)0x0;
+  }
+  *param_2 = puVar1;
+  return param_4 == 0x32e;
 }
 

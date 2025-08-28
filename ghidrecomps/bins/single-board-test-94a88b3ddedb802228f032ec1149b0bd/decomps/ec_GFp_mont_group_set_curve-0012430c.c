@@ -29,7 +29,7 @@ int ec_GFp_mont_group_set_curve
   else {
     iVar1 = BN_MONT_CTX_set(mont,param_2,param_5);
     if (iVar1 == 0) {
-      ERR_put_error(0x10,0xbd,3,DAT_001243f4,0xde);
+      ERR_put_error(0x10,0xbd,3,"ecp_mont.c",0xde);
       iVar1 = 0;
     }
     else {

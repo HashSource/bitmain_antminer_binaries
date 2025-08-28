@@ -18,7 +18,7 @@ undefined4 CMS_RecipientInfo_kari_orig_id_cmp(int *param_1)
     uVar1 = 0xffffffff;
   }
   else {
-    ERR_put_error(0x2e,0xae,0xb5,DAT_000d6be8,0x95);
+    ERR_put_error(0x2e,0xae,0xb5,"cms_kari.c",0x95);
     uVar1 = 0xfffffffe;
   }
   return uVar1;

@@ -18,7 +18,7 @@ undefined4 dtls1_retransmit_buffered_messages(int param_1)
                       (param_1,(uint)*(ushort *)((int)ppVar1->data + 8) * 2 -
                                *(int *)((int)ppVar1->data + 0x14) & 0xffff,0,local_1c);
   } while ((0 < iVar2) || (local_1c[0] == 0));
-  fwrite(DAT_000791fc,1,0x22,*DAT_000791f8);
+  fwrite("dtls1_retransmit_message() failed\n",1,0x22,stderr);
   return 0xffffffff;
 }
 

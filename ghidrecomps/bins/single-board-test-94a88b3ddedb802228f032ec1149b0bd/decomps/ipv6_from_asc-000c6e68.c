@@ -14,7 +14,7 @@ bool ipv6_from_asc(undefined4 *param_1,char *param_2)
   local_24 = 0;
   local_1c = 0;
   local_20 = 0xffffffff;
-  iVar3 = CONF_parse_list(param_2,0x3a,0,DAT_000c6f24,local_34);
+  iVar3 = CONF_parse_list(param_2,0x3a,0,(list_cb *)0xc6f29,local_34);
   sVar2 = local_20;
   sVar1 = local_24;
   if (iVar3 == 0) {

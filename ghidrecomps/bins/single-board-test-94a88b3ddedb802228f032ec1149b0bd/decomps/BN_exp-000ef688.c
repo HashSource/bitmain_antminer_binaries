@@ -11,7 +11,7 @@ int BN_exp(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   int iVar5;
   
   if (p->flags << 0x1d < 0) {
-    ERR_put_error(3,0x7b,0x42,DAT_000ef77c,0x9b);
+    ERR_put_error(3,0x7b,0x42,"bn_exp.c",0x9b);
     return -1;
   }
   BN_CTX_start(ctx);

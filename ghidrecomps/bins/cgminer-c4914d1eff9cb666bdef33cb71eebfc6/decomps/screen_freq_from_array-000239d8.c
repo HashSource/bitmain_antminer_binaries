@@ -3,7 +3,6 @@ float screen_freq_from_array(float *array,_Bool is_high_freq)
 
 {
   FILE *pFVar1;
-  float fVar2;
   _Bool is_high_freq_local;
   float *array_local;
   FILE *pFile;
@@ -40,8 +39,7 @@ float screen_freq_from_array(float *array,_Bool is_high_freq)
     for (chain = 0; chain < 4; chain = chain + 1) {
       if (dev->chain_exist[chain] != 0) {
         for (domain = 0; domain < 6; domain = domain + 1) {
-          fVar2 = freq_adjust_index[chain][domain];
-          if (low_freq != fVar2 && low_freq < fVar2 == (NAN(low_freq) || NAN(fVar2))) {
+          if (freq_adjust_index[chain][domain] < low_freq) {
             low_freq = freq_adjust_index[chain][domain];
           }
         }

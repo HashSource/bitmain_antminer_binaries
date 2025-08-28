@@ -1,6 +1,4 @@
 
-/* Local variable value:json_t *[r0:4] conflicts with parameter, skipped. */
-
 json_t * json_pack_ex(json_error_t *error,size_t flags,char *fmt,...)
 
 {

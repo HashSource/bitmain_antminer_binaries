@@ -1,19 +1,16 @@
 
-/* WARNING: Type propagation algorithm not settling */
-
 _Bool check_asic_reg_oneChain(int chainIndex,uint reg,_Bool core_response)
 
 {
-  char *buf;
   uint uVar1;
   uchar uVar2;
   byte bVar3;
   FILE *pFVar4;
   uint uVar5;
   uint uVar6;
-  uint bufsiz;
-  bool bVar7;
-  double dVar8;
+  uint uVar7;
+  bool bVar8;
+  double dVar9;
   _Bool core_response_local;
   uint reg_local;
   int chainIndex_local;
@@ -51,7 +48,7 @@ _Bool check_asic_reg_oneChain(int chainIndex,uint reg,_Bool core_response)
   reg_buf[5] = '\0';
   reg_buf[6] = '\0';
   reg_address = 0xff;
-rerun_all:
+LAB_00025ae4:
   if (!core_response) {
     clear_register_value_buf();
   }
@@ -60,7 +57,7 @@ rerun_all:
   if (dev->chain_exist[chainIndex] != 1) {
     return true;
   }
-  tmp_rate._0_4_ = (char *)0x0;
+  tmp_rate._0_4_ = 0;
   tmp_rate._4_4_ = 0;
   if (!core_response) {
     read_asic_register((uchar)chainIndex,'\x01','\0',(uchar)reg);
@@ -76,11 +73,9 @@ LAB_00026818:
         dev->max_asic_num_in_one_chain = dev->chain_asic_num[chainIndex];
       }
       if (read_num == (uint)dev->chain_asic_num[chainIndex]) {
-        *(char **)(rate + chainIndex) = (char *)tmp_rate;
+        *(uint *)(rate + chainIndex) = (uint)tmp_rate;
         *(int *)((int)rate + chainIndex * 8 + 4) = tmp_rate._4_4_;
-        suffix_string_soc(6,*(char **)(rate + chainIndex),
-                          *(size_t *)((int)rate + chainIndex * 8 + 4),
-                          (int)(displayed_rate + chainIndex),true);
+        suffix_string_soc(rate[chainIndex],displayed_rate[chainIndex],0x20,6,false);
         rate_error[chainIndex] = 0;
         if (4 < log_level) {
           print_crt_time_to_file(log_file,4);
@@ -97,12 +92,10 @@ LAB_00026818:
           (status_error != false)))) {
         *(undefined4 *)(rate + chainIndex) = 0;
         *(undefined4 *)((int)rate + chainIndex * 8 + 4) = 0;
-        suffix_string_soc(6,*(char **)(rate + chainIndex),
-                          *(size_t *)((int)rate + chainIndex * 8 + 4),
-                          (int)(displayed_rate + chainIndex),true);
+        suffix_string_soc(rate[chainIndex],displayed_rate[chainIndex],0x20,6,false);
       }
       clear_register_value_buf();
-      return (_Bool)1;
+      return true;
     }
     cgsleep_ms(300);
     pthread_mutex_lock((pthread_mutex_t *)&reg_mutex);
@@ -175,12 +168,12 @@ LAB_00026818:
                   sprintf(rate_buf + ii * 2,"%02x",(uint)reg_buf[ii]);
                 }
                 uVar5 = strtol(rate_buf,(char **)0x0,0x10);
-                bufsiz = ((int)uVar5 >> 0x1f) << 0x18 | uVar5 >> 8;
-                buf = (char *)(uVar5 * 0x1000000);
-                bVar7 = CARRY4((uint)(char *)tmp_rate,(uint)buf);
-                tmp_rate._0_4_ = (char *)tmp_rate + (int)buf;
-                tmp_rate._4_4_ = tmp_rate._4_4_ + bufsiz + (uint)bVar7;
-                suffix_string_soc(6,buf,bufsiz,(int)displayed_rate_asic,true);
+                uVar7 = ((int)uVar5 >> 0x1f) << 0x18 | uVar5 >> 8;
+                uVar5 = uVar5 * 0x1000000;
+                bVar8 = CARRY4((uint)tmp_rate,uVar5);
+                tmp_rate._0_4_ = (uint)tmp_rate + uVar5;
+                tmp_rate._4_4_ = tmp_rate._4_4_ + uVar7 + (uint)bVar8;
+                suffix_string_soc(CONCAT44(uVar7,uVar5),displayed_rate_asic,0x20,6,false);
                 if (3 < log_level) {
                   print_crt_time_to_file(log_file,3);
                   pFVar4 = fopen(log_file,"a+");
@@ -190,8 +183,8 @@ LAB_00026818:
                   }
                   fclose(pFVar4);
                 }
-                dVar8 = atof(displayed_rate_asic);
-                chain_asic_RT[chainIndex][read_num] = dVar8;
+                dVar9 = atof(displayed_rate_asic);
+                chain_asic_RT[chainIndex][read_num] = dVar9;
                 if ((((uVar6 & 7) == 0) || (uVar6 == 0x30)) && (3 < log_level)) {
                   print_crt_time_to_file(log_file,3);
                   pFVar4 = fopen(log_file,"a+");
@@ -292,6 +285,6 @@ LAB_00026818:
   } while( true );
   not_reg_data_time = not_reg_data_time + 1;
   pthread_mutex_unlock((pthread_mutex_t *)&reg_mutex);
-  goto rerun_all;
+  goto LAB_00025ae4;
 }
 

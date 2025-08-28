@@ -4,7 +4,6 @@
 int json_object_set_new_nocheck(json_t *json,char *key,json_t *value)
 
 {
-  json_object_t *object;
   int iVar1;
   size_t sVar2;
   

@@ -23,13 +23,13 @@ ssl_parse_clienthello_renegotiate_ext(int param_1,byte *param_2,int param_3,unde
       else {
         iVar2 = 0xac;
       }
-      ERR_put_error(0x14,300,0x151,DAT_00083a18,iVar2);
+      ERR_put_error(0x14,300,0x151,"t1_reneg.c",iVar2);
       *param_4 = 0x28;
       return 0;
     }
     iVar2 = 0xa4;
   }
-  ERR_put_error(0x14,300,0x150,DAT_00083a18,iVar2);
+  ERR_put_error(0x14,300,0x150,"t1_reneg.c",iVar2);
   *param_4 = 0x2f;
   return 0;
 }

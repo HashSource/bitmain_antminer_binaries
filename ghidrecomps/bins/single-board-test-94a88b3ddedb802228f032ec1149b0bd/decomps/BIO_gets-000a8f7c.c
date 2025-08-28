@@ -8,7 +8,7 @@ int BIO_gets(BIO *bp,char *buf,int size)
   
   if (((bp == (BIO *)0x0) || (bp->method == (BIO_METHOD *)0x0)) ||
      (bp->method->bgets == (_func_740 *)0x0)) {
-    ERR_put_error(0x20,0x68,0x79,DAT_000a9004,0x121);
+    ERR_put_error(0x20,0x68,0x79,"bio_lib.c",0x121);
     iVar2 = -2;
   }
   else {
@@ -17,7 +17,7 @@ int BIO_gets(BIO *bp,char *buf,int size)
       return lVar1;
     }
     if (bp->init == 0) {
-      ERR_put_error(0x20,0x68,0x78,DAT_000a9004,299);
+      ERR_put_error(0x20,0x68,0x78,"bio_lib.c",299);
       iVar2 = -2;
     }
     else {

@@ -8,9 +8,9 @@ void read_temp_func(byte *param_1)
   do {
     if ((*(char *)((int)&gIsReadTemp + (uint)bVar1) != '\0') &&
        (*(char *)((int)&gIsOpenCoreEnd + (uint)bVar1) != '\0')) {
-      *(undefined *)((int)&gReadingTemp + (uint)bVar1) = 1;
+      *(undefined1 *)((int)&gReadingTemp + (uint)bVar1) = 1;
       usleep(Conf._200_4_ * 0xf);
-      if (Conf[252] == '\x01') {
+      if (Conf[0xfc] == '\x01') {
         read_asic_temperature(bVar1);
       }
       else {
@@ -19,7 +19,7 @@ void read_temp_func(byte *param_1)
       if (*(char *)((int)&gNotReadOutTemp + (uint)bVar1) != '\x01') {
         set_PWM_according_to_temperature(bVar1);
       }
-      *(undefined *)((int)&gReadingTemp + (uint)bVar1) = 0;
+      *(undefined1 *)((int)&gReadingTemp + (uint)bVar1) = 0;
     }
     usleep(1000000);
   } while( true );

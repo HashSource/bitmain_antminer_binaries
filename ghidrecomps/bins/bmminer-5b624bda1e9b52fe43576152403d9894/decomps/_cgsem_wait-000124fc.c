@@ -15,7 +15,8 @@ void _cgsem_wait(cgsem_t *cgsem,char *file,char *func,int line)
     }
     piVar2 = __errno_location();
   } while (*piVar2 == 4);
-  snprintf(tmp42,0x800,DAT_0001254c,*piVar2,cgsem,file,func,line);
+  snprintf(tmp42,0x800,"Failed to sem_wait errno=%d cgsem=0x%p in %s %s():%d",*piVar2,cgsem,file,
+           func,line);
   _applog(3,tmp42,true);
   _quit(1);
   return;

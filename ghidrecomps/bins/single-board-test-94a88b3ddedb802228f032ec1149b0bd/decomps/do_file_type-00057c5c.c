@@ -6,16 +6,16 @@ undefined4 do_file_type(char *param_1)
   undefined4 uVar2;
   
   if (((param_1 == (char *)0x0) || (*param_1 == '\0')) ||
-     (iVar1 = Curl_raw_equal(param_1,DAT_00057ca4), iVar1 != 0)) {
+     (iVar1 = Curl_raw_equal(param_1,&DAT_0013ae10), iVar1 != 0)) {
     return 1;
   }
-  iVar1 = Curl_raw_equal(param_1,DAT_00057ca8);
+  iVar1 = Curl_raw_equal(param_1,"DER");
   if (iVar1 != 0) {
     return 2;
   }
-  iVar1 = Curl_raw_equal(param_1,DAT_00057cac);
+  iVar1 = Curl_raw_equal(param_1,&DAT_0013ae14);
   if (iVar1 == 0) {
-    iVar1 = Curl_raw_equal(param_1,DAT_00057cb0);
+    iVar1 = Curl_raw_equal(param_1,&DAT_0013ae18);
     if (iVar1 == 0) {
       uVar2 = 0xffffffff;
     }

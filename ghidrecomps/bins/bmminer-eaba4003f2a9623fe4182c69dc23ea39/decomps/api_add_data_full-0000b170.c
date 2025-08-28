@@ -56,7 +56,7 @@ api_add_data_full(api_data *root,char *name,api_data_type type,void *data,_Bool 
       pvVar4 = _cgmalloc(4,"api-btm.c","api_add_data_full",0x3b6);
       paVar1->data = pvVar4;
                     /* WARNING: Load size is inaccurate */
-      *(undefined *)paVar1->data = *data_local;
+      *(undefined1 *)paVar1->data = *data_local;
       break;
     case API_INT16:
       pvVar4 = _cgmalloc(4,"api-btm.c","api_add_data_full",0x3bb);
@@ -133,7 +133,7 @@ api_add_data_full(api_data *root,char *name,api_data_type type,void *data,_Bool 
       pvVar4 = _cgmalloc(1,"api-btm.c","api_add_data_full",1000);
       paVar1->data = pvVar4;
                     /* WARNING: Load size is inaccurate */
-      *(undefined *)paVar1->data = *data_local;
+      *(undefined1 *)paVar1->data = *data_local;
       break;
     case API_TIMEVAL:
       pvVar4 = _cgmalloc(8,"api-btm.c","api_add_data_full",0x3ec);

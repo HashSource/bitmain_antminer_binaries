@@ -3,7 +3,7 @@ _Bool check_crc(uchar *buf)
 
 {
   FILE *__stream;
-  undefined uVar1;
+  undefined1 uVar1;
   ushort uVar2;
   bool bVar3;
   uchar *buf_local;
@@ -37,7 +37,7 @@ _Bool check_crc(uchar *buf)
     if (bVar3) {
       uVar2 = 1;
     }
-    uVar1 = (undefined)uVar2;
+    uVar1 = (undefined1)uVar2;
     if (!bVar3) {
       uVar1 = 0;
     }

@@ -4,7 +4,7 @@
 void ENGINE_add_conf_module(void)
 
 {
-  CONF_module_add("engines",int_engine_module_init + 1,int_engine_module_finish + 1);
+  CONF_module_add("engines",(undefined1 *)0x101d09,(undefined1 *)0x101ce1);
   return;
 }
 

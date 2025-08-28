@@ -4,8 +4,6 @@
 int json_array_insert_new(json_t *json,size_t index,json_t *value)
 
 {
-  json_array_t *array;
-  json_t **old_table;
   size_t sVar1;
   json_t **local_1c;
   

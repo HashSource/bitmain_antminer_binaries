@@ -24,11 +24,11 @@ int write_hash_ID_PIC16F1704(uint which_chain,uchar which_i2c,uchar *buf)
   send_data[8] = '\0';
   send_data[9] = '\0';
   send_data[10] = '\0';
-  send_data[11] = '\0';
-  send_data[12] = '\0';
-  send_data[13] = '\0';
-  send_data[14] = '\0';
-  send_data[15] = '\0';
+  send_data[0xb] = '\0';
+  send_data[0xc] = '\0';
+  send_data[0xd] = '\0';
+  send_data[0xe] = '\0';
+  send_data[0xf] = '\0';
   crc = 0x22;
   for (i = '\0'; i < 0xc; i = i + '\x01') {
     crc = crc + buf[i];
@@ -40,8 +40,8 @@ int write_hash_ID_PIC16F1704(uint which_chain,uchar which_i2c,uchar *buf)
   for (i = '\0'; i < 0xc; i = i + '\x01') {
     send_data[i + 4] = buf[i];
   }
-  send_data[17] = (uchar)crc;
-  send_data[16] = (uchar)(crc >> 8);
+  send_data[0x11] = (uchar)crc;
+  send_data[0x10] = (uchar)(crc >> 8);
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (i = '\0'; i < 0x12; i = i + '\x01') {
     write_pic(which_i2c,(uchar)which_chain,send_data[i]);

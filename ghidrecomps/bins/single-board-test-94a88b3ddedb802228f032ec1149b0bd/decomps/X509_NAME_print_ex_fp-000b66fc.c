@@ -11,21 +11,21 @@ int X509_NAME_print_ex_fp(FILE *fp,X509_NAME *nm,int indent,ulong flags)
   ASN1_STRING *pAVar4;
   size_t sVar5;
   size_t sVar6;
-  char *__s;
   uint uVar7;
-  void *__ptr;
+  undefined *__ptr;
   int iVar8;
   uint uVar9;
   uint uVar10;
   uint uVar11;
   int iVar12;
   int iVar13;
+  char *buf;
   int local_b8;
   int local_b4;
   size_t local_9c;
-  void *local_8c;
+  char *local_8c;
   size_t local_88;
-  void *local_84;
+  undefined *local_84;
   int local_80;
   int local_7c;
   char acStack_78 [84];
@@ -45,7 +45,7 @@ LAB_000b6760:
     if ((uVar9 != 0) && (fp != (FILE *)0x0)) {
       uVar10 = 0;
       do {
-        sVar2 = fwrite(DAT_000b69ac,1,1,fp);
+        sVar2 = fwrite(&DAT_001729cc,1,1,fp);
         if (sVar2 != 1) goto LAB_000b6760;
         uVar10 = uVar10 + 1;
       } while (uVar10 != uVar9);
@@ -57,14 +57,14 @@ LAB_000b6760:
       local_7c = 2;
       local_88 = 3;
       local_80 = 3;
-      local_84 = DAT_000b69b0;
-      local_8c = DAT_000b69b4;
+      local_84 = &DAT_001604f0;
+      local_8c = ", ";
     }
     else if (uVar10 < 0x20001) {
       if (uVar10 != 0x10000) goto LAB_000b6760;
-      local_84 = DAT_000b6a30;
-      local_8c = DAT_000b6a34;
       local_9c = 1;
+      local_84 = &DAT_001604f4;
+      local_8c = ",";
       local_88 = 1;
       local_80 = 1;
       local_7c = 1;
@@ -76,8 +76,8 @@ LAB_000b6760:
       uVar10 = 0;
       local_88 = 3;
       local_80 = 3;
-      local_84 = DAT_000b6a24;
-      local_8c = DAT_000b6a2c;
+      local_84 = &DAT_001604f0;
+      local_8c = "; ";
     }
     else {
       if (uVar10 != 0x40000) goto LAB_000b6760;
@@ -85,17 +85,17 @@ LAB_000b6760:
       local_7c = 1;
       local_88 = 3;
       local_80 = 3;
-      local_84 = DAT_000b6a24;
-      local_8c = DAT_000b6a28;
+      local_84 = &DAT_001604f0;
+      local_8c = "\n";
       uVar10 = uVar9;
     }
+    __ptr = &DAT_00137518;
     if ((flags & 0x800000) == 0) {
       sVar2 = 1;
-      __ptr = DAT_000b69b8;
+      __ptr = &DAT_00160320;
     }
     else {
       sVar2 = 3;
-      __ptr = DAT_000b69bc;
     }
     uVar7 = flags & 0x600000;
     iVar1 = X509_NAME_entry_count(nm);
@@ -125,7 +125,7 @@ LAB_000b6760:
                 uVar11 = 0;
                 if (uVar10 != 0) {
                   do {
-                    sVar3 = fwrite(DAT_000b69ac,1,1,fp);
+                    sVar3 = fwrite(&DAT_001729cc,1,1,fp);
                     if (sVar3 != 1) goto LAB_000b6760;
                     uVar11 = uVar11 + 1;
                   } while (uVar11 != uVar10);
@@ -141,36 +141,36 @@ LAB_000b6760:
           iVar8 = OBJ_obj2nid(o);
           if (uVar7 != 0x600000) {
             if (uVar7 == 0x400000 || iVar8 == 0) {
-              OBJ_obj2txt(acStack_78,0x50,o,1);
-              sVar3 = strlen(acStack_78);
+              buf = acStack_78;
               sVar6 = 0;
-              __s = acStack_78;
+              OBJ_obj2txt(buf,0x50,o,1);
+              sVar3 = strlen(acStack_78);
             }
             else {
               sVar3 = 0;
               if (uVar7 == 0) {
-                __s = OBJ_nid2sn(iVar8);
-                sVar3 = strlen(__s);
+                buf = OBJ_nid2sn(iVar8);
                 sVar6 = 10;
+                sVar3 = strlen(buf);
+              }
+              else if (uVar7 == 0x200000) {
+                buf = OBJ_nid2ln(iVar8);
+                sVar6 = 0x19;
+                sVar3 = strlen(buf);
               }
               else {
+                buf = "";
                 sVar6 = sVar3;
-                __s = DAT_000b69c0;
-                if (uVar7 == 0x200000) {
-                  __s = OBJ_nid2ln(iVar8);
-                  sVar3 = strlen(__s);
-                  sVar6 = 0x19;
-                }
               }
             }
-            if ((fp != (FILE *)0x0) && (sVar5 = fwrite(__s,1,sVar3,fp), sVar5 != sVar3))
+            if ((fp != (FILE *)0x0) && (sVar5 = fwrite(buf,1,sVar3,fp), sVar5 != sVar3))
             goto LAB_000b6760;
             if (((int)sVar3 < (int)sVar6) && ((flags & 0x2000000) != 0)) {
               iVar13 = sVar6 - sVar3;
               if ((0 < iVar13) && (fp != (FILE *)0x0)) {
                 iVar12 = 0;
                 do {
-                  sVar6 = fwrite(DAT_000b69ac,1,1,fp);
+                  sVar6 = fwrite(&DAT_001729cc,1,1,fp);
                   if (sVar6 != 1) goto LAB_000b6760;
                   iVar12 = iVar12 + 1;
                 } while (iVar12 != iVar13);

@@ -4,7 +4,6 @@
 int check_hashboard_hardware_info(void)
 
 {
-  uint8_t chain_00;
   _Bool _Var1;
   _Bool _Var2;
   _Bool _Var3;
@@ -26,6 +25,7 @@ int check_hashboard_hardware_info(void)
   CHIP_MAJOR_TYPE major;
   _Bool success;
   int chain;
+  uint8_t chain_00;
   
   success = true;
   major = 0xffff;

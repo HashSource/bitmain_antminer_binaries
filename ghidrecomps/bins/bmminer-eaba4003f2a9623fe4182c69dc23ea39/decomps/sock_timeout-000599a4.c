@@ -5,7 +5,7 @@ _Bool sock_timeout(void)
 
 {
   int *piVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   int iVar3;
   bool bVar4;
   
@@ -15,7 +15,7 @@ _Bool sock_timeout(void)
   if (bVar4) {
     iVar3 = 0;
   }
-  uVar2 = (undefined)iVar3;
+  uVar2 = (undefined1)iVar3;
   if (!bVar4) {
     uVar2 = 1;
   }

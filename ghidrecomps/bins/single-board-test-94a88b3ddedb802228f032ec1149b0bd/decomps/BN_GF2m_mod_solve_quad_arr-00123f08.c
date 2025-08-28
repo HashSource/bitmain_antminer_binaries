@@ -90,7 +90,7 @@ LAB_0012402e:
           }
           goto LAB_00123f80;
         }
-        ERR_put_error(3,0x87,0x74,DAT_00124190,0x4ac);
+        ERR_put_error(3,0x87,0x74,"bn_gf2m.c",0x4ac);
       }
       else {
         rnd = BN_CTX_get(param_4);
@@ -130,7 +130,7 @@ LAB_0012402e:
             if (a_01->top != 0) goto LAB_0012402e;
             local_2c = local_2c + -1;
           } while (local_2c != 0);
-          ERR_put_error(3,0x87,0x71,DAT_00124190,0x4a2);
+          ERR_put_error(3,0x87,0x71,"bn_gf2m.c",0x4a2);
           pBVar2 = (BIGNUM *)0x0;
           goto LAB_00123f80;
         }

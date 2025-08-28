@@ -6,7 +6,7 @@ int sscanf(char *__s,char *__format,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sscanf_000c021c)();
+  iVar1 = sscanf(__s,__format);
   return iVar1;
 }
 

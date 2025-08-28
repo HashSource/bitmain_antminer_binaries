@@ -9,8 +9,7 @@ void * check_system_work(void)
   STATUS_CODE SVar3;
   int iVar4;
   float env_temp_00;
-  char *in_stack_ffffff78;
-  undefined4 in_stack_ffffff7c;
+  double real_rate;
   _Bool high_chip_temp_flag;
   timeval tv_diff;
   timeval tv_end;
@@ -33,8 +32,8 @@ void * check_system_work(void)
     print_crt_time_to_file(log_file,3);
     pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      in_stack_ffffff78 = "check_system_work";
-      fprintf(pFVar2,"%s:%d:%s: check system thread start...\n","driver-btm-soc.c",0xe01);
+      fprintf(pFVar2,"%s:%d:%s: check system thread start...\n","driver-btm-soc.c",0xe01,
+              "check_system_work");
     }
     fclose(pFVar2);
   }
@@ -63,9 +62,8 @@ void * check_system_work(void)
           print_crt_time_to_file(log_file,3);
           pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
-            in_stack_ffffff78 = "check_system_work";
             fprintf(pFVar2,"%s:%d:%s: mode0 startup failed, reopen for mode 2 startup\n",
-                    "driver-btm-soc.c",0xe29);
+                    "driver-btm-soc.c",0xe29,"check_system_work");
           }
           fclose(pFVar2);
         }
@@ -85,8 +83,8 @@ void * check_system_work(void)
         print_crt_time_to_file(log_file,3);
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          in_stack_ffffff78 = "check_system_work";
-          fprintf(pFVar2,"%s:%d:%s: reopen for mode 2 startup again\n","driver-btm-soc.c",0xe3a);
+          fprintf(pFVar2,"%s:%d:%s: reopen for mode 2 startup again\n","driver-btm-soc.c",0xe3a,
+                  "check_system_work");
         }
         fclose(pFVar2);
       }
@@ -99,9 +97,8 @@ void * check_system_work(void)
         print_crt_time_to_file(log_file,3);
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          in_stack_ffffff78 = "check_system_work";
           fprintf(pFVar2,"%s:%d:%s: mode 2 startup finished, switch to mode 0\n","driver-btm-soc.c",
-                  0xe43);
+                  0xe43,"check_system_work");
         }
         fclose(pFVar2);
       }
@@ -135,10 +132,9 @@ void * check_system_work(void)
         get_max_temperature();
         get_min_chip_temperature();
         get_max_chip_temperature();
-        in_stack_ffffff78 = "check_system_work";
         fprintf(pFVar2,
                 "%s:%d:%s: 30 mins avg rate [%05.0f], PCB temp [%d - %d], CHIP temp [%d - %d]\n",
-                "driver-btm-soc.c",0xe6f);
+                "driver-btm-soc.c",0xe6f,"check_system_work");
       }
       fclose(pFVar2);
     }
@@ -158,10 +154,9 @@ void * check_system_work(void)
       check_asic_status();
     }
     if ((counter_base < counter) && ((counter - counter_base) % 0x708 == 0)) {
-      get_30minutes_hashrate();
+      real_rate = get_30minutes_hashrate();
       env_temp_00 = get_env_temperature();
-      hash_rate_guard(true,env_temp_00,(double)CONCAT44(in_stack_ffffff7c,in_stack_ffffff78),
-                      high_chip_temp_flag);
+      hash_rate_guard(true,env_temp_00,real_rate,high_chip_temp_flag);
     }
     cgtime(&tv_end);
     tv_diff.tv_sec = tv_end.tv_sec - tv_start.tv_sec;
@@ -171,7 +166,7 @@ void * check_system_work(void)
       tv_diff.tv_usec = tv_diff.tv_usec + 1000000;
     }
     if (tv_diff.tv_sec < 1) {
-      cgsleep_us(CONCAT44(in_stack_ffffff7c,in_stack_ffffff78));
+      cgsleep_us((longlong)(1000000 - tv_diff.tv_usec));
     }
   } while( true );
 }

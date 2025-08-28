@@ -9,7 +9,7 @@ sasl_create_login_message(undefined4 param_1,char *param_2,int *param_3,undefine
   
   sVar1 = strlen(param_2);
   if (sVar1 == 0) {
-    iVar2 = (**DAT_00055314)(DAT_00055318);
+    iVar2 = (*Curl_cstrdup)(&DAT_00160320);
     *param_3 = iVar2;
     if (iVar2 == 0) {
       *param_4 = 0;

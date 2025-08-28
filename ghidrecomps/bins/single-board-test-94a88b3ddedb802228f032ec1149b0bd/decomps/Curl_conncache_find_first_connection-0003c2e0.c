@@ -3,7 +3,7 @@ undefined4 Curl_conncache_find_first_connection(undefined4 param_1)
 
 {
   int *piVar1;
-  undefined auStack_14 [20];
+  undefined1 auStack_14 [16];
   
   Curl_hash_start_iterate(param_1,auStack_14);
   do {

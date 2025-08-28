@@ -6,7 +6,7 @@ char * dirname(char *__path)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_dirname_000a8134)();
+  pcVar1 = dirname(__path);
   return pcVar1;
 }
 

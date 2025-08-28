@@ -4,63 +4,58 @@
 _Bool should_run(void)
 
 {
-  char *pcVar1;
-  char *pcVar2;
-  _Bool _Var3;
-  tm *ptVar4;
-  tm *tm;
-  int iVar5;
-  int iVar6;
-  int iVar7;
+  _Bool _Var1;
+  tm *ptVar2;
+  int iVar3;
   __time_t local_24;
   timeval tv;
   
-  pcVar2 = DAT_0001e138;
-  pcVar1 = DAT_0001e134;
-  if ((*DAT_0001e134 == '\0') && (*DAT_0001e138 == '\0')) {
-LAB_0001e0c8:
-    _Var3 = true;
-  }
-  else {
+  if ((schedstart.enable) || (schedstop.enable)) {
     cgtime(&tv);
     local_24 = tv.tv_sec;
-    ptVar4 = localtime(&local_24);
-    if (*pcVar1 == '\0') {
-      if ((ptVar4->tm_hour < *(int *)(pcVar2 + 0xc)) ||
-         ((ptVar4->tm_hour == *(int *)(pcVar2 + 0xc) &&
-          (ptVar4->tm_min < *(int *)(DAT_0001e138 + 8))))) goto LAB_0001e0c8;
+    ptVar2 = localtime(&local_24);
+    if (schedstart.enable == false) {
+      if ((ptVar2->tm_hour < schedstop.tm.tm_hour) ||
+         ((ptVar2->tm_hour == schedstop.tm.tm_hour && (ptVar2->tm_min < schedstop.tm.tm_min))))
+      goto LAB_0001e0c8;
     }
-    else if (*pcVar2 == '\0') {
-      if ((*(int *)(DAT_0001e134 + 0xc) <= ptVar4->tm_hour) &&
-         ((ptVar4->tm_hour != *(int *)(DAT_0001e134 + 0xc) ||
-          (*(int *)(DAT_0001e134 + 8) <= ptVar4->tm_min)))) {
-        *pcVar1 = '\0';
+    else if (schedstop.enable == false) {
+      if ((schedstart.tm.tm_hour <= ptVar2->tm_hour) &&
+         ((ptVar2->tm_hour != schedstart.tm.tm_hour || (schedstart.tm.tm_min <= ptVar2->tm_min)))) {
+        schedstart.enable = false;
         return true;
       }
     }
     else {
-      iVar7 = *(int *)(DAT_0001e134 + 0xc);
-      iVar6 = *(int *)(DAT_0001e138 + 0xc);
-      if ((iVar6 <= iVar7) &&
-         ((iVar7 != iVar6 || (*(int *)(DAT_0001e138 + 8) <= *(int *)(DAT_0001e134 + 8))))) {
-        iVar5 = ptVar4->tm_hour;
-        if (iVar5 < iVar7) {
-          if (iVar6 <= iVar5) {
+      if ((schedstop.tm.tm_hour <= schedstart.tm.tm_hour) &&
+         ((schedstart.tm.tm_hour != schedstop.tm.tm_hour ||
+          (schedstop.tm.tm_min <= schedstart.tm.tm_min)))) {
+        iVar3 = ptVar2->tm_hour;
+        if (iVar3 < schedstart.tm.tm_hour) {
+          if (schedstop.tm.tm_hour <= iVar3) {
 LAB_0001e11a:
-            if ((iVar6 != iVar5) || (*(int *)(pcVar2 + 8) <= ptVar4->tm_min)) goto LAB_0001e0da;
+            if ((schedstop.tm.tm_hour != iVar3) || (schedstop.tm.tm_min <= ptVar2->tm_min))
+            goto LAB_0001e0da;
           }
         }
-        else if ((iVar7 == iVar5) && (ptVar4->tm_min < *(int *)(pcVar1 + 8))) goto LAB_0001e11a;
+        else if ((schedstart.tm.tm_hour == iVar3) && (ptVar2->tm_min < schedstart.tm.tm_min))
+        goto LAB_0001e11a;
         goto LAB_0001e0c8;
       }
-      iVar5 = ptVar4->tm_hour;
-      if ((((iVar5 < iVar6) || ((iVar6 == iVar5 && (ptVar4->tm_min < *(int *)(pcVar2 + 8))))) &&
-          (iVar7 <= iVar5)) && ((iVar7 != iVar5 || (*(int *)(pcVar1 + 8) <= ptVar4->tm_min))))
+      iVar3 = ptVar2->tm_hour;
+      if ((((iVar3 < schedstop.tm.tm_hour) ||
+           ((schedstop.tm.tm_hour == iVar3 && (ptVar2->tm_min < schedstop.tm.tm_min)))) &&
+          (schedstart.tm.tm_hour <= iVar3)) &&
+         ((schedstart.tm.tm_hour != iVar3 || (schedstart.tm.tm_min <= ptVar2->tm_min))))
       goto LAB_0001e0c8;
     }
 LAB_0001e0da:
-    _Var3 = false;
+    _Var1 = false;
   }
-  return _Var3;
+  else {
+LAB_0001e0c8:
+    _Var1 = true;
+  }
+  return _Var1;
 }
 

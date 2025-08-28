@@ -12,8 +12,8 @@ int GetTotalRate_part_12(void)
   
   iVar7 = 0;
   iVar5 = 0;
-  piVar4 = DAT_0002d104;
-  pbVar6 = DAT_0002d108;
+  piVar4 = (int *)(chain_badcore_num + 0x150);
+  pbVar6 = chain_pic_buf + 2;
   do {
     if (*(int *)(dev + (iVar5 + 2) * 4) == 1) {
       piVar2 = piVar4 + -0x54;

@@ -1,5 +1,5 @@
 
-undefined4 Curl_splayremovebyaddr(int *param_1,int *param_2,int **param_3)
+undefined4 Curl_splayremovebyaddr(int param_1,int *param_2,int *param_3)
 
 {
   int *piVar1;
@@ -8,7 +8,7 @@ undefined4 Curl_splayremovebyaddr(int *param_1,int *param_2,int **param_3)
   int *piVar4;
   int iVar5;
   
-  if (param_1 == (int *)0x0 || param_2 == (int *)0x0) {
+  if (param_1 == 0 || param_2 == (int *)0x0) {
     return 1;
   }
   if ((param_2[3] == -1) && (param_2[4] == -1)) {
@@ -48,7 +48,7 @@ undefined4 Curl_splayremovebyaddr(int *param_1,int *param_2,int **param_3)
     *piVar1 = iVar3;
     piVar1[1] = iVar5;
   }
-  *param_3 = piVar1;
+  *param_3 = (int)piVar1;
   return 0;
 }
 

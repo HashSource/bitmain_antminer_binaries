@@ -4,7 +4,7 @@ int PKCS7_add_signer(PKCS7 *p7,PKCS7_SIGNER_INFO *p7i)
 {
   int iVar1;
   int n;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   int iVar3;
   X509_ALGOR *a;
   ASN1_TYPE *pAVar4;
@@ -38,11 +38,11 @@ int PKCS7_add_signer(PKCS7 *p7,PKCS7_SIGNER_INFO *p7i)
           }
         }
         X509_ALGOR_free(a);
-        ERR_put_error(0x21,0x67,0x41,DAT_000cf4c0,0x112);
+        ERR_put_error(0x21,0x67,0x41,"pk7_lib.c",0x112);
         return 0;
       }
-      ppAVar2 = (ASN1_OBJECT **)sk_value(st,iVar1);
-      iVar3 = OBJ_obj2nid(*ppAVar2);
+      puVar2 = (undefined4 *)sk_value(st,iVar1);
+      iVar3 = OBJ_obj2nid((ASN1_OBJECT *)*puVar2);
       iVar1 = iVar1 + 1;
     } while (iVar3 != n);
     iVar1 = sk_push(st_00,p7i);
@@ -51,7 +51,7 @@ int PKCS7_add_signer(PKCS7 *p7,PKCS7_SIGNER_INFO *p7i)
     }
   }
   else {
-    ERR_put_error(0x21,0x67,0x71,DAT_000cf4c0,0xff);
+    ERR_put_error(0x21,0x67,0x71,"pk7_lib.c",0xff);
     iVar1 = 0;
   }
   return iVar1;

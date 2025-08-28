@@ -1,5 +1,5 @@
 
-undefined4 enable_debug(undefined *param_1)
+undefined4 enable_debug(undefined1 *param_1)
 
 {
   *param_1 = 0;

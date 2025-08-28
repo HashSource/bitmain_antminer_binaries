@@ -4,7 +4,7 @@ int tls1_process_heartbeat(undefined4 *param_1)
 {
   char cVar1;
   char cVar2;
-  undefined *ptr;
+  undefined1 *ptr;
   int iVar3;
   char *pcVar4;
   uint __n;
@@ -24,7 +24,7 @@ int tls1_process_heartbeat(undefined4 *param_1)
     num = __n + 0x13;
     if (num <= *(uint *)(iVar3 + 0x110)) {
       if (*pcVar4 == '\x01') {
-        ptr = (undefined *)CRYPTO_malloc(num,DAT_00073378,0xf0d);
+        ptr = (undefined1 *)CRYPTO_malloc(num,"t1_lib.c",0xf0d);
         *ptr = 2;
         ptr[1] = cVar1;
         ptr[2] = cVar2;

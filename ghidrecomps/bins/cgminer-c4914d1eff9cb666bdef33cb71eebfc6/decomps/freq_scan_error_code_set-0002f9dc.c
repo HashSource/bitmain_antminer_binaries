@@ -26,50 +26,49 @@ void freq_scan_error_code_set(int err_code,int chain)
       snprintf(search_failed_info,0x40,"J%d:5",chain);
       break;
     case 5:
-      search_failed_info._0_4_ = DAT_00084ecc;
+      builtin_strncpy(search_failed_info,"R:1",4);
       break;
     case 6:
-      search_failed_info._0_4_ = DAT_00084ed0;
+      builtin_strncpy(search_failed_info,"R:2",4);
       break;
     case 7:
       snprintf(search_failed_info,0x40,"T:%d",chain);
       break;
     case 8:
-      search_failed_info._0_4_ = DAT_00084ee0;
+      builtin_strncpy(search_failed_info,"P:1",4);
       break;
     case 9:
-      search_failed_info._0_4_ = DAT_00084ee4;
+      builtin_strncpy(search_failed_info,"P:2",4);
       break;
     case 10:
-      search_failed_info._0_4_ = DAT_00084ee8;
+      builtin_strncpy(search_failed_info,"F:1",4);
       break;
     case 0xb:
       snprintf(search_failed_info,0x40,"J%d:6",chain);
       break;
     case 0xc:
-      search_failed_info._0_4_ = DAT_00084ef4;
+      builtin_strncpy(search_failed_info,"V:1",4);
       break;
     case 0xd:
-      search_failed_info._0_4_ = DAT_00084ef8;
+      builtin_strncpy(search_failed_info,"M:1",4);
       break;
     case 0xe:
-      search_failed_info._0_4_ = DAT_00084efc;
+      builtin_strncpy(search_failed_info,"N:1",4);
       break;
     case 0xf:
-      search_failed_info._0_4_ = DAT_00084f04;
+      builtin_strncpy(search_failed_info,"P:4",4);
       break;
     default:
-      search_failed_info._0_4_ = s_unknown_00084f0c._0_4_;
-      search_failed_info._4_4_ = s_unknown_00084f0c._4_4_;
+      builtin_strncpy(search_failed_info,"unknown",8);
       break;
     case 0x11:
-      search_failed_info._0_4_ = DAT_00084ed4;
+      builtin_strncpy(search_failed_info,"R:3",4);
       break;
     case 0x12:
-      search_failed_info._0_4_ = DAT_00084f08;
+      builtin_strncpy(search_failed_info,"C:1",4);
       break;
     case 0x13:
-      search_failed_info._0_4_ = DAT_00084f00;
+      builtin_strncpy(search_failed_info,"N:2",4);
     }
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);

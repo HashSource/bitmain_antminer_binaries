@@ -6,9 +6,7 @@ int pthread_cond_timedwait(pthread_cond_t *__cond,pthread_mutex_t *__mutex,times
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a210. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0008526c)();
+  iVar1 = (*(code *)(undefined *)0x0)(__cond);
   return iVar1;
 }
 

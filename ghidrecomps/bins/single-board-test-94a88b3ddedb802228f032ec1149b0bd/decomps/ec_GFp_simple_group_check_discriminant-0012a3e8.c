@@ -13,7 +13,7 @@ int ec_GFp_simple_group_check_discriminant(int *param_1,BN_CTX *param_2)
   c = (BN_CTX *)0x0;
   if ((param_2 == (BN_CTX *)0x0) && (param_2 = BN_CTX_new(), c = param_2, param_2 == (BN_CTX *)0x0))
   {
-    ERR_put_error(0x10,0xa5,0x41,DAT_0012a538,0x12a);
+    ERR_put_error(0x10,0xa5,0x41,"ecp_smpl.c",0x12a);
     return 0;
   }
   BN_CTX_start(param_2);

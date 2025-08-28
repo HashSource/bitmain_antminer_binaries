@@ -1,8 +1,8 @@
 
-undefined4 get_PIC16F1704_freq(undefined param_1,undefined param_2,ushort *param_3)
+undefined4 get_PIC16F1704_freq(undefined1 param_1,undefined1 param_2,ushort *param_3)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   undefined4 uVar2;
   uint uVar3;
   char acStack_430 [1024];
@@ -12,7 +12,7 @@ undefined4 get_PIC16F1704_freq(undefined param_1,undefined param_2,ushort *param
   undefined2 local_24;
   undefined2 local_20;
   ushort local_1c;
-  undefined local_1a;
+  undefined1 local_1a;
   byte local_19;
   
   local_1a = 4;
@@ -24,13 +24,13 @@ undefined4 get_PIC16F1704_freq(undefined param_1,undefined param_2,ushort *param
   local_2c = 0x2900;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (local_19 = 0; local_19 < 6; local_19 = local_19 + 1) {
-    write_pic(param_2,param_1,*(undefined *)((int)&local_30 + (uint)local_19));
+    write_pic(param_2,param_1,*(undefined1 *)((int)&local_30 + (uint)local_19));
   }
   usleep(300000);
   for (local_19 = 0; local_19 < 6; local_19 = local_19 + 1) {
     uVar3 = (uint)local_19;
     uVar1 = read_pic(param_2,param_1);
-    *(undefined *)((int)&local_28 + uVar3) = uVar1;
+    *(undefined1 *)((int)&local_28 + uVar3) = uVar1;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
   usleep(200000);

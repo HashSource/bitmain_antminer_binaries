@@ -1,10 +1,10 @@
 
-void get_data_from_pic_iic(uint param_1,uint param_2,undefined *param_3,int param_4)
+void get_data_from_pic_iic(uint param_1,uint param_2,undefined1 *param_3,int param_4)
 
 {
-  undefined uVar1;
-  undefined *puVar2;
-  undefined *puVar3;
+  undefined1 uVar1;
+  undefined1 *puVar2;
+  undefined1 *puVar3;
   uint uVar4;
   
   uVar4 = (param_1 & 0xf) << 0x10;

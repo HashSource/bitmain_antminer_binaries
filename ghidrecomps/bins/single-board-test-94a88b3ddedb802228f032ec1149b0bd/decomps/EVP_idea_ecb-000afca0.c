@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_idea_ecb(void)
 
 {
-  return DAT_000afca4;
+  return (EVP_CIPHER *)idea_ecb;
 }
 

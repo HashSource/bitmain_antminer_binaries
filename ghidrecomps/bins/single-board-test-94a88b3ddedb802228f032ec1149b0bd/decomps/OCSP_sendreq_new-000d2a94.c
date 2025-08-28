@@ -2,7 +2,7 @@
 OCSP_REQ_CTX * OCSP_sendreq_new(BIO *io,char *path,OCSP_REQUEST *req,int maxline)
 
 {
-  undefined4 *ptr;
+  OCSP_REQ_CTX *ptr;
   BIO_METHOD *type;
   BIO *pBVar1;
   void *ptr_00;
@@ -10,52 +10,56 @@ OCSP_REQ_CTX * OCSP_sendreq_new(BIO *io,char *path,OCSP_REQUEST *req,int maxline
   char *pcVar3;
   
   iVar2 = maxline;
-  ptr = (undefined4 *)CRYPTO_malloc(0x1c,DAT_000d2b78,0x78);
-  if (ptr == (undefined4 *)0x0) {
+  ptr = (OCSP_REQ_CTX *)CRYPTO_malloc(0x1c,"ocsp_ht.c",0x78);
+  if (ptr == (OCSP_REQ_CTX *)0x0) {
     return (OCSP_REQ_CTX *)0x0;
   }
-  *ptr = 0x1000;
+  *(undefined4 *)ptr = 0x1000;
   if (maxline < 1) {
     maxline = 0x1000;
   }
-  ptr[6] = 0x19000;
+  *(undefined4 *)(ptr + 0x18) = 0x19000;
   type = BIO_s_mem();
   pBVar1 = BIO_new(type);
-  ptr[2] = maxline;
-  ptr[4] = pBVar1;
-  ptr[3] = io;
-  ptr[5] = 0;
-  ptr_00 = CRYPTO_malloc(maxline,DAT_000d2b78,0x84);
-  ptr[1] = ptr_00;
+  *(int *)(ptr + 8) = maxline;
+  *(BIO **)(ptr + 0x10) = pBVar1;
+  *(BIO **)(ptr + 0xc) = io;
+  *(undefined4 *)(ptr + 0x14) = 0;
+  ptr_00 = CRYPTO_malloc(maxline,"ocsp_ht.c",0x84);
+  *(void **)(ptr + 4) = ptr_00;
   if (ptr_00 == (void *)0x0) {
-    if ((BIO *)ptr[4] == (BIO *)0x0) goto LAB_000d2b6e;
-    BIO_free((BIO *)ptr[4]);
-    ptr_00 = (void *)ptr[1];
+    if (*(BIO **)(ptr + 0x10) == (BIO *)0x0) goto LAB_000d2b6e;
+    BIO_free(*(BIO **)(ptr + 0x10));
+    ptr_00 = *(void **)(ptr + 4);
     if (ptr_00 == (void *)0x0) goto LAB_000d2b6e;
   }
-  else if ((BIO *)ptr[4] != (BIO *)0x0) {
-    pcVar3 = DAT_000d2b7c;
+  else if (*(BIO **)(ptr + 0x10) != (BIO *)0x0) {
+    pcVar3 = "/";
     if (path != (char *)0x0) {
       pcVar3 = path;
     }
-    iVar2 = BIO_printf((BIO *)ptr[4],DAT_000d2b80,DAT_000d2b84,pcVar3,iVar2);
+    iVar2 = BIO_printf(*(BIO **)(ptr + 0x10),"%s %s HTTP/1.0\r\n","POST",pcVar3,iVar2);
     if (0 < iVar2) {
-      *ptr = 0x1009;
+      *(undefined4 *)ptr = 0x1009;
       if (req == (OCSP_REQUEST *)0x0) {
-        return (OCSP_REQ_CTX *)ptr;
+        return ptr;
       }
-      iVar2 = ASN1_item_i2d((ASN1_VALUE *)req,(uchar **)0x0,DAT_000d2b88);
-      iVar2 = BIO_printf((BIO *)ptr[4],DAT_000d2b8c,iVar2);
-      if ((0 < iVar2) && (iVar2 = ASN1_item_i2d_bio(DAT_000d2b88,(BIO *)ptr[4],req), 0 < iVar2)) {
-        *ptr = 0x1005;
-        return (OCSP_REQ_CTX *)ptr;
+      iVar2 = ASN1_item_i2d((ASN1_VALUE *)req,(uchar **)0x0,(ASN1_ITEM *)OCSP_REQUEST_it);
+      iVar2 = BIO_printf(*(BIO **)(ptr + 0x10),
+                         "Content-Type: application/ocsp-request\r\nContent-Length: %d\r\n\r\n",
+                         iVar2);
+      if ((0 < iVar2) &&
+         (iVar2 = ASN1_item_i2d_bio((ASN1_ITEM *)OCSP_REQUEST_it,*(BIO **)(ptr + 0x10),req),
+         0 < iVar2)) {
+        *(undefined4 *)ptr = 0x1005;
+        return ptr;
       }
     }
-    if ((BIO *)ptr[4] != (BIO *)0x0) {
-      BIO_free((BIO *)ptr[4]);
+    if (*(BIO **)(ptr + 0x10) != (BIO *)0x0) {
+      BIO_free(*(BIO **)(ptr + 0x10));
     }
-    if ((void *)ptr[1] != (void *)0x0) {
-      CRYPTO_free((void *)ptr[1]);
+    if (*(void **)(ptr + 4) != (void *)0x0) {
+      CRYPTO_free(*(void **)(ptr + 4));
     }
     CRYPTO_free(ptr);
     return (OCSP_REQ_CTX *)0x0;

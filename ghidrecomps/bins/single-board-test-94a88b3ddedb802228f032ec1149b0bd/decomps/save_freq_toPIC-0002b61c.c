@@ -6,14 +6,14 @@ void save_freq_toPIC(uint param_1,int param_2)
   uint uVar2;
   undefined4 local_3c;
   int local_38;
-  undefined auStack_34 [8];
+  undefined1 auStack_34 [8];
   FILE *local_2c;
   FILE *local_28;
   FILE *local_24;
   FILE *local_20;
   FILE *local_1c;
   undefined4 local_18;
-  undefined local_12;
+  undefined1 local_12;
   byte local_11;
   uint local_10;
   int local_c;
@@ -63,7 +63,7 @@ void save_freq_toPIC(uint param_1,int param_2)
         if (-1 < (int)local_10) {
           uVar1 = local_10;
         }
-        *(undefined *)(param_1 * 0x80 + ((int)uVar1 >> 2) + 0x1a3fc17) = 0;
+        *(undefined1 *)(param_1 * 0x80 + ((int)uVar1 >> 2) + 0x1a3fc17) = 0;
       }
       uVar1 = local_10 + 3;
       if (-1 < (int)local_10) {

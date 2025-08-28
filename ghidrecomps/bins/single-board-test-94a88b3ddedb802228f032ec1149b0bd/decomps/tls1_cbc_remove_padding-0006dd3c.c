@@ -35,7 +35,7 @@ undefined4 tls1_cbc_remove_padding(int param_1,uint *param_2,int param_3,int par
   }
   uVar8 = (uint)*(byte *)(uVar5 + uVar8 + -1);
   if ((*(int *)(param_1 + 0x100) << 0x16 < 0) && (*(int *)(param_1 + 0x88) == 0)) {
-    iVar4 = CRYPTO_memcmp((void *)(*(int *)(param_1 + 0x58) + 8),DAT_0006de60,8);
+    iVar4 = CRYPTO_memcmp((void *)(*(int *)(param_1 + 0x58) + 8),&DAT_00140da8,8);
     if ((iVar4 == 0) && (-1 < (int)(uVar8 << 0x1f))) {
       uVar5 = **(uint **)(param_1 + 0x58) | 8;
       **(uint **)(param_1 + 0x58) = uVar5;
@@ -47,7 +47,7 @@ undefined4 tls1_cbc_remove_padding(int param_1,uint *param_2,int param_3,int par
       uVar8 = uVar8 - 1;
     }
   }
-  uVar1 = EVP_CIPHER_flags(**(EVP_CIPHER ***)(param_1 + 0x80));
+  uVar1 = EVP_CIPHER_flags((EVP_CIPHER *)**(undefined4 **)(param_1 + 0x80));
   if ((int)(uVar1 << 10) < 0) {
     param_2[1] = param_2[1] + ~uVar8;
     return 1;

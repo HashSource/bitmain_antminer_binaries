@@ -1,5 +1,5 @@
 
-void dtls1_get_ccs_header(undefined *param_1,undefined *param_2)
+void dtls1_get_ccs_header(undefined1 *param_1,undefined1 *param_2)
 
 {
   *param_2 = 0;

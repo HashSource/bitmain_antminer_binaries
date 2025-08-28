@@ -3,11 +3,11 @@ void display_arguments(void)
 
 {
   size_t __n;
-  undefined auStack_2b4 [16];
+  undefined1 auStack_2b4 [16];
   char acStack_2a4 [16];
   char acStack_294 [16];
   char acStack_284 [16];
-  undefined auStack_274 [4];
+  undefined1 auStack_274 [4];
   char acStack_270 [400];
   undefined4 local_e0;
   undefined4 local_d8;

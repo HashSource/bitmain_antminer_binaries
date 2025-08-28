@@ -175,7 +175,7 @@ api_data * print_data(io_data *io_data,api_data *root,_Bool isjson,_Bool precom)
       break;
     case API_PERCENT:
                     /* WARNING: Load size is inaccurate */
-      snprintf(buf,0x40,"%.4f",buf,*root_local->data * DAT_0000c440);
+      snprintf(buf,0x40,"%.4f",buf,*root_local->data * 100.0);
       break;
     default:
       if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
@@ -214,7 +214,7 @@ api_data * print_data(io_data *io_data,api_data *root,_Bool isjson,_Bool precom)
     add_item_buf(item_00,"}");
   }
   else {
-    add_item_buf(item_00,(char *)&DAT_0006d29c);
+    add_item_buf(item_00,"|");
   }
                     /* WARNING: Load size is inaccurate */
   io_add(io_data,*item_00->data);

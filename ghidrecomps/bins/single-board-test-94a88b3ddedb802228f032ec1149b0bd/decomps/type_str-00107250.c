@@ -9,7 +9,7 @@ undefined4 type_str(uint param_1,uint *param_2)
   if ((int)(uVar2 << 0x1e) < 0) {
     if ((0x7f < param_1) ||
        ((((0x19 < param_1 - 0x61 && (0x19 < param_1 - 0x41)) && (9 < param_1 - 0x30)) &&
-        ((param_1 != 0x20 && (pcVar1 = strchr(DAT_001072c0,param_1), pcVar1 == (char *)0x0)))))) {
+        ((param_1 != 0x20 && (pcVar1 = strchr("\'()+,-./:=?",param_1), pcVar1 == (char *)0x0)))))) {
       uVar2 = uVar2 & 0xfffffffd;
       goto LAB_0010728a;
     }

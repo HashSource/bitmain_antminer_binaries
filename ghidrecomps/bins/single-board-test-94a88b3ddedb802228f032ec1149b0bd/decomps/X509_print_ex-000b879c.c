@@ -2,196 +2,195 @@
 int X509_print_ex(BIO *bp,X509 *x,ulong nmflag,ulong cflag)
 
 {
-  byte *pbVar1;
-  long lVar2;
+  long lVar1;
   ASN1_INTEGER *a;
-  int iVar3;
+  int iVar2;
   EVP_PKEY *pkey;
-  X509_NAME *pXVar4;
-  char *pcVar5;
-  ASN1_UTCTIME *pAVar6;
-  uint uVar7;
-  undefined4 uVar8;
-  uint uVar9;
-  int iVar10;
-  int iVar11;
-  X509_CINF *pXVar12;
-  undefined4 uVar13;
-  uchar *puVar14;
-  uint uVar15;
+  X509_NAME *pXVar3;
+  char *pcVar4;
+  ASN1_UTCTIME *pAVar5;
+  undefined1 *puVar6;
+  char *pcVar7;
+  int iVar8;
+  int iVar9;
+  X509_CINF *pXVar10;
+  undefined4 uVar11;
+  uchar *puVar12;
+  uint uVar13;
   
   if ((nmflag & 0xf0000) == 0x40000) {
-    iVar11 = 0xc;
-    uVar13 = 10;
+    iVar9 = 0xc;
+    uVar11 = 10;
   }
   else {
-    iVar11 = 0;
-    uVar13 = 0x20;
+    iVar9 = 0;
+    uVar11 = 0x20;
   }
   if (nmflag == 0) {
-    iVar11 = 0x10;
+    iVar9 = 0x10;
   }
-  pXVar12 = x->cert_info;
+  pXVar10 = x->cert_info;
   if (-1 < (int)(cflag << 0x1f)) {
-    iVar10 = BIO_write(bp,DAT_000b8adc,0xd);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"Certificate:\n",0xd);
+    if (iVar8 < 1) {
       return 0;
     }
-    iVar10 = BIO_write(bp,DAT_000b8ae0,10);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"    Data:\n",10);
+    if (iVar8 < 1) {
       return 0;
     }
   }
   if (-1 < (int)(cflag << 0x1e)) {
-    lVar2 = ASN1_INTEGER_get(x->cert_info->version);
-    iVar10 = BIO_printf(bp,DAT_000b8ae4,DAT_000b8ae8,lVar2 + 1,lVar2);
-    if (iVar10 < 1) {
+    lVar1 = ASN1_INTEGER_get(x->cert_info->version);
+    iVar8 = BIO_printf(bp,"%8sVersion: %lu (0x%lx)\n",&DAT_0013a6fc,lVar1 + 1,lVar1);
+    if (iVar8 < 1) {
       return 0;
     }
   }
   if ((cflag & 4) == 0) {
-    uVar15 = cflag & 4;
-    iVar10 = BIO_write(bp,DAT_000b8aec,0x16);
-    if (iVar10 < 1) {
+    uVar13 = cflag & 4;
+    iVar8 = BIO_write(bp,"        Serial Number:",0x16);
+    if (iVar8 < 1) {
       return 0;
     }
     a = X509_get_serialNumber(x);
     if (a->length < 5) {
-      iVar10 = ASN1_INTEGER_get(a);
-      uVar8 = DAT_000b8c80;
+      iVar8 = ASN1_INTEGER_get(a);
       if (a->type == 0x102) {
-        iVar10 = -iVar10;
-        uVar8 = DAT_000b8c7c;
+        pcVar4 = "-";
+        iVar8 = -iVar8;
       }
-      iVar10 = BIO_printf(bp,DAT_000b8c78,uVar8,iVar10,uVar8,iVar10);
-      if (iVar10 < 1) {
+      else {
+        pcVar4 = "";
+      }
+      iVar8 = BIO_printf(bp," %s%lu (%s0x%lx)\n",pcVar4,iVar8,pcVar4,iVar8);
+      if (iVar8 < 1) {
         return 0;
       }
     }
     else {
-      pcVar5 = DAT_000b8af4;
-      uVar7 = DAT_000b8ae8;
-      uVar9 = DAT_000b8af0;
+      puVar6 = &DAT_0013a6fc;
+      pcVar7 = " (Negative)";
+      pcVar4 = "\n%12s%s";
       if (a->type != 0x102) {
-        uVar9 = DAT_000b8ae8;
+        pcVar7 = "";
       }
       while( true ) {
-        iVar10 = BIO_printf(bp,pcVar5,uVar7,uVar9);
-        if (iVar10 < 1) {
+        iVar8 = BIO_printf(bp,pcVar4,puVar6,pcVar7);
+        if (iVar8 < 1) {
           return 0;
         }
-        if (a->length <= (int)uVar15) break;
-        pbVar1 = a->data + uVar15;
-        uVar15 = uVar15 + 1;
-        pcVar5 = DAT_000b8af8;
-        uVar7 = (uint)*pbVar1;
-        if (a->length == uVar15) {
-          uVar9 = 10;
+        pcVar4 = "%02x%c";
+        if (a->length <= (int)uVar13) break;
+        puVar6 = (undefined1 *)(uint)a->data[uVar13];
+        uVar13 = uVar13 + 1;
+        if (a->length == uVar13) {
+          pcVar7 = (char *)0xa;
         }
         else {
-          uVar9 = 0x3a;
+          pcVar7 = (char *)0x3a;
         }
       }
     }
   }
   if (((cflag & 8) == 0) &&
-     (iVar10 = X509_signature_print(bp,pXVar12->signature,(ASN1_STRING *)0x0), iVar10 < 1)) {
+     (iVar8 = X509_signature_print(bp,pXVar10->signature,(ASN1_STRING *)0x0), iVar8 < 1)) {
     return 0;
   }
   if (-1 < (int)(cflag << 0x1b)) {
-    iVar10 = BIO_printf(bp,DAT_000b8afc,uVar13);
-    if (iVar10 < 1) {
+    iVar8 = BIO_printf(bp,"        Issuer:%c",uVar11);
+    if (iVar8 < 1) {
       return 0;
     }
-    pXVar4 = X509_get_issuer_name(x);
-    iVar10 = X509_NAME_print_ex(bp,pXVar4,iVar11,nmflag);
-    if (iVar10 < 0) {
+    pXVar3 = X509_get_issuer_name(x);
+    iVar8 = X509_NAME_print_ex(bp,pXVar3,iVar9,nmflag);
+    if (iVar8 < 0) {
       return 0;
     }
-    iVar10 = BIO_write(bp,DAT_000b8b00,1);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"\n",1);
+    if (iVar8 < 1) {
       return 0;
     }
   }
   if (-1 < (int)(cflag << 0x1a)) {
-    iVar10 = BIO_write(bp,DAT_000b8b18,0x11);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"        Validity\n",0x11);
+    if (iVar8 < 1) {
       return 0;
     }
-    iVar10 = BIO_write(bp,DAT_000b8b1c,0x18);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"            Not Before: ",0x18);
+    if (iVar8 < 1) {
       return 0;
     }
-    pAVar6 = x->cert_info->validity->notBefore;
-    if (pAVar6->type == 0x17) {
-      iVar10 = ASN1_UTCTIME_print(bp,pAVar6);
+    pAVar5 = x->cert_info->validity->notBefore;
+    if (pAVar5->type == 0x17) {
+      iVar8 = ASN1_UTCTIME_print(bp,pAVar5);
     }
     else {
-      if (pAVar6->type != 0x18) goto LAB_000b8a24;
-      iVar10 = ASN1_GENERALIZEDTIME_print(bp,pAVar6);
+      if (pAVar5->type != 0x18) goto LAB_000b8a24;
+      iVar8 = ASN1_GENERALIZEDTIME_print(bp,pAVar5);
     }
-    if (iVar10 == 0) {
+    if (iVar8 == 0) {
       return 0;
     }
-    iVar10 = BIO_write(bp,DAT_000b8b28,0x19);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"\n            Not After : ",0x19);
+    if (iVar8 < 1) {
       return 0;
     }
-    pAVar6 = x->cert_info->validity->notAfter;
-    if (pAVar6->type == 0x17) {
-      iVar10 = ASN1_UTCTIME_print(bp,pAVar6);
+    pAVar5 = x->cert_info->validity->notAfter;
+    if (pAVar5->type == 0x17) {
+      iVar8 = ASN1_UTCTIME_print(bp,pAVar5);
     }
     else {
-      if (pAVar6->type != 0x18) {
+      if (pAVar5->type != 0x18) {
 LAB_000b8a24:
-        BIO_write(bp,DAT_000b8b20,0xe);
+        BIO_write(bp,"Bad time value",0xe);
         return 0;
       }
-      iVar10 = ASN1_GENERALIZEDTIME_print(bp,pAVar6);
+      iVar8 = ASN1_GENERALIZEDTIME_print(bp,pAVar5);
     }
-    if (iVar10 == 0) {
+    if (iVar8 == 0) {
       return 0;
     }
-    iVar10 = BIO_write(bp,DAT_000b8b00,1);
-    if (iVar10 < 1) {
+    iVar8 = BIO_write(bp,"\n",1);
+    if (iVar8 < 1) {
       return 0;
     }
   }
   if (-1 < (int)(cflag << 0x19)) {
-    iVar10 = BIO_printf(bp,DAT_000b8b24,uVar13);
-    if (iVar10 < 1) {
+    iVar8 = BIO_printf(bp,"        Subject:%c",uVar11);
+    if (iVar8 < 1) {
       return 0;
     }
-    pXVar4 = X509_get_subject_name(x);
-    iVar11 = X509_NAME_print_ex(bp,pXVar4,iVar11,nmflag);
-    if (iVar11 < 0) {
+    pXVar3 = X509_get_subject_name(x);
+    iVar9 = X509_NAME_print_ex(bp,pXVar3,iVar9,nmflag);
+    if (iVar9 < 0) {
       return 0;
     }
-    iVar11 = BIO_write(bp,DAT_000b8b00,1);
-    if (iVar11 < 1) {
+    iVar9 = BIO_write(bp,"\n",1);
+    if (iVar9 < 1) {
       return 0;
     }
   }
   if ((cflag & 0x80) == 0) {
-    iVar11 = BIO_write(bp,DAT_000b8b10,0x21);
-    if (iVar11 < 1) {
+    iVar9 = BIO_write(bp,"        Subject Public Key Info:\n",0x21);
+    if (iVar9 < 1) {
       return 0;
     }
-    iVar11 = BIO_printf(bp,DAT_000b8b14,DAT_000b8ae8);
-    if (iVar11 < 1) {
+    iVar9 = BIO_printf(bp,"%12sPublic Key Algorithm: ",&DAT_0013a6fc);
+    if (iVar9 < 1) {
       return 0;
     }
-    iVar11 = i2a_ASN1_OBJECT(bp,pXVar12->key->algor->algorithm);
-    if (iVar11 < 1) {
+    iVar9 = i2a_ASN1_OBJECT(bp,pXVar10->key->algor->algorithm);
+    if (iVar9 < 1) {
       return 0;
     }
-    iVar11 = BIO_puts(bp,DAT_000b8b00);
-    if (iVar11 < 1) {
+    iVar9 = BIO_puts(bp,"\n");
+    if (iVar9 < 1) {
       return 0;
     }
     pkey = X509_get_pubkey(x);
     if (pkey == (EVP_PKEY *)0x0) {
-      BIO_printf(bp,DAT_000b8c98,DAT_000b8c80);
+      BIO_printf(bp,"%12sUnable to load Public Key\n",&DAT_0013a6fc);
       ERR_print_errors(bp);
     }
     else {
@@ -200,95 +199,95 @@ LAB_000b8a24:
     }
   }
   if ((cflag & 0x1000) == 0) {
-    if (pXVar12->issuerUID != (ASN1_BIT_STRING *)0x0) {
-      iVar11 = BIO_printf(bp,DAT_000b8b04,DAT_000b8ae8);
-      if (iVar11 < 1) {
+    if (pXVar10->issuerUID != (ASN1_BIT_STRING *)0x0) {
+      iVar9 = BIO_printf(bp,"%8sIssuer Unique ID: ",&DAT_0013a6fc);
+      if (iVar9 < 1) {
         return 0;
       }
-      iVar11 = pXVar12->issuerUID->length;
-      puVar14 = pXVar12->issuerUID->data;
-      if (0 < iVar11) {
-        iVar10 = 0;
+      iVar9 = pXVar10->issuerUID->length;
+      puVar12 = pXVar10->issuerUID->data;
+      if (0 < iVar9) {
+        iVar8 = 0;
         while( true ) {
-          if (iVar10 == (iVar10 / 0x12) * 0x12) {
-            iVar3 = BIO_write(bp,DAT_000b8b00,1);
-            if (iVar3 < 1) {
+          if (iVar8 == (iVar8 / 0x12) * 0x12) {
+            iVar2 = BIO_write(bp,"\n",1);
+            if (iVar2 < 1) {
               return 0;
             }
-            iVar3 = BIO_indent(bp,0xc,0xc);
-            if (iVar3 < 1) {
+            iVar2 = BIO_indent(bp,0xc,0xc);
+            if (iVar2 < 1) {
               return 0;
             }
           }
-          uVar15 = (uint)puVar14[iVar10];
-          iVar10 = iVar10 + 1;
-          if (iVar11 == iVar10) break;
-          iVar3 = BIO_printf(bp,DAT_000b8b08,uVar15,DAT_000b8b0c);
-          if (iVar3 < 1) {
+          uVar13 = (uint)puVar12[iVar8];
+          iVar8 = iVar8 + 1;
+          if (iVar9 == iVar8) break;
+          iVar2 = BIO_printf(bp,"%02x%s",uVar13,":");
+          if (iVar2 < 1) {
             return 0;
           }
         }
-        iVar11 = BIO_printf(bp,DAT_000b8c88,uVar15,DAT_000b8c80);
-        if (iVar11 < 1) {
+        iVar9 = BIO_printf(bp,"%02x%s",uVar13,&DAT_0013a6fc);
+        if (iVar9 < 1) {
           return 0;
         }
       }
-      iVar11 = BIO_write(bp,DAT_000b8c8c,1);
-      if (iVar11 != 1) {
+      iVar9 = BIO_write(bp,"\n",1);
+      if (iVar9 != 1) {
         return 0;
       }
     }
-    if (pXVar12->subjectUID != (ASN1_BIT_STRING *)0x0) {
-      iVar11 = BIO_printf(bp,DAT_000b8c90,DAT_000b8c80);
-      if (iVar11 < 1) {
+    if (pXVar10->subjectUID != (ASN1_BIT_STRING *)0x0) {
+      iVar9 = BIO_printf(bp,"%8sSubject Unique ID: ",&DAT_0013a6fc);
+      if (iVar9 < 1) {
         return 0;
       }
-      iVar11 = pXVar12->subjectUID->length;
-      puVar14 = pXVar12->subjectUID->data;
-      if (0 < iVar11) {
-        iVar10 = 0;
+      iVar9 = pXVar10->subjectUID->length;
+      puVar12 = pXVar10->subjectUID->data;
+      if (0 < iVar9) {
+        iVar8 = 0;
         while( true ) {
-          if (iVar10 == (iVar10 / 0x12) * 0x12) {
-            iVar3 = BIO_write(bp,DAT_000b8c8c,1);
-            if (iVar3 < 1) {
+          if (iVar8 == (iVar8 / 0x12) * 0x12) {
+            iVar2 = BIO_write(bp,"\n",1);
+            if (iVar2 < 1) {
               return 0;
             }
-            iVar3 = BIO_indent(bp,0xc,0xc);
-            if (iVar3 < 1) {
+            iVar2 = BIO_indent(bp,0xc,0xc);
+            if (iVar2 < 1) {
               return 0;
             }
           }
-          uVar15 = (uint)puVar14[iVar10];
-          iVar10 = iVar10 + 1;
-          if (iVar11 == iVar10) break;
-          iVar3 = BIO_printf(bp,DAT_000b8c88,uVar15,DAT_000b8c94);
-          if (iVar3 < 1) {
+          uVar13 = (uint)puVar12[iVar8];
+          iVar8 = iVar8 + 1;
+          if (iVar9 == iVar8) break;
+          iVar2 = BIO_printf(bp,"%02x%s",uVar13,":");
+          if (iVar2 < 1) {
             return 0;
           }
         }
-        iVar11 = BIO_printf(bp,DAT_000b8c88,uVar15,DAT_000b8c80);
-        if (iVar11 < 1) {
+        iVar9 = BIO_printf(bp,"%02x%s",uVar13,&DAT_0013a6fc);
+        if (iVar9 < 1) {
           return 0;
         }
       }
-      iVar11 = BIO_write(bp,DAT_000b8c8c,1);
-      if (iVar11 != 1) {
+      iVar9 = BIO_write(bp,"\n",1);
+      if (iVar9 != 1) {
         return 0;
       }
     }
   }
   if (-1 < (int)(cflag << 0x17)) {
-    X509V3_extensions_print(bp,DAT_000b8c84,pXVar12->extensions,cflag,8);
+    X509V3_extensions_print(bp,"X509v3 extensions",pXVar10->extensions,cflag,8);
   }
   if ((-1 < (int)(cflag << 0x16)) &&
-     (iVar11 = X509_signature_print(bp,x->sig_alg,x->signature), iVar11 < 1)) {
+     (iVar9 = X509_signature_print(bp,x->sig_alg,x->signature), iVar9 < 1)) {
     return 0;
   }
   if ((cflag & 0x400) != 0) {
     return 1;
   }
-  iVar11 = X509_CERT_AUX_print(bp,*(X509_CERT_AUX **)(x->sha1_hash + 0xc),0);
-  if (iVar11 != 0) {
+  iVar9 = X509_CERT_AUX_print(bp,*(X509_CERT_AUX **)(x->sha1_hash + 0xc),0);
+  if (iVar9 != 0) {
     return 1;
   }
   return 0;

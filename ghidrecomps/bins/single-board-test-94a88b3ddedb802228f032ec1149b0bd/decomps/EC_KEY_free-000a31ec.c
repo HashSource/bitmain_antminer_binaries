@@ -5,7 +5,7 @@ void EC_KEY_free(EC_KEY *key)
   int iVar1;
   
   if (key != (EC_KEY *)0x0) {
-    iVar1 = CRYPTO_add_lock((int *)(key + 0x18),-1,0x21,DAT_000a3244,0x71);
+    iVar1 = CRYPTO_add_lock((int *)(key + 0x18),-1,0x21,"ec_key.c",0x71);
     if (iVar1 < 1) {
       if (*(EC_GROUP **)(key + 4) != (EC_GROUP *)0x0) {
         EC_GROUP_free(*(EC_GROUP **)(key + 4));

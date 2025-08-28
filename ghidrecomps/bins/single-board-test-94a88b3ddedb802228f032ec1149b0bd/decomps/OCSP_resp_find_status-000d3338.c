@@ -5,35 +5,34 @@ int OCSP_resp_find_status
               ASN1_GENERALIZEDTIME **nextupd)
 
 {
-  OCSP_CERTID **ppOVar1;
+  undefined4 *puVar1;
   int iVar2;
   void *pvVar3;
   ASN1_ENUMERATED *a;
   long lVar4;
-  ASN1_GENERALIZEDTIME **ppAVar5;
-  int iVar6;
-  _STACK *p_Var7;
+  int iVar5;
+  _STACK *p_Var6;
   
   if (bs != (OCSP_BASICRESP *)0x0) {
-    p_Var7 = &bs->tbsResponseData->responses->stack;
-    for (iVar6 = 0; iVar2 = sk_num(p_Var7), iVar6 < iVar2; iVar6 = iVar6 + 1) {
-      ppOVar1 = (OCSP_CERTID **)sk_value(p_Var7,iVar6);
-      iVar2 = OCSP_id_cmp(id,*ppOVar1);
+    p_Var6 = &bs->tbsResponseData->responses->stack;
+    for (iVar5 = 0; iVar2 = sk_num(p_Var6), iVar5 < iVar2; iVar5 = iVar5 + 1) {
+      puVar1 = (undefined4 *)sk_value(p_Var6,iVar5);
+      iVar2 = OCSP_id_cmp(id,(OCSP_CERTID *)*puVar1);
       if (iVar2 == 0) {
-        if (iVar6 < 0) {
+        if (iVar5 < 0) {
           return 0;
         }
         iVar2 = -1;
-        pvVar3 = sk_value(&bs->tbsResponseData->responses->stack,iVar6);
+        pvVar3 = sk_value(&bs->tbsResponseData->responses->stack,iVar5);
         if (pvVar3 != (void *)0x0) {
           iVar2 = **(int **)((int)pvVar3 + 4);
           if (iVar2 == 1) {
-            ppAVar5 = (ASN1_GENERALIZEDTIME **)(*(int **)((int)pvVar3 + 4))[1];
+            puVar1 = (undefined4 *)(*(int **)((int)pvVar3 + 4))[1];
             if (revtime != (ASN1_GENERALIZEDTIME **)0x0) {
-              *revtime = *ppAVar5;
+              *revtime = (ASN1_GENERALIZEDTIME *)*puVar1;
             }
             if (reason != (int *)0x0) {
-              a = ppAVar5[1];
+              a = (ASN1_ENUMERATED *)puVar1[1];
               if (a == (ASN1_ENUMERATED *)0x0) {
                 *reason = -1;
               }

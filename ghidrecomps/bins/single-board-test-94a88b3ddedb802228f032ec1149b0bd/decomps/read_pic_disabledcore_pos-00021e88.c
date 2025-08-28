@@ -1,5 +1,5 @@
 
-undefined4 read_pic_disabledcore_pos(undefined param_1,undefined4 param_2)
+undefined4 read_pic_disabledcore_pos(undefined1 param_1,undefined4 param_2)
 
 {
   set_pic_iic_flash_addr_pointer(param_1,0xf,0xe8);

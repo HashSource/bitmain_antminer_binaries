@@ -78,7 +78,7 @@ BIGNUM * ec_GF2m_simple_group_set_curve
       }
     }
     else {
-      ERR_put_error(0x10,0xc3,0x83,DAT_000f6614,0xdb);
+      ERR_put_error(0x10,0xc3,0x83,"ec2_smpl.c",0xdb);
       pBVar1 = (BIGNUM *)0x0;
     }
   }

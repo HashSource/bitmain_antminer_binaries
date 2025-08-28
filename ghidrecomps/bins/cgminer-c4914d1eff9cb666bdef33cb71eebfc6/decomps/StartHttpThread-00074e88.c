@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void StartHttpThread(void)
 
@@ -13,7 +13,8 @@ void StartHttpThread(void)
   ret = pthread_attr_init((pthread_attr_t *)&tattr_ctrl);
   stacksize_ctrl = 0x200000;
   ret = pthread_attr_setstacksize((pthread_attr_t *)&tattr_ctrl,0x200000);
-  ret = pthread_create(&tid_ctrl,(pthread_attr_t *)&tattr_ctrl,httpListenThread + 1,(void *)0x0);
+  ret = pthread_create(&tid_ctrl,(pthread_attr_t *)&tattr_ctrl,(__start_routine *)0x74ae1,
+                       (void *)0x0);
   if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
     snprintf(tmp42,0x800,"httpListenThread start ret=%d",ret);
     _applog(5,tmp42,false);

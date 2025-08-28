@@ -20,7 +20,7 @@ int ssl23_write(SSL *param_1,void *param_2,int param_3)
         iVar3 = SSL_write(param_1,param_2,param_3);
         return iVar3;
       }
-      ERR_put_error(0x14,0x79,0xe5,DAT_0006fd78,0xb1);
+      ERR_put_error(0x14,0x79,0xe5,"s23_lib.c",0xb1);
       iVar3 = -1;
     }
   }

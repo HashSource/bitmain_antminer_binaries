@@ -35,7 +35,7 @@ void aging_get_update_hashrate_info(char *infoStr)
     }
   }
   if (aging_info.aging_24_hour_finished != false) {
-    sprintf(infoStr + len,"update time: %s, ",DAT_0001f018);
+    sprintf(infoStr + len,"update time: %s, ",0x23dedc);
   }
   return;
 }

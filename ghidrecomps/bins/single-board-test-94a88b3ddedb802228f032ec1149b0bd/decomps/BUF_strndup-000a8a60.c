@@ -41,9 +41,9 @@ char * BUF_strndup(char *str,size_t siz)
       num = iVar4 + 1;
     }
 LAB_000a8a90:
-    pcVar3 = (char *)CRYPTO_malloc(num,DAT_000a8af4,0x58);
+    pcVar3 = (char *)CRYPTO_malloc(num,"buf_str.c",0x58);
     if (pcVar3 == (char *)0x0) {
-      ERR_put_error(7,0x68,0x41,DAT_000a8af4,0x5a);
+      ERR_put_error(7,0x68,0x41,"buf_str.c",0x5a);
     }
     else {
       uVar5 = iVar4 + 1;

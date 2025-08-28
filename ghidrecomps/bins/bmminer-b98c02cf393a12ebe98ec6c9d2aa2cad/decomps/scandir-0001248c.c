@@ -6,7 +6,7 @@ int scandir(char *__dir,dirent ***__namelist,__selector *__selector,__cmp *__cmp
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_scandir_0007cfc0)();
+  iVar1 = scandir(__dir,__namelist,__selector,__cmp);
   return iVar1;
 }
 

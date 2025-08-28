@@ -4,7 +4,7 @@ void * policy_cache_find_data(int param_1,undefined4 param_2)
 {
   int iVar1;
   void *pvVar2;
-  undefined auStack_18 [4];
+  undefined1 auStack_18 [4];
   undefined4 local_14;
   
   local_14 = param_2;

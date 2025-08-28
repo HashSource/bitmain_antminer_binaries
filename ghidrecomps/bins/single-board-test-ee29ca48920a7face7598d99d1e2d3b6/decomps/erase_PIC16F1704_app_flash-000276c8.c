@@ -1,5 +1,5 @@
 
-undefined4 erase_PIC16F1704_app_flash(undefined4 param_1,undefined param_2)
+undefined4 erase_PIC16F1704_app_flash(undefined4 param_1,undefined1 param_2)
 
 {
   char acStack_418 [1024];

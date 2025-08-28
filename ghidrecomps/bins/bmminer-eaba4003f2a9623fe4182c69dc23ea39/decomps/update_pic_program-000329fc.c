@@ -36,11 +36,11 @@ void update_pic_program(uchar chain)
   buf[8] = '\0';
   buf[9] = '\0';
   buf[10] = '\0';
-  buf[11] = '\0';
-  buf[12] = '\0';
-  buf[13] = '\0';
-  buf[14] = '\0';
-  buf[15] = '\0';
+  buf[0xb] = '\0';
+  buf[0xc] = '\0';
+  buf[0xd] = '\0';
+  buf[0xe] = '\0';
+  buf[0xf] = '\0';
   __stream = fopen("/etc/config/hash_s8_app.txt","r");
   if (__stream == (FILE *)0x0) {
     printf("\n%s: open hash_s8_app.txt failed\n","update_pic_program");
@@ -48,7 +48,6 @@ void update_pic_program(uchar chain)
   else {
     fseek(__stream,0,0);
     memset(program_data,0,0x2800);
-    chain_local = chain;
     for (i = 0; i < 0xc80; i = i + 1) {
       fgets((char *)data_read,0x3ff,__stream);
       uVar1 = strtoul((char *)data_read,(char **)0x0,0x10);
@@ -56,9 +55,9 @@ void update_pic_program(uchar chain)
       program_data[i * 2 + 1] = (uchar)uVar1;
     }
     fclose(__stream);
-    reset_iic_pic(chain_local);
-    erase_pic_flash_all(chain_local);
-    set_pic_iic_flash_addr_pointer(chain_local,'\x03','\0');
+    reset_iic_pic(chain);
+    erase_pic_flash_all(chain);
+    set_pic_iic_flash_addr_pointer(chain,'\x03','\0');
     for (i = 0; i < 400; i = i + 1) {
       iVar2 = i * 0x10;
       buf._0_4_ = *(undefined4 *)(program_data + iVar2);
@@ -70,8 +69,8 @@ void update_pic_program(uchar chain)
         printf("buf[%d] = 0x%02x\n",j,(uint)buf[j]);
       }
       putchar(10);
-      send_data_to_pic_flash(chain_local,buf);
-      write_data_into_pic_flash(chain_local);
+      send_data_to_pic_flash(chain,buf);
+      write_data_into_pic_flash(chain);
     }
   }
   return;

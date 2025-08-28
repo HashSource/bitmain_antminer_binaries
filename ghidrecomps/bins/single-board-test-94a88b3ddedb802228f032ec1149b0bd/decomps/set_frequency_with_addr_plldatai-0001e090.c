@@ -1,5 +1,5 @@
 
-void set_frequency_with_addr_plldatai(int param_1,char param_2,undefined param_3,byte param_4)
+void set_frequency_with_addr_plldatai(int param_1,char param_2,undefined1 param_3,byte param_4)
 
 {
   undefined4 uVar1;
@@ -8,7 +8,7 @@ void set_frequency_with_addr_plldatai(int param_1,char param_2,undefined param_3
   uint local_34;
   int local_30;
   undefined4 local_2c;
-  uint local_28;
+  undefined4 local_28;
   byte local_24;
   uint local_20;
   uint local_1c;
@@ -36,7 +36,7 @@ void set_frequency_with_addr_plldatai(int param_1,char param_2,undefined param_3
     else {
       local_2c._0_1_ = 0x58;
     }
-    local_2c._0_2_ = CONCAT11(9,(undefined)local_2c);
+    local_2c._0_2_ = CONCAT11(9,(undefined1)local_2c);
     local_2c._0_3_ = CONCAT12(param_3,(undefined2)local_2c);
     local_2c = CONCAT13((char)PLL_PARAMETER,(uint3)local_2c);
     local_28 = CONCAT13((char)local_14,

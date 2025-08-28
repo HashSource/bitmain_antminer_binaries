@@ -66,9 +66,7 @@ LAB_0003e8e6:
   if (*(int *)(iVar6 + 4) == 0) {
     return 0;
   }
-                    /* WARNING: Could not recover jumptable at 0x00012410. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  uVar1 = (*(code *)PTR_LAB_00194368)();
+  uVar1 = (*(code *)(undefined *)0x0)();
   return uVar1;
 }
 

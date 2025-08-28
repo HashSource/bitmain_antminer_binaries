@@ -6,7 +6,7 @@ int gettimeofday(timeval *__tv,__timezone_ptr_t __tz)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_gettimeofday_000473ac)();
+  iVar1 = gettimeofday(__tv,__tz);
   return iVar1;
 }
 

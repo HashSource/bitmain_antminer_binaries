@@ -6,7 +6,7 @@ int clock_nanosleep(clockid_t __clock_id,int __flags,timespec *__req,timespec *_
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_clock_nanosleep_000c00c8)();
+  iVar1 = clock_nanosleep(__clock_id,__flags,__req,__rem);
   return iVar1;
 }
 

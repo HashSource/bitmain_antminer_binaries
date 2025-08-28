@@ -15,7 +15,7 @@ ulong ERR_peek_last_error_line_data(char **file,int *line,char **data,int *flags
     uVar2 = pEVar1->err_buffer[iVar3];
     if (line != (int *)0x0 && file != (char **)0x0) {
       if (pEVar1->err_file[iVar3] == (char *)0x0) {
-        *file = DAT_000ae118;
+        *file = "NA";
         *line = 0;
       }
       else {
@@ -25,7 +25,7 @@ ulong ERR_peek_last_error_line_data(char **file,int *line,char **data,int *flags
     }
     if (data != (char **)0x0) {
       if (pEVar1->err_data[iVar3] == (char *)0x0) {
-        *data = DAT_000ae114;
+        *data = "";
         iVar3 = 0;
         if (flags != (int *)0x0) goto LAB_000ae0d4;
       }

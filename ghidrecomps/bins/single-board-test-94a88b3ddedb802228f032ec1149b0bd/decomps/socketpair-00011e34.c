@@ -6,7 +6,7 @@ int socketpair(int __domain,int __type,int __protocol,int *__fds)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_socketpair_00194184)();
+  iVar1 = socketpair(__domain,__type,__protocol,__fds);
   return iVar1;
 }
 

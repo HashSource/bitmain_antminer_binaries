@@ -39,7 +39,7 @@ LAB_0006d49a:
               if (uVar7 != 0) {
                 iVar1 = BUF_MEM_grow_clean((BUF_MEM *)param_1[0xf],uVar7 + 4);
                 if (iVar1 == 0) {
-                  ERR_put_error(0x14,0x8e,7,DAT_0006d5b0,0x1a8);
+                  ERR_put_error(0x14,0x8e,7,"s3_both.c",0x1a8);
                   goto LAB_0006d57a;
                 }
                 iVar1 = param_1[0x16];
@@ -56,7 +56,7 @@ LAB_0006d49a:
             }
             iVar1 = 0x1a4;
           }
-          ERR_put_error(0x14,0x8e,0x98,DAT_0006d5b0,iVar1);
+          ERR_put_error(0x14,0x8e,0x98,"s3_both.c",iVar1);
           uVar4 = 0x2f;
           goto LAB_0006d572;
         }
@@ -140,7 +140,7 @@ LAB_0006d3de:
     else {
       iVar1 = 0x162;
 LAB_0006d562:
-      ERR_put_error(0x14,0x8e,0xf4,DAT_0006d5b0,iVar1);
+      ERR_put_error(0x14,0x8e,0xf4,"s3_both.c",iVar1);
       uVar4 = 10;
 LAB_0006d572:
       ssl3_send_alert(param_1,2,uVar4);

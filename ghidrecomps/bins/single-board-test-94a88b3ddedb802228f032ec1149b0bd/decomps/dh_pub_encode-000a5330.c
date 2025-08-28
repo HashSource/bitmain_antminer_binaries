@@ -14,7 +14,7 @@ ASN1_STRING * dh_pub_encode(X509_PUBKEY *param_1,int param_2)
   a = ASN1_STRING_new();
   iVar1 = 0xa4;
   if (a != (ASN1_STRING *)0x0) {
-    if (*(int *)(param_2 + 0xc) == DAT_000a53d8) {
+    if (*(undefined1 **)(param_2 + 0xc) == &dhx_asn1_meth) {
       iVar1 = i2d_DHxparams();
     }
     else {
@@ -40,7 +40,7 @@ ASN1_STRING * dh_pub_encode(X509_PUBKEY *param_1,int param_2)
       iVar1 = 0xb7;
     }
   }
-  ERR_put_error(5,0x6d,0x41,DAT_000a53dc,iVar1);
+  ERR_put_error(5,0x6d,0x41,"dh_ameth.c",iVar1);
 LAB_000a53a2:
   if (local_1c != (uchar *)0x0) {
     CRYPTO_free(local_1c);

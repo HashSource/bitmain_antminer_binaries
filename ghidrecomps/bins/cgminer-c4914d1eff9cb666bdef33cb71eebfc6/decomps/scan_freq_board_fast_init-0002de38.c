@@ -8,8 +8,6 @@ int scan_freq_board_fast_init(working_mode_e working_mode)
   int iVar4;
   int iVar5;
   float fVar6;
-  char *in_stack_ffffffb8;
-  int in_stack_ffffffbc;
   working_mode_e working_mode_local;
   FILE *pFile_1;
   FILE *pFile_5;
@@ -26,8 +24,8 @@ int scan_freq_board_fast_init(working_mode_e working_mode)
     print_crt_time_to_file(log_file,3);
     pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      in_stack_ffffffb8 = "scan_freq_board_fast_init";
-      fprintf(pFVar2,"%s:%d:%s: board init ..\n","driver-btm-soc.c",0x2000);
+      fprintf(pFVar2,"%s:%d:%s: board init ..\n","driver-btm-soc.c",0x2000,
+              "scan_freq_board_fast_init");
     }
     fclose(pFVar2);
   }
@@ -68,9 +66,8 @@ int scan_freq_board_fast_init(working_mode_e working_mode)
           print_crt_time_to_file(log_file,3);
           pFVar2 = fopen(log_file,"a+");
           if (pFVar2 != (FILE *)0x0) {
-            in_stack_ffffffb8 = "scan_freq_board_fast_init";
-            in_stack_ffffffbc = chain;
-            fprintf(pFVar2,"%s:%d:%s: open core for chain[%d]\n","driver-btm-soc.c",0x2032);
+            fprintf(pFVar2,"%s:%d:%s: open core for chain[%d]\n","driver-btm-soc.c",0x2032,
+                    "scan_freq_board_fast_init",chain);
           }
           fclose(pFVar2);
         }
@@ -89,8 +86,7 @@ int scan_freq_board_fast_init(working_mode_e working_mode)
         for (chain = 0; chain < 0x10; chain = chain + 1) {
           if (dev->chain_exist[chain] == 1) {
             _Var1 = slowly_set_iic_power_to_custom_voltage_by_chain
-                              ((uint8_t)chain,(double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8))
-            ;
+                              ((uint8_t)chain,9.800000190734863);
             if (_Var1) {
               ret = 0;
             }
@@ -144,7 +140,7 @@ int scan_freq_board_fast_init(working_mode_e working_mode)
     iVar5 = calculate_core_number((uint)dev->corenum);
     iVar5 = __aeabi_idiv(0x1000000,iVar5);
     fVar6 = (((float)(longlong)(int)((uint)dev->addrInterval * iVar5) / (float)(longlong)iVar4) *
-            DAT_0002e490) / DAT_0002e494;
+            50.0) / 100.0;
     dev->timeout = (uint)(0.0 < fVar6) * (int)fVar6;
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);

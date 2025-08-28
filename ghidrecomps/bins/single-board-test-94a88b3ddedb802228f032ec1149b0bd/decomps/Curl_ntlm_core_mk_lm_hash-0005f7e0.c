@@ -4,8 +4,8 @@ undefined4 Curl_ntlm_core_mk_lm_hash(undefined4 param_1,char *param_2,DES_cblock
 {
   size_t sVar1;
   size_t __n;
-  undefined auStack_a8 [7];
-  undefined auStack_a1 [9];
+  undefined1 auStack_a8 [7];
+  undefined1 auStack_a1 [9];
   DES_key_schedule DStack_98;
   
   sVar1 = strlen(param_2);
@@ -19,9 +19,9 @@ undefined4 Curl_ntlm_core_mk_lm_hash(undefined4 param_1,char *param_2,DES_cblock
   Curl_strntoupper(auStack_a8,param_2,sVar1);
   memset(auStack_a8 + sVar1,0,__n);
   setup_des_key(auStack_a8,&DStack_98);
-  DES_ecb_encrypt(DAT_0005f854,param_3,&DStack_98,1);
+  DES_ecb_encrypt((const_DES_cblock *)&magic_23306,param_3,&DStack_98,1);
   setup_des_key(auStack_a1,&DStack_98);
-  DES_ecb_encrypt(DAT_0005f854,param_3 + 1,&DStack_98,1);
+  DES_ecb_encrypt((const_DES_cblock *)&magic_23306,param_3 + 1,&DStack_98,1);
   param_3[2][0] = '\0';
   param_3[2][1] = '\0';
   param_3[2][2] = '\0';

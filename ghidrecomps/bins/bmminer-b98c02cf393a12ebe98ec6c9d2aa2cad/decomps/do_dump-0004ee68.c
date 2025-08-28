@@ -11,16 +11,16 @@ undefined4 do_dump(undefined4 *param_1,uint param_2,int param_3,code *param_4,un
   int iVar7;
   void *__base;
   char *pcVar8;
-  char **ppcVar9;
+  undefined4 *puVar9;
   uint uVar10;
   int iVar11;
-  char **ppcVar12;
+  undefined4 *puVar12;
   size_t sVar13;
   int iVar14;
   char acStack_8c [104];
   
   if (param_1 == (undefined4 *)0x0) {
-switchD_0004ee86_caseD_8:
+switchD_0004ee86_default:
     return 0xffffffff;
   }
   switch(*param_1) {
@@ -72,29 +72,29 @@ switchD_0004ee86_caseD_8:
             sVar3 = json_object_size(param_1);
             __base = (void *)jsonp_malloc(sVar3 << 2);
             if (__base != (void *)0x0) {
-              ppcVar9 = (char **)((int)__base + -4);
+              puVar9 = (undefined4 *)((int)__base + -4);
               sVar13 = 0;
-              ppcVar12 = ppcVar9;
+              puVar12 = puVar9;
               do {
                 sVar13 = sVar13 + 1;
-                pcVar2 = (char *)json_object_iter_key(iVar7);
-                ppcVar12 = ppcVar12 + 1;
-                *ppcVar12 = pcVar2;
+                uVar5 = json_object_iter_key(iVar7);
+                puVar12 = puVar12 + 1;
+                *puVar12 = uVar5;
                 iVar7 = json_object_iter_next(param_1,iVar7);
               } while (iVar7 != 0);
               if (sVar3 != sVar13) {
                     /* WARNING: Subroutine does not return */
-                __assert_fail("i == size","compat/jansson-2.9/src/dump.c",0x152,DAT_0004f28c);
+                __assert_fail("i == size","compat/jansson-2.9/src/dump.c",0x152,"do_dump");
               }
-              qsort(__base,sVar3,4,compare_keys + 1);
+              qsort(__base,sVar3,4,(__compar_fn_t)0x4ec4d);
               uVar6 = 0;
               do {
-                ppcVar9 = ppcVar9 + 1;
-                pcVar2 = *ppcVar9;
+                puVar9 = puVar9 + 1;
+                pcVar2 = (char *)*puVar9;
                 iVar7 = json_object_get(param_1,pcVar2);
                 if (iVar7 == 0) {
                     /* WARNING: Subroutine does not return */
-                  __assert_fail("value","compat/jansson-2.9/src/dump.c",0x15d,DAT_0004f28c);
+                  __assert_fail("value","compat/jansson-2.9/src/dump.c",0x15d,"do_dump");
                 }
                 sVar13 = strlen(pcVar2);
                 dump_string(pcVar2,sVar13,param_4,param_5,param_2);
@@ -202,7 +202,7 @@ LAB_0004ef9a:
     uVar1 = (*param_4)(&DAT_000698a0,4,param_5);
     break;
   default:
-    goto switchD_0004ee86_caseD_8;
+    goto switchD_0004ee86_default;
   }
   return uVar1;
 }

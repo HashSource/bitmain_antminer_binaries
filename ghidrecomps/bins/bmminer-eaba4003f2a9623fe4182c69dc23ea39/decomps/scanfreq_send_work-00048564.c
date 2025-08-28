@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void * scanfreq_send_work(void *arg)
 
 {
@@ -43,14 +41,11 @@ void * scanfreq_send_work(void *arg)
   buf_vil[8] = 0;
   buf_vil[9] = 0;
   buf_vil[10] = 0;
-  buf_vil[11] = 0;
-  buf_vil[12] = 0;
+  buf_vil[0xb] = 0;
+  buf_vil[0xc] = 0;
   if (((use_syslog) || (opt_log_output)) || (4 < opt_log_level)) {
-    tmp42._0_4_ = s_start_send_work_000783b8._0_4_;
-    tmp42._4_4_ = s_start_send_work_000783b8._4_4_;
-    tmp42._8_4_ = s_start_send_work_000783b8._8_4_;
-    tmp42._12_4_ = s_start_send_work_000783b8._12_4_;
-    tmp42[16] = (char)ram0x000783c8;
+    builtin_strncpy(tmp42,"start send work\n",0x10);
+    tmp42._16_4_ = tmp42._16_4_ & 0xffffff00;
     _applog(5,tmp42,false);
   }
   gBegin_get_nonce = true;
@@ -115,31 +110,9 @@ void * scanfreq_send_work(void *arg)
     }
   }
   if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-    tmp42[0] = s_wait_for_receiving_nonce_000783e8[0];
-    tmp42[1] = s_wait_for_receiving_nonce_000783e8[1];
-    tmp42[2] = s_wait_for_receiving_nonce_000783e8[2];
-    tmp42[3] = s_wait_for_receiving_nonce_000783e8[3];
-    tmp42[4] = s_wait_for_receiving_nonce_000783e8[4];
-    tmp42[5] = s_wait_for_receiving_nonce_000783e8[5];
-    tmp42[6] = s_wait_for_receiving_nonce_000783e8[6];
-    tmp42[7] = s_wait_for_receiving_nonce_000783e8[7];
-    tmp42[8] = s_wait_for_receiving_nonce_000783e8[8];
-    tmp42[9] = s_wait_for_receiving_nonce_000783e8[9];
-    tmp42[10] = s_wait_for_receiving_nonce_000783e8[10];
-    tmp42[11] = s_wait_for_receiving_nonce_000783e8[11];
-    tmp42[12] = s_wait_for_receiving_nonce_000783e8[12];
-    tmp42[13] = s_wait_for_receiving_nonce_000783e8[13];
-    tmp42[14] = s_wait_for_receiving_nonce_000783e8[14];
-    tmp42[15] = s_wait_for_receiving_nonce_000783e8[15];
-    tmp42[16] = s_wait_for_receiving_nonce_000783e8[16];
-    tmp42[17] = s_wait_for_receiving_nonce_000783e8[17];
-    tmp42[18] = s_wait_for_receiving_nonce_000783e8[18];
-    tmp42[19] = s_wait_for_receiving_nonce_000783e8[19];
-    tmp42[20] = s_wait_for_receiving_nonce_000783e8[20];
-    tmp42[21] = s_wait_for_receiving_nonce_000783e8[21];
-    tmp42[22] = s_wait_for_receiving_nonce_000783e8[22];
-    tmp42[23] = s_wait_for_receiving_nonce_000783e8[23];
-    tmp42._24_2_ = (undefined2)ram0x00078400;
+    builtin_strncpy(tmp42,"wait for receiving nonce",0x18);
+    tmp42[0x18] = '\n';
+    tmp42[0x19] = '\0';
     _applog(5,tmp42,false);
   }
   for (chain = 0; chain < 0x10; chain = chain + 1) {

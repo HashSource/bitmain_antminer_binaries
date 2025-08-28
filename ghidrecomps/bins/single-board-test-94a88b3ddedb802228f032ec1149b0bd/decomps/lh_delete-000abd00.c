@@ -66,7 +66,7 @@ LAB_000abdde:
           pLVar10 = lh->b[iVar3];
           lh->b[iVar3] = (LHASH_NODE *)0x0;
           if (uVar9 == 0) {
-            ppLVar5 = (LHASH_NODE **)CRYPTO_realloc(lh->b,uVar4 << 2,DAT_000abe28,0x16b);
+            ppLVar5 = (LHASH_NODE **)CRYPTO_realloc(lh->b,uVar4 << 2,"lhash.c",0x16b);
             if (ppLVar5 == (LHASH_NODE **)0x0) {
               lh->error = lh->error + 1;
               return pvVar2;

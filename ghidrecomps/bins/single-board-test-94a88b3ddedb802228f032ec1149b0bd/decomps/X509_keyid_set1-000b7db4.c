@@ -13,7 +13,7 @@ int X509_keyid_set1(X509 *x,uchar *id,int len)
     }
     pAVar2 = *(ASN1_VALUE **)(x->sha1_hash + 0xc);
     if (pAVar2 == (ASN1_VALUE *)0x0) {
-      pAVar2 = ASN1_item_new(DAT_000b7e24);
+      pAVar2 = ASN1_item_new((ASN1_ITEM *)&X509_CERT_AUX_it);
       *(ASN1_VALUE **)(x->sha1_hash + 0xc) = pAVar2;
       if (pAVar2 == (ASN1_VALUE *)0x0) {
         return 0;

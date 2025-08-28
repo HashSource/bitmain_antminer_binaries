@@ -3,7 +3,7 @@ void push_info_when_new_voltage(void *param_1,undefined4 param_2,int param_3,cha
 
 {
   int iVar1;
-  undefined auStack_c [4];
+  undefined1 auStack_c [4];
   
   if (param_4 != '\0') {
     test_vol_pre_7563 = 0;

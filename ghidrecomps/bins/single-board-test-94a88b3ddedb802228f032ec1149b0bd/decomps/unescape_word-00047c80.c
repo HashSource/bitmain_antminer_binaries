@@ -15,7 +15,7 @@ int unescape_word(undefined4 param_1,undefined4 param_2)
     iVar2 = 0;
   }
   else {
-    iVar2 = (**DAT_00047cf8)(local_14 * 2 + 1);
+    iVar2 = (*Curl_cmalloc)(local_14 * 2 + 1);
     if (iVar2 != 0) {
       bVar5 = *pbVar1;
       if (bVar5 == 0) {
@@ -32,7 +32,7 @@ int unescape_word(undefined4 param_1,undefined4 param_2)
             }
             if (((bVar6 && (bVar5 != 0x7f && bVar5 != 0x20)) && (bVar5 != 0x27 && bVar5 != 0x22)) &&
                (bVar5 != 0x5c)) break;
-            *(undefined *)(iVar2 + iVar4) = 0x5c;
+            *(undefined1 *)(iVar2 + iVar4) = 0x5c;
             *(byte *)(iVar2 + iVar4 + 1) = bVar5;
             iVar4 = iVar4 + 2;
             pbVar3 = pbVar3 + 1;
@@ -46,9 +46,9 @@ int unescape_word(undefined4 param_1,undefined4 param_2)
         } while (bVar5 != 0);
       }
 LAB_00047cdc:
-      *(undefined *)(iVar2 + iVar4) = 0;
+      *(undefined1 *)(iVar2 + iVar4) = 0;
     }
-    (**DAT_00047cfc)(pbVar1);
+    (*Curl_cfree)(pbVar1);
   }
   return iVar2;
 }

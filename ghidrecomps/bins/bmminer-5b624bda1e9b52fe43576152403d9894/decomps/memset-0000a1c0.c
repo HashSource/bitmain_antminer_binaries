@@ -6,9 +6,7 @@ void * memset(void *__s,int __c,size_t __n)
 {
   void *pvVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a1c8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pvVar1 = (void *)(*(code *)PTR_LAB_0005f1d8)();
+  pvVar1 = (void *)(*(code *)(undefined *)0x0)(__s);
   return pvVar1;
 }
 

@@ -9,7 +9,7 @@ uint tls1_check_ec_tmp_key(int param_1,int param_2)
   int iVar5;
   char cVar6;
   EC_KEY *key;
-  undefined local_20;
+  undefined1 local_20;
   char local_1f;
   
   iVar5 = *(int *)(param_1 + 0x98);

@@ -1,14 +1,13 @@
 
-undefined4 OPENSSL_DIR_end(void **param_1)
+undefined4 OPENSSL_DIR_end(undefined4 *param_1)
 
 {
   int iVar1;
   int *piVar2;
   
-  if ((param_1 != (void **)0x0) && ((DIR **)*param_1 != (DIR **)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-    iVar1 = closedir(**param_1);
-    free(*param_1);
+  if ((param_1 != (undefined4 *)0x0) && ((undefined4 *)*param_1 != (undefined4 *)0x0)) {
+    iVar1 = closedir(*(DIR **)*param_1);
+    free((void *)*param_1);
     if (iVar1 == -1) {
       return 0;
     }

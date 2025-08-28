@@ -2,7 +2,7 @@
 _Bool supports_resume(pool *pool)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   char *pcVar2;
   bool bVar3;
   pool *pool_local;

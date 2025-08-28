@@ -21,10 +21,10 @@ void ssl3_cbc_copy_mac(int param_1,int param_2,uint param_3,uint param_4)
   iVar11 = *(int *)(param_2 + 4);
   iVar12 = iVar11 - param_3;
   if (param_4 < param_3) {
-    OpenSSLDie(DAT_0006df6c,0xf8,DAT_0006df70);
+    OpenSSLDie("s3_cbc.c",0xf8,"orig_len >= md_size");
   }
   if (0x40 < param_3) {
-    OpenSSLDie(DAT_0006df6c,0xf9,DAT_0006df74);
+    OpenSSLDie("s3_cbc.c",0xf9,"md_size <= EVP_MAX_MD_SIZE");
   }
   __s = abStack_a8 + (-(int)abStack_a8 & 0x3f);
   if (param_3 + 0x100 < param_4) {

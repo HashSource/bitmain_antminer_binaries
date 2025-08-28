@@ -1,10 +1,10 @@
 
+/* WARNING: Removing unreachable block (ram,0x000085f2) */
+/* WARNING: Removing unreachable block (ram,0x000085f8) */
+
 void deregister_tm_clones(void)
 
 {
-  if ((6 < (uint)(DAT_00008600 - DAT_000085fc)) && (DAT_00008604 != (code *)0x0)) {
-    (*DAT_00008604)();
-  }
   return;
 }
 

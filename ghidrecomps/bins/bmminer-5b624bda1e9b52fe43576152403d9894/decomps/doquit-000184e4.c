@@ -4,17 +4,14 @@
 void doquit(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  undefined *puVar1;
-  
   if (isjson) {
-    io_put(io_data,DAT_00018508);
+    io_put(io_data,"{\"STATUS\":\"BYE\"");
   }
   else {
-    io_put(io_data,DAT_00018500);
+    io_put(io_data,"BYE");
   }
-  puVar1 = DAT_00018504;
-  *DAT_00018504 = 1;
-  puVar1[2] = 1;
+  bye = true;
+  do_a_quit = true;
   return;
 }
 

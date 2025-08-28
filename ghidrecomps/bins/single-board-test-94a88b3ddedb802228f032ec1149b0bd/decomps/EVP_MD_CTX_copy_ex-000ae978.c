@@ -13,14 +13,14 @@ int EVP_MD_CTX_copy_ex(EVP_MD_CTX *out,EVP_MD_CTX *in)
   void *__dest;
   
   if ((in == (EVP_MD_CTX *)0x0) || (pEVar5 = in->digest, pEVar5 == (EVP_MD *)0x0)) {
-    ERR_put_error(6,0x6e,0x6f,DAT_000aea70,300);
+    ERR_put_error(6,0x6e,0x6f,"digest.c",300);
     iVar1 = 0;
   }
   else {
     if (in->engine != (ENGINE *)0x0) {
       iVar1 = ENGINE_init(in->engine);
       if (iVar1 == 0) {
-        ERR_put_error(6,0x6e,0x26,DAT_000aea70,0x132);
+        ERR_put_error(6,0x6e,0x26,"digest.c",0x132);
         return 0;
       }
       pEVar5 = in->digest;
@@ -45,10 +45,10 @@ int EVP_MD_CTX_copy_ex(EVP_MD_CTX *out,EVP_MD_CTX *in)
     out->pctx = pEVar4;
     if ((in->md_data != (void *)0x0) && (__n = out->digest->ctx_size, __n != 0)) {
       if (__dest == (void *)0x0) {
-        __dest = CRYPTO_malloc(__n,DAT_000aea70,0x143);
+        __dest = CRYPTO_malloc(__n,"digest.c",0x143);
         out->md_data = __dest;
         if (__dest == (void *)0x0) {
-          ERR_put_error(6,0x6e,0x41,DAT_000aea70,0x145);
+          ERR_put_error(6,0x6e,0x41,"digest.c",0x145);
           return 0;
         }
         __n = out->digest->ctx_size;

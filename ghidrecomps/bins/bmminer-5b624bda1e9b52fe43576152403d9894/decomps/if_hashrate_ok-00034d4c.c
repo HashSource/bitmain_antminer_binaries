@@ -4,21 +4,21 @@
 _Bool if_hashrate_ok(void)
 
 {
-  undefined uVar1;
-  int iVar2;
-  double dVar3;
+  longlong lVar1;
+  undefined1 uVar2;
+  int iVar3;
   double dVar4;
   
-  dVar4 = (total_mhashes_done / DAT_00034da0) / total_secs;
-  iVar2 = GetTotalRate();
-  dVar3 = (double)(longlong)iVar2 * DAT_00034da8;
-  if (dVar4 == dVar3 || dVar4 < dVar3 != (NAN(dVar4) || NAN(dVar3))) {
-    iVar2 = 0;
+  dVar4 = (total_mhashes_done / 1000.0) / total_secs;
+  iVar3 = GetTotalRate();
+  lVar1 = (longlong)iVar3;
+  if (dVar4 <= (double)lVar1 * 0.98) {
+    iVar3 = 0;
   }
-  uVar1 = (undefined)iVar2;
-  if (dVar4 != dVar3 && dVar4 < dVar3 == (NAN(dVar4) || NAN(dVar3))) {
-    uVar1 = 1;
+  uVar2 = (undefined1)iVar3;
+  if ((double)lVar1 * 0.98 < dVar4) {
+    uVar2 = 1;
   }
-  return (_Bool)uVar1;
+  return (_Bool)uVar2;
 }
 

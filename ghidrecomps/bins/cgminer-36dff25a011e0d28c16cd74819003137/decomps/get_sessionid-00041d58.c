@@ -2,12 +2,12 @@
 char * get_sessionid(json_t *val)
 
 {
-  byte bVar1;
   json_t *json;
-  size_t sVar2;
+  size_t sVar1;
   json_t *val_00;
-  char *pcVar3;
-  int iVar4;
+  char *pcVar2;
+  int iVar3;
+  bool bVar4;
   json_t *val_local;
   char *notify;
   json_t *arr;
@@ -18,23 +18,23 @@ char * get_sessionid(json_t *val)
   
   json = json_array_get(val,0);
   if (((json != (json_t *)0x0) && (json != (json_t *)0x0)) && (json->type == JSON_ARRAY)) {
-    sVar2 = json_array_size(json);
-    for (i = 0; i < (int)sVar2; i = i + 1) {
+    sVar1 = json_array_size(json);
+    for (i = 0; i < (int)sVar1; i = i + 1) {
       val_00 = json_array_get(json,i);
       if ((val_00 == (json_t *)0x0) || (val_00->type != JSON_ARRAY)) {
-        bVar1 = 1;
+        bVar4 = true;
       }
       else {
-        bVar1 = 0;
+        bVar4 = false;
       }
-      if ((bool)(val_00 == (json_t *)0x0 | bVar1)) {
+      if (val_00 == (json_t *)0x0 || bVar4) {
         return (char *)0x0;
       }
-      pcVar3 = __json_array_string(val_00,0);
-      if ((pcVar3 != (char *)0x0) && (iVar4 = strncasecmp(pcVar3,"mining.notify",0xd), iVar4 == 0))
+      pcVar2 = __json_array_string(val_00,0);
+      if ((pcVar2 != (char *)0x0) && (iVar3 = strncasecmp(pcVar2,"mining.notify",0xd), iVar3 == 0))
       {
-        pcVar3 = json_array_string(val_00,1);
-        return pcVar3;
+        pcVar2 = json_array_string(val_00,1);
+        return pcVar2;
       }
     }
   }

@@ -12,7 +12,7 @@ void * PKCS12_item_decrypt_d2i
   
   puVar1 = PKCS12_pbe_crypt(algor,pass,passlen,oct->data,oct->length,&local_24,(int *)&local_1c,0);
   if (puVar1 == (uchar *)0x0) {
-    ERR_put_error(0x23,0x6a,0x75,DAT_0010f058,0x8b);
+    ERR_put_error(0x23,0x6a,0x75,"p12_decr.c",0x8b);
     pAVar2 = (ASN1_VALUE *)0x0;
   }
   else {
@@ -22,7 +22,7 @@ void * PKCS12_item_decrypt_d2i
       OPENSSL_cleanse(local_24,local_1c);
     }
     if (pAVar2 == (ASN1_VALUE *)0x0) {
-      ERR_put_error(0x23,0x6a,0x65,DAT_0010f058,0x9f);
+      ERR_put_error(0x23,0x6a,0x65,"p12_decr.c",0x9f);
     }
     CRYPTO_free(local_24);
   }

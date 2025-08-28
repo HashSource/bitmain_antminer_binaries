@@ -9,7 +9,7 @@ int curl_multi_perform(int *param_1,int *param_2)
   int local_bc;
   undefined4 local_b8;
   undefined4 uStack_b4;
-  undefined auStack_b0 [144];
+  undefined1 auStack_b0 [144];
   
   curlx_tvnow(&local_b8);
   if ((param_1 == (int *)0x0) || (*param_1 != 0xbab1e)) {
@@ -24,14 +24,14 @@ int curl_multi_perform(int *param_1,int *param_2)
       iVar4 = 0;
       do {
         piVar3 = piVar2 + 0x21b6;
-        if (((*(char *)(piVar2 + 0x105) != '\0') && (piVar2[0x21b9] == 0)) &&
+        if ((((char)piVar2[0x105] != '\0') && (piVar2[0x21b9] == 0)) &&
            (iVar1 = Curl_wildcard_init(piVar3), iVar1 != 0)) {
           return 3;
         }
-        sigpipe_ignore_isra_2(*(undefined *)(piVar2 + 0xc9),auStack_b0);
+        sigpipe_ignore_isra_2((char)piVar2[0xc9],auStack_b0);
         iVar1 = multi_runsingle(param_1,local_b8,uStack_b4,piVar2);
         sigpipe_restore(auStack_b0);
-        if (*(char *)(piVar2 + 0x105) == '\0') {
+        if ((char)piVar2[0x105] == '\0') {
 LAB_0003b57c:
           if (iVar1 != 0) {
             iVar4 = iVar1;

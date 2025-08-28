@@ -6,7 +6,6 @@ _Bool parse_diff(pool *pool,json_t *val)
   _Bool _Var1;
   undefined4 uVar2;
   double dVar3;
-  double dVar4;
   json_t *val_local;
   pool *pool_local;
   char tmp42 [2048];
@@ -21,10 +20,9 @@ _Bool parse_diff(pool *pool,json_t *val)
   }
   else {
     _cg_wlock(&pool->data_lock,"util.c","parse_diff",0x8d6);
-    dVar4 = pool->next_diff;
     diff._0_4_ = SUB84(dVar3,0);
     diff._4_4_ = (undefined4)((ulonglong)dVar3 >> 0x20);
-    if (dVar4 == 0.0 || dVar4 < 0.0 != NAN(dVar4)) {
+    if (pool->next_diff <= 0.0) {
       old_diff._0_4_ = *(undefined4 *)&pool->sdiff;
       old_diff._4_4_ = *(undefined4 *)((int)&pool->sdiff + 4);
       *(undefined4 *)&pool->sdiff = diff._0_4_;

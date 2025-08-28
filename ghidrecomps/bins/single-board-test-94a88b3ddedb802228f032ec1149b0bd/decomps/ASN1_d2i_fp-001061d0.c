@@ -12,7 +12,7 @@ void * ASN1_d2i_fp(xnew *xnew,undefined1 *d2i,FILE *in,void **x)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0xd,0x6d,7,DAT_0010623c,0x4c);
+    ERR_put_error(0xd,0x6d,7,"a_d2i_fp.c",0x4c);
     pvVar2 = (void *)0x0;
   }
   else {

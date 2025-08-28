@@ -10,7 +10,7 @@ int SXNET_add_id_asc(SXNET **psx,char *zone,char *user,int userlen)
     iVar1 = SXNET_add_id_INTEGER(psx,izone,user,userlen);
     return iVar1;
   }
-  ERR_put_error(0x22,0x7d,0x83,DAT_000c9c10,0x9d);
+  ERR_put_error(0x22,0x7d,0x83,"v3_sxnet.c",0x9d);
   return 0;
 }
 

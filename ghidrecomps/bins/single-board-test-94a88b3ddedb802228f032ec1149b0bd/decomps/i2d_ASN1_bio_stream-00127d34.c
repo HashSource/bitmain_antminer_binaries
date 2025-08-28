@@ -11,7 +11,7 @@ int i2d_ASN1_bio_stream(BIO *out,ASN1_VALUE *val,BIO *in,int flags,ASN1_ITEM *it
   else {
     out_00 = BIO_new_NDEF(out,val,it);
     if (out_00 == (BIO *)0x0) {
-      ERR_put_error(0xd,0xd3,0x41,DAT_00127da0,0x7d);
+      ERR_put_error(0xd,0xd3,0x41,"asn_mime.c",0x7d);
       return 0;
     }
     SMIME_crlf_copy(in,out_00,flags);

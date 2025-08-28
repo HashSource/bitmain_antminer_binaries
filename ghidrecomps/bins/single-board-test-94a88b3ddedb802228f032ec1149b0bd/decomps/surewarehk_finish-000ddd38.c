@@ -2,52 +2,45 @@
 undefined4 surewarehk_finish(void)
 
 {
-  BIO **ppBVar1;
-  int iVar2;
-  BIO *pBVar3;
-  undefined4 uVar4;
+  int iVar1;
+  undefined4 uVar2;
   
-  ppBVar1 = DAT_000dddbc;
-  if (DAT_000dddbc[9] == (BIO *)0x0) {
-    pBVar3 = DAT_000dddbc[1];
-    if (pBVar3 == (BIO *)0x0) {
-      pBVar3 = (BIO *)ERR_get_next_error_library();
-      ppBVar1[1] = pBVar3;
+  if (surewarehk_dso == (DSO *)0x0) {
+    if (SUREWARE_lib_error_code == 0) {
+      SUREWARE_lib_error_code = ERR_get_next_error_library();
     }
-    uVar4 = 0;
-    ERR_put_error((int)pBVar3,0x67,0x70,DAT_000dddc0,0x250);
+    uVar2 = 0;
+    ERR_put_error(SUREWARE_lib_error_code,0x67,0x70,"e_sureware.c",0x250);
   }
   else {
-    uVar4 = 1;
-    (*(code *)DAT_000dddbc[0xb])();
-    iVar2 = DSO_free((DSO *)ppBVar1[9]);
-    if (iVar2 == 0) {
-      pBVar3 = ppBVar1[1];
-      if (pBVar3 == (BIO *)0x0) {
-        pBVar3 = (BIO *)ERR_get_next_error_library();
-        ppBVar1[1] = pBVar3;
+    uVar2 = 1;
+    (*p_surewarehk_Finish)();
+    iVar1 = DSO_free(surewarehk_dso);
+    if (iVar1 == 0) {
+      if (SUREWARE_lib_error_code == 0) {
+        SUREWARE_lib_error_code = ERR_get_next_error_library();
       }
-      uVar4 = 0;
-      ERR_put_error((int)pBVar3,0x67,0x68,DAT_000dddc0,0x256);
+      uVar2 = 0;
+      ERR_put_error(SUREWARE_lib_error_code,0x67,0x68,"e_sureware.c",0x256);
     }
   }
-  if (*ppBVar1 != (BIO *)0x0) {
-    BIO_free(*ppBVar1);
+  if (logstream != (BIO *)0x0) {
+    BIO_free(logstream);
   }
-  ppBVar1[9] = (BIO *)0x0;
-  ppBVar1[10] = (BIO *)0x0;
-  ppBVar1[0xb] = (BIO *)0x0;
-  ppBVar1[0xc] = (BIO *)0x0;
-  ppBVar1[3] = (BIO *)0x0;
-  ppBVar1[8] = (BIO *)0x0;
-  ppBVar1[5] = (BIO *)0x0;
-  ppBVar1[2] = (BIO *)0x0;
-  ppBVar1[0xd] = (BIO *)0x0;
-  ppBVar1[0xe] = (BIO *)0x0;
-  ppBVar1[0xf] = (BIO *)0x0;
-  ppBVar1[7] = (BIO *)0x0;
-  ppBVar1[6] = (BIO *)0x0;
-  ppBVar1[4] = (BIO *)0x0;
-  return uVar4;
+  surewarehk_dso = (DSO *)0x0;
+  p_surewarehk_Init = 0;
+  p_surewarehk_Finish = (code *)0x0;
+  p_surewarehk_Rand_Bytes = 0;
+  p_surewarehk_Rand_Seed = 0;
+  p_surewarehk_Load_Privkey = 0;
+  p_surewarehk_Load_Rsa_Pubkey = 0;
+  p_surewarehk_Free = 0;
+  p_surewarehk_Rsa_Priv_Dec = 0;
+  p_surewarehk_Rsa_Sign = 0;
+  p_surewarehk_Dsa_Sign = 0;
+  p_surewarehk_Info_Pubkey = 0;
+  p_surewarehk_Load_Dsa_Pubkey = 0;
+  p_surewarehk_Mod_Exp = 0;
+  return uVar2;
 }
 

@@ -1,6 +1,4 @@
 
-/* WARNING: Type propagation algorithm not settling */
-
 int ASN1_item_ex_d2i(ASN1_VALUE **pval,uchar **in,long len,ASN1_ITEM *it,int tag,int aclass,char opt
                     ,ASN1_TLC *ctx)
 
@@ -44,7 +42,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval,uchar **in,long len,ASN1_ITEM *it,int tag
       iVar7 = asn1_template_ex_d2i(pval,in,len,it->templates,0,ctx);
       return iVar7;
     }
-    ERR_put_error(0xd,0x78,0xaa,DAT_000bb224,0xc9);
+    ERR_put_error(0xd,0x78,0xaa,"tasn_dec.c",0xc9);
     goto LAB_000bb002;
   case '\x01':
   case '\x06':
@@ -65,7 +63,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval,uchar **in,long len,ASN1_ITEM *it,int tag
         cVar2 = '\x01';
       }
       if (local_38[0] == '\0') {
-        ERR_put_error(0xd,0x78,0x95,DAT_000bb510,0x180);
+        ERR_put_error(0xd,0x78,0x95,"tasn_dec.c",0x180);
         goto LAB_000bb002;
       }
       if ((*pval != (ASN1_VALUE *)0x0) || (iVar7 = ASN1_item_ex_new(pval,it), iVar7 != 0)) {
@@ -96,13 +94,13 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval,uchar **in,long len,ASN1_ITEM *it,int tag
                 if (local_4c == (byte *)0x0) break;
                 if (((1 < (int)local_4c) && (*local_30 == 0)) && (local_30[1] == 0)) {
                   local_30 = local_30 + 2;
-                  if (local_40[0] != '\0') {
-                    local_4c = local_4c + -2;
-                    local_40[0] = '\0';
-                    goto LAB_000bb386;
+                  if (local_40[0] == '\0') {
+                    ERR_put_error(0xd,0x78,0x9f,"tasn_dec.c",0x1a5);
+                    goto LAB_000bb002;
                   }
-                  ERR_put_error(0xd,0x78,0x9f,DAT_000bb5a4,0x1a5);
-                  goto LAB_000bb002;
+                  local_4c = local_4c + -2;
+                  local_40[0] = '\0';
+                  goto LAB_000bb386;
                 }
                 if (it->tcount + -1 == iVar3) {
                   uVar8 = 0;
@@ -125,14 +123,14 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval,uchar **in,long len,ASN1_ITEM *it,int tag
           }
           if (local_40[0] != '\0') {
             if ((((int)local_4c < 2) || (*local_30 != 0)) || (local_30[1] != 0)) {
-              ERR_put_error(0xd,0x78,0x89,DAT_000bb510,0x1cc);
+              ERR_put_error(0xd,0x78,0x89,"tasn_dec.c",0x1cc);
               goto LAB_000bb002;
             }
             local_30 = local_30 + 2;
           }
 LAB_000bb386:
           if ((cVar2 == '\0') && (local_4c != (byte *)0x0)) {
-            ERR_put_error(0xd,0x78,0x94,DAT_000bb5a4,0x1d1);
+            ERR_put_error(0xd,0x78,0x94,"tasn_dec.c",0x1d1);
             goto LAB_000bb002;
           }
           if (iVar3 < it->tcount) {
@@ -142,11 +140,11 @@ LAB_000bb386:
               if (pAVar5 == (ASN1_TEMPLATE *)0x0) goto LAB_000bb002;
               tt = tt + 1;
               if (-1 < (int)(pAVar5->flags << 0x1f)) {
-                ERR_put_error(0xd,0x78,0x79,DAT_000bb510,0x1e5);
+                ERR_put_error(0xd,0x78,0x79,"tasn_dec.c",0x1e5);
 LAB_000bb3e6:
                 ASN1_item_ex_free(pval,it);
 LAB_000bb3ee:
-                ERR_add_error_data(4,DAT_000bb514,pAVar5->field_name,DAT_000bb518,it->sname);
+                ERR_add_error_data(4,"Field=",pAVar5->field_name,", Type=",it->sname);
                 return 0;
               }
               ppAVar4 = asn1_get_field_ptr(pval,pAVar5);
@@ -195,10 +193,10 @@ LAB_000bb3ee:
         iVar7 = asn1_template_ex_d2i(ppAVar4,&local_30,local_4c,pAVar5,1,ctx);
         if (iVar7 != -1) {
           if (iVar7 < 1) {
-            ERR_put_error(0xd,0x78,0x3a,DAT_000bb510,0x150);
+            ERR_put_error(0xd,0x78,0x3a,"tasn_dec.c",0x150);
             ASN1_item_ex_free(pval,it);
-            if (pAVar5 != (ASN1_TEMPLATE *)0x0) goto LAB_000bb3ee;
-            goto LAB_000bb00a;
+            if (pAVar5 == (ASN1_TEMPLATE *)0x0) goto LAB_000bb00a;
+            goto LAB_000bb3ee;
           }
           iVar7 = it->tcount;
           break;
@@ -213,7 +211,7 @@ LAB_000bb3ee:
         ASN1_item_ex_free(pval,it);
         return -1;
       }
-      ERR_put_error(0xd,0x78,0x8f,DAT_000bb510,0x15c);
+      ERR_put_error(0xd,0x78,0x8f,"tasn_dec.c",0x15c);
       goto LAB_000bb002;
     }
     asn1_set_choice_selector(pval,iVar3,it);
@@ -227,7 +225,7 @@ joined_r0x000bb174:
       return 1;
     }
 LAB_000bb184:
-    ERR_put_error(0xd,0x78,100,DAT_000bb224,0x1f5);
+    ERR_put_error(0xd,0x78,100,"tasn_dec.c",0x1f5);
     goto LAB_000bb002;
   case '\x03':
     if (opt != '\0') {
@@ -271,21 +269,20 @@ LAB_000bb184:
     iVar7 = 0xd9;
     if (iVar3 != 0) {
       if (local_48[0] == '\0') {
-        if ((local_2c[0] < 0x1f) && ((*(uint *)(DAT_000bb50c + local_2c[0] * 4) & it->utype) != 0))
-        {
+        if ((local_2c[0] < 0x1f) && ((*(uint *)(&tag2bit + local_2c[0] * 4) & it->utype) != 0)) {
           iVar7 = asn1_d2i_ex_primitive(pval,in,local_4c,it,local_2c[0],0,0,ctx);
           return iVar7;
         }
         if (opt != '\0') {
           return -1;
         }
-        ERR_put_error(0xd,0x78,0x8c,DAT_000bb510,0xea);
+        ERR_put_error(0xd,0x78,0x8c,"tasn_dec.c",0xea);
       }
       else {
         if (opt != '\0') {
           return -1;
         }
-        ERR_put_error(0xd,0x78,0x8b,DAT_000bb224,0xe2);
+        ERR_put_error(0xd,0x78,0x8b,"tasn_dec.c",0xe2);
       }
       goto LAB_000bb002;
     }
@@ -293,11 +290,11 @@ LAB_000bb184:
   default:
     return 0;
   }
-  ERR_put_error(0xd,0x78,0x3a,DAT_000bb224,iVar7);
+  ERR_put_error(0xd,0x78,0x3a,"tasn_dec.c",iVar7);
 LAB_000bb002:
   ASN1_item_ex_free(pval,it);
 LAB_000bb00a:
-  ERR_add_error_data(2,DAT_000bb228,it->sname);
+  ERR_add_error_data(2,"Type=",it->sname);
   return 0;
 }
 

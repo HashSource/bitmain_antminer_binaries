@@ -5,7 +5,8 @@ int scanfreq_print_nonce_info(void)
 
 {
   uint uVar1;
-  char *str;
+  int extraout_r3;
+  int iVar2;
   char tmp42 [2048];
   int i;
   
@@ -48,12 +49,12 @@ int scanfreq_print_nonce_info(void)
   }
   scanfreq_print_nonce_zero_core_chip();
   if (((use_syslog != false) || (opt_log_output != false)) ||
-     (str = (char *)opt_log_level, 4 < opt_log_level)) {
+     (iVar2 = opt_log_level, 4 < opt_log_level)) {
     uVar1 = get_crc_count();
     snprintf(tmp42,0x800,"CRC error counter=%d\n",uVar1);
-    str = tmp42;
-    _applog(5,str,false);
+    _applog(5,tmp42,false);
+    iVar2 = extraout_r3;
   }
-  return (int)str;
+  return iVar2;
 }
 

@@ -1,9 +1,9 @@
 
-undefined4 ser_number(undefined *param_1,int param_2)
+undefined4 ser_number(undefined1 *param_1,int param_2)
 
 {
   undefined4 uVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   
   if (param_2 < 0x80) {
     uVar2 = 1;

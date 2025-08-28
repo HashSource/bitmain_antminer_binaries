@@ -4,7 +4,7 @@
 void ASN1_add_oid_module(void)
 
 {
-  CONF_module_add("oid_section",oid_module_init + 1,oid_module_finish + 1);
+  CONF_module_add("oid_section",(undefined1 *)0x10a829,(undefined1 *)0x10a825);
   return;
 }
 

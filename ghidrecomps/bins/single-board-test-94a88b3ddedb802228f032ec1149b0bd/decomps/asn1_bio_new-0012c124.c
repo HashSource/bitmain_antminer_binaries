@@ -5,11 +5,11 @@ undefined4 asn1_bio_new(int param_1)
   undefined4 *ptr;
   void *pvVar1;
   
-  ptr = (undefined4 *)CRYPTO_malloc(0x40,DAT_0012c178,0x95);
+  ptr = (undefined4 *)CRYPTO_malloc(0x40,"bio_asn1.c",0x95);
   if (ptr == (undefined4 *)0x0) {
     return 0;
   }
-  pvVar1 = CRYPTO_malloc(0x14,DAT_0012c178,0xa4);
+  pvVar1 = CRYPTO_malloc(0x14,"bio_asn1.c",0xa4);
   ptr[1] = pvVar1;
   if (pvVar1 != (void *)0x0) {
     ptr[2] = 0x14;

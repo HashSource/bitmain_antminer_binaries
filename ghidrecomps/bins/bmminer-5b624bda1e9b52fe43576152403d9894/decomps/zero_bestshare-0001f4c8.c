@@ -1,37 +1,35 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void zero_bestshare(void)
 
 {
-  undefined4 *puVar1;
-  int iVar2;
-  pool *pool;
-  int *piVar3;
-  int *piVar4;
-  int iVar6;
-  uint in_stack_ffffffe4;
-  int *piVar5;
+  pool **pppVar1;
+  pool *ppVar2;
+  pool **pppVar3;
+  pool **pppVar4;
   
-  puVar1 = DAT_0001f52c;
-  iVar2 = DAT_0001f528;
-  iVar6 = DAT_0001f528 + 0x7f0;
-  *(undefined4 *)(DAT_0001f528 + 0x7f0) = 0;
-  *(undefined4 *)(iVar2 + 0x7f4) = 0;
-  *puVar1 = 0;
-  puVar1[1] = 0;
-  suffix_string((ulonglong)in_stack_ffffffe4 << 0x20,(char *)0x0,0,iVar6);
-  iVar2 = *DAT_0001f520;
-  if (0 < iVar2) {
-    piVar3 = *DAT_0001f524;
-    piVar4 = piVar3;
+  best_share[0] = '\0';
+  best_share[1] = '\0';
+  best_share[2] = '\0';
+  best_share[3] = '\0';
+  best_share[4] = '\0';
+  best_share[5] = '\0';
+  best_share[6] = '\0';
+  best_share[7] = '\0';
+  best_diff._0_4_ = 0;
+  best_diff._4_4_ = 0;
+  suffix_string(0,best_share,8,0);
+  if (0 < total_pools) {
+    pppVar1 = pools + total_pools;
+    pppVar3 = pools;
     do {
-      piVar5 = piVar4 + 1;
-      iVar6 = *piVar4;
-      *(undefined4 *)(iVar6 + 0x170) = 0;
-      *(undefined4 *)(iVar6 + 0x174) = 0;
-      piVar4 = piVar5;
-    } while (piVar5 != piVar3 + iVar2);
+      pppVar4 = pppVar3 + 1;
+      ppVar2 = *pppVar3;
+      *(undefined4 *)&ppVar2->best_diff = 0;
+      *(undefined4 *)((int)&ppVar2->best_diff + 4) = 0;
+      pppVar3 = pppVar4;
+    } while (pppVar4 != pppVar1);
   }
   return;
 }

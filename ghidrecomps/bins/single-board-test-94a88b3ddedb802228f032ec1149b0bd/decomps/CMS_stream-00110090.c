@@ -12,7 +12,7 @@ int CMS_stream(uchar ***boundary,CMS_ContentInfo *cms)
       pAVar2 = ASN1_OCTET_STRING_new();
       *ppAVar1 = pAVar2;
       if (pAVar2 == (ASN1_OCTET_STRING *)0x0) {
-        ERR_put_error(0x2e,0x9b,0x41,DAT_001100dc,0x4c);
+        ERR_put_error(0x2e,0x9b,0x41,"cms_io.c",0x4c);
         return 0;
       }
     }

@@ -1,5 +1,5 @@
 
-uint check_BM1722_asic_reg(byte param_1,undefined param_2,char param_3,undefined param_4)
+uint check_BM1722_asic_reg(byte param_1,undefined1 param_2,char param_3,undefined1 param_4)
 
 {
   uint uVar1;
@@ -7,7 +7,7 @@ uint check_BM1722_asic_reg(byte param_1,undefined param_2,char param_3,undefined
   undefined4 *puVar3;
   undefined4 local_28;
   undefined2 local_24;
-  undefined local_22;
+  undefined1 local_22;
   uint local_20;
   uint local_1c;
   uint local_18;
@@ -42,7 +42,7 @@ uint check_BM1722_asic_reg(byte param_1,undefined param_2,char param_3,undefined
           puVar3 = (undefined4 *)(reg_value_buf + *(int *)(reg_value_buf + 4) * 10 + 0x10);
           local_28 = *puVar3;
           local_24 = *(undefined2 *)(puVar3 + 1);
-          local_22 = *(undefined *)((int)puVar3 + 6);
+          local_22 = *(undefined1 *)((int)puVar3 + 6);
           uVar1 = CRC5(&local_28,0x33);
           if (uVar1 == *(byte *)(reg_value_buf + *(int *)(reg_value_buf + 4) * 10 + 0x18)) {
             if (param_3 == '\0') {

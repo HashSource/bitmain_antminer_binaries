@@ -4,180 +4,137 @@
 work * hash_pop(_Bool blocking)
 
 {
-  char cVar1;
-  int *piVar2;
-  undefined4 *puVar3;
-  char *pcVar4;
-  char *pcVar5;
-  int *piVar6;
-  work *pwVar7;
-  int iVar8;
-  int iVar9;
-  int rc;
-  UT_hash_bucket *pUVar10;
-  time_t tVar11;
-  int iVar12;
-  work *tmp;
-  void *pvVar13;
-  uint uVar14;
-  UT_hash_handle *pUVar15;
-  work *in_r2;
-  UT_hash_handle *pUVar16;
-  int in_r3;
-  time_t *line;
-  work *pwVar17;
-  UT_hash_table *pUVar18;
-  work *pwVar19;
-  UT_hash_handle *_hd_hh_del;
-  bool bVar20;
+  work *pwVar1;
+  work *pwVar2;
+  work *pwVar3;
+  int iVar4;
+  UT_hash_bucket *pUVar5;
+  void *pvVar6;
+  uint uVar7;
+  UT_hash_handle *pUVar8;
+  char *func;
+  UT_hash_handle *pUVar9;
+  char *func_00;
+  int line;
+  work *pwVar10;
+  int line_00;
+  UT_hash_table *pUVar11;
+  work *pwVar12;
+  bool bVar13;
   timespec then;
   timeval now;
   char tmp42 [2048];
   
-  iVar12 = DAT_0002070c;
-  pwVar7 = (work *)(uint)blocking;
-  iVar8 = pthread_mutex_lock(*(pthread_mutex_t **)(DAT_0002070c + 0x454));
-  if (iVar8 != 0) {
-    _mutex_lock(DAT_00020734,(char *)0x1f78,(char *)in_r2,in_r3);
+  pwVar3 = (work *)(uint)blocking;
+  iVar4 = pthread_mutex_lock((pthread_mutex_t *)stgd_lock);
+  if (iVar4 != 0) {
+    _mutex_lock((pthread_mutex_t *)"hash_pop",(char *)0x1f78,func,line);
   }
-  if ((*(int *)(iVar12 + 0x458) == 0) ||
-     (*(int *)(*(int *)(*(int *)(iVar12 + 0x458) + 0x158) + 0xc) == 0)) {
-    line = (time_t *)0x1;
-    *(undefined *)(iVar12 + 0x45d) = 1;
-    piVar6 = DAT_00020730;
-    pcVar5 = DAT_00020720;
-    pcVar4 = DAT_0002071c;
-    piVar2 = DAT_00020710;
-    iVar8 = DAT_0002070c;
-    if (pwVar7 == (work *)0x0) goto out_unlock;
+  if ((staged_work == (work *)0x0) || (((staged_work->hh).tbl)->num_items == 0)) {
+    work_emptied = true;
+    if (pwVar3 == (work *)0x0) goto LAB_00020618;
     do {
       cgtime(&now);
       then.tv_nsec = now.tv_usec * 1000;
       then.tv_sec = now.tv_sec + 10;
-      pthread_cond_signal(DAT_00020714);
-      iVar9 = pthread_cond_timedwait
-                        ((pthread_cond_t *)(*piVar2 + 0x28),*(pthread_mutex_t **)(iVar12 + 0x454),
+      pthread_cond_signal((pthread_cond_t *)&gws_cond);
+      iVar4 = pthread_cond_timedwait
+                        ((pthread_cond_t *)&getq->cond,(pthread_mutex_t *)stgd_lock,
                          (timespec *)&then);
-      puVar3 = DAT_00020718;
-      if (((iVar9 != 0) && (*(char *)(iVar8 + 0x45c) == '\0')) &&
-         ((cVar1 = *pcVar4, *(undefined *)(iVar8 + 0x45c) = 1, cVar1 != '\0' ||
-          ((*pcVar5 != '\0' || (3 < *piVar6)))))) {
-        tmp42._0_4_ = *puVar3;
-        tmp42._4_4_ = puVar3[1];
-        tmp42._8_4_ = puVar3[2];
-        tmp42._12_4_ = puVar3[3];
-        tmp42._16_4_ = puVar3[4];
-        tmp42._20_4_ = puVar3[5];
-        tmp42._24_4_ = puVar3[6];
-        tmp42._28_4_ = puVar3[7];
-        tmp42._32_4_ = puVar3[8];
-        tmp42._36_4_ = puVar3[9];
-        tmp42._40_4_ = puVar3[10];
-        tmp42[44] = (char)puVar3[0xb];
+      if (((iVar4 != 0) && (no_work == false)) &&
+         ((no_work = true, use_syslog != false || ((opt_log_output != false || (3 < opt_log_level)))
+          ))) {
+        builtin_strncpy(tmp42,"Waiting for work to be available from pools.",0x2c);
+        tmp42[0x2c] = '\0';
         _applog(4,tmp42,false);
       }
-    } while ((*(int *)(iVar12 + 0x458) == 0) ||
-            (*(int *)(*(int *)(*(int *)(iVar12 + 0x458) + 0x158) + 0xc) == 0));
-    cVar1 = *(char *)(iVar12 + 0x45c);
+    } while ((staged_work == (work *)0x0) || (((staged_work->hh).tbl)->num_items == 0));
   }
-  else {
-    cVar1 = *(char *)(iVar12 + 0x45c);
-    piVar2 = DAT_00020710;
-  }
-  if (cVar1 != '\0') {
-    if (((*DAT_0002071c != '\0') || (*DAT_00020720 != '\0')) || (3 < *DAT_00020730)) {
-      tmp42._0_4_ = *DAT_00020724;
-      tmp42._4_4_ = DAT_00020724[1];
-      tmp42._8_4_ = DAT_00020724[2];
-      tmp42._12_4_ = DAT_00020724[3];
-      tmp42._16_4_ = DAT_00020724[4];
-      tmp42._20_4_ = DAT_00020724[5];
-      tmp42._24_4_ = DAT_00020724[6];
-      tmp42._28_4_ = DAT_00020724[7];
-      tmp42._32_4_ = DAT_00020724[8];
-      tmp42[36] = (char)DAT_00020724[9];
+  if (no_work != false) {
+    if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+      builtin_strncpy(tmp42,"Work available from pools, resuming.",0x24);
+      tmp42._36_4_ = tmp42._36_4_ & 0xffffff00;
       _applog(4,tmp42,false);
     }
-    *(undefined *)(iVar12 + 0x45c) = 0;
+    no_work = false;
   }
-  in_r2 = *(work **)(iVar12 + 0x458);
-  pUVar18 = pURam00000158;
-  if (((in_r2 == (work *)0x0) ||
-      (pUVar18 = (in_r2->hh).tbl, (int)pUVar18->num_items <= *(int *)(DAT_0002070c + 0x460))) ||
-     ((in_r2->clone != false || (pwVar19 = (work *)(in_r2->hh).next, in_r2->rolltime == 0)))) {
-    pvVar13 = (in_r2->hh).prev;
-    pwVar19 = (work *)(in_r2->hh).next;
-    pwVar7 = in_r2;
-    if (pvVar13 == (void *)0x0) goto LAB_000206b4;
+  pwVar1 = staged_work;
+  pUVar11 = pURam00000158;
+  if (((staged_work == (work *)0x0) ||
+      (pUVar11 = (staged_work->hh).tbl, (int)pUVar11->num_items <= staged_rollable)) ||
+     ((staged_work->clone != false ||
+      (pwVar12 = (work *)(staged_work->hh).next, staged_work->rolltime == 0)))) {
+    pvVar6 = (staged_work->hh).prev;
+    pwVar12 = (work *)(staged_work->hh).next;
+    pwVar3 = staged_work;
+    if (pvVar6 == (void *)0x0) goto LAB_000206b4;
 LAB_00020586:
-    iVar8 = pUVar18->hho;
-    pwVar17 = (work *)((int)pUVar18->tail - iVar8);
-    bVar20 = pwVar7 == pwVar17;
-    if (bVar20) {
-      pwVar17 = (work *)((int)pvVar13 + iVar8);
+    iVar4 = pUVar11->hho;
+    pwVar10 = (work *)((int)pUVar11->tail - iVar4);
+    bVar13 = pwVar3 == pwVar10;
+    if (bVar13) {
+      pwVar10 = (work *)((int)pvVar6 + iVar4);
     }
-    if (bVar20) {
-      pUVar18->tail = (UT_hash_handle *)pwVar17;
+    if (bVar13) {
+      pUVar11->tail = (UT_hash_handle *)pwVar10;
     }
-    if (pvVar13 == (void *)0x0) {
-      *(work **)(iVar12 + 0x458) = pwVar19;
-      in_r2 = pwVar19;
+    pwVar10 = pwVar12;
+    pwVar2 = pwVar12;
+    if (pvVar6 != (void *)0x0) {
+      *(work **)((int)pvVar6 + iVar4 + 8) = pwVar12;
+      pwVar12 = (work *)(pwVar3->hh).next;
+      pwVar10 = pwVar1;
+      pwVar2 = staged_work;
     }
-    else {
-      *(work **)((int)pvVar13 + iVar8 + 8) = pwVar19;
-      pwVar19 = (work *)(pwVar7->hh).next;
+    staged_work = pwVar2;
+    pUVar11 = (pwVar10->hh).tbl;
+    if (pwVar12 != (work *)0x0) {
+      *(void **)(pwVar12->data + pUVar11->hho + 4) = pvVar6;
     }
-    pUVar18 = (in_r2->hh).tbl;
-    if (pwVar19 != (work *)0x0) {
-      *(void **)(pwVar19->data + pUVar18->hho + 4) = pvVar13;
+    pUVar5 = pUVar11->buckets;
+    uVar7 = pUVar11->num_buckets - 1 & (pwVar3->hh).hashv;
+    pUVar9 = (pwVar3->hh).hh_next;
+    pUVar5[uVar7].count = pUVar5[uVar7].count - 1;
+    if (pUVar5[uVar7].hh_head == &pwVar3->hh) {
+      pUVar5[uVar7].hh_head = pUVar9;
     }
-    pUVar10 = pUVar18->buckets;
-    uVar14 = pUVar18->num_buckets - 1 & (pwVar7->hh).hashv;
-    pUVar16 = (pwVar7->hh).hh_next;
-    pUVar10[uVar14].count = pUVar10[uVar14].count - 1;
-    if (pUVar10[uVar14].hh_head == &pwVar7->hh) {
-      pUVar10[uVar14].hh_head = pUVar16;
+    pUVar8 = (pwVar3->hh).hh_prev;
+    if (pUVar8 != (UT_hash_handle *)0x0) {
+      pUVar8->hh_next = pUVar9;
+      pUVar9 = (pwVar3->hh).hh_next;
     }
-    pUVar15 = (pwVar7->hh).hh_prev;
-    if (pUVar15 != (UT_hash_handle *)0x0) {
-      pUVar15->hh_next = pUVar16;
-      pUVar16 = (pwVar7->hh).hh_next;
+    if (pUVar9 != (UT_hash_handle *)0x0) {
+      pUVar9->hh_prev = pUVar8;
     }
-    if (pUVar16 != (UT_hash_handle *)0x0) {
-      pUVar16->hh_prev = pUVar15;
-    }
-    in_r2 = (work *)(pUVar18->num_items - 1);
-    pUVar18->num_items = (uint)in_r2;
+    pUVar11->num_items = pUVar11->num_items - 1;
   }
   else {
     do {
-      pwVar7 = pwVar19;
-      if ((pwVar7 == (work *)0x0) || (pwVar7->clone != false)) break;
-      pwVar19 = (work *)(pwVar7->hh).next;
-    } while (pwVar7->rolltime != 0);
-    pvVar13 = (pwVar7->hh).prev;
-    pwVar19 = (work *)(pwVar7->hh).next;
-    if (pvVar13 != (void *)0x0) goto LAB_00020586;
+      pwVar3 = pwVar12;
+      if ((pwVar3 == (work *)0x0) || (pwVar3->clone != false)) break;
+      pwVar12 = (work *)(pwVar3->hh).next;
+    } while (pwVar3->rolltime != 0);
+    pvVar6 = (pwVar3->hh).prev;
+    pwVar12 = (work *)(pwVar3->hh).next;
+    if (pvVar6 != (void *)0x0) goto LAB_00020586;
 LAB_000206b4:
-    if (pwVar19 != (work *)0x0) goto LAB_00020586;
-    free(pUVar18->buckets);
-    free(*(void **)(*(int *)(iVar12 + 0x458) + 0x158));
-    *(undefined4 *)(iVar12 + 0x458) = 0;
+    if (pwVar12 != (work *)0x0) goto LAB_00020586;
+    free(pUVar11->buckets);
+    free((staged_work->hh).tbl);
+    staged_work = pwVar12;
   }
-  if ((pwVar7->clone == false) && (pwVar7->rolltime != 0)) {
-    *(int *)(iVar12 + 0x460) = *(int *)(iVar12 + 0x460) + -1;
+  if ((pwVar3->clone == false) && (pwVar3->rolltime != 0)) {
+    staged_rollable = staged_rollable + -1;
   }
-  pthread_cond_signal(DAT_00020714);
-  pthread_cond_signal((pthread_cond_t *)(*piVar2 + 0x28));
-  tVar11 = time((time_t *)0x0);
-  line = DAT_00020728;
-  *DAT_00020728 = tVar11;
-out_unlock:
-  iVar12 = pthread_mutex_unlock(*(pthread_mutex_t **)(iVar12 + 0x454));
-  if (iVar12 != 0) {
-    _mutex_unlock_noyield(DAT_00020734,(char *)0x1fc0,(char *)in_r2,(int)line);
+  pthread_cond_signal((pthread_cond_t *)&gws_cond);
+  pthread_cond_signal((pthread_cond_t *)&getq->cond);
+  last_getwork = time((time_t *)0x0);
+LAB_00020618:
+  iVar4 = pthread_mutex_unlock((pthread_mutex_t *)stgd_lock);
+  if (iVar4 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"hash_pop",(char *)0x1fc0,func_00,line_00);
   }
-  (**DAT_0002072c)();
-  return pwVar7;
+  (*selective_yield)();
+  return pwVar3;
 }
 

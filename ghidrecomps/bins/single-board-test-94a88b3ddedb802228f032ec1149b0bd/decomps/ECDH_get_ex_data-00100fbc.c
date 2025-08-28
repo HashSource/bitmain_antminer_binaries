@@ -2,19 +2,19 @@
 void * ECDH_get_ex_data(EC_KEY *d,int idx)
 
 {
-  free_func *free_func;
   void *pvVar1;
   void *pvVar2;
   
-  free_func = DAT_00101030;
-  pvVar1 = EC_KEY_get_key_method_data(d,DAT_00101034,DAT_00101030,(clear_free_func *)DAT_00101030);
+  pvVar1 = EC_KEY_get_key_method_data
+                     (d,(dup_func *)0x100e09,(free_func *)0x100d49,(clear_free_func *)0x100d49);
   if (pvVar1 == (void *)0x0) {
     pvVar1 = (void *)ECDH_DATA_new_method_constprop_0();
     if (pvVar1 == (void *)0x0) {
       return (void *)0x0;
     }
     pvVar2 = EC_KEY_insert_key_method_data
-                       (d,pvVar1,DAT_00101034,free_func,(clear_free_func *)free_func);
+                       (d,pvVar1,(dup_func *)0x100e09,(free_func *)0x100d49,
+                        (clear_free_func *)0x100d49);
     if (pvVar2 != (void *)0x0) {
       if (*(ENGINE **)((int)pvVar1 + 4) != (ENGINE *)0x0) {
         ENGINE_finish(*(ENGINE **)((int)pvVar1 + 4));

@@ -94,12 +94,12 @@ LAB_000492c4:
                 else {
                   if (uVar3 < 2) {
                     if (uVar3 == 1) {
-                      work_2 = DAT_00049760;
-                      work_3 = DAT_00049764;
+                      work_2 = scanfreq_info.send_work;
+                      work_3 = scanfreq_info.send_work + 0x7f;
                     }
                     else if (uVar3 == 0) {
-                      work_2 = DAT_00049764;
-                      work_3 = DAT_00049768;
+                      work_2 = scanfreq_info.send_work + 0x7f;
+                      work_3 = scanfreq_info.send_work + 0x7e;
                     }
                   }
                   else {

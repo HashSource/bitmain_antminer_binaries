@@ -33,7 +33,7 @@ int ssl_add_cert_chain(int param_1,X509 *param_2,int *param_3)
   }
   iVar2 = BUF_MEM_grow_clean(str,10);
   if (iVar2 == 0) {
-    ERR_put_error(0x14,0x13e,7,DAT_0007e448,0x454);
+    ERR_put_error(0x14,0x13e,7,"ssl_cert.c",0x454);
     return 0;
   }
   if (pXVar6 != (X509 *)0x0) {
@@ -53,7 +53,7 @@ int ssl_add_cert_chain(int param_1,X509 *param_2,int *param_3)
     else {
       iVar2 = X509_STORE_CTX_init(&XStack_a8,store,pXVar6,(stack_st_X509 *)0x0);
       if (iVar2 == 0) {
-        ERR_put_error(0x14,0x13e,0xb,DAT_0007e448,0x45f);
+        ERR_put_error(0x14,0x13e,0xb,"ssl_cert.c",0x45f);
         return 0;
       }
       X509_verify_cert(&XStack_a8);
@@ -66,7 +66,7 @@ int ssl_add_cert_chain(int param_1,X509 *param_2,int *param_3)
         iVar3 = i2d_X509(pXVar6,(uchar **)0x0);
         iVar4 = BUF_MEM_grow_clean(str,*param_3 + 3 + iVar3);
         if (iVar4 == 0) {
-          ERR_put_error(0x14,0x13f,7,DAT_0007e448,0x425);
+          ERR_put_error(0x14,0x13f,7,"ssl_cert.c",0x425);
           X509_STORE_CTX_cleanup(&XStack_a8);
           return 0;
         }
@@ -104,7 +104,7 @@ int ssl_add_cert_chain(int param_1,X509 *param_2,int *param_3)
     iVar2 = iVar2 + 1;
   }
 LAB_0007e3ac:
-  ERR_put_error(0x14,0x13f,7,DAT_0007e448,0x425);
+  ERR_put_error(0x14,0x13f,7,"ssl_cert.c",0x425);
   return iVar3;
 }
 

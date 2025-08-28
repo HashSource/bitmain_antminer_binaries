@@ -12,11 +12,11 @@ int SSL_add_file_cert_subjects_to_stack(stack_st_X509_NAME *stackCAs,char *file)
   X509 *local_1c [2];
   
   local_1c[0] = (X509 *)0x0;
-  pvVar1 = (void *)sk_set_cmp_func(stackCAs,DAT_0007e120);
+  pvVar1 = (void *)sk_set_cmp_func(stackCAs,(void *)0x7c8e1);
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0x14,0xd8,0x41,DAT_0007e124,0x3bd);
+    ERR_put_error(0x14,0xd8,0x41,"ssl_cert.c",0x3bd);
     iVar5 = 0;
   }
   else {

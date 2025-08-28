@@ -14,7 +14,7 @@ BIO * CMS_dataInit(CMS_ContentInfo *cms,BIO *icont)
     ppAVar2 = CMS_get0_content(cms);
     if (ppAVar2 == (ASN1_OCTET_STRING **)0x0) {
 LAB_0010f76a:
-      ERR_put_error(0x2e,0x6f,0x7f,DAT_0010f7ec,0x72);
+      ERR_put_error(0x2e,0x6f,0x7f,"cms_lib.c",0x72);
       return (BIO *)0x0;
     }
     pAVar5 = *ppAVar2;
@@ -42,7 +42,7 @@ LAB_0010f76a:
     b = (BIO *)cms_EnvelopedData_init_bio(cms);
     break;
   default:
-    ERR_put_error(0x2e,0x6f,0x9c,DAT_0010f7ec,0x90);
+    ERR_put_error(0x2e,0x6f,0x9c,"cms_lib.c",0x90);
     return (BIO *)0x0;
   case 0x19:
     b = (BIO *)cms_DigestedData_init_bio(cms);

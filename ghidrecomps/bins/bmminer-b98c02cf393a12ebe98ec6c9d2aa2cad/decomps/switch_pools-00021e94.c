@@ -13,14 +13,12 @@ void switch_pools(int *param_1)
   undefined4 uVar8;
   int *piVar9;
   undefined8 uVar10;
-  undefined4 uVar11;
   char acStack_820 [2048];
   
   iVar1 = pthread_mutex_lock((pthread_mutex_t *)control_lock);
   if (iVar1 == 0) {
-    iVar1 = pthread_rwlock_wrlock(DAT_000221b4);
+    iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)(control_lock + 0x18));
     piVar3 = currentpool;
-    uVar11 = DAT_000221c0;
     if (iVar1 != 0) {
       piVar3 = __errno_location();
       iVar1 = *piVar3;
@@ -40,7 +38,7 @@ void switch_pools(int *param_1)
 LAB_00022016:
         piVar9 = pools;
         iVar2 = total_pools;
-        if (total_pools < 2) goto switchD_00021f1e_caseD_5;
+        if (total_pools < 2) goto switchD_00021f1e_default;
         iVar4 = 1;
         iVar5 = iVar1;
         do {
@@ -108,7 +106,7 @@ switchD_00021f1e_caseD_0:
           } while (iVar2 < total_pools);
         }
       default:
-switchD_00021f1e_caseD_5:
+switchD_00021f1e_default:
         piVar7 = (int *)pools[iVar1];
         break;
       case 1:
@@ -119,8 +117,7 @@ switchD_00021f1e_caseD_5:
     }
 LAB_00021f66:
     currentpool = piVar7;
-    iVar1 = pthread_rwlock_unlock(DAT_000221b4);
-    uVar11 = DAT_000221c0;
+    iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)(control_lock + 0x18));
     if (iVar1 != 0) {
       piVar3 = __errno_location();
       iVar1 = *piVar3;
@@ -138,15 +135,15 @@ LAB_00021f66:
         }
         clear_pool_work(piVar3);
       }
-      iVar1 = pthread_mutex_lock(DAT_000221b8);
+      iVar1 = pthread_mutex_lock((pthread_mutex_t *)lp_lock);
       if (iVar1 != 0) {
         piVar3 = __errno_location();
         iVar1 = *piVar3;
         uVar8 = 0x1487;
         goto LAB_000220ce;
       }
-      pthread_cond_broadcast(DAT_000221bc);
-      iVar1 = pthread_mutex_unlock(DAT_000221b8);
+      pthread_cond_broadcast((pthread_cond_t *)lp_cond);
+      iVar1 = pthread_mutex_unlock((pthread_mutex_t *)lp_lock);
       if (iVar1 == 0) {
         (*selective_yield)();
         return;
@@ -161,7 +158,6 @@ LAB_00021f66:
       uVar8 = 0x147f;
     }
     __format = "WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d";
-    uVar11 = DAT_000221c0;
   }
   else {
     piVar3 = __errno_location();
@@ -169,10 +165,9 @@ LAB_00021f66:
     uVar8 = 0x142e;
 LAB_000220ce:
     __format = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
-    uVar11 = DAT_000221c0;
   }
 LAB_000220de:
-  snprintf(acStack_820,0x800,__format,iVar1,"cgminer.c",uVar11,uVar8);
+  snprintf(acStack_820,0x800,__format,iVar1,"cgminer.c","switch_pools",uVar8);
   _applog(3,acStack_820,1);
                     /* WARNING: Subroutine does not return */
   __quit(1);

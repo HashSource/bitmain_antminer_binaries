@@ -19,7 +19,7 @@ undefined4 ssl_check_serverhello_tlsext(int param_1)
       pcVar1 = pcVar4 + iVar3 + -1;
       do {
         if (pcVar4 == pcVar1) {
-          ERR_put_error(0x14,0x118,0x9d,DAT_000728e0,0xc2c);
+          ERR_put_error(0x14,0x118,0x9d,"t1_lib.c",0xc2c);
           return 0xffffffff;
         }
         pcVar4 = pcVar4 + 1;

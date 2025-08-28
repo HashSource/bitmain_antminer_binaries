@@ -6,7 +6,7 @@ int nanosleep(timespec *__requested_time,timespec *__remaining)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_nanosleep_0007ce78)();
+  iVar1 = nanosleep(__requested_time,__remaining);
   return iVar1;
 }
 

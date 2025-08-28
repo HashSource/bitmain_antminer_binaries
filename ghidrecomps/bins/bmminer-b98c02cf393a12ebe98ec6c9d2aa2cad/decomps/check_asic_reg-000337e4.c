@@ -11,7 +11,7 @@ undefined4 check_asic_reg(uint param_1)
   int iVar7;
   int iVar8;
   uint uVar9;
-  undefined4 *puVar10;
+  byte *pbVar10;
   int iVar12;
   uint uVar13;
   uint uVar14;
@@ -19,28 +19,27 @@ undefined4 check_asic_reg(uint param_1)
   bool bVar16;
   double dVar17;
   int local_488;
-  uint *local_480;
+  int *local_480;
   uint *local_47c;
   undefined1 *local_478;
   uint local_470;
   uint uStack_46c;
   undefined4 local_45c;
-  undefined local_458;
+  byte local_458 [4];
   char acStack_454 [12];
   char acStack_448 [32];
   undefined2 local_428 [514];
-  undefined4 *puVar11;
+  byte *pbVar11;
   
   iVar12 = 0;
   local_45c = 0;
-  local_458 = 0;
+  local_458[0] = 0;
 LAB_00033804:
-  local_480 = DAT_00033abc;
   uVar13 = 0;
-  local_47c = DAT_00033abc;
+  local_47c = (uint *)rate;
   local_478 = displayed_rate;
   clear_register_value_buf();
-  local_480 = local_480 + 0x20;
+  local_480 = (int *)rate_error;
   do {
     if (*(int *)(dev + (uVar13 + 2) * 4) == 1) {
       read_asic_register(uVar13 & 0xff,1,0,param_1 & 0xff);
@@ -56,17 +55,17 @@ LAB_00033882:
         do {
           while( true ) {
             cgsleep_ms(300);
-            pthread_mutex_lock(DAT_00033ac0);
+            pthread_mutex_lock((pthread_mutex_t *)reg_mutex);
             uVar3 = reg_value_buf._8_4_;
             if ((0x1fe < (uint)reg_value_buf._8_4_) || (0x1fe < (uint)reg_value_buf._4_4_)) {
               iVar12 = iVar12 + 1;
-              pthread_mutex_unlock(DAT_00033ac0);
+              pthread_mutex_unlock((pthread_mutex_t *)reg_mutex);
               goto LAB_00033804;
             }
             if (reg_value_buf._8_4_ == 0) break;
             local_488 = local_488 + reg_value_buf._8_4_;
             if (600 < local_488) {
-              pthread_mutex_unlock(DAT_00033c3c);
+              pthread_mutex_unlock((pthread_mutex_t *)reg_mutex);
               return 0;
             }
             iVar12 = 0;
@@ -117,20 +116,20 @@ LAB_00033904:
                   else {
                     if (param_1 != 0x10) {
                       if ((param_1 == 8) && (uVar14 = uVar15 + 1, (int)uVar14 < 0x55)) {
-                        puVar11 = &local_45c;
+                        pbVar11 = (byte *)&local_45c;
                         pcVar4 = acStack_454;
                         do {
-                          puVar10 = (undefined4 *)((int)puVar11 + 1);
-                          sprintf(pcVar4,"%02x",(uint)*(byte *)puVar11);
-                          puVar11 = puVar10;
+                          pbVar10 = pbVar11 + 1;
+                          sprintf(pcVar4,"%02x",(uint)*pbVar11);
+                          pbVar11 = pbVar10;
                           pcVar4 = pcVar4 + 2;
-                        } while (puVar10 != (undefined4 *)&local_458);
+                        } while (pbVar10 != local_458);
                         uVar5 = strtol(acStack_454,(char **)0x0,0x10);
                         uVar9 = ((int)uVar5 >> 0x1f) << 0x18 | uVar5 >> 8;
                         uVar5 = uVar5 * 0x1000000;
-                        bVar16 = uVar9 <= DAT_00033c44;
-                        if (DAT_00033c44 == uVar9) {
-                          bVar16 = uVar5 <= DAT_00033c40;
+                        bVar16 = uVar9 < 0x18;
+                        if (uVar9 == 0x17) {
+                          bVar16 = uVar5 < 0x4876e800;
                         }
                         if (bVar16) {
                           bVar16 = CARRY4(uVar5,local_470);
@@ -141,7 +140,7 @@ LAB_00033904:
                         sprintf((char *)local_428,"Asic[%02d]=%s ",uVar14,acStack_448);
                         writeLogFile(local_428);
                         dVar17 = strtod(acStack_448,(char **)0x0);
-                        *(double *)(DAT_00033c38 + (uVar13 * 0x54 + uVar15) * 8) = dVar17;
+                        *(double *)(chain_asic_RT + (uVar13 * 0x54 + uVar15) * 8) = dVar17;
                         if ((uVar14 & 7) == 0 || uVar14 == 0x54) {
                           local_428[0] = 10;
                           writeLogFile(local_428);
@@ -163,15 +162,15 @@ LAB_00033904:
             } while (iVar12 != uVar3);
 LAB_0003398a:
             if ((param_1 == 0) && (*(char *)(dev + uVar13 + 0x53ec) == 'T')) {
-              pthread_mutex_unlock(DAT_00033c3c);
+              pthread_mutex_unlock((pthread_mutex_t *)reg_mutex);
               goto LAB_00033c1a;
             }
             iVar12 = 0;
-            pthread_mutex_unlock(DAT_00033ac0);
+            pthread_mutex_unlock((pthread_mutex_t *)reg_mutex);
           }
           iVar12 = iVar12 + 1;
           cgsleep_ms(100);
-          pthread_mutex_unlock(DAT_00033ac0);
+          pthread_mutex_unlock((pthread_mutex_t *)reg_mutex);
         } while (iVar12 != 3);
         if (param_1 == 0) {
 LAB_00033c1a:
@@ -200,9 +199,9 @@ LAB_00033c1a:
         }
         if (iVar12 < 3) goto LAB_00033882;
 LAB_00033bac:
-        uVar14 = *local_480;
-        *local_480 = uVar14 + 1;
-        if (((int)(uVar14 + 1) < 4) && (status_error == '\0')) {
+        iVar12 = *local_480;
+        *local_480 = iVar12 + 1;
+        if ((iVar12 + 1 < 4) && (status_error == '\0')) {
           iVar12 = 0;
           clear_register_value_buf();
           goto LAB_00033824;

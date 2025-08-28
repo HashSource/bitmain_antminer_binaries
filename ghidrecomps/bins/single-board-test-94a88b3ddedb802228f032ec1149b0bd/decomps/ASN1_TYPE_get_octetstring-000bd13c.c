@@ -13,7 +13,7 @@ int ASN1_TYPE_get_octetstring(ASN1_TYPE *a,uchar *data,int max_len)
     memcpy(data,pAVar1->data,max_len);
   }
   else {
-    ERR_put_error(0xd,0x87,0x6d,DAT_000bd178,0x55);
+    ERR_put_error(0xd,0x87,0x6d,"evp_asn1.c",0x55);
     sVar2 = 0xffffffff;
   }
   return sVar2;

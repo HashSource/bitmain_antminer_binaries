@@ -6,12 +6,12 @@ K_LIST * _k_free_list(K_LIST *list,char *file,char *func,int line)
 {
   void **ppvVar1;
   int iVar2;
-  cglock_t *__mutex;
+  pthread_mutex_t *__mutex;
   char tmp42 [2048];
   
   if (list->is_store != false) {
-    snprintf(tmp42,0x800,DAT_000103d4,list->name,DAT_000103d0,file,func,line,DAT_000103d8,
-             DAT_000103d0,400);
+    snprintf(tmp42,0x800,"List %s can\'t %s() a store - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_free_list",file,func,line,"klist.c","_k_free_list",400);
     _applog(3,tmp42,true);
     _quit(1);
   }
@@ -33,9 +33,9 @@ K_LIST * _k_free_list(K_LIST *list,char *file,char *func,int line)
     } while (iVar2 < list->data_mem_count);
   }
   free(list->data_memory);
-  __mutex = list->lock;
-  pthread_rwlock_destroy((pthread_rwlock_t *)&__mutex->rwlock);
-  pthread_mutex_destroy((pthread_mutex_t *)__mutex);
+  __mutex = (pthread_mutex_t *)list->lock;
+  pthread_rwlock_destroy((pthread_rwlock_t *)(__mutex + 1));
+  pthread_mutex_destroy(__mutex);
   free(list->lock);
   free(list);
   return (K_LIST *)0x0;

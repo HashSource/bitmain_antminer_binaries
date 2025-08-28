@@ -6,9 +6,7 @@ int sem_trywait(sem_t *__sem)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a2a0. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f21c)();
+  iVar1 = (*(code *)(undefined *)0x0)(__sem);
   return iVar1;
 }
 

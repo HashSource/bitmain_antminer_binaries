@@ -35,7 +35,7 @@ int RSA_padding_add_PKCS1_PSS_mgf1
   if (sLen != -1) {
     cnt_00 = sLen;
     if ((sLen != -2) && (sLen + 2 < 0 != SCARRY4(sLen,2))) {
-      ERR_put_error(4,0x94,0x88,DAT_00125654,0xd7);
+      ERR_put_error(4,0x94,0x88,"rsa_pss.c",0xd7);
       return 0;
     }
   }
@@ -52,16 +52,16 @@ int RSA_padding_add_PKCS1_PSS_mgf1
     cnt_00 = (iVar4 - cnt) - 2;
   }
   else if (iVar4 <= (int)(cnt + cnt_00 + 1)) {
-    ERR_put_error(4,0x94,0x6e,DAT_00125654,0xe5);
+    ERR_put_error(4,0x94,0x6e,"rsa_pss.c",0xe5);
     return 0;
   }
   if ((int)cnt_00 < 1) {
     buf = (uint *)0x0;
   }
   else {
-    buf = (uint *)CRYPTO_malloc(cnt_00,DAT_00125654,0xe9);
+    buf = (uint *)CRYPTO_malloc(cnt_00,"rsa_pss.c",0xe9);
     if (buf == (uint *)0x0) {
-      ERR_put_error(4,0x94,0x41,DAT_00125654,0xec);
+      ERR_put_error(4,0x94,0x41,"rsa_pss.c",0xec);
       return 0;
     }
     iVar5 = RAND_bytes((uchar *)buf,cnt_00);
@@ -72,7 +72,7 @@ int RSA_padding_add_PKCS1_PSS_mgf1
   }
   EVP_MD_CTX_init(&EStack_40);
   iVar5 = EVP_DigestInit_ex(&EStack_40,Hash,(ENGINE *)0x0);
-  if ((((iVar5 == 0) || (iVar5 = EVP_DigestUpdate(&EStack_40,DAT_00125658,8), iVar5 == 0)) ||
+  if ((((iVar5 == 0) || (iVar5 = EVP_DigestUpdate(&EStack_40,&zeroes,8), iVar5 == 0)) ||
       (iVar5 = EVP_DigestUpdate(&EStack_40,mHash,cnt), iVar5 == 0)) ||
      ((cnt_00 != 0 && (iVar5 = EVP_DigestUpdate(&EStack_40,buf,cnt_00), iVar5 == 0)))) {
 LAB_001253e0:
@@ -91,7 +91,7 @@ LAB_001253e0:
     if (0 < (int)cnt_00) {
       puVar10 = (uint *)(mask + iVar5 + -1);
       uVar7 = cnt_00 >> 2;
-      uVar8 = cnt_00 & 0xfffffffc;
+      uVar8 = uVar7 * 4;
       if (uVar7 == 0 ||
           ((((uint)puVar10 | (uint)buf) & 3) != 0 ||
           (cnt_00 < 4 || buf < mask + iVar5 + 3 && puVar10 < buf + 1))) {

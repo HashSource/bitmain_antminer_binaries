@@ -5,7 +5,7 @@ void thread_reportout(int param_1)
   time_t tVar1;
   int iVar2;
   
-  *(undefined *)(param_1 + 0x3d) = 1;
+  *(undefined1 *)(param_1 + 0x3d) = 1;
   cgtime(param_1 + 0x2c);
   iVar2 = *(int *)(param_1 + 0x24);
   *(undefined4 *)(iVar2 + 0x60) = 0;

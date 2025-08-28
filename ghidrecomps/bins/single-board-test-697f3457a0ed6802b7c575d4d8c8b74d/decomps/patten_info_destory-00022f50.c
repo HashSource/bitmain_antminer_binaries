@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void patten_info_destory(void)
 
@@ -13,7 +13,7 @@ void patten_info_destory(void)
   if (g_patten.asic_recv_nonces != (int *)0x0) {
     free(g_patten.asic_recv_nonces);
   }
-  pthread_mutex_destroy(DAT_00022fb8);
+  pthread_mutex_destroy((pthread_mutex_t *)&g_patten.patten_mutex);
   return;
 }
 

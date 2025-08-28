@@ -17,7 +17,7 @@ char * realloc_strcat(char *param_1,char *param_2)
     if ((uVar3 & 3) != 0) {
       uVar3 = (uVar3 & 0xfffffffc) + 4;
     }
-    pcVar4 = (char *)_cgmalloc(uVar3,"util.c",DAT_0004767c,0xd55);
+    pcVar4 = (char *)_cgmalloc(uVar3,"util.c","realloc_strcat",0xd55);
     sprintf(pcVar4,"%s%s",param_1,param_2);
     free(param_1);
     return pcVar4;
@@ -26,7 +26,7 @@ char * realloc_strcat(char *param_1,char *param_2)
   if ((uVar3 & 3) != 0) {
     uVar3 = (uVar3 & 0xfffffffc) + 4;
   }
-  pcVar4 = (char *)_cgmalloc(uVar3,"util.c",DAT_0004767c,0xd55);
+  pcVar4 = (char *)_cgmalloc(uVar3,"util.c","realloc_strcat",0xd55);
   pcVar4 = strcpy(pcVar4,param_2);
   return pcVar4;
 }

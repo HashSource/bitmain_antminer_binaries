@@ -2,7 +2,7 @@
 int ftp_state_prepare_transfer(int *param_1)
 
 {
-  int iVar1;
+  char *pcVar1;
   int iVar2;
   
   iVar2 = *param_1;
@@ -20,24 +20,23 @@ int ftp_state_prepare_transfer(int *param_1)
     return iVar2;
   }
   if (param_1[0x102] == 0) {
-    iVar1 = *(int *)(iVar2 + 0x350);
-    if ((*(int *)(iVar2 + 0x350) == 0) && (iVar1 = DAT_0005cb94, *(char *)(iVar2 + 0x2fd) != '\0'))
-    {
-      iVar1 = DAT_0005cb98;
+    pcVar1 = *(char **)(iVar2 + 0x350);
+    if ((pcVar1 == (char *)0x0) && (pcVar1 = "LIST", *(char *)(iVar2 + 0x2fd) != '\0')) {
+      pcVar1 = "NLST";
     }
-    iVar2 = Curl_pp_sendf(param_1 + 0xf0,DAT_0005cb90,iVar1);
+    iVar2 = Curl_pp_sendf(param_1 + 0xf0,"PRET %s",pcVar1);
     if (iVar2 != 0) {
       return iVar2;
     }
   }
   else if (*(char *)(iVar2 + 0x309) == '\0') {
-    iVar2 = Curl_pp_sendf(param_1 + 0xf0,DAT_0005cb8c);
+    iVar2 = Curl_pp_sendf(param_1 + 0xf0,"PRET RETR %s");
     if (iVar2 != 0) {
       return iVar2;
     }
   }
   else {
-    iVar2 = Curl_pp_sendf(param_1 + 0xf0,DAT_0005cb88);
+    iVar2 = Curl_pp_sendf(param_1 + 0xf0,"PRET STOR %s");
     if (iVar2 != 0) {
       return iVar2;
     }

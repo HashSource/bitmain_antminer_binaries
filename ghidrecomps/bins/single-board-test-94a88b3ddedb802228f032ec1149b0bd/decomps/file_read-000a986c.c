@@ -12,9 +12,9 @@ void * file_read(int param_1,void *param_2,size_t param_3)
     iVar2 = ferror(*(FILE **)(param_1 + 0x20));
     if (iVar2 != 0) {
       piVar3 = __errno_location();
-      ERR_put_error(2,0xb,*piVar3,DAT_000a98c0,0xf4);
+      ERR_put_error(2,0xb,*piVar3,"bss_file.c",0xf4);
       pvVar1 = (void *)0xffffffff;
-      ERR_put_error(0x20,0x82,2,DAT_000a98c0,0xf5);
+      ERR_put_error(0x20,0x82,2,"bss_file.c",0xf5);
     }
   }
   return pvVar1;

@@ -4,57 +4,54 @@ void do_dump(int param_1,code *param_2,int param_3,_union_263 param_4)
 {
   byte *pbVar1;
   int iVar2;
-  int iVar3;
-  byte *pbVar4;
-  int iVar5;
-  char *pcVar6;
-  undefined local_30;
-  undefined local_2f;
+  byte *pbVar3;
+  int iVar4;
+  char *pcVar5;
+  char local_30;
+  char local_2f;
   byte *local_2c;
-  undefined8 local_28;
+  ASN1_TYPE local_28;
   
-  iVar2 = (*param_2)(param_3,DAT_000b6198,1);
-  iVar3 = DAT_000b61a0;
+  iVar2 = (*param_2)(param_3,&DAT_001604e0,1);
   if (iVar2 != 0) {
     if (param_1 << 0x16 < 0) {
-      local_28._0_4_ = (param_4.asn1_string)->type;
-      local_28._4_4_ = param_4;
-      iVar3 = i2d_ASN1_TYPE((ASN1_TYPE *)&local_28,(uchar **)0x0);
-      pbVar4 = (byte *)CRYPTO_malloc(iVar3,DAT_000b619c,0x13d);
-      if (pbVar4 != (byte *)0x0) {
-        local_2c = pbVar4;
-        i2d_ASN1_TYPE((ASN1_TYPE *)&local_28,&local_2c);
-        iVar2 = DAT_000b61a0;
+      local_28.type = (param_4.asn1_string)->type;
+      local_28.value = param_4;
+      iVar2 = i2d_ASN1_TYPE(&local_28,(uchar **)0x0);
+      pbVar3 = (byte *)CRYPTO_malloc(iVar2,"a_strex.c",0x13d);
+      if (pbVar3 != (byte *)0x0) {
+        local_2c = pbVar3;
+        i2d_ASN1_TYPE(&local_28,&local_2c);
         if (param_3 == 0) {
 LAB_000b6180:
-          CRYPTO_free(pbVar4);
+          CRYPTO_free(pbVar3);
         }
         else {
-          pbVar1 = pbVar4;
+          pbVar1 = pbVar3;
           do {
-            if (pbVar1 == pbVar4 + iVar3) goto LAB_000b6180;
-            local_2f = *(undefined *)((*pbVar1 & 0xf) + iVar2 + 0x80);
-            local_30 = *(undefined *)(iVar2 + (uint)(*pbVar1 >> 4) + 0x80);
-            iVar5 = (*param_2)(param_3,&local_30,2);
+            if (pbVar1 == pbVar3 + iVar2) goto LAB_000b6180;
+            local_2f = "0123456789ABCDEF"[*pbVar1 & 0xf];
+            local_30 = "0123456789ABCDEF"[*pbVar1 >> 4];
+            iVar4 = (*param_2)(param_3,&local_30,2);
             pbVar1 = pbVar1 + 1;
-          } while (iVar5 != 0);
-          CRYPTO_free(pbVar4);
+          } while (iVar4 != 0);
+          CRYPTO_free(pbVar3);
         }
       }
     }
     else {
-      pbVar4 = (param_4.asn1_string)->data;
-      pcVar6 = (param_4.object)->sn;
+      pbVar3 = (param_4.asn1_string)->data;
+      pcVar5 = (param_4.object)->sn;
       if (param_3 != 0) {
-        pbVar1 = pbVar4;
+        pbVar1 = pbVar3;
         do {
-          if (pbVar1 == pbVar4 + (int)pcVar6) {
+          if (pbVar1 == pbVar3 + (int)pcVar5) {
             return;
           }
-          local_28._2_2_ = (undefined2)((uint)(int)local_28 >> 0x10);
-          local_28._0_4_ =
-               CONCAT31(CONCAT21(local_28._2_2_,*(undefined *)((*pbVar1 & 0xf) + iVar3 + 0x80)),
-                        *(undefined *)(iVar3 + (uint)(*pbVar1 >> 4) + 0x80));
+          local_28.type._2_2_ = (undefined2)((uint)local_28.type >> 0x10);
+          local_28.type =
+               CONCAT31(CONCAT21(local_28.type._2_2_,"0123456789ABCDEF"[*pbVar1 & 0xf]),
+                        "0123456789ABCDEF"[*pbVar1 >> 4]);
           iVar2 = (*param_2)(param_3,&local_28,2);
           pbVar1 = pbVar1 + 1;
         } while (iVar2 != 0);

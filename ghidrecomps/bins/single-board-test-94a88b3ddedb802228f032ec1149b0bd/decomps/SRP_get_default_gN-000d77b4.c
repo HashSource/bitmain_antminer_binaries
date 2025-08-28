@@ -1,52 +1,50 @@
 
-char ** SRP_get_default_gN(char *param_1)
+undefined4 * SRP_get_default_gN(char *param_1)
 
 {
-  char **ppcVar1;
-  int iVar2;
+  int iVar1;
   
-  ppcVar1 = DAT_000d782c;
   if (param_1 == (char *)0x0) {
-    return DAT_000d782c;
+    return &knowngN;
   }
-  iVar2 = strcmp(*DAT_000d782c,param_1);
-  if (iVar2 != 0) {
-    iVar2 = strcmp(ppcVar1[3],param_1);
-    if (iVar2 == 0) {
-      iVar2 = 1;
+  iVar1 = strcmp(knowngN,param_1);
+  if (iVar1 != 0) {
+    iVar1 = strcmp(DAT_0019a7c4,param_1);
+    if (iVar1 == 0) {
+      iVar1 = 1;
     }
     else {
-      iVar2 = strcmp(ppcVar1[6],param_1);
-      if (iVar2 == 0) {
-        iVar2 = 2;
+      iVar1 = strcmp(DAT_0019a7d0,param_1);
+      if (iVar1 == 0) {
+        iVar1 = 2;
       }
       else {
-        iVar2 = strcmp(ppcVar1[9],param_1);
-        if (iVar2 == 0) {
-          iVar2 = 3;
+        iVar1 = strcmp(DAT_0019a7dc,param_1);
+        if (iVar1 == 0) {
+          iVar1 = 3;
         }
         else {
-          iVar2 = strcmp(ppcVar1[0xc],param_1);
-          if (iVar2 == 0) {
-            iVar2 = 4;
+          iVar1 = strcmp(DAT_0019a7e8,param_1);
+          if (iVar1 == 0) {
+            iVar1 = 4;
           }
           else {
-            iVar2 = strcmp(ppcVar1[0xf],param_1);
-            if (iVar2 == 0) {
-              iVar2 = 5;
+            iVar1 = strcmp(DAT_0019a7f4,param_1);
+            if (iVar1 == 0) {
+              iVar1 = 5;
             }
             else {
-              iVar2 = strcmp(ppcVar1[0x12],param_1);
-              if (iVar2 != 0) {
-                return (char **)0x0;
+              iVar1 = strcmp(DAT_0019a800,param_1);
+              if (iVar1 != 0) {
+                return (undefined4 *)0x0;
               }
-              iVar2 = 6;
+              iVar1 = 6;
             }
           }
         }
       }
     }
   }
-  return ppcVar1 + iVar2 * 3;
+  return &knowngN + iVar1 * 3;
 }
 

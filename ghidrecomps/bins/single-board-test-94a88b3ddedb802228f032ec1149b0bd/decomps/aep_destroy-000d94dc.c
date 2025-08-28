@@ -2,20 +2,14 @@
 undefined4 aep_destroy(void)
 
 {
-  void **ppvVar1;
-  int *piVar2;
-  
-  ppvVar1 = DAT_000d9510;
-  if (*DAT_000d9510 != (void *)0x0) {
-    CRYPTO_free(*DAT_000d9510);
+  if (AEP_LIBNAME != (void *)0x0) {
+    CRYPTO_free(AEP_LIBNAME);
   }
-  piVar2 = DAT_000d9514;
-  *ppvVar1 = (void *)0x0;
-  ppvVar1 = DAT_000d9510;
-  if (*piVar2 == 0) {
-    ERR_unload_strings((int)DAT_000d9510[1],(ERR_STRING_DATA *)(piVar2 + 1));
-    ERR_unload_strings((int)ppvVar1[1],(ERR_STRING_DATA *)(piVar2 + 0x13));
-    *piVar2 = 1;
+  AEP_LIBNAME = (void *)0x0;
+  if (AEPHK_error_init == 0) {
+    ERR_unload_strings(AEPHK_lib_error_code,(ERR_STRING_DATA *)AEPHK_str_functs);
+    ERR_unload_strings(AEPHK_lib_error_code,(ERR_STRING_DATA *)AEPHK_str_reasons);
+    AEPHK_error_init = 1;
   }
   return 1;
 }

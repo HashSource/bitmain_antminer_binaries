@@ -11,10 +11,10 @@ void set_block_header_version0_ab(undefined4 param_1)
     get_block_header_version0_ab();
     return;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
-    fprintf(__stream,"%s:%d:%s: set BLOCK_VERSION_0 is 0x%x\n","znyq7010.c",0x245,DAT_0004d154,
-            param_1);
+    fprintf(__stream,"%s:%d:%s: set BLOCK_VERSION_0 is 0x%x\n","znyq7010.c",0x245,
+            "set_block_header_version0_ab",param_1);
   }
   fclose(__stream);
   get_block_header_version0_ab();

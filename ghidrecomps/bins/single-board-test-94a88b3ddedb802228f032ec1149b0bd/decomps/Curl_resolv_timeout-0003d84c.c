@@ -13,7 +13,8 @@ Curl_resolv_timeout(int *param_1,undefined4 param_2,undefined4 param_3,undefined
   undefined4 local_130;
   undefined4 uStack_12c;
   sigaction sStack_128;
-  sigaction local_9c;
+  _union_1051 local_9c [33];
+  uint local_18;
   
   iVar4 = *param_1;
   bVar1 = false;
@@ -31,12 +32,12 @@ Curl_resolv_timeout(int *param_1,undefined4 param_2,undefined4 param_3,undefined
   }
   iVar2 = __sigsetjmp(curl_jmpenv,1);
   if (iVar2 == 0) {
-    sigaction(0xe,(sigaction *)0x0,&local_9c);
-    memcpy(&sStack_128,&local_9c,0x8c);
+    sigaction(0xe,(sigaction *)0x0,(sigaction *)local_9c);
+    memcpy(&sStack_128,local_9c,0x8c);
     bVar1 = true;
-    local_9c.sa_flags = local_9c.sa_flags & 0xefffffff;
-    local_9c.__sigaction_handler.sa_handler = alarmfunc + 1;
-    sigaction(0xe,&local_9c,(sigaction *)0x0);
+    local_18 = local_18 & 0xefffffff;
+    local_9c[0] = (_union_1051)0x3d535;
+    sigaction(0xe,(sigaction *)local_9c,(sigaction *)0x0);
     uVar3 = curlx_sltoui(param_5 / 1000);
     local_134 = alarm(uVar3);
     uVar5 = Curl_resolv(param_1,param_2,param_3,param_4);

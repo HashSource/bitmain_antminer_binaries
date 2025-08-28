@@ -6,7 +6,6 @@ int utf8_check_string(char *string,int length)
 {
   int iVar1;
   int size;
-  int count;
   int iVar2;
   
   if (length == -1) {

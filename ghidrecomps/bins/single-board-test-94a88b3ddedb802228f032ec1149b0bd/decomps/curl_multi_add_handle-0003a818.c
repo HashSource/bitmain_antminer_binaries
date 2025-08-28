@@ -12,7 +12,7 @@ undefined4 curl_multi_add_handle(int *param_1,undefined4 *param_2)
     if (param_2[0x10] != 0) {
       return 7;
     }
-    iVar1 = Curl_llist_alloc(DAT_0003a8f0);
+    iVar1 = Curl_llist_alloc(0x39ac9);
     if (iVar1 != 0) {
       param_2[0x219b] = iVar1;
       mstate(param_2,0);

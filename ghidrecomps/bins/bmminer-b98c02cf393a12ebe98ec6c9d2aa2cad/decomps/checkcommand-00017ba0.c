@@ -7,7 +7,8 @@ void checkcommand(int param_1,undefined4 param_2,char *param_3,uint param_4,byte
   uint uVar3;
   undefined4 uVar4;
   __int32_t *p_Var5;
-  undefined uVar6;
+  undefined1 extraout_r3;
+  undefined1 uVar6;
   undefined *puVar7;
   undefined1 *puVar8;
   char *pcVar9;
@@ -65,14 +66,14 @@ void checkcommand(int param_1,undefined4 param_2,char *param_3,uint param_4,byte
   puVar7 = &DAT_000580f0;
 LAB_00017cd0:
   uVar4 = api_add_data_full(uVar4,"Access",2,puVar7,0);
-  uVar6 = 0;
-  print_data(param_1,uVar4,param_4);
+  print_data(param_1,uVar4,param_4,0);
   bVar10 = (param_4 & uVar3) != 0;
+  uVar6 = extraout_r3;
   if (bVar10) {
     uVar6 = 1;
   }
   if (bVar10) {
-    *(undefined *)(param_1 + 0xd) = uVar6;
+    *(undefined1 *)(param_1 + 0xd) = uVar6;
   }
   return;
 }

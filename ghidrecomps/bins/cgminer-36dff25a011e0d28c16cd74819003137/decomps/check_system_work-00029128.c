@@ -83,8 +83,8 @@ void * check_system_work(void)
     if (counter % 0x708 == 0) {
       dVar7 = get_total_hashs();
       dVar8 = get_total_secs();
-      dVar9 = (dVar7 - last_total_mhashes) / DAT_00029658;
-      dVar10 = dVar8 - last_total_secs;
+      dVar10 = dVar7 - last_total_mhashes;
+      dVar9 = dVar8 - last_total_secs;
       if (3 < log_level) {
         print_crt_time_to_file(log_file,3);
         pFVar3 = fopen(log_file,"a+");
@@ -99,7 +99,7 @@ void * check_system_work(void)
       last_total_mhashes = dVar7;
       if ((((status_error != true) && (__aeabi_uidivmod(counter,0x5460), extraout_r1 == 0)) &&
           (iVar4 = get_ideal_hash_rate_fixed(),
-          dVar9 / dVar10 < (double)(longlong)iVar4 * DAT_00029660)) &&
+          (dVar10 / 1000.0) / dVar9 < (double)(longlong)iVar4 * 0.95)) &&
          ((_Var2 = is_domain_unbalance(), _Var2 && (3 < log_level)))) {
         print_crt_time_to_file(log_file,3);
         pFVar3 = fopen(log_file,"a+");
@@ -124,9 +124,9 @@ void * check_system_work(void)
             iVar4 = nonce_times % 0x3c;
             puVar6 = dev->chain_asic_nonce[i] + j;
             uVar5 = *(undefined4 *)((int)puVar6 + 4);
-            *(undefined4 *)(nonce_num[i][j] + iVar4) = *(undefined4 *)puVar6;
+            *(int *)(nonce_num[i][j] + iVar4) = (int)*puVar6;
             *(undefined4 *)((int)nonce_num[i][j] + iVar4 * 8 + 4) = uVar5;
-            avg_num = *(int *)(dev->chain_asic_nonce[i] + j) + avg_num;
+            avg_num = (int)dev->chain_asic_nonce[i][j] + avg_num;
             if (4 < log_level) {
               print_crt_time_to_file(log_file,4);
               pFVar3 = fopen(log_file,"a+");

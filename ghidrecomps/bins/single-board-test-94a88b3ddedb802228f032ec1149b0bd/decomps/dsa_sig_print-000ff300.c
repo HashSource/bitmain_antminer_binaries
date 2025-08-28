@@ -11,7 +11,7 @@ uint dsa_sig_print(BIO *param_1,undefined4 param_2,ASN1_STRING *param_3,int para
   uchar *local_1c;
   
   if (param_3 == (ASN1_STRING *)0x0) {
-    iVar2 = BIO_puts(param_1,DAT_000ff3f4);
+    iVar2 = BIO_puts(param_1,"\n");
     uVar3 = (uint)(0 < iVar2);
   }
   else {
@@ -40,16 +40,15 @@ uint dsa_sig_print(BIO *param_1,undefined4 param_2,ASN1_STRING *param_3,int para
           a_00 = (BIGNUM *)(iVar2 >> 3);
         }
       }
-      buf = (uchar *)CRYPTO_malloc((int)((int)&a_00->dmax + 2),DAT_000ff3f0,0x223);
+      buf = (uchar *)CRYPTO_malloc((int)((int)&a_00->dmax + 2),"dsa_ameth.c",0x223);
       if (buf == (uchar *)0x0) {
-        ERR_put_error(10,0x7d,0x41,DAT_000ff3f0,0x225);
+        ERR_put_error(10,0x7d,0x41,"dsa_ameth.c",0x225);
         uVar3 = 0;
       }
       else {
-        iVar2 = BIO_write(param_1,DAT_000ff3f4,1);
-        if ((iVar2 == 1) &&
-           (iVar2 = ASN1_bn_print(param_1,DAT_000ff3f8,a->r,buf,param_4), iVar2 != 0)) {
-          uVar3 = ASN1_bn_print(param_1,DAT_000ff3fc,a->s,buf,param_4);
+        iVar2 = BIO_write(param_1,"\n",1);
+        if ((iVar2 == 1) && (iVar2 = ASN1_bn_print(param_1,"r:   ",a->r,buf,param_4), iVar2 != 0)) {
+          uVar3 = ASN1_bn_print(param_1,"s:   ",a->s,buf,param_4);
           if (uVar3 != 0) {
             uVar3 = 1;
           }

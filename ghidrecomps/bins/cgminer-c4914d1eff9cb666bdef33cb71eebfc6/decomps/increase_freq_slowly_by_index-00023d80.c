@@ -3,7 +3,6 @@ void increase_freq_slowly_by_index(float init_freq,float low_freq,float high_fre
 
 {
   FILE *pFVar1;
-  float fVar2;
   float high_freq_local;
   float low_freq_local;
   float init_freq_local;
@@ -34,13 +33,12 @@ void increase_freq_slowly_by_index(float init_freq,float low_freq,float high_fre
     fclose(pFVar1);
   }
   steps = (int)((low_freq - init_freq) / freq_step);
-  fVar2 = (float)(longlong)steps * freq_step + init_freq;
-  if (low_freq != fVar2 && low_freq < fVar2 == (NAN(low_freq) || NAN(fVar2))) {
+  if ((float)(longlong)steps * freq_step + init_freq < low_freq) {
     steps = steps + 1;
   }
   for (i = 0; i < steps; i = i + 1) {
     freq_tmp = init_freq + (float)(longlong)(i + 1) * freq_step;
-    if (freq_tmp != low_freq && freq_tmp < low_freq == (NAN(freq_tmp) || NAN(low_freq))) {
+    if (low_freq < freq_tmp) {
       freq_tmp = low_freq;
     }
     if (3 < log_level) {

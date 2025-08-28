@@ -4,7 +4,7 @@ undefined4 T9_plus_write_pic_iic(char param_1,char param_2,byte param_3,byte par
 {
   int iVar1;
   undefined4 uVar2;
-  uint local_14;
+  undefined4 local_14;
   
   local_14 = 0;
   while( true ) {

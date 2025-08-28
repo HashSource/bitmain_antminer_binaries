@@ -15,10 +15,10 @@ void sha256_transf(int param_1,int param_2,int param_3)
     iVar2 = param_2 + local_c * 0x40;
     for (local_10 = 0; local_10 < 0x10; local_10 = local_10 + 1) {
       local_11c[local_10] =
-           CONCAT13(*(undefined *)(iVar2 + local_10 * 4),
-                    CONCAT12(*(undefined *)(local_10 * 4 + 1 + iVar2),
-                             CONCAT11(*(undefined *)(local_10 * 4 + 2 + iVar2),
-                                      *(undefined *)(local_10 * 4 + 3 + iVar2))));
+           CONCAT13(*(undefined1 *)(iVar2 + local_10 * 4),
+                    CONCAT12(*(undefined1 *)(local_10 * 4 + 1 + iVar2),
+                             CONCAT11(*(undefined1 *)(local_10 * 4 + 2 + iVar2),
+                                      *(undefined1 *)(local_10 * 4 + 3 + iVar2))));
     }
     for (local_10 = 0x10; local_10 < 0x40; local_10 = local_10 + 1) {
       local_11c[local_10] =

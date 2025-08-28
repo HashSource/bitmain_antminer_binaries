@@ -13,7 +13,7 @@ void noncenum(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
     uVar2 = api_add_data_full(uVar2,"60min nonce",1,nonce_num60_string,0);
     print_data(param_1,uVar2,1,0);
     if (iVar1 != 0) {
-      *(undefined *)(param_1 + 0xd) = 1;
+      *(undefined1 *)(param_1 + 0xd) = 1;
     }
     return;
   }

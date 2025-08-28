@@ -172,7 +172,7 @@ int send_job(uchar *buf,pool *pool)
           }
           memset(__s_00,0,coinbase_padding_len);
           memcpy(__s_00,buf + 0x58,(uint)*(ushort *)((int)__s + 0x3c));
-          *(undefined *)((int)__s_00 + (uint)*(ushort *)((int)__s + 0x3c)) = 0x80;
+          *(undefined1 *)((int)__s_00 + (uint)*(ushort *)((int)__s + 0x3c)) = 0x80;
           *(uint *)((coinbase_padding_len - 4) + (int)__s_00) =
                (uint)*(ushort *)((int)__s + 0x3c) << 0x1b |
                ((uint)*(ushort *)((int)__s + 0x3c) << 3) >> 8 & 0xff00 |
@@ -181,8 +181,8 @@ int send_job(uchar *buf,pool *pool)
           l_coinbase_padding = c_coinbase_padding;
           c_coinbase_padding = coinbase_padding_len;
           for (i = 0; i < coinbase_padding_len; i = i + 1) {
-            *(undefined *)(i + (int)dev->current_job_start_address) =
-                 *(undefined *)((int)__s_00 + i);
+            *(undefined1 *)(i + (int)dev->current_job_start_address) =
+                 *(undefined1 *)((int)__s_00 + i);
           }
           for (i = 0; i < coinbase_padding_len; i = i + 1) {
             if ((*(char *)(i + (int)dev->current_job_start_address) != *(char *)(i + (int)__s_00))

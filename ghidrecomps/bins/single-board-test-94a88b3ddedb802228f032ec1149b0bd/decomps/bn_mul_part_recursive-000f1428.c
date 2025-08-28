@@ -36,9 +36,6 @@ void bn_mul_part_recursive
     bVar1 = false;
     bn_sub_part_words(param_7 + param_4,iVar11,param_3,param_6,iVar12);
     break;
-  default:
-    bVar1 = false;
-    break;
   case -4:
     bn_sub_part_words(param_7,iVar10,param_2,param_5,param_5 - param_4);
     bVar1 = false;
@@ -57,6 +54,9 @@ void bn_mul_part_recursive
     bn_sub_part_words(param_7,param_2,iVar10,param_5,iVar13);
     bn_sub_part_words(param_7 + param_4,param_3,iVar11,param_6,param_4 - param_6);
     bVar1 = true;
+    break;
+  default:
+    bVar1 = false;
   }
   if (param_4 == 8) {
     local_40 = param_7 + 0x10;

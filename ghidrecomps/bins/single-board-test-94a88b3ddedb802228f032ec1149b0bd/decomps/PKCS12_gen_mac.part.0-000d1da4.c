@@ -22,11 +22,11 @@ undefined4 PKCS12_gen_mac_part_0(int param_1,char *param_2,int param_3,uchar *pa
     iter = ASN1_INTEGER_get((ASN1_INTEGER *)puVar3[2]);
     puVar3 = *(undefined4 **)(param_1 + 4);
   }
-  iVar1 = OBJ_obj2nid(**(ASN1_OBJECT ***)*puVar3);
+  iVar1 = OBJ_obj2nid((ASN1_OBJECT *)**(undefined4 **)*puVar3);
   name = OBJ_nid2sn(iVar1);
   md = EVP_get_digestbyname(name);
   if (md == (EVP_MD *)0x0) {
-    ERR_put_error(0x23,0x6b,0x76,DAT_000d1e90,0x5a);
+    ERR_put_error(0x23,0x6b,0x76,"p12_mutl.c",0x5a);
     uVar2 = 0;
   }
   else {
@@ -37,7 +37,7 @@ undefined4 PKCS12_gen_mac_part_0(int param_1,char *param_2,int param_3,uchar *pa
     else {
       iVar4 = PKCS12_key_gen_asc(param_2,param_3,salt,iVar4,3,iter,iVar1,auStack_138,md);
       if (iVar4 == 0) {
-        ERR_put_error(0x23,0x6b,0x6b,DAT_000d1e90,0x62);
+        ERR_put_error(0x23,0x6b,0x6b,"p12_mutl.c",0x62);
         uVar2 = 0;
       }
       else {

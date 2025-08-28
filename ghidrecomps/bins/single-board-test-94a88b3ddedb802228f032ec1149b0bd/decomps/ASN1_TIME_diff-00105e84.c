@@ -5,8 +5,8 @@ undefined4 ASN1_TIME_diff(undefined4 param_1,undefined4 param_2,int param_3,int 
   int iVar1;
   undefined4 uVar2;
   time_t tStack_74;
-  undefined auStack_70 [44];
-  undefined auStack_44 [44];
+  undefined1 auStack_70 [44];
+  undefined1 auStack_44 [44];
   
   if (param_3 == 0) {
     time(&tStack_74);

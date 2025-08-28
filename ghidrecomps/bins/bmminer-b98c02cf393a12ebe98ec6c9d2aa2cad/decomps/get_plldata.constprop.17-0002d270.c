@@ -16,13 +16,13 @@ void get_plldata_constprop_17
   char acStack_60 [32];
   char acStack_40 [32];
   
-  puVar2 = DAT_0002d340;
   sprintf(acStack_8c,"%d",param_1);
   iVar5 = 0;
   memset(acStack_80,0,0x20);
   memset(acStack_60,0,0x20);
   memset(acStack_40,0,0x20);
   __s1 = &DAT_00062030;
+  puVar2 = (undefined4 *)(freq_pll_1385 + 0x10);
   do {
     iVar1 = memcmp(__s1,acStack_8c,4);
     if (iVar1 == 0) {

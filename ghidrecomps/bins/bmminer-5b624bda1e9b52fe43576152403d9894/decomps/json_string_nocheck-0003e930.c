@@ -5,7 +5,6 @@ json_t * json_string_nocheck(char *value)
 
 {
   json_t *pjVar1;
-  json_string_t *string;
   char *pcVar2;
   json_t *local_14 [2];
   

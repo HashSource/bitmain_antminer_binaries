@@ -15,7 +15,7 @@ int RSA_padding_add_PKCS1_type_1(uchar *to,int tlen,uchar *f,int fl)
     memcpy(__s + __n + 1,f,fl);
   }
   else {
-    ERR_put_error(4,0x6c,0x6e,DAT_000fb6ac,0x4b);
+    ERR_put_error(4,0x6c,0x6e,"rsa_pk1.c",0x4b);
   }
   return (uint)(fl < tlen + -10);
 }

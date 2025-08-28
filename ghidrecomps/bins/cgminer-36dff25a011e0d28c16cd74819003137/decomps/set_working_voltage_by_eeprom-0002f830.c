@@ -1,11 +1,9 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void set_working_voltage_by_eeprom(void)
 
 {
-  char *in_stack_ffffffc8;
-  int in_stack_ffffffcc;
   int voltage;
   FILE *pFile;
   FILE *pFile_1;
@@ -28,8 +26,6 @@ void set_working_voltage_by_eeprom(void)
         print_crt_time_to_file(log_file,3);
         pFile = (FILE *)fopen(log_file,"a+");
         if (pFile != (FILE *)0x0) {
-          in_stack_ffffffc8 = "set_working_voltage_by_eeprom";
-          in_stack_ffffffcc = chain;
           fprintf((FILE *)pFile,"%s:%d:%s: eeprom voltage[%d] = %d\n","driver-btm-soc.c",0x1c1e,
                   "set_working_voltage_by_eeprom",chain,voltage);
         }
@@ -40,7 +36,7 @@ void set_working_voltage_by_eeprom(void)
   if (chain_num != 0) {
     avg = __aeabi_idiv(sum,chain_num);
     if (sum == chain_num * avg) {
-      set_working_voltage((double)CONCAT44(in_stack_ffffffcc,in_stack_ffffffc8));
+      set_working_voltage((double)(longlong)voltage / 100.0);
     }
     else if (3 < log_level) {
       print_crt_time_to_file(log_file,3);

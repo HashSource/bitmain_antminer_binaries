@@ -2,24 +2,17 @@
 int EVP_PKEY_meth_add0(EVP_PKEY_METHOD *pmeth)
 
 {
-  _STACK **pp_Var1;
-  _STACK *st;
-  int iVar2;
+  int iVar1;
   
-  pp_Var1 = DAT_000b3cd0;
-  st = *DAT_000b3cd0;
-  if (st == (_STACK *)0x0) {
-    st = sk_new(DAT_000b3cd4);
-    *pp_Var1 = st;
-    if (st == (_STACK *)0x0) {
-      return 0;
-    }
+  if (((app_pkey_methods == (_STACK *)0x0) &&
+      (app_pkey_methods = sk_new((cmp *)0xb3811), app_pkey_methods == (_STACK *)0x0)) ||
+     (iVar1 = sk_push(app_pkey_methods,pmeth), iVar1 == 0)) {
+    iVar1 = 0;
   }
-  iVar2 = sk_push(st,pmeth);
-  if (iVar2 == 0) {
-    return 0;
+  else {
+    sk_sort(app_pkey_methods);
+    iVar1 = 1;
   }
-  sk_sort(*pp_Var1);
-  return 1;
+  return iVar1;
 }
 

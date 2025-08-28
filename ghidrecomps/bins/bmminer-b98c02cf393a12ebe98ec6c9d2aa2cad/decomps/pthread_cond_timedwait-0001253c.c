@@ -6,7 +6,7 @@ int pthread_cond_timedwait(pthread_cond_t *__cond,pthread_mutex_t *__mutex,times
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_cond_timedwait_0007cff8)();
+  iVar1 = pthread_cond_timedwait(__cond,__mutex,__abstime);
   return iVar1;
 }
 

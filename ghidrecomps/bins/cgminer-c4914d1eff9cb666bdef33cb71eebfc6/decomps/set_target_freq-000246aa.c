@@ -30,13 +30,13 @@ float set_target_freq(void)
     }
   }
   else {
-    increase_freq_slowly(init_freq,(float)(ulonglong)dev->frequency,freq_step,All_Chain);
+    increase_freq_slowly(init_freq,(float)dev->frequency,freq_step,All_Chain);
     for (i = '\0'; i < 0x10; i = i + '\x01') {
       if (dev->chain_exist[i] != 0) {
-        freq_from_board[i] = (float)(ulonglong)dev->frequency;
+        freq_from_board[i] = (float)dev->frequency;
       }
     }
-    max_freq = (float)(ulonglong)dev->frequency;
+    max_freq = (float)dev->frequency;
   }
   return max_freq;
 }

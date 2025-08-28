@@ -1,5 +1,5 @@
 
-void set_frequency_with_addr(undefined2 param_1,char param_2,undefined param_3,byte param_4)
+void set_frequency_with_addr(undefined2 param_1,char param_2,undefined1 param_3,byte param_4)
 
 {
   undefined4 uVar1;
@@ -11,7 +11,7 @@ void set_frequency_with_addr(undefined2 param_1,char param_2,undefined param_3,b
   uint local_30;
   int local_2c;
   undefined4 local_28;
-  uint local_24;
+  undefined4 local_24;
   byte local_20;
   uint local_1c;
   uint local_18;
@@ -37,7 +37,7 @@ void set_frequency_with_addr(undefined2 param_1,char param_2,undefined param_3,b
     else {
       local_28._0_1_ = 0x58;
     }
-    local_28._0_2_ = CONCAT11(9,(undefined)local_28);
+    local_28._0_2_ = CONCAT11(9,(undefined1)local_28);
     local_28._0_3_ = CONCAT12(param_3,(undefined2)local_28);
     local_28 = CONCAT13((char)PLL_PARAMETER,(uint3)local_28);
     local_24 = CONCAT13((char)local_40,

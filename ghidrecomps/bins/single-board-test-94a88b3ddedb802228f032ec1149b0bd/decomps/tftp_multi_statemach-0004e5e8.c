@@ -1,9 +1,9 @@
 
-int tftp_multi_statemach(int *param_1,undefined *param_2)
+int tftp_multi_statemach(int *param_1,undefined1 *param_2)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   void *pvVar3;
   int iVar4;
   long lVar5;
@@ -11,7 +11,7 @@ int tftp_multi_statemach(int *param_1,undefined *param_2)
   undefined4 uVar7;
   undefined4 extraout_r1;
   int iVar8;
-  undefined *puVar9;
+  undefined1 *puVar9;
   int *piVar10;
   uint uVar11;
   char *__nptr;
@@ -23,7 +23,7 @@ int tftp_multi_statemach(int *param_1,undefined *param_2)
   uint uVar16;
   char *pcVar17;
   int local_b0;
-  size_t local_ac;
+  socklen_t local_ac;
   sockaddr asStack_a8 [8];
   
   piVar10 = (int *)param_1[0xf0];
@@ -35,7 +35,7 @@ int tftp_multi_statemach(int *param_1,undefined *param_2)
     *piVar10 = 3;
     *param_2 = 0;
 LAB_0004e6e2:
-    Curl_failf(iVar12,DAT_0004e978);
+    Curl_failf(iVar12,"TFTP response timeout");
     iVar8 = 0x1c;
   }
   else {
@@ -63,7 +63,7 @@ joined_r0x0004e6ba:
       if (iVar8 == -1) {
         piVar6 = __errno_location();
         uVar7 = Curl_strerror(param_1,*piVar6);
-        Curl_failf(iVar12,DAT_0004e97c,uVar7);
+        Curl_failf(iVar12,"%s",uVar7);
         piVar10[3] = 5;
         return 0;
       }
@@ -77,18 +77,17 @@ joined_r0x0004e6ba:
         if (*(int *)(iVar13 + 0x134) == 0) {
           memcpy((void *)(iVar13 + 0xb4),asStack_a8,local_ac);
           iVar8 = *(int *)(iVar13 + 0x138);
-          *(size_t *)(iVar13 + 0x134) = local_ac;
+          *(socklen_t *)(iVar13 + 0x134) = local_ac;
         }
         if (iVar8 < 4) {
-          Curl_failf(iVar12,DAT_0004e9a4);
+          Curl_failf(iVar12,"Received too short packet");
           *(undefined4 *)(iVar13 + 0xc) = 7;
         }
         else {
-          puVar9 = *(undefined **)(iVar13 + 0x148);
+          puVar9 = *(undefined1 **)(iVar13 + 0x148);
           uVar1 = puVar9[1];
           uVar2 = *puVar9;
           *(uint *)(iVar13 + 0xc) = (uint)CONCAT11(uVar2,uVar1);
-          uVar7 = DAT_0004e9a0;
           switch((uint)CONCAT11(uVar2,uVar1)) {
           case 3:
             if ((iVar8 != 4) &&
@@ -110,7 +109,7 @@ joined_r0x0004e6ba:
             break;
           case 5:
             *(uint *)(iVar13 + 8) = (uint)CONCAT11(puVar9[2],puVar9[3]);
-            Curl_infof(iVar12,uVar7,puVar9 + 4);
+            Curl_infof(iVar12,"%s\n",puVar9 + 4);
             break;
           case 6:
             iVar12 = **(int **)(iVar13 + 0x10);
@@ -126,7 +125,7 @@ joined_r0x0004e6ba:
               uVar14 = uVar16 + 1;
               if (uVar11 <= uVar14) {
 LAB_0004e920:
-                Curl_failf(iVar12,DAT_0004e9a8);
+                Curl_failf(iVar12,"Malformed ACK packet, rejecting");
                 return 0x47;
               }
               sVar15 = uVar11 - uVar14;
@@ -140,19 +139,19 @@ LAB_0004e920:
               pcVar17 = __s + uVar16;
               __nptr = __s + sVar15 + 1;
               if (pcVar17 == (char *)0x0) goto LAB_0004e920;
-              Curl_infof(iVar12,DAT_0004e98c,__s,__nptr);
+              Curl_infof(iVar12,"got option=(%s) value=(%s)\n",__s,__nptr);
               sVar15 = strlen(__s);
-              iVar4 = Curl_raw_nequal(__s,DAT_0004e990,sVar15);
+              iVar4 = Curl_raw_nequal(__s,"blksize",sVar15);
               if (iVar4 == 0) {
                 sVar15 = strlen(__s);
-                iVar4 = Curl_raw_nequal(__s,DAT_0004e994,sVar15);
+                iVar4 = Curl_raw_nequal(__s,"tsize",sVar15);
                 __s = pcVar17;
                 if (iVar4 != 0) {
                   lVar5 = strtol(__nptr,(char **)0x0,10);
-                  Curl_infof(iVar12,DAT_0004e998,DAT_0004e99c,lVar5);
+                  Curl_infof(iVar12,"%s (%ld)\n","tsize parsed from OACK",lVar5);
                   if (*(char *)(iVar12 + 0x309) == '\0') {
                     if (lVar5 == 0) {
-                      Curl_failf(iVar12,DAT_0004e9c4,__nptr);
+                      Curl_failf(iVar12,"invalid tsize -:%s:- value in OACK packet",__nptr);
                       return 0x47;
                     }
                     Curl_pgrsSetDownloadSize(iVar12,extraout_r1,lVar5,lVar5 >> 0x1f);
@@ -162,30 +161,31 @@ LAB_0004e920:
               else {
                 lVar5 = strtol(__nptr,(char **)0x0,10);
                 if (lVar5 == 0) {
-                  Curl_failf(iVar12,DAT_0004e9c0);
+                  Curl_failf(iVar12,"invalid blocksize value in OACK packet");
                   return 0x47;
                 }
                 if (0xffb8 < lVar5) {
-                  Curl_failf(iVar12,DAT_0004e9b4,DAT_0004e9bc,0xffb8);
+                  Curl_failf(iVar12,"%s (%d)","blksize is larger than max supported",0xffb8);
                   return 0x47;
                 }
                 if (lVar5 < 8) {
-                  Curl_failf(iVar12,DAT_0004e9b4,DAT_0004e9b8,8);
+                  Curl_failf(iVar12,"%s (%d)","blksize is smaller than min supported",8);
                   return 0x47;
                 }
                 if (*(int *)(iVar13 + 0x144) < lVar5) {
-                  Curl_failf(iVar12,DAT_0004e9ac,DAT_0004e9b0,lVar5);
+                  Curl_failf(iVar12,"%s (%ld)","server requested blksize larger than allocated",
+                             lVar5);
                   return 0x47;
                 }
                 *(long *)(iVar13 + 0x140) = lVar5;
-                Curl_infof(iVar12,DAT_0004e984,DAT_0004e988,lVar5,"requested",
+                Curl_infof(iVar12,"%s (%d) %s (%d)\n","blksize parsed from OACK",lVar5,"requested",
                            *(int *)(iVar13 + 0x144));
                 __s = pcVar17;
               }
             }
             break;
           default:
-            Curl_failf(iVar12,DAT_0004e97c,DAT_0004e980);
+            Curl_failf(iVar12,"%s","Internal error: Unexpected packet");
           }
           iVar8 = Curl_pgrsUpdate(param_1);
           if (iVar8 != 0) {

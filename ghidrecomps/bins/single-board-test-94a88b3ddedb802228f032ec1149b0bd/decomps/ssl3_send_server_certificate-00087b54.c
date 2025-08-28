@@ -21,7 +21,7 @@ undefined4 ssl3_send_server_certificate(int param_1)
         goto LAB_00087b62;
       }
     }
-    ERR_put_error(0x14,0x9a,0x44,DAT_00087bbc,iVar2);
+    ERR_put_error(0x14,0x9a,0x44,"s3_srvr.c",iVar2);
     uVar1 = 0;
     *(undefined4 *)(param_1 + 0x34) = 5;
   }

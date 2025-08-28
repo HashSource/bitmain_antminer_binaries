@@ -2,6 +2,7 @@
 int read_dc_dc(void *args,uint8_t which_i2c,uint8_t i2c_dev_addr,uint8_t reg,uint8_t *value,int len)
 
 {
+  uchar which_chain_00;
   uint3 uVar1;
   uchar uVar2;
   int iVar3;
@@ -20,7 +21,7 @@ int read_dc_dc(void *args,uint8_t which_i2c,uint8_t i2c_dev_addr,uint8_t reg,uin
   uint16_t crc;
   
                     /* WARNING: Load size is inaccurate */
-  which_chain = *args;
+  which_chain_00 = *args;
   read_back_data[4] = '\0';
   read_back_data[5] = '\0';
   read_back_data[6] = '\0';
@@ -28,11 +29,11 @@ int read_dc_dc(void *args,uint8_t which_i2c,uint8_t i2c_dev_addr,uint8_t reg,uin
   read_back_data[8] = '\0';
   read_back_data[9] = '\0';
   read_back_data[10] = '\0';
-  read_back_data[11] = '\0';
-  read_back_data[12] = '\0';
-  read_back_data[13] = '\0';
-  read_back_data[14] = '\0';
-  read_back_data[15] = '\0';
+  read_back_data[0xb] = '\0';
+  read_back_data[0xc] = '\0';
+  read_back_data[0xd] = '\0';
+  read_back_data[0xe] = '\0';
+  read_back_data[0xf] = '\0';
   read_back_data[0] = 0xff;
   read_back_data[1] = '\0';
   read_back_data[2] = '\0';
@@ -53,12 +54,12 @@ int read_dc_dc(void *args,uint8_t which_i2c,uint8_t i2c_dev_addr,uint8_t reg,uin
   send_data._4_4_ = CONCAT13((char)(crc >> 8),uVar1) | 1;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (i = '\0'; i < 9; i = i + '\x01') {
-    write_pic(which_i2c,which_chain,send_data[i]);
+    write_pic(which_i2c,which_chain_00,send_data[i]);
   }
   usleep(100000);
   memset(read_back_data,0,0x10);
   for (i = '\0'; (int)(uint)i < len + 5; i = i + '\x01') {
-    uVar2 = read_pic(which_i2c,which_chain);
+    uVar2 = read_pic(which_i2c,which_chain_00);
     read_back_data[i] = uVar2;
   }
   pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);

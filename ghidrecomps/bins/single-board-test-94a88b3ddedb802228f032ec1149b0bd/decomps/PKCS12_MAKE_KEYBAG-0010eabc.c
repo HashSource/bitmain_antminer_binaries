@@ -7,7 +7,7 @@ PKCS12_SAFEBAG * PKCS12_MAKE_KEYBAG(PKCS8_PRIV_KEY_INFO *p8)
   
   pPVar1 = PKCS12_SAFEBAG_new();
   if (pPVar1 == (PKCS12_SAFEBAG *)0x0) {
-    ERR_put_error(0x23,0x70,0x41,DAT_0010eaec,0x5f);
+    ERR_put_error(0x23,0x70,0x41,"p12_add.c",0x5f);
   }
   else {
     pAVar2 = OBJ_nid2obj(0x96);

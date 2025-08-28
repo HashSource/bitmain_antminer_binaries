@@ -14,10 +14,10 @@ undefined4 bitstr_cb(char *param_1,int param_2,ASN1_BIT_STRING *param_3)
       if (iVar1 != 0) {
         return 1;
       }
-      ERR_put_error(0xd,0xb4,0x41,DAT_0010986c,0x33b);
+      ERR_put_error(0xd,0xb4,0x41,"asn1_gen.c",0x33b);
       return 0;
     }
-    ERR_put_error(0xd,0xb4,0xbb,DAT_0010986c,0x337);
+    ERR_put_error(0xd,0xb4,0xbb,"asn1_gen.c",0x337);
   }
   return 0;
 }

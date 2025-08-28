@@ -4,6 +4,6 @@
 void * ENGINE_get_static_state(void)
 
 {
-  return DAT_000a648c;
+  return &internal_static_hack;
 }
 

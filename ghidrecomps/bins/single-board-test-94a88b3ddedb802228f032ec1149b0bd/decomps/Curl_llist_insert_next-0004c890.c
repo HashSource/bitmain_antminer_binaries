@@ -7,7 +7,7 @@ undefined4 Curl_llist_insert_next(int *param_1,int param_2,undefined4 param_3)
   int iVar3;
   int iVar4;
   
-  puVar1 = (undefined4 *)(**DAT_0004c8dc)(0xc);
+  puVar1 = (undefined4 *)(*Curl_cmalloc)(0xc);
   if (puVar1 != (undefined4 *)0x0) {
     iVar4 = param_1[3];
     *puVar1 = param_3;

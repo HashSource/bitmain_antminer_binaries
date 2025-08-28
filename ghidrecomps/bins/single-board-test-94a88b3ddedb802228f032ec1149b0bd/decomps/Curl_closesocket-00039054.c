@@ -16,7 +16,7 @@ undefined4 Curl_closesocket(int param_1,uint param_2,undefined4 param_3,undefine
         return uVar1;
       }
       iVar2 = 0;
-      *(undefined *)(param_1 + 0x165) = 0;
+      *(undefined1 *)(param_1 + 0x165) = 0;
     }
     Curl_multi_closed(param_1,param_2,param_3,iVar2,param_4);
   }

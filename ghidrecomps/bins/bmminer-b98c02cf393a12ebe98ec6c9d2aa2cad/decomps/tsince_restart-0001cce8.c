@@ -2,10 +2,10 @@
 void tsince_restart(void)
 
 {
-  undefined auStack_10 [16];
+  undefined1 auStack_10 [12];
   
   cgtime(auStack_10);
-  tdiff(auStack_10,DAT_0001cd00);
+  tdiff(auStack_10,&restart_tv_start);
   return;
 }
 

@@ -1,18 +1,18 @@
 
-byte ** mime_hdr_new(byte *param_1,byte *param_2)
+undefined4 * mime_hdr_new(byte *param_1,byte *param_2)
 
 {
   byte *pbVar1;
   ushort **ppuVar2;
   __int32_t **pp_Var3;
-  byte **ppbVar4;
+  undefined4 *puVar4;
   _STACK *p_Var5;
   ushort uVar6;
   
   if (param_1 != (byte *)0x0) {
     param_1 = (byte *)BUF_strdup((char *)param_1);
     if (param_1 == (byte *)0x0) {
-      return (byte **)0x0;
+      return (undefined4 *)0x0;
     }
     uVar6 = (ushort)*param_1;
     if (uVar6 != 0) {
@@ -31,7 +31,7 @@ byte ** mime_hdr_new(byte *param_1,byte *param_2)
   if (param_2 != (byte *)0x0) {
     param_2 = (byte *)BUF_strdup((char *)param_2);
     if (param_2 == (byte *)0x0) {
-      return (byte **)0x0;
+      return (undefined4 *)0x0;
     }
     uVar6 = (ushort)*param_2;
     if (uVar6 != 0) {
@@ -47,16 +47,16 @@ byte ** mime_hdr_new(byte *param_1,byte *param_2)
       } while (uVar6 != 0);
     }
   }
-  ppbVar4 = (byte **)CRYPTO_malloc(0xc,DAT_0012710c,0x33d);
-  if (ppbVar4 != (byte **)0x0) {
-    *ppbVar4 = param_1;
-    ppbVar4[1] = param_2;
-    p_Var5 = sk_new(DAT_00127110);
-    ppbVar4[2] = (byte *)p_Var5;
+  puVar4 = (undefined4 *)CRYPTO_malloc(0xc,"asn_mime.c",0x33d);
+  if (puVar4 != (undefined4 *)0x0) {
+    *puVar4 = param_1;
+    puVar4[1] = param_2;
+    p_Var5 = sk_new((cmp *)0x127019);
+    puVar4[2] = p_Var5;
     if (p_Var5 != (_STACK *)0x0) {
-      return ppbVar4;
+      return puVar4;
     }
   }
-  return (byte **)0x0;
+  return (undefined4 *)0x0;
 }
 

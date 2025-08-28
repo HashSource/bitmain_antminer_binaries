@@ -6,7 +6,7 @@ int prctl(int __option,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_prctl_000c01b8)();
+  iVar1 = prctl(__option);
   return iVar1;
 }
 

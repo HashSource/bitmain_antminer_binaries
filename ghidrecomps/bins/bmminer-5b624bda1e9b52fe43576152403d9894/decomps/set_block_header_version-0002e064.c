@@ -4,14 +4,13 @@
 void set_block_header_version(uint value)
 
 {
-  char cVar1;
+  _Bool _Var1;
   char tmp42 [2048];
   
-  cVar1 = *DAT_0002e0b8;
-  *(uint *)(*(int *)(DAT_0002e0b4 + 0x8d4) + 0x130) = value;
-  if ((cVar1 != '\0') &&
-     (((*DAT_0002e0bc != '\0' || (*DAT_0002e0c0 != '\0')) || (6 < *DAT_0002e0c4)))) {
-    snprintf(tmp42,0x800,DAT_0002e0c8,DAT_0002e0cc,value);
+  _Var1 = opt_debug;
+  axi_fpga_addr[0x4c] = value;
+  if ((_Var1) && (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: set BLOCK_HEADER_VERSION is 0x%x\n","set_block_header_version",value);
     _applog(7,tmp42,false);
   }
   get_block_header_version();

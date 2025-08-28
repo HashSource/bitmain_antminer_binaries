@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void V9_print_lcd(void)
 
@@ -18,12 +18,12 @@ void V9_print_lcd(void)
   str[8] = '\0';
   str[9] = '\0';
   str[10] = '\0';
-  str[11] = '\0';
-  str[12] = '\0';
-  str[13] = '\0';
-  str[14] = '\0';
-  str[15] = '\0';
-  str[16] = '\0';
+  str[0xb] = '\0';
+  str[0xc] = '\0';
+  str[0xd] = '\0';
+  str[0xe] = '\0';
+  str[0xf] = '\0';
+  str[0x10] = '\0';
   show_result();
   sprintf(str,"Pattern %d %d %d   ",*g_patten.asic_recv_nonces,g_patten.asic_recv_nonces[1],
           g_patten.asic_recv_nonces[2]);
@@ -51,12 +51,12 @@ void V9_print_lcd(void)
   level_str[8] = '\0';
   level_str[9] = '\0';
   level_str[10] = '\0';
-  level_str[11] = '\0';
-  level_str[12] = '\0';
-  level_str[13] = '\0';
-  level_str[14] = '\0';
-  level_str[15] = '\0';
-  level_str[16] = '\0';
+  level_str[0xb] = '\0';
+  level_str[0xc] = '\0';
+  level_str[0xd] = '\0';
+  level_str[0xe] = '\0';
+  level_str[0xf] = '\0';
+  level_str[0x10] = '\0';
   sprintf(level_str,"    Level %d     ",pattern_level);
   write_lcd_no_memset(3,level_str,0x10);
   return;

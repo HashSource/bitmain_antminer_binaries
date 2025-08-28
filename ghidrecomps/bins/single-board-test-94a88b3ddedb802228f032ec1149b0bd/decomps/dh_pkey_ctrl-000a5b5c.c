@@ -77,13 +77,13 @@ int dh_pkey_ctrl(undefined4 param_1,int param_2,ASN1_STRING *param_3,undefined4 
         if (iVar6 == 0) {
           pAVar12 = d2i_ASN1_INTEGER((ASN1_INTEGER **)0x0,(uchar **)local_2c,iVar4);
           if (pAVar12 == (ASN1_INTEGER *)0x0) {
-            ERR_put_error(5,0x76,0x68,DAT_000a6074,0x2af);
+            ERR_put_error(5,0x76,0x68,"dh_ameth.c",0x2af);
           }
           else {
             pBVar15 = ASN1_INTEGER_to_BN(pAVar12,(BIGNUM *)0x0);
-            *(BIGNUM **)&dh->field_0x14 = pBVar15;
+            dh->pub_key = pBVar15;
             if (pBVar15 == (BIGNUM *)0x0) {
-              ERR_put_error(5,0x76,0x6d,DAT_000a6074,0x2b5);
+              ERR_put_error(5,0x76,0x6d,"dh_ameth.c",0x2b5);
             }
             else {
               pkey = EVP_PKEY_new();
@@ -104,7 +104,7 @@ int dh_pkey_ctrl(undefined4 param_1,int param_2,ASN1_STRING *param_3,undefined4 
         DH_free(dh);
       }
 LAB_000a5e5e:
-      ERR_put_error(5,0x75,0x71,DAT_000a6074,0x329);
+      ERR_put_error(5,0x75,0x71,"dh_ameth.c",0x329);
       return 0;
     }
 LAB_000a5d82:
@@ -112,14 +112,14 @@ LAB_000a5d82:
     if (iVar4 == 0) goto LAB_000a5d90;
     iVar4 = OBJ_obj2nid((ASN1_OBJECT *)local_34->sn);
     if (iVar4 != 0xf5) {
-      ERR_put_error(5,0x77,0x70,DAT_000a6074,0x2df);
+      ERR_put_error(5,0x77,0x70,"dh_ameth.c",0x2df);
       goto LAB_000a5d90;
     }
     iVar4 = EVP_PKEY_CTX_ctrl(pEVar2,0x398,0x400,0x1006,2,(void *)0x0);
     if (iVar4 < 1) goto LAB_000a5d90;
     p2 = EVP_sha1();
     iVar4 = EVP_PKEY_CTX_ctrl(pEVar2,0x398,0x400,0x1007,0,p2);
-    if ((iVar4 < 1) || (*local_34->ln != (char *)0x10)) goto LAB_000a5d90;
+    if ((iVar4 < 1) || (*local_34->ln != &DAT_00000010)) goto LAB_000a5d90;
     plVar16 = (long *)local_34->ln[1];
     local_2c[0] = (EVP_MD *)plVar16[2];
     pXVar17 = d2i_X509_ALGOR((X509_ALGOR **)0x0,(uchar **)local_2c,*plVar16);
@@ -170,7 +170,7 @@ LAB_000a5f2e:
       return 1;
     }
 LAB_000a5d90:
-    ERR_put_error(5,0x75,0x72,DAT_000a6074,0x32f);
+    ERR_put_error(5,0x75,0x72,"dh_ameth.c",0x32f);
     return 0;
   }
   if (param_3 != (ASN1_STRING *)0x0) {

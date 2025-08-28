@@ -94,28 +94,34 @@ void write_config(FILE *fcfg)
     pcVar3 = strdup(opt->names);
     p = strtok(pcVar3,"|");
     while (p != (char *)0x0) {
-      if ((p[1] == '-') && ((undefined4 *)opt->desc != &opt_hidden)) {
+      if ((p[1] == '-') && (opt->desc != (char *)&opt_hidden)) {
                     /* WARNING: Load size is inaccurate */
         if (((opt->type & OPT_NOARG) == 0) ||
-           (((opt->cb != opt_set_bool + 1 && (opt->cb != opt_set_invbool + 1)) ||
-            ((bool)*(opt->u).carg != (opt->cb == opt_set_bool + 1))))) {
+           (((opt->cb != (_func_char_ptr_void_ptr *)0x79453 &&
+             (opt->cb != (_func_char_ptr_void_ptr *)0x7948b)) ||
+            ((bool)*(opt->u).carg != (opt->cb == (_func_char_ptr_void_ptr *)0x79453))))) {
           if (((opt->type & OPT_HASARG) == 0) ||
-             (((((opt->cb_arg != opt_set_intval + 1 && (opt->cb_arg != set_int_0_to_9999 + 1)) &&
-                ((opt->cb_arg != set_int_1_to_65535 + 1 &&
-                 ((opt->cb_arg != set_int_0_to_10 + 1 && (opt->cb_arg != set_int_1_to_10 + 1))))))
-               && (opt->cb_arg != set_int_0_to_100 + 1)) &&
-              ((((((opt->cb_arg != set_int_0_to_255 + 1 && (opt->cb_arg != set_int_1_to_255 + 1)) &&
-                  (opt->cb_arg != set_int_0_to_7680 + 1)) &&
-                 ((opt->cb_arg != set_int_0_to_200 + 1 && (opt->cb_arg != set_int_0_to_4 + 1)))) &&
-                ((opt->cb_arg != set_int_32_to_63 + 1 &&
-                 ((opt->cb_arg != set_int_22_to_75 + 1 && (opt->cb_arg != set_int_42_to_85 + 1))))))
-               && ((opt->cb_arg != set_int_22_to_55 + 1 && (opt->cb_arg != set_int_42_to_65 + 1)))))
-              ))) {
+             (((((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x794c5 &&
+                 (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48de9)) &&
+                ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48e0b &&
+                 ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48e2d &&
+                  (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48f8f)))))) &&
+               (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48e4d)) &&
+              ((((((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48e6d &&
+                   (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48e8d)) &&
+                  (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48ead)) &&
+                 ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48ecf &&
+                  (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48faf)))) &&
+                ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48eef &&
+                 ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48f0f &&
+                  (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48f2f)))))) &&
+               ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48f4f &&
+                (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x48f6f)))))))) {
             if (((opt->type & OPT_HASARG) == 0) ||
-               ((opt->cb_arg != set_float_125_to_500 + 1 &&
-                (opt->cb_arg != set_float_100_to_250 + 1)))) {
+               ((opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x49c99 &&
+                (opt->cb_arg != (_func_char_ptr_char_ptr_void_ptr *)0x49cfd)))) {
                     /* WARNING: Load size is inaccurate */
-              if (((opt->type & (OPT_HASARG|OPT_PROCESSARG)) != 0) &&
+              if (((opt->type & (OPT_PROCESSARG|OPT_HASARG)) != 0) &&
                  (((char **)(opt->u).carg != &opt_set_null && (*(opt->u).carg != (char *)0x0)))) {
                 pcVar4 = json_escape(*(opt->u).carg);
                 fprintf((FILE *)fcfg,",\n\"%s\" : \"%s\"",p + 2,pcVar4);

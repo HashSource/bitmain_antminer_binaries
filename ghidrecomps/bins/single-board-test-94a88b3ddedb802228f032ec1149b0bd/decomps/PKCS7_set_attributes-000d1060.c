@@ -9,7 +9,7 @@ int PKCS7_set_attributes(PKCS7_SIGNER_INFO *p7si,stack_st_X509_ATTRIBUTE *sk)
   int iVar5;
   
   if (&p7si->unauth_attr->stack != (_STACK *)0x0) {
-    sk_pop_free(&p7si->unauth_attr->stack,DAT_000d10ac);
+    sk_pop_free(&p7si->unauth_attr->stack,(func *)0xb7131);
   }
   p_Var1 = sk_dup(&sk->stack);
   p7si->unauth_attr = (stack_st_X509_ATTRIBUTE *)p_Var1;

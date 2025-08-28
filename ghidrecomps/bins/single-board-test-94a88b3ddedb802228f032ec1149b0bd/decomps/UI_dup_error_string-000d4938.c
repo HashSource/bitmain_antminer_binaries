@@ -8,15 +8,15 @@ int UI_dup_error_string(UI *ui,char *text)
   int iVar3;
   
   if (text == (char *)0x0) {
-    ERR_put_error(0x28,0x6d,0x43,DAT_000d49f8,0x8f);
+    ERR_put_error(0x28,0x6d,0x43,"ui_lib.c",0x8f);
   }
   else {
     pcVar1 = BUF_strdup(text);
     if (pcVar1 == (char *)0x0) {
-      ERR_put_error(0x28,0x65,0x41,DAT_000d49f8,0x183);
+      ERR_put_error(0x28,0x65,0x41,"ui_lib.c",0x183);
       return -1;
     }
-    ptr = (int *)CRYPTO_malloc(0x20,DAT_000d49f8,0x93);
+    ptr = (int *)CRYPTO_malloc(0x20,"ui_lib.c",0x93);
     if (ptr != (int *)0x0) {
       iVar3 = *(int *)(ui + 4);
       ptr[1] = (int)pcVar1;

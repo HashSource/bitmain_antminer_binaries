@@ -7,9 +7,9 @@ undefined4 gost94_nid_by_params(int param_1)
   char *str;
   BIGNUM *local_14 [2];
   
-  puVar1 = DAT_001163e4;
   local_14[0] = BN_new();
-  str = (char *)puVar1[3];
+  puVar1 = (undefined4 *)R3410_paramset;
+  str = (char *)R3410_paramset._12_4_;
   while( true ) {
     if (str == (char *)0x0) {
       BN_free(local_14[0]);

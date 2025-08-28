@@ -1,13 +1,11 @@
 
-/* WARNING: Variable defined which should be unmapped: no_use-local */
+/* WARNING: Variable defined which should be unmapped: no_use_local */
 
 void set_baud(uchar bauddiv,int no_use)
 
 {
   FILE *pFVar1;
   uint uVar2;
-  char *in_stack_ffffffd0;
-  uint in_stack_ffffffd4;
   int no_use_local;
   uchar bauddiv_local;
   uint value;
@@ -20,16 +18,14 @@ void set_baud(uchar bauddiv,int no_use)
     print_crt_time_to_file(log_file,3);
     pFVar1 = fopen(log_file,"a+");
     if (pFVar1 != (FILE *)0x0) {
-      in_stack_ffffffd4 = (uint)bauddiv;
-      in_stack_ffffffd0 = "set_baud";
-      fprintf(pFVar1,"%s:%d:%s: set baud=%d\n","asic.c",0x481,"set_baud",in_stack_ffffffd4,no_use);
+      fprintf(pFVar1,"%s:%d:%s: set baud=%d\n","asic.c",0x481,"set_baud",(uint)bauddiv,no_use);
     }
     fclose(pFVar1);
   }
   for (i = 0; i < 0x10; i = i + 1) {
     set_baud_one_chain(bauddiv,0,(uint8_t)i);
   }
-  cgsleep_us(CONCAT44(in_stack_ffffffd4,in_stack_ffffffd0));
+  cgsleep_us(50000);
   uVar2 = get_BC_write_command();
   if (3 < log_level) {
     print_crt_time_to_file(log_file,3);

@@ -4,7 +4,7 @@ int X509v3_get_ext_by_NID(stack_st_X509_EXTENSION *x,int nid,int lastpos)
 {
   ASN1_OBJECT *b;
   uint uVar1;
-  ASN1_OBJECT **ppAVar2;
+  undefined4 *puVar2;
   int iVar3;
   uint uVar4;
   
@@ -17,8 +17,8 @@ int X509v3_get_ext_by_NID(stack_st_X509_EXTENSION *x,int nid,int lastpos)
     uVar1 = sk_num(&x->stack);
     if ((int)uVar4 < (int)uVar1) {
       do {
-        ppAVar2 = (ASN1_OBJECT **)sk_value(&x->stack,uVar4);
-        iVar3 = OBJ_cmp(*ppAVar2,b);
+        puVar2 = (undefined4 *)sk_value(&x->stack,uVar4);
+        iVar3 = OBJ_cmp((ASN1_OBJECT *)*puVar2,b);
         if (iVar3 == 0) {
           return uVar4;
         }

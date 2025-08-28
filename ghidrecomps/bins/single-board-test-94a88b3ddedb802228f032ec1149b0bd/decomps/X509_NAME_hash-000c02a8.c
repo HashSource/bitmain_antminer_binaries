@@ -3,7 +3,7 @@ ulong X509_NAME_hash(X509_NAME *x)
 
 {
   EVP_MD *type;
-  ulong uVar1;
+  uint uVar1;
   size_t count;
   uchar *data;
   byte local_28;

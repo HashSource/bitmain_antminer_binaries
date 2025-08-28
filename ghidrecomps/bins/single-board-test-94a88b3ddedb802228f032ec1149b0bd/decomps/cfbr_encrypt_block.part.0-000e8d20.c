@@ -57,7 +57,7 @@ void cfbr_encrypt_block_part_0
   if (param_6 == 0) {
     if (0 < (int)uVar31) {
       uVar20 = uVar31 >> 2;
-      uVar23 = uVar31 & 0xfffffffc;
+      uVar23 = uVar20 << 2;
       if (uVar20 == 0 ||
           ((((uint)param_2 | (uint)param_1 | (uint)param_5) & 3) != 0 ||
           ((uVar31 < 4 || param_2 < param_1 + 1 && param_1 < param_2 + 1) ||
@@ -139,7 +139,7 @@ void cfbr_encrypt_block_part_0
   }
   else if (0 < (int)uVar31) {
     uVar20 = uVar31 >> 2;
-    uVar23 = uVar31 & 0xfffffffc;
+    uVar23 = uVar20 << 2;
     if (uVar20 == 0 ||
         ((((uint)param_2 | (uint)param_1 | (uint)param_5) & 3) != 0 ||
         ((uVar31 < 4 || param_2 < param_1 + 1 && param_1 < param_2 + 1) ||

@@ -4,38 +4,38 @@ void CheckChainTempTooLowFlag(void)
 {
   int iVar1;
   int *piVar2;
-  int *piVar3;
-  int *piVar4;
-  int *piVar5;
-  bool bVar6;
+  undefined4 *puVar3;
+  undefined4 *puVar4;
+  undefined1 *puVar5;
+  int *piVar6;
+  bool bVar7;
   
-  bVar6 = false;
-  piVar4 = DAT_0002f740 + 0x10;
-  piVar5 = (int *)(dev + 4);
-  piVar2 = piVar5;
-  piVar3 = DAT_0002f740;
+  bVar7 = false;
+  puVar5 = chain_temp_toolow;
+  piVar6 = (int *)(dev + 4);
+  piVar2 = piVar6;
   do {
     while (piVar2 = piVar2 + 1, *piVar2 == 1) {
-      iVar1 = *piVar3;
-      piVar3 = piVar3 + 1;
+      iVar1 = *(int *)puVar5;
+      puVar5 = (undefined1 *)((int)puVar5 + 4);
       if (iVar1 == 0) {
-        bVar6 = true;
+        bVar7 = true;
       }
-      if (piVar3 == piVar4) goto LAB_0002f728;
+      if (puVar5 == lowest_testOK_temp) goto LAB_0002f728;
     }
-    piVar3 = piVar3 + 1;
-  } while (piVar3 != piVar4);
+    puVar5 = (undefined1 *)((int)puVar5 + 4);
+  } while (puVar5 != lowest_testOK_temp);
 LAB_0002f728:
-  piVar2 = DAT_0002f740;
-  if (!bVar6) {
+  puVar3 = (undefined4 *)chain_temp_toolow;
+  if (!bVar7) {
     do {
-      piVar5 = piVar5 + 1;
-      piVar3 = piVar2 + 1;
-      if (*piVar5 == 1) {
-        *piVar2 = 0;
+      piVar6 = piVar6 + 1;
+      puVar4 = puVar3 + 1;
+      if (*piVar6 == 1) {
+        *puVar3 = 0;
       }
-      piVar2 = piVar3;
-    } while (piVar3 != piVar4);
+      puVar3 = puVar4;
+    } while (puVar4 != (undefined4 *)lowest_testOK_temp);
   }
   return;
 }

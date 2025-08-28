@@ -1,5 +1,5 @@
 
-undefined4 power_set_voltage(undefined param_1)
+undefined4 power_set_voltage(undefined1 param_1)
 
 {
   int iVar1;

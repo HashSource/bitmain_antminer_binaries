@@ -9,7 +9,7 @@ void _copy_work(int param_1,int param_2,int param_3)
   
   uVar3 = *(undefined4 *)(param_1 + 0x154);
   clean_work();
-  _cg_memcpy(param_1,param_2,0x1c0,"cgminer.c",DAT_0001cc44,0x130a);
+  _cg_memcpy(param_1,param_2,0x1c0,"cgminer.c","_copy_work",0x130a);
   iVar1 = *(int *)(param_2 + 0x120);
   *(undefined4 *)(param_1 + 0x154) = uVar3;
   if (iVar1 != 0) {

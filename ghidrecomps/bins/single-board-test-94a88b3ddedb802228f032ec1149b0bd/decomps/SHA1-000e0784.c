@@ -6,7 +6,7 @@ uchar * SHA1(uchar *d,size_t n,uchar *md)
   uchar *md_00;
   SHA_CTX SStack_70;
   
-  md_00 = DAT_000e07c0;
+  md_00 = &m_6236;
   if (md != (uchar *)0x0) {
     md_00 = md;
   }

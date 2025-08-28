@@ -14,7 +14,7 @@ void * PEM_ASN1_read_bio(undefined1 *d2i,char *name,BIO *bp,void **x,undefined1 
     local_24 = local_20;
     pvVar1 = (void *)(*(code *)d2i)(x,&local_24,local_1c);
     if (pvVar1 == (void *)0x0) {
-      ERR_put_error(9,0x67,0xd,DAT_000bfa28,0x53);
+      ERR_put_error(9,0x67,0xd,"pem_oth.c",0x53);
     }
     CRYPTO_free(local_20);
   }

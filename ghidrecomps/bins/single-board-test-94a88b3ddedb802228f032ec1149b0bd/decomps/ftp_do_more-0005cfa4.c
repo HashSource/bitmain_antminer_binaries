@@ -21,7 +21,7 @@ int ftp_do_more(int *param_1,uint *param_2)
   char local_91;
   byte *local_90;
   byte *local_8c;
-  undefined auStack_88 [100];
+  undefined1 auStack_88 [100];
   
   iVar9 = *param_1;
   cVar1 = *(char *)((int)param_1 + 0x1f7);
@@ -46,10 +46,10 @@ int ftp_do_more(int *param_1,uint *param_2)
       return iVar9;
     }
     if (*(char *)((int)param_1 + 0x1ef) != '\0') {
-      Curl_infof(iVar9,DAT_0005d364);
+      Curl_infof(iVar9,"Connection to proxy confirmed\n");
       iVar6 = *param_1;
       iVar11 = param_1[0x112];
-      uVar2 = *(undefined2 *)(param_1 + 0x113);
+      uVar2 = (undefined2)param_1[0x113];
       local_93 = cVar1;
       switch(param_1[0x4e]) {
       case 0:
@@ -58,7 +58,7 @@ int ftp_do_more(int *param_1,uint *param_2)
         break;
       default:
         iVar4 = 7;
-        Curl_failf(iVar6,DAT_0005d368);
+        Curl_failf(iVar6,"unknown proxytype option given");
         break;
       case 4:
         iVar4 = Curl_SOCKS4(param_1[0x4c],iVar11,uVar2,1,param_1,0);
@@ -73,10 +73,10 @@ int ftp_do_more(int *param_1,uint *param_2)
         iVar4 = Curl_SOCKS4(param_1[0x4c],iVar11,uVar2,1,param_1,1);
         local_93 = '\x01';
       }
-      if ((*(char *)((int)param_1 + 0x1fa) != '\0') && (*(char *)(param_1 + 0x7c) != '\0')) {
+      if ((*(char *)((int)param_1 + 0x1fa) != '\0') && ((char)param_1[0x7c] != '\0')) {
         uVar8 = *(undefined4 *)(iVar6 + 0x14c);
         memset(auStack_88,0,0x60);
-        *(undefined **)(iVar6 + 0x14c) = auStack_88;
+        *(undefined1 **)(iVar6 + 0x14c) = auStack_88;
         iVar4 = Curl_proxyCONNECT(param_1,1,iVar11,uVar2,1);
         *(undefined4 *)(iVar6 + 0x14c) = uVar8;
         if (iVar4 == 0) {
@@ -95,7 +95,7 @@ LAB_0005d040:
     if (iVar9 != 0) {
       return iVar9;
     }
-    if (*(char *)(param_1 + 0x104) == '\0') {
+    if ((char)param_1[0x104] == '\0') {
       return 0;
     }
     uVar7 = *(uint *)(iVar10 + 0xc);
@@ -110,7 +110,7 @@ LAB_0005d06c:
       return 0;
     }
     iVar9 = AcceptServerConnect(param_1);
-    *(undefined *)(param_1 + 0x104) = 0;
+    *(undefined1 *)(param_1 + 0x104) = 0;
     if (iVar9 != 0) {
       return iVar9;
     }
@@ -132,19 +132,19 @@ LAB_0005d002:
       iVar4 = 0;
       Curl_setup_transfer(param_1,0xffffffff,0xffffffff,0xffffffff,0,0,0xffffffff,0);
     }
-    if (*(char *)(param_1 + 0x104) != '\0') {
+    if ((char)param_1[0x104] != '\0') {
       return iVar4;
     }
     goto LAB_0005d028;
   }
-  if (*(char *)(param_1 + 0x104) != '\0') goto LAB_0005d06c;
+  if ((char)param_1[0x104] != '\0') goto LAB_0005d06c;
   if (*(char *)(iVar9 + 0x309) != '\0') {
-    iVar9 = ftp_nb_type(param_1,*(undefined *)(iVar9 + 0x2fb),0x16);
+    iVar9 = ftp_nb_type(param_1,*(undefined1 *)(iVar9 + 0x2fb),0x16);
     if (iVar9 != 0) {
       return iVar9;
     }
     iVar9 = ftp_multi_statemach(param_1,&local_92);
-    if (*(char *)(param_1 + 0x104) != '\0') {
+    if ((char)param_1[0x104] != '\0') {
       *param_2 = 0;
       return iVar9;
     }
@@ -189,10 +189,10 @@ LAB_0005d002:
     else {
       *(longlong *)(iVar4 + 0x8698) = lVar12;
     }
-    *(undefined *)(param_1 + 0x103) = 1;
+    *(undefined1 *)(param_1 + 0x103) = 1;
   }
   if ((*(char *)(iVar9 + 0x2fd) == '\0') && (param_1[0x102] != 0)) {
-    iVar9 = ftp_nb_type(param_1,*(undefined *)(iVar9 + 0x2fb),0x15);
+    iVar9 = ftp_nb_type(param_1,*(undefined1 *)(iVar9 + 0x2fb),0x15);
 joined_r0x0005d30e:
     if (iVar9 != 0) {
       return iVar9;

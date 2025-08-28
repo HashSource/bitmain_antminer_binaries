@@ -16,7 +16,7 @@ undefined4 ssl_get_prev_session(undefined4 *param_1,void *param_2,uint param_3,u
   int local_110;
   undefined4 local_10c;
   uint local_c8;
-  undefined auStack_c4 [172];
+  undefined1 auStack_c4 [172];
   
   local_114 = (SSL_SESSION *)0x0;
   if (param_3 < 0x21) {
@@ -38,14 +38,14 @@ undefined4 ssl_get_prev_session(undefined4 *param_1,void *param_2,uint param_3,u
             if (param_3 == 0) goto LAB_0007f282;
             local_c8 = param_3;
             memcpy(auStack_c4,param_2,param_3);
-            CRYPTO_lock(5,0xc,DAT_0007f404,0x268);
+            CRYPTO_lock(5,0xc,"ssl_sess.c",0x268);
             local_114 = (SSL_SESSION *)lh_retrieve(*(_LHASH **)(param_1[0x5c] + 0x10),&local_10c);
             if (local_114 != (SSL_SESSION *)0x0) {
               ppSVar9 = (SSL_SESSION **)0x26c;
-              CRYPTO_add_lock((int *)(local_114->krb5_client_princ + 0x14),1,0xe,DAT_0007f404,0x26c)
+              CRYPTO_add_lock((int *)(local_114->krb5_client_princ + 0x14),1,0xe,"ssl_sess.c",0x26c)
               ;
             }
-            CRYPTO_lock(6,0xc,DAT_0007f404,0x26e);
+            CRYPTO_lock(6,0xc,"ssl_sess.c",0x26e);
             if (local_114 != (SSL_SESSION *)0x0) goto LAB_0007f2c2;
             iVar3 = param_1[0x5c];
             *(int *)(iVar3 + 0x4c) = *(int *)(iVar3 + 0x4c) + 1;
@@ -58,7 +58,7 @@ undefined4 ssl_get_prev_session(undefined4 *param_1,void *param_2,uint param_3,u
             pSVar5 = (SSL_CTX *)param_1[0x5c];
             (pSVar5->stats).sess_cb_hit = (pSVar5->stats).sess_cb_hit + 1;
             if (local_110 != 0) {
-              CRYPTO_add_lock((int *)(local_114->krb5_client_princ + 0x14),1,0xe,DAT_0007f404,0x282)
+              CRYPTO_add_lock((int *)(local_114->krb5_client_princ + 0x14),1,0xe,"ssl_sess.c",0x282)
               ;
               pSVar5 = (SSL_CTX *)param_1[0x5c];
             }
@@ -79,26 +79,30 @@ switchD_0007f2a2_caseD_2:
 LAB_0007f244:
         if (local_114 == (SSL_SESSION *)0x0) goto LAB_0007f282;
         break;
-      default:
-                    /* WARNING: Subroutine does not return */
-        abort();
       case 0xffffffff:
         bVar1 = true;
         pSVar7 = local_114;
         goto joined_r0x0007f3d0;
+      default:
+                    /* WARNING: Subroutine does not return */
+        abort();
       }
       pSVar7 = local_114;
       __n = local_114->sid_ctx_length;
       if ((__n == param_1[0x27]) &&
          (iVar3 = memcmp(local_114->sid_ctx,param_1 + 0x28,__n), iVar3 == 0)) {
         if (((int)(param_1[0x32] << 0x1f) < 0) && (__n == 0)) {
-          ERR_put_error(0x14,0xd9,0x115,DAT_0007f404,0x2ad);
+          ERR_put_error(0x14,0xd9,0x115,"ssl_sess.c",0x2ad);
           bVar1 = true;
           pSVar7 = local_114;
         }
         else {
           if (*(int *)(pSVar7->krb5_client_princ + 0x24) == 0) {
             uVar2 = *(undefined4 *)(pSVar7->krb5_client_princ + 0x28);
+            local_10c._3_1_ = (undefined1)uVar2;
+            local_10c._0_3_ =
+                 CONCAT12((char)((uint)uVar2 >> 8),
+                          CONCAT11((char)((uint)uVar2 >> 0x10),(char)((uint)uVar2 >> 0x18)));
             if (pSVar7->ssl_version < 0x300) {
               iVar3 = (int)&local_10c + 1;
             }
@@ -116,7 +120,7 @@ LAB_0007f244:
             iVar3 = param_1[0x30];
             *(int *)(param_1[0x5c] + 0x58) = *(int *)(param_1[0x5c] + 0x58) + 1;
             if ((iVar3 != 0) &&
-               (iVar6 = CRYPTO_add_lock((int *)(iVar3 + 0xa4),-1,0xe,DAT_0007f404,0x352), iVar6 < 1)
+               (iVar6 = CRYPTO_add_lock((int *)(iVar3 + 0xa4),-1,0xe,"ssl_sess.c",0x352), iVar6 < 1)
                ) {
               SSL_SESSION_free_part_0(iVar3);
             }
@@ -142,7 +146,7 @@ joined_r0x0007f3d0:
 LAB_0007f250:
         bVar1 = false;
 LAB_0007f252:
-        iVar3 = CRYPTO_add_lock((int *)(pSVar7->krb5_client_princ + 0x14),-1,0xe,DAT_0007f404,0x352)
+        iVar3 = CRYPTO_add_lock((int *)(pSVar7->krb5_client_princ + 0x14),-1,0xe,"ssl_sess.c",0x352)
         ;
         if (iVar3 < 1) {
           SSL_SESSION_free_part_0(pSVar7);

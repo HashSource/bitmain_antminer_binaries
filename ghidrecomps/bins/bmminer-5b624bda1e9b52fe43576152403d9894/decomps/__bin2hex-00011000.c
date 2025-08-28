@@ -4,21 +4,19 @@
 void __bin2hex(char *s,uchar *p,size_t len)
 
 {
-  int iVar1;
-  char *pcVar2;
+  char *pcVar1;
   
-  iVar1 = DAT_0001103c;
-  pcVar2 = s;
+  pcVar1 = s;
   if (0 < (int)len) {
-    pcVar2 = s + len * 2;
+    pcVar1 = s + len * 2;
     do {
-      *s = *(char *)(iVar1 + (uint)(*p >> 4) + 0x454);
-      s[1] = *(char *)(iVar1 + (*p & 0xf) + 0x454);
+      *s = "0123456789abcdef"[*p >> 4];
+      s[1] = "0123456789abcdef"[*p & 0xf];
       s = s + 2;
       p = p + 1;
-    } while (pcVar2 != s);
+    } while (pcVar1 != s);
   }
-  *pcVar2 = '\0';
+  *pcVar1 = '\0';
   return;
 }
 

@@ -10,8 +10,8 @@ int i2d_PUBKEY(EVP_PKEY *a,uchar **pp)
     iVar1 = 0;
   }
   else {
-    iVar1 = ASN1_item_i2d((ASN1_VALUE *)local_c,pp,DAT_000b6e30);
-    ASN1_item_free((ASN1_VALUE *)local_c,DAT_000b6e30);
+    iVar1 = ASN1_item_i2d((ASN1_VALUE *)local_c,pp,(ASN1_ITEM *)&X509_PUBKEY_it);
+    ASN1_item_free((ASN1_VALUE *)local_c,(ASN1_ITEM *)&X509_PUBKEY_it);
   }
   return iVar1;
 }

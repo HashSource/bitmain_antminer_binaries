@@ -25,8 +25,9 @@ int set_PIC16F1704_flash_pointer
   send_data[1] = 0xaa;
   send_data[2] = '\x06';
   send_data[3] = '\x01';
-  send_data._4_2_ = CONCAT11(flash_addr_l,flash_addr_h);
-  send_data._4_3_ = CONCAT12((uchar)((ushort)sVar1 >> 8),send_data._4_2_);
+  send_data[5] = flash_addr_l;
+  send_data[4] = flash_addr_h;
+  send_data[6] = (uchar)((ushort)sVar1 >> 8);
   send_data[7] = (uchar)sVar1;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (i = '\0'; i < 8; i = i + '\x01') {

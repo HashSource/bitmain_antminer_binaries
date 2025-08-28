@@ -21,9 +21,9 @@ int take_queued_work_bymidstate
     }
   }
   else {
-    _wr_lock_part_54_constprop_73(DAT_0001f084,0x2526);
+    _wr_lock_part_54_constprop_73("take_queued_work_bymidstate",0x2526);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_0001f084,0x252a);
+  _rw_unlock_part_40_constprop_79("take_queued_work_bymidstate",0x252a);
 }
 

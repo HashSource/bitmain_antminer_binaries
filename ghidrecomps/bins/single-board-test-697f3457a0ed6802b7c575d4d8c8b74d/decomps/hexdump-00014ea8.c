@@ -4,7 +4,7 @@ void hexdump(uchar *p,uint len)
 {
   byte bVar1;
   uint uVar2;
-  undefined auStack_98 [80];
+  undefined1 auStack_98 [80];
   uint len_local;
   uchar *p_local;
   int pos;

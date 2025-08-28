@@ -4,7 +4,7 @@ undefined4 pop3_endofresp(int param_1,char *param_2,uint param_3,undefined4 *par
 {
   int iVar1;
   
-  if ((3 < param_3) && (iVar1 = memcmp(DAT_00051378,param_2,4), iVar1 == 0)) {
+  if ((3 < param_3) && (iVar1 = memcmp(&DAT_0013979c,param_2,4), iVar1 == 0)) {
     *param_4 = 0x2d;
     return 1;
   }
@@ -22,7 +22,7 @@ LAB_0005136e:
       }
     }
     else {
-      iVar1 = memcmp(DAT_0005137c,param_2,3);
+      iVar1 = memcmp(&DAT_001397a4,param_2,3);
       if (iVar1 == 0) goto LAB_0005136e;
     }
     if (*param_2 != '+') {

@@ -2,10 +2,7 @@
 void singleBoardTest_V9_BM1385_45(void)
 
 {
-  undefined4 local_2c;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
+  char local_2c [16];
   int local_1c;
   uint local_18;
   undefined4 local_14;
@@ -13,10 +10,7 @@ void singleBoardTest_V9_BM1385_45(void)
   local_14 = 0;
   local_18 = 0;
   local_1c = 0x1e240;
-  local_2c = s__singleBoardTest_V9_BM1385_45_0001c4f0._0_4_;
-  uStack_28 = s__singleBoardTest_V9_BM1385_45_0001c4f0._4_4_;
-  uStack_24 = s__singleBoardTest_V9_BM1385_45_0001c4f0._8_4_;
-  uStack_20 = s__singleBoardTest_V9_BM1385_45_0001c4f0._12_4_;
+  builtin_strncpy(local_2c,"                ",0x10);
   printf("\nBegin %s test\n","singleBoardTest_V9_BM1385_45");
   system("date");
   putchar(10);
@@ -37,17 +31,17 @@ void singleBoardTest_V9_BM1385_45(void)
     puts("\nNo hash board, please plug in it");
   }
   else {
-    pthread_create(DAT_00018d1c,(pthread_attr_t *)0x0,V9_show_status_func + 1,
+    pthread_create((pthread_t *)(cgpu + 0x10008),(pthread_attr_t *)0x0,(__start_routine *)0x17d45,
                    chain_info + (uint)gChain * 2);
     reset_PIC16F1704_pic(gChain,gI2c);
     jump_from_loader_to_app_PIC16F1704(gChain,gI2c);
     V9_set_voltage(gChain,gI2c,0);
     enable_PIC16F1704_dc_dc(gChain,gI2c,1);
-    pthread_create(DAT_00018d20,(pthread_attr_t *)0x0,pic_heart_beat_func + 1,
+    pthread_create((pthread_t *)(cgpu + 0x1000c),(pthread_attr_t *)0x0,(__start_routine *)0x11085,
                    chain_info + (uint)gChain * 2);
     reset_hash_board();
     start_receive = 1;
-    pthread_create(DAT_00018d24,(pthread_attr_t *)0x0,V9_receive_func + 1,
+    pthread_create((pthread_t *)(cgpu + 0x10004),(pthread_attr_t *)0x0,(__start_routine *)0x1865d,
                    chain_info + (uint)gChain * 2);
     puts("\n--- V9 check asic number");
     check_BM1385_asic_reg(gChain,0,0,1);
@@ -83,14 +77,14 @@ void singleBoardTest_V9_BM1385_45(void)
           }
           usleep(10000);
         }
-        pthread_create(DAT_000191ac,(pthread_attr_t *)0x0,V9_send_func + 1,
-                       chain_info + (uint)gChain * 2);
+        pthread_create((pthread_t *)(cgpu + 0x10000),(pthread_attr_t *)0x0,
+                       (__start_routine *)0x1830d,chain_info + (uint)gChain * 2);
         local_1c = pthread_join(cgpu._65536_4_,(void **)0x0);
         pthread_cancel(cgpu._65544_4_);
         local_1c = pthread_join(cgpu._65540_4_,(void **)0x0);
         local_18 = V9_get_result(gChain);
         V9_print_lcd(local_18);
-        if ((local_18 == 7) && (Conf[236] != '\0')) {
+        if ((local_18 == 7) && (Conf[0xec] != '\0')) {
           V9_set_voltage(gChain,gI2c,1);
         }
         if (((local_18 & 1) != 0) || (gHowManyVoltageLevel <= pattern_test_time)) {
@@ -109,9 +103,9 @@ void singleBoardTest_V9_BM1385_45(void)
         pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
         pthread_cancel(cgpu._65548_4_);
         pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
-        sprintf((char *)((int)&uStack_28 + 3),"%d",(uint)(byte)cgpu[gChain + 0x20338]);
+        sprintf(local_2c + 7,"%d",(uint)(byte)cgpu[gChain + 0x20338]);
         write_lcd(0,"   Only have    ",0x10);
-        write_lcd_no_memset(1,&local_2c,0x10);
+        write_lcd_no_memset(1,local_2c,0x10);
         write_lcd_no_memset(2,"      ASIC      ",0x10);
         printf("\n\n---%s: Only have %d ASIC\n","singleBoardTest_V9_BM1385_45",
                (uint)(byte)cgpu[gChain + 0x20338]);
@@ -125,9 +119,9 @@ void singleBoardTest_V9_BM1385_45(void)
       pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
       pthread_cancel(cgpu._65548_4_);
       pthread_mutex_unlock((pthread_mutex_t *)&i2c_mutex);
-      sprintf((char *)((int)&uStack_28 + 3),"%d",(uint)(byte)cgpu[gChain + 0x20338]);
+      sprintf(local_2c + 7,"%d",(uint)(byte)cgpu[gChain + 0x20338]);
       write_lcd(0,"   Only have    ",0x10);
-      write_lcd_no_memset(1,&local_2c,0x10);
+      write_lcd_no_memset(1,local_2c,0x10);
       write_lcd_no_memset(2,"      ASIC      ",0x10);
       printf("\n\n---%s: Only have %d ASIC\n","singleBoardTest_V9_BM1385_45",
              (uint)(byte)cgpu[gChain + 0x20338]);

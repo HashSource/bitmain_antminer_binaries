@@ -5,13 +5,11 @@ int dsPIC33EP16GS202_update_pic_app_program(uchar which_iic)
 
 {
   FILE *__stream;
-  FILE *pic_program_file;
   ulong uVar1;
   int iVar2;
   int iVar3;
   uchar *puVar4;
   int iVar5;
-  uint j;
   uchar data_read [7];
   uchar buf [16];
   uchar program_data [14080];
@@ -36,15 +34,15 @@ int dsPIC33EP16GS202_update_pic_app_program(uchar which_iic)
   buf[8] = '\0';
   buf[9] = '\0';
   buf[10] = '\0';
-  buf[11] = '\0';
-  buf[12] = '\0';
-  buf[13] = '\0';
-  buf[14] = '\0';
-  buf[15] = '\0';
-  puts(DAT_0002fddc);
-  __stream = fopen(DAT_0002fde0,DAT_0002fde4);
+  buf[0xb] = '\0';
+  buf[0xc] = '\0';
+  buf[0xd] = '\0';
+  buf[0xe] = '\0';
+  buf[0xf] = '\0';
+  puts("\n--- update pic program");
+  __stream = fopen("/etc/config/dsPIC33EP16GS202_app.txt","r");
   if (__stream == (FILE *)0x0) {
-    iVar2 = printf(DAT_0002fe00,DAT_0002fdf4);
+    iVar2 = printf("\n%s: open hash_s8_app.txt failed\n","dsPIC33EP16GS202_update_pic_app_program");
     return iVar2;
   }
   fseek(__stream,0,0);
@@ -63,7 +61,7 @@ int dsPIC33EP16GS202_update_pic_app_program(uchar which_iic)
   if (iVar2 != 0) {
     iVar2 = dsPIC33EP16GS202_erase_pic_app_program(which_iic);
     if (iVar2 == 0) {
-      printf(DAT_0002fdfc,DAT_0002fdf4);
+      printf("!!! %s: erase flash error!\n\n","dsPIC33EP16GS202_update_pic_app_program");
       return 0;
     }
     iVar2 = 0;
@@ -73,17 +71,17 @@ int dsPIC33EP16GS202_update_pic_app_program(uchar which_iic)
       buf._4_4_ = *(undefined4 *)(program_data + iVar3 + 4);
       buf._8_4_ = *(undefined4 *)(program_data + iVar3 + 8);
       buf._12_4_ = *(undefined4 *)(program_data + iVar3 + 0xc);
-      printf(DAT_0002fde8,iVar2);
+      printf("send pic program time: %d\n",iVar2);
       iVar3 = 0;
       do {
         iVar5 = iVar3 + 1;
-        printf(DAT_0002fdec,iVar3,(uint)buf[iVar3]);
+        printf("buf[%d] = 0x%02x\n",iVar3,(uint)buf[iVar3]);
         iVar3 = iVar5;
       } while (iVar5 != 0x10);
       putchar(10);
       iVar3 = dsPIC33EP16GS202_send_data_to_pic(which_iic,buf);
       if (iVar3 == 0) {
-        printf(DAT_0002fdf8,DAT_0002fdf4);
+        printf("!!! %s: send flash data error!\n\n","dsPIC33EP16GS202_update_pic_app_program");
         return 0;
       }
       iVar2 = iVar2 + 1;
@@ -93,7 +91,7 @@ int dsPIC33EP16GS202_update_pic_app_program(uchar which_iic)
       return 1;
     }
   }
-  printf(DAT_0002fdf0,DAT_0002fdf4);
+  printf("!!! %s: reset pic error!\n\n","dsPIC33EP16GS202_update_pic_app_program");
   return 0;
 }
 

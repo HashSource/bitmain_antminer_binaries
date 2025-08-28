@@ -1,115 +1,113 @@
 
-uint ssl3_get_req_cert_type(int *param_1,undefined *param_2)
+uint ssl3_get_req_cert_type(int *param_1,undefined1 *param_2)
 
 {
   char cVar1;
-  uint uVar2;
-  uint uVar3;
+  bool bVar2;
+  bool bVar3;
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  int iVar7;
+  uint uVar7;
+  int iVar8;
   void *__src;
-  uint uVar8;
   uint uVar9;
-  bool bVar10;
   int local_1c;
   
   __src = *(void **)(param_1[0x26] + 0x11c);
   if (__src == (void *)0x0) {
-    uVar3 = tls12_get_psigalgs(param_1,&local_1c);
-    if (uVar3 == 0) {
-      uVar4 = 0;
-      uVar8 = 0;
+    uVar5 = tls12_get_psigalgs(param_1,&local_1c);
+    if (uVar5 == 0) {
+      bVar2 = false;
+      bVar3 = false;
       uVar9 = 0;
     }
     else {
-      uVar4 = 0;
-      uVar8 = 0;
+      bVar2 = false;
+      bVar3 = false;
       uVar9 = 0;
-      iVar7 = local_1c;
+      iVar8 = local_1c;
       do {
-        cVar1 = *(char *)(iVar7 + 1);
+        cVar1 = *(char *)(iVar8 + 1);
         if (cVar1 == '\x02') {
-          uVar4 = 1;
+          bVar2 = true;
         }
         else if (cVar1 == '\x03') {
-          uVar8 = 1;
+          bVar3 = true;
         }
         else if (cVar1 == '\x01') {
           uVar9 = 1;
         }
-        iVar7 = iVar7 + 2;
-      } while ((uint)(iVar7 - local_1c) < uVar3);
+        iVar8 = iVar8 + 2;
+      } while ((uint)(iVar8 - local_1c) < uVar5);
     }
-    iVar7 = *param_1;
-    uVar3 = *(uint *)(*(int *)(param_1[0x16] + 0x344) + 0xc);
-    if ((iVar7 < 0x301) || (-1 < (int)(uVar3 << 0x16))) {
-      uVar5 = *(uint *)(param_1[0x26] + 0x38) & 0x30001;
-      uVar6 = 1 - uVar5;
-      if (1 < uVar5) {
-        uVar6 = 0;
+    iVar8 = *param_1;
+    uVar5 = *(uint *)(*(int *)(param_1[0x16] + 0x344) + 0xc);
+    if ((iVar8 < 0x301) || (-1 < (int)(uVar5 << 0x16))) {
+      uVar6 = *(uint *)(param_1[0x26] + 0x38) & 0x30001;
+      uVar7 = 1 - uVar6;
+      if (1 < uVar6) {
+        uVar7 = 0;
       }
-      uVar5 = uVar3 & 10;
-      if (uVar5 != 0) {
-        uVar5 = uVar9 | uVar6;
-        if (uVar5 != 0) {
-          uVar5 = 1;
+      uVar6 = uVar5 & 10;
+      if (uVar6 != 0) {
+        uVar6 = uVar9 | uVar7;
+        if (uVar6 != 0) {
+          uVar6 = 1;
           *param_2 = 3;
         }
-        if ((uVar4 | uVar6) != 0) {
-          param_2[uVar5] = 4;
-          uVar5 = uVar5 + 1;
+        if (bVar2 || uVar7 != 0) {
+          param_2[uVar6] = 4;
+          uVar6 = uVar6 + 1;
         }
-        iVar7 = *param_1;
+        iVar8 = *param_1;
       }
-      uVar2 = uVar5;
-      if ((iVar7 == 0x300) && ((uVar3 & 0xe) != 0)) {
-        param_2[uVar5] = 5;
-        uVar2 = uVar5 + 2;
-        param_2[uVar5 + 1] = 6;
+      uVar4 = uVar6;
+      if ((iVar8 == 0x300) && ((uVar5 & 0xe) != 0)) {
+        param_2[uVar6] = 5;
+        uVar4 = uVar6 + 2;
+        param_2[uVar6 + 1] = 6;
       }
       if (uVar9 != 0) {
-        param_2[uVar2] = 1;
-        uVar2 = uVar2 + 1;
+        param_2[uVar4] = 1;
+        uVar4 = uVar4 + 1;
       }
-      if (uVar4 != 0) {
-        param_2[uVar2] = 2;
-        uVar2 = uVar2 + 1;
+      if (bVar2) {
+        param_2[uVar4] = 2;
+        uVar4 = uVar4 + 1;
       }
-      if ((uVar3 & 0x60) != 0) {
-        iVar7 = *param_1;
-        if (iVar7 < 0x301) {
-          return uVar2;
+      if ((uVar5 & 0x60) != 0) {
+        iVar8 = *param_1;
+        if (iVar8 < 0x301) {
+          return uVar4;
         }
-        bVar10 = (uVar9 | uVar6) != 0;
-        if (bVar10) {
-          iVar7 = 0x41;
+        if (uVar9 != 0 || uVar7 != 0) {
+          iVar8 = 0x41;
         }
-        if (bVar10) {
-          param_2[uVar2] = (char)iVar7;
-          uVar2 = uVar2 + 1;
+        if (uVar9 != 0 || uVar7 != 0) {
+          param_2[uVar4] = (char)iVar8;
+          uVar4 = uVar4 + 1;
         }
-        if ((uVar6 | uVar8) != 0) {
-          param_2[uVar2] = 0x42;
-          uVar2 = uVar2 + 1;
+        if (uVar7 != 0 || bVar3) {
+          param_2[uVar4] = 0x42;
+          uVar4 = uVar4 + 1;
         }
       }
-      if ((0x300 < *param_1) && (uVar8 != 0)) {
-        param_2[uVar2] = 0x40;
-        uVar2 = uVar2 + 1;
+      if ((0x300 < *param_1) && (bVar3)) {
+        param_2[uVar4] = 0x40;
+        uVar4 = uVar4 + 1;
       }
     }
     else {
       *param_2 = 0x15;
-      uVar2 = 2;
+      uVar4 = 2;
       param_2[1] = 0x16;
     }
   }
   else {
     memcpy(param_2,__src,*(size_t *)(param_1[0x26] + 0x120));
-    uVar2 = *(uint *)(param_1[0x26] + 0x120);
+    uVar4 = *(uint *)(param_1[0x26] + 0x120);
   }
-  return uVar2;
+  return uVar4;
 }
 

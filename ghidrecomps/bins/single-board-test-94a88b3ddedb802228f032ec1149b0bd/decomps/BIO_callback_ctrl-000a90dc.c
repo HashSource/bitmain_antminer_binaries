@@ -13,7 +13,7 @@ long BIO_callback_ctrl(BIO *b,int cmd,fp *fp)
     local_1c[0] = fp;
     if ((b->method == (BIO_METHOD *)0x0) ||
        (p_Var3 = b->method->callback_ctrl, p_Var3 == (_func_744 *)0x0)) {
-      ERR_put_error(0x20,0x83,0x79,DAT_000a9148,0x179);
+      ERR_put_error(0x20,0x83,0x79,"bio_lib.c",0x179);
       pBVar1 = (BIO *)0xfffffffe;
     }
     else {

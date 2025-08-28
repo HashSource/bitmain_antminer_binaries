@@ -1,5 +1,5 @@
 
-undefined4 dsa_cb(int param_1,DSA **param_2)
+undefined4 dsa_cb(int param_1,undefined4 *param_2)
 
 {
   DSA *pDVar1;
@@ -17,8 +17,8 @@ undefined4 dsa_cb(int param_1,DSA **param_2)
     return uVar2;
   }
   if (param_1 == 2) {
-    DSA_free(*param_2);
-    *param_2 = (DSA *)0x0;
+    DSA_free((DSA *)*param_2);
+    *param_2 = 0;
     return 2;
   }
   return 1;

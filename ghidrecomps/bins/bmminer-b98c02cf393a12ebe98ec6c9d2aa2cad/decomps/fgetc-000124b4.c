@@ -6,9 +6,7 @@ int fgetc(FILE *__stream)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x000124bc. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0007cfcc)();
+  iVar1 = (*(code *)(undefined *)0x0)(__stream);
   return iVar1;
 }
 

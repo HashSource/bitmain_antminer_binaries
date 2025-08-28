@@ -13,11 +13,12 @@ void get_miner_info(char *infoStr)
   
   retlen = 0;
   dVar3 = get_working_voltage();
-  dVar3 = dVar3 * DAT_00034e10;
   chain_num = 0;
-  for (i = 0; i < 0x10; i = i + 1) {
+  i = 0;
+  while( true ) {
+    if (0xf < i) break;
     if (dev->chain_exist[i] != 0) {
-      iVar2 = sprintf(infoStr + retlen,"chain%d_voltage=%d;",i + 1,(int)(longlong)dVar3);
+      iVar2 = sprintf(infoStr + retlen,"chain%d_voltage=%d;",i + 1,(int)(longlong)(dVar3 * 100.0));
       iVar1 = sprintf(infoStr + retlen + iVar2,"chain%d_voladded=%d;",i + 1,0);
       iVar1 = retlen + iVar2 + iVar1;
       iVar2 = sprintf(infoStr + iVar1,"chain%d_basefreq=%d;",i + 1,0x113);
@@ -26,6 +27,7 @@ void get_miner_info(char *infoStr)
       retlen = iVar1 + iVar2;
       chain_num = chain_num + 1;
     }
+    i = i + 1;
   }
   iVar2 = sprintf(infoStr + retlen,"chainnum=%d;",chain_num);
   sprintf(infoStr + retlen + iVar2,"version=%s;",g_miner_compiletime);

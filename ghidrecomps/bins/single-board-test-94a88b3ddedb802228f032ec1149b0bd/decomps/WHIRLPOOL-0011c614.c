@@ -7,7 +7,7 @@ uchar * WHIRLPOOL(void *inp,size_t bytes,uchar *md)
   WHIRLPOOL_CTX WStack_c8;
   
   if (md == (uchar *)0x0) {
-    md = DAT_0011c688;
+    md = &m_6197;
   }
   memset(&WStack_c8,0,0xa8);
   inp_00 = inp;

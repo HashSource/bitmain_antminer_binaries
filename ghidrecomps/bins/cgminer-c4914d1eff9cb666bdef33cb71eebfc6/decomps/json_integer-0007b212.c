@@ -2,9 +2,7 @@
 json_t * json_integer(json_int_t value)
 
 {
-  json_type in_r0;
   json_t *json;
-  size_t in_r1;
   json_int_t value_local;
   json_integer_t *integer;
   
@@ -14,8 +12,8 @@ json_t * json_integer(json_int_t value)
   }
   else {
     json_init(json,JSON_INTEGER);
-    json[1].type = in_r0;
-    json[1].refcount = in_r1;
+    json[1].type = (int)value;
+    json[1].refcount = (int)((ulonglong)value >> 0x20);
   }
   return json;
 }

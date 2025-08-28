@@ -22,7 +22,7 @@ void sha256_block_data_order(uint *param_1,byte *param_2,int param_3)
   uint local_b8;
   uint local_b4;
   uint local_b0;
-  int local_ac;
+  undefined1 *local_ac;
   uint local_a8;
   byte *local_a4;
   uint local_9c;
@@ -206,7 +206,7 @@ void sha256_block_data_order(uint *param_1,byte *param_2,int param_3)
       local_24 = (uint)local_a4[0x3d] << 0x10 | (uint)local_a4[0x3c] << 0x18 | (uint)local_a4[0x3f]
                  | (uint)local_a4[0x3e] << 8;
       local_a8 = local_b4 & local_b8;
-      local_ac = DAT_000907f8;
+      local_ac = &K256;
       iVar1 = local_24 + 0xc19bf174 + uVar10 +
               ((uVar5 >> 6 | uVar5 * 0x4000000) ^ (uVar5 >> 0xb | uVar5 * 0x200000) ^
               (uVar5 >> 0x19 | uVar5 * 0x80)) + (uVar5 & local_c4 ^ local_c0 & ~uVar5);

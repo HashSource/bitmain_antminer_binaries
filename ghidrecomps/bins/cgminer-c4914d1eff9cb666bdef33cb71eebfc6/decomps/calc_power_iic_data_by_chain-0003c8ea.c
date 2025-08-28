@@ -1,6 +1,4 @@
 
-/* WARNING: Variable defined which should be unmapped: target_vol-local */
-
 void calc_power_iic_data_by_chain(power_info_t *power,double target_vol)
 
 {
@@ -10,7 +8,6 @@ void calc_power_iic_data_by_chain(power_info_t *power,double target_vol)
   char cVar4;
   byte bVar5;
   int iVar6;
-  double in_d0;
   double target_vol_local;
   power_info_t *power_local;
   uint8_t threshold_iic_data;
@@ -21,12 +18,12 @@ void calc_power_iic_data_by_chain(power_info_t *power,double target_vol)
   int index;
   
   index = 0;
-  data = get_power_iic_value_from_voltage(in_d0);
-  bVar5 = get_power_iic_value_from_voltage(in_d0);
+  data = get_power_iic_value_from_voltage(power->current_voltage);
+  bVar5 = get_power_iic_value_from_voltage(target_vol);
   uVar1 = (int)((uint)data - (uint)bVar5) >> 0x1f;
   iVar6 = ((uint)data - (uint)bVar5 ^ uVar1) - uVar1;
   cVar2 = (char)((ulonglong)((longlong)iVar6 * 0x2aaaaaab) >> 0x20) - (char)(iVar6 >> 0x1f);
-  if (power->current_voltage < in_d0) {
+  if (power->current_voltage < target_vol) {
     negate = -1;
   }
   else {

@@ -4,7 +4,7 @@
 void freeaddrinfo(addrinfo *__ai)
 
 {
-  (*(code *)PTR_freeaddrinfo_000c0248)();
+  freeaddrinfo(__ai);
   return;
 }
 

@@ -10,7 +10,7 @@ _k_free_list(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefined
   
   if (*(char *)(param_1 + 1) != '\0') {
     snprintf(acStack_818,0x800,"List %s can\'t %s() a store - from %s %s() line %d in %s %s():%d",
-             *param_1,DAT_00040a9c,param_2,param_3,param_4,"klist.c",DAT_00040a9c,400);
+             *param_1,"_k_free_list",param_2,param_3,param_4,"klist.c","_k_free_list",400);
     _applog(3,acStack_818,1);
     _quit(1);
   }

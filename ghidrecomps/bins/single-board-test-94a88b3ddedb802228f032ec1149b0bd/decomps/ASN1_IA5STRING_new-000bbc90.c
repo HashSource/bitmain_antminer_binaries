@@ -6,7 +6,7 @@ ASN1_IA5STRING * ASN1_IA5STRING_new(void)
 {
   ASN1_IA5STRING *pAVar1;
   
-  pAVar1 = (ASN1_IA5STRING *)ASN1_item_new(DAT_000bbc98);
+  pAVar1 = (ASN1_IA5STRING *)ASN1_item_new((ASN1_ITEM *)ASN1_IA5STRING_it);
   return pAVar1;
 }
 

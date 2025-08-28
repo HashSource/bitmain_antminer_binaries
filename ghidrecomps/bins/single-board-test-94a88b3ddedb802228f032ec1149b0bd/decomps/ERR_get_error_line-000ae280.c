@@ -17,7 +17,7 @@ ulong ERR_get_error_line(char **file,int *line)
     pEVar1->err_buffer[iVar2] = 0;
     if (line != (int *)0x0 && file != (char **)0x0) {
       if (pEVar1->err_file[iVar2] == (char *)0x0) {
-        *file = DAT_000ae314;
+        *file = "NA";
         *line = 0;
       }
       else {

@@ -5,7 +5,7 @@ undefined4 blake2b_final(int param_1,void *param_2,byte param_3)
   undefined4 uVar1;
   undefined4 *puVar2;
   undefined8 uVar3;
-  undefined auStack_54 [64];
+  undefined1 auStack_54 [64];
   int local_14;
   
   memset(auStack_54,0,0x40);

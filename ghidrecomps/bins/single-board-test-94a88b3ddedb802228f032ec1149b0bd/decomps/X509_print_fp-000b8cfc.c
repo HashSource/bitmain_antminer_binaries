@@ -9,7 +9,7 @@ int X509_print_fp(FILE *bp,X509 *x)
   type = BIO_s_file();
   bp_00 = BIO_new(type);
   if (bp_00 == (BIO *)0x0) {
-    ERR_put_error(0xb,0x76,7,DAT_000b8d48,0x5a);
+    ERR_put_error(0xb,0x76,7,"t_x509.c",0x5a);
     iVar1 = 0;
   }
   else {

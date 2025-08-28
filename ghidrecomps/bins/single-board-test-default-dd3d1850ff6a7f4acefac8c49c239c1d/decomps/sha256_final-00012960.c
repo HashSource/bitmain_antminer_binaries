@@ -16,7 +16,7 @@ void sha256_final(int *param_1,int param_2)
   iVar2 = (*param_1 + param_1[1]) * 8;
   iVar3 = iVar1 * 0x40;
   memset((void *)((int)param_1 + param_1[1] + 8),0,iVar3 - param_1[1]);
-  *(undefined *)((int)param_1 + param_1[1] + 8) = 0x80;
+  *(undefined1 *)((int)param_1 + param_1[1] + 8) = 0x80;
   *(char *)((int)param_1 + iVar3 + 7) = (char)iVar2;
   *(char *)((int)param_1 + iVar3 + 6) = (char)((uint)iVar2 >> 8);
   *(char *)((int)param_1 + iVar3 + 5) = (char)((uint)iVar2 >> 0x10);

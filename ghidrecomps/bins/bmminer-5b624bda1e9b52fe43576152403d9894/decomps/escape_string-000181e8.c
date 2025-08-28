@@ -4,10 +4,8 @@
 char * escape_string(char *str,_Bool isjson)
 
 {
-  char *ptr;
   size_t sVar1;
   byte *pbVar2;
-  char *buf;
   byte *pbVar3;
   byte bVar4;
   byte *pbVar5;
@@ -52,7 +50,8 @@ LAB_0001822a:
       sVar1 = iVar8 + 1 + sVar1;
       pbVar2 = (byte *)malloc(sVar1);
       if (pbVar2 == (byte *)0x0) {
-        snprintf(tmp42,0x800,DAT_000182dc,sVar1,DAT_000182d4,DAT_000182d8,0x348);
+        snprintf(tmp42,0x800,"Failed to malloc escape buf %d in %s %s():%d",sVar1,"api.c",
+                 "escape_string",0x348);
         _applog(3,tmp42,true);
         _quit(1);
         bVar7 = *str;

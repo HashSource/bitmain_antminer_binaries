@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_aes_192_cfb128(void)
 
 {
-  return DAT_000b13b8;
+  return (EVP_CIPHER *)aes_192_cfb;
 }
 

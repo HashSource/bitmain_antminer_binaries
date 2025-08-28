@@ -6,7 +6,7 @@ int pkey_dsa_keygen(int param_1,EVP_PKEY *param_2)
   int iVar1;
   
   if (*(int *)(param_1 + 8) == 0) {
-    ERR_put_error(10,0x79,0x6b,DAT_000ff71c,0x10c);
+    ERR_put_error(10,0x79,0x6b,"dsa_pmeth.c",0x10c);
   }
   else {
     key = DSA_new();

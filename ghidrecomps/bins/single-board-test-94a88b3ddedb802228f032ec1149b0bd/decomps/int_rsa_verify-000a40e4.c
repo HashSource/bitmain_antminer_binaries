@@ -1,5 +1,5 @@
 
-uint int_rsa_verify(int param_1,void *param_2,size_t param_3,undefined4 *param_4,int *param_5,
+uint int_rsa_verify(int param_1,void *param_2,size_t param_3,uchar *param_4,int *param_5,
                    uchar *param_6,size_t param_7,RSA *param_8)
 
 {
@@ -17,7 +17,7 @@ uint int_rsa_verify(int param_1,void *param_2,size_t param_3,undefined4 *param_4
   undefined4 uVar4;
   X509_ALGOR *pXVar5;
   ASN1_OCTET_STRING *pAVar6;
-  undefined4 *puVar7;
+  uchar *puVar7;
   uint uVar8;
   uint uVar9;
   uchar *local_30;
@@ -25,25 +25,25 @@ uint int_rsa_verify(int param_1,void *param_2,size_t param_3,undefined4 *param_4
   
   len = RSA_size(param_8);
   if (len != param_7) {
-    ERR_put_error(4,0x91,0x77,DAT_000a43c8,0xba);
+    ERR_put_error(4,0x91,0x77,"rsa_sign.c",0xba);
     return 0;
   }
   uVar8 = (uint)(param_1 == 0x72);
   puVar7 = param_4;
-  if (param_4 != (undefined4 *)0x0) {
-    puVar7 = (undefined4 *)0x1;
+  if (param_4 != (uchar *)0x0) {
+    puVar7 = (uchar *)0x1;
   }
   if (((uint)puVar7 & uVar8) != 0) {
-    iVar1 = RSA_public_decrypt(len,param_6,(uchar *)param_4,param_8,1);
+    iVar1 = RSA_public_decrypt(len,param_6,param_4,param_8,1);
     if (iVar1 < 1) {
       return (uint)(0 < iVar1);
     }
     *param_5 = iVar1;
     return (uint)(0 < iVar1);
   }
-  to = (uchar *)CRYPTO_malloc(len,DAT_000a43c8,199);
+  to = (uchar *)CRYPTO_malloc(len,"rsa_sign.c",199);
   if (to == (uchar *)0x0) {
-    ERR_put_error(4,0x91,0x41,DAT_000a43c8,0xc9);
+    ERR_put_error(4,0x91,0x41,"rsa_sign.c",0xc9);
     return 0;
   }
   uVar9 = uVar8;
@@ -51,7 +51,7 @@ uint int_rsa_verify(int param_1,void *param_2,size_t param_3,undefined4 *param_4
     uVar9 = 0;
   }
   if (uVar9 != 0) {
-    ERR_put_error(4,0x91,0x83,DAT_000a43c8,0xcd);
+    ERR_put_error(4,0x91,0x83,"rsa_sign.c",0xcd);
     uVar8 = 0;
     goto LAB_000a41ee;
   }
@@ -59,11 +59,11 @@ uint int_rsa_verify(int param_1,void *param_2,size_t param_3,undefined4 *param_4
   if (0 < (int)__n) {
     if (__n == 0x12 && param_1 == 0x5f) {
       if ((*to == '\x04') && (to[1] == '\x10')) {
-        if (puVar7 == (undefined4 *)0x0) {
+        if (puVar7 == (uchar *)0x0) {
           iVar1 = memcmp(param_2,to + 2,0x10);
           uVar8 = 1;
           if (iVar1 != 0) {
-            ERR_put_error(4,0x91,0x68,DAT_000a43c8,0xde);
+            ERR_put_error(4,0x91,0x68,"rsa_sign.c",0xde);
             goto LAB_000a4188;
           }
         }
@@ -72,10 +72,10 @@ uint int_rsa_verify(int param_1,void *param_2,size_t param_3,undefined4 *param_4
           uVar2 = *(undefined4 *)(to + 6);
           uVar3 = *(undefined4 *)(to + 10);
           uVar4 = *(undefined4 *)(to + 0xe);
-          *param_4 = *(undefined4 *)(to + 2);
-          param_4[1] = uVar2;
-          param_4[2] = uVar3;
-          param_4[3] = uVar4;
+          *(undefined4 *)param_4 = *(undefined4 *)(to + 2);
+          *(undefined4 *)(param_4 + 4) = uVar2;
+          *(undefined4 *)(param_4 + 8) = uVar3;
+          *(undefined4 *)(param_4 + 0xc) = uVar4;
           *param_5 = 0x10;
         }
       }
@@ -114,7 +114,7 @@ LAB_000a418a:
 LAB_000a42ea:
         iVar1 = OBJ_obj2nid(pXVar5->algorithm);
         if (iVar1 == param_1) {
-          if (puVar7 == (undefined4 *)0x0) {
+          if (puVar7 == (uchar *)0x0) {
             if ((a->digest->length != param_3) ||
                (iVar1 = memcmp(param_2,a->digest->data,param_3), iVar1 != 0)) {
               iVar1 = 0x117;
@@ -132,7 +132,7 @@ LAB_000a42ea:
               iVar1 = EVP_MD_size(md);
               pAVar6 = a->digest;
               if (iVar1 != pAVar6->length) {
-                ERR_put_error(4,0x91,0x8f,DAT_000a43c8,0x10f);
+                ERR_put_error(4,0x91,0x8f,"rsa_sign.c",0x10f);
                 goto LAB_000a41c0;
               }
             }
@@ -142,14 +142,14 @@ LAB_000a42ea:
           }
         }
         else {
-          ERR_put_error(4,0x91,100,DAT_000a43c8,0x108);
+          ERR_put_error(4,0x91,100,"rsa_sign.c",0x108);
         }
       }
       else {
 LAB_000a41a8:
         iVar1 = 0xf2;
 LAB_000a41aa:
-        ERR_put_error(4,0x91,0x68,DAT_000a43c8,iVar1);
+        ERR_put_error(4,0x91,0x68,"rsa_sign.c",iVar1);
       }
 LAB_000a41c0:
       X509_SIG_free(a);
@@ -161,7 +161,7 @@ LAB_000a41c0:
       iVar1 = memcmp(to,param_2,0x24);
       if (iVar1 == 0) goto LAB_000a41ee;
     }
-    ERR_put_error(4,0x91,0x68,DAT_000a43c8,0xe6);
+    ERR_put_error(4,0x91,0x68,"rsa_sign.c",0xe6);
   }
   uVar8 = 0;
 LAB_000a41ee:

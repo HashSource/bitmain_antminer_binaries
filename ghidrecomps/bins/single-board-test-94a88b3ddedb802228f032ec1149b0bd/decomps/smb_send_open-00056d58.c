@@ -6,8 +6,8 @@ undefined4 smb_send_open(int *param_1)
   undefined4 uVar2;
   int iVar3;
   int iVar4;
-  undefined local_44c;
-  undefined local_44b;
+  undefined1 local_44c;
+  undefined1 local_44b;
   short local_446;
   undefined4 local_43c;
   undefined4 local_42c;

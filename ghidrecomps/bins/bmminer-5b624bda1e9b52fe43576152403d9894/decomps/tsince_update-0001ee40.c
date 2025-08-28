@@ -8,7 +8,7 @@ double tsince_update(void)
   timeval now;
   
   cgtime(&now);
-  dVar1 = tdiff(&now,DAT_0001ee58);
+  dVar1 = tdiff(&now,&update_tv_start);
   return dVar1;
 }
 

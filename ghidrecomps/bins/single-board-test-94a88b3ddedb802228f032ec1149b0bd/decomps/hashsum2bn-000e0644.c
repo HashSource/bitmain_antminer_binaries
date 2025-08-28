@@ -2,16 +2,16 @@
 BIGNUM * hashsum2bn(int param_1)
 
 {
-  undefined *puVar1;
+  undefined1 *puVar1;
   BIGNUM *a;
   int len;
   uchar *s;
-  undefined *puVar2;
+  undefined1 *puVar2;
   uchar local_28 [32];
   
   puVar2 = &stack0xfffffff8;
   s = local_28;
-  puVar1 = (undefined *)(param_1 + -1);
+  puVar1 = (undefined1 *)(param_1 + -1);
   do {
     puVar1 = puVar1 + 1;
     puVar2 = puVar2 + -1;

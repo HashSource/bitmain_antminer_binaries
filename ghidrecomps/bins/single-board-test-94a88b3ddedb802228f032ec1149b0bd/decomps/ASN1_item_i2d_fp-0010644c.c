@@ -13,7 +13,7 @@ int ASN1_item_i2d_fp(ASN1_ITEM *it,FILE *out,void *x)
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0xd,0xc1,7,DAT_001064e0,0x7b);
+    ERR_put_error(0xd,0xc1,7,"a_i2d_fp.c",0x7b);
     iVar1 = 0;
   }
   else {
@@ -22,7 +22,7 @@ int ASN1_item_i2d_fp(ASN1_ITEM *it,FILE *out,void *x)
     local_1c[0] = (uchar *)0x0;
     iVar1 = ASN1_item_i2d((ASN1_VALUE *)x,local_1c,it);
     if (local_1c[0] == (uchar *)0x0) {
-      ERR_put_error(0xd,0xc0,0x41,DAT_001064e0,0x8c);
+      ERR_put_error(0xd,0xc0,0x41,"a_i2d_fp.c",0x8c);
       iVar1 = 0;
     }
     else {

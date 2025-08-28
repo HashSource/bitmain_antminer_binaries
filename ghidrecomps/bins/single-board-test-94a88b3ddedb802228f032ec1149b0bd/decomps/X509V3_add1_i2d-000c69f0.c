@@ -15,7 +15,7 @@ LAB_000c6a84:
     pXVar2 = X509V3_EXT_i2d(nid,crit,value);
     if (pXVar2 == (X509_EXTENSION *)0x0) {
 LAB_000c6ab4:
-      ERR_put_error(0x22,0x8c,0x90,DAT_000c6ad4,0x151);
+      ERR_put_error(0x22,0x8c,0x90,"v3_lib.c",0x151);
       return 0;
     }
     st = &(*x)->stack;
@@ -37,7 +37,7 @@ LAB_000c6aae:
         iVar1 = 0x66;
 LAB_000c6a20:
         if ((flags & 0x10) == 0) {
-          ERR_put_error(0x22,0x8c,iVar1,DAT_000c6ad4,0x167);
+          ERR_put_error(0x22,0x8c,iVar1,"v3_lib.c",0x167);
           return 0;
         }
         return 0;

@@ -4,9 +4,7 @@
 void qsort(void *__base,size_t __nmemb,size_t __size,__compar_fn_t __compar)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00009ffc. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_000851bc)();
+  (*(code *)(undefined *)0x0)(__base);
   return;
 }
 

@@ -6,7 +6,7 @@ longlong strtoll(char *__nptr,char **__endptr,int __base)
 {
   longlong lVar1;
   
-  lVar1 = (*(code *)PTR_strtoll_001941d8)();
+  lVar1 = strtoll(__nptr,__endptr,__base);
   return lVar1;
 }
 

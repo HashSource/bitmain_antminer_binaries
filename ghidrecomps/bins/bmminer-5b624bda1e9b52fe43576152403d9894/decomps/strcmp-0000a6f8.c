@@ -6,9 +6,7 @@ int strcmp(char *__s1,char *__s2)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a700. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0005f380)();
+  iVar1 = (*(code *)(undefined *)0x0)(__s1);
   return iVar1;
 }
 

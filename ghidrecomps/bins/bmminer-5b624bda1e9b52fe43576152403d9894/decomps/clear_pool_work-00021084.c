@@ -4,113 +4,105 @@
 void clear_pool_work(pool *pool)
 
 {
-  int iVar1;
-  int iVar2;
-  void *pvVar3;
-  UT_hash_handle *pUVar4;
+  work *pwVar1;
+  work *pwVar2;
+  int iVar3;
+  int iVar4;
   void *pvVar5;
-  int *piVar6;
-  char *in_r2;
-  work *func;
-  int in_r3;
-  undefined *puVar7;
+  UT_hash_handle *pUVar6;
+  char *func;
+  char *func_00;
+  int line;
+  int line_00;
+  work *pwVar7;
   UT_hash_handle *pUVar8;
   work *pwVar9;
-  work *tmp;
-  void *pvVar10;
+  work *pwVar10;
   uint uVar11;
-  int iVar12;
-  int iVar13;
-  UT_hash_handle *_hd_hh_del;
+  UT_hash_table *pUVar12;
+  UT_hash_bucket *pUVar13;
   bool bVar14;
-  work *work;
+  work *local_824;
   char tmp42 [2048];
   
-  iVar2 = DAT_0002121c;
-  iVar1 = pthread_mutex_lock(*(pthread_mutex_t **)(DAT_0002121c + 0x454));
-  if (iVar1 != 0) {
-    _mutex_lock(DAT_00021238,(char *)0x1c74,in_r2,in_r3);
+  iVar3 = pthread_mutex_lock((pthread_mutex_t *)stgd_lock);
+  if (iVar3 != 0) {
+    _mutex_lock((pthread_mutex_t *)"clear_pool_work",(char *)0x1c74,func,line);
   }
-  func = *(work **)(iVar2 + 0x458);
-  pwVar9 = func;
-  if (func != (work *)0x0) {
-    pwVar9 = (work *)(func->hh).next;
+  local_824 = staged_work;
+  pwVar9 = staged_work;
+  if (staged_work != (work *)0x0) {
+    pwVar9 = (work *)(staged_work->hh).next;
   }
-  iVar1 = 0;
-  work = func;
-  if (func != (work *)0x0) {
+  iVar3 = 0;
+  if (staged_work != (work *)0x0) {
     while( true ) {
-      func = pwVar9;
-      if (work->pool == pool) {
-        pvVar3 = (work->hh).prev;
-        pvVar10 = (work->hh).next;
-        if ((pvVar3 == (void *)0x0) && (pvVar10 == (void *)0x0)) {
-          free(**(void ***)(*(int *)(iVar2 + 0x458) + 0x158));
-          free(*(void **)(*(int *)(iVar2 + 0x458) + 0x158));
-          *(undefined4 *)(iVar2 + 0x458) = 0;
+      pwVar1 = staged_work;
+      if (local_824->pool == pool) {
+        pvVar5 = (local_824->hh).prev;
+        pwVar10 = (work *)(local_824->hh).next;
+        if ((pvVar5 == (void *)0x0) && (pwVar10 == (work *)0x0)) {
+          free(((staged_work->hh).tbl)->buckets);
+          free((staged_work->hh).tbl);
+          staged_work = pwVar10;
         }
         else {
-          pvVar5 = *(void **)(iVar2 + 0x458);
-          iVar12 = *(int *)((int)pvVar5 + 0x158);
-          pwVar9 = (work *)(*(int *)(iVar12 + 0x10) - *(int *)(iVar12 + 0x14));
-          bVar14 = work == pwVar9;
+          pUVar12 = (staged_work->hh).tbl;
+          pwVar7 = (work *)((int)pUVar12->tail - pUVar12->hho);
+          bVar14 = local_824 == pwVar7;
           if (bVar14) {
-            pwVar9 = (work *)((int)pvVar3 + *(int *)(iVar12 + 0x14));
+            pwVar7 = (work *)((int)pvVar5 + pUVar12->hho);
           }
           if (bVar14) {
-            *(work **)(iVar12 + 0x10) = pwVar9;
+            pUVar12->tail = (UT_hash_handle *)pwVar7;
           }
-          if (pvVar3 == (void *)0x0) {
-            *(void **)(iVar2 + 0x458) = pvVar10;
-            pvVar5 = pvVar10;
-          }
-          else {
-            *(void **)((int)pvVar3 + *(int *)(*(int *)(*(int *)(iVar2 + 0x458) + 0x158) + 0x14) + 8)
-                 = pvVar10;
-            pvVar10 = pvVar5;
-            pvVar5 = (work->hh).next;
-          }
-          piVar6 = *(int **)((int)pvVar10 + 0x158);
+          pwVar7 = pwVar10;
+          pwVar2 = pwVar10;
           if (pvVar5 != (void *)0x0) {
-            *(void **)((int)pvVar5 + piVar6[5] + 4) = pvVar3;
+            *(work **)((int)pvVar5 + ((staged_work->hh).tbl)->hho + 8) = pwVar10;
+            pwVar10 = pwVar1;
+            pwVar7 = (work *)(local_824->hh).next;
+            pwVar2 = staged_work;
           }
-          iVar13 = *piVar6;
-          uVar11 = piVar6[1] - 1U & (work->hh).hashv;
-          iVar12 = iVar13 + uVar11 * 0xc;
-          puVar7 = *(undefined **)(iVar13 + uVar11 * 0xc);
-          pUVar8 = (work->hh).hh_next;
-          *(int *)(iVar12 + 4) = *(int *)(iVar12 + 4) + -1;
-          pUVar4 = (work->hh).hh_prev;
-          if ((UT_hash_handle *)puVar7 == &work->hh) {
-            *(UT_hash_handle **)(iVar13 + uVar11 * 0xc) = pUVar8;
+          staged_work = pwVar2;
+          pUVar12 = (pwVar10->hh).tbl;
+          if (pwVar7 != (work *)0x0) {
+            *(void **)(pwVar7->data + pUVar12->hho + 4) = pvVar5;
           }
-          if (pUVar4 != (UT_hash_handle *)0x0) {
-            pUVar4->hh_next = pUVar8;
-            pUVar8 = (work->hh).hh_next;
+          pUVar13 = pUVar12->buckets;
+          uVar11 = pUVar12->num_buckets - 1 & (local_824->hh).hashv;
+          pUVar8 = (local_824->hh).hh_next;
+          pUVar13[uVar11].count = pUVar13[uVar11].count - 1;
+          pUVar6 = (local_824->hh).hh_prev;
+          if (pUVar13[uVar11].hh_head == &local_824->hh) {
+            pUVar13[uVar11].hh_head = pUVar8;
+          }
+          if (pUVar6 != (UT_hash_handle *)0x0) {
+            pUVar6->hh_next = pUVar8;
+            pUVar8 = (local_824->hh).hh_next;
           }
           if (pUVar8 != (UT_hash_handle *)0x0) {
-            pUVar8->hh_prev = pUVar4;
+            pUVar8->hh_prev = pUVar6;
           }
-          piVar6[3] = piVar6[3] + -1;
+          pUVar12->num_items = pUVar12->num_items - 1;
         }
-        in_r3 = 0x1c7a;
-        iVar1 = iVar1 + 1;
-        _free_work(&work,DAT_00021234,DAT_00021238->__size,0x1c7a);
+        iVar3 = iVar3 + 1;
+        _free_work(&local_824,"cgminer.c","clear_pool_work",0x1c7a);
       }
-      if (func == (work *)0x0) break;
-      work = func;
-      pwVar9 = (work *)(func->hh).next;
+      local_824 = pwVar9;
+      if (pwVar9 == (work *)0x0) break;
+      pwVar9 = (work *)(pwVar9->hh).next;
     }
   }
-  work = func;
-  iVar2 = pthread_mutex_unlock(*(pthread_mutex_t **)(iVar2 + 0x454));
-  if (iVar2 != 0) {
-    _mutex_unlock_noyield(DAT_00021238,(char *)0x1c7e,(char *)func,in_r3);
+  iVar4 = pthread_mutex_unlock((pthread_mutex_t *)stgd_lock);
+  if (iVar4 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"clear_pool_work",(char *)0x1c7e,func_00,line_00);
   }
-  (**DAT_00021220)();
-  if ((iVar1 != 0) && (((*DAT_00021224 != '\0' || (*DAT_00021228 != '\0')) || (5 < *DAT_0002122c))))
+  (*selective_yield)();
+  if ((iVar3 != 0) && (((use_syslog != false || (opt_log_output != false)) || (5 < opt_log_level))))
   {
-    snprintf(tmp42,0x800,DAT_00021230,iVar1,pool->pool_no);
+    snprintf(tmp42,0x800,"Cleared %d work items due to stratum disconnect on pool %d",iVar3,
+             pool->pool_no);
     _applog(6,tmp42,false);
   }
   return;

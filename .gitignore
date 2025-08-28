@@ -1,1 +1,5 @@
 *.log
+
+# Too Large For Github
+ghidrecomps/ghidra_projects
+ghidrecomps/symbols

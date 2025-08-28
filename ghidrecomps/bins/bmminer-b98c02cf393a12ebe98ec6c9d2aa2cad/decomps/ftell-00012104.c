@@ -6,7 +6,7 @@ long ftell(FILE *__stream)
 {
   long lVar1;
   
-  lVar1 = (*(code *)PTR_ftell_0007cea0)();
+  lVar1 = ftell(__stream);
   return lVar1;
 }
 

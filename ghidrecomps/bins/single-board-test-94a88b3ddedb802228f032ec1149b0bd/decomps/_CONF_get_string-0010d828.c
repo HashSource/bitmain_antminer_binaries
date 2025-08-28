@@ -18,7 +18,7 @@ LAB_0010d888:
     }
     if (section == (char *)0x0) {
 LAB_0010d876:
-      local_24 = DAT_0010d898;
+      local_24 = "default";
       local_20 = name;
       pvVar1 = lh_retrieve((_LHASH *)conf->data,&local_24);
       if (pvVar1 == (void *)0x0) goto LAB_0010d888;

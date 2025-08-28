@@ -36,9 +36,9 @@ LAB_0001f1ba:
     }
   }
   else {
-    _rd_lock_part_39_constprop_80(DAT_0001f1fc,0x24ea);
+    _rd_lock_part_39_constprop_80("clone_queued_work_byid",0x24ea);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_0001f1fc,0x24ee);
+  _rw_unlock_part_40_constprop_79("clone_queued_work_byid",0x24ee);
 }
 

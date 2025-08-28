@@ -3,92 +3,99 @@ UDItype share_diff(int param_1)
 
 {
   UDItype *pUVar1;
-  uint uVar2;
-  int iVar3;
-  int *piVar4;
-  uint uVar5;
+  UDItype UVar2;
+  uint uVar3;
+  int iVar4;
+  int *piVar5;
   uint uVar6;
+  uint uVar7;
   char *__format;
-  bool bVar7;
   bool bVar8;
-  UDItype UVar9;
-  undefined4 in_stack_fffff7d0;
-  undefined4 in_stack_fffff7d4;
-  undefined4 uVar10;
-  undefined4 uVar11;
+  bool bVar9;
+  double dVar10;
+  double dVar11;
+  double dVar12;
+  double dVar13;
+  UDItype UVar14;
+  undefined4 uVar15;
   char acStack_820 [2052];
   
-  __floatundidf(*(undefined4 *)(param_1 + 0xd8),*(undefined4 *)(param_1 + 0xdc));
-  __floatundidf(*(undefined4 *)(param_1 + 0xd0),*(undefined4 *)(param_1 + 0xd4));
-  __floatundidf(*(undefined4 *)(param_1 + 200),*(undefined4 *)(param_1 + 0xcc));
-  __floatundidf(*(undefined4 *)(param_1 + 0xc0),*(undefined4 *)(param_1 + 0xc4));
-  round((double)CONCAT44(in_stack_fffff7d4,in_stack_fffff7d0));
-  UVar9 = __fixunsdfdi((DFtype)CONCAT44(in_stack_fffff7d4,in_stack_fffff7d0));
-  uVar5 = (uint)(UVar9 >> 0x20);
-  uVar2 = (uint)UVar9;
-  iVar3 = pthread_mutex_lock((pthread_mutex_t *)control_lock);
-  if (iVar3 == 0) {
-    iVar3 = pthread_rwlock_wrlock(DAT_000219d8);
-    uVar10 = DAT_000219e0;
-    if (iVar3 == 0) {
-      bVar7 = uVar5 <= *(uint *)((int)DAT_000219dc + 4);
-      if (*(uint *)((int)DAT_000219dc + 4) == uVar5) {
-        bVar7 = uVar2 <= *(uint *)DAT_000219dc;
-      }
-      if (!bVar7) {
-        *DAT_000219dc = UVar9;
-        suffix_string(uVar2,uVar5,DAT_000219e4,8,0);
-      }
-      pUVar1 = (UDItype *)(*(int *)(param_1 + 0x104) + 0x170);
-      uVar6 = *(uint *)(*(int *)(param_1 + 0x104) + 0x174);
-      bVar8 = uVar5 <= uVar6;
-      if (uVar6 == uVar5) {
-        bVar8 = uVar2 <= *(uint *)pUVar1;
+  dVar12 = (double)__floatundidf(*(undefined4 *)(param_1 + 0xd8),*(undefined4 *)(param_1 + 0xdc));
+  dVar10 = (double)__floatundidf(*(undefined4 *)(param_1 + 0xd0),*(undefined4 *)(param_1 + 0xd4));
+  dVar11 = (double)__floatundidf(*(undefined4 *)(param_1 + 200),*(undefined4 *)(param_1 + 0xcc));
+  dVar13 = (double)__floatundidf(*(undefined4 *)(param_1 + 0xc0),*(undefined4 *)(param_1 + 0xc4));
+  dVar13 = dVar12 * 6.277101735386681e+57 + dVar10 * 3.402823669209385e+38 +
+           dVar11 * 1.8446744073709552e+19 + dVar13;
+  if (dVar13 == 0.0) {
+    dVar13 = 0.0;
+  }
+  dVar13 = round(2.695953529101131e+67 / dVar13);
+  UVar14 = __fixunsdfdi(dVar13);
+  uVar6 = (uint)(UVar14 >> 0x20);
+  uVar3 = (uint)UVar14;
+  iVar4 = pthread_mutex_lock((pthread_mutex_t *)control_lock);
+  if (iVar4 == 0) {
+    iVar4 = pthread_rwlock_wrlock((pthread_rwlock_t *)(control_lock + 0x18));
+    if (iVar4 == 0) {
+      bVar8 = uVar6 <= best_diff._4_4_;
+      if (best_diff._4_4_ == uVar6) {
+        bVar8 = uVar3 <= (uint)best_diff;
       }
       if (!bVar8) {
-        *pUVar1 = UVar9;
+        best_diff = UVar14;
+        suffix_string(uVar3,uVar6,&best_share,8,0);
       }
-      iVar3 = pthread_rwlock_unlock(DAT_000219d8);
-      uVar10 = DAT_000219e0;
-      if (iVar3 == 0) {
-        iVar3 = pthread_mutex_unlock((pthread_mutex_t *)control_lock);
-        uVar10 = DAT_000219e0;
-        if (iVar3 == 0) {
+      pUVar1 = (UDItype *)(*(int *)(param_1 + 0x104) + 0x170);
+      uVar7 = *(uint *)(*(int *)(param_1 + 0x104) + 0x174);
+      bVar9 = uVar6 <= uVar7;
+      if (uVar7 == uVar6) {
+        bVar9 = uVar3 <= *(uint *)pUVar1;
+      }
+      if (!bVar9) {
+        *pUVar1 = UVar14;
+      }
+      iVar4 = pthread_rwlock_unlock((pthread_rwlock_t *)(control_lock + 0x18));
+      if (iVar4 == 0) {
+        iVar4 = pthread_mutex_unlock((pthread_mutex_t *)control_lock);
+        if (iVar4 == 0) {
           (*selective_yield)();
-          if ((!bVar7) &&
+          UVar2 = best_diff;
+          if ((!bVar8) &&
              (((use_syslog != '\0' || (opt_log_output != '\0')) || (5 < opt_log_level)))) {
-            snprintf(acStack_820,0x800,"New best share: %s",DAT_000219e4);
+            snprintf(acStack_820,0x800,"New best share: %s",&best_share);
             _applog(6,acStack_820,0);
+            UVar2 = best_diff;
           }
-          return UVar9;
+          best_diff._4_4_ = (uint)(UVar2 >> 0x20);
+          best_diff._0_4_ = (uint)UVar2;
+          return UVar14;
         }
-        piVar4 = __errno_location();
-        iVar3 = *piVar4;
+        piVar5 = __errno_location();
+        iVar4 = *piVar5;
         __format = "WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d";
-        uVar11 = 0x13df;
+        uVar15 = 0x13df;
       }
       else {
-        piVar4 = __errno_location();
-        iVar3 = *piVar4;
+        piVar5 = __errno_location();
+        iVar4 = *piVar5;
         __format = "WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d";
-        uVar11 = 0x13df;
+        uVar15 = 0x13df;
       }
     }
     else {
-      piVar4 = __errno_location();
-      iVar3 = *piVar4;
+      piVar5 = __errno_location();
+      iVar4 = *piVar5;
       __format = "WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d";
-      uVar11 = 0x13d1;
+      uVar15 = 0x13d1;
     }
   }
   else {
-    piVar4 = __errno_location();
-    iVar3 = *piVar4;
+    piVar5 = __errno_location();
+    iVar4 = *piVar5;
     __format = "WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d";
-    uVar11 = 0x13d1;
-    uVar10 = DAT_000219e0;
+    uVar15 = 0x13d1;
   }
-  snprintf(acStack_820,0x800,__format,iVar3,"cgminer.c",uVar10,uVar11);
+  snprintf(acStack_820,0x800,__format,iVar4,"cgminer.c","share_diff",uVar15);
   _applog(3,acStack_820,1);
                     /* WARNING: Subroutine does not return */
   __quit(1);

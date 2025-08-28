@@ -12,14 +12,14 @@ int dtls1_write_app_data_bytes(SSL *param_1,undefined4 param_2,undefined4 param_
       return iVar2;
     }
     if (iVar2 == 0) {
-      ERR_put_error(0x14,0x10c,0xe5,DAT_00077ab8,0x594);
+      ERR_put_error(0x14,0x10c,0xe5,"d1_pkt.c",0x594);
       return -1;
     }
   }
   if (param_4 < 0x4001) {
     param_1->rwstate = 1;
     if ((param_1->s3->wbuf).left != 0) {
-      OpenSSLDie(DAT_00077ab8,0x5e1,DAT_00077abc);
+      OpenSSLDie("d1_pkt.c",0x5e1,"0");
       iVar2 = ssl3_write_pending(param_1,param_2,param_3,param_4);
       return iVar2;
     }
@@ -30,7 +30,7 @@ int dtls1_write_app_data_bytes(SSL *param_1,undefined4 param_2,undefined4 param_
     }
   }
   else {
-    ERR_put_error(0x14,0x10c,0x14e,DAT_00077ab8,0x59a);
+    ERR_put_error(0x14,0x10c,0x14e,"d1_pkt.c",0x59a);
     iVar2 = -1;
   }
   return iVar2;

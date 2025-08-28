@@ -134,15 +134,15 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar9 = (local_cd8 >> 0x12 | local_cd4 << 0xe) ^ (local_cd8 >> 0xe | local_cd4 << 0x12) ^
               (local_cd8 << 0x17 | local_cd4 >> 9);
       uVar16 = local_6b0 & ~local_cd8 ^ local_6b8 & local_cd8;
-      uVar10 = local_6a0 + DAT_000921d8 + uVar9;
+      uVar10 = local_6a0 + 0xd728ae22 + uVar9;
       local_d10 = (uint)param_2[7] | (uint)param_2[4] << 0x18 | (uint)param_2[5] << 0x10 |
                   (uint)param_2[6] << 8;
       uVar11 = uVar10 + uVar16;
       uVar30 = uVar11 + local_d10;
-      iVar33 = uStack_69c + DAT_000921dc + (uint)CARRY4(local_6a0,DAT_000921d8) +
+      iVar33 = uStack_69c + (0x28d751dd < local_6a0) + 0x428a2f98 +
                ((local_cd4 >> 0x12 | local_cd8 << 0xe) ^ (local_cd4 >> 0xe | local_cd8 << 0x12) ^
-               (local_cd4 << 0x17 | local_cd8 >> 9)) + (uint)CARRY4(local_6a0 + DAT_000921d8,uVar9)
-               + (uStack_6ac & ~local_cd4 ^ uStack_6b4 & local_cd4) + (uint)CARRY4(uVar10,uVar16) +
+               (local_cd4 << 0x17 | local_cd8 >> 9)) + (uint)CARRY4(local_6a0 + 0xd728ae22,uVar9) +
+               (uStack_6ac & ~local_cd4 ^ uStack_6b4 & local_cd4) + (uint)CARRY4(uVar10,uVar16) +
                local_d0c + CARRY4(uVar11,local_d10);
       uVar21 = uVar30 + local_6a8;
       uVar27 = iVar33 + uStack_6a4 + CARRY4(uVar30,local_6a8);
@@ -161,12 +161,12 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0xe] << 8;
       uVar11 = (uVar21 >> 0x12 | uVar27 * 0x4000) ^ (uVar21 >> 0xe | uVar27 * 0x40000) ^
                (uVar21 * 0x800000 | uVar27 >> 9);
-      uVar16 = local_6b0 + DAT_000921e0 + local_d20;
+      uVar16 = local_6b0 + 0x23ef65cd + local_d20;
       uVar9 = uVar16 + uVar11;
       uVar10 = uVar21 & local_cd8 ^ local_6b8 & ~uVar21;
       uVar30 = uVar9 + uVar10;
-      iVar33 = uStack_6ac + DAT_000921e4 + (uint)CARRY4(local_6b0,DAT_000921e0) +
-               local_d1c + CARRY4(local_6b0 + DAT_000921e0,local_d20) +
+      iVar33 = uStack_6ac + (0xdc109a32 < local_6b0) + 0x71374491 +
+               local_d1c + CARRY4(local_6b0 + 0x23ef65cd,local_d20) +
                ((uVar27 >> 0x12 | uVar21 * 0x4000) ^ (uVar27 >> 0xe | uVar21 * 0x40000) ^
                (uVar27 * 0x800000 | uVar21 >> 9)) + (uint)CARRY4(uVar16,uVar11) +
                (uVar27 & local_cd4 ^ uStack_6b4 & ~uVar27) + (uint)CARRY4(uVar9,uVar10);
@@ -187,12 +187,12 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x16] << 8;
       uVar10 = (uVar12 >> 0x12 | uVar14 * 0x4000) ^ (uVar12 >> 0xe | uVar14 * 0x40000) ^
                (uVar12 * 0x800000 | uVar14 >> 9);
-      uVar11 = local_6b8 + DAT_000921e8 + local_d28;
+      uVar11 = local_6b8 + 0xec4d3b2f + local_d28;
       uVar9 = uVar12 & uVar21 ^ local_cd8 & ~uVar12;
       uVar16 = uVar11 + uVar10;
       uVar30 = uVar16 + uVar9;
-      iVar33 = uStack_6b4 + DAT_000921ec + (uint)CARRY4(local_6b8,DAT_000921e8) +
-               local_d24 + CARRY4(local_6b8 + DAT_000921e8,local_d28) +
+      iVar33 = uStack_6b4 + (0x13b2c4d0 < local_6b8) + 0xb5c0fbcf +
+               local_d24 + CARRY4(local_6b8 + 0xec4d3b2f,local_d28) +
                ((uVar14 >> 0x12 | uVar12 * 0x4000) ^ (uVar14 >> 0xe | uVar12 * 0x40000) ^
                (uVar14 * 0x800000 | uVar12 >> 9)) + (uint)CARRY4(uVar11,uVar10) +
                (uVar14 & uVar27 ^ local_cd4 & ~uVar14) + (uint)CARRY4(uVar16,uVar9);
@@ -213,12 +213,12 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x1e] << 8;
       uVar16 = (uVar18 >> 0x12 | uVar20 * 0x4000) ^ (uVar18 >> 0xe | uVar20 * 0x40000) ^
                (uVar18 * 0x800000 | uVar20 >> 9);
-      uVar10 = local_cd8 + DAT_000921f0 + local_d38;
+      uVar10 = local_cd8 + 0x8189dbbc + local_d38;
       uVar11 = uVar18 & uVar12 ^ uVar21 & ~uVar18;
       uVar23 = uVar10 + uVar16;
       uVar24 = uVar23 + uVar11;
-      iVar33 = local_cd4 + DAT_000921f4 + (uint)CARRY4(local_cd8,DAT_000921f0) +
-               local_d34 + CARRY4(local_cd8 + DAT_000921f0,local_d38) +
+      iVar33 = local_cd4 + (0x7e762443 < local_cd8) + 0xe9b5dba5 +
+               local_d34 + CARRY4(local_cd8 + 0x8189dbbc,local_d38) +
                ((uVar20 >> 0x12 | uVar18 * 0x4000) ^ (uVar20 >> 0xe | uVar18 * 0x40000) ^
                (uVar20 * 0x800000 | uVar18 >> 9)) + (uint)CARRY4(uVar10,uVar16) +
                (uVar20 & uVar14 ^ uVar27 & ~uVar20) + (uint)CARRY4(uVar23,uVar11);
@@ -237,15 +237,15 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x22] << 8 | (uint)param_2[0x23];
       local_d30 = (uint)param_2[0x27] | (uint)param_2[0x24] << 0x18 | (uint)param_2[0x25] << 0x10 |
                   (uint)param_2[0x26] << 8;
-      uVar16 = local_d30 + DAT_00092ee8 + uVar21;
+      uVar16 = local_d30 + 0xf348b538 + uVar21;
       uVar31 = (uVar13 >> 0x12 | uVar15 * 0x4000) ^ (uVar13 >> 0xe | uVar15 * 0x40000) ^
                (uVar13 * 0x800000 | uVar15 >> 9);
       uVar11 = uVar13 & uVar18 ^ uVar12 & ~uVar13;
       uVar25 = uVar16 + uVar31;
       uVar26 = uVar10 & uVar22 ^ uVar10 & uVar9 ^ uVar9 & uVar22;
       uVar24 = uVar25 + uVar11;
-      iVar33 = local_d2c + DAT_00092eec + (uint)CARRY4(local_d30,DAT_00092ee8) +
-               uVar27 + CARRY4(local_d30 + DAT_00092ee8,uVar21) +
+      iVar33 = local_d2c + (0xcb74ac7 < local_d30) + 0x3956c25b +
+               uVar27 + CARRY4(local_d30 + 0xf348b538,uVar21) +
                ((uVar15 >> 0x12 | uVar13 * 0x4000) ^ (uVar15 >> 0xe | uVar13 * 0x40000) ^
                (uVar15 * 0x800000 | uVar13 >> 9)) + (uint)CARRY4(uVar16,uVar31) +
                (uVar15 & uVar20 ^ uVar14 & ~uVar15) + (uint)CARRY4(uVar25,uVar11);
@@ -258,7 +258,7 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x2a] << 8 | (uint)param_2[0x2b];
       local_d48 = (uint)param_2[0x2f] | (uint)param_2[0x2c] << 0x18 | (uint)param_2[0x2d] << 0x10 |
                   (uint)param_2[0x2e] << 8;
-      uVar16 = local_d48 + DAT_00092ef0 + uVar12;
+      uVar16 = local_d48 + 0xb605d019 + uVar12;
       uVar19 = (uVar25 >> 0x12 | uVar31 * 0x4000) ^ (uVar25 >> 0xe | uVar31 * 0x40000) ^
                (uVar25 * 0x800000 | uVar31 >> 9);
       uVar17 = uVar25 & uVar13 ^ uVar18 & ~uVar25;
@@ -266,8 +266,8 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar27 = uVar21 + uVar17;
       iVar29 = ((uVar31 >> 0x12 | uVar25 * 0x4000) ^ (uVar31 >> 0xe | uVar25 * 0x40000) ^
                (uVar31 * 0x800000 | uVar25 >> 9)) +
-               local_d44 + DAT_00092ef4 + (uint)CARRY4(local_d48,DAT_00092ef0) +
-               uVar14 + CARRY4(local_d48 + DAT_00092ef0,uVar12) + (uint)CARRY4(uVar19,uVar16) +
+               local_d44 + (0x49fa2fe6 < local_d48) + 0x59f111f1 +
+               uVar14 + CARRY4(local_d48 + 0xb605d019,uVar12) + (uint)CARRY4(uVar19,uVar16) +
                (uVar31 & uVar15 ^ uVar20 & ~uVar31) + (uint)CARRY4(uVar21,uVar17);
       uVar12 = uVar11 + uVar24;
       uVar26 = (uVar23 & uVar28 ^ uVar23 & uVar30 ^ uVar30 & uVar28) +
@@ -283,7 +283,7 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar24 = uVar12 & uVar9 ^ uVar12 & uVar10 ^ uVar10 & uVar9;
       uVar17 = (uVar12 * 0x40000000 | uVar26 >> 2) ^ (uVar12 >> 0x1c | uVar26 * 0x10) ^
                (uVar12 * 0x2000000 | uVar26 >> 7);
-      uVar11 = local_d40 + DAT_00092ef8 + uVar18;
+      uVar11 = local_d40 + 0xaf194f9b + uVar18;
       uVar14 = (uVar19 >> 0x12 | uVar22 * 0x4000) ^ (uVar19 >> 0xe | uVar22 * 0x40000) ^
                (uVar19 * 0x800000 | uVar22 >> 9);
       uVar16 = uVar19 & uVar25 ^ uVar13 & ~uVar19;
@@ -297,8 +297,8 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar24 = uVar32 + uVar16;
       iVar33 = ((uVar22 >> 0x12 | uVar19 * 0x4000) ^ (uVar22 >> 0xe | uVar19 * 0x40000) ^
                (uVar22 * 0x800000 | uVar19 >> 9)) +
-               local_d3c + DAT_00092efc + (uint)CARRY4(local_d40,DAT_00092ef8) +
-               uVar20 + CARRY4(local_d40 + DAT_00092ef8,uVar18) + (uint)CARRY4(uVar14,uVar11) +
+               local_d3c + (0x50e6b064 < local_d40) + 0x923f82a4 +
+               uVar20 + CARRY4(local_d40 + 0xaf194f9b,uVar18) + (uint)CARRY4(uVar14,uVar11) +
                (uVar22 & uVar31 ^ uVar15 & ~uVar22) + (uint)CARRY4(uVar32,uVar16);
       uVar18 = uVar24 + uVar9;
       uVar32 = iVar33 + uVar30 + CARRY4(uVar24,uVar9);
@@ -310,7 +310,7 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar9 = (uVar21 * 0x40000000 | uVar27 >> 2) ^ (uVar21 >> 0x1c | uVar27 * 0x10) ^
               (uVar21 * 0x2000000 | uVar27 >> 7);
       uVar16 = uVar17 + uVar9;
-      uVar20 = local_d58 + DAT_00092f00 + uVar13;
+      uVar20 = local_d58 + 0xda6d8118 + uVar13;
       uVar11 = (uVar18 >> 0x12 | uVar32 * 0x4000) ^ (uVar18 >> 0xe | uVar32 * 0x40000) ^
                (uVar18 * 0x800000 | uVar32 >> 9);
       uVar30 = uVar16 + uVar24;
@@ -321,8 +321,8 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar16 = uVar20 + uVar11;
       uVar9 = uVar25 & ~uVar18 ^ uVar18 & uVar19;
       uVar24 = uVar16 + uVar9;
-      iVar33 = local_d54 + DAT_00092f04 + (uint)CARRY4(local_d58,DAT_00092f00) +
-               uVar15 + CARRY4(local_d58 + DAT_00092f00,uVar13) +
+      iVar33 = local_d54 + (0x25927ee7 < local_d58) + 0xab1c5ed5 +
+               uVar15 + CARRY4(local_d58 + 0xda6d8118,uVar13) +
                ((uVar32 >> 0x12 | uVar18 * 0x4000) ^ (uVar32 >> 0xe | uVar18 * 0x40000) ^
                (uVar32 * 0x800000 | uVar18 >> 9)) + (uint)CARRY4(uVar20,uVar11) +
                (uVar31 & ~uVar32 ^ uVar32 & uVar22) + (uint)CARRY4(uVar16,uVar9);
@@ -341,14 +341,14 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                ((uVar14 * 0x40000000 | uVar30 >> 2) ^ (uVar14 >> 0x1c | uVar30 * 0x10) ^
                (uVar14 * 0x2000000 | uVar30 >> 7)) + (uint)CARRY4(uVar11,uVar9) +
                iVar33 + (uint)CARRY4(uVar10,uVar24);
-      uVar11 = local_d60 + DAT_00092f08 + uVar25;
+      uVar11 = local_d60 + 0xa3030242 + uVar25;
       uVar9 = (uVar13 >> 0x12 | uVar15 * 0x4000) ^ (uVar13 >> 0xe | uVar15 * 0x40000) ^
               (uVar13 * 0x800000 | uVar15 >> 9);
       uVar16 = uVar11 + uVar9;
       uVar10 = uVar13 & uVar18 ^ uVar19 & ~uVar13;
       uVar24 = uVar16 + uVar10;
-      iVar33 = local_d5c + DAT_00092f0c + (uint)CARRY4(local_d60,DAT_00092f08) +
-               uVar31 + CARRY4(local_d60 + DAT_00092f08,uVar25) +
+      iVar33 = local_d5c + (0x5cfcfdbd < local_d60) + 0xd807aa98 +
+               uVar31 + CARRY4(local_d60 + 0xa3030242,uVar25) +
                ((uVar15 >> 0x12 | uVar13 * 0x4000) ^ (uVar15 >> 0xe | uVar13 * 0x40000) ^
                (uVar15 * 0x800000 | uVar13 >> 9)) + (uint)CARRY4(uVar11,uVar9) +
                (uVar15 & uVar32 ^ uVar22 & ~uVar15) + (uint)CARRY4(uVar16,uVar10);
@@ -375,13 +375,13 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x4a] << 8 | (uint)param_2[0x4b];
       local_d68 = (uint)param_2[0x4f] | (uint)param_2[0x4c] << 0x18 | (uint)param_2[0x4d] << 0x10 |
                   (uint)param_2[0x4e] << 8;
-      uVar11 = local_d68 + DAT_00093df0 + uVar19;
+      uVar11 = local_d68 + 0x45706fbe + uVar19;
       uVar17 = uVar9 + uVar11;
       uVar26 = uVar17 + uVar10;
       iVar33 = ((uVar12 >> 0x12 | uVar23 * 0x4000) ^ (uVar12 >> 0xe | uVar23 * 0x40000) ^
                (uVar12 * 0x800000 | uVar23 >> 9)) +
-               local_d64 + DAT_00093df4 + (uint)CARRY4(local_d68,DAT_00093df0) +
-               uVar22 + CARRY4(local_d68 + DAT_00093df0,uVar19) + (uint)CARRY4(uVar9,uVar11) +
+               local_d64 + (0xba8f9041 < local_d68) + 0x12835b01 +
+               uVar22 + CARRY4(local_d68 + 0x45706fbe,uVar19) + (uint)CARRY4(uVar9,uVar11) +
                (uVar12 & uVar15 ^ uVar32 & ~uVar12) + (uint)CARRY4(uVar17,uVar10);
       uVar19 = uVar26 + uVar21;
       uVar22 = iVar33 + uVar27 + CARRY4(uVar26,uVar21);
@@ -395,14 +395,14 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x52] << 8 | (uint)param_2[0x53];
       local_d50 = (uint)param_2[0x57] | (uint)param_2[0x54] << 0x18 | (uint)param_2[0x55] << 0x10 |
                   (uint)param_2[0x56] << 8;
-      uVar11 = local_d50 + DAT_00093df8 + uVar18;
+      uVar11 = local_d50 + 0x4ee4b28c + uVar18;
       uVar9 = (uVar19 >> 0x12 | uVar22 * 0x4000) ^ (uVar19 >> 0xe | uVar22 * 0x40000) ^
               (uVar19 * 0x800000 | uVar22 >> 9);
       uVar24 = uVar11 + uVar9;
       uVar16 = uVar19 & uVar23 ^ uVar13 & ~uVar19;
       uVar10 = uVar24 + uVar16;
-      iVar33 = local_d4c + DAT_00093dfc + (uint)CARRY4(local_d50,DAT_00093df8) +
-               uVar32 + CARRY4(local_d50 + DAT_00093df8,uVar18) +
+      iVar33 = local_d4c + (0xb11b4d73 < local_d50) + 0x243185be +
+               uVar32 + CARRY4(local_d50 + 0x4ee4b28c,uVar18) +
                ((uVar22 >> 0x12 | uVar19 * 0x4000) ^ (uVar22 >> 0xe | uVar19 * 0x40000) ^
                (uVar22 * 0x800000 | uVar19 >> 9)) + (uint)CARRY4(uVar11,uVar9) +
                (uVar22 & uVar12 ^ uVar15 & ~uVar22) + (uint)CARRY4(uVar24,uVar16);
@@ -421,15 +421,15 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                (uint)CARRY4(uVar11,uVar17) + iVar33 + (uint)CARRY4(uVar16,uVar10);
       local_d78 = (uint)param_2[0x5f] | (uint)param_2[0x5c] << 0x18 | (uint)param_2[0x5d] << 0x10 |
                   (uint)param_2[0x5e] << 8;
-      uVar17 = DAT_00093e00 + local_d78 + uVar13;
+      uVar17 = local_d78 + 0xd5ffb4e2 + uVar13;
       uVar10 = (uVar9 >> 0x12 | uVar30 * 0x4000) ^ (uVar9 >> 0xe | uVar30 * 0x40000) ^
                (uVar9 * 0x800000 | uVar30 >> 9);
       uVar14 = uVar17 + uVar10;
       uVar11 = uVar9 & uVar19 ^ uVar23 & ~uVar9;
       uVar16 = uVar11 + uVar14;
       iVar33 = (uVar30 & uVar22 ^ uVar12 & ~uVar30) +
-               DAT_00093e04 + local_d74 + CARRY4(DAT_00093e00,local_d78) +
-               uVar15 + CARRY4(DAT_00093e00 + local_d78,uVar13) +
+               local_d74 + (0x2a004b1d < local_d78) + 0x550c7dc3 +
+               uVar15 + CARRY4(local_d78 + 0xd5ffb4e2,uVar13) +
                ((uVar30 >> 0x12 | uVar9 * 0x4000) ^ (uVar30 >> 0xe | uVar9 * 0x40000) ^
                (uVar30 * 0x800000 | uVar9 >> 9)) + (uint)CARRY4(uVar17,uVar10) +
                (uint)CARRY4(uVar11,uVar14);
@@ -448,15 +448,15 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x62] << 8 | (uint)param_2[99];
       local_d70 = (uint)param_2[0x67] | (uint)param_2[100] << 0x18 | (uint)param_2[0x65] << 0x10 |
                   (uint)param_2[0x66] << 8;
-      uVar11 = DAT_00093e08 + local_d70 + uVar23;
+      uVar11 = local_d70 + 0xf27b896f + uVar23;
       uVar10 = (uVar15 >> 0x12 | uVar20 * 0x4000) ^ (uVar15 >> 0xe | uVar20 * 0x40000) ^
                (uVar15 * 0x800000 | uVar20 >> 9);
       uVar16 = uVar11 + uVar10;
       uVar17 = uVar19 & ~uVar15 ^ uVar15 & uVar9;
       uVar21 = uVar17 + uVar16;
       iVar33 = (uVar22 & ~uVar20 ^ uVar20 & uVar30) +
-               DAT_00093e0c + local_d6c + CARRY4(DAT_00093e08,local_d70) +
-               uVar12 + CARRY4(DAT_00093e08 + local_d70,uVar23) +
+               local_d6c + (0xd847690 < local_d70) + 0x72be5d74 +
+               uVar12 + CARRY4(local_d70 + 0xf27b896f,uVar23) +
                ((uVar20 >> 0x12 | uVar15 * 0x4000) ^ (uVar20 >> 0xe | uVar15 * 0x40000) ^
                (uVar20 * 0x800000 | uVar15 >> 9)) + (uint)CARRY4(uVar11,uVar10) +
                (uint)CARRY4(uVar17,uVar16);
@@ -477,13 +477,13 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x6e] << 8;
       uVar12 = (local_dd0 >> 0x12 | local_dcc * 0x4000) ^ (local_dd0 >> 0xe | local_dcc * 0x40000) ^
                (local_dd0 * 0x800000 | local_dcc >> 9);
-      uVar10 = local_d80 + DAT_00093e10 + uVar19;
+      uVar10 = local_d80 + 0x3b1696b1 + uVar19;
       uVar11 = uVar10 + uVar12;
       uVar16 = local_dd0 & uVar15 ^ uVar9 & ~local_dd0;
       uVar23 = uVar16 + uVar11;
       iVar33 = (local_dcc & uVar20 ^ uVar30 & ~local_dcc) +
-               local_d7c + DAT_00093e14 + (uint)CARRY4(local_d80,DAT_00093e10) +
-               uVar22 + CARRY4(local_d80 + DAT_00093e10,uVar19) +
+               local_d7c + (0xc4e9694e < local_d80) + 0x80deb1fe +
+               uVar22 + CARRY4(local_d80 + 0x3b1696b1,uVar19) +
                ((local_dcc >> 0x12 | local_dd0 * 0x4000) ^ (local_dcc >> 0xe | local_dd0 * 0x40000)
                ^ (local_dcc * 0x800000 | local_dd0 >> 9)) + (uint)CARRY4(uVar10,uVar12) +
                (uint)CARRY4(uVar16,uVar11);
@@ -510,13 +510,13 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
                   (uint)param_2[0x76] << 8;
       pbVar3 = param_2 + 0x78;
       pbVar4 = param_2 + 0x79;
-      uVar11 = DAT_00093e18 + local_d88 + uVar9;
+      uVar11 = local_d88 + 0x25c71235 + uVar9;
       uVar16 = uVar11 + uVar19;
       uVar17 = uVar10 + uVar12;
       pbVar5 = param_2 + 0x7d;
       uVar23 = uVar16 + uVar21;
-      iVar33 = DAT_00093e1c + local_d84 + CARRY4(DAT_00093e18,local_d88) +
-               uVar30 + CARRY4(DAT_00093e18 + local_d88,uVar9) +
+      iVar33 = local_d84 + (0xda38edca < local_d88) + -0x6423f959 +
+               uVar30 + CARRY4(local_d88 + 0x25c71235,uVar9) +
                ((local_d94 >> 0x12 | local_d98 * 0x4000) ^ (local_d94 >> 0xe | local_d98 * 0x40000)
                ^ (local_d94 * 0x800000 | local_d98 >> 9)) + (uint)CARRY4(uVar11,uVar19) +
                (uVar20 & ~local_d94 ^ local_d94 & local_dcc) + (uint)CARRY4(uVar16,uVar21);
@@ -534,12 +534,12 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       HintPreloadData(param_2);
       local_d8c = (uint)*pbVar3 << 0x18 | (uint)*pbVar4 << 0x10 | (uint)*pbVar7 << 8 | (uint)*pbVar1
       ;
-      local_d00 = DAT_000940c0;
+      local_d00 = &DAT_00156c58;
       local_d18 = local_db0 & local_dc8;
       local_d14 = local_dac & local_dc4;
       local_d90 = (uint)*pbVar2 | (uint)*pbVar6 << 0x18 | (uint)*pbVar5 << 0x10 | (uint)*pbVar8 << 8
       ;
-      uVar9 = local_d90 + DAT_000940b8 + uVar15;
+      uVar9 = local_d90 + 0xcf692694 + uVar15;
       uVar30 = local_db0 & local_dc0 ^ local_d18 ^ local_dc8 & local_dc0;
       uVar10 = (local_db8 >> 0x12 | local_db4 * 0x4000) ^ (local_db8 >> 0xe | local_db4 * 0x40000) ^
                (local_db8 * 0x800000 | local_db4 >> 9);
@@ -551,8 +551,8 @@ void sha512_block_data_order(uint *param_1,byte *param_2,int param_3)
       uVar16 = uVar11 + uVar12;
       local_cf0 = 0x10;
       iVar33 = (local_dcc & ~local_db4 ^ local_db4 & local_d94) +
-               local_d8c + DAT_000940bc + (uint)CARRY4(local_d90,DAT_000940b8) +
-               uVar20 + CARRY4(local_d90 + DAT_000940b8,uVar15) +
+               local_d8c + (0x3096d96b < local_d90) + 0xc19bf174 +
+               uVar20 + CARRY4(local_d90 + 0xcf692694,uVar15) +
                ((local_db4 >> 0x12 | local_db8 * 0x4000) ^ (local_db4 >> 0xe | local_db8 * 0x40000)
                ^ (local_db4 * 0x800000 | local_db8 >> 9)) + (uint)CARRY4(uVar9,uVar10) +
                (uint)CARRY4(uVar11,uVar12);

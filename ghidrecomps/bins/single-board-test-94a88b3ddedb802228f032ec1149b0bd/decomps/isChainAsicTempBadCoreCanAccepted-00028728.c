@@ -1,10 +1,10 @@
 
-undefined isChainAsicTempBadCoreCanAccepted(int param_1)
+undefined1 isChainAsicTempBadCoreCanAccepted(int param_1)
 
 {
   int iVar1;
   FILE *__stream;
-  undefined local_d;
+  undefined1 local_d;
   int local_c;
   
   local_d = 1;

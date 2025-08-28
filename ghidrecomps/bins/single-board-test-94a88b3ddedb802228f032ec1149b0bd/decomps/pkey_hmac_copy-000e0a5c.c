@@ -7,7 +7,7 @@ undefined4 * pkey_hmac_copy(int param_1,int param_2)
   HMAC_CTX *ctx;
   undefined4 *puVar3;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0xe4,DAT_000e0ad0,0x4e);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0xe4,"hm_pmeth.c",0x4e);
   puVar2 = puVar1;
   if (puVar1 != (undefined4 *)0x0) {
     ctx = (HMAC_CTX *)(puVar1 + 5);

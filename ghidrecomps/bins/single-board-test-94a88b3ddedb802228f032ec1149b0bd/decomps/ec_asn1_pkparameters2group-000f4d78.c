@@ -12,7 +12,7 @@ EC_GROUP * ec_asn1_pkparameters2group(int *param_1)
   BIGNUM *pBVar2;
   int iVar3;
   int *piVar4;
-  int **ppiVar5;
+  undefined4 *puVar5;
   int iVar6;
   size_t *psVar7;
   EC_POINT *p;
@@ -20,7 +20,7 @@ EC_GROUP * ec_asn1_pkparameters2group(int *param_1)
   int *piVar9;
   
   if (param_1 == (int *)0x0) {
-    ERR_put_error(0x10,0x9e,0x7c,DAT_000f4fe4,0x3a9);
+    ERR_put_error(0x10,0x9e,0x7c,"ec_asn1.c",0x3a9);
     return (EC_GROUP *)0x0;
   }
   iVar3 = *param_1;
@@ -31,12 +31,12 @@ EC_GROUP * ec_asn1_pkparameters2group(int *param_1)
       EC_GROUP_set_asn1_flag(pEVar8,1);
       return pEVar8;
     }
-    ERR_put_error(0x10,0x9e,0x77,DAT_000f4fe4,0x3b1);
+    ERR_put_error(0x10,0x9e,0x77,"ec_asn1.c",0x3b1);
     return (EC_GROUP *)0x0;
   }
   if (iVar3 != 1) {
     if (iVar3 != 2) {
-      ERR_put_error(0x10,0x9e,0x73,DAT_000f4fe4,0x3c0);
+      ERR_put_error(0x10,0x9e,0x73,"ec_asn1.c",0x3c0);
       return (EC_GROUP *)0x0;
     }
     return (EC_GROUP *)0x0;
@@ -48,19 +48,19 @@ EC_GROUP * ec_asn1_pkparameters2group(int *param_1)
 LAB_000f4eae:
     pBVar2 = (BIGNUM *)0x0;
     a = (BIGNUM *)0x0;
-    ERR_put_error(0x10,0x9d,0x73,DAT_000f4fe4,iVar3);
+    ERR_put_error(0x10,0x9d,0x73,"ec_asn1.c",iVar3);
   }
   else {
-    ppiVar5 = *(int ***)(iVar3 + 8);
-    if (((ppiVar5 == (int **)0x0) || (piVar4 = *ppiVar5, piVar4 == (int *)0x0)) ||
-       (((uchar *)piVar4[2] == (uchar *)0x0 || ((ppiVar5[1] == (int *)0x0 || (ppiVar5[1][2] == 0))))
+    puVar5 = *(undefined4 **)(iVar3 + 8);
+    if (((puVar5 == (undefined4 *)0x0) || (piVar4 = (int *)*puVar5, piVar4 == (int *)0x0)) ||
+       (((uchar *)piVar4[2] == (uchar *)0x0 || ((puVar5[1] == 0 || (*(int *)(puVar5[1] + 8) == 0))))
        )) {
       iVar3 = 0x2c4;
       goto LAB_000f4eae;
     }
     a = BN_bin2bn((uchar *)piVar4[2],*piVar4,(BIGNUM *)0x0);
     if (a == (BIGNUM *)0x0) {
-      ERR_put_error(0x10,0x9d,3,DAT_000f4fe4,0x2c9);
+      ERR_put_error(0x10,0x9d,3,"ec_asn1.c",0x2c9);
       pBVar2 = (BIGNUM *)0x0;
     }
     else {
@@ -68,10 +68,10 @@ LAB_000f4eae:
       b = BN_bin2bn((uchar *)piVar4[2],*piVar4,(BIGNUM *)0x0);
       pBVar2 = b;
       if (b == (BIGNUM *)0x0) {
-        ERR_put_error(0x10,0x9d,3,DAT_000f4fe4,0x2ce);
+        ERR_put_error(0x10,0x9d,3,"ec_asn1.c",0x2ce);
       }
       else {
-        iVar1 = OBJ_obj2nid(**(ASN1_OBJECT ***)(iVar3 + 4));
+        iVar1 = OBJ_obj2nid((ASN1_OBJECT *)**(undefined4 **)(iVar3 + 4));
         if (iVar1 == 0x197) {
           piVar4 = *(int **)(*(int *)(iVar3 + 4) + 4);
           iVar1 = *piVar4;
@@ -97,7 +97,7 @@ joined_r0x000f501a:
                   }
                 }
                 else {
-                  ERR_put_error(0x10,0x9d,0x89,DAT_000f5274,0x2fa);
+                  ERR_put_error(0x10,0x9d,0x89,"ec_asn1.c",0x2fa);
                 }
               }
               else if (iVar6 == 0x2ab) {
@@ -114,29 +114,29 @@ joined_r0x000f501a:
                   }
                 }
                 else {
-                  ERR_put_error(0x10,0x9d,0x84,DAT_000f5274,0x312);
+                  ERR_put_error(0x10,0x9d,0x84,"ec_asn1.c",0x312);
                 }
               }
               else if (iVar6 == 0x2a9) {
-                ERR_put_error(0x10,0x9d,0x7e,DAT_000f5274,0x322);
+                ERR_put_error(0x10,0x9d,0x7e,"ec_asn1.c",0x322);
               }
               else {
                 iVar6 = 0x326;
 LAB_000f4f8a:
-                ERR_put_error(0x10,0x9d,0x73,DAT_000f4fe4,iVar6);
+                ERR_put_error(0x10,0x9d,0x73,"ec_asn1.c",iVar6);
               }
               goto LAB_000f4e70;
             }
-            ERR_put_error(0x10,0x9d,0x41,DAT_000f5274,0x2e7);
+            ERR_put_error(0x10,0x9d,0x41,"ec_asn1.c",0x2e7);
           }
           else {
-            ERR_put_error(0x10,0x9d,0x8f,DAT_000f4fe4,0x2e2);
+            ERR_put_error(0x10,0x9d,0x8f,"ec_asn1.c",0x2e2);
           }
         }
         else if (iVar1 == 0x196) {
           ai = *(ASN1_INTEGER **)(*(int *)(iVar3 + 4) + 4);
           if (ai == (ASN1_INTEGER *)0x0) {
-            ERR_put_error(0x10,0x9d,0x73,DAT_000f4fe4,0x332);
+            ERR_put_error(0x10,0x9d,0x73,"ec_asn1.c",0x332);
           }
           else {
             a_00 = ASN1_INTEGER_to_BN(ai,(BIGNUM *)0x0);
@@ -144,13 +144,13 @@ LAB_000f4f8a:
               if ((a_00->neg == 0) && (a_00->top != 0)) {
                 iVar1 = BN_num_bits(a_00);
                 if (0x295 < iVar1) {
-                  ERR_put_error(0x10,0x9d,0x8f,DAT_000f4fe4,0x342);
+                  ERR_put_error(0x10,0x9d,0x8f,"ec_asn1.c",0x342);
                   goto LAB_000f4e70;
                 }
                 pEVar8 = EC_GROUP_new_curve_GFp(a_00,a,b,(BN_CTX *)0x0);
 LAB_000f503a:
                 if (pEVar8 == (EC_GROUP *)0x0) {
-                  ERR_put_error(0x10,0x9d,0x10,DAT_000f5274,0x34e);
+                  ERR_put_error(0x10,0x9d,0x10,"ec_asn1.c",0x34e);
                   goto LAB_000f4e70;
                 }
                 iVar6 = *(int *)(iVar3 + 8);
@@ -158,7 +158,7 @@ LAB_000f503a:
 LAB_000f507c:
                   if (((*(int *)(iVar3 + 0x10) == 0) || (*(int *)(iVar3 + 0xc) == 0)) ||
                      (*(int *)(*(int *)(iVar3 + 0xc) + 8) == 0)) {
-                    ERR_put_error(0x10,0x9d,0x73,DAT_000f5274,0x360);
+                    ERR_put_error(0x10,0x9d,0x73,"ec_asn1.c",0x360);
                     p = (EC_POINT *)0x0;
                     goto LAB_000f50d8;
                   }
@@ -171,20 +171,20 @@ LAB_000f507c:
                   if (iVar6 == 0) {
                     iVar3 = 0x36e;
 LAB_000f50ca:
-                    ERR_put_error(0x10,0x9d,0x10,DAT_000f5274,iVar3);
+                    ERR_put_error(0x10,0x9d,0x10,"ec_asn1.c",iVar3);
                     goto LAB_000f50d8;
                   }
                   a = ASN1_INTEGER_to_BN(*(ASN1_INTEGER **)(iVar3 + 0x10),a);
                   iVar6 = 0x374;
                   if (a == (BIGNUM *)0x0) {
 LAB_000f5220:
-                    ERR_put_error(0x10,0x9d,0xd,DAT_000f5274,iVar6);
+                    ERR_put_error(0x10,0x9d,0xd,"ec_asn1.c",iVar6);
                     goto LAB_000f50d8;
                   }
                   if ((a->neg != 0) || (a->top == 0)) {
                     iVar3 = 0x378;
 LAB_000f51e4:
-                    ERR_put_error(0x10,0x9d,0x7a,DAT_000f5274,iVar3);
+                    ERR_put_error(0x10,0x9d,0x7a,"ec_asn1.c",iVar3);
                     goto LAB_000f50d8;
                   }
                   iVar6 = BN_num_bits(a);
@@ -214,7 +214,7 @@ LAB_000f51e4:
                     CRYPTO_free(*(void **)(pEVar8 + 0x3c));
                     iVar6 = *(int *)(iVar3 + 8);
                   }
-                  __dest = CRYPTO_malloc(**(int **)(iVar6 + 8),DAT_000f5274,0x356);
+                  __dest = CRYPTO_malloc(**(int **)(iVar6 + 8),"ec_asn1.c",0x356);
                   *(void **)(pEVar8 + 0x3c) = __dest;
                   if (__dest != (void *)0x0) {
                     psVar7 = *(size_t **)(*(int *)(iVar3 + 8) + 8);
@@ -222,7 +222,7 @@ LAB_000f51e4:
                     *(undefined4 *)(pEVar8 + 0x40) = **(undefined4 **)(*(int *)(iVar3 + 8) + 8);
                     goto LAB_000f507c;
                   }
-                  ERR_put_error(0x10,0x9d,0x41,DAT_000f5274,0x357);
+                  ERR_put_error(0x10,0x9d,0x41,"ec_asn1.c",0x357);
                   p = (EC_POINT *)0x0;
 LAB_000f50d8:
                   EC_GROUP_clear_free(pEVar8);
@@ -230,7 +230,7 @@ LAB_000f50d8:
                 }
               }
               else {
-                ERR_put_error(0x10,0x9d,0x67,DAT_000f4fe4,0x33c);
+                ERR_put_error(0x10,0x9d,0x67,"ec_asn1.c",0x33c);
 LAB_000f4e70:
                 p = (EC_POINT *)0x0;
                 pEVar8 = (EC_GROUP *)0x0;
@@ -239,11 +239,11 @@ LAB_000f4e70:
               BN_free(a_00);
               goto LAB_000f4e80;
             }
-            ERR_put_error(0x10,0x9d,0xd,DAT_000f5274,0x337);
+            ERR_put_error(0x10,0x9d,0xd,"ec_asn1.c",0x337);
           }
         }
         else {
-          ERR_put_error(0x10,0x9d,0x67,DAT_000f4fe4,0x349);
+          ERR_put_error(0x10,0x9d,0x67,"ec_asn1.c",0x349);
         }
       }
     }
@@ -262,7 +262,7 @@ LAB_000f4e80:
     EC_POINT_free(p);
   }
   if (pEVar8 == (EC_GROUP *)0x0) {
-    ERR_put_error(0x10,0x9e,0x10,DAT_000f4fe4,0x3b9);
+    ERR_put_error(0x10,0x9e,0x10,"ec_asn1.c",0x3b9);
   }
   else {
     EC_GROUP_set_asn1_flag(pEVar8,0);

@@ -17,7 +17,7 @@ _Bool eeprom_get_voltage(uint8_t chain,double *voltage)
     usleep(10000);
     bVar1 = eeprom_read_one_byte('\x01',chain);
     pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
-    *voltage = ((double)(ulonglong)(bVar1 + 200) * 5.0) / DAT_00011d90;
+    *voltage = ((double)(bVar1 + 200) * 5.0) / 100.0;
     _Var2 = eeprom_check_crc(chain);
   }
   return _Var2;

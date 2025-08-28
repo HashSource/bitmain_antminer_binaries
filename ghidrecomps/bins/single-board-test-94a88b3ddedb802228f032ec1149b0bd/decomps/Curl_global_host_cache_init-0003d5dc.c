@@ -1,21 +1,16 @@
 
-int Curl_global_host_cache_init(void)
+undefined1 * Curl_global_host_cache_init(void)
 
 {
   int iVar1;
-  int iVar2;
   
-  iVar1 = DAT_0003d608;
-  if (*(int *)(DAT_0003d608 + 0x18) == 0) {
-    iVar2 = Curl_hash_init(DAT_0003d608,7,DAT_0003d610,DAT_0003d614,DAT_0003d60c);
-    if (iVar2 == 0) {
-      *(undefined4 *)(iVar1 + 0x18) = 1;
-      iVar1 = DAT_0003d608;
+  if (host_cache_initialized == 0) {
+    iVar1 = Curl_hash_init(&hostname_cache,7,0x4cc99,0x4ccc9,0x3d5bd);
+    if (iVar1 != 0) {
+      return (undefined1 *)0x0;
     }
-    else {
-      iVar1 = 0;
-    }
+    host_cache_initialized = 1;
   }
-  return iVar1;
+  return &hostname_cache;
 }
 

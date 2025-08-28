@@ -4,21 +4,16 @@
 lhash_st_ERR_STATE * ERR_get_err_state_table(void)
 
 {
-  int iVar1;
-  lhash_st_ERR_STATE *plVar2;
-  int iVar3;
+  lhash_st_ERR_STATE *plVar1;
   
-  iVar1 = DAT_000ad4f4;
-  iVar3 = *(int *)(DAT_000ad4f4 + 0x2f4);
-  if (iVar3 == 0) {
-    CRYPTO_lock(9,1,DAT_000ad4f8,0x127);
-    if (*(int *)(iVar1 + 0x2f4) == 0) {
-      *(undefined4 *)(iVar1 + 0x2f4) = DAT_000ad4fc;
+  if (err_fns == (undefined **)0x0) {
+    CRYPTO_lock(9,1,"err.c",0x127);
+    if (err_fns == (undefined **)0x0) {
+      err_fns = &err_defaults;
     }
-    CRYPTO_lock(10,1,DAT_000ad4f8,0x12a);
-    iVar3 = *(int *)(iVar1 + 0x2f4);
+    CRYPTO_lock(10,1,"err.c",0x12a);
   }
-  plVar2 = (lhash_st_ERR_STATE *)(**(code **)(iVar3 + 0x14))(0);
-  return plVar2;
+  plVar1 = (lhash_st_ERR_STATE *)(*(code *)err_fns[5])(0);
+  return plVar1;
 }
 

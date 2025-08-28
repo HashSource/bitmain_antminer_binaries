@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable u:uchar[r0:1] conflicts with parameter, skipped. */
 
 int utf8_check_first(char byte)
 

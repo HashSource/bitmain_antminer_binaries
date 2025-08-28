@@ -10,14 +10,14 @@ int RSA_padding_check_PKCS1_type_1(uchar *to,int tlen,uchar *f,int fl,int rsa_le
   uchar *puVar5;
   
   if ((fl + 1 != rsa_len) || (puVar5 = f + 1, *f != '\x01')) {
-    ERR_put_error(4,0x70,0x6a,DAT_000fb77c,0x67);
+    ERR_put_error(4,0x70,0x6a,"rsa_pk1.c",0x67);
     return -1;
   }
   iVar2 = fl + -1;
   if (iVar2 < 1) {
     if (iVar2 == 0) {
 LAB_000fb6e8:
-      ERR_put_error(4,0x70,0x71,DAT_000fb77c,0x7d);
+      ERR_put_error(4,0x70,0x71,"rsa_pk1.c",0x7d);
       return -1;
     }
   }
@@ -38,7 +38,7 @@ LAB_000fb6e8:
       iVar3 = 0;
     }
     if (uVar4 != '\0') {
-      ERR_put_error(4,0x70,0x66,DAT_000fb77c,0x74);
+      ERR_put_error(4,0x70,0x66,"rsa_pk1.c",0x74);
       return -1;
     }
     if (7 < iVar3) {
@@ -47,11 +47,11 @@ LAB_000fb6e8:
         memcpy(to,puVar5 + 1,__n);
         return __n;
       }
-      ERR_put_error(4,0x70,0x6d,DAT_000fb77c,0x89);
+      ERR_put_error(4,0x70,0x6d,"rsa_pk1.c",0x89);
       return -1;
     }
   }
-  ERR_put_error(4,0x70,0x67,DAT_000fb77c,0x83);
+  ERR_put_error(4,0x70,0x67,"rsa_pk1.c",0x83);
   return -1;
 }
 

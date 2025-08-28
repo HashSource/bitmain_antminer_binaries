@@ -6,7 +6,7 @@ int tcsetattr(int __fd,int __optional_actions,termios *__termios_p)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_tcsetattr_00194310)();
+  iVar1 = tcsetattr(__fd,__optional_actions,__termios_p);
   return iVar1;
 }
 

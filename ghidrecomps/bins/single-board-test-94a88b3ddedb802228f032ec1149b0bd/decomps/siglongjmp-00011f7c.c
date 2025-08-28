@@ -4,7 +4,7 @@
 void siglongjmp(__jmp_buf_tag *__env,int __val)
 
 {
-  (*(code *)PTR_siglongjmp_001941f0)();
-  return;
+                    /* WARNING: Subroutine does not return */
+  siglongjmp(__env,__val);
 }
 

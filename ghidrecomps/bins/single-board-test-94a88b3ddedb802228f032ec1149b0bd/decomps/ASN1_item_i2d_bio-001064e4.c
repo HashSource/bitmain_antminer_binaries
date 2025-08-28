@@ -12,7 +12,7 @@ int ASN1_item_i2d_bio(ASN1_ITEM *it,BIO *out,void *x)
   local_1c[0] = (uchar *)0x0;
   iVar1 = ASN1_item_i2d((ASN1_VALUE *)x,local_1c,it);
   if (local_1c[0] == (uchar *)0x0) {
-    ERR_put_error(0xd,0xc0,0x41,DAT_00106544,0x8c);
+    ERR_put_error(0xd,0xc0,0x41,"a_i2d_fp.c",0x8c);
     iVar1 = 0;
   }
   else {

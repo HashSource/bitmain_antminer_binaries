@@ -1,15 +1,15 @@
 
 undefined4
-tls1_process_ticket(SSL *param_1,int param_2,int param_3,undefined *param_4,undefined4 *param_5)
+tls1_process_ticket(SSL *param_1,int param_2,int param_3,undefined1 *param_4,undefined4 *param_5)
 
 {
-  undefined *puVar1;
-  undefined uVar2;
+  undefined1 *puVar1;
+  undefined1 uVar2;
   uint uVar3;
   undefined4 uVar4;
   int iVar5;
-  undefined *puVar6;
-  undefined *puVar7;
+  undefined1 *puVar6;
+  undefined1 *puVar7;
   
   *param_5 = 0;
   param_1->tlsext_ocsp_resplen = 0;
@@ -17,11 +17,11 @@ tls1_process_ticket(SSL *param_1,int param_2,int param_3,undefined *param_4,unde
   if ((uVar3 & 0x4000) == 0) {
     uVar4 = 0;
     if (0x300 < param_1->version) {
-      if (param_4 == (undefined *)0x0) {
+      if (param_4 == (undefined1 *)0x0) {
         uVar4 = 0;
       }
       else {
-        puVar6 = (undefined *)(param_2 + param_3);
+        puVar6 = (undefined1 *)(param_2 + param_3);
         if ((puVar6 < param_4) &&
            ((-1 < *(int *)(param_1->method->ssl3_enc + 0x38) << 0x1c ||
             (puVar6 = puVar6 + *(byte *)(param_2 + param_3) + 1, puVar6 < param_4)))) {

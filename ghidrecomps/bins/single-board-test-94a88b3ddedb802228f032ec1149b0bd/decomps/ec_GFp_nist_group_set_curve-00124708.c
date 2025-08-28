@@ -23,35 +23,35 @@ ec_GFp_nist_group_set_curve
     pBVar1 = BN_get0_nist_prime_192();
     iVar2 = BN_ucmp(pBVar1,param_2);
     if (iVar2 == 0) {
-      *(undefined4 *)(param_1 + 0xa8) = DAT_001247dc;
+      *(undefined4 *)(param_1 + 0xa8) = 0x1285c9;
     }
     else {
       pBVar1 = BN_get0_nist_prime_224();
       iVar2 = BN_ucmp(pBVar1,param_2);
       if (iVar2 == 0) {
-        *(undefined4 *)(param_1 + 0xa8) = DAT_001247e0;
+        *(undefined4 *)(param_1 + 0xa8) = 0x1288c5;
       }
       else {
         pBVar1 = BN_get0_nist_prime_256();
         iVar2 = BN_ucmp(pBVar1,param_2);
         if (iVar2 == 0) {
-          *(undefined4 *)(param_1 + 0xa8) = DAT_001247e4;
+          *(undefined4 *)(param_1 + 0xa8) = 0x128c3d;
         }
         else {
           pBVar1 = BN_get0_nist_prime_384();
           iVar2 = BN_ucmp(pBVar1,param_2);
           if (iVar2 == 0) {
-            *(undefined4 *)(param_1 + 0xa8) = DAT_001247e8;
+            *(undefined4 *)(param_1 + 0xa8) = 0x12911d;
           }
           else {
             pBVar1 = BN_get0_nist_prime_521();
             iVar2 = BN_ucmp(pBVar1,param_2);
             if (iVar2 != 0) {
-              ERR_put_error(0x10,0xca,0x87,DAT_001247f0,0x9d);
+              ERR_put_error(0x10,0xca,0x87,"ecp_nist.c",0x9d);
               uVar3 = 0;
               goto LAB_0012474e;
             }
-            *(undefined4 *)(param_1 + 0xa8) = DAT_001247ec;
+            *(undefined4 *)(param_1 + 0xa8) = 0x12976d;
           }
         }
       }

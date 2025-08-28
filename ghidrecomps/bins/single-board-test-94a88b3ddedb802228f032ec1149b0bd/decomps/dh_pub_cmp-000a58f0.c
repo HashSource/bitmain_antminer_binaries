@@ -12,7 +12,7 @@ int dh_pub_cmp(int param_1,int param_2)
                      *(BIGNUM **)(*(int *)(param_2 + 0x14) + 0xc)), iVar1 != 0)) {
     return 0;
   }
-  if ((*(int *)(param_1 + 0xc) == DAT_000a594c) &&
+  if ((*(undefined1 **)(param_1 + 0xc) == &dhx_asn1_meth) &&
      (iVar1 = BN_cmp(*(BIGNUM **)(*(int *)(param_1 + 0x14) + 0x24),
                      *(BIGNUM **)(*(int *)(param_2 + 0x14) + 0x24)), iVar1 != 0)) {
     return 0;

@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_idea_cfb64(void)
 
 {
-  return DAT_000afc94;
+  return (EVP_CIPHER *)idea_cfb64;
 }
 

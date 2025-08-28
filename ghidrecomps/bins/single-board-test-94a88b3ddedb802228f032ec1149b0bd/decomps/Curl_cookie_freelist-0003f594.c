@@ -2,22 +2,20 @@
 void Curl_cookie_freelist(int *param_1,int param_2)
 
 {
-  code **ppcVar1;
-  int *piVar2;
+  int *piVar1;
   
-  ppcVar1 = DAT_0003f5c0;
   if (param_1 != (int *)0x0) {
     do {
-      while (piVar2 = (int *)*param_1, param_2 != 0) {
+      while (piVar1 = (int *)*param_1, param_2 != 0) {
         freecookie(param_1);
-        param_1 = piVar2;
-        if (piVar2 == (int *)0x0) {
+        param_1 = piVar1;
+        if (piVar1 == (int *)0x0) {
           return;
         }
       }
-      (**ppcVar1)(param_1);
-      param_1 = piVar2;
-    } while (piVar2 != (int *)0x0);
+      (*Curl_cfree)(param_1);
+      param_1 = piVar1;
+    } while (piVar1 != (int *)0x0);
   }
   return;
 }

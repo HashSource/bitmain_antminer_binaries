@@ -8,7 +8,7 @@ void smtp_parse_url_path(int *param_1)
   
   iVar1 = *param_1;
   pcVar2 = *(char **)(iVar1 + 0x868c);
-  if (**(char **)(iVar1 + 0x868c) == '\0') {
+  if (*pcVar2 == '\0') {
     iVar1 = Curl_gethostname(acStack_414,0x401);
     if (iVar1 == 0) {
       pcVar2 = acStack_414;
@@ -16,7 +16,7 @@ void smtp_parse_url_path(int *param_1)
     }
     else {
       iVar1 = *param_1;
-      pcVar2 = DAT_00051d50;
+      pcVar2 = "localhost";
     }
   }
   Curl_urldecode(iVar1,pcVar2,0,param_1 + 0x100,0,1);

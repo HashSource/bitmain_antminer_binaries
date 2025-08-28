@@ -71,22 +71,7 @@ _Bool auth_stratum(pool *pool)
           }
           if (opt_bitmain_ab != false) {
             if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-              tmp42[0] = s_LOW_POWER_MODE__0009fc10[0];
-              tmp42[1] = s_LOW_POWER_MODE__0009fc10[1];
-              tmp42[2] = s_LOW_POWER_MODE__0009fc10[2];
-              tmp42[3] = s_LOW_POWER_MODE__0009fc10[3];
-              tmp42[4] = s_LOW_POWER_MODE__0009fc10[4];
-              tmp42[5] = s_LOW_POWER_MODE__0009fc10[5];
-              tmp42[6] = s_LOW_POWER_MODE__0009fc10[6];
-              tmp42[7] = s_LOW_POWER_MODE__0009fc10[7];
-              tmp42[8] = s_LOW_POWER_MODE__0009fc10[8];
-              tmp42[9] = s_LOW_POWER_MODE__0009fc10[9];
-              tmp42[10] = s_LOW_POWER_MODE__0009fc10[10];
-              tmp42[11] = s_LOW_POWER_MODE__0009fc10[11];
-              tmp42[12] = s_LOW_POWER_MODE__0009fc10[12];
-              tmp42[13] = s_LOW_POWER_MODE__0009fc10[13];
-              tmp42[14] = s_LOW_POWER_MODE__0009fc10[14];
-              tmp42[15] = s_LOW_POWER_MODE__0009fc10[15];
+              builtin_strncpy(tmp42,"LOW POWER MODE!",0x10);
               _applog(5,tmp42,false);
             }
             iVar1 = swork_id;

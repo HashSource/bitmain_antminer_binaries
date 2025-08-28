@@ -11,7 +11,7 @@ int X509_signature_print(BIO *bp,X509_ALGOR *alg,ASN1_STRING *sig)
   int local_20;
   int iStack_1c;
   
-  iVar2 = BIO_puts(bp,DAT_000b8360);
+  iVar2 = BIO_puts(bp,"    Signature Algorithm: ");
   if ((0 < iVar2) && (iVar2 = i2a_ASN1_OBJECT(bp,alg->algorithm), 0 < iVar2)) {
     iVar2 = OBJ_obj2nid(alg->algorithm);
     if ((iVar2 != 0) &&
@@ -22,20 +22,20 @@ int X509_signature_print(BIO *bp,X509_ALGOR *alg,ASN1_STRING *sig)
       return iVar2;
     }
     if (sig == (ASN1_STRING *)0x0) {
-      iVar2 = BIO_puts(bp,DAT_000b836c);
+      iVar2 = BIO_puts(bp,"\n");
       return (uint)(0 < iVar2);
     }
     iVar2 = sig->length;
     puVar6 = sig->data;
     if (iVar2 < 1) {
 LAB_000b834e:
-      iVar2 = BIO_write(bp,DAT_000b836c,1);
+      iVar2 = BIO_write(bp,"\n",1);
       return (uint)(iVar2 == 1);
     }
     iVar5 = 0;
     do {
       if (iVar5 == (iVar5 / 0x12) * 0x12) {
-        iVar3 = BIO_write(bp,DAT_000b836c,1);
+        iVar3 = BIO_write(bp,"\n",1);
         if (iVar3 < 1) {
           return 0;
         }
@@ -47,13 +47,13 @@ LAB_000b834e:
       pbVar1 = puVar6 + iVar5;
       iVar5 = iVar5 + 1;
       if (iVar2 == iVar5) {
-        iVar2 = BIO_printf(bp,DAT_000b8364,(uint)*pbVar1,DAT_000b8370);
+        iVar2 = BIO_printf(bp,"%02x%s",(uint)*pbVar1,&DAT_0013a6fc);
         if (iVar2 < 1) {
           return 0;
         }
         goto LAB_000b834e;
       }
-      iVar3 = BIO_printf(bp,DAT_000b8364,(uint)*pbVar1,DAT_000b8368);
+      iVar3 = BIO_printf(bp,"%02x%s",(uint)*pbVar1,":");
     } while (0 < iVar3);
   }
   return 0;

@@ -8,14 +8,15 @@ void _k_add_tail(K_LIST *list,K_ITEM *item,char *file,char *func,int line)
   char tmp42 [2048];
   
   if (item->name != list->name) {
-    snprintf(tmp42,0x800,DAT_0000fed4,list->name,DAT_0000fed0,item->name,file,func,line,DAT_0000fedc
-             ,DAT_0000fed0,0xec);
+    snprintf(tmp42,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_add_tail",item->name,file,func,line,"klist.c","_k_add_tail",0xec);
     _applog(3,tmp42,true);
     _quit(1);
   }
   if (list->do_tail == false) {
-    snprintf(tmp42,0x800,DAT_0000fed8,list->name,DAT_0000fed0,file,func,line,DAT_0000fedc,
-             DAT_0000fed0,0xf1);
+    snprintf(tmp42,0x800,
+             "List %s can\'t %s() - do_tail is false - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_add_tail",file,func,line,"klist.c","_k_add_tail",0xf1);
     _applog(3,tmp42,true);
     _quit(1);
   }

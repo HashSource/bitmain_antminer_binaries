@@ -1,15 +1,15 @@
 
-undefined4 check_hw(int param_1,undefined4 param_2,undefined param_3,char param_4)
+undefined4 check_hw(int param_1,undefined4 param_2,undefined1 param_3,char param_4)
 
 {
   undefined4 uVar1;
-  undefined auStack_e4 [32];
-  undefined auStack_c4 [140];
-  undefined local_38;
-  undefined local_37;
-  undefined local_36;
-  undefined local_35;
-  undefined local_34;
+  undefined1 auStack_e4 [32];
+  undefined1 auStack_c4 [140];
+  undefined1 local_38;
+  undefined1 local_37;
+  undefined1 local_36;
+  undefined1 local_35;
+  undefined1 local_34;
   byte local_d;
   uint local_c;
   
@@ -17,10 +17,10 @@ undefined4 check_hw(int param_1,undefined4 param_2,undefined param_3,char param_
   memset(auStack_c4,0,0xb4);
   memset(auStack_c4,0,0xb4);
   memcpy(auStack_c4,(void *)(param_1 + 8),0xb4);
-  local_38 = (undefined)param_2;
-  local_37 = (undefined)((uint)param_2 >> 8);
-  local_36 = (undefined)((uint)param_2 >> 0x10);
-  local_35 = (undefined)((uint)param_2 >> 0x18);
+  local_38 = (undefined1)param_2;
+  local_37 = (undefined1)((uint)param_2 >> 8);
+  local_36 = (undefined1)((uint)param_2 >> 0x10);
+  local_35 = (undefined1)((uint)param_2 >> 0x18);
   if (Conf._116_4_ == 0x6bd) {
     local_34 = param_3;
   }

@@ -6,7 +6,7 @@ char * asctime(tm *__tp)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_asctime_0019432c)();
+  pcVar1 = asctime(__tp);
   return pcVar1;
 }
 

@@ -32,10 +32,10 @@ int EVP_VerifyFinal(EVP_MD_CTX *ctx,uchar *sigbuf,uint siglen,EVP_PKEY *pkey)
           ;
           return iVar1;
         }
-        ERR_put_error(6,0x6c,0x69,DAT_000b1e3c,0x6e);
+        ERR_put_error(6,0x6c,0x69,"p_verify.c",0x6e);
         return 0;
       }
-      ERR_put_error(6,0x6c,0x6e,DAT_000b1e3c,0x6a);
+      ERR_put_error(6,0x6c,0x6e,"p_verify.c",0x6a);
       return -1;
     }
     ctx_00 = EVP_PKEY_CTX_new(pkey,(ENGINE *)0x0);

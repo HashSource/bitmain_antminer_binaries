@@ -17,7 +17,7 @@ int get_asic_nonce_num(int chain,int asic,int timeslice)
     else {
       index = nonce_times % 0x3c - i;
     }
-    nonce = *(int *)(nonce_num[chain][asic] + index) + nonce;
+    nonce = (int)nonce_num[chain][asic][index] + nonce;
   }
   return nonce;
 }

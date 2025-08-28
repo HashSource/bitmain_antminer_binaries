@@ -1,13 +1,11 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void process_test(void)
 
 {
   _Bool _Var1;
   int fan_pwm;
-  char *in_stack_ffffffa0;
-  int in_stack_ffffffa4;
   uint32_t data;
   uint32_t testID;
   FILE *pFile;
@@ -46,16 +44,14 @@ void process_test(void)
               print_crt_time_to_file(log_file,3);
               pFile = (FILE *)fopen(log_file,"a+");
               if (pFile != (FILE *)0x0) {
-                in_stack_ffffffa0 = "process_test";
-                in_stack_ffffffa4 = chain;
                 fprintf((FILE *)pFile,"%s:%d:%s: chain[%d] voltage: %0.2f, now set to: %0.2f\n",
                         "driver-btm-soc.c",0x8af,"process_test",chain,custom_voltage._0_4_,
-                        custom_voltage._4_4_,custom_voltage + DAT_0001e0a0);
+                        custom_voltage._4_4_,custom_voltage + 0.10000000149011612);
               }
               fclose((FILE *)pFile);
             }
             slowly_set_iic_power_to_custom_voltage_by_chain
-                      ((uint8_t)chain,(double)CONCAT44(in_stack_ffffffa4,in_stack_ffffffa0));
+                      ((uint8_t)chain,custom_voltage + 0.10000000149011612);
           }
         }
       }
@@ -65,14 +61,12 @@ void process_test(void)
           print_crt_time_to_file(log_file,3);
           pFile_1 = (FILE *)fopen(log_file,"a+");
           if (pFile_1 != (FILE *)0x0) {
-            in_stack_ffffffa0 = "process_test";
             fprintf((FILE *)pFile_1,"%s:%d:%s: voltage: %0.2f, now set to: %0.2f\n",
-                    "driver-btm-soc.c",0x8b6);
+                    "driver-btm-soc.c",0x8b6,"process_test");
           }
           fclose((FILE *)pFile_1);
         }
-        slowly_set_iic_power_to_custom_voltage
-                  ((double)CONCAT44(in_stack_ffffffa4,in_stack_ffffffa0));
+        slowly_set_iic_power_to_custom_voltage(custom_voltage + 0.10000000149011612);
       }
     }
     else if (testID == 0x14) {
@@ -86,16 +80,14 @@ void process_test(void)
               print_crt_time_to_file(log_file,3);
               pFile_2 = (FILE *)fopen(log_file,"a+");
               if (pFile_2 != (FILE *)0x0) {
-                in_stack_ffffffa0 = "process_test";
-                in_stack_ffffffa4 = chain;
                 fprintf((FILE *)pFile_2,"%s:%d:%s: chain[%d] voltage: %0.2f, now set to: %0.2f\n",
                         "driver-btm-soc.c",0x8c4,"process_test",chain,custom_voltage_1._0_4_,
-                        custom_voltage_1._4_4_,custom_voltage_1 - DAT_0001e0a0);
+                        custom_voltage_1._4_4_,custom_voltage_1 - 0.10000000149011612);
               }
               fclose((FILE *)pFile_2);
             }
             slowly_set_iic_power_to_custom_voltage_by_chain
-                      ((uint8_t)chain,(double)CONCAT44(in_stack_ffffffa4,in_stack_ffffffa0));
+                      ((uint8_t)chain,custom_voltage_1 - 0.10000000149011612);
           }
         }
       }
@@ -105,14 +97,12 @@ void process_test(void)
           print_crt_time_to_file(log_file,3);
           pFile_3 = (FILE *)fopen(log_file,"a+");
           if (pFile_3 != (FILE *)0x0) {
-            in_stack_ffffffa0 = "process_test";
             fprintf((FILE *)pFile_3,"%s:%d:%s: voltage: %0.2f, now set to: %0.2f\n",
-                    "driver-btm-soc.c",0x8cb);
+                    "driver-btm-soc.c",0x8cb,"process_test");
           }
           fclose((FILE *)pFile_3);
         }
-        slowly_set_iic_power_to_custom_voltage
-                  ((double)CONCAT44(in_stack_ffffffa4,in_stack_ffffffa0));
+        slowly_set_iic_power_to_custom_voltage(custom_voltage_1 - 0.10000000149011612);
       }
     }
     else if ((testID & 0xff000000) == 0xb2000000) {

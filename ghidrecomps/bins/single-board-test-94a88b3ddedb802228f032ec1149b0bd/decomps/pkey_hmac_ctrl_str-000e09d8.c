@@ -16,7 +16,7 @@ uchar * pkey_hmac_ctrl_str(int param_1,char *param_2,uchar *param_3)
       }
     }
     else {
-      iVar1 = strcmp(param_2,DAT_000e0a58);
+      iVar1 = strcmp(param_2,"hexkey");
       if (iVar1 == 0) {
         data = string_to_hex((char *)param_3,local_1c);
         param_3 = data;

@@ -39,14 +39,14 @@ int pub_encode_gost01(X509_PUBKEY *param_1,EVP_PKEY *param_2)
   EC_GROUP_get_order(pEVar2,order,(BN_CTX *)0x0);
   p = EC_KEY_get0_public_key(key);
   if (p == (EC_POINT *)0x0) {
-    ERR_GOST_error(0x87,0x7a,DAT_00116150,0x2e4);
+    ERR_GOST_error(0x87,0x7a,"gost_ameth.c",0x2e4);
     iVar1 = 0;
   }
   else {
     a = BN_new();
     a_00 = BN_new();
     if (a == (BIGNUM *)0x0 || a_00 == (BIGNUM *)0x0) {
-      ERR_GOST_error(0x87,0x41,DAT_00116150,0x2ea);
+      ERR_GOST_error(0x87,0x41,"gost_ameth.c",0x2ea);
       if (a != (BIGNUM *)0x0) {
         BN_free(a);
       }
@@ -60,7 +60,7 @@ int pub_encode_gost01(X509_PUBKEY *param_1,EVP_PKEY *param_2)
       pEVar2 = EC_KEY_get0_group(key);
       iVar1 = EC_POINT_get_affine_coordinates_GFp(pEVar2,p,a,a_00,(BN_CTX *)0x0);
       if (iVar1 == 0) {
-        ERR_GOST_error(0x87,0x44,DAT_00116150,0x2f2);
+        ERR_GOST_error(0x87,0x44,"gost_ameth.c",0x2f2);
         BN_free(a);
         BN_free(a_00);
         BN_free(order);
@@ -75,7 +75,7 @@ int pub_encode_gost01(X509_PUBKEY *param_1,EVP_PKEY *param_2)
         iVar1 = iVar1 >> 3;
         __n = iVar1 * 2;
         BN_free(order);
-        __s = CRYPTO_malloc(__n,DAT_00116150,0x2fa);
+        __s = CRYPTO_malloc(__n,"gost_ameth.c",0x2fa);
         memset(__s,0,__n);
         store_bignum(a,(int)__s + iVar1,iVar1);
         store_bignum(a_00,__s,iVar1);

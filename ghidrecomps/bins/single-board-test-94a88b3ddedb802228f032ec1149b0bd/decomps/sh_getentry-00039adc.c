@@ -3,7 +3,7 @@ undefined4 sh_getentry(undefined4 param_1,int param_2)
 
 {
   undefined4 uVar1;
-  int local_c [3];
+  int local_c [2];
   
   if (param_2 == -1) {
     uVar1 = 0;

@@ -48,7 +48,7 @@ LAB_000a13e8:
          ((iVar2 = BN_cmp(a_01,b_01), iVar2 == 0 && (iVar2 = BN_cmp(pBVar1,b_02), iVar2 == 0)))))) {
     iVar2 = *(int *)a;
     if (*(code **)(iVar2 + 0x6c) == (code *)0x0) {
-      ERR_put_error(0x10,0x71,0x42,DAT_000a143c,0x3e6);
+      ERR_put_error(0x10,0x71,0x42,"ec_lib.c",0x3e6);
     }
     else if ((iVar2 == **(int **)(a + 4)) && (iVar2 == **(int **)(b + 4))) {
       iVar2 = (**(code **)(iVar2 + 0x6c))(a,*(int **)(a + 4),*(int **)(b + 4),ctx);
@@ -72,7 +72,7 @@ LAB_000a13e8:
       }
     }
     else {
-      ERR_put_error(0x10,0x71,0x65,DAT_000a143c,0x3ea);
+      ERR_put_error(0x10,0x71,0x65,"ec_lib.c",0x3ea);
     }
   }
   iVar2 = 1;

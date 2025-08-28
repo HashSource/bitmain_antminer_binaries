@@ -4,14 +4,13 @@
 void set_ticket_mask(uint value)
 
 {
-  char cVar1;
+  _Bool _Var1;
   char tmp42 [2048];
   
-  cVar1 = *DAT_0002de30;
-  *(uint *)(*(int *)(DAT_0002de2c + 0x8d4) + 0x8c) = value;
-  if ((cVar1 != '\0') &&
-     (((*DAT_0002de34 != '\0' || (*DAT_0002de38 != '\0')) || (6 < *DAT_0002de3c)))) {
-    snprintf(tmp42,0x800,DAT_0002de40,DAT_0002de44,value);
+  _Var1 = opt_debug;
+  axi_fpga_addr[0x23] = value;
+  if ((_Var1) && (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: set TICKET_MASK_FPGA is 0x%x\n","set_ticket_mask",value);
     _applog(7,tmp42,false);
   }
   get_ticket_mask();

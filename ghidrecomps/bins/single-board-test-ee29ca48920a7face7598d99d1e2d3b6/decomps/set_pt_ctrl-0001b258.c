@@ -5,9 +5,9 @@ void set_pt_ctrl(int param_1,byte param_2)
   undefined4 uVar1;
   char acStack_418 [1024];
   undefined4 local_18;
-  undefined local_14;
-  undefined local_13;
-  undefined local_12;
+  undefined1 local_14;
+  undefined1 local_13;
+  undefined1 local_12;
   undefined4 local_10;
   int local_c;
   

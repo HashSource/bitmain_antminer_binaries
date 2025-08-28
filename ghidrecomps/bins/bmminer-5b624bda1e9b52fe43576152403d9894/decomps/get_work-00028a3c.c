@@ -8,38 +8,25 @@ work * get_work(thr_info *thr,int thr_id)
   _Bool _Var2;
   time_t tVar3;
   time_t tVar4;
-  int iVar5;
+  uchar (*pauVar5) [160];
   int iVar6;
   char cVar7;
   int iVar8;
   int iVar9;
-  char *pcVar10;
-  time_t diff_t;
   cgpu_info *cgpu;
-  cgpu_info *pcVar11;
-  bool bVar12;
+  cgpu_info *pcVar10;
+  bool bVar11;
+  double dVar12;
   double dVar13;
-  double dVar14;
-  double dVar15;
   work *work;
   char tmp42 [2048];
   
-  pcVar10 = DAT_00028c10;
   work = (work *)0x0;
-  pcVar11 = thr->cgpu;
+  pcVar10 = thr->cgpu;
   thread_reportout(thr);
-  if ((*pcVar10 != '\0') &&
-     (((*DAT_00028c14 != '\0' || (*DAT_00028c18 != '\0')) || (6 < *DAT_00028c3c)))) {
-    tmp42._0_4_ = *DAT_00028c1c;
-    tmp42._4_4_ = DAT_00028c1c[1];
-    tmp42._8_4_ = DAT_00028c1c[2];
-    tmp42._12_4_ = DAT_00028c1c[3];
-    tmp42._16_4_ = DAT_00028c1c[4];
-    tmp42._20_4_ = DAT_00028c1c[5];
-    tmp42._24_4_ = DAT_00028c1c[6];
-    tmp42._28_4_ = DAT_00028c1c[7];
-    tmp42._32_4_ = DAT_00028c1c[8];
-    tmp42._36_4_ = DAT_00028c1c[9];
+  if ((opt_debug != false) &&
+     (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    builtin_strncpy(tmp42,"Popping work from get queue to get work",0x28);
     _applog(7,tmp42,false);
   }
   tVar3 = time((time_t *)0x0);
@@ -49,7 +36,7 @@ work * get_work(thr_info *thr,int thr_id)
       work = hash_pop(true);
       _Var2 = stale_work(work,SUB41(pwVar1,0));
       if (!_Var2) break;
-      _discard_work(&work,DAT_00028c20,DAT_00028c24,0x214c);
+      _discard_work(&work,"cgminer.c","get_work",0x214c);
       wake_gws();
       if (work != (work *)0x0) goto LAB_00028abe;
     }
@@ -57,76 +44,73 @@ work * get_work(thr_info *thr,int thr_id)
 LAB_00028abe:
   tVar4 = time((time_t *)0x0);
   iVar9 = tVar4 - tVar3;
-  cVar7 = *pcVar10;
+  cVar7 = opt_debug;
   if (0 < iVar9) {
-    if (cVar7 != '\0') {
-      if (((*DAT_00028c14 == '\0') && (*DAT_00028c18 == '\0')) && (*DAT_00028c3c < 7)) {
+    if (opt_debug != false) {
+      if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 7)) {
         cVar7 = '\x01';
       }
       else {
-        snprintf(tmp42,0x800,DAT_00028c28,iVar9);
+        snprintf(tmp42,0x800,"Get work blocked for %d seconds",iVar9);
         _applog(7,tmp42,false);
-        cVar7 = *pcVar10;
+        cVar7 = opt_debug;
       }
     }
-    pcVar11->last_device_valid_work = pcVar11->last_device_valid_work + iVar9;
+    pcVar10->last_device_valid_work = pcVar10->last_device_valid_work + iVar9;
   }
   if ((cVar7 != '\0') &&
-     (((*DAT_00028c14 != '\0' || (*DAT_00028c18 != '\0')) || (6 < *DAT_00028c3c)))) {
-    snprintf(tmp42,0x800,DAT_00028c2c,thr_id);
+     (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"Got work from get queue to get work for thread %d",thr_id);
     _applog(7,tmp42,false);
   }
-  cVar7 = *(char *)(DAT_00028c30 + 0x74d);
+  _Var2 = opt_benchmark;
   work->thr_id = thr_id;
-  if (cVar7 == '\0') goto LAB_00028b38;
-  iVar5 = pcVar11->lodiff;
-  iVar9 = iVar5 + pcVar11->direction;
-  pcVar11->lodiff = iVar9;
+  if (_Var2 == false) goto LAB_00028b38;
+  iVar6 = pcVar10->lodiff;
+  iVar9 = iVar6 + pcVar10->direction;
+  pcVar10->lodiff = iVar9;
   if (iVar9 < 1) {
-    iVar5 = 1;
+    iVar6 = 1;
   }
   if (iVar9 < 1) {
-    pcVar11->direction = iVar5;
+    pcVar10->direction = iVar6;
 LAB_00028c00:
+    pauVar5 = bench_lodiff_bins;
     iVar6 = 0x2139;
-    iVar5 = DAT_00028c40;
-    pcVar10 = DAT_00028c38;
   }
   else {
     if (iVar9 < 0x10) goto LAB_00028c00;
     iVar6 = -1;
-    pcVar11->direction = -1;
-    pcVar10 = DAT_00028c38;
-    iVar5 = DAT_00028c34;
-    iVar8 = pcVar11->hidiff + 1;
-    bVar12 = pcVar11->hidiff + -0xe < 0;
+    pcVar10->direction = -1;
+    pauVar5 = bench_hidiff_bins;
+    iVar8 = pcVar10->hidiff + 1;
+    bVar11 = pcVar10->hidiff + -0xe < 0;
     if (0xf < iVar8) {
       iVar6 = 0;
     }
     iVar9 = iVar6;
-    if (iVar8 == 0xf || bVar12 != SBORROW4(iVar8,0xf)) {
-      pcVar11->hidiff = iVar8;
+    if (iVar8 == 0xf || bVar11 != SBORROW4(iVar8,0xf)) {
+      pcVar10->hidiff = iVar8;
       iVar9 = iVar8;
     }
-    if (iVar8 != 0xf && bVar12 == SBORROW4(iVar8,0xf)) {
-      pcVar11->hidiff = iVar6;
+    if (iVar8 != 0xf && bVar11 == SBORROW4(iVar8,0xf)) {
+      pcVar10->hidiff = iVar6;
     }
     iVar6 = 0x2135;
   }
-  _cg_memcpy(work,(void *)(iVar5 + iVar9 * 0xa0),0xa0,DAT_00028c20,pcVar10,iVar6);
+  _cg_memcpy(work,pauVar5 + iVar9,0xa0,"cgminer.c","set_benchmark_work",iVar6);
 LAB_00028b38:
   thread_reportin(thr);
-  dVar13 = work->work_difficulty;
-  dVar15 = pcVar11->drv->max_diff;
-  dVar14 = pcVar11->drv->min_diff;
+  dVar13 = pcVar10->drv->max_diff;
+  dVar12 = pcVar10->drv->min_diff;
   work->mined = true;
-  if (dVar15 != dVar13 && dVar15 < dVar13 == (NAN(dVar15) || NAN(dVar13))) {
-    dVar15 = dVar13;
+  if (work->work_difficulty < dVar13) {
+    dVar13 = work->work_difficulty;
   }
-  if ((int)((uint)(dVar15 < dVar14) << 0x1f) < 0) {
-    dVar15 = dVar14;
+  if ((int)((uint)(dVar13 < dVar12) << 0x1f) < 0) {
+    dVar13 = dVar12;
   }
-  work->device_diff = dVar15;
+  work->device_diff = dVar13;
   return work;
 }
 

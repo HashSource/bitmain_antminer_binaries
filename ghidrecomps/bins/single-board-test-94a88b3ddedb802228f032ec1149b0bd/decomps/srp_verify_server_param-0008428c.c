@@ -4,6 +4,7 @@ srp_verify_server_param(int param_1,undefined4 *param_2,undefined4 param_3,undef
 
 {
   int iVar1;
+  undefined4 extraout_r2;
   
   iVar1 = BN_ucmp(*(BIGNUM **)(param_1 + 0x1ac),*(BIGNUM **)(param_1 + 0x1a8));
   if (((-1 < iVar1) ||
@@ -16,8 +17,8 @@ srp_verify_server_param(int param_1,undefined4 *param_2,undefined4 param_3,undef
   if (*(int *)(param_1 + 0x1cc) <= iVar1) {
     if (*(code **)(param_1 + 0x19c) == (code *)0x0) {
       iVar1 = SRP_check_known_gN_param
-                        (*(undefined4 *)(param_1 + 0x1ac),*(undefined4 *)(param_1 + 0x1a8),param_3,0
-                         ,param_4);
+                        (*(undefined4 *)(param_1 + 0x1ac),*(undefined4 *)(param_1 + 0x1a8),
+                         extraout_r2,0,param_4);
       if (iVar1 == 0) {
         *param_2 = 0x47;
         return 0;

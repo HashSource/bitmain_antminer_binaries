@@ -9,10 +9,10 @@ byte * Strcasestr(byte *param_1,byte *param_2)
   __int32_t **pp_Var5;
   char *pcVar6;
   byte *pbVar7;
-  undefined *puVar8;
+  undefined1 *puVar8;
   byte *pbVar9;
   __int32_t *p_Var10;
-  undefined uStack_21;
+  undefined1 uStack_21;
   
   if (param_2 == (byte *)0x0 || param_1 == (byte *)0x0) {
     return (byte *)0x0;

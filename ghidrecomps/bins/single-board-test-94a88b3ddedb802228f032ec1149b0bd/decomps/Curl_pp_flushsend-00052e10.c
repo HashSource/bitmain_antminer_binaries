@@ -13,7 +13,7 @@ int Curl_pp_flushsend(int param_1)
                      local_1c);
   if (iVar1 == 0) {
     if (*(int *)(param_1 + 0x18) == local_1c[0]) {
-      (**DAT_00052e68)(*(undefined4 *)(param_1 + 0x14));
+      (*Curl_cfree)(*(undefined4 *)(param_1 + 0x14));
       *(undefined4 *)(param_1 + 0x14) = 0;
       *(undefined4 *)(param_1 + 0x1c) = 0;
       *(undefined4 *)(param_1 + 0x18) = 0;

@@ -1,13 +1,11 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void process_TEST(void)
 
 {
   uint uVar1;
   FILE *pFVar2;
-  char *in_stack_ffffffa8;
-  undefined4 in_stack_ffffffac;
   char log_level_str [32];
   FILE *pFile;
   FILE *pFile_1;
@@ -28,30 +26,28 @@ void process_TEST(void)
         print_crt_time_to_file(log_file,3);
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          in_stack_ffffffa8 = "process_TEST";
-          fprintf(pFVar2,"%s:%d:%s: current voltage = %f\n","driver-btm-soc.c",0xe5d);
+          fprintf(pFVar2,"%s:%d:%s: current voltage = %f\n","driver-btm-soc.c",0xe5d,"process_TEST")
+          ;
         }
         fclose(pFVar2);
       }
-      set_working_voltage((double)CONCAT44(in_stack_ffffffac,in_stack_ffffffa8));
+      set_working_voltage(process_TEST::lexical_block_2::voltage);
       slowly_set_iic_power_to_working_voltage();
-      process_TEST::lexical_block_0::voltage = process_TEST::lexical_block_0::voltage - DAT_00029088
-      ;
+      process_TEST::lexical_block_2::voltage = process_TEST::lexical_block_2::voltage - 0.1;
     }
     else if (uVar1 == 0xd) {
       if (3 < log_level) {
         print_crt_time_to_file(log_file,3);
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          in_stack_ffffffa8 = "process_TEST";
-          fprintf(pFVar2,"%s:%d:%s: current voltage = %f\n","driver-btm-soc.c",0xe67);
+          fprintf(pFVar2,"%s:%d:%s: current voltage = %f\n","driver-btm-soc.c",0xe67,"process_TEST")
+          ;
         }
         fclose(pFVar2);
       }
-      set_working_voltage((double)CONCAT44(in_stack_ffffffac,in_stack_ffffffa8));
+      set_working_voltage(process_TEST::lexical_block_3::voltage_1);
       slowly_set_iic_power_to_working_voltage();
-      process_TEST::lexical_block_1::voltage_1 =
-           process_TEST::lexical_block_1::voltage_1 + DAT_00029088;
+      process_TEST::lexical_block_3::voltage_1 = process_TEST::lexical_block_3::voltage_1 + 0.1;
     }
     else if (uVar1 == 0xe) {
       if (3 < log_level) {
@@ -59,12 +55,12 @@ void process_TEST(void)
         pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
           fprintf(pFVar2,"%s:%d:%s: current pwm = %d\n","driver-btm-soc.c",0xe71,"process_TEST",
-                  process_TEST::lexical_block_2::pwm);
+                  process_TEST::lexical_block_4::pwm);
         }
         fclose(pFVar2);
       }
-      set_pwm((uchar)process_TEST::lexical_block_2::pwm);
-      process_TEST::lexical_block_2::pwm = process_TEST::lexical_block_2::pwm + -3;
+      set_pwm((uchar)process_TEST::lexical_block_4::pwm);
+      process_TEST::lexical_block_4::pwm = process_TEST::lexical_block_4::pwm + -3;
     }
     else if ((uVar1 != 0xf) && (uVar1 != 0x10)) {
       if (uVar1 == 0x11) {

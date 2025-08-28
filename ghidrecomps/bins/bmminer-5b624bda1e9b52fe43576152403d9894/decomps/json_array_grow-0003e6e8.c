@@ -5,7 +5,6 @@ json_t ** json_array_grow(json_array_t *array,size_t amount,int copy)
 
 {
   json_t **__dest;
-  json_t **new_table;
   uint uVar1;
   uint uVar2;
   size_t new_size;

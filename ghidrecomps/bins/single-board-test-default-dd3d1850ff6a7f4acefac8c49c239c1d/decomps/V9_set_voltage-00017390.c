@@ -1,5 +1,5 @@
 
-void V9_set_voltage(undefined param_1,undefined param_2,char param_3)
+void V9_set_voltage(undefined1 param_1,undefined1 param_2,char param_3)
 
 {
   double dVar1;
@@ -43,7 +43,7 @@ void V9_set_voltage(undefined param_1,undefined param_2,char param_3)
   if (param_3 != '\0') {
     local_c = local_c + Conf._240_4_;
   }
-  dVar1 = DAT_00017548 - ((double)(ulonglong)local_c * DAT_00017538) / DAT_00017540;
+  dVar1 = 1742.069961 - ((double)local_c * 152.134146) / 100.0;
   iVar2 = (uint)(0.0 < dVar1) * (int)(longlong)dVar1;
   local_18 = SUB84(dVar1,0);
   uStack_14 = (undefined4)((ulonglong)dVar1 >> 0x20);

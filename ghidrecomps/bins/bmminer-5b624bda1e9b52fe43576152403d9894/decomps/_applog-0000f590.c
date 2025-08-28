@@ -4,61 +4,48 @@
 void _applog(int prio,char *str,_Bool force)
 
 {
-  char cVar1;
-  char *pcVar2;
-  FILE **ppFVar3;
-  tm *ptVar4;
-  tm *tm;
-  int iVar5;
-  size_t sVar6;
   FILE *__s;
-  int ms;
-  time_t tmp_time;
+  tm *ptVar1;
+  int iVar2;
+  size_t sVar3;
+  __time_t local_6c;
   timeval tv;
   char datetime [64];
   
-  tv.tv_sec = (__time_t)*DAT_0000f6b4;
-  if (tv.tv_sec != 0) {
-    syslog(prio | 0x80,DAT_0000f6cc,str);
-    return;
-  }
-  tv.tv_usec = tv.tv_sec;
-  cgtime(&tv);
-  ppFVar3 = DAT_0000f6b8;
-  tmp_time = tv.tv_sec;
-  iVar5 = tv.tv_usec / 1000;
-  ptVar4 = localtime(&tmp_time);
-  snprintf(datetime,0x40,DAT_0000f6bc,ptVar4->tm_year + 0x76c,ptVar4->tm_mon + 1,ptVar4->tm_mday,
-           ptVar4->tm_hour,ptVar4->tm_min,ptVar4->tm_sec,iVar5);
-  iVar5 = fileno(*ppFVar3);
-  iVar5 = isatty(iVar5);
-  if (iVar5 == 0) {
-    fprintf(*ppFVar3,DAT_0000f6d0,datetime,str);
-    pcVar2 = DAT_0000f6c0;
-    fflush(*ppFVar3);
-    cVar1 = *pcVar2;
+  tv.tv_sec = (__time_t)use_syslog;
+  if (tv.tv_sec == 0) {
+    tv.tv_usec = tv.tv_sec;
+    cgtime(&tv);
+    local_6c = tv.tv_sec;
+    iVar2 = tv.tv_usec / 1000;
+    ptVar1 = localtime(&local_6c);
+    snprintf(datetime,0x40," [%d-%02d-%02d %02d:%02d:%02d.%03d] ",ptVar1->tm_year + 0x76c,
+             ptVar1->tm_mon + 1,ptVar1->tm_mday,ptVar1->tm_hour,ptVar1->tm_min,ptVar1->tm_sec,iVar2)
+    ;
+    iVar2 = fileno(stderr);
+    iVar2 = isatty(iVar2);
+    if (iVar2 == 0) {
+      fprintf(stderr,"%s%s\n",datetime,str);
+      fflush(stderr);
+    }
+    if ((g_logfile_enable != false) &&
+       ((g_log_file != (FILE *)0x0 ||
+        (g_log_file = (FILE *)fopen(g_logfile_path,g_logfile_openflag), g_log_file != (FILE *)0x0)))
+       ) {
+      __s = g_log_file;
+      sVar3 = strlen(datetime);
+      fwrite(datetime,sVar3,1,(FILE *)__s);
+      sVar3 = strlen(str);
+      fwrite(str,sVar3,1,(FILE *)g_log_file);
+      fwrite("\n",1,1,(FILE *)g_log_file);
+      fflush((FILE *)g_log_file);
+    }
+    if ((opt_quiet == false) || (prio == 3)) {
+      my_log_curses((int)datetime,str,(char *)(uint)force,opt_quiet);
+    }
   }
   else {
-    cVar1 = *DAT_0000f6c0;
-    pcVar2 = DAT_0000f6c0;
-  }
-  if (cVar1 != '\0') {
-    __s = *(FILE **)(pcVar2 + 4);
-    if (__s == (FILE *)0x0) {
-      __s = fopen(pcVar2 + 8,pcVar2 + 0x108);
-      *(FILE **)(pcVar2 + 4) = __s;
-      if (__s == (FILE *)0x0) goto LAB_0000f656;
-    }
-    sVar6 = strlen(datetime);
-    fwrite(datetime,sVar6,1,__s);
-    sVar6 = strlen(str);
-    fwrite(str,sVar6,1,*(FILE **)(pcVar2 + 4));
-    fwrite(DAT_0000f6c4,1,1,*(FILE **)(pcVar2 + 4));
-    fflush(*(FILE **)(pcVar2 + 4));
-  }
-LAB_0000f656:
-  if ((*(_Bool *)DAT_0000f6c8 == false) || (prio == 3)) {
-    my_log_curses((int)datetime,str,(char *)(uint)force,*(_Bool *)DAT_0000f6c8);
+    syslog(prio | 0x80,"%s",str);
   }
   return;
 }

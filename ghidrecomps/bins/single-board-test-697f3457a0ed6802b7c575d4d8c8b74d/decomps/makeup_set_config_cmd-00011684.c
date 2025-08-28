@@ -34,7 +34,10 @@ int makeup_set_config_cmd
     bVar1 = CRC5_v1((uchar *)&set_config_cmd,'@');
     *str = 'U';
     str[1] = 0xaa;
-    *(undefined4 *)(str + 2) = set_config_cmd._0_4_;
+    str[2] = set_config_cmd._0_1_;
+    str[3] = set_config_cmd.length;
+    str[4] = set_config_cmd.chip_addr;
+    str[5] = set_config_cmd.regaddr;
     *(uint8_t (*) [4])(str + 6) = set_config_cmd.regdata;
     str[10] = set_config_cmd._8_1_ & 0xe0 | bVar1 & 0x1f;
     iVar2 = 0xb;

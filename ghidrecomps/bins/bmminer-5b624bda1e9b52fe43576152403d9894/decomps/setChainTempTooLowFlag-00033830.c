@@ -1,43 +1,41 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void setChainTempTooLowFlag(void)
 
 {
-  int *piVar1;
+  all_parameters *paVar1;
   int iVar2;
   int iVar3;
   int iVar4;
-  int iVar5;
-  undefined4 *puVar6;
+  int *piVar5;
   char logstr [256];
   
-  iVar2 = DAT_000338c8;
-  piVar1 = DAT_000338c4;
-  iVar5 = 0;
-  puVar6 = DAT_000338b8;
+  iVar4 = 0;
+  piVar5 = chain_temp_toolow;
   do {
-    iVar4 = *piVar1;
-    *puVar6 = 0;
-    if ((*(int *)(iVar4 + (iVar5 + 2) * 4) == 1) &&
-       (iVar4 = (int)*(short *)(iVar4 + iVar5 * 8 + 0x96a), 0 < iVar4)) {
-      iVar3 = *(int *)(iVar2 + iVar5 * 4);
-      if (iVar3 < 1) {
-        if (iVar4 < 0x50) {
-          sprintf(logstr,DAT_000338c0,iVar5);
+    paVar1 = dev;
+    *piVar5 = 0;
+    if ((paVar1->chain_exist[iVar4] == 1) &&
+       (iVar3 = (int)paVar1->chain_asic_maxtemp[iVar4][1], 0 < iVar3)) {
+      iVar2 = lowest_testOK_temp[iVar4];
+      if (iVar2 < 1) {
+        if (iVar3 < 0x50) {
+          sprintf(logstr,"Detect Chain[%d] temp too low, will ignore: temp=%d\n",iVar4);
           writeLogFile(logstr);
-          *puVar6 = 1;
+          *piVar5 = 1;
         }
       }
-      else if (iVar4 < iVar3) {
-        sprintf(logstr,DAT_000338bc,iVar5,iVar4,iVar3);
+      else if (iVar3 < iVar2) {
+        sprintf(logstr,"Detect Chain[%d] temp too low, will ignore: temp=%d < %d\n",iVar4,iVar3,
+                iVar2);
         writeLogFile(logstr);
-        *puVar6 = 1;
+        *piVar5 = 1;
       }
     }
-    iVar5 = iVar5 + 1;
-    puVar6 = puVar6 + 1;
-  } while (iVar5 != 0x10);
+    iVar4 = iVar4 + 1;
+    piVar5 = piVar5 + 1;
+  } while (iVar4 != 0x10);
   CheckChainTempTooLowFlag();
   return;
 }

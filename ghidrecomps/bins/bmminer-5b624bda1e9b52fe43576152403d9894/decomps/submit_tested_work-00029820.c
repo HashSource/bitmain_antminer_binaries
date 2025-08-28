@@ -15,9 +15,10 @@ _Bool submit_tested_work(thr_info *thr,work *work)
     submit_work_async(work_00);
     _Var1 = true;
   }
-  else if (((*DAT_00029890 != '\0') || (*DAT_00029894 != '\0')) ||
-          (_Var1 = false, 5 < *DAT_00029898)) {
-    snprintf(tmp42,0x800,DAT_0002989c,DAT_000298a0,thr->cgpu->drv->name,thr->cgpu->device_id);
+  else if (((use_syslog != false) || (opt_log_output != false)) ||
+          (_Var1 = false, 5 < opt_log_level)) {
+    snprintf(tmp42,0x800,"%s %s %d: Share above target","submit_tested_work",thr->cgpu->drv->name,
+             thr->cgpu->device_id);
     _applog(6,tmp42,false);
     _Var1 = false;
   }

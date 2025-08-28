@@ -19,19 +19,19 @@ void inc_work_stats(thr_info *thr,pool *pool,int diff1)
   total_diff1._0_4_ = (uint)total_diff1 + diff1;
   total_diff1._4_4_ = total_diff1._4_4_ + iVar5 + (uint)bVar7;
   pcVar6 = thr->cgpu;
-  uVar1 = *(uint *)&thr->cgpu->diff1;
+  uVar1 = (uint)thr->cgpu->diff1;
   iVar4 = *(int *)((int)&thr->cgpu->diff1 + 4);
   *(uint *)&pcVar6->diff1 = diff1 + uVar1;
   *(uint *)((int)&pcVar6->diff1 + 4) = iVar5 + iVar4 + (uint)CARRY4(diff1,uVar1);
   if (pool == (pool *)0x0) {
     ppVar2 = current_pool();
-    uVar1 = *(uint *)&ppVar2->diff1;
+    uVar1 = (uint)ppVar2->diff1;
     iVar4 = *(int *)((int)&ppVar2->diff1 + 4);
     *(uint *)&ppVar2->diff1 = diff1 + uVar1;
     *(uint *)((int)&ppVar2->diff1 + 4) = iVar5 + iVar4 + (uint)CARRY4(diff1,uVar1);
   }
   else {
-    uVar1 = *(uint *)&pool->diff1;
+    uVar1 = (uint)pool->diff1;
     iVar4 = *(int *)((int)&pool->diff1 + 4);
     *(uint *)&pool->diff1 = diff1 + uVar1;
     *(uint *)((int)&pool->diff1 + 4) = iVar5 + iVar4 + (uint)CARRY4(diff1,uVar1);

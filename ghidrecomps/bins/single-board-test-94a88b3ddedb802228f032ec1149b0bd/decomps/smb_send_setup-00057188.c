@@ -2,19 +2,13 @@
 undefined4 smb_send_setup(undefined4 *param_1)
 
 {
-  undefined2 uVar1;
-  char cVar2;
-  undefined4 *puVar3;
-  size_t sVar4;
-  size_t sVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
-  undefined4 uVar9;
-  char *pcVar10;
-  char *__dest;
-  undefined auStack_4a8 [24];
-  undefined auStack_490 [24];
+  size_t sVar1;
+  size_t sVar2;
+  undefined4 uVar3;
+  char *pcVar4;
+  char *pcVar5;
+  undefined1 auStack_4a8 [24];
+  undefined1 auStack_490 [24];
   undefined4 local_478;
   undefined4 uStack_474;
   undefined4 uStack_470;
@@ -27,17 +21,17 @@ undefined4 smb_send_setup(undefined4 *param_1)
   undefined4 uStack_454;
   undefined4 local_450;
   undefined4 uStack_44c;
-  undefined local_448;
-  undefined local_447;
+  undefined1 local_448;
+  undefined1 local_447;
   undefined4 local_444;
-  undefined local_440;
+  undefined1 local_440;
   undefined2 uStack_43f;
   undefined4 uStack_43d;
-  undefined local_439;
+  undefined1 local_439;
   uint local_438;
-  undefined local_431;
+  undefined1 local_431;
   undefined4 local_430;
-  undefined uStack_42c;
+  undefined1 uStack_42c;
   undefined4 local_42b;
   undefined4 local_427;
   undefined4 local_423;
@@ -51,21 +45,23 @@ undefined4 smb_send_setup(undefined4 *param_1)
   undefined4 local_403;
   undefined4 local_3ff;
   char cStack_3fb;
-  char cStack_3fa;
-  undefined4 auStack_3f9 [5];
-  undefined2 uStack_3e5;
-  undefined4 uStack_3e3;
-  char acStack_3df [955];
+  char acStack_3fa [5];
+  char acStack_3f5 [4];
+  char acStack_3f1 [4];
+  char acStack_3ed [4];
+  char acStack_3e9 [4];
+  char acStack_3e5 [6];
+  char acStack_3df [30];
+  char acStack_3c1 [925];
   
-  sVar4 = strlen((char *)param_1[0xf1]);
-  sVar5 = strlen((char *)param_1[0xf2]);
-  if (sVar4 + sVar5 + 0x4d < 0x401) {
+  sVar1 = strlen((char *)param_1[0xf1]);
+  sVar2 = strlen((char *)param_1[0xf2]);
+  if (sVar1 + sVar2 + 0x4d < 0x401) {
     Curl_ntlm_core_mk_lm_hash(*param_1,param_1[0x49],auStack_4a8);
     Curl_ntlm_core_lm_resp(auStack_4a8,param_1 + 0xf3,&local_478);
     Curl_ntlm_core_mk_nt_hash(*param_1,param_1[0x49],auStack_490);
     Curl_ntlm_core_lm_resp(auStack_490,param_1 + 0xf3,&local_460);
     memset(&local_448,0,0x41d);
-    puVar3 = DAT_0005730c;
     uStack_43d = param_1[0xf5];
     local_430 = local_430 & 0xff000000;
     local_438 = (local_438 >> 8 & 0xff0000) << 8 | 0x1800;
@@ -84,39 +80,27 @@ undefined4 smb_send_setup(undefined4 *param_1)
     local_417 = uStack_464;
     local_413 = local_460;
     local_40f = uStack_45c;
-    pcVar10 = (char *)param_1[0xf1];
+    pcVar4 = (char *)param_1[0xf1];
     local_407 = uStack_454;
     local_403 = local_450;
     local_3ff = uStack_44c;
     local_40b = uStack_458;
-    strcpy(&cStack_3fb,pcVar10);
-    sVar4 = strlen(pcVar10);
-    pcVar10 = (char *)param_1[0xf2];
-    __dest = &cStack_3fa + sVar4;
-    strcpy(__dest,pcVar10);
-    sVar4 = strlen(pcVar10);
-    pcVar10 = __dest + ((sVar4 + 0x1c) - (int)&local_42b);
-    uVar7 = puVar3[1];
-    uVar8 = puVar3[2];
-    uVar9 = puVar3[3];
-    cVar2 = *(char *)(DAT_00057310 + 1);
-    *(undefined4 *)(__dest + sVar4 + 1) = *puVar3;
-    uVar6 = puVar3[4];
-    uVar1 = *(undefined2 *)(puVar3 + 5);
-    *(undefined4 *)(__dest + sVar4 + 5) = uVar7;
-    *(undefined4 *)(__dest + sVar4 + 0x11) = uVar6;
-    uVar6 = *DAT_00057310;
-    *(undefined4 *)(__dest + sVar4 + 9) = uVar8;
-    *(undefined4 *)(__dest + sVar4 + 0xd) = uVar9;
-    *(undefined4 *)(__dest + sVar4 + 0x17) = uVar6;
-    *(undefined2 *)(__dest + sVar4 + 0x15) = uVar1;
-    __dest[sVar4 + 0x1b] = cVar2;
-    uStack_42c = (undefined)((uint)pcVar10 >> 8);
-    uVar6 = smb_send_message(param_1,0x73,&local_448,pcVar10 + 0x1d);
+    strcpy(&cStack_3fb,pcVar4);
+    sVar1 = strlen(pcVar4);
+    pcVar4 = (char *)param_1[0xf2];
+    pcVar5 = acStack_3fa + sVar1;
+    strcpy(pcVar5,pcVar4);
+    sVar2 = strlen(pcVar4);
+    pcVar5 = pcVar5 + ((sVar2 + 0x1c) - (int)&local_42b);
+    builtin_strncpy(acStack_3fa + sVar2 + sVar1 + 1,"arm-unknown-linux-gnu",0x16);
+    builtin_strncpy(acStack_3fa + sVar2 + sVar1 + 0x17,"curl",5);
+    local_430._3_1_ = SUB41(pcVar5,0);
+    uStack_42c = (undefined1)((uint)pcVar5 >> 8);
+    uVar3 = smb_send_message(param_1,0x73,&local_448,pcVar5 + 0x1d);
   }
   else {
-    uVar6 = 0x3f;
+    uVar3 = 0x3f;
   }
-  return uVar6;
+  return uVar3;
 }
 

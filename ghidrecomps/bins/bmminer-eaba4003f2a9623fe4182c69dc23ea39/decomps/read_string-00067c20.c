@@ -5,7 +5,7 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,size_t *out_len,int *o
   char cVar1;
   size_t length_00;
   int iVar2;
-  char **ppcVar3;
+  undefined4 *puVar3;
   char *pcVar4;
   size_t *psVar5;
   size_t *out_len_local;
@@ -23,9 +23,9 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,size_t *out_len,int *o
   if (((cVar1 == '#') || (cVar1 == '%')) || (cVar1 == '+')) {
     strbuffer_init(&strbuff);
     do {
-      ppcVar3 = (char **)ap->__ap;
-      ap->__ap = ppcVar3 + 1;
-      pcVar4 = *ppcVar3;
+      puVar3 = (undefined4 *)ap->__ap;
+      ap->__ap = puVar3 + 1;
+      pcVar4 = (char *)*puVar3;
       if (pcVar4 == (char *)0x0) {
         set_error(s,"<args>","NULL string argument");
         strbuffer_close(&strbuff);
@@ -68,9 +68,9 @@ char * read_string(scanner_t *s,va_list *ap,char *purpose,size_t *out_len,int *o
     }
   }
   else {
-    ppcVar3 = (char **)ap->__ap;
-    ap->__ap = ppcVar3 + 1;
-    pcVar4 = *ppcVar3;
+    puVar3 = (undefined4 *)ap->__ap;
+    ap->__ap = puVar3 + 1;
+    pcVar4 = (char *)*puVar3;
     if (pcVar4 == (char *)0x0) {
       set_error(s,"<args>","NULL string argument");
       pcVar4 = (char *)0x0;

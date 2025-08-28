@@ -20,22 +20,22 @@ bool check_temperature_high(void)
       fclose(pFVar3);
     }
     local_11 = 0;
-    cgpu[2562411] = 3;
-    cgpu[2562413] = 3;
-    cgpu[2562415] = 3;
-    cgpu[2562409] = 3;
-    cgpu[2562483] = 0;
-    cgpu[2562499] = 0;
-    cgpu[2562515] = 0;
-    cgpu[2562467] = 0;
-    cgpu[2562484] = 8;
-    cgpu[2562500] = 8;
-    cgpu[2562516] = 8;
-    cgpu[2562468] = 8;
-    cgpu[2562485] = 0x10;
-    cgpu[2562501] = 0x10;
-    cgpu[2562517] = 0x10;
-    cgpu[2562469] = 0x10;
+    cgpu[0x27196b] = 3;
+    cgpu[0x27196d] = 3;
+    cgpu[0x27196f] = 3;
+    cgpu[0x271969] = 3;
+    cgpu[0x2719b3] = 0;
+    cgpu[0x2719c3] = 0;
+    cgpu[0x2719d3] = 0;
+    cgpu[0x2719a3] = 0;
+    cgpu[0x2719b4] = 8;
+    cgpu[0x2719c4] = 8;
+    cgpu[0x2719d4] = 8;
+    cgpu[0x2719a4] = 8;
+    cgpu[0x2719b5] = 0x10;
+    cgpu[0x2719c5] = 0x10;
+    cgpu[0x2719d5] = 0x10;
+    cgpu[0x2719a5] = 0x10;
     for (local_18 = 0; local_18 < 0x10; local_18 = local_18 + 1) {
       if (*(int *)(cgpu + (local_18 + 0x9c638) * 4) == 1) {
         if ((fpga_version < 0xe) && (fpga_major_version < 0xc6)) {

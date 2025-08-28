@@ -9,9 +9,9 @@ int BN_mod_lshift1(BIGNUM *r,BIGNUM *a,BIGNUM *m,BN_CTX *ctx)
   if (iVar1 != 0) {
     iVar1 = BN_div((BIGNUM *)0x0,r,r,m,ctx);
     if ((iVar1 != 0) && (iVar1 = 1, r->neg != 0)) {
-      pcVar2 = DAT_000f2048;
+      pcVar2 = (code *)0xef09d;
       if (m->neg != 0) {
-        pcVar2 = DAT_000f204c;
+        pcVar2 = (code *)0xef101;
       }
       iVar1 = (*pcVar2)(r,r,m);
     }

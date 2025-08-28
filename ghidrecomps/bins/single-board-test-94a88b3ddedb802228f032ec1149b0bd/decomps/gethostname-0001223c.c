@@ -6,7 +6,7 @@ int gethostname(char *__name,size_t __len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_gethostname_001942d4)();
+  iVar1 = gethostname(__name,__len);
   return iVar1;
 }
 

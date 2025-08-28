@@ -1,15 +1,14 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 api_data * bitmain_api_stats(cgpu_info *cgpu)
 
 {
   longlong lVar1;
   int iVar2;
-  api_data *paVar3;
-  size_t sVar4;
-  bool bVar5;
-  double dVar6;
+  undefined4 uVar3;
+  api_data *paVar4;
+  size_t sVar5;
+  bool bVar6;
+  double dVar7;
   cgpu_info *cgpu_local;
   char freq_sum_1 [32];
   char tmp_2 [20];
@@ -56,10 +55,9 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
   int i;
   api_data *root;
   
-  copy_data = true;
-  paVar3 = api_add_uint8((api_data *)0x0,"miner_count",&dev->chain_num,true);
-  paVar3 = api_add_string(paVar3,"frequency",dev->frequency_t,true);
-  root = api_add_uint8(paVar3,"fan_num",&dev->fan_num,true);
+  paVar4 = api_add_uint8((api_data *)0x0,"miner_count",&dev->chain_num,true);
+  paVar4 = api_add_string(paVar4,"frequency",dev->frequency_t,true);
+  root = api_add_uint8(paVar4,"fan_num",&dev->fan_num,true);
   for (i = 0; i < 8; i = i + 1) {
     sprintf(fan_name,"fan%d",i + 1);
     root = api_add_uint(root,fan_name,dev->fan_speed_value + i,true);
@@ -83,47 +81,30 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
     if (dev->chain_exist[i] == 1) {
       if (last_freq[i][1] == '}') {
         for (j = 0; j < (int)(uint)dev->chain_asic_num[i]; j = j + 1) {
-          iVar2 = freq_pll_1393[12].freq;
+          iVar2 = freq_pll_1393[0xc].freq;
           if (chain_badcore_num[i][j] < 0xf) {
             iVar2 = freq_pll_1393[last_freq[i][j * 2 + 3]].freq;
           }
           dev_sum_freq = (double)(longlong)iVar2 + dev_sum_freq;
         }
         if (dev->chain_asic_num[i] != '\0') {
-          dev_sum_freq = dev_sum_freq / (double)(longlong)(int)(uint)dev->chain_asic_num[i];
+          dev_sum_freq = dev_sum_freq / (double)dev->chain_asic_num[i];
         }
-        dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * DAT_00051d90) / DAT_00051d90
-        ;
+        dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * 100.0) / 100.0;
         root = api_add_mhs(root,freq_sum,&dev_sum_freq,true);
       }
       else {
-        dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * DAT_00051d90) / DAT_00051d90
-        ;
+        dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * 100.0) / 100.0;
         root = api_add_mhs(root,freq_sum,&dev_sum_freq,true);
       }
     }
     else {
-      dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * DAT_00051d90) / DAT_00051d90;
+      dev_sum_freq = (double)(longlong)(int)(longlong)(dev_sum_freq * 100.0) / 100.0;
       root = api_add_mhs(root,freq_sum,&dev_sum_freq,true);
     }
   }
   dev_sum_freq_1 = 0.0;
-  freq_sum_1[0] = s_total_rateideal_00079564[0];
-  freq_sum_1[1] = s_total_rateideal_00079564[1];
-  freq_sum_1[2] = s_total_rateideal_00079564[2];
-  freq_sum_1[3] = s_total_rateideal_00079564[3];
-  freq_sum_1[4] = s_total_rateideal_00079564[4];
-  freq_sum_1[5] = s_total_rateideal_00079564[5];
-  freq_sum_1[6] = s_total_rateideal_00079564[6];
-  freq_sum_1[7] = s_total_rateideal_00079564[7];
-  freq_sum_1[8] = s_total_rateideal_00079564[8];
-  freq_sum_1[9] = s_total_rateideal_00079564[9];
-  freq_sum_1[10] = s_total_rateideal_00079564[10];
-  freq_sum_1[11] = s_total_rateideal_00079564[11];
-  freq_sum_1[12] = s_total_rateideal_00079564[12];
-  freq_sum_1[13] = s_total_rateideal_00079564[13];
-  freq_sum_1[14] = s_total_rateideal_00079564[14];
-  freq_sum_1[15] = s_total_rateideal_00079564[15];
+  builtin_strncpy(freq_sum_1,"total_rateideal",0x10);
   for (i = 0; i < 0x10; i = i + 1) {
     if ((dev->chain_exist[i] == 1) && (last_freq[i][1] == '}')) {
       for (j_1 = 0; j_1 < (int)(uint)dev->chain_asic_num[i]; j_1 = j_1 + 1) {
@@ -136,30 +117,17 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
       }
     }
   }
-  dev_sum_freq_1 =
-       (double)(longlong)(int)(longlong)((dev_sum_freq_1 / DAT_00051d88) * DAT_00051d90) /
-       DAT_00051d90;
-  paVar3 = api_add_mhs(root,freq_sum_1,&dev_sum_freq_1,true);
+  dev_sum_freq_1 = (double)(longlong)(int)(longlong)((dev_sum_freq_1 / 1000.0) * 100.0) / 100.0;
+  paVar4 = api_add_mhs(root,freq_sum_1,&dev_sum_freq_1,true);
   total_acn_num = 0;
   dev_sum_freq_2 = 0.0;
-  freq_sum_1[0] = s_total_freqavg_00079574[0];
-  freq_sum_1[1] = s_total_freqavg_00079574[1];
-  freq_sum_1[2] = s_total_freqavg_00079574[2];
-  freq_sum_1[3] = s_total_freqavg_00079574[3];
-  freq_sum_1[4] = s_total_freqavg_00079574[4];
-  freq_sum_1[5] = s_total_freqavg_00079574[5];
-  freq_sum_1[6] = s_total_freqavg_00079574[6];
-  freq_sum_1[7] = s_total_freqavg_00079574[7];
-  freq_sum_1[8] = s_total_freqavg_00079574[8];
-  freq_sum_1[9] = s_total_freqavg_00079574[9];
-  freq_sum_1[10] = s_total_freqavg_00079574[10];
-  freq_sum_1[11] = s_total_freqavg_00079574[11];
-  freq_sum_1[12] = (char)(short)ram0x00079580;
-  freq_sum_1[13] = (char)((ushort)(short)ram0x00079580 >> 8);
+  builtin_strncpy(freq_sum_1,"total_freqav",0xc);
+  freq_sum_1[0xc] = 'g';
+  freq_sum_1[0xd] = '\0';
   for (i = 0; i < 0x10; i = i + 1) {
     if ((dev->chain_exist[i] == 1) && (last_freq[i][1] == '}')) {
       for (j_2 = 0; j_2 < (int)(uint)dev->chain_asic_num[i]; j_2 = j_2 + 1) {
-        iVar2 = freq_pll_1393[12].freq;
+        iVar2 = freq_pll_1393[0xc].freq;
         if (chain_badcore_num[i][j_2] < 0xf) {
           iVar2 = freq_pll_1393[last_freq[i][j_2 * 2 + 3]].freq;
         }
@@ -169,44 +137,32 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
     }
   }
   dev_sum_freq_2 =
-       (double)(longlong)
-               (int)(longlong)((dev_sum_freq_2 / (double)(longlong)total_acn_num) * DAT_00051d90) /
-       DAT_00051d90;
-  paVar3 = api_add_mhs(paVar3,freq_sum_1,&dev_sum_freq_2,true);
+       (double)(longlong)(int)(longlong)((dev_sum_freq_2 / (double)(longlong)total_acn_num) * 100.0)
+       / 100.0;
+  paVar4 = api_add_mhs(paVar4,freq_sum_1,&dev_sum_freq_2,true);
+  uVar3 = freq_sum_1._8_4_;
   asic_num_total = 0;
-  freq_sum_1[0] = s_total_acn_00079584[0];
-  freq_sum_1[1] = s_total_acn_00079584[1];
-  freq_sum_1[2] = s_total_acn_00079584[2];
-  freq_sum_1[3] = s_total_acn_00079584[3];
-  freq_sum_1[4] = s_total_acn_00079584[4];
-  freq_sum_1[5] = s_total_acn_00079584[5];
-  freq_sum_1[6] = s_total_acn_00079584[6];
-  freq_sum_1[7] = s_total_acn_00079584[7];
+  builtin_strncpy(freq_sum_1,"total_acn",10);
+  freq_sum_1._10_2_ = SUB42(uVar3,2);
   for (i = 0; i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] == 1) {
       asic_num_total = (ushort)dev->chain_asic_num[i] + asic_num_total;
     }
   }
-  freq_sum_1._8_2_ = (short)ram0x0007958c;
-  paVar3 = api_add_int16(paVar3,freq_sum_1,(uint16_t *)&asic_num_total,true);
+  paVar4 = api_add_int16(paVar4,freq_sum_1,(uint16_t *)&asic_num_total,true);
   total_rate = 0.0;
-  freq_sum_1[0] = s_total_rate_00079590[0];
-  freq_sum_1[1] = s_total_rate_00079590[1];
-  freq_sum_1[2] = s_total_rate_00079590[2];
-  freq_sum_1[3] = s_total_rate_00079590[3];
-  freq_sum_1[4] = s_total_rate_00079590[4];
-  freq_sum_1[5] = s_total_rate_00079590[5];
-  freq_sum_1[6] = s_total_rate_00079590[6];
-  freq_sum_1[7] = s_total_rate_00079590[7];
-  freq_sum_1._8_3_ = (undefined3)ram0x00079598;
+  builtin_strncpy(freq_sum_1,"total_ra",8);
+  freq_sum_1[8] = 't';
+  freq_sum_1[9] = 'e';
+  freq_sum_1[10] = '\0';
   for (i = 0; i < 0x10; i = i + 1) {
     if ((dev->chain_exist[i] == 1) && (displayed_rate[i][0] != '\0')) {
-      dVar6 = atof(displayed_rate[i]);
-      total_rate = dVar6 + total_rate;
+      dVar7 = atof(displayed_rate[i]);
+      total_rate = dVar7 + total_rate;
     }
   }
-  total_rate = (double)(longlong)(int)(longlong)(total_rate * DAT_00051d90) / DAT_00051d90;
-  root = api_add_mhs(paVar3,freq_sum_1,&total_rate,true);
+  total_rate = (double)(longlong)(int)(longlong)(total_rate * 100.0) / 100.0;
+  root = api_add_mhs(paVar4,freq_sum_1,&total_rate,true);
   for (i = 0; i < 0x10; i = i + 1) {
     dev_sum_freq_3 = 0.0;
     sprintf(freq_sum_1,"chain_rateideal%d",i + 1);
@@ -221,36 +177,34 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
           }
         }
         dev_sum_freq_3 =
-             (double)(longlong)(int)(longlong)((dev_sum_freq_3 / DAT_000524c0) * DAT_000524c8) /
-             DAT_000524c8;
+             (double)(longlong)(int)(longlong)((dev_sum_freq_3 / 1000.0) * 100.0) / 100.0;
         root = api_add_mhs(root,freq_sum_1,&dev_sum_freq_3,true);
       }
       else {
         dev_sum_freq_3 =
-             (double)(longlong)(int)(longlong)((dev_sum_freq_3 / DAT_000524c0) * DAT_000524c8) /
-             DAT_000524c8;
+             (double)(longlong)(int)(longlong)((dev_sum_freq_3 / 1000.0) * 100.0) / 100.0;
         root = api_add_mhs(root,freq_sum_1,&dev_sum_freq_3,true);
       }
     }
     else {
-      dev_sum_freq_3 =
-           (double)(longlong)(int)(longlong)((dev_sum_freq_3 / DAT_000524c0) * DAT_000524c8) /
-           DAT_000524c8;
+      dev_sum_freq_3 = (double)(longlong)(int)(longlong)((dev_sum_freq_3 / 1000.0) * 100.0) / 100.0;
       root = api_add_mhs(root,freq_sum_1,&dev_sum_freq_3,true);
     }
   }
-  paVar3 = api_add_int(root,"temp_max",dev->temp_top1,true);
-  dVar6 = total_diff_accepted + total_diff_rejected + total_diff_stale;
-  total_diff1 = __aeabi_d2lz(SUB84(dVar6,0),(int)((ulonglong)dVar6 >> 0x20));
-  dev_hwp = DAT_000524d0;
-  if (total_diff1 + hw_errors != 0) {
-    lVar1 = (longlong)hw_errors;
-    dVar6 = (double)__aeabi_l2d((int)(total_diff1 + hw_errors),
-                                (int)((ulonglong)(total_diff1 + hw_errors) >> 0x20));
-    dev_hwp = (double)lVar1 / dVar6;
+  paVar4 = api_add_int(root,"temp_max",dev->temp_top1,true);
+  dVar7 = total_diff_accepted + total_diff_rejected + total_diff_stale;
+  total_diff1 = __aeabi_d2lz(SUB84(dVar7,0),(int)((ulonglong)dVar7 >> 0x20));
+  if (total_diff1 + hw_errors == 0) {
+    dev_hwp = 0.0;
   }
-  paVar3 = api_add_percent(paVar3,"Device Hardware%",&dev_hwp,true);
-  root = api_add_int(paVar3,"no_matching_work",&hw_errors,true);
+  else {
+    lVar1 = (longlong)hw_errors;
+    dVar7 = (double)__aeabi_l2d((int)(total_diff1 + hw_errors),
+                                (int)((ulonglong)(total_diff1 + hw_errors) >> 0x20));
+    dev_hwp = (double)lVar1 / dVar7;
+  }
+  paVar4 = api_add_percent(paVar4,"Device Hardware%",&dev_hwp,true);
+  root = api_add_int(paVar4,"no_matching_work",&hw_errors,true);
   for (i = 0; i < 0x10; i = i + 1) {
     sprintf(chain_name,"chain_acn%d",i + 1);
     root = api_add_uint8(root,chain_name,dev->chain_asic_num + i,true);
@@ -291,22 +245,22 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
       tmp[8] = '\0';
       tmp[9] = '\0';
       tmp[10] = '\0';
-      tmp[11] = '\0';
-      tmp[12] = '\0';
-      tmp[13] = '\0';
-      tmp[14] = '\0';
-      tmp[15] = '\0';
-      tmp[16] = '\0';
-      tmp[17] = '\0';
-      tmp[18] = '\0';
-      tmp[19] = '\0';
+      tmp[0xb] = '\0';
+      tmp[0xc] = '\0';
+      tmp[0xd] = '\0';
+      tmp[0xe] = '\0';
+      tmp[0xf] = '\0';
+      tmp[0x10] = '\0';
+      tmp[0x11] = '\0';
+      tmp[0x12] = '\0';
+      tmp[0x13] = '\0';
       sprintf(chain_xtime,"chain_xtime%d",i + 1);
-      bVar5 = x_time[i][0] != 0;
-      if (bVar5) {
+      bVar6 = x_time[i][0] != 0;
+      if (bVar6) {
         sprintf(tmp,"X%d=%d",0,x_time[i][0]);
         strcat(freq_sum_1,tmp);
       }
-      first = !bVar5;
+      first = !bVar6;
       for (j_4 = 1; j_4 < (int)(uint)dev->chain_asic_num[i]; j_4 = j_4 + 1) {
         if (x_time[i][j_4] != 0) {
           if (first) {
@@ -319,19 +273,20 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
           strcat(freq_sum_1,tmp);
         }
       }
-      sVar4 = strlen(freq_sum_1);
-      *(undefined2 *)(freq_sum_1 + sVar4) = DAT_00079650;
-      root = api_add_string(root,chain_xtime,freq_sum_1,copy_data);
+      sVar5 = strlen(freq_sum_1);
+      (freq_sum_1 + sVar5)[0] = '}';
+      (freq_sum_1 + sVar5)[1] = '\0';
+      root = api_add_string(root,chain_xtime,freq_sum_1,true);
     }
   }
   for (i = 0; i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] == 1) {
       sprintf(chain_offside,"chain_offside_%d",i + 1);
       sprintf(tmp_1,"%d",temp_offside[i]);
-      root = api_add_string(root,chain_offside,tmp_1,copy_data);
+      root = api_add_string(root,chain_offside,tmp_1,true);
     }
   }
-  for (i = 0; i < 0x10; i = i + 1) {
+  for (i = 0; uVar3 = freq_sum_1._12_4_, i < 0x10; i = i + 1) {
     if (dev->chain_exist[i] == 1) {
       sprintf(chain_opencore,"chain_opencore_%d",i + 1);
       if (isChainAllCoresOpened[i] == false) {
@@ -342,36 +297,17 @@ api_data * bitmain_api_stats(cgpu_info *cgpu)
         tmp_2[0] = '1';
         tmp_2[1] = '\0';
       }
-      root = api_add_string(root,chain_opencore,tmp_2,copy_data);
+      root = api_add_string(root,chain_opencore,tmp_2,true);
     }
   }
   for (i = 0; i < 0x10; i = i + 1) {
   }
-  freq_sum_1[0] = s_miner_version_00079680[0];
-  freq_sum_1[1] = s_miner_version_00079680[1];
-  freq_sum_1[2] = s_miner_version_00079680[2];
-  freq_sum_1[3] = s_miner_version_00079680[3];
-  freq_sum_1[4] = s_miner_version_00079680[4];
-  freq_sum_1[5] = s_miner_version_00079680[5];
-  freq_sum_1[6] = s_miner_version_00079680[6];
-  freq_sum_1[7] = s_miner_version_00079680[7];
-  freq_sum_1[8] = s_miner_version_00079680[8];
-  freq_sum_1[9] = s_miner_version_00079680[9];
-  freq_sum_1[10] = s_miner_version_00079680[10];
-  freq_sum_1[11] = s_miner_version_00079680[11];
-  freq_sum_1[12] = (char)(short)ram0x0007968c;
-  freq_sum_1[13] = (char)((ushort)(short)ram0x0007968c >> 8);
-  paVar3 = api_add_string(root,freq_sum_1,g_miner_version,copy_data);
-  freq_sum_1[0] = s_miner_id_00079690[0];
-  freq_sum_1[1] = s_miner_id_00079690[1];
-  freq_sum_1[2] = s_miner_id_00079690[2];
-  freq_sum_1[3] = s_miner_id_00079690[3];
-  freq_sum_1[4] = s_miner_id_00079690[4];
-  freq_sum_1[5] = s_miner_id_00079690[5];
-  freq_sum_1[6] = s_miner_id_00079690[6];
-  freq_sum_1[7] = s_miner_id_00079690[7];
-  freq_sum_1[8] = (char)ram0x00079698;
-  paVar3 = api_add_string(paVar3,freq_sum_1,FPGA_ID_str,copy_data);
-  return paVar3;
+  builtin_strncpy(freq_sum_1,"miner_version",0xe);
+  freq_sum_1._14_2_ = SUB42(uVar3,2);
+  paVar4 = api_add_string(root,freq_sum_1,g_miner_version,true);
+  builtin_strncpy(freq_sum_1,"miner_id",8);
+  freq_sum_1._8_4_ = freq_sum_1._8_4_ & 0xffffff00;
+  paVar4 = api_add_string(paVar4,freq_sum_1,FPGA_ID_str,true);
+  return paVar4;
 }
 

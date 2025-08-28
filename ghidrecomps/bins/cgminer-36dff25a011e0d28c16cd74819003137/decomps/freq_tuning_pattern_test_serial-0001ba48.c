@@ -39,8 +39,8 @@ void freq_tuning_pattern_test_serial
     freq_info->vol_value_table[chain] = voltage;
     freq_info->scan_freq[chain] = freq;
     increase_freq_slowly
-              ((float)(longlong)init_freq,(float)(longlong)freq_info->scan_freq[chain],
-               (float)(longlong)DAT_0001bd2c,(uint8_t)chain);
+              ((float)(longlong)init_freq,(float)(longlong)freq_info->scan_freq[chain],25.0,
+               (uint8_t)chain);
     init_freq = freq_info->scan_freq[chain];
     freq_tuning_set_time_control_by_freq(freq_info->scan_freq[chain]);
     freq_tuning_send_work_and_check_result_all_chain(freq_info);

@@ -1,54 +1,56 @@
 
-int x509_name_ex_d2i(ASN1_VALUE **param_1,uchar **param_2,long param_3,undefined4 param_4,
+int x509_name_ex_d2i(undefined4 *param_1,undefined4 *param_2,long param_3,undefined4 param_4,
                     int param_5,int param_6,char param_7,ASN1_TLC *param_8)
 
 {
   int iVar1;
+  ASN1_VALUE *val;
   _STACK *p_Var2;
+  BUF_MEM *str;
   int iVar3;
   void *data;
   _STACK *st;
   int iVar4;
-  _STACK **pp_Var5;
+  undefined4 *ptr;
   uchar *__src;
   uchar *local_28;
   _STACK *local_24 [2];
   
-  __src = *param_2;
+  __src = (uchar *)*param_2;
   local_24[0] = (_STACK *)0x0;
   local_28 = __src;
-  iVar1 = ASN1_item_ex_d2i((ASN1_VALUE **)local_24,&local_28,param_3,DAT_000b7a64,param_5,param_6,
-                           param_7,param_8);
+  iVar1 = ASN1_item_ex_d2i((ASN1_VALUE **)local_24,&local_28,param_3,
+                           (ASN1_ITEM *)X509_NAME_INTERNAL_it,param_5,param_6,param_7,param_8);
   if (iVar1 < 1) {
     return iVar1;
   }
-  pp_Var5 = (_STACK **)*param_1;
-  if (pp_Var5 != (_STACK **)0x0) {
-    BUF_MEM_free((BUF_MEM *)pp_Var5[2]);
-    sk_pop_free(*pp_Var5,DAT_000b7a68);
-    if (pp_Var5[3] != (_STACK *)0x0) {
-      CRYPTO_free(pp_Var5[3]);
+  ptr = (undefined4 *)*param_1;
+  if (ptr != (undefined4 *)0x0) {
+    BUF_MEM_free((BUF_MEM *)ptr[2]);
+    sk_pop_free((_STACK *)*ptr,(func *)0xb7535);
+    if ((void *)ptr[3] != (void *)0x0) {
+      CRYPTO_free((void *)ptr[3]);
     }
-    CRYPTO_free(pp_Var5);
-    *param_1 = (ASN1_VALUE *)0x0;
+    CRYPTO_free(ptr);
+    *param_1 = 0;
   }
-  pp_Var5 = (_STACK **)CRYPTO_malloc(0x14,DAT_000b7a6c,0x88);
-  if (pp_Var5 == (_STACK **)0x0) {
-    ERR_put_error(0xd,0xab,0x41,DAT_000b7a6c,0x96);
+  val = (ASN1_VALUE *)CRYPTO_malloc(0x14,"x_name.c",0x88);
+  if (val == (ASN1_VALUE *)0x0) {
+    ERR_put_error(0xd,0xab,0x41,"x_name.c",0x96);
   }
   else {
     p_Var2 = sk_new_null();
-    *pp_Var5 = p_Var2;
+    *(_STACK **)val = p_Var2;
     if (p_Var2 != (_STACK *)0x0) {
-      p_Var2 = (_STACK *)BUF_MEM_new();
-      pp_Var5[2] = p_Var2;
-      if (p_Var2 != (_STACK *)0x0) {
-        pp_Var5[3] = (_STACK *)0x0;
-        pp_Var5[4] = (_STACK *)0x0;
-        pp_Var5[1] = (_STACK *)0x1;
-        iVar1 = BUF_MEM_grow((BUF_MEM *)p_Var2,(int)local_28 - (int)__src);
+      str = BUF_MEM_new();
+      *(BUF_MEM **)(val + 8) = str;
+      if (str != (BUF_MEM *)0x0) {
+        *(undefined4 *)(val + 0xc) = 0;
+        *(undefined4 *)(val + 0x10) = 0;
+        *(undefined4 *)(val + 4) = 1;
+        iVar1 = BUF_MEM_grow(str,(int)local_28 - (int)__src);
         if (iVar1 != 0) {
-          memcpy(pp_Var5[2]->data,__src,(int)local_28 - (int)__src);
+          memcpy(*(void **)(*(int *)(val + 8) + 4),__src,(int)local_28 - (int)__src);
           for (iVar1 = 0; iVar3 = sk_num(local_24[0]), iVar1 < iVar3; iVar1 = iVar1 + 1) {
             p_Var2 = (_STACK *)sk_value(local_24[0],iVar1);
             iVar3 = 0;
@@ -56,7 +58,7 @@ int x509_name_ex_d2i(ASN1_VALUE **param_1,uchar **param_2,long param_3,undefined
               iVar4 = sk_num(p_Var2);
               if (iVar4 <= iVar3) break;
               data = sk_value(p_Var2,iVar3);
-              st = *pp_Var5;
+              st = *(_STACK **)val;
               *(int *)((int)data + 8) = iVar1;
               iVar4 = sk_push(st,data);
               iVar3 = iVar3 + 1;
@@ -65,36 +67,36 @@ int x509_name_ex_d2i(ASN1_VALUE **param_1,uchar **param_2,long param_3,undefined
             sk_free(p_Var2);
           }
           sk_free(local_24[0]);
-          if (pp_Var5[3] != (_STACK *)0x0) {
-            CRYPTO_free(pp_Var5[3]);
-            pp_Var5[3] = (_STACK *)0x0;
+          if (*(void **)(val + 0xc) != (void *)0x0) {
+            CRYPTO_free(*(void **)(val + 0xc));
+            *(undefined4 *)(val + 0xc) = 0;
           }
-          iVar1 = sk_num(*pp_Var5);
+          iVar1 = sk_num(*(_STACK **)val);
           if (iVar1 == 0) {
-            pp_Var5[4] = (_STACK *)0x0;
+            *(undefined4 *)(val + 0x10) = 0;
             iVar1 = 1;
 LAB_000b7a4c:
-            pp_Var5[1] = (_STACK *)0x0;
-            *param_1 = (ASN1_VALUE *)pp_Var5;
+            *(undefined4 *)(val + 4) = 0;
+            *param_1 = val;
             *param_2 = local_28;
             return iVar1;
           }
-          iVar1 = x509_name_canon_part_0(pp_Var5);
+          iVar1 = x509_name_canon_part_0(val);
           if (iVar1 != 0) goto LAB_000b7a4c;
         }
 LAB_000b7984:
-        ASN1_item_free((ASN1_VALUE *)pp_Var5,DAT_000b7a70);
+        ASN1_item_free(val,(ASN1_ITEM *)X509_NAME_it);
         goto LAB_000b798c;
       }
     }
-    ERR_put_error(0xd,0xab,0x41,DAT_000b7a6c,0x96);
-    if (*pp_Var5 != (_STACK *)0x0) {
-      sk_free(*pp_Var5);
+    ERR_put_error(0xd,0xab,0x41,"x_name.c",0x96);
+    if (*(_STACK **)val != (_STACK *)0x0) {
+      sk_free(*(_STACK **)val);
     }
-    CRYPTO_free(pp_Var5);
+    CRYPTO_free(val);
   }
 LAB_000b798c:
-  ERR_put_error(0xd,0x9e,0x3a,DAT_000b7a6c,0xec);
+  ERR_put_error(0xd,0x9e,0x3a,"x_name.c",0xec);
   return 0;
 }
 

@@ -45,9 +45,11 @@ ASN1_GENERALIZEDTIME * ASN1_TIME_to_generalizedtime(ASN1_TIME *t,ASN1_GENERALIZE
       if (iVar1 != 0) {
         dst = str->data;
         siz = t->length + 3;
-        src = DAT_00105e34;
         if (*t->data < 0x35) {
-          src = DAT_00105e38;
+          src = "20";
+        }
+        else {
+          src = "19";
         }
         BUF_strlcpy((char *)dst,src,siz);
         BUF_strlcat((char *)dst,(char *)t->data,siz);

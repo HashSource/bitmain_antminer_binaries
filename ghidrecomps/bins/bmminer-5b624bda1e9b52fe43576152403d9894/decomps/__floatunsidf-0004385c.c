@@ -26,7 +26,7 @@ ulonglong __floatunsidf(uint param_1)
     bVar5 = false;
     bVar6 = iVar3 + 1 == 0;
     uVar2 = uVar4;
-    if (!bVar6 && bVar7 == false) {
+    if (!bVar6 && !bVar7) {
       uVar1 = param_1 << uVar4;
       param_1 = param_1 >> (0xcU - (iVar3 + 1) & 0xff);
       goto LAB_00043768;

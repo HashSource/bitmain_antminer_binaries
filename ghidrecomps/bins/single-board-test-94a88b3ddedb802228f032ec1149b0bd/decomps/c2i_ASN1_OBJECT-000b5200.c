@@ -23,7 +23,7 @@ ASN1_OBJECT * c2i_ASN1_OBJECT(ASN1_OBJECT **a,uchar **pp,long length)
      (puVar2 = __src + length, (char)puVar2[-1] < '\0')) {
     iVar1 = 0x11b;
 LAB_000b5250:
-    ERR_put_error(0xd,0xc4,0xd8,DAT_000b5398,iVar1);
+    ERR_put_error(0xd,0xc4,0xd8,"a_object.c",iVar1);
 LAB_000b525e:
     ptr = (ASN1_OBJECT *)0x0;
   }
@@ -39,9 +39,9 @@ LAB_000b525e:
     } while (in_r3 < length);
     if (((a == (ASN1_OBJECT **)0x0) || (ptr = *a, ptr == (ASN1_OBJECT *)0x0)) ||
        (-1 < ptr->flags << 0x1f)) {
-      ptr = (ASN1_OBJECT *)CRYPTO_malloc(0x18,DAT_000b5398,0x15a);
+      ptr = (ASN1_OBJECT *)CRYPTO_malloc(0x18,"a_object.c",0x15a);
       if (ptr == (ASN1_OBJECT *)0x0) {
-        ERR_put_error(0xd,0x7b,0x41,DAT_000b5398,0x15c);
+        ERR_put_error(0xd,0x7b,0x41,"a_object.c",0x15c);
         return (ASN1_OBJECT *)0x0;
       }
       ptr->data = (uchar *)0x0;
@@ -54,9 +54,9 @@ LAB_000b525e:
 LAB_000b52fc:
       ptr->length = 0;
 LAB_000b5292:
-      puVar3 = (uchar *)CRYPTO_malloc(length,DAT_000b5398,0x13b);
+      puVar3 = (uchar *)CRYPTO_malloc(length,"a_object.c",0x13b);
       if (puVar3 == (uchar *)0x0) {
-        ERR_put_error(0xd,0xc4,0x41,DAT_000b5398,0x150);
+        ERR_put_error(0xd,0xc4,0x41,"a_object.c",0x150);
         if ((a == (ASN1_OBJECT **)0x0) || (*a != ptr)) {
           iVar1 = ptr->flags;
           if (iVar1 << 0x1d < 0) {

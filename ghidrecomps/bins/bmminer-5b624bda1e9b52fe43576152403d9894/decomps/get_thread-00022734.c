@@ -5,23 +5,23 @@ thr_info * get_thread(int thr_id)
 
 {
   int iVar1;
-  char *in_r2;
-  int in_r3;
+  char *func;
+  char *func_00;
   int line;
+  int line_00;
   thr_info *thr;
   thr_info *ptVar2;
   
-  iVar1 = pthread_rwlock_rdlock(DAT_00022774);
+  iVar1 = pthread_rwlock_rdlock((pthread_rwlock_t *)&mining_thr_lock);
   if (iVar1 != 0) {
-    _rd_lock(DAT_00022780,(char *)0x23e,in_r2,in_r3);
+    _rd_lock((pthread_rwlock_t *)"get_thread",(char *)0x23e,func,line);
   }
-  line = *DAT_00022778;
-  ptVar2 = *(thr_info **)(line + thr_id * 4);
-  iVar1 = pthread_rwlock_unlock(DAT_00022774);
+  ptVar2 = mining_thr[thr_id];
+  iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)&mining_thr_lock);
   if (iVar1 != 0) {
-    _rw_unlock(DAT_00022780,(char *)0x240,in_r2,line);
+    _rw_unlock((pthread_rwlock_t *)"get_thread",(char *)0x240,func_00,line_00);
   }
-  (**DAT_0002277c)();
+  (*selective_yield)();
   return ptVar2;
 }
 

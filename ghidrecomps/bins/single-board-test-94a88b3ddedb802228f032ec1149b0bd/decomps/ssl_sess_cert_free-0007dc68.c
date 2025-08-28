@@ -1,14 +1,14 @@
 
-void ssl_sess_cert_free(_STACK **param_1)
+void ssl_sess_cert_free(undefined4 *param_1)
 
 {
   int iVar1;
   
-  if (param_1 != (_STACK **)0x0) {
-    iVar1 = CRYPTO_add_lock((int *)(param_1 + 0x3e),-1,0xf,DAT_0007dd08,0x292);
+  if (param_1 != (undefined4 *)0x0) {
+    iVar1 = CRYPTO_add_lock(param_1 + 0x3e,-1,0xf,"ssl_cert.c",0x292);
     if (iVar1 < 1) {
-      if (*param_1 != (_STACK *)0x0) {
-        sk_pop_free(*param_1,DAT_0007dd0c);
+      if ((_STACK *)*param_1 != (_STACK *)0x0) {
+        sk_pop_free((_STACK *)*param_1,X509_free);
       }
       if ((X509 *)param_1[3] != (X509 *)0x0) {
         X509_free((X509 *)param_1[3]);
@@ -40,7 +40,7 @@ void ssl_sess_cert_free(_STACK **param_1)
       if ((DH *)param_1[0x3c] != (DH *)0x0) {
         DH_free((DH *)param_1[0x3c]);
       }
-      if (param_1[0x3d] != (_STACK *)0x0) {
+      if ((EC_KEY *)param_1[0x3d] != (EC_KEY *)0x0) {
         EC_KEY_free((EC_KEY *)param_1[0x3d]);
       }
       CRYPTO_free(param_1);

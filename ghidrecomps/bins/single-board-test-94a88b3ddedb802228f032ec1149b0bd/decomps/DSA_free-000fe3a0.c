@@ -6,7 +6,7 @@ void DSA_free(DSA *r)
   _func_1881 *p_Var2;
   
   if (r != (DSA *)0x0) {
-    iVar1 = CRYPTO_add_lock(&r->references,-1,8,DAT_000fe424,0xc4);
+    iVar1 = CRYPTO_add_lock(&r->references,-1,8,"dsa_lib.c",0xc4);
     if (iVar1 < 1) {
       p_Var2 = r->meth->finish;
       if (p_Var2 != (_func_1881 *)0x0) {

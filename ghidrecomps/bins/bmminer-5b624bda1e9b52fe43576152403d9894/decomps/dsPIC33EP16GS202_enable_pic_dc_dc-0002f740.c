@@ -22,7 +22,7 @@ int dsPIC33EP16GS202_enable_pic_dc_dc(uchar which_iic,uchar enable)
     uVar1 = T9_plus_write_pic_iic(true,false,'\0',which_iic,'\0');
     uVar2 = T9_plus_write_pic_iic(true,false,'\0',which_iic,'\0');
     if ((uVar1 == '\x15') && (uVar2 == '\x01')) break;
-    sprintf(logstr,DAT_0002f838);
+    sprintf(logstr,"%s failed on Chain[%d]!\n");
     writeInitLogFile(logstr);
     sleep(1);
     iVar3 = iVar3 + -1;
@@ -30,7 +30,8 @@ int dsPIC33EP16GS202_enable_pic_dc_dc(uchar which_iic,uchar enable)
       return 0;
     }
   }
-  printf(DAT_0002f840,DAT_0002f83c,DAT_0002f83c,(uint)which_iic);
+  printf("\n--- %s ok\n\n","dsPIC33EP16GS202_enable_pic_dc_dc","dsPIC33EP16GS202_enable_pic_dc_dc",
+         (uint)which_iic);
   return 1;
 }
 

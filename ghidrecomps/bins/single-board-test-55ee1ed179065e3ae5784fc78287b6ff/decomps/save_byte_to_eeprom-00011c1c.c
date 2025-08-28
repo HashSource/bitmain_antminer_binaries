@@ -1,10 +1,10 @@
 
-undefined save_byte_to_eeprom(undefined param_1,byte param_2)
+undefined1 save_byte_to_eeprom(undefined1 param_1,byte param_2)
 
 {
   int iVar1;
   byte local_a;
-  undefined local_9;
+  undefined1 local_9;
   
   local_9 = 1;
   save_eeprom_N(param_1,param_2);

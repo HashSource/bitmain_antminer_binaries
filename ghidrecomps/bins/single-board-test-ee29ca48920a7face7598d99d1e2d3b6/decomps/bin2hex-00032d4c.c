@@ -3,7 +3,7 @@ void * bin2hex(undefined4 param_1,int param_2)
 
 {
   void *pvVar1;
-  uint local_c;
+  size_t local_c;
   
   local_c = param_2 * 2 + 1;
   if ((local_c & 3) != 0) {

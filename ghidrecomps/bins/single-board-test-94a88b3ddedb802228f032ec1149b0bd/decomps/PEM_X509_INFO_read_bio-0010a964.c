@@ -21,7 +21,7 @@ stack_st_X509_INFO * PEM_X509_INFO_read_bio(BIO *bp,stack_st_X509_INFO *sk,undef
   char *local_4c;
   uchar *local_48;
   uchar *local_44;
-  int local_40;
+  long local_40;
   EVP_CIPHER_INFO EStack_3c;
   
   local_50 = (char *)0x0;
@@ -29,7 +29,7 @@ stack_st_X509_INFO * PEM_X509_INFO_read_bio(BIO *bp,stack_st_X509_INFO *sk,undef
   local_48 = (uchar *)0x0;
   st = &sk->stack;
   if ((sk == (stack_st_X509_INFO *)0x0) && (st = sk_new_null(), st == (_STACK *)0x0)) {
-    ERR_put_error(9,0x74,0x41,DAT_0010ac14,0x6b);
+    ERR_put_error(9,0x74,0x41,"pem_info.c",0x6b);
     p_Var10 = st;
   }
   else {
@@ -41,33 +41,33 @@ LAB_0010a98e:
       if (iVar3 != 0) {
         do {
           pcVar9 = local_50;
-          iVar3 = strcmp(local_50,DAT_0010abf8);
+          iVar3 = strcmp(local_50,"CERTIFICATE");
           pXVar11 = pXVar2;
-          if ((iVar3 == 0) || (iVar3 = strcmp(pcVar9,DAT_0010abf0), iVar3 == 0)) {
+          if ((iVar3 == 0) || (iVar3 = strcmp(pcVar9,"X509 CERTIFICATE"), iVar3 == 0)) {
             if (pXVar2->x509 == (X509 *)0x0) goto code_r0x0010a9ee;
 LAB_0010a9c0:
             iVar3 = sk_push(st,pXVar2);
             if (iVar3 == 0) goto LAB_0010abaa;
           }
           else {
-            iVar3 = strcmp(pcVar9,DAT_0010abf4);
+            iVar3 = strcmp(pcVar9,"TRUSTED CERTIFICATE");
             if (iVar3 == 0) {
               if (pXVar2->x509 != (X509 *)0x0) goto LAB_0010a9c0;
-              local_54 = DAT_0010ac20;
+              local_54 = (code *)0xb7c55;
               local_58 = 0;
               pcVar9 = local_4c;
               goto LAB_0010a9fa;
             }
-            iVar3 = strcmp(pcVar9,DAT_0010ac00);
+            iVar3 = strcmp(pcVar9,"X509 CRL");
             if (iVar3 == 0) {
               if (pXVar2->crl != (X509_CRL *)0x0) goto LAB_0010a9c0;
               pXVar11 = (X509_INFO *)&pXVar2->crl;
-              local_54 = DAT_0010ac04;
+              local_54 = (code *)0x107d79;
               local_58 = 0;
               pcVar9 = local_4c;
               goto LAB_0010a9fa;
             }
-            iVar3 = strcmp(pcVar9,DAT_0010ac08);
+            iVar3 = strcmp(pcVar9,"RSA PRIVATE KEY");
             if (iVar3 == 0) {
               if (pXVar2->x_pkey != (X509_PKEY *)0x0) goto LAB_0010a9c0;
               pXVar2->enc_data = (char *)0x0;
@@ -80,7 +80,7 @@ LAB_0010a9c0:
               if ((int)sVar6 < 0xb) {
                 pXVar11 = (X509_INFO *)&pXVar5->dec_pkey;
                 local_58 = 6;
-                local_54 = DAT_0010ac0c;
+                local_54 = (code *)0xa44a1;
                 goto LAB_0010a9fa;
               }
 LAB_0010ac24:
@@ -93,9 +93,9 @@ LAB_0010ac24:
               pcVar9 = local_50;
               goto LAB_0010aa3e;
             }
-            iVar3 = strcmp(pcVar9,DAT_0010ac10);
+            iVar3 = strcmp(pcVar9,"DSA PRIVATE KEY");
             if (iVar3 != 0) {
-              iVar3 = strcmp(pcVar9,DAT_0010ac18);
+              iVar3 = strcmp(pcVar9,"EC PRIVATE KEY");
               if (iVar3 != 0) goto LAB_0010aa3e;
               if (pXVar2->x_pkey != (X509_PKEY *)0x0) goto LAB_0010a9c0;
               pXVar2->enc_data = (char *)0x0;
@@ -108,7 +108,7 @@ LAB_0010ac24:
               if (10 < (int)sVar6) goto LAB_0010ac24;
               pXVar11 = (X509_INFO *)&pXVar5->dec_pkey;
               local_58 = 0x198;
-              local_54 = DAT_0010ac1c;
+              local_54 = (code *)0xf5c19;
               goto LAB_0010a9fa;
             }
             if (pXVar2->x_pkey == (X509_PKEY *)0x0) {
@@ -122,7 +122,7 @@ LAB_0010ac24:
               if (10 < (int)sVar6) goto LAB_0010ac24;
               pXVar11 = (X509_INFO *)&pXVar5->dec_pkey;
               local_58 = 0x74;
-              local_54 = DAT_0010ac8c;
+              local_54 = (code *)0xa47f1;
               goto LAB_0010a9fa;
             }
             iVar3 = sk_push(st,pXVar2);
@@ -173,7 +173,7 @@ LAB_0010ab28:
   }
   return (stack_st_X509_INFO *)st;
 code_r0x0010a9ee:
-  local_54 = DAT_0010abfc;
+  local_54 = (code *)0xb7be9;
   local_58 = 0;
   pcVar9 = local_4c;
 LAB_0010a9fa:
@@ -208,7 +208,7 @@ LAB_0010aa3e:
     }
     iVar3 = 0xef;
   }
-  ERR_put_error(9,0x74,0xd,DAT_0010ac14,iVar3);
+  ERR_put_error(9,0x74,0xd,"pem_info.c",iVar3);
 LAB_0010abaa:
   iVar3 = 0;
 LAB_0010abac:

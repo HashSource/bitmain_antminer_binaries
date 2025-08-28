@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable stream:buffer_data_t *[r0:4] conflicts with parameter, skipped. */
 
 int buffer_get(void *data)
 

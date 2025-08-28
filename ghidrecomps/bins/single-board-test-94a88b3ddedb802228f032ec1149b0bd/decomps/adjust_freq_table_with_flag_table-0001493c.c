@@ -26,14 +26,14 @@ void adjust_freq_table_with_flag_table(int param_1,int param_2,int param_3,int p
           local_18 = iVar3;
         }
       }
-      *(undefined *)(local_18 + param_2) = 2;
+      *(undefined1 *)(local_18 + param_2) = 2;
       *(int *)(local_c * 4 + (int)__s) = local_14;
     }
     uVar2 = get_min(__s,iVar1);
     for (local_c = 0; local_c < param_3; local_c = local_c + 1) {
       if (*(char *)(local_c + param_2) == '\x02') {
         *(undefined4 *)(local_c * 4 + param_1) = uVar2;
-        *(undefined *)(local_c + param_2) = 1;
+        *(undefined1 *)(local_c + param_2) = 1;
       }
     }
     free(__s);

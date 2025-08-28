@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void scanfreq_rewrite_error_clock_delay_control_asic(void)
 
@@ -13,15 +13,7 @@ void scanfreq_rewrite_error_clock_delay_control_asic(void)
   int chain;
   
   if (((use_syslog) || (opt_log_output)) || (4 < opt_log_level)) {
-    tmp42._0_4_ = s_rewrite_all_clock_delay_error_ch_00078714._0_4_;
-    tmp42._4_4_ = s_rewrite_all_clock_delay_error_ch_00078714._4_4_;
-    tmp42._8_4_ = s_rewrite_all_clock_delay_error_ch_00078714._8_4_;
-    tmp42._12_4_ = s_rewrite_all_clock_delay_error_ch_00078714._12_4_;
-    tmp42._16_4_ = s_rewrite_all_clock_delay_error_ch_00078714._16_4_;
-    tmp42._20_4_ = s_rewrite_all_clock_delay_error_ch_00078714._20_4_;
-    tmp42._24_4_ = s_rewrite_all_clock_delay_error_ch_00078714._24_4_;
-    tmp42._28_4_ = s_rewrite_all_clock_delay_error_ch_00078714._28_4_;
-    tmp42._32_4_ = s_rewrite_all_clock_delay_error_ch_00078714._32_4_;
+    builtin_strncpy(tmp42,"rewrite all clock delay error chips",0x24);
     _applog(5,tmp42,false);
   }
   for (chain = 0; chain < 0x10; chain = chain + 1) {

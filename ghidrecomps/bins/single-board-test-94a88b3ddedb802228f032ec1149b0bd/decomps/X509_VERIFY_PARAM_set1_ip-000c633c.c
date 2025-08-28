@@ -16,7 +16,7 @@ undefined4 X509_VERIFY_PARAM_set1_ip(int param_1,char *param_2,char *param_3)
     param_3 = (char *)strlen(param_2);
   }
   else {
-    if (param_3 != (char *)0x10) {
+    if (param_3 != &DAT_00000010) {
       return 0;
     }
     iVar2 = *(int *)(param_1 + 0x20);

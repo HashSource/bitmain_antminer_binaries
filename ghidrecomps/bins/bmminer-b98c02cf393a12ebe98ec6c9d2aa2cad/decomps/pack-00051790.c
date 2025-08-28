@@ -1,5 +1,5 @@
 
-int pack(int param_1,int **param_2)
+int pack(int param_1,int *param_2)
 
 {
   char cVar1;
@@ -16,12 +16,12 @@ int pack(int param_1,int **param_2)
   undefined4 local_28;
   int local_24 [2];
   
-  switch(*(undefined *)(param_1 + 0x24)) {
+  switch(*(undefined1 *)(param_1 + 0x24)) {
   case 0x49:
-    puVar8 = (undefined4 *)((int)*param_2 + 7U & 0xfffffff8);
+    puVar8 = (undefined4 *)(*param_2 + 7U & 0xfffffff8);
     uVar5 = *puVar8;
     uVar6 = puVar8[1];
-    *param_2 = puVar8 + 2;
+    *param_2 = (int)(puVar8 + 2);
     iVar2 = json_integer(uVar5,uVar6);
     break;
   default:
@@ -40,8 +40,8 @@ int pack(int param_1,int **param_2)
       *(undefined4 *)(param_1 + 0x20) = *(undefined4 *)(param_1 + 0x10);
       *(undefined4 *)(param_1 + 0x24) = *(undefined4 *)(param_1 + 0x14);
     }
-    piVar7 = *param_2;
-    *param_2 = piVar7 + 1;
+    piVar7 = (int *)*param_2;
+    *param_2 = (int)(piVar7 + 1);
     iVar2 = *piVar7;
     if (iVar2 != 0 || bVar10) {
       if (iVar2 == 0) {
@@ -89,8 +89,8 @@ LAB_00051aba:
     iVar2 = 0;
     break;
   case 0x62:
-    iVar2 = **param_2;
-    *param_2 = *param_2 + 1;
+    iVar2 = *(int *)*param_2;
+    *param_2 = (int)((int *)*param_2 + 1);
     if (iVar2 == 0) {
       iVar2 = json_false();
     }
@@ -99,14 +99,14 @@ LAB_00051aba:
     }
     break;
   case 0x66:
-    puVar9 = (undefined8 *)((int)*param_2 + 7U & 0xfffffff8);
+    puVar9 = (undefined8 *)(*param_2 + 7U & 0xfffffff8);
     uVar11 = *puVar9;
-    *param_2 = (int *)(puVar9 + 1);
+    *param_2 = (int)(puVar9 + 1);
     iVar2 = json_real((int)uVar11);
     break;
   case 0x69:
-    iVar2 = **param_2;
-    *param_2 = *param_2 + 1;
+    iVar2 = *(int *)*param_2;
+    *param_2 = (int)((int *)*param_2 + 1);
     iVar2 = json_integer(iVar2,iVar2 >> 0x1f);
     break;
   case 0x6f:
@@ -122,8 +122,8 @@ LAB_00051aba:
       *(undefined4 *)(param_1 + 0x20) = *(undefined4 *)(param_1 + 0x10);
       *(undefined4 *)(param_1 + 0x24) = *(undefined4 *)(param_1 + 0x14);
     }
-    piVar7 = *param_2;
-    *param_2 = piVar7 + 1;
+    piVar7 = (int *)*param_2;
+    *param_2 = (int)(piVar7 + 1);
     iVar2 = *piVar7;
     if (iVar2 != 0 || bVar10) {
       return iVar2;

@@ -9,7 +9,7 @@ void read_asic_register(int param_1,int param_2,undefined4 param_3,undefined4 pa
   FILE *__stream;
   undefined4 uVar5;
   int iVar6;
-  uint local_82c;
+  undefined4 local_82c;
   byte local_828;
   uint local_824;
   int local_820;
@@ -33,7 +33,7 @@ void read_asic_register(int param_1,int param_2,undefined4 param_3,undefined4 pa
     if ((opt_debug != '\0') &&
        (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
       snprintf(acStack_818,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
-               DAT_00031964,uVar5,param_3,param_4,uVar2);
+               "read_asic_register",uVar5,param_3,param_4,uVar2);
       _applog(7,acStack_818,0);
     }
     local_824 = local_82c << 0x18 | (local_82c >> 8 & 0xff) << 0x10 |
@@ -48,15 +48,15 @@ void read_asic_register(int param_1,int param_2,undefined4 param_3,undefined4 pa
       uVar5 = 0x54;
       local_82c._0_1_ = 0x54;
     }
-    local_82c._0_3_ = CONCAT12((char)param_3,CONCAT11(5,(undefined)local_82c));
+    local_82c._0_3_ = CONCAT12((char)param_3,CONCAT11(5,(undefined1)local_82c));
     local_82c = CONCAT13((char)param_4,(undefined3)local_82c);
     uVar3 = CRC5(&local_82c,0x20);
     local_828 = (byte)uVar3;
     if ((opt_debug != '\0') &&
        (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
       snprintf(acStack_818,0x800,
-               "%s:VIL buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x, buf[4]=0x%x",DAT_00031964
-               ,uVar5,5,param_3,param_4,uVar3);
+               "%s:VIL buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x, buf[4]=0x%x",
+               "read_asic_register",uVar5,5,param_3,param_4,uVar3);
       _applog(7,acStack_818,0);
       uVar3 = (uint)local_828;
     }
@@ -71,11 +71,11 @@ void read_asic_register(int param_1,int param_2,undefined4 param_3,undefined4 pa
       iVar6 = iVar6 + -1;
     } while (iVar6 != 0);
     if (3 < log_level) {
-      __stream = fopen(log_file,(char *)&DAT_0005e760);
+      __stream = fopen(log_file,"a+");
       if (__stream != (FILE *)0x0) {
         uVar5 = get_hash_on_plug();
         fprintf(__stream,"%s:%d:%s: Error: clement debug: wait BC ready timeout, PLUG ON=0x%08x..\n"
-                ,"driver-btm-c5.c",0x14d1,DAT_00031964,uVar5);
+                ,"driver-btm-c5.c",0x14d1,"read_asic_register",uVar5);
       }
       fclose(__stream);
     }

@@ -1,5 +1,5 @@
 
-void AT24C02_save_voltage(undefined param_1,byte param_2)
+void AT24C02_save_voltage(undefined1 param_1,byte param_2)
 
 {
   printf("\n--- %s\n","AT24C02_save_voltage");

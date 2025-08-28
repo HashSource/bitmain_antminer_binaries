@@ -6,7 +6,7 @@ dirent * readdir(DIR *__dirp)
 {
   dirent *pdVar1;
   
-  pdVar1 = (dirent *)(*(code *)PTR_readdir_0019435c)();
+  pdVar1 = readdir(__dirp);
   return pdVar1;
 }
 

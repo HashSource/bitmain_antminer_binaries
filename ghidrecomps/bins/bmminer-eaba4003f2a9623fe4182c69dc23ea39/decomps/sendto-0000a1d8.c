@@ -6,9 +6,7 @@ ssize_t sendto(int __fd,void *__buf,size_t __n,int __flags,sockaddr *__addr,sock
 {
   ssize_t sVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a1e0. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  sVar1 = (*(code *)PTR_LAB_0008525c)();
+  sVar1 = (*(code *)(undefined *)0x0)(__fd);
   return sVar1;
 }
 

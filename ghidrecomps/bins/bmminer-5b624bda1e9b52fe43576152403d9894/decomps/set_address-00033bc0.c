@@ -7,7 +7,6 @@ void set_address(uchar chain,uchar mode,uchar address)
   uint3 uVar1;
   undefined4 uVar2;
   byte bVar3;
-  uint ret;
   uint uVar5;
   uint uVar6;
   uchar buf [9];
@@ -24,7 +23,7 @@ void set_address(uchar chain,uchar mode,uchar address)
   cmd_buf[0] = 0;
   cmd_buf[1] = 0;
   cmd_buf[2] = 0;
-  if (*DAT_00033ce8 == 0) {
+  if (opt_multi_version == 0) {
     buf[0] = '\x01';
     if (mode != '\0') {
       buf[0] = 0x81;
@@ -36,13 +35,14 @@ void set_address(uchar chain,uchar mode,uchar address)
     uVar2 = buf._0_4_;
     uVar4 = (uint)bVar3;
     buf[3] = bVar3;
-    uVar5 = (uint)*DAT_00033cec;
+    uVar5 = (uint)opt_debug;
     if (uVar5 != 0) {
-      if (((*DAT_00033cf0 == '\0') && (*DAT_00033cf4 == '\0')) && (*DAT_00033d00 < 7)) {
+      if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 7)) {
         uVar5 = 0;
       }
       else {
-        snprintf(tmp42,0x800,DAT_00033cfc,DAT_00033cf8,uVar2 & 0xff,uVar6,0,uVar4);
+        snprintf(tmp42,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
+                 "set_address",uVar2 & 0xff,uVar6,0,uVar4);
         _applog(7,tmp42,false);
         uVar6 = (uint)buf._0_4_ >> 8 & 0xff;
         uVar4 = (uint)buf._0_4_ >> 0x18;
@@ -52,8 +52,7 @@ void set_address(uchar chain,uchar mode,uchar address)
     cmd_buf[0] = uVar4 | uVar5 | buf._0_4_ << 0x18 | uVar6 << 0x10;
     set_BC_command_buffer(cmd_buf);
     uVar6 = get_BC_write_command();
-    ret = uVar6 & 0xfff0ffff;
-    set_BC_write_command(ret | (uint)chain << 0x10 | 0x80800000);
+    set_BC_write_command(uVar6 & 0xfff0ffff | (uint)chain << 0x10 | 0x80800000);
   }
   else {
     uVar1 = CONCAT12(address,0x500) >> 8;

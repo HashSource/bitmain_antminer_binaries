@@ -1,179 +1,174 @@
 
-ASN1_OBJECT ** x509_name_canon_part_0(_STACK **param_1)
+ASN1_VALUE * x509_name_canon_part_0(undefined4 *param_1)
 
 {
   byte bVar1;
-  int *piVar2;
-  char *file;
-  _STACK *p_Var3;
   _STACK *st;
-  int iVar4;
-  ASN1_OBJECT **ppAVar5;
-  ASN1_OBJECT **val;
-  ASN1_OBJECT *pAVar6;
-  ulong uVar7;
-  _STACK *p_Var8;
-  _STACK *num;
-  byte *pbVar9;
-  ushort **ppuVar10;
-  __int32_t **pp_Var11;
-  uint uVar12;
-  byte *pbVar13;
-  ASN1_OBJECT *in;
+  int iVar2;
+  undefined4 *puVar3;
+  ASN1_VALUE *val;
+  ASN1_OBJECT *pAVar4;
+  ulong uVar5;
+  int iVar6;
+  ushort **ppuVar7;
+  __int32_t **pp_Var8;
+  uint uVar9;
+  byte *pbVar10;
+  ASN1_STRING *in;
+  byte *pbVar11;
+  int iVar12;
+  ASN1_STRING *dst;
+  int iVar13;
   byte *pbVar14;
-  int iVar15;
-  byte *pbVar16;
   _STACK *local_40;
-  ASN1_OBJECT *local_38;
-  _STACK *local_30;
+  int local_38;
+  uchar *local_30;
   ASN1_VALUE *local_2c [2];
   
   st = sk_new_null();
   if (st == (_STACK *)0x0) {
-    val = (ASN1_OBJECT **)0x0;
+    val = (ASN1_VALUE *)0x0;
   }
   else {
-    iVar15 = 0;
-    local_38 = (ASN1_OBJECT *)0xffffffff;
+    iVar13 = 0;
+    local_38 = -1;
     local_40 = (_STACK *)0x0;
-    iVar4 = sk_num(*param_1);
-    if (0 < iVar4) {
+    iVar2 = sk_num((_STACK *)*param_1);
+    if (0 < iVar2) {
       do {
-        ppAVar5 = (ASN1_OBJECT **)sk_value(*param_1,iVar15);
-        if (ppAVar5[2] != local_38) {
+        puVar3 = (undefined4 *)sk_value((_STACK *)*param_1,iVar13);
+        if (puVar3[2] != local_38) {
           local_40 = sk_new_null();
-          if ((local_40 == (_STACK *)0x0) || (iVar4 = sk_push(st,local_40), iVar4 == 0))
+          if ((local_40 == (_STACK *)0x0) || (iVar2 = sk_push(st,local_40), iVar2 == 0))
           goto LAB_000b75ce;
-          local_38 = ppAVar5[2];
+          local_38 = puVar3[2];
         }
-        val = (ASN1_OBJECT **)ASN1_item_new(DAT_000b77b0);
-        if (val == (ASN1_OBJECT **)0x0) goto LAB_000b75d0;
-        pAVar6 = OBJ_dup(*ppAVar5);
-        in = ppAVar5[1];
-        *val = pAVar6;
-        pAVar6 = val[1];
-        uVar7 = ASN1_tag2bit((int)in->ln);
-        if ((uVar7 & 0x2956) != 0) {
-          pAVar6->ln = (char **)0xc;
-          pbVar9 = (byte *)ASN1_STRING_to_UTF8((uchar **)&pAVar6->nid,(ASN1_STRING *)in);
-          pAVar6->sn = (char *)pbVar9;
-          if (pbVar9 != (byte *)0xffffffff) {
-            pbVar14 = (byte *)pAVar6->nid;
-            if ((int)pbVar9 < 1) {
-              pbVar9 = (byte *)0x0;
+        val = ASN1_item_new((ASN1_ITEM *)&X509_NAME_ENTRY_it);
+        if (val == (ASN1_VALUE *)0x0) goto LAB_000b75d0;
+        pAVar4 = OBJ_dup((ASN1_OBJECT *)*puVar3);
+        in = (ASN1_STRING *)puVar3[1];
+        *(ASN1_OBJECT **)val = pAVar4;
+        dst = *(ASN1_STRING **)(val + 4);
+        uVar5 = ASN1_tag2bit(in->type);
+        if ((uVar5 & 0x2956) != 0) {
+          dst->type = 0xc;
+          iVar2 = ASN1_STRING_to_UTF8(&dst->data,in);
+          dst->length = iVar2;
+          if (iVar2 != -1) {
+            pbVar11 = dst->data;
+            if (iVar2 < 1) {
+              iVar2 = 0;
             }
             else {
-              bVar1 = *pbVar14;
-              pbVar13 = pbVar14;
+              bVar1 = *pbVar11;
+              pbVar10 = pbVar11;
               if ((bVar1 & 0x80) == 0) {
-                ppuVar10 = __ctype_b_loc();
+                ppuVar7 = __ctype_b_loc();
                 do {
-                  if (-1 < (int)((uint)(*ppuVar10)[bVar1] << 0x12)) {
-                    pbVar16 = pbVar13 + (int)(pbVar9 + -1);
+                  if (-1 < (int)((uint)(*ppuVar7)[bVar1] << 0x12)) {
+                    pbVar14 = pbVar10 + iVar2 + -1;
                     goto LAB_000b76fe;
                   }
-                  pbVar9 = pbVar9 + -1;
-                  pbVar16 = pbVar13 + 1;
-                  if (pbVar9 == (byte *)0x0) goto LAB_000b75fc;
-                  bVar1 = pbVar13[1];
-                  pbVar13 = pbVar16;
+                  iVar2 = iVar2 + -1;
+                  pbVar14 = pbVar10 + 1;
+                  if (iVar2 == 0) goto LAB_000b75fc;
+                  bVar1 = pbVar10[1];
+                  pbVar10 = pbVar14;
                 } while ((bVar1 & 0x80) == 0);
               }
-              pbVar16 = pbVar13 + (int)(pbVar9 + -1);
+              pbVar14 = pbVar10 + iVar2 + -1;
 LAB_000b76fe:
-              uVar12 = (uint)*pbVar16;
-              if (-1 < (int)(uVar12 << 0x18)) {
-                ppuVar10 = __ctype_b_loc();
+              uVar9 = (uint)*pbVar14;
+              if (-1 < (int)(uVar9 << 0x18)) {
+                ppuVar7 = __ctype_b_loc();
                 do {
-                  if (-1 < (int)((uint)(*ppuVar10)[uVar12] << 0x12)) break;
-                  pbVar9 = pbVar9 + -1;
-                  if (pbVar9 == (byte *)0x0) goto LAB_000b75fc;
-                  pbVar16 = pbVar16 + -1;
-                  uVar12 = (uint)*pbVar16;
-                } while (-1 < (int)(uVar12 << 0x18));
+                  if (-1 < (int)((uint)(*ppuVar7)[uVar9] << 0x12)) break;
+                  iVar2 = iVar2 + -1;
+                  if (iVar2 == 0) goto LAB_000b75fc;
+                  pbVar14 = pbVar14 + -1;
+                  uVar9 = (uint)*pbVar14;
+                } while (-1 < (int)(uVar9 << 0x18));
               }
-              iVar4 = 0;
-              pbVar14 = pbVar14 + 1;
+              iVar12 = 0;
+              pbVar11 = pbVar11 + 1;
               do {
-                while (pbVar16 = pbVar14, bVar1 = *pbVar13, (bVar1 & 0x80) == 0) {
-                  ppuVar10 = __ctype_b_loc();
-                  if ((int)((uint)(*ppuVar10)[(short)(ushort)bVar1] << 0x12) < 0) {
-                    pbVar16[-1] = 0x20;
+                while (pbVar14 = pbVar11, bVar1 = *pbVar10, (bVar1 & 0x80) == 0) {
+                  ppuVar7 = __ctype_b_loc();
+                  if ((int)((uint)(*ppuVar7)[(short)(ushort)bVar1] << 0x12) < 0) {
+                    pbVar14[-1] = 0x20;
                     do {
-                      pbVar13 = pbVar13 + 1;
-                      iVar4 = iVar4 + 1;
-                      if ((int)((uint)*pbVar13 << 0x18) < 0) goto LAB_000b75ec;
-                    } while ((int)((uint)(*ppuVar10)[*pbVar13] << 0x12) < 0);
+                      pbVar10 = pbVar10 + 1;
+                      iVar12 = iVar12 + 1;
+                      if ((int)((uint)*pbVar10 << 0x18) < 0) goto LAB_000b75ec;
+                    } while ((int)((uint)(*ppuVar7)[*pbVar10] << 0x12) < 0);
                   }
                   else {
-                    pp_Var11 = __ctype_tolower_loc();
-                    iVar4 = iVar4 + 1;
-                    pbVar13 = pbVar13 + 1;
-                    pbVar16[-1] = (byte)(*pp_Var11)[(short)(ushort)bVar1];
+                    pp_Var8 = __ctype_tolower_loc();
+                    iVar12 = iVar12 + 1;
+                    pbVar10 = pbVar10 + 1;
+                    pbVar14[-1] = (byte)(*pp_Var8)[(short)(ushort)bVar1];
                   }
-                  pbVar14 = pbVar16 + 1;
-                  if ((int)pbVar9 <= iVar4) goto LAB_000b75f6;
+                  pbVar11 = pbVar14 + 1;
+                  if (iVar2 <= iVar12) goto LAB_000b75f6;
                 }
-                pbVar13 = pbVar13 + 1;
-                iVar4 = iVar4 + 1;
-                pbVar16[-1] = bVar1;
+                pbVar10 = pbVar10 + 1;
+                iVar12 = iVar12 + 1;
+                pbVar14[-1] = bVar1;
 LAB_000b75ec:
-                pbVar14 = pbVar16 + 1;
-              } while (iVar4 < (int)pbVar9);
+                pbVar11 = pbVar14 + 1;
+              } while (iVar12 < iVar2);
 LAB_000b75f6:
-              pbVar9 = pbVar16 + -pAVar6->nid;
+              iVar2 = (int)pbVar14 - (int)dst->data;
             }
 LAB_000b75fc:
-            pAVar6->sn = (char *)pbVar9;
+            dst->length = iVar2;
             goto LAB_000b75fe;
           }
 LAB_000b75c6:
-          ASN1_item_free((ASN1_VALUE *)val,DAT_000b77b0);
+          ASN1_item_free(val,(ASN1_ITEM *)&X509_NAME_ENTRY_it);
           goto LAB_000b75ce;
         }
-        iVar4 = ASN1_STRING_copy((ASN1_STRING *)pAVar6,(ASN1_STRING *)in);
-        if (iVar4 == 0) goto LAB_000b75c6;
+        iVar2 = ASN1_STRING_copy(dst,in);
+        if (iVar2 == 0) goto LAB_000b75c6;
 LAB_000b75fe:
-        iVar4 = sk_push(local_40,val);
-        if (iVar4 == 0) goto LAB_000b75c6;
-        iVar15 = iVar15 + 1;
-        iVar4 = sk_num(*param_1);
-      } while (iVar15 < iVar4);
+        iVar2 = sk_push(local_40,val);
+        if (iVar2 == 0) goto LAB_000b75c6;
+        iVar13 = iVar13 + 1;
+        iVar2 = sk_num((_STACK *)*param_1);
+      } while (iVar13 < iVar2);
     }
-    iVar4 = 0;
-    p_Var3 = (_STACK *)0x0;
+    iVar2 = 0;
+    iVar13 = 0;
     do {
-      num = p_Var3;
-      iVar15 = sk_num(st);
-      if (iVar15 <= iVar4) break;
-      local_2c[0] = (ASN1_VALUE *)sk_value(st,iVar4);
-      p_Var8 = (_STACK *)ASN1_item_ex_i2d(local_2c,(uchar **)0x0,DAT_000b77b8,-1,-1);
-      piVar2 = &num->num;
-      num = p_Var8;
-      iVar4 = iVar4 + 1;
-      p_Var3 = (_STACK *)((int)&p_Var8->num + (int)piVar2);
-    } while (-1 < (int)p_Var8);
-    file = DAT_000b77bc;
-    param_1[4] = num;
-    local_30 = (_STACK *)CRYPTO_malloc((int)num,file,0x17f);
-    if (local_30 == (_STACK *)0x0) {
+      iVar12 = iVar13;
+      iVar13 = sk_num(st);
+      if (iVar13 <= iVar2) break;
+      local_2c[0] = (ASN1_VALUE *)sk_value(st,iVar2);
+      iVar6 = ASN1_item_ex_i2d(local_2c,(uchar **)0x0,(ASN1_ITEM *)X509_NAME_ENTRIES_it,-1,-1);
+      iVar13 = iVar12 + iVar6;
+      iVar12 = iVar6;
+      iVar2 = iVar2 + 1;
+    } while (-1 < iVar6);
+    param_1[4] = iVar12;
+    local_30 = (uchar *)CRYPTO_malloc(iVar12,"x_name.c",0x17f);
+    if (local_30 == (uchar *)0x0) {
 LAB_000b75ce:
-      val = (ASN1_OBJECT **)0x0;
+      val = (ASN1_VALUE *)0x0;
     }
     else {
       param_1[3] = local_30;
-      iVar4 = 0;
+      iVar2 = 0;
       do {
-        iVar15 = sk_num(st);
-        if (iVar15 <= iVar4) break;
-        local_2c[0] = (ASN1_VALUE *)sk_value(st,iVar4);
-        iVar15 = ASN1_item_ex_i2d(local_2c,(uchar **)&local_30,DAT_000b77b8,-1,-1);
-        iVar4 = iVar4 + 1;
-      } while (-1 < iVar15);
-      val = (ASN1_OBJECT **)0x1;
+        iVar13 = sk_num(st);
+        if (iVar13 <= iVar2) break;
+        local_2c[0] = (ASN1_VALUE *)sk_value(st,iVar2);
+        iVar13 = ASN1_item_ex_i2d(local_2c,&local_30,(ASN1_ITEM *)X509_NAME_ENTRIES_it,-1,-1);
+        iVar2 = iVar2 + 1;
+      } while (-1 < iVar13);
+      val = (ASN1_VALUE *)0x1;
     }
 LAB_000b75d0:
-    sk_pop_free(st,DAT_000b77b4);
+    sk_pop_free(st,(func *)0xb7481);
   }
   return val;
 }

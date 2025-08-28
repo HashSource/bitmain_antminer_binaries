@@ -1,8 +1,4 @@
 
-/* WARNING: Heritage AFTER dead removal. Example location: s0xffffff54 : 0x00022b0e */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Restarted to delay deadcode elimination for space: stack */
-
 void * stratum_sthread(void *userdata)
 
 {
@@ -16,20 +12,21 @@ void * stratum_sthread(void *userdata)
   size_t len;
   UT_hash_table *pUVar6;
   UT_hash_bucket *pUVar7;
-  undefined4 uVar8;
-  bool bVar9;
-  uint uVar10;
-  undefined4 uVar11;
+  bool bVar8;
+  uint uVar9;
+  int iVar10;
+  int iVar11;
   uint uVar12;
   uint uVar13;
   UT_hash_handle *pUVar14;
   UT_hash_bucket *pUVar15;
   int iVar16;
-  char *pcVar17;
+  undefined4 uVar17;
   char *pcVar18;
-  bool bVar19;
-  char *pcVar20;
+  char *pcVar19;
+  bool bVar20;
   char *pcVar21;
+  char *pcVar22;
   void *userdata_local;
   char s [1024];
   char tmp42 [2048];
@@ -70,54 +67,11 @@ void * stratum_sthread(void *userdata)
   snprintf(threadname,0x10,"%d/SStratum",*userdata);
   RenameThread(threadname);
   ptVar3 = tq_new();
+  uVar17 = tmp42._44_4_;
   *(thread_q **)((int)userdata + 0x2e0) = ptVar3;
   if (*(int *)((int)userdata + 0x2e0) == 0) {
-    tmp42[0] = s_Failed_to_create_stratum_q_in_st_000737d8[0];
-    tmp42[1] = s_Failed_to_create_stratum_q_in_st_000737d8[1];
-    tmp42[2] = s_Failed_to_create_stratum_q_in_st_000737d8[2];
-    tmp42[3] = s_Failed_to_create_stratum_q_in_st_000737d8[3];
-    tmp42[4] = s_Failed_to_create_stratum_q_in_st_000737d8[4];
-    tmp42[5] = s_Failed_to_create_stratum_q_in_st_000737d8[5];
-    tmp42[6] = s_Failed_to_create_stratum_q_in_st_000737d8[6];
-    tmp42[7] = s_Failed_to_create_stratum_q_in_st_000737d8[7];
-    tmp42[8] = s_Failed_to_create_stratum_q_in_st_000737d8[8];
-    tmp42[9] = s_Failed_to_create_stratum_q_in_st_000737d8[9];
-    tmp42[10] = s_Failed_to_create_stratum_q_in_st_000737d8[10];
-    tmp42[11] = s_Failed_to_create_stratum_q_in_st_000737d8[11];
-    tmp42[12] = s_Failed_to_create_stratum_q_in_st_000737d8[12];
-    tmp42[13] = s_Failed_to_create_stratum_q_in_st_000737d8[13];
-    tmp42[14] = s_Failed_to_create_stratum_q_in_st_000737d8[14];
-    tmp42[15] = s_Failed_to_create_stratum_q_in_st_000737d8[15];
-    tmp42[16] = s_Failed_to_create_stratum_q_in_st_000737d8[16];
-    tmp42[17] = s_Failed_to_create_stratum_q_in_st_000737d8[17];
-    tmp42[18] = s_Failed_to_create_stratum_q_in_st_000737d8[18];
-    tmp42[19] = s_Failed_to_create_stratum_q_in_st_000737d8[19];
-    tmp42[20] = s_Failed_to_create_stratum_q_in_st_000737d8[20];
-    tmp42[21] = s_Failed_to_create_stratum_q_in_st_000737d8[21];
-    tmp42[22] = s_Failed_to_create_stratum_q_in_st_000737d8[22];
-    tmp42[23] = s_Failed_to_create_stratum_q_in_st_000737d8[23];
-    tmp42[24] = s_Failed_to_create_stratum_q_in_st_000737d8[24];
-    tmp42[25] = s_Failed_to_create_stratum_q_in_st_000737d8[25];
-    tmp42[26] = s_Failed_to_create_stratum_q_in_st_000737d8[26];
-    tmp42[27] = s_Failed_to_create_stratum_q_in_st_000737d8[27];
-    tmp42[28] = s_Failed_to_create_stratum_q_in_st_000737d8[28];
-    tmp42[29] = s_Failed_to_create_stratum_q_in_st_000737d8[29];
-    tmp42[30] = s_Failed_to_create_stratum_q_in_st_000737d8[30];
-    tmp42[31] = s_Failed_to_create_stratum_q_in_st_000737d8[31];
-    tmp42[32] = s_Failed_to_create_stratum_q_in_st_000737d8[32];
-    tmp42[33] = s_Failed_to_create_stratum_q_in_st_000737d8[33];
-    tmp42[34] = s_Failed_to_create_stratum_q_in_st_000737d8[34];
-    tmp42[35] = s_Failed_to_create_stratum_q_in_st_000737d8[35];
-    tmp42[36] = s_Failed_to_create_stratum_q_in_st_000737d8[36];
-    tmp42[37] = s_Failed_to_create_stratum_q_in_st_000737d8[37];
-    tmp42[38] = s_Failed_to_create_stratum_q_in_st_000737d8[38];
-    tmp42[39] = s_Failed_to_create_stratum_q_in_st_000737d8[39];
-    tmp42[40] = s_Failed_to_create_stratum_q_in_st_000737d8[40];
-    tmp42[41] = s_Failed_to_create_stratum_q_in_st_000737d8[41];
-    tmp42[42] = s_Failed_to_create_stratum_q_in_st_000737d8[42];
-    tmp42[43] = s_Failed_to_create_stratum_q_in_st_000737d8[43];
-    tmp42[44] = (char)(short)ram0x00073804;
-    tmp42[45] = (char)((ushort)(short)ram0x00073804 >> 8);
+    builtin_strncpy(tmp42,"Failed to create stratum_q in stratum_sthread",0x2e);
+    tmp42._46_2_ = SUB42(uVar17,2);
     _applog(3,tmp42,true);
     _quit(1);
   }
@@ -129,37 +83,10 @@ void * stratum_sthread(void *userdata)
           return (void *)0x0;
         }
         work = (work *)tq_pop(*(thread_q **)((int)userdata + 0x2e0),(timespec *)0x0);
+        uVar17 = tmp42._28_4_;
         if (work == (work *)0x0) {
-          tmp42[0] = s_Stratum_q_returned_empty_work_00073808[0];
-          tmp42[1] = s_Stratum_q_returned_empty_work_00073808[1];
-          tmp42[2] = s_Stratum_q_returned_empty_work_00073808[2];
-          tmp42[3] = s_Stratum_q_returned_empty_work_00073808[3];
-          tmp42[4] = s_Stratum_q_returned_empty_work_00073808[4];
-          tmp42[5] = s_Stratum_q_returned_empty_work_00073808[5];
-          tmp42[6] = s_Stratum_q_returned_empty_work_00073808[6];
-          tmp42[7] = s_Stratum_q_returned_empty_work_00073808[7];
-          tmp42[8] = s_Stratum_q_returned_empty_work_00073808[8];
-          tmp42[9] = s_Stratum_q_returned_empty_work_00073808[9];
-          tmp42[10] = s_Stratum_q_returned_empty_work_00073808[10];
-          tmp42[11] = s_Stratum_q_returned_empty_work_00073808[11];
-          tmp42[12] = s_Stratum_q_returned_empty_work_00073808[12];
-          tmp42[13] = s_Stratum_q_returned_empty_work_00073808[13];
-          tmp42[14] = s_Stratum_q_returned_empty_work_00073808[14];
-          tmp42[15] = s_Stratum_q_returned_empty_work_00073808[15];
-          tmp42[16] = s_Stratum_q_returned_empty_work_00073808[16];
-          tmp42[17] = s_Stratum_q_returned_empty_work_00073808[17];
-          tmp42[18] = s_Stratum_q_returned_empty_work_00073808[18];
-          tmp42[19] = s_Stratum_q_returned_empty_work_00073808[19];
-          tmp42[20] = s_Stratum_q_returned_empty_work_00073808[20];
-          tmp42[21] = s_Stratum_q_returned_empty_work_00073808[21];
-          tmp42[22] = s_Stratum_q_returned_empty_work_00073808[22];
-          tmp42[23] = s_Stratum_q_returned_empty_work_00073808[23];
-          tmp42[24] = s_Stratum_q_returned_empty_work_00073808[24];
-          tmp42[25] = s_Stratum_q_returned_empty_work_00073808[25];
-          tmp42[26] = s_Stratum_q_returned_empty_work_00073808[26];
-          tmp42[27] = s_Stratum_q_returned_empty_work_00073808[27];
-          tmp42[28] = (char)(short)ram0x00073824;
-          tmp42[29] = (char)((ushort)(short)ram0x00073824 >> 8);
+          builtin_strncpy(tmp42,"Stratum q returned empty work",0x1e);
+          tmp42._30_2_ = SUB42(uVar17,2);
           _applog(3,tmp42,true);
           _quit(1);
         }
@@ -171,73 +98,31 @@ void * stratum_sthread(void *userdata)
           _applog(3,tmp42,false);
         }
         if (((use_syslog != false) || (opt_log_output != false)) || (2 < opt_log_level)) {
-          tmp42[0] = s_Not_attempting_to_submit_shares_00073864[0];
-          tmp42[1] = s_Not_attempting_to_submit_shares_00073864[1];
-          tmp42[2] = s_Not_attempting_to_submit_shares_00073864[2];
-          tmp42[3] = s_Not_attempting_to_submit_shares_00073864[3];
-          tmp42[4] = s_Not_attempting_to_submit_shares_00073864[4];
-          tmp42[5] = s_Not_attempting_to_submit_shares_00073864[5];
-          tmp42[6] = s_Not_attempting_to_submit_shares_00073864[6];
-          tmp42[7] = s_Not_attempting_to_submit_shares_00073864[7];
-          tmp42[8] = s_Not_attempting_to_submit_shares_00073864[8];
-          tmp42[9] = s_Not_attempting_to_submit_shares_00073864[9];
-          tmp42[10] = s_Not_attempting_to_submit_shares_00073864[10];
-          tmp42[11] = s_Not_attempting_to_submit_shares_00073864[11];
-          tmp42[12] = s_Not_attempting_to_submit_shares_00073864[12];
-          tmp42[13] = s_Not_attempting_to_submit_shares_00073864[13];
-          tmp42[14] = s_Not_attempting_to_submit_shares_00073864[14];
-          tmp42[15] = s_Not_attempting_to_submit_shares_00073864[15];
-          tmp42[16] = s_Not_attempting_to_submit_shares_00073864[16];
-          tmp42[17] = s_Not_attempting_to_submit_shares_00073864[17];
-          tmp42[18] = s_Not_attempting_to_submit_shares_00073864[18];
-          tmp42[19] = s_Not_attempting_to_submit_shares_00073864[19];
-          tmp42[20] = s_Not_attempting_to_submit_shares_00073864[20];
-          tmp42[21] = s_Not_attempting_to_submit_shares_00073864[21];
-          tmp42[22] = s_Not_attempting_to_submit_shares_00073864[22];
-          tmp42[23] = s_Not_attempting_to_submit_shares_00073864[23];
-          tmp42[24] = s_Not_attempting_to_submit_shares_00073864[24];
-          tmp42[25] = s_Not_attempting_to_submit_shares_00073864[25];
-          tmp42[26] = s_Not_attempting_to_submit_shares_00073864[26];
-          tmp42[27] = s_Not_attempting_to_submit_shares_00073864[27];
-          tmp42[28] = s_Not_attempting_to_submit_shares_00073864[28];
-          tmp42[29] = s_Not_attempting_to_submit_shares_00073864[29];
-          tmp42[30] = s_Not_attempting_to_submit_shares_00073864[30];
-          tmp42[31] = s_Not_attempting_to_submit_shares_00073864[31];
+          builtin_strncpy(tmp42,"Not attempting to submit shares",0x20);
           _applog(3,tmp42,false);
         }
         _free_work(&work,"cgminer.c","stratum_sthread",0x1d79);
       }
-      uVar10 = *(uint *)(work->data + 0x4c);
-      uVar8 = *(undefined4 *)&work->nonce2;
-      uVar11 = *(undefined4 *)((int)&work->nonce2 + 4);
-      nonce = uVar10;
-      if ((uVar10 != last_nonce) ||
-         (nonce2._4_4_ != last_nonce2._4_4_ || nonce2._0_4_ != (int)last_nonce2)) break;
-      if (((use_syslog != false) || (opt_log_output != false)) ||
-         (nonce2._0_4_ = uVar8, nonce2._4_4_ = uVar11, 5 < opt_log_level)) {
+      uVar9 = *(uint *)(work->data + 0x4c);
+      iVar16 = (int)work->nonce2;
+      iVar10 = *(int *)((int)&work->nonce2 + 4);
+      nonce = uVar9;
+      nonce2._0_4_ = iVar16;
+      nonce2._4_4_ = iVar10;
+      if ((uVar9 != last_nonce) || (iVar10 != last_nonce2._4_4_ || iVar16 != (int)last_nonce2))
+      break;
+      if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
                     /* WARNING: Load size is inaccurate */
-        nonce2._0_4_ = uVar8;
-        nonce2._4_4_ = uVar11;
         snprintf(tmp42,0x800,"Filtering duplicate share to pool %d",*userdata);
         _applog(6,tmp42,false);
       }
       _free_work(&work,"cgminer.c","stratum_sthread",0x1d85);
     }
-    last_nonce2._0_1_ = nonce2[0];
-    last_nonce2._1_1_ = nonce2[1];
-    last_nonce2._2_1_ = nonce2[2];
-    last_nonce2._3_1_ = nonce2[3];
-    last_nonce2._4_1_ = nonce2[4];
-    last_nonce2._5_1_ = nonce2[5];
-    last_nonce2._6_1_ = nonce2[6];
-    last_nonce2._7_1_ = nonce2[7];
-    nonce2._0_4_ = uVar8;
-    nonce2._4_4_ = uVar11;
     __bin2hex(noncehex,(uchar *)&nonce,4);
     __bin2hex(nonce2hex,nonce2,work->nonce2_len);
     __ptr = (stratum_share *)_cgcalloc(0x34,1,"cgminer.c","stratum_sthread",0x1d8e);
     pwVar1 = work;
-    bVar19 = false;
+    bVar20 = false;
     tVar4 = time((time_t *)0x0);
     __ptr->sshare_time = tVar4;
     __ptr->work = work;
@@ -247,29 +132,29 @@ void * stratum_sthread(void *userdata)
     swork_id = swork_id + 1;
     _mutex_unlock(&sshare_lock,"cgminer.c","stratum_sthread",0x1d9a);
     if (*(char *)((int)userdata + 0x28c) == '\0') {
-      pcVar17 = work->ntime;
+      pcVar18 = work->ntime;
       uVar5 = __ptr->id;
-      pcVar20 = nonce2hex;
-      pcVar21 = noncehex;
+      pcVar21 = nonce2hex;
+      pcVar22 = noncehex;
       snprintf(s,0x400,
                "{\"params\": [\"%s\", \"%s\", \"%s\", \"%s\", \"%s\"], \"id\": %d, \"method\": \"mining.submit\"}"
-               ,*(undefined4 *)((int)userdata + 0xb4),work->job_id,pcVar20,pcVar17,pcVar21,uVar5);
+               ,*(undefined4 *)((int)userdata + 0xb4),work->job_id,pcVar21,pcVar18,pcVar22,uVar5);
     }
     else {
-      uVar8 = *(undefined4 *)((int)userdata + 0xb4);
-      pcVar18 = work->job_id;
-      pcVar17 = work->ntime;
+      uVar17 = *(undefined4 *)((int)userdata + 0xb4);
+      pcVar19 = work->job_id;
+      pcVar18 = work->ntime;
       uVar5 = swab32(work->version);
-      pcVar20 = nonce2hex;
-      pcVar21 = noncehex;
+      pcVar21 = nonce2hex;
+      pcVar22 = noncehex;
       snprintf(s,0x400,
                "{\"params\": [\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%08x\"], \"id\": %d, \"method\": \"mining.submit\"}"
-               ,uVar8,pcVar18,pcVar20,pcVar17,pcVar21,uVar5,__ptr->id);
+               ,uVar17,pcVar19,pcVar21,pcVar18,pcVar22,uVar5,__ptr->id);
     }
     if (((use_syslog != false) || (opt_log_output != false)) || (5 < opt_log_level)) {
                     /* WARNING: Load size is inaccurate */
       snprintf(tmp42,0x800,"Submitting share %08lx to pool %d",*(undefined4 *)(pwVar1->hash + 0x18),
-               *userdata,pcVar20,pcVar17,pcVar21,uVar5);
+               *userdata,pcVar21,pcVar18,pcVar22,uVar5);
       _applog(6,tmp42,false);
     }
     while( true ) {
@@ -288,128 +173,31 @@ void * stratum_sthread(void *userdata)
         total_ro = total_ro + 1;
         *(int *)((int)userdata + 0x88) = *(int *)((int)userdata + 0x88) + 1;
       }
+      uVar17 = tmp42._48_4_;
       if (opt_lowmem != false) {
         if ((opt_debug != false) &&
            (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-          tmp42[0] = s_Lowmem_option_prevents_resubmitt_00073a08[0];
-          tmp42[1] = s_Lowmem_option_prevents_resubmitt_00073a08[1];
-          tmp42[2] = s_Lowmem_option_prevents_resubmitt_00073a08[2];
-          tmp42[3] = s_Lowmem_option_prevents_resubmitt_00073a08[3];
-          tmp42[4] = s_Lowmem_option_prevents_resubmitt_00073a08[4];
-          tmp42[5] = s_Lowmem_option_prevents_resubmitt_00073a08[5];
-          tmp42[6] = s_Lowmem_option_prevents_resubmitt_00073a08[6];
-          tmp42[7] = s_Lowmem_option_prevents_resubmitt_00073a08[7];
-          tmp42[8] = s_Lowmem_option_prevents_resubmitt_00073a08[8];
-          tmp42[9] = s_Lowmem_option_prevents_resubmitt_00073a08[9];
-          tmp42[10] = s_Lowmem_option_prevents_resubmitt_00073a08[10];
-          tmp42[11] = s_Lowmem_option_prevents_resubmitt_00073a08[11];
-          tmp42[12] = s_Lowmem_option_prevents_resubmitt_00073a08[12];
-          tmp42[13] = s_Lowmem_option_prevents_resubmitt_00073a08[13];
-          tmp42[14] = s_Lowmem_option_prevents_resubmitt_00073a08[14];
-          tmp42[15] = s_Lowmem_option_prevents_resubmitt_00073a08[15];
-          tmp42[16] = s_Lowmem_option_prevents_resubmitt_00073a08[16];
-          tmp42[17] = s_Lowmem_option_prevents_resubmitt_00073a08[17];
-          tmp42[18] = s_Lowmem_option_prevents_resubmitt_00073a08[18];
-          tmp42[19] = s_Lowmem_option_prevents_resubmitt_00073a08[19];
-          tmp42[20] = s_Lowmem_option_prevents_resubmitt_00073a08[20];
-          tmp42[21] = s_Lowmem_option_prevents_resubmitt_00073a08[21];
-          tmp42[22] = s_Lowmem_option_prevents_resubmitt_00073a08[22];
-          tmp42[23] = s_Lowmem_option_prevents_resubmitt_00073a08[23];
-          tmp42[24] = s_Lowmem_option_prevents_resubmitt_00073a08[24];
-          tmp42[25] = s_Lowmem_option_prevents_resubmitt_00073a08[25];
-          tmp42[26] = s_Lowmem_option_prevents_resubmitt_00073a08[26];
-          tmp42[27] = s_Lowmem_option_prevents_resubmitt_00073a08[27];
-          tmp42[28] = s_Lowmem_option_prevents_resubmitt_00073a08[28];
-          tmp42[29] = s_Lowmem_option_prevents_resubmitt_00073a08[29];
-          tmp42[30] = s_Lowmem_option_prevents_resubmitt_00073a08[30];
-          tmp42[31] = s_Lowmem_option_prevents_resubmitt_00073a08[31];
-          tmp42[32] = s_Lowmem_option_prevents_resubmitt_00073a08[32];
-          tmp42[33] = s_Lowmem_option_prevents_resubmitt_00073a08[33];
-          tmp42[34] = s_Lowmem_option_prevents_resubmitt_00073a08[34];
-          tmp42[35] = s_Lowmem_option_prevents_resubmitt_00073a08[35];
-          tmp42[36] = s_Lowmem_option_prevents_resubmitt_00073a08[36];
-          tmp42[37] = s_Lowmem_option_prevents_resubmitt_00073a08[37];
-          tmp42[38] = s_Lowmem_option_prevents_resubmitt_00073a08[38];
-          tmp42[39] = s_Lowmem_option_prevents_resubmitt_00073a08[39];
-          tmp42[40] = s_Lowmem_option_prevents_resubmitt_00073a08[40];
-          tmp42[41] = s_Lowmem_option_prevents_resubmitt_00073a08[41];
-          tmp42[42] = s_Lowmem_option_prevents_resubmitt_00073a08[42];
-          tmp42[43] = s_Lowmem_option_prevents_resubmitt_00073a08[43];
-          tmp42[44] = s_Lowmem_option_prevents_resubmitt_00073a08[44];
-          tmp42[45] = s_Lowmem_option_prevents_resubmitt_00073a08[45];
-          tmp42[46] = s_Lowmem_option_prevents_resubmitt_00073a08[46];
-          tmp42[47] = s_Lowmem_option_prevents_resubmitt_00073a08[47];
-          tmp42[48] = (char)(short)ram0x00073a38;
-          tmp42[49] = (char)((ushort)(short)ram0x00073a38 >> 8);
+          builtin_strncpy(tmp42,"Lowmem option prevents resubmitting stratum share",0x32);
+          tmp42._50_2_ = SUB42(uVar17,2);
           _applog(7,tmp42,false);
         }
         goto LAB_00023b52;
       }
       _cg_rlock((cglock_t *)((int)userdata + 0xdc),"cgminer.c","stratum_sthread",0x1dd7);
       if ((*(int *)((int)userdata + 0x26c) == 0) ||
-         (iVar16 = strcmp(work->nonce1,*(char **)((int)userdata + 0x26c)), iVar16 != 0)) {
-        bVar9 = false;
+         (iVar11 = strcmp(work->nonce1,*(char **)((int)userdata + 0x26c)), iVar11 != 0)) {
+        bVar8 = false;
       }
       else {
-        bVar9 = true;
+        bVar8 = true;
       }
       _cg_runlock((cglock_t *)((int)userdata + 0xdc),"cgminer.c","stratum_sthread",0x1dd9);
-      if (!bVar9) {
+      if (!bVar8) {
         if ((opt_debug != false) &&
            (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-          tmp42[0] = s_No_matching_session_id_for_resub_00073a3c[0];
-          tmp42[1] = s_No_matching_session_id_for_resub_00073a3c[1];
-          tmp42[2] = s_No_matching_session_id_for_resub_00073a3c[2];
-          tmp42[3] = s_No_matching_session_id_for_resub_00073a3c[3];
-          tmp42[4] = s_No_matching_session_id_for_resub_00073a3c[4];
-          tmp42[5] = s_No_matching_session_id_for_resub_00073a3c[5];
-          tmp42[6] = s_No_matching_session_id_for_resub_00073a3c[6];
-          tmp42[7] = s_No_matching_session_id_for_resub_00073a3c[7];
-          tmp42[8] = s_No_matching_session_id_for_resub_00073a3c[8];
-          tmp42[9] = s_No_matching_session_id_for_resub_00073a3c[9];
-          tmp42[10] = s_No_matching_session_id_for_resub_00073a3c[10];
-          tmp42[11] = s_No_matching_session_id_for_resub_00073a3c[11];
-          tmp42[12] = s_No_matching_session_id_for_resub_00073a3c[12];
-          tmp42[13] = s_No_matching_session_id_for_resub_00073a3c[13];
-          tmp42[14] = s_No_matching_session_id_for_resub_00073a3c[14];
-          tmp42[15] = s_No_matching_session_id_for_resub_00073a3c[15];
-          tmp42[16] = s_No_matching_session_id_for_resub_00073a3c[16];
-          tmp42[17] = s_No_matching_session_id_for_resub_00073a3c[17];
-          tmp42[18] = s_No_matching_session_id_for_resub_00073a3c[18];
-          tmp42[19] = s_No_matching_session_id_for_resub_00073a3c[19];
-          tmp42[20] = s_No_matching_session_id_for_resub_00073a3c[20];
-          tmp42[21] = s_No_matching_session_id_for_resub_00073a3c[21];
-          tmp42[22] = s_No_matching_session_id_for_resub_00073a3c[22];
-          tmp42[23] = s_No_matching_session_id_for_resub_00073a3c[23];
-          tmp42[24] = s_No_matching_session_id_for_resub_00073a3c[24];
-          tmp42[25] = s_No_matching_session_id_for_resub_00073a3c[25];
-          tmp42[26] = s_No_matching_session_id_for_resub_00073a3c[26];
-          tmp42[27] = s_No_matching_session_id_for_resub_00073a3c[27];
-          tmp42[28] = s_No_matching_session_id_for_resub_00073a3c[28];
-          tmp42[29] = s_No_matching_session_id_for_resub_00073a3c[29];
-          tmp42[30] = s_No_matching_session_id_for_resub_00073a3c[30];
-          tmp42[31] = s_No_matching_session_id_for_resub_00073a3c[31];
-          tmp42[32] = s_No_matching_session_id_for_resub_00073a3c[32];
-          tmp42[33] = s_No_matching_session_id_for_resub_00073a3c[33];
-          tmp42[34] = s_No_matching_session_id_for_resub_00073a3c[34];
-          tmp42[35] = s_No_matching_session_id_for_resub_00073a3c[35];
-          tmp42[36] = s_No_matching_session_id_for_resub_00073a3c[36];
-          tmp42[37] = s_No_matching_session_id_for_resub_00073a3c[37];
-          tmp42[38] = s_No_matching_session_id_for_resub_00073a3c[38];
-          tmp42[39] = s_No_matching_session_id_for_resub_00073a3c[39];
-          tmp42[40] = s_No_matching_session_id_for_resub_00073a3c[40];
-          tmp42[41] = s_No_matching_session_id_for_resub_00073a3c[41];
-          tmp42[42] = s_No_matching_session_id_for_resub_00073a3c[42];
-          tmp42[43] = s_No_matching_session_id_for_resub_00073a3c[43];
-          tmp42[44] = s_No_matching_session_id_for_resub_00073a3c[44];
-          tmp42[45] = s_No_matching_session_id_for_resub_00073a3c[45];
-          tmp42[46] = s_No_matching_session_id_for_resub_00073a3c[46];
-          tmp42[47] = s_No_matching_session_id_for_resub_00073a3c[47];
-          tmp42[48] = s_No_matching_session_id_for_resub_00073a3c[48];
-          tmp42[49] = s_No_matching_session_id_for_resub_00073a3c[49];
-          tmp42[50] = s_No_matching_session_id_for_resub_00073a3c[50];
-          tmp42[51] = s_No_matching_session_id_for_resub_00073a3c[51];
-          tmp42._52_2_ = (undefined2)ram0x00073a70;
+          builtin_strncpy(tmp42,"No matching session id for resubmitting stratum shar",0x34);
+          tmp42[0x34] = 'e';
+          tmp42[0x35] = '\0';
           _applog(7,tmp42,false);
         }
         goto LAB_00023b52;
@@ -422,15 +210,15 @@ void * stratum_sthread(void *userdata)
     _hj_j = 0x9e3779b9;
     _hj_i = 0x9e3779b9;
     for (_hj_k = 4; 0xb < _hj_k; _hj_k = _hj_k - 0xc) {
-      iVar16 = _hj_j + (uint)_hj_key[4] + (uint)_hj_key[5] * 0x100 + (uint)_hj_key[6] * 0x10000 +
+      iVar11 = _hj_j + (uint)_hj_key[4] + (uint)_hj_key[5] * 0x100 + (uint)_hj_key[6] * 0x10000 +
                        (uint)_hj_key[7] * 0x1000000;
       uVar5 = _ha_hashv +
               (uint)_hj_key[8] + (uint)_hj_key[9] * 0x100 + (uint)_hj_key[10] * 0x10000 +
               (uint)_hj_key[0xb] * 0x1000000;
       uVar12 = uVar5 >> 0xd ^
                ((_hj_i + (uint)*_hj_key + (uint)_hj_key[1] * 0x100 + (uint)_hj_key[2] * 0x10000 +
-                         (uint)_hj_key[3] * 0x1000000) - iVar16) - uVar5;
-      uVar13 = uVar12 << 8 ^ (iVar16 - uVar5) - uVar12;
+                         (uint)_hj_key[3] * 0x1000000) - iVar11) - uVar5;
+      uVar13 = uVar12 << 8 ^ (iVar11 - uVar5) - uVar12;
       uVar5 = uVar13 >> 0xd ^ (uVar5 - uVar12) - uVar13;
       uVar12 = uVar5 >> 0xc ^ (uVar12 - uVar13) - uVar5;
       uVar13 = uVar12 << 0x10 ^ (uVar13 - uVar5) - uVar12;
@@ -564,64 +352,16 @@ void * stratum_sthread(void *userdata)
     }
     if ((opt_debug != false) &&
        (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-      tmp42[0] = s_Successfully_submitted__adding_t_000739a8[0];
-      tmp42[1] = s_Successfully_submitted__adding_t_000739a8[1];
-      tmp42[2] = s_Successfully_submitted__adding_t_000739a8[2];
-      tmp42[3] = s_Successfully_submitted__adding_t_000739a8[3];
-      tmp42[4] = s_Successfully_submitted__adding_t_000739a8[4];
-      tmp42[5] = s_Successfully_submitted__adding_t_000739a8[5];
-      tmp42[6] = s_Successfully_submitted__adding_t_000739a8[6];
-      tmp42[7] = s_Successfully_submitted__adding_t_000739a8[7];
-      tmp42[8] = s_Successfully_submitted__adding_t_000739a8[8];
-      tmp42[9] = s_Successfully_submitted__adding_t_000739a8[9];
-      tmp42[10] = s_Successfully_submitted__adding_t_000739a8[10];
-      tmp42[11] = s_Successfully_submitted__adding_t_000739a8[11];
-      tmp42[12] = s_Successfully_submitted__adding_t_000739a8[12];
-      tmp42[13] = s_Successfully_submitted__adding_t_000739a8[13];
-      tmp42[14] = s_Successfully_submitted__adding_t_000739a8[14];
-      tmp42[15] = s_Successfully_submitted__adding_t_000739a8[15];
-      tmp42[16] = s_Successfully_submitted__adding_t_000739a8[16];
-      tmp42[17] = s_Successfully_submitted__adding_t_000739a8[17];
-      tmp42[18] = s_Successfully_submitted__adding_t_000739a8[18];
-      tmp42[19] = s_Successfully_submitted__adding_t_000739a8[19];
-      tmp42[20] = s_Successfully_submitted__adding_t_000739a8[20];
-      tmp42[21] = s_Successfully_submitted__adding_t_000739a8[21];
-      tmp42[22] = s_Successfully_submitted__adding_t_000739a8[22];
-      tmp42[23] = s_Successfully_submitted__adding_t_000739a8[23];
-      tmp42[24] = s_Successfully_submitted__adding_t_000739a8[24];
-      tmp42[25] = s_Successfully_submitted__adding_t_000739a8[25];
-      tmp42[26] = s_Successfully_submitted__adding_t_000739a8[26];
-      tmp42[27] = s_Successfully_submitted__adding_t_000739a8[27];
-      tmp42[28] = s_Successfully_submitted__adding_t_000739a8[28];
-      tmp42[29] = s_Successfully_submitted__adding_t_000739a8[29];
-      tmp42[30] = s_Successfully_submitted__adding_t_000739a8[30];
-      tmp42[31] = s_Successfully_submitted__adding_t_000739a8[31];
-      tmp42[32] = s_Successfully_submitted__adding_t_000739a8[32];
-      tmp42[33] = s_Successfully_submitted__adding_t_000739a8[33];
-      tmp42[34] = s_Successfully_submitted__adding_t_000739a8[34];
-      tmp42[35] = s_Successfully_submitted__adding_t_000739a8[35];
-      tmp42[36] = s_Successfully_submitted__adding_t_000739a8[36];
-      tmp42[37] = s_Successfully_submitted__adding_t_000739a8[37];
-      tmp42[38] = s_Successfully_submitted__adding_t_000739a8[38];
-      tmp42[39] = s_Successfully_submitted__adding_t_000739a8[39];
-      tmp42[40] = s_Successfully_submitted__adding_t_000739a8[40];
-      tmp42[41] = s_Successfully_submitted__adding_t_000739a8[41];
-      tmp42[42] = s_Successfully_submitted__adding_t_000739a8[42];
-      tmp42[43] = s_Successfully_submitted__adding_t_000739a8[43];
-      tmp42[44] = s_Successfully_submitted__adding_t_000739a8[44];
-      tmp42[45] = s_Successfully_submitted__adding_t_000739a8[45];
-      tmp42[46] = s_Successfully_submitted__adding_t_000739a8[46];
-      tmp42[47] = s_Successfully_submitted__adding_t_000739a8[47];
-      tmp42[48] = s_Successfully_submitted__adding_t_000739a8[48];
-      tmp42[49] = s_Successfully_submitted__adding_t_000739a8[49];
-      tmp42[50] = s_Successfully_submitted__adding_t_000739a8[50];
-      tmp42[51] = s_Successfully_submitted__adding_t_000739a8[51];
+      builtin_strncpy(tmp42,"Successfully submitted, adding to stratum_shares db",0x34);
       _applog(7,tmp42,false);
     }
-    bVar19 = true;
+    bVar20 = true;
 LAB_00023b52:
-    last_nonce = uVar10;
-    if (bVar19) {
+    uVar17 = tmp42._40_4_;
+    last_nonce = uVar9;
+    last_nonce2._0_4_ = iVar16;
+    last_nonce2._4_4_ = iVar10;
+    if (bVar20) {
       tVar4 = time((time_t *)0x0);
       __ptr->sshare_sent = tVar4;
       iVar16 = __ptr->sshare_sent - __ptr->sshare_time;
@@ -636,55 +376,16 @@ LAB_00023b52:
     else {
       if ((opt_debug != false) &&
          (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
-        tmp42[0] = s_Failed_to_submit_stratum_share__d_00073a74[0];
-        tmp42[1] = s_Failed_to_submit_stratum_share__d_00073a74[1];
-        tmp42[2] = s_Failed_to_submit_stratum_share__d_00073a74[2];
-        tmp42[3] = s_Failed_to_submit_stratum_share__d_00073a74[3];
-        tmp42[4] = s_Failed_to_submit_stratum_share__d_00073a74[4];
-        tmp42[5] = s_Failed_to_submit_stratum_share__d_00073a74[5];
-        tmp42[6] = s_Failed_to_submit_stratum_share__d_00073a74[6];
-        tmp42[7] = s_Failed_to_submit_stratum_share__d_00073a74[7];
-        tmp42[8] = s_Failed_to_submit_stratum_share__d_00073a74[8];
-        tmp42[9] = s_Failed_to_submit_stratum_share__d_00073a74[9];
-        tmp42[10] = s_Failed_to_submit_stratum_share__d_00073a74[10];
-        tmp42[11] = s_Failed_to_submit_stratum_share__d_00073a74[11];
-        tmp42[12] = s_Failed_to_submit_stratum_share__d_00073a74[12];
-        tmp42[13] = s_Failed_to_submit_stratum_share__d_00073a74[13];
-        tmp42[14] = s_Failed_to_submit_stratum_share__d_00073a74[14];
-        tmp42[15] = s_Failed_to_submit_stratum_share__d_00073a74[15];
-        tmp42[16] = s_Failed_to_submit_stratum_share__d_00073a74[16];
-        tmp42[17] = s_Failed_to_submit_stratum_share__d_00073a74[17];
-        tmp42[18] = s_Failed_to_submit_stratum_share__d_00073a74[18];
-        tmp42[19] = s_Failed_to_submit_stratum_share__d_00073a74[19];
-        tmp42[20] = s_Failed_to_submit_stratum_share__d_00073a74[20];
-        tmp42[21] = s_Failed_to_submit_stratum_share__d_00073a74[21];
-        tmp42[22] = s_Failed_to_submit_stratum_share__d_00073a74[22];
-        tmp42[23] = s_Failed_to_submit_stratum_share__d_00073a74[23];
-        tmp42[24] = s_Failed_to_submit_stratum_share__d_00073a74[24];
-        tmp42[25] = s_Failed_to_submit_stratum_share__d_00073a74[25];
-        tmp42[26] = s_Failed_to_submit_stratum_share__d_00073a74[26];
-        tmp42[27] = s_Failed_to_submit_stratum_share__d_00073a74[27];
-        tmp42[28] = s_Failed_to_submit_stratum_share__d_00073a74[28];
-        tmp42[29] = s_Failed_to_submit_stratum_share__d_00073a74[29];
-        tmp42[30] = s_Failed_to_submit_stratum_share__d_00073a74[30];
-        tmp42[31] = s_Failed_to_submit_stratum_share__d_00073a74[31];
-        tmp42[32] = s_Failed_to_submit_stratum_share__d_00073a74[32];
-        tmp42[33] = s_Failed_to_submit_stratum_share__d_00073a74[33];
-        tmp42[34] = s_Failed_to_submit_stratum_share__d_00073a74[34];
-        tmp42[35] = s_Failed_to_submit_stratum_share__d_00073a74[35];
-        tmp42[36] = s_Failed_to_submit_stratum_share__d_00073a74[36];
-        tmp42[37] = s_Failed_to_submit_stratum_share__d_00073a74[37];
-        tmp42[38] = s_Failed_to_submit_stratum_share__d_00073a74[38];
-        tmp42[39] = s_Failed_to_submit_stratum_share__d_00073a74[39];
-        tmp42._40_3_ = (undefined3)ram0x00073a9c;
+        builtin_strncpy(tmp42,"Failed to submit stratum share, discarding",0x2b);
+        tmp42[0x2b] = SUB41(uVar17,3);
         _applog(7,tmp42,false);
       }
       _free_work(&work,"cgminer.c","stratum_sthread",0x1de8);
       free(__ptr);
       *(int *)((int)userdata + 0x7c) = *(int *)((int)userdata + 0x7c) + 1;
-      bVar19 = 0xfffffffe < (uint)total_stale;
+      bVar20 = 0xfffffffe < (uint)total_stale;
       total_stale._0_4_ = (uint)total_stale + 1;
-      total_stale._4_4_ = total_stale._4_4_ + (uint)bVar19;
+      total_stale._4_4_ = total_stale._4_4_ + (uint)bVar20;
     }
   } while( true );
 }

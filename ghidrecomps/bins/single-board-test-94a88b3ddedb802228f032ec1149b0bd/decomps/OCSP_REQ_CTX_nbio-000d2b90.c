@@ -49,7 +49,7 @@ int OCSP_REQ_CTX_nbio(uint *param_1)
             if (uVar12 != 0x1009) {
               return 0;
             }
-            iVar5 = BIO_write((BIO *)param_1[4],DAT_000d2ef8,2);
+            iVar5 = BIO_write((BIO *)param_1[4],&DAT_0013c1d4,2);
             if (iVar5 != 2) goto LAB_000d2d58;
             *param_1 = 0x1005;
             break;
@@ -133,7 +133,7 @@ LAB_000d2c62:
 LAB_000d2d8a:
               iVar5 = 0x10d;
 LAB_000d2d4a:
-              ERR_put_error(0x27,0x76,0x73,DAT_000d2efc,iVar5);
+              ERR_put_error(0x27,0x76,0x73,"ocsp_ht.c",iVar5);
               goto LAB_000d2d58;
             }
             ppuVar7 = __ctype_b_loc();
@@ -183,12 +183,12 @@ LAB_000d2df8:
             }
 LAB_000d2e2e:
             if (uVar8 != 200) {
-              ERR_put_error(0x27,0x76,0x72,DAT_000d2efc,0x13a);
+              ERR_put_error(0x27,0x76,0x72,"ocsp_ht.c",0x13a);
               if (*pbVar9 == 0) {
-                ERR_add_error_data(2,DAT_000d2f00,pbVar13);
+                ERR_add_error_data(2,"Code=",pbVar13);
               }
               else {
-                ERR_add_error_data(4,DAT_000d2f00,pbVar13,DAT_000d2f04,pbVar9);
+                ERR_add_error_data(4,"Code=",pbVar13,",Reason=",pbVar9);
               }
               goto LAB_000d2d58;
             }

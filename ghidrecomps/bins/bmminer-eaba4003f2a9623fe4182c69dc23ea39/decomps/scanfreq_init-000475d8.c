@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int scanfreq_init(int max_freq)
 
 {
@@ -22,11 +20,10 @@ int scanfreq_init(int max_freq)
   int chain;
   
   if (((use_syslog) || (opt_log_output)) || (4 < opt_log_level)) {
-    tmp42._0_4_ = s_scanfreq_init_000781a4._0_4_;
-    tmp42._4_4_ = s_scanfreq_init_000781a4._4_4_;
-    tmp42._8_4_ = s_scanfreq_init_000781a4._8_4_;
-    tmp42._12_2_ = (undefined2)ram0x000781b0;
-    tmp42[14] = (char)((uint)ram0x000781b0 >> 0x10);
+    builtin_strncpy(tmp42,"scanfreq ini",0xc);
+    tmp42[0xc] = 't';
+    tmp42[0xd] = '\n';
+    tmp42[0xe] = '\0';
     _applog(5,tmp42,false);
   }
   set_QN_write_data_command(0x8080800f);
@@ -52,7 +49,7 @@ int scanfreq_init(int max_freq)
   puts("===Init PIC===");
   scanfreq_init_pic();
   pic_heart_beat = (thr_info *)calloc(1,0x40);
-  iVar3 = thr_info_create(pic_heart_beat,(pthread_attr_t *)0x0,pic_heart_beat_func + 1,
+  iVar3 = thr_info_create(pic_heart_beat,(pthread_attr_t *)0x0,(_func_void_ptr_void_ptr *)0x42291,
                           pic_heart_beat);
   if (iVar3 == 0) {
     pthread_detach(pic_heart_beat->pth);
@@ -92,7 +89,7 @@ int scanfreq_init(int max_freq)
       }
     }
     read_temp_id = (thr_info *)calloc(1,0x40);
-    iVar3 = thr_info_create(read_temp_id,(pthread_attr_t *)0x0,scanfreq_read_temp_func + 1,
+    iVar3 = thr_info_create(read_temp_id,(pthread_attr_t *)0x0,(_func_void_ptr_void_ptr *)0x3ffa9,
                             read_temp_id);
     if (iVar3 == 0) {
       pthread_detach(read_temp_id->pth);
@@ -149,8 +146,8 @@ int scanfreq_init(int max_freq)
         if ((dev->chain_exist[chain] != 0) && (scanfreq_info.scan_finished[chain] == false)) {
           iVar3 = calculate_core_number((uint)dev->corenum);
           iVar3 = __aeabi_idiv(0x1000000,iVar3);
-          fVar4 = (((float)(longlong)(int)((uint)dev->addrInterval * iVar3) / 275.0) * DAT_00047f6c)
-                  / DAT_00047f70;
+          fVar4 = (((float)(longlong)(int)((uint)dev->addrInterval * iVar3) / 275.0) * 50.0) / 100.0
+          ;
           paVar1->timeout = (uint)(0.0 < fVar4) * (int)fVar4;
         }
       }

@@ -1,11 +1,11 @@
 
-uint read_uart_data_in_fpga(byte param_1,int param_2,uint param_3)
+int read_uart_data_in_fpga(byte param_1,int param_2,uint param_3)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   undefined4 uVar3;
-  uint uVar4;
+  int iVar4;
   uint local_14;
   undefined4 local_10;
   undefined4 local_c;
@@ -63,32 +63,32 @@ uint read_uart_data_in_fpga(byte param_1,int param_2,uint param_3)
     *(char *)(param_2 + local_14 * 4 + 2) = (char)((uint)uVar3 >> 8);
     *(char *)(param_2 + local_14 * 4 + 3) = (char)uVar3;
   }
-  uVar4 = param_3 & 0xfffffffc;
+  iVar4 = (param_3 >> 2) * 4;
   param_3 = param_3 & 3;
   if (param_3 != 0) {
     uVar3 = read_axi_fpga(local_10);
-    uVar2 = (undefined)((uint)uVar3 >> 0x10);
-    uVar1 = (undefined)((uint)uVar3 >> 0x18);
+    uVar2 = (undefined1)((uint)uVar3 >> 0x10);
+    uVar1 = (undefined1)((uint)uVar3 >> 0x18);
     if (param_3 == 2) {
-      *(undefined *)(param_2 + local_14 * 4) = uVar1;
-      *(undefined *)(param_2 + local_14 * 4 + 1) = uVar2;
-      uVar4 = uVar4 + 2;
+      *(undefined1 *)(param_2 + local_14 * 4) = uVar1;
+      *(undefined1 *)(param_2 + local_14 * 4 + 1) = uVar2;
+      iVar4 = iVar4 + 2;
     }
     else if (param_3 == 3) {
-      *(undefined *)(param_2 + local_14 * 4) = uVar1;
-      *(undefined *)(param_2 + local_14 * 4 + 1) = uVar2;
+      *(undefined1 *)(param_2 + local_14 * 4) = uVar1;
+      *(undefined1 *)(param_2 + local_14 * 4 + 1) = uVar2;
       *(char *)(param_2 + local_14 * 4 + 2) = (char)((uint)uVar3 >> 8);
-      uVar4 = uVar4 + 3;
+      iVar4 = iVar4 + 3;
     }
     else if (param_3 == 1) {
-      *(undefined *)(param_2 + local_14 * 4) = uVar1;
-      uVar4 = uVar4 + 1;
+      *(undefined1 *)(param_2 + local_14 * 4) = uVar1;
+      iVar4 = iVar4 + 1;
     }
     else {
       printf("%s: the uart%d left data is 4*N length, error!!!\n","read_uart_data_in_fpga",
              (uint)param_1);
     }
   }
-  return uVar4;
+  return iVar4;
 }
 

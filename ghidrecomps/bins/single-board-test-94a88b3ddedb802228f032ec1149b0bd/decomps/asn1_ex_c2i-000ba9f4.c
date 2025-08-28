@@ -26,7 +26,7 @@ int asn1_ex_c2i(ASN1_VALUE **pval,uchar *cont,int len,int utype,char *free_cont,
     if (utype != 5) goto LAB_000baa2a;
 LAB_000baab2:
     if (len != 0) {
-      ERR_put_error(0xd,0xcc,0x90,DAT_000babf0,0x370);
+      ERR_put_error(0xd,0xcc,0x90,"tasn_dec.c",0x370);
       goto LAB_000baaea;
     }
     a->boolean = 1;
@@ -74,7 +74,7 @@ joined_r0x000baa8a:
     else {
       if (utype != 1) goto LAB_000baa38;
       if (len != 1) {
-        ERR_put_error(0xd,0xcc,0x6a,DAT_000babf0,0x378);
+        ERR_put_error(0xd,0xcc,0x6a,"tasn_dec.c",0x378);
         goto LAB_000baaea;
       }
       _Var5.boolean._1_3_ = 0;
@@ -100,7 +100,7 @@ LAB_000baa42:
         if (str == (ASN1_STRING *)0x0) {
           str = ASN1_STRING_type_new(utype);
           if (str == (ASN1_STRING *)0x0) {
-            ERR_put_error(0xd,0xcc,0x41,DAT_000babf0,0x3b0);
+            ERR_put_error(0xd,0xcc,0x41,"tasn_dec.c",0x3b0);
             goto LAB_000baaea;
           }
           a->asn1_string = str;
@@ -111,7 +111,7 @@ LAB_000baa42:
         if (*free_cont == '\0') {
           iVar1 = ASN1_STRING_set(str,local_24[0],len);
           if (iVar1 == 0) {
-            ERR_put_error(0xd,0xcc,0x41,DAT_000babf0,0x3c1);
+            ERR_put_error(0xd,0xcc,0x41,"tasn_dec.c",0x3c1);
             ASN1_STRING_free(str);
             a->ptr = (char *)0x0;
             goto LAB_000baaea;
@@ -127,11 +127,11 @@ LAB_000baa42:
         }
         goto LAB_000baabc;
       }
-      ERR_put_error(0xd,0xcc,0xd6,DAT_000babf0,0x3a4);
+      ERR_put_error(0xd,0xcc,0xd6,"tasn_dec.c",0x3a4);
     }
     else {
       if ((utype != 0x1c) || ((len & 3U) == 0)) goto LAB_000baa42;
-      ERR_put_error(0xd,0xcc,0xd7,DAT_000babf0,0x3a9);
+      ERR_put_error(0xd,0xcc,0xd7,"tasn_dec.c",0x3a9);
     }
 LAB_000baaea:
     ASN1_TYPE_free(pAVar6);

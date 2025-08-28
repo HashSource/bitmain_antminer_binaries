@@ -2,22 +2,15 @@
 undefined4 finish_hash(uint *param_1,uint *param_2)
 
 {
-  undefined *puVar1;
+  undefined1 *puVar1;
   int iVar2;
   uint uVar3;
   int iVar4;
   uint uVar5;
   uint uVar6;
   bool bVar7;
-  undefined uStack_89;
-  undefined4 local_88;
-  undefined4 local_84;
-  undefined4 local_80;
-  undefined4 local_7c;
-  undefined4 local_78;
-  undefined4 local_74;
-  undefined4 local_70;
-  undefined4 local_6c;
+  undefined1 uStack_89;
+  byte local_88 [32];
   uint local_68;
   uint uStack_64;
   uint uStack_60;
@@ -52,20 +45,43 @@ undefined4 finish_hash(uint *param_1,uint *param_2)
   uStack_2c = param_1[0x13];
   if (param_1[3] != 0) {
     iVar4 = 0;
-    local_88 = 0;
-    local_84 = 0;
-    local_80 = 0;
-    local_7c = 0;
-    local_78 = 0;
-    local_74 = 0;
-    local_70 = 0;
-    local_6c = 0;
-    memcpy(&local_88,param_1 + 0x14,param_1[3]);
-    hash_step(param_1[2],&local_68,&local_88);
+    local_88[0] = 0;
+    local_88[1] = 0;
+    local_88[2] = 0;
+    local_88[3] = 0;
+    local_88[4] = 0;
+    local_88[5] = 0;
+    local_88[6] = 0;
+    local_88[7] = 0;
+    local_88[8] = 0;
+    local_88[9] = 0;
+    local_88[10] = 0;
+    local_88[0xb] = 0;
+    local_88[0xc] = 0;
+    local_88[0xd] = 0;
+    local_88[0xe] = 0;
+    local_88[0xf] = 0;
+    local_88[0x10] = 0;
+    local_88[0x11] = 0;
+    local_88[0x12] = 0;
+    local_88[0x13] = 0;
+    local_88[0x14] = 0;
+    local_88[0x15] = 0;
+    local_88[0x16] = 0;
+    local_88[0x17] = 0;
+    local_88[0x18] = 0;
+    local_88[0x19] = 0;
+    local_88[0x1a] = 0;
+    local_88[0x1b] = 0;
+    local_88[0x1c] = 0;
+    local_88[0x1d] = 0;
+    local_88[0x1e] = 0;
+    local_88[0x1f] = 0;
+    memcpy(local_88,param_1 + 0x14,param_1[3]);
+    hash_step(param_1[2],&local_68,local_88);
     iVar2 = 0;
     do {
-      iVar4 = (uint)*(byte *)((int)local_48 + iVar2) + (uint)*(byte *)((int)&local_88 + iVar2) +
-              iVar4;
+      iVar4 = (uint)*(byte *)((int)local_48 + iVar2) + (uint)local_88[iVar2] + iVar4;
       *(char *)((int)local_48 + iVar2) = (char)iVar4;
       iVar2 = iVar2 + 1;
       iVar4 = iVar4 >> 8;
@@ -77,24 +93,48 @@ undefined4 finish_hash(uint *param_1,uint *param_2)
   }
   uVar3 = uVar5 << 3;
   uVar5 = uVar6 << 3 | uVar5 >> 0x1d;
-  local_88 = 0;
-  local_84 = 0;
-  local_80 = 0;
-  local_7c = 0;
-  local_78 = 0;
-  local_74 = 0;
-  local_70 = 0;
-  local_6c = 0;
-  if ((int)(uVar5 - (uVar3 == 0)) < 0 == (SBORROW4(uVar5,(uint)(uVar3 == 0)) != false)) {
+  local_88[0] = 0;
+  local_88[1] = 0;
+  local_88[2] = 0;
+  local_88[3] = 0;
+  local_88[4] = 0;
+  local_88[5] = 0;
+  local_88[6] = 0;
+  local_88[7] = 0;
+  local_88[8] = 0;
+  local_88[9] = 0;
+  local_88[10] = 0;
+  local_88[0xb] = 0;
+  local_88[0xc] = 0;
+  local_88[0xd] = 0;
+  local_88[0xe] = 0;
+  local_88[0xf] = 0;
+  local_88[0x10] = 0;
+  local_88[0x11] = 0;
+  local_88[0x12] = 0;
+  local_88[0x13] = 0;
+  local_88[0x14] = 0;
+  local_88[0x15] = 0;
+  local_88[0x16] = 0;
+  local_88[0x17] = 0;
+  local_88[0x18] = 0;
+  local_88[0x19] = 0;
+  local_88[0x1a] = 0;
+  local_88[0x1b] = 0;
+  local_88[0x1c] = 0;
+  local_88[0x1d] = 0;
+  local_88[0x1e] = 0;
+  local_88[0x1f] = 0;
+  if ((int)(uint)(uVar3 == 0) <= (int)uVar5) {
     puVar1 = &uStack_89;
     do {
       puVar1 = puVar1 + 1;
       *puVar1 = (char)uVar3;
       uVar3 = uVar3 >> 8 | uVar5 << 0x18;
       uVar5 = (int)uVar5 >> 8;
-    } while ((uVar3 | uVar5) != 0);
+    } while (uVar3 != 0 || uVar5 != 0);
   }
-  hash_step(param_1[2],&local_68,&local_88);
+  hash_step(param_1[2],&local_68,local_88);
   hash_step(param_1[2],&local_68,local_48);
   *param_2 = local_68;
   param_2[1] = uStack_64;

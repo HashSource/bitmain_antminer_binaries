@@ -28,7 +28,7 @@ uint ssl2_write(SSL *param_1,int param_2,uint param_3)
       return uVar2;
     }
     if (uVar2 == 0) {
-      ERR_put_error(0x14,0x7f,0xe5,DAT_0006590c,0x199);
+      ERR_put_error(0x14,0x7f,0xe5,"s2_pkt.c",0x199);
       return 0xffffffff;
     }
   }

@@ -31,11 +31,12 @@ void set_config_BM1393_t(uchar which_chain,uchar chip_addr,uchar mode,uchar reg,
   buf[1] = '\t';
   buf[2] = chip_addr;
   buf[3] = reg;
-  buf._4_2_ = CONCAT11((uchar)(reg_data >> 0x10),(uchar)(reg_data >> 0x18));
-  buf._4_3_ = CONCAT12((uchar)(reg_data >> 8),buf._4_2_);
+  buf[5] = (uchar)(reg_data >> 0x10);
+  buf[4] = (uchar)(reg_data >> 0x18);
+  buf[6] = (uchar)(reg_data >> 8);
   buf[7] = (uchar)reg_data;
   if (reg == '\x14') {
-    cmd_buf[7] = (uint)bit_swap_table[20];
+    cmd_buf[7] = (uint)bit_swap_table[0x14];
   }
   buf[8] = CRC5(buf,'@');
   cmd_buf[0] = ((uint)buf._0_4_ >> 0x10 & 0xff) << 8 |

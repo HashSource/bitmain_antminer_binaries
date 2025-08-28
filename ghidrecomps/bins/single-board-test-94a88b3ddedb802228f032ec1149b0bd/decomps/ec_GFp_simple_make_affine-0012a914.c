@@ -29,7 +29,7 @@ undefined4 ec_GFp_simple_make_affine(EC_GROUP *param_1,EC_POINT *param_2,BN_CTX 
       uVar2 = 0;
     }
     else if (*(int *)(param_2 + 0x40) == 0) {
-      ERR_put_error(0x10,0x66,0x44,DAT_0012a9b8,0x4d4);
+      ERR_put_error(0x10,0x66,0x44,"ecp_smpl.c",0x4d4);
       uVar2 = 0;
     }
     else {

@@ -1,5 +1,5 @@
 
-undefined4 makeup_chain_inactive_cmd(undefined *param_1,uint param_2)
+undefined4 makeup_chain_inactive_cmd(undefined1 *param_1,uint param_2)
 
 {
   byte bVar1;

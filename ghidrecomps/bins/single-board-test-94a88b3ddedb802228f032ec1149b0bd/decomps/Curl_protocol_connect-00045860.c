@@ -1,5 +1,5 @@
 
-int Curl_protocol_connect(int param_1,undefined *param_2)
+int Curl_protocol_connect(int param_1,undefined1 *param_2)
 
 {
   int iVar1;
@@ -34,7 +34,7 @@ int Curl_protocol_connect(int param_1,undefined *param_2)
         return iVar1;
       }
     }
-    *(undefined *)(param_1 + 0x1f8) = 1;
+    *(undefined1 *)(param_1 + 0x1f8) = 1;
     return 0;
   }
   return iVar1;

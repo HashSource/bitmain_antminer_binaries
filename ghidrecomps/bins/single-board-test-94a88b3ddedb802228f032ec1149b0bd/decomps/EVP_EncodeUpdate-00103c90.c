@@ -21,7 +21,7 @@ LAB_00103d14:
       }
     }
     else {
-      OpenSSLDie(DAT_00103d80,0x8e,DAT_00103d7c);
+      OpenSSLDie("encode.c",0x8e,"ctx->length <= (int)sizeof(ctx->enc_data)");
       iVar3 = ctx->num;
       iVar2 = ctx->length;
       if (iVar3 + inl < iVar2) goto LAB_00103d14;

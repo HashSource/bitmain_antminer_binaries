@@ -3,7 +3,7 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
 
 {
   int iVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   uint uVar3;
   byte local_168;
   byte local_167;
@@ -11,8 +11,8 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
   byte local_165;
   undefined4 local_164;
   byte local_160 [92];
-  uint local_104;
-  uint local_100;
+  undefined4 local_104;
+  undefined4 local_100;
   byte local_fc;
   byte local_f8 [52];
   uint local_c4 [5];
@@ -21,7 +21,7 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
   uint local_5c;
   uint local_58;
   int local_54;
-  uint local_50;
+  undefined4 local_50;
   FILE *local_4c;
   uint local_48;
   FILE *local_44;
@@ -67,7 +67,7 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
   local_30 = param_2;
   if (cgpu._2562268_4_ == 0) {
     local_104 = CONCAT13((char)MISC_CONTROL,0x958);
-    local_100 = CONCAT13(0x80,CONCAT12(cgpu[2562356],0x2040) & 0x1fffff | 0x800000);
+    local_100 = CONCAT13(0x80,CONCAT12(cgpu[0x271934],0x2040) & 0x1fffff | 0x800000);
     local_fc = CRC5(&local_104,0x40);
     local_5c = (local_104 >> 0x10 & 0xff) << 8 | local_104 << 0x18 | (local_104 >> 8 & 0xff) << 0x10
                | local_104 >> 0x18;
@@ -97,11 +97,11 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
       for (local_1c = 0; local_1c < local_30; local_1c = local_1c + 1) {
         if (local_1c < param_3) {
           local_160[0] = 0xff;
-          local_160[11] = 0xff;
+          local_160[0xb] = 0xff;
         }
         else {
           local_160[0] = 0;
-          local_160[11] = 0;
+          local_160[0xb] = 0;
         }
         while( true ) {
           local_2c = get_buffer_space();
@@ -218,7 +218,7 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
     }
   }
   else {
-    local_50._0_3_ = CONCAT12(cgpu[2562356],6) | 0x800000;
+    local_50._0_3_ = CONCAT12(cgpu[0x271934],6) | 0x800000;
     local_50 = CONCAT13(0x80,(uint3)CONCAT31((uint3)local_50 >> 8,6) | 0x80);
     uVar2 = CRC5(&local_50,0x1b);
     local_50 = CONCAT13(uVar2,(uint3)local_50) & 0x1fffffff | 0x80000000;
@@ -235,8 +235,8 @@ void open_core_onChain(uint param_1,uint param_2,uint param_3,char param_4)
     local_5c = (local_50 >> 0x10 & 0xff) << 8 | local_50 << 0x18 | (local_50 >> 8 & 0xff) << 0x10 |
                local_50 >> 0x18;
     memset(local_f8,0,0x34);
-    local_f8[51] = 0xff;
-    local_f8[40] = 0xff;
+    local_f8[0x33] = 0xff;
+    local_f8[0x28] = 0xff;
     if ((*(int *)(cgpu + (param_1 + 0x9c638) * 4) == 1) && (testDone[param_1] != '\x01')) {
       set_BC_command_buffer(&local_5c);
       local_24 = get_BC_write_command();

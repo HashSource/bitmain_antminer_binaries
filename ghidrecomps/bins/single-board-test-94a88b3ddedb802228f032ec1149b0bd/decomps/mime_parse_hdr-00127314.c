@@ -16,7 +16,7 @@ _STACK * mime_parse_hdr(BIO *param_1)
   void *data;
   byte local_428 [1028];
   
-  st = sk_new(DAT_001275c0);
+  st = sk_new((cmp *)0x12703d);
   if (st != (_STACK *)0x0) {
     data = (void *)0x0;
     do {
@@ -72,7 +72,7 @@ LAB_00127434:
                   sVar3 = strlen((char *)__s);
                   uVar7 = sVar3 - 1;
                   pbVar6 = __s + uVar7;
-                  if (CARRY4((uint)__s,uVar7) == false) {
+                  if (!CARRY4((uint)__s,uVar7)) {
                     uVar7 = (uint)__s[uVar7];
                     if (uVar7 != 0x22) {
                       ppuVar2 = __ctype_b_loc();
@@ -130,7 +130,7 @@ LAB_00127558:
                   sVar3 = strlen((char *)pbVar6);
                   uVar7 = sVar3 - 1;
                   pbVar5 = pbVar6 + uVar7;
-                  if (CARRY4((uint)pbVar6,uVar7) == false) {
+                  if (!CARRY4((uint)pbVar6,uVar7)) {
                     uVar7 = (uint)pbVar6[uVar7];
                     if (uVar7 != 0x22) {
                       ppuVar2 = __ctype_b_loc();
@@ -189,7 +189,7 @@ LAB_001274cc:
                   sVar3 = strlen((char *)__s);
                   uVar7 = sVar3 - 1;
                   pbVar6 = __s + uVar7;
-                  if (CARRY4((uint)__s,uVar7) == false) {
+                  if (!CARRY4((uint)__s,uVar7)) {
                     uVar7 = (uint)__s[uVar7];
                     if (uVar7 != 0x22) {
                       ppuVar2 = __ctype_b_loc();
@@ -249,7 +249,7 @@ LAB_0012769a:
             sVar3 = strlen((char *)pbVar6);
             uVar7 = sVar3 - 1;
             pbVar5 = pbVar6 + uVar7;
-            if (CARRY4((uint)pbVar6,uVar7) == false) {
+            if (!CARRY4((uint)pbVar6,uVar7)) {
               uVar7 = (uint)pbVar6[uVar7];
               if (uVar7 != 0x22) {
                 ppuVar2 = __ctype_b_loc();
@@ -304,7 +304,7 @@ LAB_00127732:
             sVar3 = strlen((char *)pbVar6);
             uVar7 = sVar3 - 1;
             pbVar5 = pbVar6 + uVar7;
-            if (CARRY4((uint)pbVar6,uVar7) == false) {
+            if (!CARRY4((uint)pbVar6,uVar7)) {
               uVar7 = (uint)pbVar6[uVar7];
               if (uVar7 != 0x22) {
                 ppuVar2 = __ctype_b_loc();

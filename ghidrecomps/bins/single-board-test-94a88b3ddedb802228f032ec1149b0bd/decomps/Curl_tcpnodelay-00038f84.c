@@ -14,10 +14,10 @@ void Curl_tcpnodelay(undefined4 *param_1,int param_2)
   if (iVar1 < 0) {
     piVar2 = __errno_location();
     uVar3 = Curl_strerror(param_1,*piVar2);
-    Curl_infof(uVar4,DAT_00038fcc,uVar3);
+    Curl_infof(uVar4,"Could not set TCP_NODELAY: %s\n",uVar3);
   }
   else {
-    Curl_infof(uVar4,DAT_00038fc8);
+    Curl_infof(uVar4,"TCP_NODELAY set\n");
   }
   return;
 }

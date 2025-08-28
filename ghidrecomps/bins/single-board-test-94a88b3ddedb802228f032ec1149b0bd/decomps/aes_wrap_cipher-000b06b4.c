@@ -16,8 +16,8 @@ int aes_wrap_cipher(int param_1,int param_2,int param_3,uint param_4)
       if (param_2 == 0) {
         return param_4 - 8;
       }
-      iVar1 = CRYPTO_128_unwrap(iVar1,*(undefined4 *)(iVar1 + 0xf8),param_2,param_3,param_4,
-                                DAT_000b0724);
+      iVar1 = CRYPTO_128_unwrap(iVar1,*(undefined4 *)(iVar1 + 0xf8),param_2,param_3,param_4,0xe329d)
+      ;
     }
     else {
       if (param_4 < 8) {
@@ -26,8 +26,7 @@ int aes_wrap_cipher(int param_1,int param_2,int param_3,uint param_4)
       if (param_2 == 0) {
         return param_4 + 8;
       }
-      iVar1 = CRYPTO_128_wrap(iVar1,*(undefined4 *)(iVar1 + 0xf8),param_2,param_3,param_4,
-                              DAT_000b0720);
+      iVar1 = CRYPTO_128_wrap(iVar1,*(undefined4 *)(iVar1 + 0xf8),param_2,param_3,param_4,0xe2e3d);
     }
     if (iVar1 != 0) {
       return iVar1;

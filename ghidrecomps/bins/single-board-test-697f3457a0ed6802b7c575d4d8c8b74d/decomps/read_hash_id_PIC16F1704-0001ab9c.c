@@ -23,11 +23,11 @@ int read_hash_id_PIC16F1704(uint which_i2c,uchar which_chain,uchar *buf)
   read_back_data[8] = '\0';
   read_back_data[9] = '\0';
   read_back_data[10] = '\0';
-  read_back_data[11] = '\0';
-  read_back_data[12] = '\0';
-  read_back_data[13] = '\0';
-  read_back_data[14] = '\0';
-  read_back_data[15] = '\0';
+  read_back_data[0xb] = '\0';
+  read_back_data[0xc] = '\0';
+  read_back_data[0xd] = '\0';
+  read_back_data[0xe] = '\0';
+  read_back_data[0xf] = '\0';
   read_back_data[0] = 0xff;
   read_back_data[1] = '\0';
   read_back_data[2] = '\0';
@@ -63,9 +63,9 @@ int read_hash_id_PIC16F1704(uint which_i2c,uchar which_chain,uchar *buf)
     _applog(2,tmp42,false);
   }
   if ((read_back_data[1] == '\x13') && (read_back_data[0] == '\x10')) {
-    uVar1 = (ushort)read_back_data[13] +
-            (ushort)read_back_data[12] +
-            (ushort)read_back_data[11] +
+    uVar1 = (ushort)read_back_data[0xd] +
+            (ushort)read_back_data[0xc] +
+            (ushort)read_back_data[0xb] +
             (ushort)read_back_data[10] +
             (ushort)read_back_data[9] +
             (ushort)read_back_data[8] +
@@ -73,7 +73,7 @@ int read_hash_id_PIC16F1704(uint which_i2c,uchar which_chain,uchar *buf)
             (ushort)read_back_data[6] +
             (ushort)read_back_data[5] +
             (ushort)read_back_data[4] + (ushort)read_back_data[3] + read_back_data[2] + 0x23;
-    if (((uchar)(uVar1 >> 8) == read_back_data[14]) && ((uchar)uVar1 == read_back_data[15])) {
+    if (((uchar)(uVar1 >> 8) == read_back_data[0xe]) && ((uchar)uVar1 == read_back_data[0xf])) {
       for (i = '\0'; i < 0xc; i = i + '\x01') {
         buf[i] = read_back_data[i + 2];
       }

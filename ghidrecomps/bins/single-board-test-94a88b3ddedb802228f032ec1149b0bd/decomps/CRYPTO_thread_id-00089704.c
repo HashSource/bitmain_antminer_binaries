@@ -6,11 +6,11 @@ ulong CRYPTO_thread_id(void)
 {
   ulong uVar1;
   
-  if (*(code **)(DAT_00089718 + 0x1c) == (code *)0x0) {
-    uVar1 = (*(code *)PTR_getpid_00194314)();
+  if (id_callback == (code *)0x0) {
+    uVar1 = getpid();
     return uVar1;
   }
-  uVar1 = (**(code **)(DAT_00089718 + 0x1c))();
+  uVar1 = (*id_callback)();
   return uVar1;
 }
 

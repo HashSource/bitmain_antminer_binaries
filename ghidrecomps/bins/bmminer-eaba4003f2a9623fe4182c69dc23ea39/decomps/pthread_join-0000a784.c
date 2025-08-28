@@ -6,9 +6,7 @@ int pthread_join(pthread_t __th,void **__thread_return)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a78c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_00085440)();
+  iVar1 = (*(code *)(undefined *)0x0)(__th);
   return iVar1;
 }
 

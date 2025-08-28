@@ -1,10 +1,10 @@
 
-void __bin2hex(undefined *param_1,byte *param_2,int param_3)
+void __bin2hex(undefined1 *param_1,byte *param_2,int param_3)
 
 {
   byte *pbVar1;
   byte *pbVar2;
-  undefined *puVar3;
+  undefined1 *puVar3;
   
   if (0 < param_3) {
     pbVar1 = param_2;

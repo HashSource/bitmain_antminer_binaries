@@ -14,17 +14,17 @@ int BN_bn2bin(BIGNUM *a,uchar *to)
     uVar2 = puVar4[iVar1 + -1];
     if (uVar2 >> 0x10 == 0) {
       if ((uVar2 & 0xff00) == 0) {
-        uVar2 = (uint)*(byte *)(DAT_0009d57c + uVar2 + 0x14);
+        uVar2 = (uint)(byte)bits_8204[uVar2];
       }
       else {
-        uVar2 = *(byte *)(DAT_0009d57c + (uVar2 >> 8) + 0x14) + 8;
+        uVar2 = (byte)bits_8204[uVar2 >> 8] + 8;
       }
     }
     else if ((uVar2 & 0xff000000) == 0) {
-      uVar2 = *(byte *)(DAT_0009d57c + (uVar2 >> 0x10) + 0x14) + 0x10;
+      uVar2 = (byte)bits_8204[uVar2 >> 0x10] + 0x10;
     }
     else {
-      uVar2 = *(byte *)(DAT_0009d57c + (uVar2 >> 0x18) + 0x14) + 0x18;
+      uVar2 = (byte)bits_8204[uVar2 >> 0x18] + 0x18;
     }
     iVar1 = (iVar1 + -1) * 0x20 + uVar2;
     iVar3 = iVar1 + 7;

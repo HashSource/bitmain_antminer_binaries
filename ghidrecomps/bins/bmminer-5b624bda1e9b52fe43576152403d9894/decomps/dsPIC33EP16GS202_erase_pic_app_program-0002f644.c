@@ -20,10 +20,11 @@ int dsPIC33EP16GS202_erase_pic_app_program(uchar which_iic)
     usleep(100000);
     bVar1 = T9_plus_write_pic_iic(true,false,'\0',which_iic,'\0');
     bVar2 = T9_plus_write_pic_iic(true,false,'\0',which_iic,'\0');
-    printf(DAT_0002f734,DAT_0002f730,(uint)bVar1,(uint)bVar2);
+    printf("--- %s: read_back_data[0] = 0x%x, read_back_data[1] = 0x%x\n",
+           "dsPIC33EP16GS202_erase_pic_app_program",(uint)bVar1,(uint)bVar2);
     usleep(200000);
     if ((bVar1 == 9) && (bVar2 == 1)) break;
-    sprintf(logstr,DAT_0002f738);
+    sprintf(logstr,"%s failed on Chain[%d]!\n");
     writeInitLogFile(logstr);
     sleep(1);
     iVar3 = iVar3 + -1;
@@ -31,7 +32,8 @@ int dsPIC33EP16GS202_erase_pic_app_program(uchar which_iic)
       return 0;
     }
   }
-  printf(DAT_0002f73c,DAT_0002f730,DAT_0002f730,(uint)which_iic);
+  printf("\n--- %s ok\n\n","dsPIC33EP16GS202_erase_pic_app_program",
+         "dsPIC33EP16GS202_erase_pic_app_program",(uint)which_iic);
   return 1;
 }
 

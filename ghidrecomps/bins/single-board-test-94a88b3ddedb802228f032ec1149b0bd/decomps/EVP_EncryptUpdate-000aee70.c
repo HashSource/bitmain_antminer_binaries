@@ -33,7 +33,7 @@ int EVP_EncryptUpdate(EVP_CIPHER_CTX *ctx,uchar *out,int *outl,uchar *in,int inl
   }
   sVar3 = pEVar2->block_size;
   if (0x20 < (int)sVar3) {
-    OpenSSLDie(DAT_000aef90,0x15c,DAT_000aef94);
+    OpenSSLDie("evp_enc.c",0x15c,"bl <= (int)sizeof(ctx->buf)");
   }
   if (iVar1 == 0) {
     *outl = 0;

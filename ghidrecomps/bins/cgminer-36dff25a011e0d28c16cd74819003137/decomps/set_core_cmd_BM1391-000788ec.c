@@ -9,7 +9,7 @@ void set_core_cmd_BM1391(core_cmd *core)
   memset(&core_cmd,0,4);
   core_cmd.v_32._0_2_ = CONCAT11(core_cmd.v[1] & 0xf0 | core->cmd_type & 0xf,(char)core->reg_data);
   core_cmd.v_32 = CONCAT22(core_cmd.v_32._2_2_,core_cmd.v_32._0_2_) & 0xffffbfff;
-  core_cmd.v[1] = core_cmd.v[1] & 0x7f | (byte)((core->rw_falg & 1) << 7);
+  core_cmd.v[1] = core_cmd.v[1] & 0x7f | core->rw_falg << 7;
   core_cmd.v_32._2_2_ = core_cmd.v_32._2_2_ & 0xfe00 | (ushort)((core->core_id << 0x17) >> 0x17);
   cVar1 = core_cmd;
   core_cmd.v[3] = (uint8_t)((ushort)core_cmd.v_32._2_2_ >> 8);

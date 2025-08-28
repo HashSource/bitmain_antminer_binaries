@@ -1,9 +1,12 @@
 
-uint print_works(void)
+undefined4 print_works(void)
 
 {
   int iVar1;
   int iVar2;
+  undefined4 extraout_r3;
+  undefined4 extraout_r3_00;
+  undefined4 uVar3;
   uint local_30;
   uint local_2c;
   uint local_28;
@@ -12,7 +15,7 @@ uint print_works(void)
   uint local_1c;
   uint local_18;
   int local_14;
-  uint local_10;
+  int local_10;
   int local_c;
   
   local_14 = 0;
@@ -23,7 +26,7 @@ uint print_works(void)
   local_2c = 0;
   printf("\n--- %s begin\n\n","print_works");
   if (Conf._108_4_ == 1) {
-    for (local_10 = 0; (int)local_10 < 0x20; local_10 = local_10 + 1) {
+    for (local_10 = 0; local_10 < 0x20; local_10 = local_10 + 1) {
       if ((local_18 & 1) != 0) {
         iVar1 = *(int *)(cgpu + (local_14 + 0x402a) * 4 + 4);
         for (local_30 = 0; local_30 < (uint)Conf._64_4_; local_30 = local_30 + 1) {
@@ -44,7 +47,7 @@ uint print_works(void)
       local_18 = local_18 >> 1;
       local_2c = local_2c + 1;
     }
-    for (local_10 = 0; (int)local_10 < 0x20; local_10 = local_10 + 1) {
+    for (local_10 = 0; local_10 < 0x20; local_10 = local_10 + 1) {
       if ((local_1c & 1) != 0) {
         iVar1 = *(int *)(cgpu + (local_14 + 0x402a) * 4 + 4);
         for (local_30 = 0; local_30 < (uint)Conf._64_4_; local_30 = local_30 + 1) {
@@ -65,7 +68,7 @@ uint print_works(void)
       local_1c = local_1c >> 1;
       local_2c = local_2c + 1;
     }
-    for (local_10 = 0; (int)local_10 < 0x20; local_10 = local_10 + 1) {
+    for (local_10 = 0; local_10 < 0x20; local_10 = local_10 + 1) {
       if ((local_20 & 1) != 0) {
         iVar1 = *(int *)(cgpu + (local_14 + 0x402a) * 4 + 4);
         for (local_30 = 0; local_30 < (uint)Conf._64_4_; local_30 = local_30 + 1) {
@@ -86,7 +89,7 @@ uint print_works(void)
       local_20 = local_20 >> 1;
       local_2c = local_2c + 1;
     }
-    for (local_10 = 0; (int)local_10 < 0x20; local_10 = local_10 + 1) {
+    for (local_10 = 0; local_10 < 0x20; local_10 = local_10 + 1) {
       if ((local_24 & 1) != 0) {
         iVar1 = *(int *)(cgpu + (local_14 + 0x402a) * 4 + 4);
         for (local_30 = 0; local_30 < (uint)Conf._64_4_; local_30 = local_30 + 1) {
@@ -108,6 +111,7 @@ uint print_works(void)
       local_2c = local_2c + 1;
     }
     printf("\n--- %s end\n\n","print_works");
+    uVar3 = extraout_r3;
   }
   else {
     local_28 = 0;
@@ -132,8 +136,8 @@ uint print_works(void)
       local_28 = local_28 + 1;
     }
     printf("\n--- %s end\n\n","print_works");
-    local_10 = local_28;
+    uVar3 = extraout_r3_00;
   }
-  return local_10;
+  return uVar3;
 }
 

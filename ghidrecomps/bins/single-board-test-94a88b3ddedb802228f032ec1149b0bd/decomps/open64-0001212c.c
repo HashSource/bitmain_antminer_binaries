@@ -6,7 +6,7 @@ int open64(char *__file,int __oflag,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_open64_0019427c)();
+  iVar1 = open64(__file,__oflag);
   return iVar1;
 }
 

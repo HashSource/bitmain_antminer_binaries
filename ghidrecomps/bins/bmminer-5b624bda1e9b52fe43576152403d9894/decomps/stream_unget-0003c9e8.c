@@ -22,12 +22,13 @@ void stream_unget(stream_t *stream,int c)
     sVar2 = stream->buffer_pos;
     if (sVar2 == 0) {
                     /* WARNING: Subroutine does not return */
-      __assert_fail(DAT_0003ca50,DAT_0003ca48,0xe0,DAT_0003ca4c);
+      __assert_fail("stream->buffer_pos > 0","compat/jansson-2.6/src/load.c",0xe0,"stream_unget");
     }
     stream->buffer_pos = sVar2 - 1;
     if ((uint)(byte)stream->buffer[sVar2 - 1] != c) {
                     /* WARNING: Subroutine does not return */
-      __assert_fail(DAT_0003ca44,DAT_0003ca48,0xe2,DAT_0003ca4c);
+      __assert_fail("stream->buffer[stream->buffer_pos] == c","compat/jansson-2.6/src/load.c",0xe2,
+                    "stream_unget");
     }
   }
   return;

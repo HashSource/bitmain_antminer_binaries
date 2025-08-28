@@ -23,9 +23,9 @@ EVP_PKEY * d2i_AutoPrivateKey(EVP_PKEY **a,uchar **pp,long length)
       iVar1 = sk_num(st);
       if (iVar1 == 3) {
         p8 = d2i_PKCS8_PRIV_KEY_INFO((PKCS8_PRIV_KEY_INFO **)0x0,pp,length);
-        sk_pop_free(st,DAT_000b80c0);
+        sk_pop_free(st,(func *)0xbbded);
         if (p8 == (PKCS8_PRIV_KEY_INFO *)0x0) {
-          ERR_put_error(0xd,0xcf,0xa7,DAT_000b80c4,0x9b);
+          ERR_put_error(0xd,0xcf,0xa7,"d2i_pr.c",0x9b);
           return (EVP_PKEY *)0x0;
         }
         pEVar2 = EVP_PKCS82PKEY(p8);
@@ -39,7 +39,7 @@ EVP_PKEY * d2i_AutoPrivateKey(EVP_PKEY **a,uchar **pp,long length)
       iVar1 = 6;
     }
   }
-  sk_pop_free(st,DAT_000b80c0);
+  sk_pop_free(st,(func *)0xbbded);
   pEVar2 = d2i_PrivateKey(iVar1,a,pp,length);
   return pEVar2;
 }

@@ -6,7 +6,7 @@ void DH_free(DH *dh)
   _func_1847 *p_Var2;
   
   if (dh != (DH *)0x0) {
-    iVar1 = CRYPTO_add_lock(&dh->references,-1,0x1a,DAT_000a5088,0xbb);
+    iVar1 = CRYPTO_add_lock(&dh->references,-1,0x1a,"dh_lib.c",0xbb);
     if (iVar1 < 1) {
       p_Var2 = dh->meth->finish;
       if (p_Var2 != (_func_1847 *)0x0) {

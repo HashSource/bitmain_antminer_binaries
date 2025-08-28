@@ -25,7 +25,7 @@ int curl_easy_pause(int param_1,uint param_2,undefined4 param_3,undefined4 param
     iVar1 = Curl_client_chop_write
                       (*(undefined4 *)(param_1 + 8),*(undefined4 *)(param_1 + 0x85c0),iVar4,
                        *(undefined4 *)(param_1 + 0x85bc),param_4);
-    (**(code **)(DAT_00038b7c + 4))(iVar4);
+    (*Curl_cfree)(iVar4);
     if (iVar1 != 0) {
       return iVar1;
     }

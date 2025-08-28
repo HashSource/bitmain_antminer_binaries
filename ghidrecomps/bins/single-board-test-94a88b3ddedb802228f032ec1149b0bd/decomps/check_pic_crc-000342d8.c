@@ -1,9 +1,9 @@
 
-undefined check_pic_crc(byte *param_1)
+undefined1 check_pic_crc(byte *param_1)
 
 {
   FILE *__stream;
-  undefined uVar1;
+  undefined1 uVar1;
   ushort uVar2;
   bool bVar3;
   byte *local_24;
@@ -32,7 +32,7 @@ undefined check_pic_crc(byte *param_1)
     if (bVar3) {
       uVar2 = 1;
     }
-    uVar1 = (undefined)uVar2;
+    uVar1 = (undefined1)uVar2;
     if (!bVar3) {
       uVar1 = 0;
     }

@@ -16,7 +16,7 @@ BIGNUM * BN_CTX_get(BN_CTX *ctx)
   }
   uVar2 = *(uint *)(ctx + 0xc);
   if (uVar2 == *(uint *)(ctx + 0x10)) {
-    a = (BIGNUM *)CRYPTO_malloc(0x148,DAT_0009e034,0x197);
+    a = (BIGNUM *)CRYPTO_malloc(0x148,"bn_ctx.c",0x197);
     if (a == (BIGNUM *)0x0) goto LAB_0009e01a;
     BN_init(a);
     BN_init(a + 1);
@@ -72,7 +72,7 @@ BIGNUM * BN_CTX_get(BN_CTX *ctx)
     if (a == (BIGNUM *)0x0) {
 LAB_0009e01a:
       *(undefined4 *)(ctx + 0x28) = 1;
-      ERR_put_error(3,0x74,0x6d,DAT_0009e034,0x129);
+      ERR_put_error(3,0x74,0x6d,"bn_ctx.c",0x129);
       return (BIGNUM *)0x0;
     }
   }

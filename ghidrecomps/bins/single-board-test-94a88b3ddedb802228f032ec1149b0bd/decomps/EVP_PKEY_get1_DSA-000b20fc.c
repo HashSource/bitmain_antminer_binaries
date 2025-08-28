@@ -9,7 +9,7 @@ dsa_st * EVP_PKEY_get1_DSA(EVP_PKEY *pkey)
     pdVar1 = (dsa_st *)(pkey->pkey).ptr;
   }
   else {
-    ERR_put_error(6,0x78,0x81,DAT_000b212c,299);
+    ERR_put_error(6,0x78,0x81,"p_lib.c",299);
     pdVar1 = (dsa_st *)0x0;
   }
   return pdVar1;

@@ -2,7 +2,7 @@
 undefined4 pkey_set_type(undefined4 *param_1,int param_2,char *param_3,int param_4)
 
 {
-  undefined4 *puVar1;
+  EVP_PKEY_ASN1_METHOD *pEVar1;
   undefined4 uVar2;
   code *pcVar3;
   ENGINE *local_1c;
@@ -11,26 +11,26 @@ undefined4 pkey_set_type(undefined4 *param_1,int param_2,char *param_3,int param
   if (param_1 == (undefined4 *)0x0) {
 LAB_000b1e82:
     if (param_3 == (char *)0x0) {
-      puVar1 = (undefined4 *)EVP_PKEY_asn1_find(&local_1c,param_2);
+      pEVar1 = EVP_PKEY_asn1_find(&local_1c,param_2);
     }
     else {
-      puVar1 = (undefined4 *)EVP_PKEY_asn1_find_str(&local_1c,param_3,param_4);
+      pEVar1 = EVP_PKEY_asn1_find_str(&local_1c,param_3,param_4);
     }
     if (param_1 == (undefined4 *)0x0) {
       if (local_1c != (ENGINE *)0x0) {
         ENGINE_finish(local_1c);
       }
-      if (puVar1 != (undefined4 *)0x0) goto LAB_000b1eb0;
+      if (pEVar1 != (EVP_PKEY_ASN1_METHOD *)0x0) goto LAB_000b1eb0;
     }
-    else if (puVar1 != (undefined4 *)0x0) {
-      uVar2 = *puVar1;
-      param_1[3] = puVar1;
+    else if (pEVar1 != (EVP_PKEY_ASN1_METHOD *)0x0) {
+      uVar2 = *(undefined4 *)pEVar1;
+      param_1[3] = pEVar1;
       *param_1 = uVar2;
       param_1[1] = param_2;
       param_1[4] = local_1c;
       return 1;
     }
-    ERR_put_error(6,0x9e,0x9c,DAT_000b1ee0,0xe7);
+    ERR_put_error(6,0x9e,0x9c,"p_lib.c",0xe7);
     uVar2 = 0;
   }
   else {

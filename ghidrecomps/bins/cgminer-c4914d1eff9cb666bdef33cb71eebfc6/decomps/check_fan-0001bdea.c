@@ -14,15 +14,15 @@ int check_fan(void)
   
   paVar1 = dev;
   fan_id = '\0';
-  *(undefined *)&dev->fan_speed_top1 = 0;
-  *(undefined *)((int)&paVar1->fan_speed_top1 + 1) = 0;
-  *(undefined *)((int)&paVar1->fan_speed_top1 + 2) = 0;
-  *(undefined *)((int)&paVar1->fan_speed_top1 + 3) = 0;
+  *(undefined1 *)&dev->fan_speed_top1 = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_top1 + 1) = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_top1 + 2) = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_top1 + 3) = 0;
   paVar1 = dev;
-  *(undefined *)&dev->fan_speed_low1 = 0;
-  *(undefined *)((int)&paVar1->fan_speed_low1 + 1) = 0;
-  *(undefined *)((int)&paVar1->fan_speed_low1 + 2) = 0;
-  *(undefined *)((int)&paVar1->fan_speed_low1 + 3) = 0;
+  *(undefined1 *)&dev->fan_speed_low1 = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_low1 + 1) = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_low1 + 2) = 0;
+  *(undefined1 *)((int)&paVar1->fan_speed_low1 + 3) = 0;
   i = 0;
   do {
     if (7 < i) {

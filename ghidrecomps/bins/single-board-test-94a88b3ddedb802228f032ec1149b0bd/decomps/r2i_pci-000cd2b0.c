@@ -29,9 +29,9 @@ LAB_000cd37e:
       iVar9 = 0x99;
       iVar1 = 0xf1;
 LAB_000cd388:
-      ERR_put_error(0x22,0x9b,iVar9,DAT_000cd42c,iVar1);
+      ERR_put_error(0x22,0x9b,iVar9,"v3_pci.c",iVar1);
 LAB_000cd38e:
-      ERR_add_error_data(6,DAT_000cd434,*puVar2,DAT_000cd438,puVar2[1],DAT_000cd430,puVar2[2]);
+      ERR_add_error_data(6,"section:",*puVar2,",name:",puVar2[1],",value:",puVar2[2]);
       goto LAB_000cd33e;
     }
     if (*pcVar6 != '@') {
@@ -62,12 +62,12 @@ LAB_000cd38e:
 LAB_000cd2e0:
   }
   if (local_24 == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0x22,0x9b,0x9a,DAT_000cd42c,0x112);
+    ERR_put_error(0x22,0x9b,0x9a,"v3_pci.c",0x112);
   }
   else {
     uVar5 = OBJ_obj2nid(local_24);
     if (((uVar5 & 0xfffffffd) == 0x299) && (local_1c != (ASN1_OCTET_STRING *)0x0)) {
-      ERR_put_error(0x22,0x9b,0x9f,DAT_000cd42c,0x118);
+      ERR_put_error(0x22,0x9b,0x9f,"v3_pci.c",0x118);
     }
     else {
       pPVar8 = PROXY_CERT_INFO_EXTENSION_new();
@@ -81,7 +81,7 @@ LAB_000cd2e0:
         local_20 = (ASN1_INTEGER *)0x0;
         goto LAB_000cd364;
       }
-      ERR_put_error(0x22,0x9b,0x41,DAT_000cd42c,0x11e);
+      ERR_put_error(0x22,0x9b,0x41,"v3_pci.c",0x11e);
     }
   }
 LAB_000cd33e:
@@ -99,7 +99,7 @@ LAB_000cd33e:
   }
   pPVar8 = (PROXY_CERT_INFO_EXTENSION *)0x0;
 LAB_000cd364:
-  sk_pop_free(st,DAT_000cd428);
+  sk_pop_free(st,(func *)0xc7009);
   return pPVar8;
 }
 

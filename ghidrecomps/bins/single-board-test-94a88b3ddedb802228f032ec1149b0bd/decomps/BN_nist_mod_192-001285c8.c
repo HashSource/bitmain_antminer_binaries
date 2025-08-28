@@ -17,9 +17,7 @@ int BN_nist_mod_192(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   int iVar13;
   uint uVar14;
   ulong *rp;
-  uint local_78;
-  undefined4 local_74;
-  uint local_70;
+  uint local_78 [3];
   undefined4 local_6c;
   uint local_68;
   undefined4 local_64;
@@ -30,11 +28,11 @@ int BN_nist_mod_192(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   
   puVar10 = a->d;
   iVar13 = a->top;
-  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,DAT_0012889c), -1 < iVar2)) {
-    iVar13 = BN_nnmod(r,a,DAT_001288a0,ctx);
+  if ((a->neg != 0) || (iVar2 = BN_ucmp(a,(BIGNUM *)_bignum_nist_p_192_sqr_8248), -1 < iVar2)) {
+    iVar13 = BN_nnmod(r,a,(BIGNUM *)&_bignum_nist_p_192,ctx);
     return iVar13;
   }
-  iVar2 = BN_ucmp(DAT_001288a0,a);
+  iVar2 = BN_ucmp((BIGNUM *)&_bignum_nist_p_192,a);
   if (iVar2 == 0) {
     BN_set_word(r,0);
     return 1;
@@ -73,7 +71,7 @@ int BN_nist_mod_192(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
     else {
       puVar8 = puVar10 + 0x1f;
       iVar6 = 0;
-      puVar9 = &local_78;
+      puVar9 = local_78;
       do {
         iVar6 = iVar6 + 8;
         HintPreloadData(puVar8);
@@ -105,9 +103,9 @@ int BN_nist_mod_192(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
     iVar13 = iVar13 + 4;
   } while (iVar2 < 6);
 LAB_001286f2:
-  local_74 = 0;
+  local_78[1] = 0;
   local_5c = 0;
-  local_78 = local_58[0];
+  local_78[0] = local_58[0];
   local_60 = local_58[4];
   local_64 = 0;
   uVar4 = local_58[0] + *rp;
@@ -120,7 +118,7 @@ LAB_001286f2:
            (uint)CARRY4(uVar12,local_58[5]);
   uVar11 = uVar14 + rp[2];
   local_6c = 0;
-  local_70 = local_58[2];
+  local_78[2] = local_58[2];
   uVar4 = local_58[0] + uVar11;
   rp[1] = uVar12 + local_58[5];
   uVar7 = uVar4 + local_58[2];
@@ -145,10 +143,10 @@ LAB_001286f2:
            (uint)CARRY4(uVar11,local_58[5]);
   rp[5] = uVar11 + local_58[5];
   if (iVar13 != 0) {
-    uVar5 = bn_sub_words(rp,rp,DAT_001288a4 + (iVar13 + -1) * 6,6);
+    uVar5 = bn_sub_words(rp,rp,(ulong *)(_nist_p_192 + (iVar13 + -1) * 0x18),6);
     uVar4 = -uVar5;
   }
-  uVar5 = bn_sub_words(local_40,rp,DAT_001288a4,6);
+  uVar5 = bn_sub_words(local_40,rp,(ulong *)_nist_p_192,6);
   puVar10 = r->d;
   puVar9 = (ulong *)((uint)local_40 & ~(-uVar5 & uVar4) | (uint)rp & -uVar5 & uVar4);
   *rp = *puVar9;

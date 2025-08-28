@@ -4,21 +4,19 @@ undefined4 Curl_wait_ms(int param_1)
 {
   int iVar1;
   int *piVar2;
-  int *piVar3;
-  undefined4 uVar4;
+  undefined4 uVar3;
   undefined4 local_28;
   undefined4 uStack_24;
   undefined4 local_20;
   undefined4 uStack_1c;
   
-  piVar3 = DAT_0003ba64;
   if (param_1 == 0) {
-    uVar4 = 0;
+    uVar3 = 0;
   }
   else if (param_1 < 0) {
-    piVar3 = __errno_location();
-    uVar4 = 0xffffffff;
-    *piVar3 = 0x16;
+    piVar2 = __errno_location();
+    uVar3 = 0xffffffff;
+    *piVar2 = 0x16;
   }
   else {
     curlx_tvnow(&local_28);
@@ -33,7 +31,7 @@ undefined4 Curl_wait_ms(int param_1)
       }
       piVar2 = __errno_location();
       if (*piVar2 != 0) {
-        if (*piVar3 != 0) {
+        if (Curl_ack_eintr != 0) {
           return 0xffffffff;
         }
         if (*piVar2 != 4) {
@@ -44,8 +42,8 @@ undefined4 Curl_wait_ms(int param_1)
       iVar1 = curlx_tvdiff(local_20,uStack_1c,local_28,uStack_24);
       iVar1 = param_1 - iVar1;
     } while (0 < iVar1);
-    uVar4 = 0;
+    uVar3 = 0;
   }
-  return uVar4;
+  return uVar3;
 }
 

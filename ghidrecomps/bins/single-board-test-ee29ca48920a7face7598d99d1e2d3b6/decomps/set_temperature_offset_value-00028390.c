@@ -1,5 +1,5 @@
 
-void set_temperature_offset_value(undefined4 param_1,undefined param_2,undefined4 param_3)
+void set_temperature_offset_value(undefined4 param_1,undefined1 param_2,undefined4 param_3)
 
 {
   char acStack_408 [1024];

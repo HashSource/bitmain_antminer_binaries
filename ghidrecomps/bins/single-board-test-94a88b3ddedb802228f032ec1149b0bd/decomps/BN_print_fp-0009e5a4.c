@@ -2,15 +2,14 @@
 int BN_print_fp(FILE *fp,BIGNUM *a)
 
 {
-  int iVar1;
   BIO_METHOD *type;
   BIO *bp;
-  uint uVar2;
-  int iVar3;
+  uint uVar1;
+  int iVar2;
+  uint uVar3;
   uint uVar4;
-  uint uVar5;
+  int iVar5;
   int iVar6;
-  int iVar7;
   
   type = BIO_s_file();
   bp = BIO_new(type);
@@ -18,109 +17,108 @@ int BN_print_fp(FILE *fp,BIGNUM *a)
     return 0;
   }
   BIO_ctrl(bp,0x6a,0,fp);
-  if ((a->neg == 0) || (iVar7 = BIO_write(bp,DAT_0009e734,1), iVar7 == 1)) {
-    iVar7 = a->top;
-    if (iVar7 == 0) {
-      iVar7 = BIO_write(bp,DAT_0009e738,1);
-      if (iVar7 != 1) goto LAB_0009e6f6;
-      iVar7 = a->top;
+  if ((a->neg == 0) || (iVar6 = BIO_write(bp,"-",1), iVar6 == 1)) {
+    iVar6 = a->top;
+    if (iVar6 == 0) {
+      iVar6 = BIO_write(bp,"0",1);
+      if (iVar6 != 1) goto LAB_0009e6f6;
+      iVar6 = a->top;
     }
-    iVar1 = DAT_0009e73c;
-    iVar7 = iVar7 + -1;
-    if (-1 < iVar7) {
-      iVar6 = iVar7 * 4;
-      uVar2 = 0;
+    iVar6 = iVar6 + -1;
+    if (-1 < iVar6) {
+      iVar5 = iVar6 * 4;
+      uVar1 = 0;
       do {
-        uVar5 = *(uint *)((int)a->d + iVar6);
-        if ((uVar2 | uVar5 >> 0x1c) == 0) {
-          uVar2 = (uVar5 << 4) >> 0x1c;
-          uVar4 = uVar2;
-          if (uVar2 == 0) goto LAB_0009e5ee;
+        uVar4 = *(uint *)((int)a->d + iVar5);
+        if (uVar1 == 0 && uVar4 >> 0x1c == 0) {
+          uVar1 = (uVar4 << 4) >> 0x1c;
+          uVar3 = uVar1;
+          if (uVar1 == 0) goto LAB_0009e5ee;
 LAB_0009e64c:
-          iVar3 = BIO_write(bp,(void *)(uVar4 + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6);
-          uVar4 = (uVar5 << 8) >> 0x1c;
-          uVar2 = uVar4 | 1;
-          if (uVar2 != 0) goto LAB_0009e666;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + uVar3,1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5);
+          uVar3 = (uVar4 << 8) >> 0x1c;
+          uVar1 = uVar3 | 1;
+          if (uVar1 != 0) goto LAB_0009e666;
 LAB_0009e5f6:
-          uVar4 = (uVar5 << 0xc) >> 0x1c;
-          uVar2 = uVar2 | uVar4;
-          if (uVar2 == 0) goto LAB_0009e5fe;
+          uVar3 = (uVar4 << 0xc) >> 0x1c;
+          uVar1 = uVar1 | uVar3;
+          if (uVar1 == 0) goto LAB_0009e5fe;
 LAB_0009e680:
-          iVar3 = BIO_write(bp,(void *)(uVar4 + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6);
-          uVar4 = (uVar5 << 0x10) >> 0x1c;
-          uVar2 = uVar4 | 1;
-          if (uVar2 != 0) goto LAB_0009e69a;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + uVar3,1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5);
+          uVar3 = (uVar4 << 0x10) >> 0x1c;
+          uVar1 = uVar3 | 1;
+          if (uVar1 != 0) goto LAB_0009e69a;
 LAB_0009e606:
-          uVar4 = (uVar5 << 0x14) >> 0x1c;
-          uVar2 = uVar2 | uVar4;
-          if (uVar2 == 0) goto LAB_0009e60e;
+          uVar3 = (uVar4 << 0x14) >> 0x1c;
+          uVar1 = uVar1 | uVar3;
+          if (uVar1 == 0) goto LAB_0009e60e;
 LAB_0009e6b4:
-          iVar3 = BIO_write(bp,(void *)(uVar4 + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6);
-          uVar4 = (uVar5 << 0x18) >> 0x1c;
-          uVar2 = uVar4 | 1;
-          if (uVar2 != 0) goto LAB_0009e6ce;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + uVar3,1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5);
+          uVar3 = (uVar4 << 0x18) >> 0x1c;
+          uVar1 = uVar3 | 1;
+          if (uVar1 != 0) goto LAB_0009e6ce;
 LAB_0009e616:
-          uVar5 = uVar5 & 0xf;
-          uVar2 = uVar2 | uVar5;
+          uVar4 = uVar4 & 0xf;
+          uVar1 = uVar1 | uVar4;
         }
         else {
-          iVar3 = BIO_write(bp,(void *)((uVar5 >> 0x1c) + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6);
-          uVar4 = (uVar5 << 4) >> 0x1c;
-          uVar2 = uVar4 | 1;
-          if (uVar2 != 0) goto LAB_0009e64c;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + (uVar4 >> 0x1c),1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5);
+          uVar3 = (uVar4 << 4) >> 0x1c;
+          uVar1 = uVar3 | 1;
+          if (uVar1 != 0) goto LAB_0009e64c;
 LAB_0009e5ee:
-          uVar4 = (uVar5 << 8) >> 0x1c;
-          uVar2 = uVar2 | uVar4;
-          if (uVar2 == 0) goto LAB_0009e5f6;
+          uVar3 = (uVar4 << 8) >> 0x1c;
+          uVar1 = uVar1 | uVar3;
+          if (uVar1 == 0) goto LAB_0009e5f6;
 LAB_0009e666:
-          iVar3 = BIO_write(bp,(void *)(uVar4 + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6);
-          uVar4 = (uVar5 << 0xc) >> 0x1c;
-          uVar2 = uVar4 | 1;
-          if (uVar2 != 0) goto LAB_0009e680;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + uVar3,1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5);
+          uVar3 = (uVar4 << 0xc) >> 0x1c;
+          uVar1 = uVar3 | 1;
+          if (uVar1 != 0) goto LAB_0009e680;
 LAB_0009e5fe:
-          uVar4 = (uVar5 << 0x10) >> 0x1c;
-          uVar2 = uVar2 | uVar4;
-          if (uVar2 == 0) goto LAB_0009e606;
+          uVar3 = (uVar4 << 0x10) >> 0x1c;
+          uVar1 = uVar1 | uVar3;
+          if (uVar1 == 0) goto LAB_0009e606;
 LAB_0009e69a:
-          iVar3 = BIO_write(bp,(void *)(uVar4 + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6);
-          uVar4 = (uVar5 << 0x14) >> 0x1c;
-          uVar2 = uVar4 | 1;
-          if (uVar2 != 0) goto LAB_0009e6b4;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + uVar3,1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5);
+          uVar3 = (uVar4 << 0x14) >> 0x1c;
+          uVar1 = uVar3 | 1;
+          if (uVar1 != 0) goto LAB_0009e6b4;
 LAB_0009e60e:
-          uVar4 = (uVar5 << 0x18) >> 0x1c;
-          uVar2 = uVar2 | uVar4;
-          if (uVar2 == 0) goto LAB_0009e616;
+          uVar3 = (uVar4 << 0x18) >> 0x1c;
+          uVar1 = uVar1 | uVar3;
+          if (uVar1 == 0) goto LAB_0009e616;
 LAB_0009e6ce:
-          iVar3 = BIO_write(bp,(void *)(uVar4 + iVar1),1);
-          if (iVar3 != 1) goto LAB_0009e6f6;
-          uVar5 = *(uint *)((int)a->d + iVar6) & 0xf;
-          uVar2 = uVar5 | 1;
+          iVar2 = BIO_write(bp,"0123456789ABCDEF" + uVar3,1);
+          if (iVar2 != 1) goto LAB_0009e6f6;
+          uVar4 = *(uint *)((int)a->d + iVar5) & 0xf;
+          uVar1 = uVar4 | 1;
         }
-        if ((uVar2 != 0) && (uVar2 = BIO_write(bp,(void *)(uVar5 + iVar1),1), uVar2 != 1))
+        if ((uVar1 != 0) && (uVar1 = BIO_write(bp,"0123456789ABCDEF" + uVar4,1), uVar1 != 1))
         goto LAB_0009e6f6;
-        iVar7 = iVar7 + -1;
-        iVar6 = iVar6 + -4;
-      } while (iVar7 != -1);
+        iVar6 = iVar6 + -1;
+        iVar5 = iVar5 + -4;
+      } while (iVar6 != -1);
     }
-    iVar7 = 1;
+    iVar6 = 1;
   }
   else {
 LAB_0009e6f6:
-    iVar7 = 0;
+    iVar6 = 0;
   }
   BIO_free(bp);
-  return iVar7;
+  return iVar6;
 }
 

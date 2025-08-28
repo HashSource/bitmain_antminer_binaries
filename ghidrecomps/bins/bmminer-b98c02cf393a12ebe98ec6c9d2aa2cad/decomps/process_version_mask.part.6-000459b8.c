@@ -8,7 +8,7 @@ void process_version_mask_part_6(undefined4 *param_1)
     snprintf(acStack_808,0x800,"Pool %d rolling mask do not match!",*param_1);
     _applog(5,acStack_808,0);
   }
-  *(undefined *)(param_1 + 0xa1) = 0;
+  *(undefined1 *)(param_1 + 0xa1) = 0;
   param_1[0xa2] = 1;
   return;
 }

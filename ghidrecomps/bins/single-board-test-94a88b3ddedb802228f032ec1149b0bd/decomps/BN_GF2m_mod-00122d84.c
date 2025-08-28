@@ -21,7 +21,7 @@ undefined4 BN_GF2m_mod(BIGNUM *param_1,BIGNUM *param_2,int *param_3)
   iVar5 = param_3[1];
   if (iVar5 == 0) {
 LAB_00122e54:
-    ERR_put_error(3,0x83,0x6a,DAT_00122e80,0x1dd);
+    ERR_put_error(3,0x83,0x6a,"bn_gf2m.c",0x1dd);
     return 0;
   }
   iVar12 = iVar5 + -1;

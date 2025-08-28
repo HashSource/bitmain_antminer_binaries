@@ -8,10 +8,10 @@ uint hex2bin(int param_1,char *param_2,uint param_3)
   char cVar4;
   long lVar5;
   uint uVar6;
-  undefined *puVar7;
+  undefined1 *puVar7;
   char local_20;
   char local_1f;
-  undefined local_1e;
+  undefined1 local_1e;
   char *local_1c [2];
   
   local_1e = 0;
@@ -24,7 +24,7 @@ LAB_0000870c:
   }
   else {
     if (param_2[1] != '\0') {
-      puVar7 = (undefined *)(param_1 + -1);
+      puVar7 = (undefined1 *)(param_1 + -1);
       cVar3 = *param_2;
       cVar4 = param_2[1];
       do {
@@ -35,7 +35,7 @@ LAB_0000870c:
         puVar7 = puVar7 + 1;
         *puVar7 = (char)lVar5;
         if (*local_1c[0] != '\0') {
-          printf(DAT_0000872c,&local_20);
+          printf("hex2bin failed on \'%s\'",&local_20);
           return 0;
         }
         pcVar1 = param_2 + 2;
@@ -52,7 +52,7 @@ LAB_0000870c:
         cVar4 = *pcVar2;
       } while (*pcVar2 != '\0');
     }
-    printf(DAT_00008730);
+    printf("hex2bin str truncated");
     uVar6 = 0;
   }
   return uVar6;

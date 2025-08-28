@@ -1,12 +1,12 @@
 
 undefined4
-ISL_set_on_off_config(undefined param_1,undefined param_2,undefined param_3,undefined param_4)
+ISL_set_on_off_config(undefined1 param_1,undefined1 param_2,undefined1 param_3,undefined1 param_4)
 
 {
-  undefined local_14;
-  undefined local_13;
-  undefined local_12;
-  undefined local_11;
+  undefined1 local_14;
+  undefined1 local_13;
+  undefined1 local_12;
+  undefined1 local_11;
   
   local_14 = param_4;
   local_13 = param_3;

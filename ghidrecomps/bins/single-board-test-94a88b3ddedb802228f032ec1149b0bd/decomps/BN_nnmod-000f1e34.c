@@ -7,9 +7,9 @@ int BN_nnmod(BIGNUM *r,BIGNUM *m,BIGNUM *d,BN_CTX *ctx)
   
   iVar1 = BN_div((BIGNUM *)0x0,r,m,d,ctx);
   if ((iVar1 != 0) && (iVar1 = 1, r->neg != 0)) {
-    pcVar2 = DAT_000f1e6c;
+    pcVar2 = (code *)0xef09d;
     if (d->neg != 0) {
-      pcVar2 = DAT_000f1e70;
+      pcVar2 = (code *)0xef101;
     }
     iVar1 = (*pcVar2)(r,r,d);
   }

@@ -2,7 +2,7 @@
 int EC_GROUP_get_basis_type(EC_GROUP *param_1)
 
 {
-  int *piVar1;
+  EC_GROUP *pEVar1;
   EC_METHOD *meth;
   int iVar2;
   int iVar3;
@@ -17,9 +17,9 @@ int EC_GROUP_get_basis_type(EC_GROUP *param_1)
     iVar2 = 0;
     do {
       iVar2 = iVar2 + 1;
-      piVar1 = (int *)(param_1 + 0x60);
+      pEVar1 = param_1 + 0x60;
       param_1 = param_1 + 4;
-    } while (*piVar1 != 0);
+    } while (*(int *)pEVar1 != 0);
     if (iVar2 != 4) {
       iVar3 = 0x2aa;
       if (iVar2 != 2) {

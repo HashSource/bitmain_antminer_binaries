@@ -4,11 +4,10 @@
 double atof(char *__nptr)
 
 {
-  double dVar1;
+  undefined4 uVar1;
+  undefined4 extraout_s1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a48c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  dVar1 = (double)(*(code *)PTR_LAB_00085340)();
-  return dVar1;
+  uVar1 = (*(code *)(undefined *)0x0)(__nptr);
+  return (double)CONCAT44(extraout_s1,uVar1);
 }
 

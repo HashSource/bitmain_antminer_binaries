@@ -19,7 +19,7 @@ void message(undefined4 param_1,int param_2,int param_3,undefined4 param_4,char 
   if (codes == 4) {
 LAB_00016c42:
     uVar2 = api_add_data_full(0,"STATUS",1,&DAT_00058044,0);
-    uVar2 = api_add_data_full(uVar2,&DAT_00058024,0x10,DAT_00016e6c,0);
+    uVar2 = api_add_data_full(uVar2,&DAT_00058024,0x10,&when,0);
     local_201c = 0xffffffff;
     uVar2 = api_add_data_full(uVar2,&DAT_0005802c,6,&local_201c,0);
     sprintf(acStack_2018,"%d",local_2024[0]);
@@ -96,7 +96,7 @@ LAB_00016c42:
       sprintf(acStack_2018,(char *)(&DAT_0007d0cc)[iVar3 * 4],param_4,param_3);
     }
     uVar2 = api_add_data_full(0,"STATUS",1,&local_201c,0);
-    uVar2 = api_add_data_full(uVar2,&DAT_00058024,0x10,DAT_00016e6c,0);
+    uVar2 = api_add_data_full(uVar2,&DAT_00058024,0x10,&when,0);
     uVar2 = api_add_data_full(uVar2,&DAT_0005802c,6,local_2024,0);
   }
   uVar2 = api_add_data_full(uVar2,&DAT_00058034,0,acStack_2018,0);

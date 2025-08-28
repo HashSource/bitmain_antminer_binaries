@@ -17,7 +17,7 @@ int uncompress(undefined4 param_1,undefined4 *param_2,undefined4 param_3,int par
   local_48 = param_3;
   local_44 = param_4;
   local_3c = param_1;
-  iVar1 = inflateInit_(&local_48,DAT_0003f800,0x38);
+  iVar1 = inflateInit_(&local_48,"1.2.8",0x38);
   if (iVar1 == 0) {
     iVar1 = inflate(&local_48,4);
     if (iVar1 == 1) {

@@ -6,7 +6,7 @@ undefined4 file_done(int *param_1)
   
   puVar1 = *(undefined4 **)(*param_1 + 0x14c);
   if (puVar1 != (undefined4 *)0x0) {
-    (**DAT_00059d84)(puVar1[1]);
+    (*Curl_cfree)(puVar1[1]);
     puVar1[1] = 0;
     *puVar1 = 0;
     if (puVar1[2] != -1) {

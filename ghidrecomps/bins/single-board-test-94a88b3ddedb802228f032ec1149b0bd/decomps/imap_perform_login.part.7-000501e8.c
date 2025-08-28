@@ -2,24 +2,28 @@
 int imap_perform_login_part_7(int param_1)
 
 {
-  code **ppcVar1;
-  int iVar2;
-  undefined4 uVar3;
-  int iVar4;
+  undefined1 *puVar1;
+  undefined1 *puVar2;
+  int iVar3;
+  undefined1 *puVar4;
+  undefined1 *puVar5;
   
-  iVar2 = imap_atom(*(undefined4 *)(param_1 + 0x120),0);
-  uVar3 = imap_atom(*(undefined4 *)(param_1 + 0x124),0);
-  ppcVar1 = DAT_00050244;
-  iVar4 = DAT_00050240;
-  if (iVar2 != 0) {
-    iVar4 = iVar2;
+  puVar1 = (undefined1 *)imap_atom(*(undefined4 *)(param_1 + 0x120),0);
+  puVar2 = (undefined1 *)imap_atom(*(undefined4 *)(param_1 + 0x124),0);
+  puVar5 = puVar2;
+  if (puVar2 == (undefined1 *)0x0) {
+    puVar5 = &DAT_0013a6fc;
   }
-  iVar4 = imap_sendf(param_1,DAT_00050248,iVar4);
-  (**ppcVar1)(iVar2);
-  (**ppcVar1)(uVar3);
-  if (iVar4 == 0) {
+  puVar4 = &DAT_0013a6fc;
+  if (puVar1 != (undefined1 *)0x0) {
+    puVar4 = puVar1;
+  }
+  iVar3 = imap_sendf(param_1,"LOGIN %s %s",puVar4,puVar5);
+  (*Curl_cfree)(puVar1);
+  (*Curl_cfree)(puVar2);
+  if (iVar3 == 0) {
     *(undefined4 *)(param_1 + 0x3f8) = 6;
   }
-  return iVar4;
+  return iVar3;
 }
 

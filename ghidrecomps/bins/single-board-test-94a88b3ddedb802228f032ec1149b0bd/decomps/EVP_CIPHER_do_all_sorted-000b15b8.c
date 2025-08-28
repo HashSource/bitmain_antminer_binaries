@@ -7,7 +7,7 @@ void EVP_CIPHER_do_all_sorted(fn *fn,void *arg)
   
   local_10 = arg;
   local_c = fn;
-  OBJ_NAME_do_all_sorted(2,do_all_cipher_fn + 1,&local_10);
+  OBJ_NAME_do_all_sorted(2,(fn *)0xb1465,&local_10);
   return;
 }
 

@@ -1,11 +1,10 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void power_init(void)
 
 {
-  undefined4 uVar1;
-  _Bool _Var2;
+  _Bool _Var1;
   FILE *__stream;
   FILE *pFile;
   int chain;
@@ -18,21 +17,19 @@ void power_init(void)
     }
     fclose(__stream);
   }
-  _Var2 = is_T11();
-  if (_Var2) {
+  _Var1 = is_T11();
+  if (_Var1) {
     for (chain = 0; chain < 0x10; chain = chain + 1) {
       if (dev->chain_exist[chain] != 0) {
         power_info[chain].is_voltage_stable = false;
         *(undefined4 *)&power_info[chain].current_voltage = 0;
         *(undefined4 *)((int)&power_info[chain].current_voltage + 4) = 0;
-        uVar1 = DAT_0003a944;
-        *(undefined4 *)&power_info[chain].working_voltage = DAT_0003a940;
-        *(undefined4 *)((int)&power_info[chain].working_voltage + 4) = uVar1;
+        *(undefined4 *)&power_info[chain].working_voltage = 0xa0000000;
+        *(undefined4 *)((int)&power_info[chain].working_voltage + 4) = 0x40239999;
         *(undefined4 *)&power_info[chain].higher_voltage = 0;
         *(undefined4 *)((int)&power_info[chain].higher_voltage + 4) = 0;
-        uVar1 = DAT_0003a94c;
-        *(undefined4 *)&power_info[chain].highest_voltage = DAT_0003a948;
-        *(undefined4 *)((int)&power_info[chain].highest_voltage + 4) = uVar1;
+        *(undefined4 *)&power_info[chain].highest_voltage = 0x60000000;
+        *(undefined4 *)((int)&power_info[chain].highest_voltage + 4) = 0x40246666;
         power_info[chain].current_iic_data = '\0';
         power_info[chain].chain_num = (uint8_t)chain;
         _g_minor_type = g_minor_type[chain];
@@ -43,16 +40,16 @@ void power_init(void)
     power_info[0].is_voltage_stable = false;
     power_info[0].current_voltage._0_4_ = 0;
     power_info[0].current_voltage._4_4_ = 0;
-    power_info[0].working_voltage._0_4_ = DAT_0003a940;
-    power_info[0].working_voltage._4_4_ = DAT_0003a944;
+    power_info[0].working_voltage._0_4_ = 0xa0000000;
+    power_info[0].working_voltage._4_4_ = 0x40239999;
     power_info[0].higher_voltage._0_4_ = 0;
     power_info[0].higher_voltage._4_4_ = 0;
-    power_info[0].highest_voltage._0_4_ = DAT_0003a948;
-    power_info[0].highest_voltage._4_4_ = DAT_0003a94c;
+    power_info[0].highest_voltage._0_4_ = 0x60000000;
+    power_info[0].highest_voltage._4_4_ = 0x40246666;
     power_info[0].chain_num = 0xff;
   }
-  _Var2 = is_T11();
-  if (!_Var2) {
+  _Var1 = is_T11();
+  if (!_Var1) {
     power_check_protocal_type();
     power_on();
   }

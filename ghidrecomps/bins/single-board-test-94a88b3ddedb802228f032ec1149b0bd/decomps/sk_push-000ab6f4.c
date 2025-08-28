@@ -18,7 +18,7 @@ int sk_push(_STACK *st,void *data)
     iVar8 = iVar6;
   }
   else {
-    ppcVar7 = (char **)CRYPTO_realloc(st->data,st->num_alloc << 3,DAT_000ab7d0,0xbb);
+    ppcVar7 = (char **)CRYPTO_realloc(st->data,st->num_alloc << 3,"stack.c",0xbb);
     if (ppcVar7 == (char **)0x0) {
       return 0;
     }

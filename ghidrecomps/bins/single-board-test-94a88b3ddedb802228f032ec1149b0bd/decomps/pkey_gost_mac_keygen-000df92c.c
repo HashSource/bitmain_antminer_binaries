@@ -11,7 +11,7 @@ pkey_gost_mac_keygen(EVP_PKEY_CTX *param_1,EVP_PKEY *param_2,undefined4 param_3,
   
   piVar1 = (int *)EVP_PKEY_CTX_get_data(param_1);
   if (*piVar1 != 0) {
-    key = (int *)CRYPTO_malloc(0x20,DAT_000df994,0x217);
+    key = (int *)CRYPTO_malloc(0x20,"gost_pmeth.c",0x217);
     iVar4 = piVar1[3];
     iVar3 = piVar1[4];
     iVar2 = piVar1[5];
@@ -29,7 +29,7 @@ pkey_gost_mac_keygen(EVP_PKEY_CTX *param_1,EVP_PKEY *param_2,undefined4 param_3,
     EVP_PKEY_assign(param_2,0x32f,key);
     return 1;
   }
-  ERR_GOST_error(0x82,0x74,DAT_000df994,0x214,param_4);
+  ERR_GOST_error(0x82,0x74,"gost_pmeth.c",0x214,param_4);
   return 0;
 }
 

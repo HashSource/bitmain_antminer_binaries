@@ -20,7 +20,7 @@ int ssl23_peek(SSL *param_1,void *param_2,int param_3)
         iVar3 = SSL_peek(param_1,param_2,param_3);
         return iVar3;
       }
-      ERR_put_error(0x14,0xed,0xe5,DAT_0006fd10,0x9d);
+      ERR_put_error(0x14,0xed,0xe5,"s23_lib.c",0x9d);
       iVar3 = -1;
     }
   }

@@ -4,7 +4,7 @@
 void free(void *__ptr)
 
 {
-  (*(code *)PTR_free_00046de4)();
+  free(__ptr);
   return;
 }
 

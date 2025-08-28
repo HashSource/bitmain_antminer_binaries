@@ -8,8 +8,7 @@ int dsPIC33EP16GS202_update_pic_app_program(undefined4 param_1)
   undefined4 *puVar3;
   undefined4 *puVar4;
   int iVar5;
-  undefined4 local_3738;
-  undefined4 uStack_3734;
+  char local_3738 [8];
   undefined4 local_3730;
   undefined4 local_372c;
   undefined4 local_3728;
@@ -19,8 +18,13 @@ int dsPIC33EP16GS202_update_pic_app_program(undefined4 param_1)
   
   memset(&local_3720,0,0x3700);
   local_3730 = 0;
-  local_3738 = 0;
-  uStack_3734 = (uint)uStack_3734._3_1_ << 0x18;
+  local_3738[0] = '\0';
+  local_3738[1] = '\0';
+  local_3738[2] = '\0';
+  local_3738[3] = '\0';
+  local_3738[4] = '\0';
+  local_3738[5] = '\0';
+  local_3738[6] = '\0';
   local_372c = 0;
   local_3728 = 0;
   local_3724 = 0;
@@ -34,8 +38,8 @@ int dsPIC33EP16GS202_update_pic_app_program(undefined4 param_1)
     puVar3 = &local_3720;
     do {
       puVar4 = puVar3 + 1;
-      fgets((char *)&local_3738,7,__stream);
-      uVar1 = strtoul((char *)&local_3738,(char **)0x0,0x10);
+      fgets(local_3738,7,__stream);
+      uVar1 = strtoul(local_3738,(char **)0x0,0x10);
       *(char *)((int)puVar3 + 3) = (char)uVar1;
       *(char *)puVar3 = (char)(uVar1 >> 0x18);
       *(char *)((int)puVar3 + 1) = (char)(uVar1 >> 0x10);

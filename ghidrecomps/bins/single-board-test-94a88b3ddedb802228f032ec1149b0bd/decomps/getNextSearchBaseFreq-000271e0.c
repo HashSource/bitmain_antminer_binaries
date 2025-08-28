@@ -2,7 +2,7 @@
 int getNextSearchBaseFreq(int param_1)
 
 {
-  int local_c;
+  undefined4 local_c;
   
   if (param_1 < 0) {
     local_c = 0x42;

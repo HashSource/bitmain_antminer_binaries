@@ -3,14 +3,14 @@ void read_temp(uint param_1,byte param_2,uint param_3,uint param_4,byte param_5,
 
 {
   uint uVar1;
-  undefined local_30;
-  undefined local_2f;
+  undefined1 local_30;
+  undefined1 local_2f;
   byte local_2e;
-  undefined local_2d;
-  undefined local_2c;
-  undefined local_2b;
+  undefined1 local_2d;
+  undefined1 local_2c;
+  undefined1 local_2b;
   byte local_2a;
-  undefined local_29;
+  undefined1 local_29;
   byte local_28;
   uint local_24;
   uint local_20;
@@ -21,11 +21,11 @@ void read_temp(uint param_1,byte param_2,uint param_3,uint param_4,byte param_5,
   local_20 = 0;
   local_1c = 0;
   if (opt_multi_version != 0) {
-    local_29 = (undefined)param_3;
+    local_29 = (undefined1)param_3;
     local_30 = 0x48;
     local_2d = 0x20;
     local_2c = 1;
-    local_2b = (undefined)(param_1 | param_4);
+    local_2b = (undefined1)(param_1 | param_4);
     local_2e = param_5;
     local_2f = 9;
     local_2a = param_2;

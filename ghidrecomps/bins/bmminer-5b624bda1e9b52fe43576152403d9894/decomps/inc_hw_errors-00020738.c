@@ -4,36 +4,29 @@
 void inc_hw_errors(thr_info *thr)
 
 {
-  pthread_mutex_t *__mutex;
   int iVar1;
-  char *in_r2;
-  cgpu_info *func;
-  char *line;
-  int *line_00;
+  char *func;
+  char *func_00;
+  int line;
+  int line_00;
   char tmp42 [2048];
   
-  if (((*DAT_000207cc != '\0') || (*DAT_000207d0 != '\0')) || (line = *DAT_000207e4, 5 < (int)line))
-  {
-    line = thr->cgpu->drv->name;
-    snprintf(tmp42,0x800,DAT_000207d4,line,thr->cgpu->device_id);
-    in_r2 = (char *)0x0;
+  if (((use_syslog) || (opt_log_output)) || (5 < opt_log_level)) {
+    snprintf(tmp42,0x800,"%s %d: invalid nonce - HW error",thr->cgpu->drv->name,thr->cgpu->device_id
+            );
     _applog(6,tmp42,false);
   }
-  iVar1 = pthread_mutex_lock(DAT_000207d8);
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&stats_lock);
   if (iVar1 != 0) {
-    _mutex_lock(DAT_000207e8,(char *)0x21ba,in_r2,(int)line);
+    _mutex_lock((pthread_mutex_t *)"inc_hw_errors",(char *)0x21ba,func,line);
   }
-  line_00 = DAT_000207dc;
-  __mutex = DAT_000207d8;
-  func = thr->cgpu;
-  iVar1 = *DAT_000207dc;
-  func->hw_errors = func->hw_errors + 1;
-  *line_00 = iVar1 + 1;
-  iVar1 = pthread_mutex_unlock(__mutex);
+  hw_errors = hw_errors + 1;
+  thr->cgpu->hw_errors = thr->cgpu->hw_errors + 1;
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&stats_lock);
   if (iVar1 != 0) {
-    _mutex_unlock_noyield(DAT_000207e8,(char *)0x21bd,(char *)func,(int)line_00);
+    _mutex_unlock_noyield((pthread_mutex_t *)"inc_hw_errors",(char *)0x21bd,func_00,line_00);
   }
-  (**DAT_000207e0)();
+  (*selective_yield)();
   (*thr->cgpu->drv->hw_error)(thr);
   return;
 }

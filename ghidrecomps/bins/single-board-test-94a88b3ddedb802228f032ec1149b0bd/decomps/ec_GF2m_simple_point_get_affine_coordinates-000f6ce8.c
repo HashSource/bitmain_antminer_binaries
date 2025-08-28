@@ -9,13 +9,13 @@ ec_GF2m_simple_point_get_affine_coordinates
   
   iVar1 = EC_POINT_is_at_infinity(param_1,param_2);
   if (iVar1 != 0) {
-    ERR_put_error(0x10,0xa2,0x6a,DAT_000f6d78,0x1ad);
+    ERR_put_error(0x10,0xa2,0x6a,"ec2_smpl.c",0x1ad);
     return 0;
   }
   pBVar2 = BN_value_one();
   iVar1 = BN_cmp((BIGNUM *)(param_2 + 0x2c),pBVar2);
   if (iVar1 != 0) {
-    ERR_put_error(0x10,0xa2,0x42,DAT_000f6d78,0x1b3);
+    ERR_put_error(0x10,0xa2,0x42,"ec2_smpl.c",0x1b3);
     return 0;
   }
   if (param_3 != (BIGNUM *)0x0) {

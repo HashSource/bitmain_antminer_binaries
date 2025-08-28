@@ -1,12 +1,10 @@
 
-/* WARNING: Variable defined which should be unmapped: working_mode-local */
-
 void sweep_freq_save_result(working_mode_e working_mode)
 
 {
   _Bool _Var1;
   uint8_t chain_00;
-  uint uStack_20;
+  double dVar2;
   working_mode_e working_mode_local;
   int chain;
   
@@ -18,8 +16,8 @@ void sweep_freq_save_result(working_mode_e working_mode)
         if (!_Var1) {
           stop_scan(3,chain_00);
         }
-        get_working_voltage_by_chain(chain_00);
-        _Var1 = eeprom_set_voltage_mode1(chain_00,(double)(ulonglong)uStack_20);
+        dVar2 = get_working_voltage_by_chain(chain_00);
+        _Var1 = eeprom_set_voltage_mode1(chain_00,dVar2);
         if (!_Var1) {
           stop_scan(3,chain_00);
         }
@@ -33,8 +31,8 @@ void sweep_freq_save_result(working_mode_e working_mode)
         if (!_Var1) {
           stop_scan(3,chain_00);
         }
-        get_working_voltage_by_chain(chain_00);
-        _Var1 = eeprom_set_voltage_mode2(chain_00,(double)CONCAT44(working_mode,uStack_20));
+        dVar2 = get_working_voltage_by_chain(chain_00);
+        _Var1 = eeprom_set_voltage_mode2(chain_00,dVar2);
         if (!_Var1) {
           stop_scan(3,chain_00);
         }

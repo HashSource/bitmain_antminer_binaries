@@ -11,9 +11,9 @@ void bm174x_set_baud(int fd,int baudrate)
   
   uVar1 = reg_value.misc_control;
   bVar2 = get_bt8d_from_baud(baudrate);
-  reg_misc.core_timeout.core_timeout._1_1_ = (undefined)(uVar1 >> 8);
+  reg_misc.core_timeout.core_timeout._1_1_ = (undefined1)(uVar1 >> 8);
   reg_misc.core_timeout.core_timeout._2_2_ = (undefined2)(uVar1 >> 0x10);
-  reg_misc.core_timeout.core_timeout._0_1_ = (undefined)uVar1;
+  reg_misc.core_timeout.core_timeout._0_1_ = (undefined1)uVar1;
   reg_misc.core_timeout.core_timeout._1_1_ =
        reg_misc.core_timeout.core_timeout._1_1_ & 0xe0 | bVar2 & 0x1f;
   item.chip_addr = '\0';

@@ -20,7 +20,7 @@ int sk_insert(_STACK *sk,void *data,int where)
     ppcVar8 = sk->data;
   }
   else {
-    ppcVar8 = (char **)CRYPTO_realloc(sk->data,sk->num_alloc << 3,DAT_000ab570,0xbb);
+    ppcVar8 = (char **)CRYPTO_realloc(sk->data,sk->num_alloc << 3,"stack.c",0xbb);
     if (ppcVar8 == (char **)0x0) {
       return 0;
     }

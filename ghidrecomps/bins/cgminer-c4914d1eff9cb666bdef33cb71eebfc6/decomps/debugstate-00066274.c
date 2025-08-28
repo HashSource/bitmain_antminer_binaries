@@ -29,6 +29,8 @@ void debugstate(io_data *io_data,long c,char *param,_Bool isjson,char group)
       opt_quiet = false;
     }
     break;
+  default:
+    break;
   case 'n':
     opt_log_output = false;
     opt_debug = false;

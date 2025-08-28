@@ -6,9 +6,9 @@ EVP_PKEY * EVP_PKEY_new(void)
 {
   EVP_PKEY *pEVar1;
   
-  pEVar1 = (EVP_PKEY *)CRYPTO_malloc(0x20,DAT_000b2044,0xb4);
+  pEVar1 = (EVP_PKEY *)CRYPTO_malloc(0x20,"p_lib.c",0xb4);
   if (pEVar1 == (EVP_PKEY *)0x0) {
-    ERR_put_error(6,0x6a,0x41,DAT_000b2044,0xb6);
+    ERR_put_error(6,0x6a,0x41,"p_lib.c",0xb6);
   }
   else {
     pEVar1->type = 0;

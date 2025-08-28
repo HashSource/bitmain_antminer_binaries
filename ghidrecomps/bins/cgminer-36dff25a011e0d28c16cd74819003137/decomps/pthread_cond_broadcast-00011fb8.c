@@ -6,7 +6,7 @@ int pthread_cond_broadcast(pthread_cond_t *__cond)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_cond_broadcast_000c0020)();
+  iVar1 = pthread_cond_broadcast(__cond);
   return iVar1;
 }
 

@@ -6,15 +6,15 @@ char * set_sched_start(char *arg)
 {
   int iVar1;
   
-  iVar1 = sscanf(arg,DAT_0001e900,DAT_0001e8fc,DAT_0001e8fc + -4);
+  iVar1 = sscanf(arg,"%d:%d",0x7714cc,0x7714c8);
   if (iVar1 != 2) {
-    return DAT_0001e904;
+    return "Invalid time set, should be HH:MM";
   }
-  if ((((*(int *)(DAT_0001e908 + 0xc) < 0x18) && (*(int *)(DAT_0001e908 + 8) < 0x3c)) &&
-      (-1 < *(int *)(DAT_0001e908 + 0xc))) && (-1 < *(int *)(DAT_0001e908 + 8))) {
-    *DAT_0001e908 = 1;
+  if ((((schedstart.tm.tm_hour < 0x18) && (schedstart.tm.tm_min < 0x3c)) &&
+      (-1 < schedstart.tm.tm_hour)) && (-1 < schedstart.tm.tm_min)) {
+    schedstart.enable = true;
     return (char *)0x0;
   }
-  return DAT_0001e90c;
+  return "Invalid time set.";
 }
 

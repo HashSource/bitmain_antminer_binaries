@@ -2,17 +2,14 @@
 void cleanup_module(void)
 
 {
-  undefined4 *puVar1;
-  
-  puVar1 = DAT_00010290;
-  unregister_chrdev_region(*DAT_00010290,1);
-  cdev_del(puVar1[1]);
-  kfree(puVar1[1]);
-  iounmap(puVar1[3]);
-  __release_region(DAT_00010298,*DAT_00010294,0x1000000);
-  device_destroy(puVar1[4],*puVar1);
-  class_destroy(puVar1[4]);
-  printk(DAT_0001029c);
+  unregister_chrdev_region(fpga_mem_num,1);
+  cdev_del(p_fpga_mem);
+  kfree(p_fpga_mem);
+  iounmap(base_vir_addr);
+  __release_region(&iomem_resource,fpga_mem_offset_addr,0x1000000);
+  device_destroy(fpga_mem_class,fpga_mem_num);
+  class_destroy(fpga_mem_class);
+  printk("Bye Bye fpga mem driver!\n");
   return;
 }
 

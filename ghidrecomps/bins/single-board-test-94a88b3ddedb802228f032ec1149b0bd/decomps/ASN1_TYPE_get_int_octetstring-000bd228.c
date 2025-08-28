@@ -62,7 +62,7 @@ int ASN1_TYPE_get_int_octetstring(ASN1_TYPE *a,long *num,uchar *data,int max_len
           }
         }
         else {
-          ERR_put_error(0xd,0x86,0x6d,DAT_000bd338,0xbc);
+          ERR_put_error(0xd,0x86,0x6d,"evp_asn1.c",0xbc);
           sVar5 = 0xffffffff;
         }
         ASN1_STRING_free(a_01);
@@ -74,7 +74,7 @@ int ASN1_TYPE_get_int_octetstring(ASN1_TYPE *a,long *num,uchar *data,int max_len
 LAB_000bd2fc:
     a_00 = (ASN1_INTEGER *)0x0;
   }
-  ERR_put_error(0xd,0x86,0x6d,DAT_000bd338,0xbc);
+  ERR_put_error(0xd,0x86,0x6d,"evp_asn1.c",0xbc);
   sVar5 = 0xffffffff;
   if (a_00 == (ASN1_INTEGER *)0x0) {
     return -1;

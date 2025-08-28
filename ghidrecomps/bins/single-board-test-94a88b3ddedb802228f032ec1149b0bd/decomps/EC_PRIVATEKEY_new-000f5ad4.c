@@ -2,7 +2,7 @@
 void EC_PRIVATEKEY_new(void)
 
 {
-  ASN1_item_new(DAT_000f5adc);
+  ASN1_item_new((ASN1_ITEM *)EC_PRIVATEKEY_it);
   return;
 }
 

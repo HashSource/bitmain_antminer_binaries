@@ -19,7 +19,7 @@ int asn1_do_lock(ASN1_VALUE **pval,int op,ASN1_ITEM *it)
     }
     else {
       iVar1 = CRYPTO_add_lock((int *)(*pval + *(int *)((int)pvVar2 + 8)),op,
-                              *(int *)((int)pvVar2 + 0xc),DAT_000bb96c,0x76);
+                              *(int *)((int)pvVar2 + 0xc),"tasn_utl.c",0x76);
     }
   }
   else {

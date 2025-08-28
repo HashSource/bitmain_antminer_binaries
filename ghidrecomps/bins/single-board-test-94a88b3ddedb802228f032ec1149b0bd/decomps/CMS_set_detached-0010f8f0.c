@@ -15,7 +15,7 @@ int CMS_set_detached(CMS_ContentInfo *cms,int detached)
         pAVar3 = ASN1_OCTET_STRING_new();
         *ppAVar1 = pAVar3;
         if (pAVar3 == (ASN1_OCTET_STRING *)0x0) {
-          ERR_put_error(0x2e,0x93,0x41,DAT_0010f948,0x14c);
+          ERR_put_error(0x2e,0x93,0x41,"cms_lib.c",0x14c);
           return 0;
         }
       }

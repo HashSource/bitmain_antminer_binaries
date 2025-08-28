@@ -29,7 +29,7 @@ void head_join(io_data *io_data,char *cmdptr,_Bool isjson,_Bool *firstjoin)
   else {
     io_add(io_data,"CMD=");
     io_add(io_data,buf);
-    io_add(io_data,(char *)&DAT_000adb3c);
+    io_add(io_data,"|");
   }
   if (buf != cmdptr) {
     free(buf);

@@ -10,7 +10,7 @@ int RSA_padding_check_SSLv23(uchar *to,int tlen,uchar *f,int fl,int rsa_len)
   bool bVar5;
   
   if (fl < 10) {
-    ERR_put_error(4,0x72,0x6f,DAT_000fbadc,0x70);
+    ERR_put_error(4,0x72,0x6f,"rsa_ssl.c",0x70);
   }
   else if ((fl + 1 == rsa_len) && (*f == '\x02')) {
     iVar2 = fl + -1;
@@ -28,7 +28,7 @@ int RSA_padding_check_SSLv23(uchar *to,int tlen,uchar *f,int fl,int rsa_len)
           if (((((puVar4[-8] == '\x03') && (puVar4[-7] == '\x03')) && (puVar4[-6] == '\x03')) &&
               ((puVar4[-5] == '\x03' && (puVar4[-4] == '\x03')))) &&
              ((puVar4[-3] == '\x03' && ((puVar4[-2] == '\x03' && (puVar4[-1] == '\x03')))))) {
-            ERR_put_error(4,0x72,0x73,DAT_000fbadc,0x88);
+            ERR_put_error(4,0x72,0x73,"rsa_ssl.c",0x88);
             return -1;
           }
           __n = iVar2 - (iVar3 + 1);
@@ -36,7 +36,7 @@ int RSA_padding_check_SSLv23(uchar *to,int tlen,uchar *f,int fl,int rsa_len)
             memcpy(to,puVar4 + 1,__n);
             return __n;
           }
-          ERR_put_error(4,0x72,0x6d,DAT_000fbadc,0x8f);
+          ERR_put_error(4,0x72,0x6d,"rsa_ssl.c",0x8f);
           return -1;
         }
         break;
@@ -44,10 +44,10 @@ int RSA_padding_check_SSLv23(uchar *to,int tlen,uchar *f,int fl,int rsa_len)
       iVar3 = iVar3 + 1;
       puVar4 = puVar4 + 1;
     } while (iVar2 != iVar3);
-    ERR_put_error(4,0x72,0x71,DAT_000fbadc,0x80);
+    ERR_put_error(4,0x72,0x71,"rsa_ssl.c",0x80);
   }
   else {
-    ERR_put_error(4,0x72,0x6b,DAT_000fbadc,0x74);
+    ERR_put_error(4,0x72,0x6b,"rsa_ssl.c",0x74);
   }
   return -1;
 }

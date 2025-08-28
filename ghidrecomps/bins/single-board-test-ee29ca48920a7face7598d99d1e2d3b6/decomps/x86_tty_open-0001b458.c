@@ -8,7 +8,7 @@ undefined4 x86_tty_open(undefined4 param_1,undefined4 param_2)
   undefined4 local_28;
   undefined4 local_24;
   undefined4 local_20;
-  undefined local_1c;
+  undefined1 local_1c;
   undefined4 local_18;
   undefined4 local_14;
   int local_10;

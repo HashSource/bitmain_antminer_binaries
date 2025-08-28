@@ -11,8 +11,9 @@ void _k_unlink_item(K_LIST *list,K_ITEM *item,char *file,char *func,int line)
   char tmp42 [2048];
   
   if (item->name != list->name) {
-    snprintf(tmp42,0x800,DAT_0001013c,list->name,DAT_00010138,item->name,file,func,line,DAT_00010140
-             ,DAT_00010138,0x138);
+    snprintf(tmp42,0x800,"List %s can\'t %s() a %s item - from %s %s() line %d in %s %s():%d",
+             list->name,"_k_unlink_item",item->name,file,func,line,"klist.c","_k_unlink_item",0x138)
+    ;
     _applog(3,tmp42,true);
     _quit(1);
   }

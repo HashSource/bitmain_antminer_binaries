@@ -1,5 +1,5 @@
 
-/* WARNING: Variable defined which should be unmapped: hash-local */
+/* WARNING: Variable defined which should be unmapped: hash_local */
 
 _Bool eeprom_set_hashrate(uint8_t chain,uint32_t hash)
 

@@ -1,8 +1,8 @@
 
-void get_pic_iic_flash_addr_pointer(uint param_1,undefined *param_2,undefined *param_3)
+void get_pic_iic_flash_addr_pointer(uint param_1,undefined1 *param_2,undefined1 *param_3)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint uVar2;
   uint uVar3;
   

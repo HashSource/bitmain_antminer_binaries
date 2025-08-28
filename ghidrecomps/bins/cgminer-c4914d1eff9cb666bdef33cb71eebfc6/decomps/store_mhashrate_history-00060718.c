@@ -3,8 +3,6 @@ void store_mhashrate_history(double thash)
 
 {
   FILE *pFVar1;
-  int iVar2;
-  undefined8 in_d0;
   double thash_local;
   FILE *pFile_1;
   FILE *pFile;
@@ -26,11 +24,7 @@ void store_mhashrate_history(double thash)
     }
     fclose(pFVar1);
   }
-  iVar2 = thash_index * 8;
-  thash_local._0_4_ = (undefined4)in_d0;
-  thash_local._4_4_ = (undefined4)((ulonglong)in_d0 >> 0x20);
-  *(undefined4 *)(thashrate_array + thash_index) = thash_local._0_4_;
-  *(undefined4 *)((int)thashrate_array + iVar2 + 4) = thash_local._4_4_;
+  thashrate_array[thash_index] = thash;
   store_mhashrate_history::minutes = store_mhashrate_history::minutes + 1;
   length = length + 1;
   if (0x40 < length) {

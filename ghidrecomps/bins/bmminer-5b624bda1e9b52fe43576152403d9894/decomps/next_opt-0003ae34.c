@@ -5,41 +5,34 @@ char * next_opt(char *p,uint *i,uint *len)
 
 {
   char cVar1;
-  uint *puVar2;
-  int *piVar3;
-  char *pcVar4;
-  int iVar5;
-  uint uVar6;
-  int *piVar7;
+  char *pcVar2;
+  uint uVar3;
   
-  piVar3 = DAT_0003aeb4;
-  puVar2 = DAT_0003aeb0;
-  uVar6 = *i;
-  if (uVar6 < *DAT_0003aeb0) {
+  uVar3 = *i;
+  if (uVar3 < opt_count) {
     do {
-      piVar7 = (int *)(*piVar3 + uVar6 * 0x1c);
-      if (piVar7[1] != 8) {
+      if (opt_table[uVar3].type != OPT_SUBTABLE) {
         if (p == (char *)0x0) {
-          iVar5 = *piVar7;
-          uVar6 = 0;
-          cVar1 = *(char *)(iVar5 + 1);
+          pcVar2 = opt_table[uVar3].names;
+          cVar1 = pcVar2[1];
+          uVar3 = 0;
           while ((((cVar1 != '\0' && (cVar1 != '|')) && (cVar1 != '=')) && (cVar1 != ' '))) {
-            uVar6 = uVar6 + 1;
-            cVar1 = *(char *)(iVar5 + uVar6 + 1);
+            cVar1 = pcVar2[uVar3 + 2];
+            uVar3 = uVar3 + 1;
           }
-          *len = uVar6;
-          return (char *)(iVar5 + 1);
+          *len = uVar3;
+          return pcVar2 + 1;
         }
-        pcVar4 = next_name(p,len);
-        if (pcVar4 != (char *)0x0) {
-          return pcVar4;
+        pcVar2 = next_name(p,len);
+        if (pcVar2 != (char *)0x0) {
+          return pcVar2;
         }
-        uVar6 = *i;
+        uVar3 = *i;
         p = (char *)0x0;
       }
-      uVar6 = uVar6 + 1;
-      *i = uVar6;
-    } while (uVar6 < *puVar2);
+      uVar3 = uVar3 + 1;
+      *i = uVar3;
+    } while (uVar3 < opt_count);
   }
   return (char *)0x0;
 }

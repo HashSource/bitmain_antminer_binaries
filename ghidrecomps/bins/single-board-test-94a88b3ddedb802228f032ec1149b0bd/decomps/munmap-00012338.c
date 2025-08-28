@@ -6,7 +6,7 @@ int munmap(void *__addr,size_t __len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_munmap_00194324)();
+  iVar1 = munmap(__addr,__len);
   return iVar1;
 }
 

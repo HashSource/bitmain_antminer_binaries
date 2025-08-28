@@ -11,7 +11,7 @@ int ASN1_sign(undefined1 *i2d,X509_ALGOR *algor1,X509_ALGOR *algor2,ASN1_BIT_STR
   uchar *md;
   int iVar3;
   void *local_48;
-  size_t local_44;
+  uint local_44;
   EVP_MD_CTX EStack_40;
   
   local_44 = 0;
@@ -37,11 +37,11 @@ int ASN1_sign(undefined1 *i2d,X509_ALGOR *algor1,X509_ALGOR *algor2,ASN1_BIT_STR
     if (pAVar2 != (ASN1_OBJECT *)0x0) {
       if (pAVar2->length != 0) goto LAB_00106ac6;
 LAB_00106c28:
-      ERR_put_error(0xd,0x80,0x9a,DAT_00106c3c,0xa9);
+      ERR_put_error(0xd,0x80,0x9a,"a_sign.c",0xa9);
       goto LAB_00106c20;
     }
 LAB_00106c10:
-    ERR_put_error(0xd,0x80,0xa2,DAT_00106c3c,0xa4);
+    ERR_put_error(0xd,0x80,0xa2,"a_sign.c",0xa4);
 LAB_00106c20:
     EVP_MD_CTX_cleanup(&EStack_40);
     return local_44;
@@ -67,13 +67,13 @@ LAB_00106ac6:
     if (pAVar2->length == 0) goto LAB_00106c28;
   }
   cnt = (*(code *)i2d)(data,0);
-  d = CRYPTO_malloc(cnt,DAT_00106c3c,0xae);
+  d = CRYPTO_malloc(cnt,"a_sign.c",0xae);
   len = EVP_PKEY_size(pkey);
   local_44 = len;
-  md = (uchar *)CRYPTO_malloc(len,DAT_00106c3c,0xb0);
+  md = (uchar *)CRYPTO_malloc(len,"a_sign.c",0xb0);
   if (d == (void *)0x0 || md == (uchar *)0x0) {
     local_44 = 0;
-    ERR_put_error(0xd,0x80,0x41,DAT_00106c3c,0xb3);
+    ERR_put_error(0xd,0x80,0x41,"a_sign.c",0xb3);
     EVP_MD_CTX_cleanup(&EStack_40);
     if (d == (void *)0x0) goto LAB_00106b6c;
   }
@@ -84,7 +84,7 @@ LAB_00106ac6:
     if (((iVar3 == 0) || (iVar3 = EVP_DigestUpdate(&EStack_40,d,cnt), iVar3 == 0)) ||
        (iVar3 = EVP_SignFinal(&EStack_40,md,&local_44,pkey), iVar3 == 0)) {
       local_44 = 0;
-      ERR_put_error(0xd,0x80,6,DAT_00106c3c,0xbe);
+      ERR_put_error(0xd,0x80,6,"a_sign.c",0xbe);
     }
     else {
       if (signature->data != (uchar *)0x0) {

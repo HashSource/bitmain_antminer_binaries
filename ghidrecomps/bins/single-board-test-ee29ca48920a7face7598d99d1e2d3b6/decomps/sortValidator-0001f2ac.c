@@ -8,11 +8,11 @@ undefined4 sortValidator(int *param_1,undefined4 param_2)
   int extraout_r1_00;
   int iVar3;
   int iVar4;
-  undefined auStack_1694 [52];
+  undefined1 auStack_1694 [52];
   undefined4 local_1660;
-  undefined auStack_165c [32];
+  undefined1 auStack_165c [32];
   byte abStack_163c [32];
-  undefined auStack_161c [1344];
+  undefined1 auStack_161c [1344];
   undefined4 auStack_10dc [512];
   byte abStack_8dc [32];
   undefined4 local_8bc;
@@ -131,7 +131,7 @@ undefined4 sortValidator(int *param_1,undefined4 param_2)
       else {
         memset(&local_8bc,0,0x1e);
         for (local_3c = 0; local_3c < 9; local_3c = local_3c + 1) {
-          qsort(local_20,local_18,local_7c + local_14,compareSR + 1);
+          qsort(local_20,local_18,local_7c + local_14,(__compar_fn_t)0x1f1e1);
           local_28 = 0;
           for (local_40 = 0; puVar1 = local_20, local_40 < local_18; local_40 = local_40 + 2) {
             for (local_44 = 0; local_44 < local_7c; local_44 = local_44 + 1) {

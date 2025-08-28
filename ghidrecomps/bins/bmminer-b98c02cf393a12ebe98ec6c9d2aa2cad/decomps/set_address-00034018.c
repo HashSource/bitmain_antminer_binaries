@@ -8,7 +8,7 @@ void set_address(int param_1,int param_2,int param_3)
   undefined4 uVar4;
   undefined4 local_830;
   undefined4 local_82c;
-  undefined local_828;
+  undefined1 local_828;
   uint local_824;
   int local_820;
   undefined4 local_81c;
@@ -38,13 +38,13 @@ void set_address(int param_1,int param_2,int param_3)
     uVar4 = 0x81;
     local_830._0_1_ = 0x81;
   }
-  local_830 = (uint)CONCAT11((char)param_3,(undefined)local_830);
+  local_830 = (uint)CONCAT11((char)param_3,(undefined1)local_830);
   uVar2 = CRC5(&local_830,0x1b);
   local_830 = CONCAT13((char)uVar2,(undefined3)local_830);
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
     snprintf(acStack_818,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
-             DAT_00034148,uVar4,param_3,0,uVar2);
+             "set_address",uVar4,param_3,0,uVar2);
     _applog(7,acStack_818,0);
   }
   local_824 = local_830 << 0x18 | (local_830 >> 8 & 0xff) << 0x10 | (local_830 >> 0x10 & 0xff) << 8

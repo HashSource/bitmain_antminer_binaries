@@ -10,9 +10,9 @@ void * ASN1_dup(undefined1 *i2d,undefined1 *d2i,void *x)
   
   if (x != (void *)0x0) {
     iVar1 = (*(code *)i2d)(x,0);
-    ptr = CRYPTO_malloc(iVar1 + 10,DAT_000b5bb4,0x4c);
+    ptr = CRYPTO_malloc(iVar1 + 10,"a_dup.c",0x4c);
     if (ptr == (void *)0x0) {
-      ERR_put_error(0xd,0x6f,0x41,DAT_000b5bb4,0x4e);
+      ERR_put_error(0xd,0x6f,0x41,"a_dup.c",0x4e);
       x = (void *)0x0;
     }
     else {

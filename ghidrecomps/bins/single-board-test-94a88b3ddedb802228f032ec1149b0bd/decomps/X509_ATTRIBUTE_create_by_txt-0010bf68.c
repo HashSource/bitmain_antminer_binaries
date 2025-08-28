@@ -11,8 +11,8 @@ X509_ATTRIBUTE_create_by_txt(X509_ATTRIBUTE **attr,char *atrname,int type,uchar 
   
   o = OBJ_txt2obj(atrname,0);
   if (o == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0xb,0x8c,0x77,DAT_0010c02c,0x116);
-    ERR_add_error_data(2,DAT_0010c030,atrname);
+    ERR_put_error(0xb,0x8c,0x77,"x509_att.c",0x116);
+    ERR_add_error_data(2,"name=",atrname);
     return (X509_ATTRIBUTE *)0x0;
   }
   if ((attr == (X509_ATTRIBUTE **)0x0) || (attr_00 = *attr, attr_00 == (X509_ATTRIBUTE *)0x0)) {

@@ -1,7 +1,7 @@
 
 int asn1_template_ex_d2i
-              (ASN1_VALUE **param_1,char **param_2,undefined4 param_3,ASN1_TEMPLATE *param_4,
-              undefined param_5,undefined4 param_6)
+              (ASN1_VALUE **param_1,undefined4 *param_2,undefined4 param_3,ASN1_TEMPLATE *param_4,
+              undefined1 param_5,undefined4 param_6)
 
 {
   int iVar1;
@@ -15,7 +15,7 @@ int asn1_template_ex_d2i
   if (param_1 == (ASN1_VALUE **)0x0) {
     return 0;
   }
-  local_24 = *param_2;
+  local_24 = (char *)*param_2;
   if ((param_4->flags & 0x10) == 0) {
     iVar1 = asn1_template_noexp_d2i();
     return iVar1;
@@ -29,7 +29,7 @@ int asn1_template_ex_d2i
       return -1;
     }
     if (local_30[0] == '\0') {
-      ERR_put_error(0xd,0x84,0x78,DAT_000bb8bc,0x227);
+      ERR_put_error(0xd,0x84,0x78,"tasn_dec.c",0x227);
       return 0;
     }
     iVar1 = asn1_template_noexp_d2i(param_1,&local_24,local_28,param_4,0,param_6);
@@ -38,7 +38,7 @@ int asn1_template_ex_d2i
       if (local_29 == '\0') {
         pcVar2 = local_24;
         if (local_28 == (char *)0x0) goto LAB_000bb89e;
-        ERR_put_error(0xd,0x84,0x77,DAT_000bb8bc,0x23e);
+        ERR_put_error(0xd,0x84,0x77,"tasn_dec.c",0x23e);
       }
       else {
         if (((1 < (int)local_28) && (*local_24 == '\0')) &&
@@ -47,7 +47,7 @@ LAB_000bb89e:
           *param_2 = pcVar2;
           return 1;
         }
-        ERR_put_error(0xd,0x84,0x89,DAT_000bb8bc,0x235);
+        ERR_put_error(0xd,0x84,0x89,"tasn_dec.c",0x235);
       }
       ASN1_template_free(param_1,param_4);
       return 0;
@@ -55,7 +55,7 @@ LAB_000bb89e:
     line = 0x22d;
     iVar1 = 0;
   }
-  ERR_put_error(0xd,0x84,0x3a,DAT_000bb8bc,line);
+  ERR_put_error(0xd,0x84,0x3a,"tasn_dec.c",line);
   return iVar1;
 }
 

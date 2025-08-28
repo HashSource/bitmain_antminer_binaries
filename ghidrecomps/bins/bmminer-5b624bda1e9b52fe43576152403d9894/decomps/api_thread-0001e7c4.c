@@ -4,10 +4,10 @@
 void * api_thread(void *userdata)
 
 {
-  thr_info *mythr;
+  pthread_t __th;
   
-  mythr = (thr_info *)pthread_self();
-  pthread_detach((pthread_t)mythr);
+  __th = pthread_self();
+  pthread_detach(__th);
   pthread_setcanceltype(1,(int *)0x0);
   RenameThread("API");
   set_lowprio();

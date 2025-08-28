@@ -8,10 +8,9 @@ uchar reset_iic_pic(uchar chain)
   int iVar2;
   
   uVar1 = (uint)chain;
-  if (*DAT_0002fe3c < 0xe) {
-    chain = (uchar)(uVar1 / 3);
-    if ((uVar1 - (uVar1 / 3 + ((uint)((ulonglong)uVar1 * 0xaaaaaaab >> 0x20) & 0xfffffffe)) & 0xff)
-        == 0) goto LAB_0002fe34;
+  if (fpga_version < 0xe) {
+    chain = chain / 3;
+    if (uVar1 % 3 == 0) goto LAB_0002fe34;
   }
   else if (uVar1 - 1 < 3) {
 LAB_0002fe34:

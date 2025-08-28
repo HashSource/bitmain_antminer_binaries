@@ -1,116 +1,111 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void discard_stale(void)
 
 {
-  _Bool _Var1;
-  int iVar2;
-  void *pvVar3;
-  UT_hash_handle *pUVar4;
-  int iVar5;
-  int *piVar6;
-  pthread_mutex_t *in_r2;
-  work *in_r3;
-  void *pvVar7;
-  UT_hash_handle *pUVar8;
-  work *pwVar9;
-  work *tmp;
-  int iVar10;
-  void *pvVar11;
-  int iVar12;
-  UT_hash_handle *_hd_hh_del;
+  work *pwVar1;
+  work *pwVar2;
+  _Bool _Var3;
+  int iVar4;
+  void *pvVar5;
+  UT_hash_handle *pUVar6;
+  work *pwVar7;
+  char *func;
+  char *func_00;
+  int line;
+  UT_hash_bucket *pUVar8;
+  UT_hash_handle *pUVar9;
+  int line_00;
+  work *pwVar10;
+  UT_hash_table *pUVar11;
+  work *pwVar12;
   int iVar13;
   uint uVar14;
   bool bVar15;
-  work *work;
+  work *local_81c;
   char tmp42 [2048];
   
-  iVar5 = DAT_000283c8;
-  iVar2 = pthread_mutex_lock(*(pthread_mutex_t **)(DAT_000283c8 + 0x454));
-  if (iVar2 != 0) {
-    _mutex_lock(DAT_000283d0,(char *)0x149e,in_r2->__size,(int)in_r3);
+  iVar4 = pthread_mutex_lock((pthread_mutex_t *)stgd_lock);
+  if (iVar4 != 0) {
+    _mutex_lock((pthread_mutex_t *)"discard_stale",(char *)0x149e,func,line);
   }
-  work = *(work **)(iVar5 + 0x458);
-  pwVar9 = work;
-  if (work != (work *)0x0) {
-    pwVar9 = (work *)(work->hh).next;
+  local_81c = staged_work;
+  pwVar10 = staged_work;
+  if (staged_work != (work *)0x0) {
+    pwVar10 = (work *)(staged_work->hh).next;
   }
-  iVar2 = 0;
-  if (work != (work *)0x0) {
+  iVar4 = 0;
+  if (staged_work != (work *)0x0) {
     while( true ) {
-      in_r3 = pwVar9;
-      _Var1 = stale_work(work,false);
-      if (_Var1) {
-        pvVar3 = (work->hh).prev;
-        pvVar11 = (work->hh).next;
-        if ((pvVar3 == (void *)0x0) && (pvVar11 == (void *)0x0)) {
-          free(**(void ***)(*(int *)(iVar5 + 0x458) + 0x158));
-          free(*(void **)(*(int *)(iVar5 + 0x458) + 0x158));
-          *(undefined4 *)(iVar5 + 0x458) = 0;
+      _Var3 = stale_work(local_81c,false);
+      pwVar1 = staged_work;
+      if (_Var3) {
+        pvVar5 = (local_81c->hh).prev;
+        pwVar12 = (work *)(local_81c->hh).next;
+        if ((pvVar5 == (void *)0x0) && (pwVar12 == (work *)0x0)) {
+          free(((staged_work->hh).tbl)->buckets);
+          free((staged_work->hh).tbl);
+          staged_work = pwVar12;
         }
         else {
-          pvVar7 = *(void **)(iVar5 + 0x458);
-          iVar10 = *(int *)((int)pvVar7 + 0x158);
-          iVar13 = *(int *)(iVar10 + 0x14);
-          pwVar9 = (work *)(*(int *)(iVar10 + 0x10) - iVar13);
-          bVar15 = work == pwVar9;
+          pUVar11 = (staged_work->hh).tbl;
+          iVar13 = pUVar11->hho;
+          pwVar7 = (work *)((int)pUVar11->tail - iVar13);
+          bVar15 = local_81c == pwVar7;
           if (bVar15) {
-            pwVar9 = (work *)((int)pvVar3 + iVar13);
+            pwVar7 = (work *)((int)pvVar5 + iVar13);
           }
           if (bVar15) {
-            *(work **)(iVar10 + 0x10) = pwVar9;
+            pUVar11->tail = (UT_hash_handle *)pwVar7;
           }
-          if (pvVar3 == (void *)0x0) {
-            *(void **)(iVar5 + 0x458) = pvVar11;
-            pvVar7 = pvVar11;
+          pwVar7 = pwVar12;
+          pwVar2 = pwVar12;
+          if (pvVar5 != (void *)0x0) {
+            *(work **)((int)pvVar5 + iVar13 + 8) = pwVar12;
+            pwVar12 = pwVar1;
+            pwVar7 = (work *)(local_81c->hh).next;
+            pwVar2 = staged_work;
           }
-          else {
-            *(void **)((int)pvVar3 + iVar13 + 8) = pvVar11;
-            pvVar11 = pvVar7;
-            pvVar7 = (work->hh).next;
+          staged_work = pwVar2;
+          pUVar11 = (pwVar12->hh).tbl;
+          if (pwVar7 != (work *)0x0) {
+            *(void **)(pwVar7->data + pUVar11->hho + 4) = pvVar5;
           }
-          piVar6 = *(int **)((int)pvVar11 + 0x158);
-          if (pvVar7 != (void *)0x0) {
-            *(void **)((int)pvVar7 + piVar6[5] + 4) = pvVar3;
+          pUVar8 = pUVar11->buckets;
+          uVar14 = pUVar11->num_buckets - 1 & (local_81c->hh).hashv;
+          pUVar6 = (local_81c->hh).hh_next;
+          if (pUVar8[uVar14].hh_head == &local_81c->hh) {
+            pUVar8[uVar14].hh_head = pUVar6;
           }
-          iVar10 = *piVar6;
-          uVar14 = piVar6[1] - 1U & (work->hh).hashv;
-          iVar12 = iVar10 + uVar14 * 0xc;
-          iVar13 = *(int *)(iVar12 + 4);
-          pUVar4 = (work->hh).hh_next;
-          if ((UT_hash_handle *)*(undefined **)(iVar10 + uVar14 * 0xc) == &work->hh) {
-            *(UT_hash_handle **)(iVar10 + uVar14 * 0xc) = pUVar4;
+          pUVar9 = (local_81c->hh).hh_prev;
+          pUVar8[uVar14].count = pUVar8[uVar14].count - 1;
+          if (pUVar9 != (UT_hash_handle *)0x0) {
+            pUVar9->hh_next = pUVar6;
+            pUVar6 = (local_81c->hh).hh_next;
           }
-          pUVar8 = (work->hh).hh_prev;
-          *(int *)(iVar12 + 4) = iVar13 + -1;
-          if (pUVar8 != (UT_hash_handle *)0x0) {
-            pUVar8->hh_next = pUVar4;
-            pUVar4 = (work->hh).hh_next;
+          if (pUVar6 != (UT_hash_handle *)0x0) {
+            pUVar6->hh_prev = pUVar9;
           }
-          if (pUVar4 != (UT_hash_handle *)0x0) {
-            pUVar4->hh_prev = pUVar8;
-          }
-          piVar6[3] = piVar6[3] + -1;
+          pUVar11->num_items = pUVar11->num_items - 1;
         }
-        iVar2 = iVar2 + 1;
-        in_r2 = DAT_000283d0;
-        _discard_work(&work,DAT_000283cc,DAT_000283d0->__size,0x14a5);
+        iVar4 = iVar4 + 1;
+        _discard_work(&local_81c,"cgminer.c","discard_stale",0x14a5);
       }
-      work = in_r3;
-      if (in_r3 == (work *)0x0) break;
-      pwVar9 = (work *)(in_r3->hh).next;
+      local_81c = pwVar10;
+      if (pwVar10 == (work *)0x0) break;
+      pwVar10 = (work *)(pwVar10->hh).next;
     }
   }
-  pthread_cond_signal(DAT_000283d4);
-  iVar5 = pthread_mutex_unlock(*(pthread_mutex_t **)(iVar5 + 0x454));
-  if (iVar5 != 0) {
-    _mutex_unlock_noyield(DAT_000283d0,(char *)0x14ab,in_r2->__size,(int)in_r3);
+  pthread_cond_signal((pthread_cond_t *)&gws_cond);
+  iVar13 = pthread_mutex_unlock((pthread_mutex_t *)stgd_lock);
+  if (iVar13 != 0) {
+    _mutex_unlock_noyield((pthread_mutex_t *)"discard_stale",(char *)0x14ab,func_00,line_00);
   }
-  (**DAT_000283d8)();
-  if (((iVar2 != 0) && (*DAT_000283dc != '\0')) &&
-     ((*DAT_000283e0 != '\0' || ((*DAT_000283e4 != '\0' || (6 < *DAT_000283ec)))))) {
-    snprintf(tmp42,0x800,DAT_000283e8,iVar2);
+  (*selective_yield)();
+  if (((iVar4 != 0) && (opt_debug != false)) &&
+     ((use_syslog != false || ((opt_log_output != false || (6 < opt_log_level)))))) {
+    snprintf(tmp42,0x800,"Discarded %d stales that didn\'t match current hash",iVar4);
     _applog(7,tmp42,false);
   }
   return;

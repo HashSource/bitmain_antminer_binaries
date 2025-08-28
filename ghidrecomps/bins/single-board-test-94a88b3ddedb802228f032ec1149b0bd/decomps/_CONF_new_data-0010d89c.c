@@ -10,7 +10,7 @@ int _CONF_new_data(CONF *conf)
   if (conf->data != (lhash_st_CONF_VALUE *)0x0) {
     return 1;
   }
-  p_Var1 = lh_new(DAT_0010d8c4,DAT_0010d8c0);
+  p_Var1 = lh_new((LHASH_HASH_FN_TYPE)0x10d76d,(LHASH_COMP_FN_TYPE)0x10d735);
   conf->data = (lhash_st_CONF_VALUE *)p_Var1;
   if (p_Var1 != (_LHASH *)0x0) {
     p_Var1 = (_LHASH *)0x1;

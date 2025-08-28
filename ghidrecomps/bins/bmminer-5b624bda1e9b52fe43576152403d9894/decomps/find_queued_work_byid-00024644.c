@@ -5,37 +5,32 @@ work * find_queued_work_byid(cgpu_info *cgpu,uint id)
 
 {
   work *pwVar1;
-  work *pwVar2;
-  int iVar3;
-  work *in_r2;
-  int in_r3;
-  work *line;
-  work *work;
-  work *tmp;
+  int iVar2;
+  char *func;
+  uint uVar3;
+  char *func_00;
+  int line;
   work *pwVar4;
+  int line_00;
   
-  iVar3 = pthread_rwlock_rdlock((pthread_rwlock_t *)&cgpu->qlock);
-  if (iVar3 != 0) {
-    _rd_lock(DAT_000246b0,(char *)0x24bd,(char *)in_r2,in_r3);
+  iVar2 = pthread_rwlock_rdlock((pthread_rwlock_t *)&cgpu->qlock);
+  if (iVar2 != 0) {
+    _rd_lock((pthread_rwlock_t *)"find_queued_work_byid",(char *)0x24bd,func,line);
   }
-  line = cgpu->queued_work;
-  pwVar4 = line;
-  if (line != (work *)0x0) {
-    in_r2 = (work *)line->id;
-    pwVar1 = (work *)(line->hh).next;
-    pwVar2 = in_r2;
-    while (((work *)id != pwVar2 && (pwVar4 = pwVar1, pwVar1 != (work *)0x0))) {
-      line = (work *)pwVar1->id;
-      in_r2 = (work *)(pwVar1->hh).next;
-      pwVar2 = line;
-      pwVar1 = in_r2;
+  pwVar4 = cgpu->queued_work;
+  if (pwVar4 != (work *)0x0) {
+    uVar3 = pwVar4->id;
+    for (pwVar1 = (work *)(pwVar4->hh).next;
+        (id != uVar3 && (pwVar4 = pwVar1, pwVar1 != (work *)0x0));
+        pwVar1 = (work *)(pwVar1->hh).next) {
+      uVar3 = pwVar1->id;
     }
   }
-  iVar3 = pthread_rwlock_unlock((pthread_rwlock_t *)&cgpu->qlock);
-  if (iVar3 != 0) {
-    _rw_unlock(DAT_000246b0,(char *)0x24bf,(char *)in_r2,(int)line);
+  iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)&cgpu->qlock);
+  if (iVar2 != 0) {
+    _rw_unlock((pthread_rwlock_t *)"find_queued_work_byid",(char *)0x24bf,func_00,line_00);
   }
-  (**DAT_000246ac)();
+  (*selective_yield)();
   return pwVar4;
 }
 

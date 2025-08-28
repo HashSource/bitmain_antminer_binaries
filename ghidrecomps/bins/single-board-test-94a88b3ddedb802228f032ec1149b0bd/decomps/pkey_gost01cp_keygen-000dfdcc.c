@@ -8,7 +8,7 @@ undefined4 pkey_gost01cp_keygen(EVP_PKEY_CTX *param_1,EVP_PKEY *param_2)
   
   piVar1 = (int *)EVP_PKEY_CTX_get_data(param_1);
   if (*piVar1 == 0) {
-    ERR_GOST_error(0x8a,0x77,DAT_000dfe20,0x117);
+    ERR_GOST_error(0x8a,0x77,"gost_pmeth.c",0x117);
     return 0;
   }
   key = EC_KEY_new();

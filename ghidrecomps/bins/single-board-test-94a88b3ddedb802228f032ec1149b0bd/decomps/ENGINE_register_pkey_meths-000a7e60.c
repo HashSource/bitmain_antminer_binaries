@@ -10,7 +10,7 @@ int ENGINE_register_pkey_meths(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7e94,DAT_000a7e90,e,local_14[0],iVar1,0);
+    iVar1 = engine_table_register(&pkey_meth_table,0xa7e45,e,local_14[0],iVar1,0);
   }
   return iVar1;
 }

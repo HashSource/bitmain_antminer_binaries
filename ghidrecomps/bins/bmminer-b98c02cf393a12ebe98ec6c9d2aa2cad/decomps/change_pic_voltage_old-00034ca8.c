@@ -3,41 +3,37 @@ void change_pic_voltage_old(void)
 
 {
   byte bVar1;
-  byte *pbVar2;
-  pthread_mutex_t *__mutex;
-  byte bVar3;
-  byte *pbVar4;
-  uint uVar5;
+  byte bVar2;
+  undefined1 *puVar3;
+  uint uVar4;
   
-  __mutex = DAT_00034d44;
-  pbVar2 = DAT_00034d40;
-  uVar5 = 0;
+  puVar3 = chain_voltage_pic;
+  uVar4 = 0;
   sleep(300);
-  pbVar4 = pbVar2;
   do {
-    if (*(int *)(dev + (uVar5 + 2) * 4) != 0) {
-      bVar3 = pbVar2[0x10];
-      bVar1 = *pbVar4;
-      if (bVar3 <= bVar1) {
+    if (*(int *)(dev + (uVar4 + 2) * 4) != 0) {
+      bVar1 = *puVar3;
+      if (de_voltage <= bVar1) {
+        bVar2 = de_voltage;
         do {
-          bVar3 = bVar3 + 5;
-          if (bVar1 <= bVar3) {
-            bVar3 = bVar1;
+          bVar2 = bVar2 + 5;
+          if (bVar1 <= bVar2) {
+            bVar2 = bVar1;
           }
-          pthread_mutex_lock(__mutex);
-          pthread_mutex_unlock(__mutex);
-          pthread_mutex_lock(__mutex);
-          write_EEPROM_iic(1,1,0x90,uVar5 & 0xff,0);
-          pthread_mutex_unlock(__mutex);
-          if (*pbVar4 == bVar3) break;
+          pthread_mutex_lock((pthread_mutex_t *)iic_mutex);
+          pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
+          pthread_mutex_lock((pthread_mutex_t *)iic_mutex);
+          write_EEPROM_iic(1,1,0x90,uVar4 & 0xff,0);
+          pthread_mutex_unlock((pthread_mutex_t *)iic_mutex);
+          if (*puVar3 == bVar2) break;
           cgsleep_ms(100);
-          bVar1 = *pbVar4;
-        } while (bVar3 <= bVar1);
+          bVar1 = *puVar3;
+        } while (bVar2 <= bVar1);
       }
     }
-    uVar5 = uVar5 + 1;
-    pbVar4 = pbVar4 + 1;
-    if (uVar5 == 0x10) {
+    uVar4 = uVar4 + 1;
+    puVar3 = puVar3 + 1;
+    if (uVar4 == 0x10) {
       return;
     }
   } while( true );

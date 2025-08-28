@@ -4,7 +4,7 @@
 void abort(void)
 
 {
-  (*(code *)PTR_abort_000a8280)();
-  return;
+                    /* WARNING: Subroutine does not return */
+  abort();
 }
 

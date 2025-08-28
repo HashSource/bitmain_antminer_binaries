@@ -6,7 +6,7 @@ char * strdup(char *__s)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strdup_000a80a8)();
+  pcVar1 = strdup(__s);
   return pcVar1;
 }
 

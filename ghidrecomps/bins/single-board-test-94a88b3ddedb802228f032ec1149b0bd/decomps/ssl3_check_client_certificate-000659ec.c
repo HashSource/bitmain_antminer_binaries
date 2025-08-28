@@ -6,15 +6,16 @@ undefined4 ssl3_check_client_certificate(int param_1)
   int iVar2;
   EVP_PKEY *b;
   int *piVar3;
-  int **ppiVar4;
+  undefined4 *puVar4;
   EVP_PKEY *pkey;
   int iVar5;
   int iVar6;
   
-  ppiVar4 = *(int ***)(param_1 + 0x98);
-  if (((((ppiVar4 == (int **)0x0) || (piVar3 = *ppiVar4, *piVar3 == 0)) || (piVar3[1] == 0)) ||
+  puVar4 = *(undefined4 **)(param_1 + 0x98);
+  if (((((puVar4 == (undefined4 *)0x0) || (piVar3 = (int *)*puVar4, *piVar3 == 0)) ||
+       (piVar3[1] == 0)) ||
       ((*(int *)(*(int *)(*(int *)(param_1 + 8) + 100) + 0x38) << 0x1e < 0 && (piVar3[2] == 0)))) ||
-     ((((uint)ppiVar4[0xe] & 0x30001) != 0 &&
+     (((puVar4[0xe] & 0x30001) != 0 &&
       (iVar2 = tls1_check_chain(param_1,0,0,0,0xfffffffe), iVar2 == 0)))) {
 LAB_00065a80:
     uVar1 = 0;

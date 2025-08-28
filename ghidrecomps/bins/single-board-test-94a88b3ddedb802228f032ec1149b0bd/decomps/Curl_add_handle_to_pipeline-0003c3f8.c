@@ -20,7 +20,7 @@ Curl_add_handle_to_pipeline(undefined4 param_1,int param_2,undefined4 param_3,un
   }
   if ((puVar3 == *(undefined4 **)(param_2 + 600)) && ((undefined4 *)*puVar3 != puVar5)) {
     uVar2 = *(undefined4 *)*puVar3;
-    *(undefined *)(param_2 + 0x255) = 0;
+    *(undefined1 *)(param_2 + 0x255) = 0;
     Curl_expire(uVar2,1);
     return uVar4;
   }

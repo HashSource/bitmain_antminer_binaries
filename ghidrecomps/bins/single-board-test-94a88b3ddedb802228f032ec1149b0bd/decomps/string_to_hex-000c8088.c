@@ -16,15 +16,15 @@ uchar * string_to_hex(char *str,long *len)
   byte *pbVar11;
   
   if (str == (char *)0x0) {
-    ERR_put_error(0x22,0x71,0x6b,DAT_000c81ac,0x1ba);
+    ERR_put_error(0x22,0x71,0x6b,"v3_utl.c",0x1ba);
     ptr = (byte *)0x0;
   }
   else {
     sVar2 = strlen(str);
-    ptr = (byte *)CRYPTO_malloc((int)sVar2 >> 1,DAT_000c81ac,0x1bd);
+    ptr = (byte *)CRYPTO_malloc((int)sVar2 >> 1,"v3_utl.c",0x1bd);
     pbVar11 = ptr;
     if (ptr == (byte *)0x0) {
-      ERR_put_error(0x22,0x71,0x41,DAT_000c81ac,0x1ed);
+      ERR_put_error(0x22,0x71,0x41,"v3_utl.c",0x1ed);
     }
     else {
       while( true ) {
@@ -37,7 +37,7 @@ uchar * string_to_hex(char *str,long *len)
           bVar1 = pbVar5[1];
           uVar8 = (uint)bVar1;
           if (uVar8 == 0) {
-            ERR_put_error(0x22,0x71,0x70,DAT_000c81ac,0x1cb);
+            ERR_put_error(0x22,0x71,0x70,"v3_utl.c",0x1cb);
             CRYPTO_free(ptr);
             return (uchar *)0x0;
           }
@@ -61,7 +61,7 @@ uchar * string_to_hex(char *str,long *len)
             if (5 < uVar8 - 0x61) {
 LAB_000c8162:
               CRYPTO_free(ptr);
-              ERR_put_error(0x22,0x71,0x71,DAT_000c81ac,0x1f2);
+              ERR_put_error(0x22,0x71,0x71,"v3_utl.c",0x1f2);
               return (uchar *)0x0;
             }
             bVar6 = (char)uVar8 + 0xa9;

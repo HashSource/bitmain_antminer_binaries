@@ -15,12 +15,12 @@ undefined4 rtsp_done(int *param_1,undefined4 param_2,undefined4 param_3,undefine
   if (iVar3 != 0) {
     if (*(int *)(iVar2 + 0x40c) == 0xb) {
       if (param_1[0xf2] == -1) {
-        Curl_infof(iVar2,DAT_00053170,*(int *)(iVar3 + 100));
+        Curl_infof(iVar2,"Got an RTP Receive with a CSeq of %ld\n",*(int *)(iVar3 + 100));
       }
     }
     else if (*(int *)(iVar3 + 0x60) != *(int *)(iVar3 + 100)) {
       uVar1 = 0x55;
-      Curl_failf(iVar2,DAT_0005316c);
+      Curl_failf(iVar2,"The CSeq of this request %ld did not match the response %ld");
     }
   }
   return uVar1;

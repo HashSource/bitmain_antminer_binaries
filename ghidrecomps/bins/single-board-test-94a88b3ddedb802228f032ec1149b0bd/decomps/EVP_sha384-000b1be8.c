@@ -4,6 +4,6 @@
 EVP_MD * EVP_sha384(void)
 
 {
-  return DAT_000b1bec;
+  return (EVP_MD *)sha384_md;
 }
 

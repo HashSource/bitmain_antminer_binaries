@@ -2,25 +2,20 @@
 int X509_VERIFY_PARAM_add0_table(X509_VERIFY_PARAM *param)
 
 {
-  _STACK **pp_Var1;
-  int iVar2;
-  _STACK *st;
+  int iVar1;
   undefined4 *ptr;
-  _STACK **pp_Var3;
+  undefined4 *puVar2;
   
-  pp_Var1 = DAT_000c64b4;
-  if (*DAT_000c64b4 == (_STACK *)0x0) {
-    st = sk_new(DAT_000c64c0);
-    *pp_Var1 = st;
-    if (st == (_STACK *)0x0) {
+  if (param_table == (_STACK *)0x0) {
+    param_table = sk_new((cmp *)0xc5c8d);
+    if (param_table == (_STACK *)0x0) {
       return 0;
     }
   }
   else {
-    iVar2 = sk_find(*DAT_000c64b4,param);
-    st = *pp_Var1;
-    if (iVar2 != -1) {
-      ptr = (undefined4 *)sk_value(st,iVar2);
+    iVar1 = sk_find(param_table,param);
+    if (iVar1 != -1) {
+      ptr = (undefined4 *)sk_value(param_table,iVar1);
       if (ptr != (undefined4 *)0x0) {
         *ptr = 0;
         ptr[4] = 0;
@@ -29,38 +24,37 @@ int X509_VERIFY_PARAM_add0_table(X509_VERIFY_PARAM *param)
         ptr[3] = 0;
         ptr[6] = 0xffffffff;
         if ((_STACK *)ptr[7] != (_STACK *)0x0) {
-          sk_pop_free((_STACK *)ptr[7],DAT_000c64b8);
+          sk_pop_free((_STACK *)ptr[7],(func *)0xb543d);
           ptr[7] = 0;
         }
-        pp_Var3 = (_STACK **)ptr[8];
-        if (*pp_Var3 != (_STACK *)0x0) {
-          sk_pop_free(*pp_Var3,DAT_000c64bc);
-          *pp_Var3 = (_STACK *)0x0;
+        puVar2 = (undefined4 *)ptr[8];
+        if ((_STACK *)*puVar2 != (_STACK *)0x0) {
+          sk_pop_free((_STACK *)*puVar2,(func *)0xc5c99);
+          *puVar2 = 0;
         }
-        if (pp_Var3[2] != (_STACK *)0x0) {
-          CRYPTO_free(pp_Var3[2]);
+        if ((void *)puVar2[2] != (void *)0x0) {
+          CRYPTO_free((void *)puVar2[2]);
         }
-        if (pp_Var3[3] != (_STACK *)0x0) {
-          CRYPTO_free(pp_Var3[3]);
-          pp_Var3[3] = (_STACK *)0x0;
-          pp_Var3[4] = (_STACK *)0x0;
+        if ((void *)puVar2[3] != (void *)0x0) {
+          CRYPTO_free((void *)puVar2[3]);
+          puVar2[3] = 0;
+          puVar2[4] = 0;
         }
-        if (pp_Var3[5] != (_STACK *)0x0) {
-          CRYPTO_free(pp_Var3[5]);
-          pp_Var3[5] = (_STACK *)0x0;
-          pp_Var3[6] = (_STACK *)0x0;
+        if ((void *)puVar2[5] != (void *)0x0) {
+          CRYPTO_free((void *)puVar2[5]);
+          puVar2[5] = 0;
+          puVar2[6] = 0;
         }
         CRYPTO_free((void *)ptr[8]);
         CRYPTO_free(ptr);
       }
-      sk_delete(*pp_Var1,iVar2);
-      st = *pp_Var1;
+      sk_delete(param_table,iVar1);
     }
   }
-  iVar2 = sk_push(st,param);
-  if (iVar2 != 0) {
-    iVar2 = 1;
+  iVar1 = sk_push(param_table,param);
+  if (iVar1 != 0) {
+    iVar1 = 1;
   }
-  return iVar2;
+  return iVar1;
 }
 

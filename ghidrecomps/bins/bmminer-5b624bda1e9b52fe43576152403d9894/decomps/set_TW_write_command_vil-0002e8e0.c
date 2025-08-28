@@ -4,22 +4,20 @@
 void set_TW_write_command_vil(uint *value)
 
 {
-  int iVar1;
+  uint *puVar1;
   int iVar2;
   
-  pthread_mutex_lock(DAT_0002e918);
+  pthread_mutex_lock((pthread_mutex_t *)&fpga_mutex);
+  puVar1 = axi_fpga_addr;
   iVar2 = 1;
-  iVar1 = *(int *)(DAT_0002e91c + 0x8d4);
   do {
     if (iVar2 == 1) {
-      *(uint *)(iVar1 + 0x40) = *value;
+      puVar1[0x10] = *value;
     }
     else {
-      *(uint *)(iVar1 + 0x44) = value[iVar2 + -1];
+      puVar1[0x11] = value[iVar2 + -1];
       if (iVar2 == 0xd) {
-                    /* WARNING: Could not recover jumptable at 0x0000a2c8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-        (*(code *)PTR_LAB_0005f228)(DAT_0002e918);
+        (*(code *)(undefined *)0x0)(&fpga_mutex);
         return;
       }
     }

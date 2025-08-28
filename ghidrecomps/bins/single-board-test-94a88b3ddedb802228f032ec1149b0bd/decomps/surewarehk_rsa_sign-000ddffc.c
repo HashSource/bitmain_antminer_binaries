@@ -5,75 +5,85 @@ int surewarehk_rsa_sign(undefined4 param_1,undefined4 param_2,undefined4 param_3
 {
   void *pvVar1;
   int iVar2;
-  int iVar3;
-  int iStack_64;
-  undefined4 local_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  undefined4 local_50;
-  undefined4 local_4c;
-  undefined4 local_48;
-  undefined4 local_44;
-  undefined4 local_40;
-  undefined4 local_3c;
-  undefined4 local_38;
-  undefined4 local_34;
-  undefined4 local_30;
-  undefined4 local_2c;
-  undefined4 local_28;
-  undefined4 local_24;
+  int local_64;
+  char local_60 [64];
   
-  iVar3 = DAT_000de0f8;
-  local_60 = *DAT_000de0ec;
-  uStack_5c = DAT_000de0ec[1];
-  uStack_58 = DAT_000de0ec[2];
-  uStack_54 = DAT_000de0ec[3];
-  local_50 = 0;
-  local_4c = 0;
-  local_48 = 0;
-  local_44 = 0;
-  local_40 = 0;
-  local_3c = 0;
-  local_38 = 0;
-  local_34 = 0;
-  local_30 = 0;
-  local_2c = 0;
-  local_28 = 0;
-  local_24 = 0;
-  if (*(int *)(DAT_000de0f8 + 0x38) == 0) {
-    iVar2 = *(int *)(DAT_000de0f8 + 4);
-    if (iVar2 == 0) {
-      iVar2 = ERR_get_next_error_library();
-      *(int *)(iVar3 + 4) = iVar2;
+  local_60[0x10] = '\0';
+  local_60[0x11] = '\0';
+  local_60[0x12] = '\0';
+  local_60[0x13] = '\0';
+  local_60[0x14] = '\0';
+  local_60[0x15] = '\0';
+  local_60[0x16] = '\0';
+  local_60[0x17] = '\0';
+  local_60[0x18] = '\0';
+  local_60[0x19] = '\0';
+  local_60[0x1a] = '\0';
+  local_60[0x1b] = '\0';
+  local_60[0x1c] = '\0';
+  local_60[0x1d] = '\0';
+  local_60[0x1e] = '\0';
+  local_60[0x1f] = '\0';
+  local_60[0x20] = '\0';
+  local_60[0x21] = '\0';
+  local_60[0x22] = '\0';
+  local_60[0x23] = '\0';
+  local_60[0x24] = '\0';
+  local_60[0x25] = '\0';
+  local_60[0x26] = '\0';
+  local_60[0x27] = '\0';
+  local_60[0x28] = '\0';
+  local_60[0x29] = '\0';
+  local_60[0x2a] = '\0';
+  local_60[0x2b] = '\0';
+  local_60[0x2c] = '\0';
+  local_60[0x2d] = '\0';
+  local_60[0x2e] = '\0';
+  local_60[0x2f] = '\0';
+  local_60[0x30] = '\0';
+  local_60[0x31] = '\0';
+  local_60[0x32] = '\0';
+  local_60[0x33] = '\0';
+  local_60[0x34] = '\0';
+  local_60[0x35] = '\0';
+  local_60[0x36] = '\0';
+  local_60[0x37] = '\0';
+  local_60[0x38] = '\0';
+  local_60[0x39] = '\0';
+  local_60[0x3a] = '\0';
+  local_60[0x3b] = '\0';
+  local_60[0x3c] = '\0';
+  local_60[0x3d] = '\0';
+  local_60[0x3e] = '\0';
+  local_60[0x3f] = '\0';
+  builtin_strncpy(local_60,"ENGINE_rsa_sign",0x10);
+  if (p_surewarehk_Rsa_Sign == (code *)0x0) {
+    if (SUREWARE_lib_error_code == 0) {
+      SUREWARE_lib_error_code = ERR_get_next_error_library();
     }
-    ERR_put_error(iVar2,0x6f,0x75,DAT_000de0f4,0x3df);
+    ERR_put_error(SUREWARE_lib_error_code,0x6f,0x75,"e_sureware.c",0x3df);
   }
   else {
-    pvVar1 = RSA_get_ex_data(param_4,*(int *)(DAT_000de0f0 + 0xd4));
+    pvVar1 = RSA_get_ex_data(param_4,rsaHndidx);
     if (pvVar1 == (void *)0x0) {
-      iVar2 = *(int *)(iVar3 + 4);
-      if (iVar2 == 0) {
-        iVar2 = ERR_get_next_error_library();
-        *(int *)(iVar3 + 4) = iVar2;
+      if (SUREWARE_lib_error_code == 0) {
+        SUREWARE_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error(iVar2,0x6f,0x69,DAT_000de0f4,0x3e4);
+      ERR_put_error(SUREWARE_lib_error_code,0x6f,0x69,"e_sureware.c",0x3e4);
     }
     else {
       if (param_5 == 1) {
-        iVar3 = (**(code **)(iVar3 + 0x38))(&local_60,param_1,param_2,&iStack_64,param_3,pvVar1,1);
-        surewarehk_error_handling(&local_60,0x6f,iVar3);
-        if (iVar3 != 1) {
-          return iVar3;
+        iVar2 = (*p_surewarehk_Rsa_Sign)(local_60,param_1,param_2,&local_64,param_3,pvVar1,1);
+        surewarehk_error_handling(local_60,0x6f,iVar2);
+        if (iVar2 != 1) {
+          return iVar2;
         }
-        return iStack_64;
+        return local_64;
       }
-      iVar2 = *(int *)(iVar3 + 4);
-      if (iVar2 == 0) {
-        iVar2 = ERR_get_next_error_library();
-        *(int *)(iVar3 + 4) = iVar2;
+      if (SUREWARE_lib_error_code == 0) {
+        SUREWARE_lib_error_code = ERR_get_next_error_library();
       }
-      ERR_put_error(iVar2,0x6f,0x6b,DAT_000de0f4,0x3f1);
+      ERR_put_error(SUREWARE_lib_error_code,0x6f,0x6b,"e_sureware.c",0x3f1);
     }
   }
   return 0;

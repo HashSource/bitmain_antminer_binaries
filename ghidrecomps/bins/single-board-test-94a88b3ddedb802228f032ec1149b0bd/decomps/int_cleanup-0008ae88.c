@@ -2,28 +2,21 @@
 void int_cleanup(void)
 
 {
-  _LHASH **pp_Var1;
-  _LHASH *p_Var2;
-  
-  pp_Var1 = DAT_0008aee8;
-  p_Var2 = *DAT_0008aee8;
-  if (p_Var2 == (_LHASH *)0x0) {
-    CRYPTO_lock(9,2,DAT_0008aef0,0x116);
-    if (*pp_Var1 == (_LHASH *)0x0) {
-      p_Var2 = lh_new(DAT_0008aef4,DAT_0008aef8);
-      *pp_Var1 = p_Var2;
-      if (p_Var2 == (_LHASH *)0x0) {
-        CRYPTO_lock(10,2,DAT_0008aef0,0x119);
+  if (ex_data == (_LHASH *)0x0) {
+    CRYPTO_lock(9,2,"ex_data.c",0x116);
+    if (ex_data == (_LHASH *)0x0) {
+      ex_data = lh_new((LHASH_HASH_FN_TYPE)0x8ae41,(LHASH_COMP_FN_TYPE)0x8ae45);
+      if (ex_data == (_LHASH *)0x0) {
+        CRYPTO_lock(10,2,"ex_data.c",0x119);
         return;
       }
     }
-    CRYPTO_lock(10,2,DAT_0008aef0,0x119);
-    p_Var2 = *pp_Var1;
+    CRYPTO_lock(10,2,"ex_data.c",0x119);
   }
-  lh_doall(p_Var2,DAT_0008aeec);
-  lh_free(*pp_Var1);
-  *pp_Var1 = (_LHASH *)0x0;
-  pp_Var1[1] = (_LHASH *)0x0;
+  lh_doall(ex_data,(LHASH_DOALL_FN_TYPE)0x8aefd);
+  lh_free(ex_data);
+  ex_data = (_LHASH *)0x0;
+  impl = 0;
   return;
 }
 

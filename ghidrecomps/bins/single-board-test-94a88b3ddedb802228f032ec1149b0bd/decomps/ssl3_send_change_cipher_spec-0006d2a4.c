@@ -8,7 +8,7 @@ undefined4 ssl3_send_change_cipher_spec(undefined4 *param_1,int param_2,undefine
   if (param_1[0xd] == param_2) {
     uVar1 = 1;
     iVar2 = 0;
-    **(undefined **)(param_1[0xf] + 4) = 1;
+    **(undefined1 **)(param_1[0xf] + 4) = 1;
     param_1[0x11] = 1;
     param_1[0xd] = param_3;
     param_1[0x12] = 0;

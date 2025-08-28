@@ -1,26 +1,20 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable value1_1:json_t *[r0:4] conflicts with parameter, skipped.
-   Local variable value2_1:json_t *[r1:4] conflicts with parameter, skipped. */
 
 int json_equal(json_t *json1,json_t *json2)
 
 {
   void *pvVar1;
-  char *key_00;
   char *key;
-  json_t *value2;
   int iVar2;
   json_t *pjVar3;
   json_t *pjVar4;
   uint uVar5;
   json_type jVar6;
   json_type jVar7;
-  json_array_t *array_1;
   json_array_t *array;
   size_t size;
   size_t sVar8;
-  json_t *value1;
   
   if (json1 == (json_t *)0x0 || json2 == (json_t *)0x0) {
     return 0;
@@ -36,19 +30,19 @@ int json_equal(json_t *json1,json_t *json2)
         return 0;
       }
       pvVar1 = json_object_iter(json1);
-      key_00 = json_object_iter_key(pvVar1);
-      while (key_00 != (char *)0x0) {
-        pjVar3 = json_object_iter_value(key_00 + -0x10);
+      key = json_object_iter_key(pvVar1);
+      while (key != (char *)0x0) {
+        pjVar3 = json_object_iter_value(key + -0x10);
         if (pjVar3 == (json_t *)0x0) {
           return 1;
         }
-        pjVar4 = json_object_get(json2,key_00);
+        pjVar4 = json_object_get(json2,key);
         iVar2 = json_equal(pjVar3,pjVar4);
         if (iVar2 == 0) {
           return 0;
         }
-        pvVar1 = json_object_iter_next(json1,key_00 + -0x10);
-        key_00 = json_object_iter_key(pvVar1);
+        pvVar1 = json_object_iter_next(json1,key + -0x10);
+        key = json_object_iter_key(pvVar1);
       }
     }
     else {

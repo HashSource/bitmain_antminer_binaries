@@ -34,7 +34,7 @@ int pub_encode_gost94(X509_PUBKEY *param_1,EVP_PKEY *param_2)
     iVar8 = iVar3 + 7;
   }
   iVar8 = iVar8 >> 3;
-  to = (uchar *)CRYPTO_malloc(iVar8,DAT_0011630c,0x288);
+  to = (uchar *)CRYPTO_malloc(iVar8,"gost_ameth.c",0x288);
   BN_bn2bin(*(BIGNUM **)((int)pvVar1 + 0x18),to);
   str = ASN1_OCTET_STRING_new();
   ASN1_STRING_set(str,(void *)0x0,iVar8);

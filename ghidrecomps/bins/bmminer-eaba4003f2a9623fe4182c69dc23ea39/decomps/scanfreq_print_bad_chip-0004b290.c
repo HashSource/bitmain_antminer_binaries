@@ -46,32 +46,15 @@ void scanfreq_print_bad_chip(int chain)
       }
       if ((0 < bad_core) &&
          (((use_syslog != false || (opt_log_output != false)) || (4 < opt_log_level)))) {
-        tmp42._0_3_ = (undefined3)DAT_0007854c;
+        tmp42[0] = '\n';
+        tmp42[1] = '\n';
+        tmp42[2] = '\0';
         _applog(5,tmp42,false);
       }
     }
   }
   if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-    tmp42[0] = s_nonce_<_180_chips:_000787c8[0];
-    tmp42[1] = s_nonce_<_180_chips:_000787c8[1];
-    tmp42[2] = s_nonce_<_180_chips:_000787c8[2];
-    tmp42[3] = s_nonce_<_180_chips:_000787c8[3];
-    tmp42[4] = s_nonce_<_180_chips:_000787c8[4];
-    tmp42[5] = s_nonce_<_180_chips:_000787c8[5];
-    tmp42[6] = s_nonce_<_180_chips:_000787c8[6];
-    tmp42[7] = s_nonce_<_180_chips:_000787c8[7];
-    tmp42[8] = s_nonce_<_180_chips:_000787c8[8];
-    tmp42[9] = s_nonce_<_180_chips:_000787c8[9];
-    tmp42[10] = s_nonce_<_180_chips:_000787c8[10];
-    tmp42[11] = s_nonce_<_180_chips:_000787c8[11];
-    tmp42[12] = s_nonce_<_180_chips:_000787c8[12];
-    tmp42[13] = s_nonce_<_180_chips:_000787c8[13];
-    tmp42[14] = s_nonce_<_180_chips:_000787c8[14];
-    tmp42[15] = s_nonce_<_180_chips:_000787c8[15];
-    tmp42[16] = s_nonce_<_180_chips:_000787c8[16];
-    tmp42[17] = s_nonce_<_180_chips:_000787c8[17];
-    tmp42[18] = s_nonce_<_180_chips:_000787c8[18];
-    tmp42[19] = s_nonce_<_180_chips:_000787c8[19];
+    builtin_strncpy(tmp42,"nonce < 180 chips:\n",0x14);
     _applog(5,tmp42,false);
   }
   bad_chips = 0;
@@ -91,10 +74,7 @@ void scanfreq_print_bad_chip(int chain)
     }
   }
   if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-    tmp42[0] = '\n';
-    tmp42[1] = '\n';
-    tmp42[2] = '\n';
-    tmp42[3] = '\0';
+    builtin_strncpy(tmp42,"\n\n\n",4);
     _applog(5,tmp42,false);
   }
   g_logfile_no_datetime = false;

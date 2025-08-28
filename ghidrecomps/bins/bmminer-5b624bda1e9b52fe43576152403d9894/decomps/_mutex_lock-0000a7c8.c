@@ -6,7 +6,7 @@ void _mutex_lock(pthread_mutex_t *lock,char *file,char *func,int line)
   char tmp42 [2048];
   
   piVar1 = __errno_location();
-  snprintf(tmp42,0x800,DAT_0000a80c,*piVar1,DAT_0000a808,lock,file);
+  snprintf(tmp42,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar1,"api.c",lock,file);
   _applog(3,tmp42,true);
   _quit(1);
   return;

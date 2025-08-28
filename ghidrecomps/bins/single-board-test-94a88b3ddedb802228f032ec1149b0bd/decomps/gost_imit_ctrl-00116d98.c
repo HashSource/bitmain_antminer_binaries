@@ -10,7 +10,7 @@ undefined4 gost_imit_ctrl(int param_1,int param_2,int param_3,undefined4 *param_
     return 0;
   }
   if (param_3 != 0x20) {
-    ERR_GOST_error(0x72,0x6f,DAT_00116de4,0x255);
+    ERR_GOST_error(0x72,0x6f,"gost_crypt.c",0x255);
     return 0;
   }
   gost_key(*(undefined4 *)(param_1 + 0xc),param_4,0x20,param_4,param_4);

@@ -7,7 +7,7 @@ int EC_POINT_copy(EC_POINT *dst,EC_POINT *src)
   
   pcVar2 = *(code **)(*(int *)dst + 0x34);
   if (pcVar2 == (code *)0x0) {
-    ERR_put_error(0x10,0x72,0x42,DAT_000a16b4,0x2f5);
+    ERR_put_error(0x10,0x72,0x42,"ec_lib.c",0x2f5);
     iVar1 = 0;
   }
   else if (*(int *)dst == *(int *)src) {
@@ -19,7 +19,7 @@ int EC_POINT_copy(EC_POINT *dst,EC_POINT *src)
     }
   }
   else {
-    ERR_put_error(0x10,0x72,0x65,DAT_000a16b4,0x2f9);
+    ERR_put_error(0x10,0x72,0x65,"ec_lib.c",0x2f9);
     iVar1 = 0;
   }
   return iVar1;

@@ -35,25 +35,25 @@ int Curl_ossl_shutdown(int *param_1,int param_2)
         pcVar2 = ERR_error_string(e,acStack_90);
         piVar3 = __errno_location();
         iVar4 = 0;
-        Curl_failf(iVar5,DAT_00059b68,pcVar2,*piVar3);
+        Curl_failf(iVar5,"OpenSSL SSL read: %s, errno %d",pcVar2,*piVar3);
         goto LAB_00059aa6;
       case 2:
-        Curl_infof(iVar6,DAT_00059b60);
+        Curl_infof(iVar6,"SSL_ERROR_WANT_READ\n");
         break;
       case 3:
         iVar4 = 0;
-        Curl_infof(iVar6,DAT_00059b5c);
+        Curl_infof(iVar6,"SSL_ERROR_WANT_WRITE\n");
         goto LAB_00059aa6;
       }
     }
     if (iVar4 == 0) {
-      Curl_failf(iVar6,DAT_00059b6c);
+      Curl_failf(iVar6,"SSL shutdown timeout");
       iVar4 = 0;
     }
     else {
       piVar3 = __errno_location();
       iVar4 = -1;
-      Curl_failf(iVar6,DAT_00059b70,*piVar3);
+      Curl_failf(iVar6,"select/poll on SSL socket, errno: %d",*piVar3);
     }
 LAB_00059aa6:
     cVar1 = *(char *)(iVar6 + 0x310);
@@ -61,13 +61,13 @@ joined_r0x00059aaa:
     if (cVar1 != '\0') {
       iVar5 = SSL_get_shutdown((SSL *)param_1[param_2 * 6 + 0x62]);
       if (iVar5 == 2) {
-        Curl_infof(iVar6,DAT_00059b74);
+        Curl_infof(iVar6,"SSL_get_shutdown() returned SSL_RECEIVED_SHUTDOWN\n");
       }
       else if (iVar5 == 3) {
-        Curl_infof(iVar6,DAT_00059b78);
+        Curl_infof(iVar6,"SSL_get_shutdown() returned SSL_SENT_SHUTDOWN|SSL_RECEIVED__SHUTDOWN\n");
       }
       else if (iVar5 == 1) {
-        Curl_infof(iVar6,DAT_00059b64);
+        Curl_infof(iVar6,"SSL_get_shutdown() returned SSL_SENT_SHUTDOWN\n");
       }
     }
     SSL_free((SSL *)param_1[param_2 * 6 + 0x62]);

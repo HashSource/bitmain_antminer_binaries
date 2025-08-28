@@ -13,7 +13,7 @@ int pkey_rsa_encrypt(int param_1,uchar *param_2,int *param_3,uchar *param_4,int 
     pvVar1 = *(void **)(iVar3 + 0x20);
     if (pvVar1 == (void *)0x0) {
       iVar2 = EVP_PKEY_size(*(EVP_PKEY **)(param_1 + 8));
-      pvVar1 = CRYPTO_malloc(iVar2,DAT_000fdd78,0x9c);
+      pvVar1 = CRYPTO_malloc(iVar2,"rsa_pmeth.c",0x9c);
       *(void **)(iVar3 + 0x20) = pvVar1;
       if (pvVar1 != (void *)0x0) goto LAB_000fdd2c;
     }

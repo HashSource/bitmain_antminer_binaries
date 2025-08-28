@@ -2,78 +2,89 @@
 _Bool is_tempsensor_data_correct(temp_info_t temp_info)
 
 {
-  int in_r0;
-  FILE *pFVar1;
-  uint in_r1;
-  _Bool _Var2;
-  int iVar3;
+  TEMP_SENSOR_TYPE TVar1;
   FILE *pFile;
   FILE *pFile_1;
   FILE *pFile_2;
   FILE *pFile_3;
   uint32_t i;
-  char acStack_8 [6];
-  char acStack_2 [2];
+  undefined1 auStack_8 [6];
+  undefined1 auStack_2 [2];
   
-  if (in_r0 == 1) {
-    if ((in_r1 == 0) || (6 < in_r1)) {
+  TVar1 = temp_info.type;
+  if (temp_info.type == TMP451) {
+    if ((temp_info.num == 0) || (6 < temp_info.num)) {
       if (3 < log_level) {
         print_crt_time_to_file(log_file,3);
-        pFVar1 = fopen(log_file,"a+");
-        if (pFVar1 != (FILE *)0x0) {
-          fprintf(pFVar1,"%s:%d:%s: Bad,temp_info.num = %d\n","temperature.c",0x209,
-                  "is_tempsensor_data_correct",in_r1);
+        temp_info.type = (TEMP_SENSOR_TYPE)fopen(log_file,"a+");
+        if (temp_info.type != 0) {
+          fprintf((FILE *)temp_info.type,"%s:%d:%s: Bad,temp_info.num = %d\n","temperature.c",0x209,
+                  "is_tempsensor_data_correct",temp_info.num);
         }
-        fclose(pFVar1);
+        fclose((FILE *)temp_info.type);
       }
-      _Var2 = false;
+      temp_info.type._0_1_ = 0;
     }
     else {
-      for (i = 0; i < in_r1; i = i + 1) {
-        if ((acStack_8[i] < '\x01') || ('<' < acStack_8[i])) {
+      i = 0;
+      while (i < temp_info.num) {
+        temp_info._12_4_ = (int)auStack_8 + i;
+        if (*(char *)temp_info._12_4_ < '\x01') {
+LAB_000158a6:
           if (3 < log_level) {
             print_crt_time_to_file(log_file,3);
-            pFVar1 = fopen(log_file,"a+");
-            if (pFVar1 != (FILE *)0x0) {
-              fprintf(pFVar1,"%s:%d:%s: Bad,temp_info.pos[%d] = %d\n","temperature.c",0x211,
-                      "is_tempsensor_data_correct",i,(int)acStack_8[i]);
+            temp_info.type = (TEMP_SENSOR_TYPE)fopen(log_file,"a+");
+            if (temp_info.type != 0) {
+              temp_info._12_4_ = (int)auStack_8 + i;
+              temp_info._12_4_ = SEXT14(*(char *)temp_info._12_4_);
+              fprintf((FILE *)temp_info.type,"%s:%d:%s: Bad,temp_info.pos[%d] = %d\n",
+                      "temperature.c",0x211,"is_tempsensor_data_correct",i,temp_info._12_4_);
             }
-            fclose(pFVar1);
+            fclose((FILE *)temp_info.type);
           }
-          return false;
+          temp_info.type._0_1_ = 0;
+          return (_Bool)(undefined1)temp_info.type;
         }
-        iVar3 = (int)acStack_2[i];
-        if (iVar3 < 0) {
-          iVar3 = -iVar3;
+        temp_info._12_4_ = (int)auStack_8 + i;
+        if ('<' < *(char *)temp_info._12_4_) goto LAB_000158a6;
+        temp_info._12_4_ = (int)auStack_2 + i;
+        temp_info._12_4_ = SEXT14(*(char *)temp_info._12_4_);
+        if ((int)temp_info._12_4_ < 0) {
+          temp_info._12_4_ = -temp_info._12_4_;
         }
-        if (9 < iVar3) {
+        if (9 < (int)temp_info._12_4_) {
           if (3 < log_level) {
             print_crt_time_to_file(log_file,3);
-            pFVar1 = fopen(log_file,"a+");
-            if (pFVar1 != (FILE *)0x0) {
-              fprintf(pFVar1,"%s:%d:%s: Bad,temp_info.pos[%d] = %d\n","temperature.c",0x217,
-                      "is_tempsensor_data_correct",i,(int)acStack_2[i]);
+            temp_info.type = (TEMP_SENSOR_TYPE)fopen(log_file,"a+");
+            if (temp_info.type != 0) {
+              temp_info._12_4_ = (int)auStack_2 + i;
+              temp_info._12_4_ = SEXT14(*(char *)temp_info._12_4_);
+              fprintf((FILE *)temp_info.type,"%s:%d:%s: Bad,temp_info.pos[%d] = %d\n",
+                      "temperature.c",0x217,"is_tempsensor_data_correct",i,temp_info._12_4_);
             }
-            fclose(pFVar1);
+            fclose((FILE *)temp_info.type);
           }
-          return false;
+          temp_info.type._0_1_ = 0;
+          return (_Bool)(undefined1)temp_info.type;
         }
+        temp_info._12_4_ = i + 1;
+        i = temp_info._12_4_;
       }
-      _Var2 = true;
+      temp_info.type._0_1_ = TMP451;
     }
   }
   else {
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);
-      pFVar1 = fopen(log_file,"a+");
-      if (pFVar1 != (FILE *)0x0) {
-        fprintf(pFVar1,"%s:%d:%s: Bad,temp_info.type = %d\n","temperature.c",0x203,
-                "is_tempsensor_data_correct",in_r0);
+      temp_info.type = (TEMP_SENSOR_TYPE)fopen(log_file,"a+");
+      if (temp_info.type != 0) {
+        fprintf((FILE *)temp_info.type,"%s:%d:%s: Bad,temp_info.type = %d\n","temperature.c",0x203,
+                "is_tempsensor_data_correct",TVar1);
       }
-      fclose(pFVar1);
+      fclose((FILE *)temp_info.type);
     }
-    _Var2 = false;
+    temp_info.type._0_1_ = 0;
   }
-  return _Var2;
+  return (_Bool)(undefined1)temp_info.type;
 }
 

@@ -2,17 +2,16 @@
 void * ecdh_check(EC_KEY *param_1)
 
 {
-  free_func *free_func;
   void *data;
   void *pvVar1;
   
-  free_func = DAT_00100f14;
   data = EC_KEY_get_key_method_data
-                   (param_1,DAT_00100f18,DAT_00100f14,(clear_free_func *)DAT_00100f14);
+                   (param_1,(dup_func *)0x100e09,(free_func *)0x100d49,(clear_free_func *)0x100d49);
   if ((data == (void *)0x0) &&
      (data = (void *)ECDH_DATA_new_method_constprop_0(), data != (void *)0x0)) {
     pvVar1 = EC_KEY_insert_key_method_data
-                       (param_1,data,DAT_00100f18,free_func,(clear_free_func *)free_func);
+                       (param_1,data,(dup_func *)0x100e09,(free_func *)0x100d49,
+                        (clear_free_func *)0x100d49);
     if (pvVar1 != (void *)0x0) {
       if (*(ENGINE **)((int)data + 4) != (ENGINE *)0x0) {
         ENGINE_finish(*(ENGINE **)((int)data + 4));

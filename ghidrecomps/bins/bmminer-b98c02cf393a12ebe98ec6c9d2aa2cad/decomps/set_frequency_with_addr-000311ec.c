@@ -32,13 +32,13 @@ void set_frequency_with_addr(undefined4 param_1,int param_2,int param_3,int para
   local_83c = 0;
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-    snprintf(acStack_820,0x800,"\n--- %s\n",DAT_00031494);
+    snprintf(acStack_820,0x800,"\n--- %s\n","set_frequency_with_addr");
     _applog(7,acStack_820,0);
   }
   get_plldata_constprop_17(param_1,&local_840,&local_842,&local_83c);
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-    snprintf(acStack_820,0x800,"%s: frequency = %d\n",DAT_00031494,param_1);
+    snprintf(acStack_820,0x800,"%s: frequency = %d\n","set_frequency_with_addr",param_1);
     _applog(7,acStack_820,0);
   }
   uVar4 = local_83c;
@@ -95,9 +95,13 @@ void set_frequency_with_addr(undefined4 param_1,int param_2,int param_3,int para
     local_838._0_1_ = 0x58;
     uVar6 = 0x5809000c;
   }
-  local_838._0_2_ = CONCAT11(9,(undefined)local_838);
+  local_838._0_2_ = CONCAT11(9,(undefined1)local_838);
   local_838._0_3_ = CONCAT12((char)param_3,(undefined2)local_838);
   local_838 = CONCAT13(0xc,(undefined3)local_838);
+  local_834._3_1_ = (undefined1)local_83c;
+  local_834._0_3_ =
+       CONCAT12((char)((uint)local_83c >> 8),
+                CONCAT11((char)((uint)local_83c >> 0x10),(char)((uint)local_83c >> 0x18)));
   local_830 = CRC5(&local_838,0x40);
   local_824 = (uint)local_830 << 0x18;
   local_828 = uVar4;

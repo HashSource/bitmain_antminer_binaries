@@ -5,21 +5,25 @@ char * SSLeay_version(int type)
   char *pcVar1;
   
   if (type == 0) {
-    return DAT_0008ae24;
+    return "OpenSSL 1.0.2c 12 Jun 2015";
   }
   if (type == 3) {
-    return DAT_0008ae28;
+    return "built on: reproducible build, date unspecified";
   }
   if (type == 2) {
-    return DAT_0008ae2c;
+    return 
+    "compiler: arm-linux-gnueabihf-gcc -I. -I.. -I../include  -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -O3 -Wall"
+    ;
   }
-  if (type != 4) {
-    pcVar1 = DAT_0008ae1c;
-    if (type == 5) {
-      pcVar1 = DAT_0008ae20;
-    }
-    return pcVar1;
+  if (type == 4) {
+    return "platform: linux-armv4";
   }
-  return DAT_0008ae30;
+  if (type == 5) {
+    pcVar1 = "OPENSSLDIR: \"/home/XILINX/bin/ssl\"";
+  }
+  else {
+    pcVar1 = "not available";
+  }
+  return pcVar1;
 }
 

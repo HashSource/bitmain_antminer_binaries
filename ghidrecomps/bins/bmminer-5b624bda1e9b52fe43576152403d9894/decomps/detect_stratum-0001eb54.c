@@ -10,7 +10,7 @@ _Bool detect_stratum(pool *pool,char *url)
   
   _Var1 = extract_sockaddr(url,&pool->sockaddr_url,&pool->stratum_port);
   if (_Var1) {
-    iVar2 = strncasecmp(url,DAT_0001eb98,0xe);
+    iVar2 = strncasecmp(url,"stratum+tcp://",0xe);
     if (iVar2 == 0) {
       pcVar3 = (char *)__strdup(url);
       pool->rpc_url = pcVar3;

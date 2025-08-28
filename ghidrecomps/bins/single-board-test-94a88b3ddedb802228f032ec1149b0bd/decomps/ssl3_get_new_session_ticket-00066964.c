@@ -20,7 +20,7 @@ int ssl3_get_new_session_ticket(int param_1)
   if (iVar2 < 6) {
     iVar2 = 0x8ba;
 LAB_00066a82:
-    ERR_put_error(0x14,0x11b,0x9f,DAT_00066ad4,iVar2);
+    ERR_put_error(0x14,0x11b,0x9f,"s3_clnt.c",iVar2);
     uVar4 = 0x32;
   }
   else {
@@ -40,9 +40,12 @@ LAB_000669a4:
         if (*(void **)(c->krb5_client_princ + 0x54) != (void *)0x0) {
           CRYPTO_free(*(void **)(c->krb5_client_princ + 0x54));
           c = *(SSL_SESSION **)(param_1 + 0xc0);
-          *(undefined4 *)(c->krb5_client_princ + 0x58) = 0;
+          c->krb5_client_princ[0x58] = '\0';
+          c->krb5_client_princ[0x59] = '\0';
+          c->krb5_client_princ[0x5a] = '\0';
+          c->krb5_client_princ[0x5b] = '\0';
         }
-        pvVar3 = CRYPTO_malloc(uVar5,DAT_00066ad4,0x8eb);
+        pvVar3 = CRYPTO_malloc(uVar5,"s3_clnt.c",0x8eb);
         iVar2 = *(int *)(param_1 + 0xc0);
         *(void **)(c->krb5_client_princ + 0x54) = pvVar3;
         pvVar3 = *(void **)(iVar2 + 0xe4);
@@ -55,7 +58,7 @@ LAB_000669a4:
                      (ENGINE *)0x0);
           return 1;
         }
-        ERR_put_error(0x14,0x11b,0x41,DAT_00066ad4,0x8ed);
+        ERR_put_error(0x14,0x11b,0x41,"s3_clnt.c",0x8ed);
         goto LAB_00066a9c;
       }
       iVar2 = 0x8e4;
@@ -80,7 +83,7 @@ LAB_000669a4:
       *(SSL_SESSION **)(param_1 + 0xc0) = c;
       goto LAB_000669a4;
     }
-    ERR_put_error(0x14,0x11b,0x41,DAT_00066ad4,0x8d7);
+    ERR_put_error(0x14,0x11b,0x41,"s3_clnt.c",0x8d7);
     uVar4 = 0x50;
   }
   ssl3_send_alert(param_1,2,uVar4);

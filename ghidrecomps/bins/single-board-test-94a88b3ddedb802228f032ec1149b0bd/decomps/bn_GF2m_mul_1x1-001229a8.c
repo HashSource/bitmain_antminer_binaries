@@ -34,10 +34,11 @@ void bn_GF2m_mul_1x1(uint *param_1,uint *param_2,uint param_3,uint param_4)
   if (bVar3) {
     uVar2 = uVar2 ^ param_4 >> 2;
   }
-  if ((int)param_3 < 0) {
+  bVar3 = (int)((param_3 >> 0x1e) << 0x1e) < 0;
+  if (bVar3) {
     uVar1 = uVar1 ^ param_4 << 0x1f;
   }
-  if ((int)param_3 < 0) {
+  if (bVar3) {
     uVar2 = uVar2 ^ param_4 >> 1;
   }
   *param_1 = uVar2;

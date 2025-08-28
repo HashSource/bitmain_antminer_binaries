@@ -35,14 +35,14 @@ undefined4 tls1_set_server_sigalgs(int param_1)
   else {
     iVar2 = tls1_process_sigalgs(param_1);
     if (iVar2 == 0) {
-      ERR_put_error(0x14,0x14f,0x41,DAT_000731d8,0xbbb);
+      ERR_put_error(0x14,0x14f,0x41,"t1_lib.c",0xbbb);
       uVar1 = 0x50;
     }
     else {
       if (*(int *)(*(int *)(param_1 + 0x98) + 0x13c) != 0) {
         return 1;
       }
-      ERR_put_error(0x14,0x14f,0x178,DAT_000731d8,0xbc2);
+      ERR_put_error(0x14,0x14f,0x178,"t1_lib.c",0xbc2);
       uVar1 = 0x2f;
     }
     ssl3_send_alert(param_1,2,uVar1);

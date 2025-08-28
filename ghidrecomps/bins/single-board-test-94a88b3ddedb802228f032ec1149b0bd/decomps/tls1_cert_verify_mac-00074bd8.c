@@ -16,7 +16,7 @@ undefined4 tls1_cert_verify_mac(int param_1,int param_2,uchar *param_3)
     }
     iVar3 = *(int *)(param_1 + 0x58);
   }
-  if (**(EVP_MD_CTX ***)(iVar3 + 0x17c) == (EVP_MD_CTX *)0x0) {
+  if ((EVP_MD_CTX *)**(undefined4 **)(iVar3 + 0x17c) == (EVP_MD_CTX *)0x0) {
 LAB_00074c0a:
     pEVar2 = *(EVP_MD_CTX **)(*(int *)(iVar3 + 0x17c) + 4);
     if (pEVar2 != (EVP_MD_CTX *)0x0) {
@@ -66,7 +66,7 @@ LAB_00074c0a:
     iVar3 = 0x14;
   }
   else {
-    pEVar1 = EVP_MD_CTX_md(**(EVP_MD_CTX ***)(iVar3 + 0x17c));
+    pEVar1 = EVP_MD_CTX_md((EVP_MD_CTX *)**(undefined4 **)(iVar3 + 0x17c));
     iVar3 = EVP_MD_type(pEVar1);
     if (iVar3 != param_2) {
       iVar3 = *(int *)(param_1 + 0x58);
@@ -84,7 +84,7 @@ LAB_00074c98:
     return local_34;
   }
 LAB_00074c7a:
-  ERR_put_error(0x14,0x11e,0x144,DAT_00074cd8,0x3a1);
+  ERR_put_error(0x14,0x11e,0x144,"t1_enc.c",0x3a1);
   return 0;
 }
 

@@ -6,7 +6,7 @@ int printf(char *__format,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_printf_000a8040)();
+  iVar1 = printf(__format);
   return iVar1;
 }
 

@@ -6,10 +6,11 @@ void _mutex_unlock_noyield(pthread_mutex_t *lock,char *file,char *func,int line)
   int *piVar2;
   char tmp42 [2048];
   
-  iVar1 = pthread_mutex_unlock(DAT_0000f71c);
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&console_lock);
   if (iVar1 != 0) {
     piVar2 = __errno_location();
-    snprintf(tmp42,0x800,DAT_0000f728,*piVar2,DAT_0000f720,DAT_0000f724,lock);
+    snprintf(tmp42,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar2,"logging.c",
+             "my_log_curses",lock);
     _applog(3,tmp42,true);
     _quit(1);
   }

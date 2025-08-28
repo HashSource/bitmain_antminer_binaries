@@ -23,7 +23,7 @@ int read_temperature_offset_PIC16F1704(uint which_i2c,uchar which_chain,uchar *b
   read_back_data[8] = '\0';
   read_back_data[9] = '\0';
   read_back_data[10] = '\0';
-  read_back_data[11] = '\0';
+  read_back_data[0xb] = '\0';
   read_back_data[0] = 0xff;
   read_back_data[1] = '\0';
   read_back_data[2] = '\0';
@@ -63,7 +63,7 @@ int read_temperature_offset_PIC16F1704(uint which_i2c,uchar which_chain,uchar *b
             (ushort)read_back_data[6] +
             (ushort)read_back_data[5] +
             (ushort)read_back_data[4] + (ushort)read_back_data[3] + read_back_data[2] + 0x2f;
-    if (((uchar)(uVar1 >> 8) == read_back_data[10]) && ((uchar)uVar1 == read_back_data[11])) {
+    if (((uchar)(uVar1 >> 8) == read_back_data[10]) && ((uchar)uVar1 == read_back_data[0xb])) {
       for (i = '\0'; i < 8; i = i + '\x01') {
         buf[i] = read_back_data[i + 2];
       }

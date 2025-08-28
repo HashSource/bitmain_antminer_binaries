@@ -1,8 +1,8 @@
 
-undefined isC5_Board(void)
+undefined1 isC5_Board(void)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   char *pcVar2;
   char acStack_34 [32];
   FILE *local_14;

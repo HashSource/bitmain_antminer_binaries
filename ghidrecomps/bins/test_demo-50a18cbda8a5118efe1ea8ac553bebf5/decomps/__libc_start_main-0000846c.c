@@ -2,9 +2,7 @@
 void __libc_start_main(void)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00008474. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_00011744)();
+  (*(code *)(undefined *)0x0)();
   return;
 }
 

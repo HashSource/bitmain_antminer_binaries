@@ -28,7 +28,10 @@ int makeup_get_status_cmd
     bVar1 = CRC5_v1((uchar *)&get_status_cmd,' ');
     *str = 'U';
     str[1] = 0xaa;
-    *(undefined4 *)(str + 2) = get_status_cmd._0_4_;
+    str[2] = get_status_cmd._0_1_;
+    str[3] = get_status_cmd.length;
+    str[4] = get_status_cmd.chip_addr;
+    str[5] = get_status_cmd.regaddr;
     str[6] = get_status_cmd._4_1_ & 0xe0 | bVar1 & 0x1f;
     iVar2 = 7;
   }

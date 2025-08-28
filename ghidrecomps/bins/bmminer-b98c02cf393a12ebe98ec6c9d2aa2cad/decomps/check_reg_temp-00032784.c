@@ -1,12 +1,12 @@
 
-uint check_reg_temp(undefined4 param_1,uint param_2,uint param_3,int param_4,undefined param_5,
+uint check_reg_temp(undefined4 param_1,uint param_2,uint param_3,int param_4,undefined1 param_5,
                    undefined4 param_6)
 
 {
   uint uVar1;
   int iVar2;
   
-  pthread_mutex_lock(DAT_0003287c);
+  pthread_mutex_lock((pthread_mutex_t *)temp_mutex);
   if (param_4 == 0) {
     iVar2 = 0;
     do {
@@ -18,7 +18,7 @@ uint check_reg_temp(undefined4 param_1,uint param_2,uint param_3,int param_4,und
       cgsleep_ms(1);
       if ((param_2 == (uVar1 << 0x10) >> 0x18) && ((uVar1 & 0x7f) != 0x7f)) {
 LAB_0003286a:
-        pthread_mutex_unlock(DAT_0003287c);
+        pthread_mutex_unlock((pthread_mutex_t *)temp_mutex);
         if (iVar2 != 2) {
           return uVar1;
         }
@@ -41,7 +41,7 @@ LAB_0003286a:
       if ((param_2 == (uVar1 << 0x10) >> 0x18) || ((uVar1 & 0xff) == param_3)) goto LAB_0003286a;
     } while (iVar2 == 1);
   }
-  pthread_mutex_unlock(DAT_0003287c);
+  pthread_mutex_unlock((pthread_mutex_t *)temp_mutex);
   return 0;
 }
 

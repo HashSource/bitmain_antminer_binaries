@@ -1,5 +1,5 @@
 
-undefined cnx_needed(int param_1)
+undefined1 cnx_needed(int param_1)
 
 {
   int iVar1;

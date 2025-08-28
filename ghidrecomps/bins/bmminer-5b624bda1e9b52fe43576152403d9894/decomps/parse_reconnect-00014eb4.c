@@ -1,5 +1,4 @@
 
-/* WARNING: Type propagation algorithm not settling */
 /* WARNING: Unknown calling convention */
 
 _Bool parse_reconnect(pool *pool,json_t *val)
@@ -8,26 +7,20 @@ _Bool parse_reconnect(pool *pool,json_t *val)
   _Bool _Var1;
   json_t *pjVar2;
   char *pcVar3;
-  char *url;
   char *pcVar4;
-  char *dot_pool;
   char *__s2;
-  char *dot_reconnect;
   int iVar5;
-  int port_no;
-  int iVar6;
-  char *tmp;
-  int *piVar7;
-  char **sockaddr_port;
-  char *port;
-  char *pcVar8;
-  char **ppcVar9;
-  json_int_t jVar10;
-  undefined local_a40 [16];
+  int *piVar6;
+  char *func;
+  int line;
+  char *pcVar7;
+  int *piVar8;
+  json_int_t jVar9;
+  undefined1 local_a40 [16];
   char acStack_a30 [248];
-  undefined auStack_938 [16];
-  char *sockaddr_url;
-  char *stratum_port;
+  undefined1 auStack_938 [16];
+  char *local_928;
+  char *local_924;
   char address [256];
   char tmp42 [2048];
   
@@ -38,98 +31,95 @@ _Bool parse_reconnect(pool *pool,json_t *val)
     pcVar3 = pool->sockaddr_url;
 LAB_00014f10:
     pjVar2 = json_array_get(val,1);
-    jVar10 = json_integer_value(pjVar2);
-    if ((int)jVar10 == 0) {
+    jVar9 = json_integer_value(pjVar2);
+    if ((int)jVar9 == 0) {
       pjVar2 = json_array_get(val,1);
-      pcVar8 = json_string_value(pjVar2);
-      ppcVar9 = (char **)auStack_938;
-      if (pcVar8 == (char *)0x0) {
-        pcVar8 = pool->stratum_port;
-        ppcVar9 = (char **)auStack_938;
+      pcVar7 = json_string_value(pjVar2);
+      piVar8 = (int *)auStack_938;
+      if (pcVar7 == (char *)0x0) {
+        pcVar7 = pool->stratum_port;
+        piVar8 = (int *)auStack_938;
       }
     }
     else {
-      pcVar8 = acStack_a30;
-      sprintf(pcVar8,DAT_000150e0,(int)jVar10);
-      ppcVar9 = (char **)local_a40;
+      pcVar7 = acStack_a30;
+      sprintf(pcVar7,"%d",(int)jVar9);
+      piVar8 = (int *)local_a40;
     }
-    *ppcVar9 = pcVar8;
-    snprintf(address,0xfe,DAT_000150e4,pcVar3);
-    sockaddr_port = &stratum_port;
-    _Var1 = extract_sockaddr(address,&sockaddr_url,sockaddr_port);
-    if (!_Var1) {
-      return false;
+    *piVar8 = (int)pcVar7;
+    snprintf(address,0xfe,"%s:%s",pcVar3);
+    _Var1 = extract_sockaddr(address,&local_928,&local_924);
+    if (_Var1) {
+      if (((use_syslog != false) || (opt_log_output != false)) || (3 < opt_log_level)) {
+        iVar5 = pool->pool_no;
+        *piVar8 = (int)address;
+        snprintf(tmp42,0x800,"Stratum reconnect requested from pool %d to %s",iVar5);
+        _applog(4,tmp42,false);
+      }
+      clear_pool_work(pool);
+      iVar5 = pthread_mutex_lock((pthread_mutex_t *)&pool->stratum_lock);
+      if (iVar5 != 0) {
+        _mutex_lock((pthread_mutex_t *)"parse_reconnect",(char *)0x8b8,func,line);
+      }
+      clear_sockbuf(pool);
+      pool->stratum_notify = false;
+      pool->stratum_active = false;
+      if (pool->sock != 0) {
+        close(pool->sock);
+      }
+      pcVar3 = pool->sockaddr_url;
+      pool->sock = 0;
+      pool->stratum_url = local_928;
+      pool->sockaddr_url = local_928;
+      free(pcVar3);
+      pcVar3 = pool->stratum_port;
+      pool->stratum_port = local_924;
+      free(pcVar3);
+      iVar5 = pthread_mutex_unlock((pthread_mutex_t *)&pool->stratum_lock);
+      if (iVar5 != 0) {
+        piVar6 = __errno_location();
+        piVar8[2] = 0x8c1;
+        *piVar8 = (int)"util.c";
+        piVar8[1] = (int)"parse_reconnect";
+        snprintf(tmp42,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar6);
+        _applog(3,tmp42,true);
+        _quit(1);
+      }
+      (*selective_yield)();
+      _Var1 = restart_stratum(pool);
+      return _Var1;
     }
-    if (((*DAT_000150e8 != '\0') || (*DAT_000150ec != '\0')) || (iVar5 = *DAT_000150f0, 3 < iVar5))
-    {
-      iVar5 = pool->pool_no;
-      *ppcVar9 = address;
-      snprintf(tmp42,0x800,DAT_000150f4);
-      sockaddr_port = (char **)0x0;
-      _applog(4,tmp42,false);
-    }
-    clear_pool_work(pool);
-    iVar6 = pthread_mutex_lock((pthread_mutex_t *)&pool->stratum_lock);
-    if (iVar6 != 0) {
-      _mutex_lock(DAT_0001510c,(char *)0x8b8,(char *)sockaddr_port,iVar5);
-    }
-    clear_sockbuf(pool);
-    pool->stratum_notify = false;
-    pool->stratum_active = false;
-    if (pool->sock != 0) {
-      close(pool->sock);
-    }
-    pcVar3 = pool->sockaddr_url;
-    pool->sock = 0;
-    pool->stratum_url = sockaddr_url;
-    pool->sockaddr_url = sockaddr_url;
-    free(pcVar3);
-    pcVar3 = pool->stratum_port;
-    pool->stratum_port = stratum_port;
-    free(pcVar3);
-    iVar5 = pthread_mutex_unlock((pthread_mutex_t *)&pool->stratum_lock);
-    if (iVar5 != 0) {
-      piVar7 = __errno_location();
-      ppcVar9[2] = (char *)0x8c1;
-      *ppcVar9 = (char *)DAT_00015108;
-      ppcVar9[1] = (char *)DAT_0001510c;
-      snprintf(tmp42,0x800,DAT_00015110,*piVar7);
-      _applog(3,tmp42,true);
-      _quit(1);
-    }
-    (**DAT_000150f8)();
-    _Var1 = restart_stratum(pool);
-    return _Var1;
-  }
-  pcVar8 = pool->sockaddr_url;
-  pcVar4 = strchr(pcVar8,0x2e);
-  if (pcVar4 == (char *)0x0) {
-    pcVar4 = DAT_00015100;
-    if ((*DAT_000150e8 != '\0') || (*DAT_000150ec != '\0')) goto LAB_00015012;
-    iVar5 = *DAT_000150f0;
   }
   else {
-    __s2 = strchr(pcVar3,0x2e);
-    if (__s2 == (char *)0x0) {
-      pcVar4 = DAT_00015104;
-      pcVar8 = pcVar3;
-      if ((*DAT_000150e8 != '\0') || (*DAT_000150ec != '\0')) goto LAB_00015012;
-      iVar5 = *DAT_000150f0;
+    pcVar7 = pool->sockaddr_url;
+    pcVar4 = strchr(pcVar7,0x2e);
+    if (pcVar4 == (char *)0x0) {
+      if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 3)) {
+        return false;
+      }
+      pcVar4 = "Denied stratum reconnect request for pool without domain \'%s\'";
     }
     else {
-      iVar5 = strcmp(pcVar4,__s2);
-      if (iVar5 == 0) goto LAB_00014f10;
-      pcVar4 = DAT_000150fc;
-      if ((*DAT_000150e8 != '\0') || (*DAT_000150ec != '\0')) goto LAB_00015012;
-      iVar5 = *DAT_000150f0;
+      __s2 = strchr(pcVar3,0x2e);
+      if (__s2 == (char *)0x0) {
+        if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 3)) {
+          return false;
+        }
+        pcVar4 = "Denied stratum reconnect request to url without domain \'%s\'";
+        pcVar7 = pcVar3;
+      }
+      else {
+        iVar5 = strcmp(pcVar4,__s2);
+        if (iVar5 == 0) goto LAB_00014f10;
+        if (((use_syslog == false) && (opt_log_output == false)) && (opt_log_level < 3)) {
+          return false;
+        }
+        pcVar4 = "Denied stratum reconnect request to non-matching domain url \'%s\'";
+      }
     }
+    snprintf(tmp42,0x800,pcVar4,pcVar7);
+    _applog(3,tmp42,false);
   }
-  if (iVar5 < 3) {
-    return false;
-  }
-LAB_00015012:
-  snprintf(tmp42,0x800,pcVar4,pcVar8);
-  _applog(3,tmp42,false);
   return false;
 }
 

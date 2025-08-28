@@ -4,12 +4,12 @@ int ftp_dophase_done(int *param_1,int param_2)
 {
   int iVar1;
   int iVar2;
-  undefined auStack_14 [4];
+  undefined1 auStack_14 [4];
   
   iVar2 = *(int *)(*param_1 + 0x14c);
   if (param_2 == 0) {
     if (*(int *)(iVar2 + 0xc) == 0) {
-      *(undefined *)((int)param_1 + 0x1f5) = 1;
+      *(undefined1 *)((int)param_1 + 0x1f5) = 1;
       goto LAB_0005d384;
     }
   }
@@ -23,7 +23,7 @@ int ftp_dophase_done(int *param_1,int param_2)
   }
   Curl_setup_transfer(param_1,0xffffffff,0xffffffff,0xffffffff,0,0,0xffffffff,0);
 LAB_0005d384:
-  *(undefined *)((int)param_1 + 0x40d) = 1;
+  *(undefined1 *)((int)param_1 + 0x40d) = 1;
   return 0;
 }
 

@@ -6,7 +6,7 @@ int feof(FILE *__stream)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_feof_00047930)();
+  iVar1 = feof(__stream);
   return iVar1;
 }
 

@@ -15,7 +15,7 @@ int X509V3_EXT_REQ_add_conf(lhash_st_CONF_VALUE *conf,X509V3_CTX *ctx,char *sect
     iVar1 = X509V3_EXT_add_nconf_sk(&CStack_1c,ctx,section,(stack_st_X509_EXTENSION **)&local_20);
     if (iVar1 != 0) {
       iVar1 = X509_REQ_add_extensions(req,(stack_st_X509_EXTENSION *)local_20);
-      sk_pop_free(local_20,DAT_0010cd60);
+      sk_pop_free(local_20,(func *)0xbc31d);
     }
   }
   return iVar1;

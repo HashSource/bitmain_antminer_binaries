@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_camellia_256_ecb(void)
 
 {
-  return DAT_000b05d0;
+  return (EVP_CIPHER *)camellia_256_ecb;
 }
 

@@ -9,8 +9,8 @@ void blake64_close(int param_1,byte param_2,uint param_3,int param_4,uint param_
   undefined4 *puVar3;
   byte abStack_b8 [111];
   byte local_49;
-  undefined auStack_48 [8];
-  undefined auStack_40 [12];
+  undefined1 auStack_48 [8];
+  undefined1 auStack_40 [12];
   int local_34;
   undefined4 local_30;
   undefined4 uStack_2c;
@@ -35,7 +35,7 @@ void blake64_close(int param_1,byte param_2,uint param_3,int param_4,uint param_
     *(undefined4 *)(param_1 + 0xf0) = 0xffffffff;
     *(undefined4 *)(param_1 + 0xf4) = 0xffffffff;
   }
-  else if ((*(uint *)(param_1 + 0xe8) | *(uint *)(param_1 + 0xec)) == 0) {
+  else if (*(int *)(param_1 + 0xe8) == 0 && *(int *)(param_1 + 0xec) == 0) {
     *(uint *)(param_1 + 0xe8) = local_1c - 0x400;
     *(uint *)(param_1 + 0xec) = (0x3ff < local_1c) - 1;
     iVar2 = *(int *)(param_1 + 0xf0);

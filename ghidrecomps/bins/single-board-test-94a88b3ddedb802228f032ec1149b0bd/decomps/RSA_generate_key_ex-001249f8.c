@@ -8,6 +8,8 @@ int RSA_generate_key_ex(RSA *rsa,int bits,BIGNUM *e,BN_GENCB *cb)
   BIGNUM *pBVar3;
   BIGNUM *pBVar4;
   int iVar5;
+  BIGNUM *extraout_r2;
+  BIGNUM *extraout_r3;
   _func_1770 *p_Var6;
   int b;
   BIGNUM *pBVar7;
@@ -24,7 +26,7 @@ int RSA_generate_key_ex(RSA *rsa,int bits,BIGNUM *e,BN_GENCB *cb)
   }
   ctx = BN_CTX_new();
   if (ctx == (BN_CTX *)0x0) {
-    ERR_put_error(4,0x81,3,DAT_00124cc8,0xef);
+    ERR_put_error(4,0x81,3,"rsa_gen.c",0xef);
     return 0;
   }
   BN_CTX_start(ctx);
@@ -97,7 +99,7 @@ int RSA_generate_key_ex(RSA *rsa,int bits,BIGNUM *e,BN_GENCB *cb)
   }
 LAB_00124b14:
   iVar1 = 0;
-  ERR_put_error(4,0x81,3,DAT_00124cc8,0xef);
+  ERR_put_error(4,0x81,3,"rsa_gen.c",0xef);
 LAB_00124b26:
   BN_CTX_end(ctx);
   BN_CTX_free(ctx);
@@ -115,7 +117,7 @@ LAB_00124b6c:
       if (iVar5 == 0) goto LAB_00124b14;
       iVar5 = BN_cmp(rsa->p,rsa->q);
       if (iVar5 == 0) {
-        ERR_put_error(4,0x81,0x78,DAT_00124cc8,0xad);
+        ERR_put_error(4,0x81,0x78,"rsa_gen.c",0xad);
         iVar1 = 0;
         goto LAB_00124b26;
       }
@@ -125,22 +127,22 @@ LAB_00124b6c:
   pBVar4 = BN_value_one();
   iVar5 = BN_sub(pBVar3,pBVar7,pBVar4);
   if ((iVar5 == 0) || (iVar5 = BN_gcd(pBVar2,pBVar3,rsa->e,ctx), iVar5 == 0)) goto LAB_00124b14;
-  if ((pBVar2->top == 1) &&
-     ((pBVar4 = (BIGNUM *)*pBVar2->d, pBVar4 == (BIGNUM *)0x1 &&
-      (pBVar7 = (BIGNUM *)pBVar2->neg, pBVar7 == (BIGNUM *)0x0)))) {
+  if ((pBVar2->top == 1) && ((*pBVar2->d == 1 && (pBVar2->neg == 0)))) {
     iVar1 = BN_GENCB_call(cb,3,1);
     if (iVar1 != 0) {
       iVar1 = BN_cmp(rsa->p,rsa->q);
       bVar8 = iVar1 < 0;
+      pBVar7 = extraout_r2;
+      pBVar4 = extraout_r3;
       if (bVar8) {
-        pBVar7 = rsa->p;
-        pBVar4 = rsa->q;
+        pBVar4 = rsa->p;
+        pBVar7 = rsa->q;
       }
       if (bVar8) {
-        rsa->q = pBVar7;
+        rsa->q = pBVar4;
       }
       if (bVar8) {
-        rsa->p = pBVar4;
+        rsa->p = pBVar7;
       }
       iVar1 = BN_mul(rsa->n,rsa->p,rsa->q,ctx);
       if (iVar1 != 0) {

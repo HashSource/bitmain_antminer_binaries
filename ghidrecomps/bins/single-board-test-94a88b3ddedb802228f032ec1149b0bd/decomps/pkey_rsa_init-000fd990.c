@@ -4,7 +4,7 @@ undefined4 pkey_rsa_init(int param_1)
 {
   undefined4 *puVar1;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0x2c,DAT_000fd9d4,0x67);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0x2c,"rsa_pmeth.c",0x67);
   if (puVar1 != (undefined4 *)0x0) {
     *puVar1 = 0x400;
     puVar1[1] = 0;

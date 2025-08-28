@@ -16,7 +16,7 @@ uint get_freq_pll_index(int param_1)
   }
   local_c = 0;
   while( true ) {
-    if (lenghth_of_freq_pll_1385 <= local_c) {
+    if (0x69 < local_c) {
       return 0xffffffff;
     }
     iVar1 = atoi(*(char **)(freq_pll_1385 + local_c * 0x10));

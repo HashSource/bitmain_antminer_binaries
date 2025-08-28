@@ -4,13 +4,14 @@
 void clean_work(work *work)
 
 {
+  undefined4 extraout_r3;
+  undefined4 unaff_lr;
+  
   free(work->job_id);
   free(work->ntime);
   free(work->coinbase);
   free(work->nonce1);
-                    /* WARNING: Could not recover jumptable at 0x0000a1c8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)PTR_LAB_0005f1d8)(work,0,0x1c0);
+  (*(code *)(undefined *)0x0)(work,0,0x1c0,extraout_r3,unaff_lr);
   return;
 }
 

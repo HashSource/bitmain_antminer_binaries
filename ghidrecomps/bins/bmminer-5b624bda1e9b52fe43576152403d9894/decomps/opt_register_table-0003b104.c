@@ -4,16 +4,13 @@
 void opt_register_table(opt_table *entry,char *desc)
 
 {
-  int *piVar1;
+  uint uVar1;
   opt_table *poVar2;
   opt_type oVar3;
   opt_table *poVar4;
-  int iVar5;
-  uint start;
   opt_table heading;
   
-  piVar1 = DAT_0003b190;
-  iVar5 = *DAT_0003b190;
+  uVar1 = opt_count;
   if (desc != (char *)0x0) {
     heading.names = (char *)0x0;
     heading.cb = (_func_char_ptr_void_ptr *)0x0;
@@ -44,7 +41,7 @@ void opt_register_table(opt_table *entry,char *desc)
   }
 LAB_0003b16e:
   if (desc != (char *)0x0) {
-    *(int *)(*DAT_0003b18c + iVar5 * 0x1c + 0x14) = *piVar1 - iVar5;
+    opt_table[uVar1].u.carg = (void *)(opt_count - uVar1);
   }
   return;
 }

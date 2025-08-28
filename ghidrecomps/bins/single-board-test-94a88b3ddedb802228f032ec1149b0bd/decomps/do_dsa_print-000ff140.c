@@ -7,25 +7,27 @@ int do_dsa_print(BIO *param_1,int param_2,int param_3,int param_4)
   uchar *buf;
   int iVar2;
   BIGNUM *a_00;
-  BIGNUM *a_01;
-  undefined4 uVar3;
+  BIGNUM *pBVar3;
+  char *pcVar4;
   
   if (param_4 == 2) {
     a_00 = *(BIGNUM **)(param_2 + 0x1c);
-    a_01 = *(BIGNUM **)(param_2 + 0x18);
-    uVar3 = DAT_000ff2e4;
+    pBVar3 = *(BIGNUM **)(param_2 + 0x18);
+    pcVar4 = "Private-Key";
   }
   else if (param_4 < 1) {
     a_00 = (BIGNUM *)0x0;
-    a_01 = a_00;
-    uVar3 = DAT_000ff2c4;
+    pcVar4 = "DSA-Parameters";
+    pBVar3 = a_00;
   }
   else {
     a_00 = (BIGNUM *)0x0;
-    a_01 = *(BIGNUM **)(param_2 + 0x18);
-    uVar3 = DAT_000ff2c0;
-    if (param_4 != 1) {
-      uVar3 = DAT_000ff2c4;
+    pBVar3 = *(BIGNUM **)(param_2 + 0x18);
+    if (param_4 == 1) {
+      pcVar4 = "Public-Key";
+    }
+    else {
+      pcVar4 = "DSA-Parameters";
     }
   }
   a = *(BIGNUM **)(param_2 + 0xc);
@@ -67,8 +69,8 @@ int do_dsa_print(BIO *param_1,int param_2,int param_3,int param_4)
       a = (BIGNUM *)(iVar2 >> 3);
     }
   }
-  if (a_01 != (BIGNUM *)0x0) {
-    iVar1 = BN_num_bits(a_01);
+  if (pBVar3 != (BIGNUM *)0x0) {
+    iVar1 = BN_num_bits(pBVar3);
     iVar2 = iVar1 + 7;
     if (iVar1 + 7 < 0) {
       iVar2 = iVar1 + 0xe;
@@ -77,20 +79,20 @@ int do_dsa_print(BIO *param_1,int param_2,int param_3,int param_4)
       a = (BIGNUM *)(iVar2 >> 3);
     }
   }
-  buf = (uchar *)CRYPTO_malloc((int)((int)&a->dmax + 2),DAT_000ff2c8,0x1bd);
+  buf = (uchar *)CRYPTO_malloc((int)((int)&a->dmax + 2),"dsa_ameth.c",0x1bd);
   if (buf == (uchar *)0x0) {
-    ERR_put_error(10,0x68,0x41,DAT_000ff2c8,0x1bf);
+    ERR_put_error(10,0x68,0x41,"dsa_ameth.c",0x1bf);
     return 0;
   }
   if (a_00 == (BIGNUM *)0x0) {
 LAB_000ff236:
-    iVar2 = ASN1_bn_print(param_1,DAT_000ff2d0,a_00,buf,param_3);
-    if ((((iVar2 != 0) && (iVar2 = ASN1_bn_print(param_1,DAT_000ff2d4,a_01,buf,param_3), iVar2 != 0)
-         ) && (iVar2 = ASN1_bn_print(param_1,DAT_000ff2d8,*(BIGNUM **)(param_2 + 0xc),buf,param_3),
-              iVar2 != 0)) &&
-       (iVar2 = ASN1_bn_print(param_1,DAT_000ff2dc,*(BIGNUM **)(param_2 + 0x10),buf,param_3),
-       iVar2 != 0)) {
-      iVar2 = ASN1_bn_print(param_1,DAT_000ff2e0,*(BIGNUM **)(param_2 + 0x14),buf,param_3);
+    iVar2 = ASN1_bn_print(param_1,"priv:",a_00,buf,param_3);
+    if ((((iVar2 != 0) && (iVar2 = ASN1_bn_print(param_1,"pub: ",pBVar3,buf,param_3), iVar2 != 0))
+        && (iVar2 = ASN1_bn_print(param_1,"P:   ",*(BIGNUM **)(param_2 + 0xc),buf,param_3),
+           iVar2 != 0)) &&
+       (iVar2 = ASN1_bn_print(param_1,"Q:   ",*(BIGNUM **)(param_2 + 0x10),buf,param_3), iVar2 != 0)
+       ) {
+      iVar2 = ASN1_bn_print(param_1,"G:   ",*(BIGNUM **)(param_2 + 0x14),buf,param_3);
       if (iVar2 != 0) {
         iVar2 = 1;
       }
@@ -101,7 +103,7 @@ LAB_000ff236:
     iVar2 = BIO_indent(param_1,param_3,0x80);
     if (iVar2 != 0) {
       iVar2 = BN_num_bits(*(BIGNUM **)(param_2 + 0xc));
-      iVar2 = BIO_printf(param_1,DAT_000ff2cc,uVar3,iVar2);
+      iVar2 = BIO_printf(param_1,"%s: (%d bit)\n",pcVar4,iVar2);
       if (0 < iVar2) goto LAB_000ff236;
     }
   }

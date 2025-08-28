@@ -5,31 +5,34 @@ int cp_prio(void)
 
 {
   int iVar1;
-  char *in_r2;
-  int in_r3;
+  char *func;
+  char *func_00;
+  char *func_01;
+  char *func_02;
   int line;
+  int line_00;
+  int line_01;
+  int line_02;
   int iVar2;
-  int prio;
   
-  iVar1 = pthread_mutex_lock(DAT_00024718);
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&control_lock);
   if (iVar1 != 0) {
-    _mutex_lock((pthread_mutex_t *)DAT_00024728,(char *)0x1c88,in_r2,in_r3);
+    _mutex_lock((pthread_mutex_t *)"cp_prio",(char *)0x1c88,func,line);
   }
-  iVar1 = pthread_rwlock_rdlock(DAT_0002471c);
+  iVar1 = pthread_rwlock_rdlock((pthread_rwlock_t *)&control_lock.rwlock);
   if (iVar1 != 0) {
-    _rd_lock(DAT_00024728,(char *)0x1c88,in_r2,in_r3);
+    _rd_lock((pthread_rwlock_t *)"cp_prio",(char *)0x1c88,func_00,line_00);
   }
-  iVar1 = pthread_mutex_unlock(DAT_00024718);
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&control_lock);
   if (iVar1 != 0) {
-    _mutex_unlock_noyield((pthread_mutex_t *)DAT_00024728,(char *)0x1c88,in_r2,in_r3);
+    _mutex_unlock_noyield((pthread_mutex_t *)"cp_prio",(char *)0x1c88,func_01,line_01);
   }
-  line = *(int *)(DAT_00024720 + 0x498);
-  iVar2 = *(int *)(line + 4);
-  iVar1 = pthread_rwlock_unlock(DAT_0002471c);
+  iVar2 = currentpool->prio;
+  iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)&control_lock.rwlock);
   if (iVar1 != 0) {
-    _rw_unlock(DAT_00024728,(char *)0x1c8a,in_r2,line);
+    _rw_unlock((pthread_rwlock_t *)"cp_prio",(char *)0x1c8a,func_02,line_02);
   }
-  (**DAT_00024724)();
+  (*selective_yield)();
   return iVar2;
 }
 

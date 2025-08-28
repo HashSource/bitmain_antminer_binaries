@@ -8,7 +8,7 @@ int PKCS12_PBE_keyivgen(EVP_CIPHER_CTX *ctx,char *pass,int passlen,ASN1_TYPE *pa
   int iVar2;
   int saltlen;
   uchar *salt;
-  long local_84;
+  int local_84;
   uchar *local_7c;
   uchar auStack_78 [16];
   uchar auStack_68 [68];
@@ -16,13 +16,13 @@ int PKCS12_PBE_keyivgen(EVP_CIPHER_CTX *ctx,char *pass,int passlen,ASN1_TYPE *pa
   if (((param == (ASN1_TYPE *)0x0) || (param->type != 0x10)) ||
      (pAVar1 = (param->value).asn1_string, pAVar1 == (ASN1_STRING *)0x0)) {
     iVar2 = 0;
-    ERR_put_error(0x23,0x78,0x65,DAT_000d1488,0x53);
+    ERR_put_error(0x23,0x78,0x65,"p12_crpt.c",0x53);
   }
   else {
     local_7c = pAVar1->data;
     a = d2i_PBEPARAM((PBEPARAM **)0x0,&local_7c,pAVar1->length);
     if (a == (PBEPARAM *)0x0) {
-      ERR_put_error(0x23,0x78,0x65,DAT_000d1488,0x59);
+      ERR_put_error(0x23,0x78,0x65,"p12_crpt.c",0x59);
       iVar2 = 0;
     }
     else {
@@ -37,7 +37,7 @@ int PKCS12_PBE_keyivgen(EVP_CIPHER_CTX *ctx,char *pass,int passlen,ASN1_TYPE *pa
       iVar2 = EVP_CIPHER_key_length(cipher);
       iVar2 = PKCS12_key_gen_asc(pass,passlen,salt,saltlen,1,local_84,iVar2,auStack_68,md_type);
       if (iVar2 == 0) {
-        ERR_put_error(0x23,0x78,0x6b,DAT_000d1488,0x65);
+        ERR_put_error(0x23,0x78,0x6b,"p12_crpt.c",0x65);
         PBEPARAM_free(a);
         iVar2 = 0;
       }
@@ -45,7 +45,7 @@ int PKCS12_PBE_keyivgen(EVP_CIPHER_CTX *ctx,char *pass,int passlen,ASN1_TYPE *pa
         iVar2 = EVP_CIPHER_iv_length(cipher);
         iVar2 = PKCS12_key_gen_asc(pass,passlen,salt,saltlen,2,local_84,iVar2,auStack_78,md_type);
         if (iVar2 == 0) {
-          ERR_put_error(0x23,0x78,0x6a,DAT_000d1488,0x6b);
+          ERR_put_error(0x23,0x78,0x6a,"p12_crpt.c",0x6b);
           PBEPARAM_free(a);
           iVar2 = 0;
         }

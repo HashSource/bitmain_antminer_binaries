@@ -1,6 +1,6 @@
 
 _STACK * ssl_create_cipher_list
-                   (int param_1,_STACK **param_2,_STACK **param_3,char *param_4,int param_5)
+                   (int param_1,undefined4 *param_2,undefined4 *param_3,char *param_4,int param_5)
 
 {
   bool bVar1;
@@ -9,113 +9,111 @@ _STACK * ssl_create_cipher_list
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  void **ptr;
+  int *ptr;
   int *piVar7;
   _STACK *st;
-  void **ppvVar8;
-  _STACK *p_Var9;
+  _STACK *p_Var8;
+  uint uVar9;
   uint uVar10;
   uint uVar11;
-  uint uVar12;
-  void **ppvVar13;
-  void *pvVar14;
-  int iVar15;
-  uint uVar16;
-  uint uVar17;
-  void **ppvVar18;
-  void *pvVar19;
+  int *piVar12;
+  int iVar13;
+  uint uVar14;
+  uint uVar15;
+  int *piVar16;
+  undefined1 *puVar17;
+  uint uVar18;
+  uint uVar19;
   uint uVar20;
   uint uVar21;
   uint uVar22;
   uint uVar23;
   uint uVar24;
   uint uVar25;
-  uint uVar26;
-  uint uVar27;
-  int iVar28;
-  int iVar29;
-  uint uVar30;
-  uint uVar31;
-  void **ppvVar32;
-  void **ppvVar33;
-  void **ppvVar34;
-  void **ppvVar35;
-  int iVar36;
+  int iVar26;
+  int iVar27;
+  uint uVar28;
+  uint uVar29;
+  int *piVar30;
+  int *piVar31;
+  int *piVar32;
+  int *piVar33;
+  int iVar34;
   char *local_48;
-  void **local_38;
-  void **local_34;
+  int *local_38;
+  int *local_34;
   ENGINE *local_30;
   int local_2c [2];
   
-  local_38 = (void **)0x0;
-  local_34 = (void **)0x0;
-  uVar30 = (uint)(param_2 == (_STACK **)0x0 || param_4 == (char *)0x0);
-  if (param_2 == (_STACK **)0x0 || param_4 == (char *)0x0) {
+  local_38 = (int *)0x0;
+  local_34 = (int *)0x0;
+  uVar28 = (uint)(param_2 == (undefined4 *)0x0 || param_4 == (char *)0x0);
+  if (param_2 == (undefined4 *)0x0 || param_4 == (char *)0x0) {
     return (_STACK *)0x0;
   }
-  if (param_3 == (_STACK **)0x0) {
+  if (param_3 == (undefined4 *)0x0) {
     return (_STACK *)0x0;
   }
-  uVar2 = strcmp(param_4,DAT_00080374);
+  uVar2 = strcmp(param_4,"SUITEB128");
   local_48 = param_4;
   if (uVar2 == 0) {
 LAB_000802f2:
-    uVar20 = 0x30000;
-    uVar30 = uVar2;
+    uVar18 = 0x30000;
+    uVar28 = uVar2;
 LAB_000802f6:
-    *(uint *)(param_5 + 0x38) = *(uint *)(param_5 + 0x38) & 0xfffcffff | uVar20;
+    *(uint *)(param_5 + 0x38) = *(uint *)(param_5 + 0x38) & 0xfffcffff | uVar18;
 LAB_00080300:
-    iVar15 = *(int *)(*(int *)(param_1 + 100) + 0x38);
-    if (-1 < iVar15 << 0x1b) {
-      if (iVar15 << 0x1c < 0) {
-        iVar36 = 0x596;
-        iVar15 = 0x183;
+    iVar13 = *(int *)(*(int *)(param_1 + 100) + 0x38);
+    if (-1 < iVar13 << 0x1b) {
+      if (iVar13 << 0x1c < 0) {
+        iVar34 = 0x596;
+        iVar13 = 0x183;
       }
       else {
-        iVar36 = 0x599;
-        iVar15 = 0x17b;
+        iVar34 = 0x599;
+        iVar13 = 0x17b;
       }
-      ERR_put_error(0x14,0x14b,iVar15,DAT_00080378,iVar36);
+      ERR_put_error(0x14,0x14b,iVar13,"ssl_ciph.c",iVar34);
       return (_STACK *)0x0;
     }
-    if (uVar20 == 0x20000) {
-      local_48 = DAT_00080cc4;
+    if (uVar18 == 0x20000) {
+      local_48 = "ECDHE-ECDSA-AES256-GCM-SHA384";
     }
-    else if (uVar20 == 0x30000) {
-      local_48 = DAT_00080ccc;
-      if (uVar30 != 0) {
-        local_48 = DAT_00080cc4;
+    else if (uVar18 == 0x30000) {
+      local_48 = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384";
+      if (uVar28 != 0) {
+        local_48 = "ECDHE-ECDSA-AES256-GCM-SHA384";
       }
     }
-    else if (uVar20 == 0x10000) {
-      local_48 = DAT_00080630;
+    else if (uVar18 == 0x10000) {
+      local_48 = "ECDHE-ECDSA-AES128-GCM-SHA256";
     }
     *(undefined4 *)(param_5 + 0x34) = 1;
   }
   else {
-    iVar15 = strcmp(param_4,DAT_0008037c);
-    if (iVar15 == 0) {
-      uVar20 = 0x10000;
-      uVar30 = 0;
+    iVar13 = strcmp(param_4,"SUITEB128ONLY");
+    if (iVar13 == 0) {
+      uVar18 = 0x10000;
+      uVar28 = 0;
       goto LAB_000802f6;
     }
-    iVar15 = strcmp(param_4,DAT_00080380);
-    if (iVar15 == 0) {
+    iVar13 = strcmp(param_4,"SUITEB128C2");
+    if (iVar13 == 0) {
       uVar2 = 1;
       goto LAB_000802f2;
     }
-    iVar15 = strcmp(param_4,DAT_00080384);
-    if (iVar15 == 0) {
-      uVar20 = 0x20000;
-      uVar30 = 0;
+    iVar13 = strcmp(param_4,"SUITEB192");
+    if (iVar13 == 0) {
+      uVar18 = 0x20000;
+      uVar28 = 0;
       goto LAB_000802f6;
     }
-    uVar20 = *(uint *)(param_5 + 0x38) & 0x30000;
-    if (uVar20 != 0) goto LAB_00080300;
+    uVar18 = *(uint *)(param_5 + 0x38) & 0x30000;
+    if (uVar18 != 0) goto LAB_00080300;
   }
   local_30 = (ENGINE *)0x0;
   local_2c[0] = 0;
-  pEVar3 = EVP_PKEY_asn1_find_str(&local_30,DAT_00080634,-1);
+  pEVar3 = EVP_PKEY_asn1_find_str(&local_30,"gost94",-1);
   if (pEVar3 != (EVP_PKEY_ASN1_METHOD *)0x0) {
     EVP_PKEY_asn1_get0_info(local_2c,(int *)0x0,(int *)0x0,(char **)0x0,(char **)0x0,pEVar3);
   }
@@ -124,13 +122,13 @@ LAB_00080300:
   }
   local_30 = (ENGINE *)0x0;
   if (local_2c[0] == 0) {
-    uVar30 = 0x120;
+    uVar28 = 0x120;
   }
   else {
-    uVar30 = 0x20;
+    uVar28 = 0x20;
   }
   local_2c[0] = 0;
-  pEVar3 = EVP_PKEY_asn1_find_str(&local_30,DAT_00080638,-1);
+  pEVar3 = EVP_PKEY_asn1_find_str(&local_30,"gost2001",-1);
   if (pEVar3 != (EVP_PKEY_ASN1_METHOD *)0x0) {
     EVP_PKEY_asn1_get0_info(local_2c,(int *)0x0,(int *)0x0,(char **)0x0,(char **)0x0,pEVar3);
   }
@@ -138,610 +136,602 @@ LAB_00080300:
     ENGINE_finish(local_30);
   }
   if (local_2c[0] == 0) {
-    uVar30 = uVar30 | 0x200;
+    uVar28 = uVar28 | 0x200;
   }
-  if ((uVar30 & 0x300) == 0x300) {
+  if ((uVar28 & 0x300) == 0x300) {
     uVar2 = 0x210;
-    uVar20 = 0xfffffdef;
+    uVar18 = 0xfffffdef;
   }
   else {
     uVar2 = 0x10;
-    uVar20 = 0xffffffef;
+    uVar18 = 0xffffffef;
   }
-  if (*(int *)(DAT_0008063c + 8) == 0) {
-    uVar10 = 2;
+  if (ssl_cipher_methods._4_4_ == 0) {
+    uVar9 = 2;
   }
   else {
-    uVar10 = 0;
+    uVar9 = 0;
   }
-  if (*(int *)(DAT_0008063c + 4) == 0) {
-    uVar10 = uVar10 | 1;
+  if (ssl_cipher_methods._0_4_ == 0) {
+    uVar9 = uVar9 | 1;
   }
-  if (*(int *)(DAT_0008063c + 0xc) == 0) {
+  if (ssl_cipher_methods._8_4_ == 0) {
     uVar4 = 4;
   }
   else {
     uVar4 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x10) == 0) {
-    uVar21 = 8;
+  if (ssl_cipher_methods._12_4_ == 0) {
+    uVar19 = 8;
   }
   else {
-    uVar21 = 0;
+    uVar19 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x14) == 0) {
-    uVar24 = 0x10;
-  }
-  else {
-    uVar24 = 0;
-  }
-  if (*(int *)(DAT_0008063c + 0x1c) == 0) {
-    uVar11 = 0x40;
+  if (ssl_cipher_methods._16_4_ == 0) {
+    uVar22 = 0x10;
   }
   else {
-    uVar11 = 0;
+    uVar22 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x20) == 0) {
-    uVar16 = 0x80;
+  if (ssl_cipher_methods._24_4_ == 0) {
+    uVar10 = 0x40;
   }
   else {
-    uVar16 = 0;
+    uVar10 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x34) == 0) {
+  if (ssl_cipher_methods._28_4_ == 0) {
+    uVar14 = 0x80;
+  }
+  else {
+    uVar14 = 0;
+  }
+  if (ssl_cipher_methods._48_4_ == 0) {
     uVar5 = 0x1000;
   }
   else {
     uVar5 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x24) == 0) {
-    uVar12 = 0x100;
+  if (ssl_cipher_methods._32_4_ == 0) {
+    uVar11 = 0x100;
   }
   else {
-    uVar12 = 0;
+    uVar11 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x38) == 0) {
-    uVar22 = 0x2000;
+  if (ssl_cipher_methods._52_4_ == 0) {
+    uVar20 = 0x2000;
   }
   else {
-    uVar22 = 0;
+    uVar20 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x28) == 0) {
+  if (ssl_cipher_methods._36_4_ == 0) {
     uVar6 = 0x200;
   }
   else {
     uVar6 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x40) == 0) {
-    uVar25 = 2;
-  }
-  else {
-    uVar25 = 0;
-  }
-  if (*(int *)(DAT_0008063c + 0x50) == 0) {
-    uVar23 = 0x20;
+  if (ssl_digest_methods._4_4_ == 0) {
+    uVar23 = 2;
   }
   else {
     uVar23 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x3c) == 0) {
-    uVar25 = uVar25 | 1;
-  }
-  if (*(int *)(DAT_0008063c + 0x4c) == 0) {
-    uVar26 = 0x10;
+  if (ssl_digest_methods._20_4_ == 0) {
+    uVar21 = 0x20;
   }
   else {
-    uVar26 = 0;
+    uVar21 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x30) == 0) {
-    uVar31 = 0x800;
+  if (ssl_digest_methods._0_4_ == 0) {
+    uVar23 = uVar23 | 1;
   }
-  else {
-    uVar31 = 0;
-  }
-  if (*(int *)(DAT_0008063c + 0x2c) == 0) {
-    uVar17 = 0x400;
+  if (ssl_digest_methods._16_4_ == 0) {
+    uVar24 = 0x10;
   }
   else {
-    uVar17 = 0;
+    uVar24 = 0;
   }
-  if (*(int *)(DAT_0008063c + 0x44) == 0) {
-    uVar27 = 4;
-  }
-  else {
-    uVar27 = 0;
-  }
-  uVar31 = uVar17 | uVar6 | uVar12 | uVar10 | uVar4 | uVar21 | uVar24 | uVar11 | uVar16 | uVar5 |
-                                     uVar22 | uVar31;
-  if ((*(int *)(DAT_0008063c + 0x48) == 0) || (*(int *)(DAT_00080640 + 0xc) == 0)) {
-    uVar10 = 8;
+  if (ssl_cipher_methods._44_4_ == 0) {
+    uVar29 = 0x800;
   }
   else {
-    uVar10 = 0;
+    uVar29 = 0;
   }
-  uVar10 = uVar10 | uVar25 | uVar26 | uVar23 | uVar27;
-  iVar15 = (**(code **)(param_1 + 0x54))();
-  ptr = (void **)CRYPTO_malloc(iVar15 * 0x14,DAT_00080644,0x5e0);
-  if (ptr == (void **)0x0) {
-    iVar15 = 0x5e2;
+  if (ssl_cipher_methods._40_4_ == 0) {
+    uVar15 = 0x400;
+  }
+  else {
+    uVar15 = 0;
+  }
+  if (ssl_digest_methods._8_4_ == 0) {
+    uVar25 = 4;
+  }
+  else {
+    uVar25 = 0;
+  }
+  uVar29 = uVar15 | uVar6 | uVar11 | uVar9 | uVar4 | uVar19 | uVar22 | uVar10 | uVar14 | uVar5 |
+                                     uVar20 | uVar29;
+  if ((ssl_digest_methods._12_4_ == 0) || (DAT_001968b4 == 0)) {
+    uVar9 = 8;
+  }
+  else {
+    uVar9 = 0;
+  }
+  uVar9 = uVar9 | uVar23 | uVar24 | uVar21 | uVar25;
+  iVar13 = (**(code **)(param_1 + 0x54))();
+  ptr = (int *)CRYPTO_malloc(iVar13 * 0x14,"ssl_ciph.c",0x5e0);
+  if (ptr == (int *)0x0) {
+    iVar13 = 0x5e2;
     goto LAB_00080c80;
   }
-  if (iVar15 < 1) {
+  if (iVar13 < 1) {
 LAB_00080bee:
-    if (local_34 == (void **)0x0) goto LAB_00080c76;
-    ppvVar8 = local_38;
-    ppvVar18 = local_34;
-    if (local_38 != (void **)0x0) goto LAB_0008067e;
+    if (local_34 == (int *)0x0) goto LAB_00080c76;
+    piVar7 = local_38;
+    piVar16 = local_34;
+    if (local_38 != (int *)0x0) goto LAB_0008067e;
 LAB_00080bb4:
-    local_38 = (void **)0x0;
+    local_38 = (int *)0x0;
   }
   else {
-    iVar29 = 0;
-    iVar36 = 0;
+    iVar27 = 0;
+    iVar34 = 0;
     do {
-      piVar7 = (int *)(**(code **)(param_1 + 0x58))(iVar29);
-      iVar29 = iVar29 + 1;
-      iVar28 = iVar36;
+      piVar7 = (int *)(**(code **)(param_1 + 0x58))(iVar27);
+      iVar27 = iVar27 + 1;
+      iVar26 = iVar34;
       if (((((piVar7 != (int *)0x0) && (*piVar7 != 0)) && ((uVar2 & piVar7[3]) == 0)) &&
-          (((uVar30 & piVar7[4]) == 0 && ((uVar31 & piVar7[5]) == 0)))) &&
-         ((uVar10 & piVar7[6]) == 0)) {
-        iVar28 = iVar36 + 1;
-        ptr[iVar36 * 5 + 3] = (void *)0x0;
-        ptr[iVar36 * 5 + 4] = (void *)0x0;
-        ptr[iVar36 * 5] = piVar7;
-        ptr[iVar36 * 5 + 1] = (void *)0x0;
+          (((uVar28 & piVar7[4]) == 0 && ((uVar29 & piVar7[5]) == 0)))) &&
+         ((uVar9 & piVar7[6]) == 0)) {
+        iVar26 = iVar34 + 1;
+        ptr[iVar34 * 5 + 3] = 0;
+        ptr[iVar34 * 5 + 4] = 0;
+        ptr[iVar34 * 5] = (int)piVar7;
+        ptr[iVar34 * 5 + 1] = 0;
       }
-      iVar36 = iVar28;
-    } while (iVar29 != iVar15);
-    if (iVar28 == 0) goto LAB_00080bee;
-    ptr[4] = (void *)0x0;
+      iVar34 = iVar26;
+    } while (iVar27 != iVar13);
+    if (iVar26 == 0) goto LAB_00080bee;
+    ptr[4] = 0;
     local_34 = ptr;
-    if (iVar28 != 1) {
-      iVar36 = iVar28 + -1;
-      ptr[3] = ptr + 5;
-      if (iVar36 != 1) {
-        iVar29 = 1;
-        ppvVar8 = ptr + 10;
+    if (iVar26 != 1) {
+      iVar34 = iVar26 + -1;
+      ptr[3] = (int)(ptr + 5);
+      if (iVar34 != 1) {
+        iVar27 = 1;
+        piVar7 = ptr + 10;
         do {
-          iVar29 = iVar29 + 1;
-          ppvVar8[-2] = ppvVar8;
-          ppvVar8[-1] = ppvVar8 + -10;
-          ppvVar8 = ppvVar8 + 5;
-        } while (iVar29 != iVar36);
+          iVar27 = iVar27 + 1;
+          piVar7[-2] = (int)piVar7;
+          piVar7[-1] = (int)(piVar7 + -10);
+          piVar7 = piVar7 + 5;
+        } while (iVar27 != iVar34);
       }
-      (ptr + iVar36 * 5)[4] = ptr + iVar28 * 5 + -10;
-      local_34 = ptr + iVar36 * 5;
+      (ptr + iVar34 * 5)[4] = (int)(ptr + iVar26 * 5 + -10);
+      local_34 = ptr + iVar34 * 5;
     }
-    local_34[3] = (void *)0x0;
+    local_34[3] = 0;
     local_38 = ptr;
-    ppvVar8 = ptr;
-    ppvVar18 = local_34;
+    piVar7 = ptr;
+    piVar16 = local_34;
 LAB_0008067e:
     do {
-      ppvVar13 = (void **)ppvVar8[3];
-      if ((*(int *)((int)*ppvVar8 + 0xc) << 0x18 < 0) && (ppvVar8[1] == (void *)0x0)) {
-        if (ppvVar8 != local_34) {
-          pvVar14 = ppvVar8[4];
-          if (ppvVar8 == local_38) {
-            local_38 = ppvVar13;
+      piVar12 = (int *)piVar7[3];
+      if ((*(int *)(*piVar7 + 0xc) << 0x18 < 0) && (piVar7[1] == 0)) {
+        if (piVar7 != local_34) {
+          iVar34 = piVar7[4];
+          if (piVar7 == local_38) {
+            local_38 = piVar12;
           }
-          ppvVar33 = ppvVar13;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar13;
-            ppvVar33 = (void **)ppvVar8[3];
+          piVar31 = piVar12;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar12;
+            piVar31 = (int *)piVar7[3];
           }
-          if (ppvVar33 != (void **)0x0) {
-            ppvVar33[4] = pvVar14;
+          if (piVar31 != (int *)0x0) {
+            piVar31[4] = iVar34;
           }
-          local_34[3] = ppvVar8;
-          ppvVar8[4] = local_34;
-          ppvVar8[3] = (void *)0x0;
+          local_34[3] = (int)piVar7;
+          piVar7[4] = (int)local_34;
+          piVar7[3] = 0;
         }
-        ppvVar8[1] = (void *)0x1;
-        local_34 = ppvVar8;
+        piVar7[1] = 1;
+        local_34 = piVar7;
       }
-    } while ((ppvVar18 != ppvVar8) && (ppvVar8 = ppvVar13, ppvVar13 != (void **)0x0));
-    ppvVar8 = local_38;
-    ppvVar18 = local_34;
-    if (local_38 == (void **)0x0) goto LAB_00080bb4;
+    } while ((piVar16 != piVar7) && (piVar7 = piVar12, piVar12 != (int *)0x0));
+    piVar7 = local_38;
+    piVar16 = local_34;
+    if (local_38 == (int *)0x0) goto LAB_00080bb4;
     do {
-      ppvVar13 = (void **)ppvVar18[4];
-      if ((*(int *)((int)*ppvVar18 + 0xc) << 0x18 < 0) && (ppvVar18[1] != (void *)0x0)) {
-        if (ppvVar18 != ppvVar8) {
-          pvVar14 = ppvVar18[3];
-          if (ppvVar18 == local_34) {
-            local_34 = ppvVar13;
+      piVar12 = (int *)piVar16[4];
+      if ((*(int *)(*piVar16 + 0xc) << 0x18 < 0) && (piVar16[1] != 0)) {
+        if (piVar16 != piVar7) {
+          iVar34 = piVar16[3];
+          if (piVar16 == local_34) {
+            local_34 = piVar12;
           }
-          ppvVar33 = ppvVar13;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0x10) = ppvVar13;
-            ppvVar33 = (void **)ppvVar18[4];
+          piVar31 = piVar12;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0x10) = piVar12;
+            piVar31 = (int *)piVar16[4];
           }
-          if (ppvVar33 != (void **)0x0) {
-            ppvVar33[3] = pvVar14;
+          if (piVar31 != (int *)0x0) {
+            piVar31[3] = iVar34;
           }
-          ppvVar8[4] = ppvVar18;
-          ppvVar18[3] = ppvVar8;
-          ppvVar18[4] = (void *)0x0;
+          piVar7[4] = (int)piVar16;
+          piVar16[3] = (int)piVar7;
+          piVar16[4] = 0;
         }
-        ppvVar18[1] = (void *)0x0;
-        ppvVar8 = ppvVar18;
+        piVar16[1] = 0;
+        piVar7 = piVar16;
       }
-    } while ((ppvVar18 != local_38) && (ppvVar18 = ppvVar13, ppvVar13 != (void **)0x0));
-    local_38 = ppvVar8;
-    if (local_34 == (void **)0x0) goto LAB_00080c76;
-    ppvVar18 = local_34;
-    ppvVar13 = ppvVar8;
-    if (ppvVar8 == (void **)0x0) goto LAB_00080bb4;
+    } while ((piVar16 != local_38) && (piVar16 = piVar12, piVar12 != (int *)0x0));
+    local_38 = piVar7;
+    if (local_34 == (int *)0x0) goto LAB_00080c76;
+    piVar16 = local_34;
+    piVar12 = piVar7;
+    if (piVar7 == (int *)0x0) goto LAB_00080bb4;
     do {
-      ppvVar33 = (void **)ppvVar8[3];
-      if (((*(uint *)((int)*ppvVar8 + 0x14) & 0x30c0) != 0) && (ppvVar8[1] == (void *)0x0)) {
-        if (ppvVar8 != ppvVar18) {
-          pvVar14 = ppvVar8[4];
-          if (ppvVar8 == ppvVar13) {
-            ppvVar13 = ppvVar33;
+      piVar31 = (int *)piVar7[3];
+      if (((*(uint *)(*piVar7 + 0x14) & 0x30c0) != 0) && (piVar7[1] == 0)) {
+        if (piVar7 != piVar16) {
+          iVar34 = piVar7[4];
+          if (piVar7 == piVar12) {
+            piVar12 = piVar31;
           }
-          ppvVar32 = ppvVar33;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar33;
-            ppvVar32 = (void **)ppvVar8[3];
+          piVar30 = piVar31;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar31;
+            piVar30 = (int *)piVar7[3];
           }
-          if (ppvVar32 != (void **)0x0) {
-            ppvVar32[4] = pvVar14;
+          if (piVar30 != (int *)0x0) {
+            piVar30[4] = iVar34;
           }
-          ppvVar18[3] = ppvVar8;
-          ppvVar8[4] = ppvVar18;
-          ppvVar8[3] = (void *)0x0;
+          piVar16[3] = (int)piVar7;
+          piVar7[4] = (int)piVar16;
+          piVar7[3] = 0;
         }
-        ppvVar8[1] = (void *)0x1;
-        ppvVar18 = ppvVar8;
+        piVar7[1] = 1;
+        piVar16 = piVar7;
       }
-    } while ((local_34 != ppvVar8) && (ppvVar8 = ppvVar33, ppvVar33 != (void **)0x0));
-    ppvVar8 = ppvVar13;
-    local_34 = ppvVar18;
-    if (ppvVar13 == (void **)0x0) goto LAB_00080bb4;
+    } while ((local_34 != piVar7) && (piVar7 = piVar31, piVar31 != (int *)0x0));
+    piVar7 = piVar12;
+    local_34 = piVar16;
+    if (piVar12 == (int *)0x0) goto LAB_00080bb4;
     do {
-      ppvVar33 = (void **)ppvVar13[3];
-      if (ppvVar13[1] == (void *)0x0) {
-        if (ppvVar13 != local_34) {
-          pvVar14 = ppvVar13[4];
-          if (ppvVar13 == ppvVar8) {
-            ppvVar8 = ppvVar33;
+      piVar31 = (int *)piVar12[3];
+      if (piVar12[1] == 0) {
+        if (piVar12 != local_34) {
+          iVar34 = piVar12[4];
+          if (piVar12 == piVar7) {
+            piVar7 = piVar31;
           }
-          ppvVar32 = ppvVar33;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar33;
-            ppvVar32 = (void **)ppvVar13[3];
+          piVar30 = piVar31;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar31;
+            piVar30 = (int *)piVar12[3];
           }
-          if (ppvVar32 != (void **)0x0) {
-            ppvVar32[4] = pvVar14;
+          if (piVar30 != (int *)0x0) {
+            piVar30[4] = iVar34;
           }
-          local_34[3] = ppvVar13;
-          ppvVar13[4] = local_34;
-          ppvVar13[3] = (void *)0x0;
+          local_34[3] = (int)piVar12;
+          piVar12[4] = (int)local_34;
+          piVar12[3] = 0;
         }
-        ppvVar13[1] = (void *)0x1;
-        local_34 = ppvVar13;
+        piVar12[1] = 1;
+        local_34 = piVar12;
       }
-    } while ((ppvVar18 != ppvVar13) && (ppvVar13 = ppvVar33, ppvVar33 != (void **)0x0));
-    local_38 = ppvVar8;
-    ppvVar18 = local_34;
-    if (ppvVar8 == (void **)0x0) goto LAB_00080bb4;
+    } while ((piVar16 != piVar12) && (piVar12 = piVar31, piVar31 != (int *)0x0));
+    local_38 = piVar7;
+    piVar16 = local_34;
+    if (piVar7 == (int *)0x0) goto LAB_00080bb4;
     do {
-      ppvVar33 = (void **)ppvVar8[3];
-      ppvVar13 = ppvVar18;
-      if (((*(int *)((int)*ppvVar8 + 0x18) << 0x1f < 0) && (ppvVar8[1] != (void *)0x0)) &&
-         (ppvVar13 = ppvVar8, ppvVar8 != ppvVar18)) {
-        pvVar14 = ppvVar8[4];
-        if (ppvVar8 == local_38) {
-          local_38 = ppvVar33;
+      piVar31 = (int *)piVar7[3];
+      piVar12 = piVar16;
+      if (((*(int *)(*piVar7 + 0x18) << 0x1f < 0) && (piVar7[1] != 0)) &&
+         (piVar12 = piVar7, piVar7 != piVar16)) {
+        iVar34 = piVar7[4];
+        if (piVar7 == local_38) {
+          local_38 = piVar31;
         }
-        ppvVar32 = ppvVar33;
-        if (pvVar14 != (void *)0x0) {
-          *(void ***)((int)pvVar14 + 0xc) = ppvVar33;
-          ppvVar32 = (void **)ppvVar8[3];
+        piVar30 = piVar31;
+        if (iVar34 != 0) {
+          *(int **)(iVar34 + 0xc) = piVar31;
+          piVar30 = (int *)piVar7[3];
         }
-        if (ppvVar32 != (void **)0x0) {
-          ppvVar32[4] = pvVar14;
+        if (piVar30 != (int *)0x0) {
+          piVar30[4] = iVar34;
         }
-        ppvVar18[3] = ppvVar8;
-        ppvVar8[4] = ppvVar18;
-        ppvVar8[3] = (void *)0x0;
+        piVar16[3] = (int)piVar7;
+        piVar7[4] = (int)piVar16;
+        piVar7[3] = 0;
       }
-    } while ((ppvVar8 != local_34) &&
-            (ppvVar8 = ppvVar33, ppvVar18 = ppvVar13, ppvVar33 != (void **)0x0));
-    if (ppvVar13 == (void **)0x0) {
+    } while ((piVar7 != local_34) && (piVar7 = piVar31, piVar16 = piVar12, piVar31 != (int *)0x0));
+    if (piVar12 == (int *)0x0) {
 LAB_00080c76:
-      local_34 = (void **)0x0;
+      local_34 = (int *)0x0;
     }
     else {
-      ppvVar8 = local_38;
-      local_34 = ppvVar13;
-      ppvVar18 = ppvVar13;
-      if (local_38 == (void **)0x0) goto LAB_00080bb4;
+      piVar7 = local_38;
+      local_34 = piVar12;
+      piVar16 = piVar12;
+      if (local_38 == (int *)0x0) goto LAB_00080bb4;
       do {
-        ppvVar33 = (void **)local_38[3];
-        local_34 = ppvVar18;
-        if (((*(int *)((int)*local_38 + 0x10) << 0x1d < 0) && (local_38[1] != (void *)0x0)) &&
-           (local_34 = local_38, local_38 != ppvVar18)) {
-          pvVar14 = local_38[4];
-          if (local_38 == ppvVar8) {
-            ppvVar8 = ppvVar33;
+        piVar31 = (int *)local_38[3];
+        local_34 = piVar16;
+        if (((*(int *)(*local_38 + 0x10) << 0x1d < 0) && (local_38[1] != 0)) &&
+           (local_34 = local_38, local_38 != piVar16)) {
+          iVar34 = local_38[4];
+          if (local_38 == piVar7) {
+            piVar7 = piVar31;
           }
-          ppvVar32 = ppvVar33;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar33;
-            ppvVar32 = (void **)local_38[3];
+          piVar30 = piVar31;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar31;
+            piVar30 = (int *)local_38[3];
           }
-          if (ppvVar32 != (void **)0x0) {
-            ppvVar32[4] = pvVar14;
+          if (piVar30 != (int *)0x0) {
+            piVar30[4] = iVar34;
           }
-          ppvVar18[3] = local_38;
-          local_38[4] = ppvVar18;
-          local_38[3] = (void *)0x0;
+          piVar16[3] = (int)local_38;
+          local_38[4] = (int)piVar16;
+          local_38[3] = 0;
         }
-      } while ((ppvVar13 != local_38) &&
-              (local_38 = ppvVar33, ppvVar18 = local_34, ppvVar33 != (void **)0x0));
-      local_38 = ppvVar8;
-      if (local_34 == (void **)0x0) goto LAB_00080c76;
-      ppvVar18 = ppvVar8;
-      ppvVar13 = local_34;
-      if (ppvVar8 == (void **)0x0) goto LAB_00080bb4;
+      } while ((piVar12 != local_38) &&
+              (local_38 = piVar31, piVar16 = local_34, piVar31 != (int *)0x0));
+      local_38 = piVar7;
+      if (local_34 == (int *)0x0) goto LAB_00080c76;
+      piVar16 = piVar7;
+      piVar12 = local_34;
+      if (piVar7 == (int *)0x0) goto LAB_00080bb4;
       do {
-        ppvVar32 = (void **)ppvVar18[3];
-        ppvVar33 = ppvVar13;
-        if (((*(int *)((int)*ppvVar18 + 0x10) << 0x1b < 0) && (ppvVar18[1] != (void *)0x0)) &&
-           (ppvVar33 = ppvVar18, ppvVar18 != ppvVar13)) {
-          pvVar14 = ppvVar18[4];
-          if (ppvVar18 == ppvVar8) {
-            ppvVar8 = ppvVar32;
+        piVar30 = (int *)piVar16[3];
+        piVar31 = piVar12;
+        if (((*(int *)(*piVar16 + 0x10) << 0x1b < 0) && (piVar16[1] != 0)) &&
+           (piVar31 = piVar16, piVar16 != piVar12)) {
+          iVar34 = piVar16[4];
+          if (piVar16 == piVar7) {
+            piVar7 = piVar30;
           }
-          ppvVar34 = ppvVar32;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar32;
-            ppvVar34 = (void **)ppvVar18[3];
+          piVar32 = piVar30;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar30;
+            piVar32 = (int *)piVar16[3];
           }
-          if (ppvVar34 != (void **)0x0) {
-            ppvVar34[4] = pvVar14;
+          if (piVar32 != (int *)0x0) {
+            piVar32[4] = iVar34;
           }
-          ppvVar13[3] = ppvVar18;
-          ppvVar18[4] = ppvVar13;
-          ppvVar18[3] = (void *)0x0;
+          piVar12[3] = (int)piVar16;
+          piVar16[4] = (int)piVar12;
+          piVar16[3] = 0;
         }
-      } while ((ppvVar18 != local_34) &&
-              (ppvVar18 = ppvVar32, ppvVar13 = ppvVar33, ppvVar32 != (void **)0x0));
-      local_38 = ppvVar8;
-      if (ppvVar33 == (void **)0x0) goto LAB_00080c76;
-      ppvVar18 = ppvVar8;
-      local_34 = ppvVar33;
-      ppvVar13 = ppvVar33;
-      if (ppvVar8 == (void **)0x0) goto LAB_00080bb4;
+      } while ((piVar16 != local_34) &&
+              (piVar16 = piVar30, piVar12 = piVar31, piVar30 != (int *)0x0));
+      local_38 = piVar7;
+      if (piVar31 == (int *)0x0) goto LAB_00080c76;
+      piVar16 = piVar7;
+      local_34 = piVar31;
+      piVar12 = piVar31;
+      if (piVar7 == (int *)0x0) goto LAB_00080bb4;
       do {
-        ppvVar34 = (void **)ppvVar18[3];
-        ppvVar32 = ppvVar13;
-        if (((*(int *)((int)*ppvVar18 + 0xc) << 0x1f < 0) && (ppvVar18[1] != (void *)0x0)) &&
-           (ppvVar32 = ppvVar18, ppvVar18 != ppvVar13)) {
-          pvVar14 = ppvVar18[4];
-          if (ppvVar18 == ppvVar8) {
-            ppvVar8 = ppvVar34;
+        piVar32 = (int *)piVar16[3];
+        piVar30 = piVar12;
+        if (((*(int *)(*piVar16 + 0xc) << 0x1f < 0) && (piVar16[1] != 0)) &&
+           (piVar30 = piVar16, piVar16 != piVar12)) {
+          iVar34 = piVar16[4];
+          if (piVar16 == piVar7) {
+            piVar7 = piVar32;
           }
-          ppvVar35 = ppvVar34;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar34;
-            ppvVar35 = (void **)ppvVar18[3];
+          piVar33 = piVar32;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar32;
+            piVar33 = (int *)piVar16[3];
           }
-          if (ppvVar35 != (void **)0x0) {
-            ppvVar35[4] = pvVar14;
+          if (piVar33 != (int *)0x0) {
+            piVar33[4] = iVar34;
           }
-          ppvVar13[3] = ppvVar18;
-          ppvVar18[4] = ppvVar13;
-          ppvVar18[3] = (void *)0x0;
+          piVar12[3] = (int)piVar16;
+          piVar16[4] = (int)piVar12;
+          piVar16[3] = 0;
         }
-      } while ((ppvVar33 != ppvVar18) &&
-              (ppvVar18 = ppvVar34, ppvVar13 = ppvVar32, ppvVar34 != (void **)0x0));
-      local_38 = ppvVar8;
-      if (ppvVar32 == (void **)0x0) goto LAB_00080c76;
-      local_34 = ppvVar32;
-      if (ppvVar8 == (void **)0x0) goto LAB_00080bb4;
+      } while ((piVar31 != piVar16) && (piVar16 = piVar32, piVar12 = piVar30, piVar32 != (int *)0x0)
+              );
+      local_38 = piVar7;
+      if (piVar30 == (int *)0x0) goto LAB_00080c76;
+      local_34 = piVar30;
+      if (piVar7 == (int *)0x0) goto LAB_00080bb4;
       do {
-        ppvVar18 = (void **)ppvVar8[3];
-        if (((*(int *)((int)*ppvVar8 + 0xc) << 0x17 < 0) && (ppvVar8[1] != (void *)0x0)) &&
-           (local_34 != ppvVar8)) {
-          pvVar14 = ppvVar8[4];
-          if (local_38 == ppvVar8) {
-            local_38 = ppvVar18;
+        piVar16 = (int *)piVar7[3];
+        if (((*(int *)(*piVar7 + 0xc) << 0x17 < 0) && (piVar7[1] != 0)) && (local_34 != piVar7)) {
+          iVar34 = piVar7[4];
+          if (local_38 == piVar7) {
+            local_38 = piVar16;
           }
-          ppvVar13 = ppvVar18;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar18;
-            ppvVar13 = (void **)ppvVar8[3];
+          piVar12 = piVar16;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar16;
+            piVar12 = (int *)piVar7[3];
           }
-          if (ppvVar13 != (void **)0x0) {
-            ppvVar13[4] = pvVar14;
+          if (piVar12 != (int *)0x0) {
+            piVar12[4] = iVar34;
           }
-          local_34[3] = ppvVar8;
-          ppvVar8[4] = local_34;
-          ppvVar8[3] = (void *)0x0;
-          local_34 = ppvVar8;
+          local_34[3] = (int)piVar7;
+          piVar7[4] = (int)local_34;
+          piVar7[3] = 0;
+          local_34 = piVar7;
         }
-      } while ((ppvVar8 != ppvVar32) && (ppvVar8 = ppvVar18, ppvVar18 != (void **)0x0));
-      if (local_34 == (void **)0x0) goto LAB_00080c76;
-      ppvVar18 = local_38;
-      ppvVar8 = local_34;
-      if (local_38 == (void **)0x0) goto LAB_00080bb4;
+      } while ((piVar7 != piVar30) && (piVar7 = piVar16, piVar16 != (int *)0x0));
+      if (local_34 == (int *)0x0) goto LAB_00080c76;
+      piVar16 = local_38;
+      piVar7 = local_34;
+      if (local_38 == (int *)0x0) goto LAB_00080bb4;
       do {
-        ppvVar13 = (void **)ppvVar18[3];
-        if (((*(int *)((int)*ppvVar18 + 0xc) << 0x1b < 0) && (ppvVar18[1] != (void *)0x0)) &&
-           (ppvVar8 != ppvVar18)) {
-          pvVar14 = ppvVar18[4];
-          if (local_38 == ppvVar18) {
-            local_38 = ppvVar13;
+        piVar12 = (int *)piVar16[3];
+        if (((*(int *)(*piVar16 + 0xc) << 0x1b < 0) && (piVar16[1] != 0)) && (piVar7 != piVar16)) {
+          iVar34 = piVar16[4];
+          if (local_38 == piVar16) {
+            local_38 = piVar12;
           }
-          ppvVar33 = ppvVar13;
-          if (pvVar14 != (void *)0x0) {
-            *(void ***)((int)pvVar14 + 0xc) = ppvVar13;
-            ppvVar33 = (void **)ppvVar18[3];
+          piVar31 = piVar12;
+          if (iVar34 != 0) {
+            *(int **)(iVar34 + 0xc) = piVar12;
+            piVar31 = (int *)piVar16[3];
           }
-          if (ppvVar33 != (void **)0x0) {
-            ppvVar33[4] = pvVar14;
+          if (piVar31 != (int *)0x0) {
+            piVar31[4] = iVar34;
           }
-          ppvVar8[3] = ppvVar18;
-          ppvVar18[4] = ppvVar8;
-          ppvVar18[3] = (void *)0x0;
-          ppvVar8 = ppvVar18;
+          piVar7[3] = (int)piVar16;
+          piVar16[4] = (int)piVar7;
+          piVar16[3] = 0;
+          piVar7 = piVar16;
         }
-      } while ((ppvVar18 != local_34) && (ppvVar18 = ppvVar13, ppvVar13 != (void **)0x0));
-      local_34 = ppvVar8;
-      ppvVar18 = local_38;
-      if (ppvVar8 != (void **)0x0) {
+      } while ((piVar16 != local_34) && (piVar16 = piVar12, piVar12 != (int *)0x0));
+      local_34 = piVar7;
+      piVar16 = local_38;
+      if (piVar7 != (int *)0x0) {
         do {
-          if (ppvVar18 == (void **)0x0) break;
-          ppvVar13 = (void **)ppvVar18[3];
-          if (((*(int *)((int)*ppvVar18 + 0x14) << 0x1d < 0) && (ppvVar18[1] != (void *)0x0)) &&
-             (local_34 != ppvVar18)) {
-            pvVar14 = ppvVar18[4];
-            if (local_38 == ppvVar18) {
-              local_38 = ppvVar13;
+          if (piVar16 == (int *)0x0) break;
+          piVar12 = (int *)piVar16[3];
+          if (((*(int *)(*piVar16 + 0x14) << 0x1d < 0) && (piVar16[1] != 0)) &&
+             (local_34 != piVar16)) {
+            iVar34 = piVar16[4];
+            if (local_38 == piVar16) {
+              local_38 = piVar12;
             }
-            ppvVar33 = ppvVar13;
-            if (pvVar14 != (void *)0x0) {
-              *(void ***)((int)pvVar14 + 0xc) = ppvVar13;
-              ppvVar33 = (void **)ppvVar18[3];
+            piVar31 = piVar12;
+            if (iVar34 != 0) {
+              *(int **)(iVar34 + 0xc) = piVar12;
+              piVar31 = (int *)piVar16[3];
             }
-            if (ppvVar33 != (void **)0x0) {
-              ppvVar33[4] = pvVar14;
+            if (piVar31 != (int *)0x0) {
+              piVar31[4] = iVar34;
             }
-            local_34[3] = ppvVar18;
-            ppvVar18[4] = local_34;
-            ppvVar18[3] = (void *)0x0;
-            local_34 = ppvVar18;
+            local_34[3] = (int)piVar16;
+            piVar16[4] = (int)local_34;
+            piVar16[3] = 0;
+            local_34 = piVar16;
           }
-          bVar1 = ppvVar8 != ppvVar18;
-          ppvVar18 = ppvVar13;
+          bVar1 = piVar7 != piVar16;
+          piVar16 = piVar12;
         } while (bVar1);
       }
     }
   }
   st = (_STACK *)ssl_cipher_strength_sort(&local_38,&local_34);
   if (st != (_STACK *)0x0) {
-    ppvVar8 = local_38;
-    ppvVar18 = local_34;
-    if (local_38 != (void **)0x0) {
+    piVar7 = local_38;
+    piVar16 = local_34;
+    if (local_38 != (int *)0x0) {
       do {
-        if (ppvVar18 == (void **)0x0) break;
-        ppvVar13 = (void **)ppvVar18[4];
-        if (ppvVar18[1] != (void *)0x0) {
-          if (ppvVar8 != ppvVar18) {
-            pvVar14 = ppvVar18[3];
-            if (local_34 == ppvVar18) {
-              local_34 = ppvVar13;
+        if (piVar16 == (int *)0x0) break;
+        piVar12 = (int *)piVar16[4];
+        if (piVar16[1] != 0) {
+          if (piVar7 != piVar16) {
+            iVar34 = piVar16[3];
+            if (local_34 == piVar16) {
+              local_34 = piVar12;
             }
-            ppvVar33 = ppvVar13;
-            if (pvVar14 != (void *)0x0) {
-              *(void ***)((int)pvVar14 + 0x10) = ppvVar13;
-              ppvVar33 = (void **)ppvVar18[4];
+            piVar31 = piVar12;
+            if (iVar34 != 0) {
+              *(int **)(iVar34 + 0x10) = piVar12;
+              piVar31 = (int *)piVar16[4];
             }
-            if (ppvVar33 != (void **)0x0) {
-              ppvVar33[3] = pvVar14;
+            if (piVar31 != (int *)0x0) {
+              piVar31[3] = iVar34;
             }
-            ppvVar8[4] = ppvVar18;
-            ppvVar18[3] = ppvVar8;
-            ppvVar18[4] = (void *)0x0;
-            ppvVar8 = ppvVar18;
+            piVar7[4] = (int)piVar16;
+            piVar16[3] = (int)piVar7;
+            piVar16[4] = 0;
+            piVar7 = piVar16;
           }
-          ppvVar18[1] = (void *)0x0;
+          piVar16[1] = 0;
         }
-        bVar1 = ppvVar18 != local_38;
-        ppvVar18 = ppvVar13;
+        bVar1 = piVar16 != local_38;
+        piVar16 = piVar12;
       } while (bVar1);
     }
-    local_38 = ppvVar8;
-    ppvVar8 = (void **)CRYPTO_malloc((iVar15 + 0x55) * 4,DAT_00080cb8,0x631);
-    if (ppvVar8 == (void **)0x0) {
+    local_38 = piVar7;
+    piVar7 = (int *)CRYPTO_malloc((iVar13 + 0x55) * 4,"ssl_ciph.c",0x631);
+    if (piVar7 == (int *)0x0) {
       CRYPTO_free(ptr);
-      iVar15 = 0x634;
+      iVar13 = 0x634;
 LAB_00080c80:
-      ERR_put_error(0x14,0xa6,0x41,DAT_00080cb8,iVar15);
+      ERR_put_error(0x14,0xa6,0x41,"ssl_ciph.c",iVar13);
       return (_STACK *)0x0;
     }
-    ppvVar18 = ppvVar8;
-    pvVar14 = DAT_00080cd0;
-    for (ppvVar13 = local_38; DAT_00080cd0 = pvVar14, ppvVar13 != (void **)0x0;
-        ppvVar13 = (void **)ppvVar13[3]) {
-      *ppvVar18 = *ppvVar13;
-      ppvVar18 = ppvVar18 + 1;
-      pvVar14 = DAT_00080cd0;
+    piVar16 = piVar7;
+    for (piVar12 = local_38; piVar12 != (int *)0x0; piVar12 = (int *)piVar12[3]) {
+      *piVar16 = *piVar12;
+      piVar16 = piVar16 + 1;
     }
-    iVar15 = 0;
-    pvVar19 = pvVar14;
+    puVar17 = cipher_aliases;
+    iVar13 = 0;
     do {
-      iVar36 = iVar15 + 1;
-      HintPreloadData((int)pvVar14 + iVar15 * 0x30 + 0x15c);
-      ppvVar13 = ppvVar18;
-      if ((((*(uint *)((int)pvVar19 + 0xc) == 0) || ((*(uint *)((int)pvVar19 + 0xc) & uVar20) != 0))
-          && (((*(uint *)((int)pvVar19 + 0x10) == 0 ||
-               ((*(uint *)((int)pvVar19 + 0x10) & ~uVar30) != 0)) &&
-              ((*(uint *)((int)pvVar19 + 0x14) == 0 ||
-               ((*(uint *)((int)pvVar19 + 0x14) & ~uVar31) != 0)))))) &&
-         ((*(uint *)((int)pvVar19 + 0x18) == 0 || ((*(uint *)((int)pvVar19 + 0x18) & ~uVar10) != 0))
-         )) {
-        ppvVar13 = ppvVar18 + 1;
-        *ppvVar18 = pvVar19;
+      iVar34 = iVar13 + 1;
+      HintPreloadData(iVar13 * 0x30 + 0x141e58);
+      piVar12 = piVar16;
+      if ((((*(uint *)(puVar17 + 0xc) == 0) || ((*(uint *)(puVar17 + 0xc) & uVar18) != 0)) &&
+          (((*(uint *)(puVar17 + 0x10) == 0 || ((*(uint *)(puVar17 + 0x10) & ~uVar28) != 0)) &&
+           ((*(uint *)(puVar17 + 0x14) == 0 || ((*(uint *)(puVar17 + 0x14) & ~uVar29) != 0)))))) &&
+         ((*(uint *)(puVar17 + 0x18) == 0 || ((*(uint *)(puVar17 + 0x18) & ~uVar9) != 0)))) {
+        piVar12 = piVar16 + 1;
+        *piVar16 = (int)puVar17;
       }
-      pvVar19 = (void *)((int)pvVar19 + 0x30);
-      iVar15 = iVar36;
-      ppvVar18 = ppvVar13;
-    } while (iVar36 != 0x54);
-    *ppvVar13 = (void *)0x0;
-    iVar15 = strncmp(local_48,DAT_00080cbc,7);
-    if (iVar15 == 0) {
-      iVar15 = ssl_cipher_process_rulestr(DAT_00080cc8,&local_38,&local_34,ppvVar8);
+      puVar17 = puVar17 + 0x30;
+      iVar13 = iVar34;
+      piVar16 = piVar12;
+    } while (iVar34 != 0x54);
+    *piVar12 = 0;
+    iVar13 = strncmp(local_48,"DEFAULT",7);
+    if (iVar13 == 0) {
+      iVar13 = ssl_cipher_process_rulestr
+                         ("ALL:!EXPORT:!aNULL:!eNULL:!SSLv2",&local_38,&local_34,piVar7);
       if (local_48[7] == ':') {
         local_48 = local_48 + 8;
       }
       else {
         local_48 = local_48 + 7;
       }
-      if (iVar15 == 0) {
-        CRYPTO_free(ppvVar8);
+      if (iVar13 == 0) {
+        CRYPTO_free(piVar7);
         goto LAB_00080bde;
       }
     }
     if (*local_48 == '\0') {
-      CRYPTO_free(ppvVar8);
+      CRYPTO_free(piVar7);
     }
     else {
-      iVar15 = ssl_cipher_process_rulestr(local_48,&local_38,&local_34,ppvVar8);
-      CRYPTO_free(ppvVar8);
-      if (iVar15 == 0) {
+      iVar13 = ssl_cipher_process_rulestr(local_48,&local_38,&local_34,piVar7);
+      CRYPTO_free(piVar7);
+      if (iVar13 == 0) {
 LAB_00080bde:
         CRYPTO_free(ptr);
         return (_STACK *)0x0;
       }
     }
     st = sk_new_null();
-    ppvVar8 = local_38;
+    piVar7 = local_38;
     if (st != (_STACK *)0x0) {
-      for (; ppvVar8 != (void **)0x0; ppvVar8 = (void **)ppvVar8[3]) {
-        while (ppvVar8[1] == (void *)0x0) {
-          ppvVar8 = (void **)ppvVar8[3];
-          if (ppvVar8 == (void **)0x0) goto LAB_00080b5e;
+      for (; piVar7 != (int *)0x0; piVar7 = (int *)piVar7[3]) {
+        while (piVar7[1] == 0) {
+          piVar7 = (int *)piVar7[3];
+          if (piVar7 == (int *)0x0) goto LAB_00080b5e;
         }
-        sk_push(st,*ppvVar8);
+        sk_push(st,(void *)*piVar7);
       }
 LAB_00080b5e:
       CRYPTO_free(ptr);
-      p_Var9 = sk_dup(st);
-      if (p_Var9 != (_STACK *)0x0) {
-        if (*param_2 != (_STACK *)0x0) {
-          sk_free(*param_2);
+      p_Var8 = sk_dup(st);
+      if (p_Var8 != (_STACK *)0x0) {
+        if ((_STACK *)*param_2 != (_STACK *)0x0) {
+          sk_free((_STACK *)*param_2);
         }
         *param_2 = st;
-        if (*param_3 != (_STACK *)0x0) {
-          sk_free(*param_3);
+        if ((_STACK *)*param_3 != (_STACK *)0x0) {
+          sk_free((_STACK *)*param_3);
         }
-        *param_3 = p_Var9;
-        sk_set_cmp_func(p_Var9,DAT_00080cc0);
-        sk_sort(*param_3);
+        *param_3 = p_Var8;
+        sk_set_cmp_func(p_Var8,(void *)0x7ae01);
+        sk_sort((_STACK *)*param_3);
         return st;
       }
       sk_free(st);

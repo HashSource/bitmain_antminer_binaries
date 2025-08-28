@@ -5,8 +5,8 @@ undefined4 priv_print_gost94(BIO *param_1,EVP_PKEY *param_2,int param_3)
   int *piVar1;
   int iVar2;
   void *pvVar3;
-  EC_KEY *key;
   char *pcVar4;
+  EC_KEY *key;
   BIGNUM *pBVar5;
   BIGNUM *local_1c [2];
   
@@ -14,7 +14,7 @@ undefined4 priv_print_gost94(BIO *param_1,EVP_PKEY *param_2,int param_3)
   if (iVar2 == 0) {
     return 0;
   }
-  BIO_printf(param_1,DAT_00115e7c);
+  BIO_printf(param_1,"Private key: ");
   iVar2 = EVP_PKEY_base_id(param_2);
   if (iVar2 == 0x32b) {
     key = (EC_KEY *)EVP_PKEY_get0(param_2);
@@ -31,19 +31,19 @@ joined_r0x00115e76:
       goto LAB_00115db8;
     }
   }
-  BIO_printf(param_1,DAT_00115e80);
+  BIO_printf(param_1,"<undefined>");
 LAB_00115db8:
-  BIO_printf(param_1,DAT_00115e84);
+  BIO_printf(param_1,"\n");
   pvVar3 = EVP_PKEY_get0(param_2);
   pBVar5 = *(BIGNUM **)((int)pvVar3 + 0x18);
   BIO_indent(param_1,param_3,0x80);
-  BIO_printf(param_1,DAT_00115e88);
+  BIO_printf(param_1,"Public key: ");
   BN_print(param_1,pBVar5);
-  BIO_printf(param_1,DAT_00115e84);
-  piVar1 = DAT_00115e8c;
+  BIO_printf(param_1,"\n");
   pvVar3 = EVP_PKEY_get0(param_2);
   local_1c[0] = BN_new();
-  pcVar4 = (char *)piVar1[3];
+  piVar1 = (int *)R3410_paramset;
+  pcVar4 = (char *)R3410_paramset._12_4_;
   do {
     if (pcVar4 == (char *)0x0) {
       iVar2 = 0;
@@ -51,7 +51,7 @@ LAB_00115db8:
 LAB_00115e24:
       BIO_indent(param_1,param_3,0x80);
       pcVar4 = OBJ_nid2ln(iVar2);
-      BIO_printf(param_1,DAT_00115e90,pcVar4);
+      BIO_printf(param_1,"Parameter set: %s\n",pcVar4);
       return 1;
     }
     BN_dec2bn(local_1c,pcVar4);

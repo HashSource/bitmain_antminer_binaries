@@ -3,9 +3,9 @@ void error_set(int param_1,int param_2,char *param_3,undefined4 param_4)
 
 {
   char acStack_168 [159];
-  undefined local_c9;
+  undefined1 local_c9;
   char acStack_c8 [159];
-  undefined local_29;
+  undefined1 local_29;
   undefined4 *local_28;
   char *local_24;
   char *local_20;

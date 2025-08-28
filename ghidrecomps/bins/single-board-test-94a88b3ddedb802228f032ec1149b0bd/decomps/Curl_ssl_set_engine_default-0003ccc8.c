@@ -11,11 +11,11 @@ ENGINE * Curl_ssl_set_engine_default(int param_1)
     iVar1 = ENGINE_set_default(e,0xffff);
     if (0 < iVar1) {
       pcVar2 = ENGINE_get_id(*(ENGINE **)(param_1 + 0x8648));
-      Curl_infof(param_1,DAT_000599b0,pcVar2);
+      Curl_infof(param_1,"set default crypto engine \'%s\'\n",pcVar2);
       return (ENGINE *)0x0;
     }
     pcVar2 = ENGINE_get_id(*(ENGINE **)(param_1 + 0x8648));
-    Curl_failf(param_1,DAT_000599b4,pcVar2);
+    Curl_failf(param_1,"set default crypto engine \'%s\' failed",pcVar2);
     e = (ENGINE *)0x36;
   }
   return e;

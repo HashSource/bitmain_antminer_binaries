@@ -2,8 +2,8 @@
 RSA * ssl3_ctrl(int *param_1,int param_2,uint param_3,RSA *param_4)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   int iVar3;
   EVP_PKEY *pkey;
   EVP_MD *md;
@@ -14,12 +14,12 @@ RSA * ssl3_ctrl(int *param_1,int param_2,uint param_3,RSA *param_4)
   char *pcVar6;
   RSA *pRVar7;
   int iVar8;
-  undefined *puVar9;
-  int iVar10;
+  undefined1 *puVar9;
+  RSA *pRVar10;
   
   if (((param_2 == 2 || param_2 == 5) || (param_2 == 3 || param_2 == 6)) &&
      (iVar3 = ssl_cert_inst(param_1 + 0x26), iVar3 == 0)) {
-    ERR_put_error(0x14,0xd5,0x41,DAT_000698f4,0xc44);
+    ERR_put_error(0x14,0xd5,0x41,"s3_lib.c",0xc44);
     return (RSA *)0x0;
   }
   switch(param_2) {
@@ -44,7 +44,7 @@ RSA * ssl3_ctrl(int *param_1,int param_2,uint param_3,RSA *param_4)
         *(RSA **)(iVar3 + 0x1c) = pRVar7;
         return (RSA *)0x1;
       }
-      ERR_put_error(0x14,0xd5,4,DAT_00069d80,0xc6d);
+      ERR_put_error(0x14,0xd5,4,"s3_lib.c",0xc6d);
       return (RSA *)0x0;
     }
     goto LAB_00069c26;
@@ -52,12 +52,12 @@ RSA * ssl3_ctrl(int *param_1,int param_2,uint param_3,RSA *param_4)
     if (param_4 != (RSA *)0x0) {
       dh = DHparams_dup((DH *)param_4);
       if (dh == (DH *)0x0) {
-        ERR_put_error(0x14,0xd5,5,DAT_00069d80,0xc86);
+        ERR_put_error(0x14,0xd5,5,"s3_lib.c",0xc86);
         return (RSA *)0x0;
       }
       if ((-1 < param_1[0x40] << 0xb) && (iVar3 = DH_generate_key(dh), iVar3 == 0)) {
         DH_free(dh);
-        ERR_put_error(0x14,0xd5,5,DAT_00069d80,0xc8c);
+        ERR_put_error(0x14,0xd5,5,"s3_lib.c",0xc8c);
         return (RSA *)0x0;
       }
       iVar3 = param_1[0x26];
@@ -90,11 +90,11 @@ RSA * ssl3_ctrl(int *param_1,int param_2,uint param_3,RSA *param_4)
         iVar3 = 0xcae;
         pRVar7 = (RSA *)0x0;
       }
-      ERR_put_error(0x14,0xd5,0x2b,DAT_00069d80,iVar3);
+      ERR_put_error(0x14,0xd5,0x2b,"s3_lib.c",iVar3);
       return pRVar7;
     }
 LAB_00069c26:
-    ERR_put_error(0x14,0xd5,0x43,DAT_00069d80,iVar3);
+    ERR_put_error(0x14,0xd5,0x43,"s3_lib.c",iVar3);
     break;
   case 5:
     iVar3 = 0xc78;
@@ -105,7 +105,7 @@ LAB_00069c26:
   case 7:
     iVar3 = 0xcba;
 LAB_0006970a:
-    ERR_put_error(0x14,0xd5,0x42,DAT_000698f4,iVar3);
+    ERR_put_error(0x14,0xd5,0x42,"s3_lib.c",iVar3);
     goto switchD_000695f8_caseD_9;
   case 8:
     param_4 = (RSA *)param_1[0x1b];
@@ -127,7 +127,7 @@ LAB_0006970a:
     break;
   case 0x37:
     if (param_3 != 0) {
-      ERR_put_error(0x14,0xd5,0x140,DAT_00069d80,0xcd2);
+      ERR_put_error(0x14,0xd5,0x140,"s3_lib.c",0xcd2);
       return (RSA *)0x0;
     }
     if ((void *)param_1[0x48] != (void *)0x0) {
@@ -137,13 +137,13 @@ LAB_0006970a:
     if (param_4 != (RSA *)0x0) {
       sVar5 = strlen((char *)param_4);
       if (0xff < sVar5) {
-        ERR_put_error(0x14,0xd5,0x13f,DAT_00069d80,0xcca);
+        ERR_put_error(0x14,0xd5,0x13f,"s3_lib.c",0xcca);
         return (RSA *)0x0;
       }
       pcVar6 = BUF_strdup((char *)param_4);
       param_1[0x48] = (int)pcVar6;
       if (pcVar6 == (char *)0x0) {
-        ERR_put_error(0x14,0xd5,0x44,DAT_00069d80,0xcce);
+        ERR_put_error(0x14,0xd5,0x44,"s3_lib.c",0xcce);
         return (RSA *)0x0;
       }
     }
@@ -157,7 +157,7 @@ LAB_0006970a:
     param_4 = (RSA *)0x1;
     break;
   case 0x42:
-    *(int *)param_4 = param_1[0x4d];
+    param_4->pad = param_1[0x4d];
     param_4 = (RSA *)0x1;
     break;
   case 0x43:
@@ -165,7 +165,7 @@ LAB_0006970a:
     param_4 = (RSA *)0x1;
     break;
   case 0x44:
-    *(int *)param_4 = param_1[0x4c];
+    param_4->pad = param_1[0x4c];
     param_4 = (RSA *)0x1;
     break;
   case 0x45:
@@ -174,7 +174,7 @@ LAB_0006970a:
     break;
   case 0x46:
     pRVar7 = (RSA *)param_1[0x4f];
-    *(int *)param_4 = param_1[0x4e];
+    param_4->pad = param_1[0x4e];
     param_4 = pRVar7;
     break;
   case 0x47:
@@ -229,22 +229,22 @@ LAB_0006970a:
         return (RSA *)0x0;
       }
       iVar8 = 0;
-      iVar10 = 0;
-      puVar9 = *(undefined **)(iVar3 + 0xe0);
+      pRVar10 = (RSA *)0x0;
+      puVar9 = *(undefined1 **)(iVar3 + 0xe0);
       do {
         uVar1 = *puVar9;
         uVar2 = puVar9[1];
         iVar3 = tls1_ec_curve_id2nid((uint)CONCAT11(uVar1,uVar2));
         if (iVar3 == 0) {
-          *(uint *)(&param_4->field_0x0 + iVar8) = CONCAT11(uVar1,uVar2) | 0x1000000;
+          *(uint *)((int)&param_4->pad + iVar8) = CONCAT11(uVar1,uVar2) | 0x1000000;
         }
         else {
-          *(int *)(&param_4->field_0x0 + iVar8) = iVar3;
+          *(int *)((int)&param_4->pad + iVar8) = iVar3;
         }
-        iVar10 = iVar10 + 1;
+        pRVar10 = (RSA *)((int)&pRVar10->pad + 1);
         iVar8 = iVar8 + 4;
         puVar9 = puVar9 + 2;
-      } while ((RSA *)iVar10 != pRVar7);
+      } while (pRVar10 != pRVar7);
       return pRVar7;
     }
     goto switchD_000695f8_caseD_9;
@@ -278,13 +278,13 @@ LAB_0006970a:
       iVar8 = param_1[0x26];
       if (*(int *)(iVar8 + 0x11c) != 0) {
         if (param_4 != (RSA *)0x0) {
-          *(int *)param_4 = *(int *)(iVar8 + 0x11c);
+          param_4->pad = *(int *)(iVar8 + 0x11c);
           iVar8 = param_1[0x26];
         }
         return *(RSA **)(iVar8 + 0x120);
       }
       if (param_4 != (RSA *)0x0) {
-        *(int *)param_4 = iVar3 + 0x360;
+        param_4->pad = iVar3 + 0x360;
         iVar3 = param_1[0x16];
       }
       return *(RSA **)(iVar3 + 0x35c);
@@ -301,7 +301,7 @@ LAB_0006970a:
       if (0xff < param_3) {
         return (RSA *)0x0;
       }
-      __dest = CRYPTO_malloc(param_3,DAT_000698f4,0x10c6);
+      __dest = CRYPTO_malloc(param_3,"s3_lib.c",0x10c6);
       *(void **)(iVar3 + 0x11c) = __dest;
       if (__dest == (void *)0x0) {
         return (RSA *)0x0;
@@ -326,7 +326,7 @@ LAB_0006970a:
        ((iVar3 = *(int *)(param_1[0x30] + 0x98), iVar3 != 0 &&
         (md = *(EVP_MD **)(*(int *)(iVar3 + 8) + 8), md != (EVP_MD *)0x0)))) {
       iVar3 = EVP_MD_type(md);
-      *(int *)param_4 = iVar3;
+      param_4->pad = iVar3;
       return (RSA *)0x1;
     }
     goto switchD_000695f8_caseD_9;
@@ -348,7 +348,7 @@ LAB_0006970a:
         iVar3 = EVP_PKEY_set1_RSA(pkey,*(rsa_st **)(iVar3 + 0xec));
       }
       if (iVar3 != 0) {
-        *(EVP_PKEY **)param_4 = pkey;
+        param_4->pad = (int)pkey;
         return (RSA *)0x1;
       }
 LAB_00069cda:
@@ -359,12 +359,12 @@ LAB_00069cda:
   case 0x6f:
     iVar3 = param_1[0x30];
     if ((iVar3 != 0) && (*(int *)(iVar3 + 0xd8) != 0)) {
-      *(int *)param_4 = *(int *)(iVar3 + 0xd8);
+      param_4->pad = *(int *)(iVar3 + 0xd8);
       return *(RSA **)(iVar3 + 0xd4);
     }
     goto switchD_000695f8_caseD_9;
   case 0x73:
-    *(undefined4 *)param_4 = *(undefined4 *)(*(int *)param_1[0x26] + 0xc);
+    param_4->pad = *(int *)(*(int *)param_1[0x26] + 0xc);
     param_4 = (RSA *)0x0;
     break;
   case 0x74:

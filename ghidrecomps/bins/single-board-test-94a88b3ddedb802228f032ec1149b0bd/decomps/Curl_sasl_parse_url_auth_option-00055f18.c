@@ -8,10 +8,10 @@ undefined4 Curl_sasl_parse_url_auth_option(int param_1,undefined4 param_2,int pa
   
   if (param_3 != 0) {
     if (*(char *)(param_1 + 0x14) != '\0') {
-      *(undefined *)(param_1 + 0x14) = 0;
+      *(undefined1 *)(param_1 + 0x14) = 0;
       *(undefined4 *)(param_1 + 0xc) = 0;
     }
-    iVar1 = curl_strnequal(param_2,DAT_00055f70,param_3);
+    iVar1 = curl_strnequal(param_2,&DAT_00136778,param_3);
     if (iVar1 != 0) {
       *(undefined4 *)(param_1 + 0xc) = 0xffffffdf;
       return 0;

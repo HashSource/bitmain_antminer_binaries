@@ -4,7 +4,6 @@
 int utf8_check_full(char *buffer,int size,int32_t *codepoint)
 
 {
-  uchar *u;
   int iVar1;
   uint uVar2;
   uint uVar3;

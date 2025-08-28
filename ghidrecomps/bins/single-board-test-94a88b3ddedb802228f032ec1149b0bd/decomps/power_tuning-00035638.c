@@ -5,7 +5,8 @@ void power_tuning(void)
   char cVar1;
   int iVar2;
   FILE *__stream;
-  double dVar3;
+  undefined4 uVar3;
+  undefined4 extraout_s1;
   
   iVar2 = is7007_Board();
   if (iVar2 == 0) {
@@ -17,8 +18,8 @@ void power_tuning(void)
   sleep(1);
   cVar1 = set_iic_power_voltage((int)DAT_003b0f50,&power_info,1);
   if (cVar1 != '\x01') {
-    dVar3 = (double)get_avg_voltage();
-    if ((int)((uint)(dVar3 < DAT_00035748) << 0x1f) < 0) {
+    uVar3 = get_avg_voltage();
+    if ((int)((uint)((double)CONCAT44(extraout_s1,uVar3) < 9.7) << 0x1f) < 0) {
       stop_mining("power voltage too low\n");
     }
   }

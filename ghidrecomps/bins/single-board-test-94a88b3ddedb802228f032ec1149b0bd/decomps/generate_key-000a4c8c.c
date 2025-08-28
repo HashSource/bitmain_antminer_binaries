@@ -19,7 +19,7 @@ LAB_000a4dd0:
     rnd = (BIGNUM *)0x0;
     pBVar7 = (BIGNUM *)0x0;
 LAB_000a4cea:
-    ERR_put_error(5,0x67,3,DAT_000a4df4,0xc6);
+    ERR_put_error(5,0x67,3,"dh_key.c",0xc6);
     if (pBVar7 == (BIGNUM *)0x0) goto LAB_000a4d08;
     pBVar3 = (BIGNUM *)0x0;
     pBVar5 = pBVar7;

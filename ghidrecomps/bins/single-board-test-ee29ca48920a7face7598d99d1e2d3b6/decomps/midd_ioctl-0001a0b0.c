@@ -1,8 +1,8 @@
 
-int midd_ioctl(undefined param_1,undefined4 param_2,undefined4 param_3)
+int midd_ioctl(undefined1 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  undefined auStack_138 [300];
+  undefined1 auStack_138 [300];
   int local_c;
   
   memset(auStack_138,0,300);

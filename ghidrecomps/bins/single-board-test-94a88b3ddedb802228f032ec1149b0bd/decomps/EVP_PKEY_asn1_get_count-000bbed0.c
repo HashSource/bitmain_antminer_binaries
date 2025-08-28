@@ -6,8 +6,8 @@ int EVP_PKEY_asn1_get_count(void)
 {
   int iVar1;
   
-  if (*DAT_000bbee4 != (_STACK *)0x0) {
-    iVar1 = sk_num(*DAT_000bbee4);
+  if (app_methods != (_STACK *)0x0) {
+    iVar1 = sk_num(app_methods);
     return iVar1 + 0xc;
   }
   return 0xc;

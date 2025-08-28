@@ -3,7 +3,7 @@ void saving_voltage(int *param_1)
 
 {
   int iVar1;
-  undefined auStack_20 [4];
+  undefined1 auStack_20 [4];
   int local_1c;
   FILE *local_18;
   int local_14;
@@ -16,7 +16,7 @@ void saving_voltage(int *param_1)
       if (iVar1 == 0) {
         iVar1 = is_S9i();
         if (iVar1 == 0) {
-          if (*(char *)(param_1 + 0x16176) == '\0') {
+          if ((char)param_1[0x16176] == '\0') {
             chain_pic_buf[local_14 * 0x80 + 1] = (char)(param_1[local_14 + 0x15002] / 5);
           }
           else {

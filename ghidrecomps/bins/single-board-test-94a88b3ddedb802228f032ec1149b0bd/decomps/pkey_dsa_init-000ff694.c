@@ -4,7 +4,7 @@ undefined4 pkey_dsa_init(int param_1)
 {
   undefined4 *puVar1;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0x18,DAT_000ff6c8,0x54);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0x18,"dsa_pmeth.c",0x54);
   if (puVar1 != (undefined4 *)0x0) {
     puVar1[1] = 0xa0;
     *puVar1 = 0x400;

@@ -2,182 +2,180 @@
 undefined4 ftp_parse_url_path(int *param_1)
 
 {
-  code **ppcVar1;
-  code *pcVar2;
-  char *pcVar3;
-  undefined4 uVar4;
-  int iVar5;
-  size_t sVar6;
-  int *piVar7;
+  code *pcVar1;
+  char *pcVar2;
+  undefined4 uVar3;
+  int iVar4;
+  size_t sVar5;
+  int *piVar6;
+  int iVar7;
   int iVar8;
   int iVar9;
-  int iVar10;
-  undefined4 *puVar11;
-  char *pcVar12;
+  undefined4 *puVar10;
+  char *pcVar11;
+  int iVar12;
   int iVar13;
-  int iVar14;
   int local_38;
   int local_2c [2];
   
-  piVar7 = param_1 + 0xf0;
-  iVar10 = *param_1;
-  iVar9 = *(int *)(iVar10 + 0x2e8);
-  iVar8 = *(int *)(iVar10 + 0x14c);
-  pcVar12 = *(char **)(iVar10 + 0x868c);
-  *(undefined *)((int)param_1 + 0x40d) = 0;
-  *(undefined *)((int)param_1 + 0x40f) = 0;
-  ppcVar1 = DAT_0005c290;
-  local_38 = iVar10;
-  if (iVar9 == 2) {
-    if ((*pcVar12 != '\0') && (sVar6 = strlen(pcVar12), pcVar12[sVar6 - 1] != '/'))
+  piVar6 = param_1 + 0xf0;
+  iVar9 = *param_1;
+  iVar8 = *(int *)(iVar9 + 0x2e8);
+  iVar7 = *(int *)(iVar9 + 0x14c);
+  pcVar11 = *(char **)(iVar9 + 0x868c);
+  *(undefined1 *)((int)param_1 + 0x40d) = 0;
+  *(undefined1 *)((int)param_1 + 0x40f) = 0;
+  local_38 = iVar9;
+  if (iVar8 == 2) {
+    if ((*pcVar11 != '\0') && (sVar5 = strlen(pcVar11), pcVar11[sVar5 - 1] != '/'))
     goto LAB_0005c1a8;
 LAB_0005c126:
     param_1[0x102] = 0;
   }
   else {
-    if (iVar9 == 3) {
-      if (*pcVar12 == '\0') {
+    if (iVar8 == 3) {
+      if (*pcVar11 == '\0') {
         param_1[0x100] = 0;
         goto LAB_0005c126;
       }
-      pcVar3 = strrchr(pcVar12,0x2f);
-      if (pcVar3 == (char *)0x0) goto LAB_0005c1a8;
-      puVar11 = (undefined4 *)(**DAT_0005c290)(1,4);
-      param_1[0xff] = (int)puVar11;
-      if (puVar11 == (undefined4 *)0x0) {
+      pcVar2 = strrchr(pcVar11,0x2f);
+      if (pcVar2 == (char *)0x0) goto LAB_0005c1a8;
+      puVar10 = (undefined4 *)(*Curl_ccalloc)(1,4);
+      param_1[0xff] = (int)puVar10;
+      if (puVar10 == (undefined4 *)0x0) {
         return 0x1b;
       }
-      iVar13 = *param_1;
-      iVar9 = (int)pcVar3 - (int)pcVar12;
-      if (iVar9 == 0) {
-        iVar9 = 1;
+      iVar12 = *param_1;
+      iVar8 = (int)pcVar2 - (int)pcVar11;
+      if (iVar8 == 0) {
+        iVar8 = 1;
       }
-      uVar4 = curlx_uztosi(iVar9);
-      uVar4 = curl_easy_unescape(iVar13,pcVar12,uVar4,0);
-      *puVar11 = uVar4;
+      uVar3 = curlx_uztosi(iVar8);
+      uVar3 = curl_easy_unescape(iVar12,pcVar11,uVar3,0);
+      *puVar10 = uVar3;
       if (*(int *)param_1[0xff] == 0) goto LAB_0005c0ac;
-      pcVar12 = pcVar3 + 1;
+      pcVar11 = pcVar2 + 1;
       param_1[0x100] = 1;
     }
     else {
       param_1[0x100] = 0;
       param_1[0x101] = 5;
-      iVar9 = (**ppcVar1)(5,4);
-      param_1[0xff] = iVar9;
-      if (iVar9 == 0) {
+      iVar8 = (*Curl_ccalloc)(5,4);
+      param_1[0xff] = iVar8;
+      if (iVar8 == 0) {
         return 0x1b;
       }
-      iVar9 = curl_strequal(pcVar12,DAT_0005c294);
-      if (iVar9 == 0) {
+      iVar8 = curl_strequal(pcVar11,&DAT_00135588);
+      if (iVar8 == 0) {
         do {
           do {
             while( true ) {
-              pcVar3 = strchr(pcVar12,0x2f);
-              if (pcVar3 == (char *)0x0) goto LAB_0005c11c;
-              if ((int)pcVar12 - *(int *)(iVar10 + 0x868c) < 1) {
-                iVar9 = 0;
+              pcVar2 = strchr(pcVar11,0x2f);
+              if (pcVar2 == (char *)0x0) goto LAB_0005c11c;
+              if ((int)pcVar11 - *(int *)(iVar9 + 0x868c) < 1) {
+                iVar8 = 0;
               }
               else {
-                iVar9 = 1 - param_1[0x100];
+                iVar8 = 1 - param_1[0x100];
                 if (1 < (uint)param_1[0x100]) {
-                  iVar9 = 0;
+                  iVar8 = 0;
                 }
               }
-              if (pcVar12 == pcVar3) break;
-              uVar4 = curlx_sztosi(pcVar3 + (iVar9 - (int)pcVar12));
+              if (pcVar11 == pcVar2) break;
+              uVar3 = curlx_sztosi(pcVar2 + (iVar8 - (int)pcVar11));
+              iVar12 = param_1[0xff];
+              iVar13 = param_1[0x100];
+              uVar3 = curl_easy_unescape(*param_1,(int)pcVar11 - iVar8,uVar3,0);
+              iVar8 = param_1[0x100];
+              *(undefined4 *)(iVar12 + iVar13 * 4) = uVar3;
               iVar13 = param_1[0xff];
-              iVar14 = param_1[0x100];
-              uVar4 = curl_easy_unescape(*param_1,(int)pcVar12 - iVar9,uVar4,0);
-              iVar9 = param_1[0x100];
-              *(undefined4 *)(iVar13 + iVar14 * 4) = uVar4;
-              iVar14 = param_1[0xff];
-              iVar13 = *(int *)(iVar14 + iVar9 * 4);
-              if (iVar13 == 0) goto LAB_0005c20c;
-              iVar5 = isBadFtpString(iVar13);
-              if (iVar5 != 0) {
-                (**DAT_0005c2c0)(iVar13);
-                freedirs(piVar7);
+              iVar12 = *(int *)(iVar13 + iVar8 * 4);
+              if (iVar12 == 0) goto LAB_0005c20c;
+              iVar4 = isBadFtpString(iVar12);
+              if (iVar4 != 0) {
+                (*Curl_cfree)(iVar12);
+                freedirs(piVar6);
                 return 3;
               }
-              iVar13 = param_1[0x101];
-              iVar9 = iVar9 + 1;
-              param_1[0x100] = iVar9;
-              pcVar2 = Curl_crealloc;
-              pcVar12 = pcVar3 + 1;
-              if (iVar13 <= iVar9) {
-                param_1[0x101] = iVar13 << 1;
-                iVar9 = (*pcVar2)(iVar14,iVar13 << 3);
-                if (iVar9 == 0) goto LAB_0005c0ac;
-                param_1[0xff] = iVar9;
+              iVar12 = param_1[0x101];
+              iVar8 = iVar8 + 1;
+              param_1[0x100] = iVar8;
+              pcVar1 = Curl_crealloc;
+              pcVar11 = pcVar2 + 1;
+              if (iVar12 <= iVar8) {
+                param_1[0x101] = iVar12 << 1;
+                iVar8 = (*pcVar1)(iVar13,iVar12 << 3);
+                if (iVar8 == 0) goto LAB_0005c0ac;
+                param_1[0xff] = iVar8;
               }
             }
-            pcVar12 = pcVar12 + 1;
+            pcVar11 = pcVar11 + 1;
           } while (param_1[0x100] != 0);
-          puVar11 = (undefined4 *)param_1[0xff];
-          uVar4 = (*Curl_cstrdup)(DAT_0005c294);
-          iVar9 = param_1[0x100];
-          *puVar11 = uVar4;
-          iVar13 = *(int *)(param_1[0xff] + iVar9 * 4);
-          param_1[0x100] = iVar9 + 1;
-        } while (iVar13 != 0);
+          puVar10 = (undefined4 *)param_1[0xff];
+          uVar3 = (*Curl_cstrdup)(&DAT_00135588);
+          iVar8 = param_1[0x100];
+          *puVar10 = uVar3;
+          iVar12 = *(int *)(param_1[0xff] + iVar8 * 4);
+          param_1[0x100] = iVar8 + 1;
+        } while (iVar12 != 0);
 LAB_0005c20c:
-        Curl_failf(iVar10,DAT_0005c29c);
-        freedirs(piVar7);
+        Curl_failf(iVar9,"no memory");
+        freedirs(piVar6);
         return 0x1b;
       }
-      pcVar12 = pcVar12 + 1;
-      puVar11 = (undefined4 *)param_1[0xff];
-      uVar4 = (**DAT_0005c2a4)(DAT_0005c294);
-      iVar9 = param_1[0x100];
-      *puVar11 = uVar4;
-      param_1[0x100] = iVar9 + 1;
+      pcVar11 = pcVar11 + 1;
+      puVar10 = (undefined4 *)param_1[0xff];
+      uVar3 = (*Curl_cstrdup)(&DAT_00135588);
+      iVar8 = param_1[0x100];
+      *puVar10 = uVar3;
+      param_1[0x100] = iVar8 + 1;
     }
 LAB_0005c11c:
-    if ((pcVar12 == (char *)0x0) || (*pcVar12 == '\0')) goto LAB_0005c126;
+    if ((pcVar11 == (char *)0x0) || (*pcVar11 == '\0')) goto LAB_0005c126;
     local_38 = *param_1;
 LAB_0005c1a8:
-    iVar9 = curl_easy_unescape(local_38,pcVar12,0,0);
-    param_1[0x102] = iVar9;
-    if (iVar9 == 0) {
-      freedirs(piVar7);
-      Curl_failf(iVar10,DAT_0005c29c);
+    iVar8 = curl_easy_unescape(local_38,pcVar11,0,0);
+    param_1[0x102] = iVar8;
+    if (iVar8 == 0) {
+      freedirs(piVar6);
+      Curl_failf(iVar9,"no memory");
       return 0x1b;
     }
-    iVar9 = isBadFtpString();
-    if (iVar9 != 0) {
-      freedirs(piVar7);
+    iVar8 = isBadFtpString();
+    if (iVar8 != 0) {
+      freedirs(piVar6);
       return 3;
     }
   }
-  if (((*(char *)(iVar10 + 0x309) != '\0') && (param_1[0x102] == 0)) && (*(int *)(iVar8 + 0xc) == 0)
-     ) {
-    Curl_failf(iVar10,DAT_0005c2a8);
+  if (((*(char *)(iVar9 + 0x309) != '\0') && (param_1[0x102] == 0)) && (*(int *)(iVar7 + 0xc) == 0))
+  {
+    Curl_failf(iVar9,"Uploading to a URL without a file name!");
     return 3;
   }
-  *(undefined *)((int)param_1 + 0x40e) = 0;
+  *(undefined1 *)((int)param_1 + 0x40e) = 0;
   if (param_1[0x105] == 0) {
     return 0;
   }
-  iVar8 = curl_easy_unescape(*param_1,*(undefined4 *)(iVar10 + 0x868c),0,local_2c);
-  if (iVar8 != 0) {
-    pcVar12 = (char *)param_1[0x102];
-    if (pcVar12 != (char *)0x0) {
-      strlen(pcVar12);
-      pcVar12 = (char *)curlx_uztosi();
+  iVar7 = curl_easy_unescape(*param_1,*(undefined4 *)(iVar9 + 0x868c),0,local_2c);
+  if (iVar7 != 0) {
+    pcVar11 = (char *)param_1[0x102];
+    if (pcVar11 != (char *)0x0) {
+      strlen(pcVar11);
+      pcVar11 = (char *)curlx_uztosi();
     }
-    local_2c[0] = local_2c[0] - (int)pcVar12;
+    local_2c[0] = local_2c[0] - (int)pcVar11;
     strlen((char *)param_1[0x105]);
-    iVar9 = curlx_uztosi();
-    if ((iVar9 == local_2c[0]) && (iVar9 = curl_strnequal(iVar8,param_1[0x105],iVar9), iVar9 != 0))
+    iVar8 = curlx_uztosi();
+    if ((iVar8 == local_2c[0]) && (iVar8 = curl_strnequal(iVar7,param_1[0x105],iVar8), iVar8 != 0))
     {
-      Curl_infof(iVar10,DAT_0005c2a0);
-      *(undefined *)((int)param_1 + 0x40e) = 1;
+      Curl_infof(iVar9,"Request has same path as previous transfer\n");
+      *(undefined1 *)((int)param_1 + 0x40e) = 1;
     }
-    (**DAT_0005c298)(iVar8);
+    (*Curl_cfree)(iVar7);
     return 0;
   }
 LAB_0005c0ac:
-  freedirs(piVar7);
+  freedirs(piVar6);
   return 0x1b;
 }
 

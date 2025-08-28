@@ -10,7 +10,7 @@ void process_version_mask(int param_1,char *param_2,undefined4 param_3,undefined
   uint uVar6;
   
   if (param_2 == (char *)0x0) {
-    *(undefined *)(param_1 + 0x284) = 0;
+    *(undefined1 *)(param_1 + 0x284) = 0;
     *(undefined4 *)(param_1 + 0x288) = 1;
     return;
   }
@@ -33,7 +33,7 @@ void process_version_mask(int param_1,char *param_2,undefined4 param_3,undefined
     process_version_mask_part_6(param_1,uVar3,uVar4,param_4);
     return;
   }
-  *(undefined *)(param_1 + 0x284) = 1;
+  *(undefined1 *)(param_1 + 0x284) = 1;
   *(undefined4 *)(param_1 + 0x288) = 4;
   return;
 }

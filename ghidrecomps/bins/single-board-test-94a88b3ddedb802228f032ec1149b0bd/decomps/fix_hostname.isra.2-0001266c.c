@@ -28,7 +28,7 @@ void fix_hostname_isra_2(undefined4 param_1,int param_2)
       return;
     }
   } while (-1 < (int)((uint)*pbVar3 << 0x18));
-  Curl_infof(param_1,DAT_000126ac);
+  Curl_infof(param_1,"IDN support not present, can\'t parse Unicode domains\n");
   return;
 }
 

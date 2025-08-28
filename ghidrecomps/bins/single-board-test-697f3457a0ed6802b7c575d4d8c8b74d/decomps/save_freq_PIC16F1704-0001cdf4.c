@@ -23,8 +23,9 @@ int save_freq_PIC16F1704(uint which_chain,uchar which_i2c,ushort freq)
   send_data[1] = 0xaa;
   send_data[2] = '\x06';
   send_data[3] = '$';
-  send_data._4_2_ = CONCAT11((uchar)freq,(uchar)(freq >> 8));
-  send_data._4_3_ = CONCAT12((uchar)((ushort)sVar1 >> 8),send_data._4_2_);
+  send_data[5] = (uchar)freq;
+  send_data[4] = (uchar)(freq >> 8);
+  send_data[6] = (uchar)((ushort)sVar1 >> 8);
   send_data[7] = (uchar)sVar1;
   pthread_mutex_lock((pthread_mutex_t *)&i2c_mutex);
   for (i = '\0'; i < 8; i = i + '\x01') {

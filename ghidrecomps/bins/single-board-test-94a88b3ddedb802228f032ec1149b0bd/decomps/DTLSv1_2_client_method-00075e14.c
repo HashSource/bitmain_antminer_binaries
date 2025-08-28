@@ -1,7 +1,7 @@
 
-undefined4 DTLSv1_2_client_method(void)
+undefined1 * DTLSv1_2_client_method(void)
 
 {
-  return DAT_00075e18;
+  return DTLSv1_2_client_method_data_18568;
 }
 

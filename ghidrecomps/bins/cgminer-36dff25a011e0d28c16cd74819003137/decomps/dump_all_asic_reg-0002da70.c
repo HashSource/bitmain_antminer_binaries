@@ -1,5 +1,5 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void dump_all_asic_reg(void)
 
@@ -20,13 +20,32 @@ void dump_all_asic_reg(void)
   uchar chain;
   uchar reg;
   
-  asic_regs._0_4_ = DAT_0009cb34;
-  asic_regs._4_4_ = DAT_0009cb38;
-  asic_regs._8_4_ = DAT_0009cb3c;
-  asic_regs._12_4_ = DAT_0009cb40;
-  asic_regs._16_4_ = DAT_0009cb44;
-  asic_regs._20_4_ = DAT_0009cb48;
-  asic_regs._24_2_ = (undefined2)DAT_0009cb4c;
+  asic_regs[0] = '\0';
+  asic_regs[1] = '\x04';
+  asic_regs[2] = '\b';
+  asic_regs[3] = '\f';
+  asic_regs[4] = '\x10';
+  asic_regs[5] = '\x14';
+  asic_regs[6] = '\x18';
+  asic_regs[7] = ' ';
+  asic_regs[8] = '8';
+  asic_regs[9] = 'D';
+  asic_regs[10] = 'H';
+  asic_regs[0xb] = 'L';
+  asic_regs[0xc] = 'P';
+  asic_regs[0xd] = 'T';
+  asic_regs[0xe] = 'X';
+  asic_regs[0xf] = '\\';
+  asic_regs[0x10] = '`';
+  asic_regs[0x11] = 'd';
+  asic_regs[0x12] = 'h';
+  asic_regs[0x13] = 'p';
+  asic_regs[0x14] = 't';
+  asic_regs[0x15] = 'x';
+  asic_regs[0x16] = '|';
+  asic_regs[0x17] = 0x80;
+  asic_regs[0x18] = 0x84;
+  asic_regs[0x19] = 0x8c;
   memset(g_asic_data,0,0x3fc0);
   memset(g_asic_data_status,0,0xff0);
   memset(g_asic_core_data,0,0x3c0);

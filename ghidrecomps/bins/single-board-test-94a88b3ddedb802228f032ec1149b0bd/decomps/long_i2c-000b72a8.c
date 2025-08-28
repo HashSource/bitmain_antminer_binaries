@@ -1,16 +1,16 @@
 
-int long_i2c(uint *param_1,undefined *param_2,undefined4 param_3,int param_4)
+int long_i2c(uint *param_1,undefined1 *param_2,undefined4 param_3,int param_4)
 
 {
   uint uVar1;
   uint uVar2;
   int iVar3;
-  undefined uVar4;
-  undefined *puVar5;
+  undefined1 uVar4;
+  undefined1 *puVar5;
   int iVar6;
   ulong uVar7;
   uint uVar8;
-  undefined *puVar9;
+  undefined1 *puVar9;
   byte *pbVar10;
   
   uVar1 = *param_1;
@@ -25,7 +25,7 @@ int long_i2c(uint *param_1,undefined *param_2,undefined4 param_3,int param_4)
     uVar2 = BN_num_bits_word(uVar8);
     iVar3 = (int)(uVar2 + 7) >> 3;
     uVar2 = (uint)((uVar2 & 7) == 0);
-    if (param_2 != (undefined *)0x0) {
+    if (param_2 != (undefined1 *)0x0) {
       puVar9 = param_2;
       if (uVar2 != 0) {
         if ((int)uVar1 < 0) {

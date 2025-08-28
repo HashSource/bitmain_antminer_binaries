@@ -16,18 +16,18 @@ undefined4 Curl_rtsp_parseheader(int *param_1,int param_2)
   
   iVar6 = *param_1;
   local_1c[0] = 0;
-  iVar1 = Curl_raw_nequal(DAT_00053980,param_2,5);
+  iVar1 = Curl_raw_nequal("CSeq:",param_2,5);
   if (iVar1 != 0) {
-    iVar1 = __isoc99_sscanf(param_2 + 4,DAT_00053984,local_1c);
+    iVar1 = __isoc99_sscanf(param_2 + 4,": %ld",local_1c);
     if (iVar1 != 1) {
-      Curl_failf(iVar6,DAT_00053988,param_2);
+      Curl_failf(iVar6,"Unable to read the CSeq header: [%s]",param_2);
       return 0x55;
     }
     *(undefined4 *)(*(int *)(iVar6 + 0x14c) + 100) = local_1c[0];
     *(undefined4 *)(iVar6 + 0x86a8) = local_1c[0];
     return 0;
   }
-  iVar1 = Curl_raw_nequal(DAT_0005398c,param_2,8);
+  iVar1 = Curl_raw_nequal("Session:",param_2,8);
   if (iVar1 == 0) {
     return 0;
   }
@@ -44,7 +44,7 @@ undefined4 Curl_rtsp_parseheader(int *param_1,int param_2)
           if (iVar1 == 0) {
             return 0;
           }
-          Curl_failf(iVar6,DAT_00053990,__s1,__s);
+          Curl_failf(iVar6,"Got RTSP Session ID Line [%s], but wanted ID [%s]",__s1,__s);
           return 0x56;
         }
         uVar5 = (uint)*__s1;
@@ -57,7 +57,7 @@ undefined4 Curl_rtsp_parseheader(int *param_1,int param_2)
       uVar5 = (uint)*__s1;
     } while (uVar5 != 0);
   }
-  Curl_failf(iVar6,DAT_00053994);
+  Curl_failf(iVar6,"Got a blank Session ID");
   return 0;
 LAB_0005392a:
   do {
@@ -72,7 +72,7 @@ LAB_0005392a:
   uVar5 = (int)pbVar4 - (int)__s1;
   iVar1 = uVar5 + 1;
 LAB_0005395a:
-  __dest = (void *)(**DAT_00053998)(iVar1);
+  __dest = (void *)(*Curl_cmalloc)(iVar1);
   *(void **)(iVar6 + 0x3cc) = __dest;
   if (__dest == (void *)0x0) {
     uVar3 = 0x1b;
@@ -80,7 +80,7 @@ LAB_0005395a:
   else {
     memcpy(__dest,__s1,uVar5);
     uVar3 = 0;
-    *(undefined *)(*(int *)(iVar6 + 0x3cc) + uVar5) = 0;
+    *(undefined1 *)(*(int *)(iVar6 + 0x3cc) + uVar5) = 0;
   }
   return uVar3;
 }

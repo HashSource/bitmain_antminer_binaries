@@ -31,10 +31,10 @@ undefined4 pub_decode_gost01(EVP_PKEY *param_1,X509_PUBKEY *param_2)
       group = EC_KEY_get0_group(pEVar3);
       a = d2i_ASN1_OCTET_STRING((ASN1_OCTET_STRING **)0x0,&local_2c,local_24);
       if (a == (ASN1_OCTET_STRING *)0x0) {
-        ERR_GOST_error(0x85,0x41,DAT_0011563c,0x2ad);
+        ERR_GOST_error(0x85,0x41,"gost_ameth.c",0x2ad);
         return 0;
       }
-      ptr = CRYPTO_malloc(a->length,DAT_0011563c,0x2b0);
+      ptr = CRYPTO_malloc(a->length,"gost_ameth.c",0x2b0);
       iVar2 = a->length;
       if (0 < iVar2) {
         puVar5 = (uchar *)((int)ptr + iVar2);
@@ -63,11 +63,11 @@ undefined4 pub_decode_gost01(EVP_PKEY *param_1,X509_PUBKEY *param_2)
           EC_POINT_free(p);
           return 1;
         }
-        ERR_GOST_error(0x85,0x10,DAT_0011563c,0x2c5);
+        ERR_GOST_error(0x85,0x10,"gost_ameth.c",0x2c5);
         EC_POINT_free(p);
         return 0;
       }
-      ERR_GOST_error(0x85,0x10,DAT_0011563c,700);
+      ERR_GOST_error(0x85,0x10,"gost_ameth.c",700);
       EC_POINT_free(p);
       BN_free(x);
       BN_free(y);

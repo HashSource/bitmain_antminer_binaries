@@ -25,11 +25,11 @@ int BN_nist_mod_521(BIGNUM *r,BIGNUM *a,BIGNUM *p,BN_CTX *ctx)
   
   puVar10 = a->d;
   iVar11 = a->top;
-  if ((a->neg != 0) || (iVar3 = BN_ucmp(a,DAT_001297c8), -1 < iVar3)) {
-    iVar11 = BN_nnmod(r,a,DAT_001297cc,ctx);
+  if ((a->neg != 0) || (iVar3 = BN_ucmp(a,(BIGNUM *)_bignum_nist_p_521_sqr_8370), -1 < iVar3)) {
+    iVar11 = BN_nnmod(r,a,(BIGNUM *)_bignum_nist_p_521,ctx);
     return iVar11;
   }
-  iVar3 = BN_ucmp(DAT_001297cc,a);
+  iVar3 = BN_ucmp((BIGNUM *)_bignum_nist_p_521,a);
   if (iVar3 == 0) {
     BN_set_word(r,0);
     return 1;
@@ -150,7 +150,7 @@ LAB_001298fa:
   rp[0x10] = rp[0x10] & 0x1ff;
   local_6c[1] = local_6c[1] >> 9 | uVar1;
   bn_add_words(rp,rp,local_6c,0x11);
-  uVar6 = bn_sub_words(local_6c,rp,DAT_00129b28,0x11);
+  uVar6 = bn_sub_words(local_6c,rp,(ulong *)_nist_p_521,0x11);
   puVar10 = (ulong *)((uint)local_6c & ~-uVar6 | -uVar6 & (uint)rp);
   *rp = *puVar10;
   rp[1] = puVar10[1];

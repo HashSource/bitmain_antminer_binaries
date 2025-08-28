@@ -15,9 +15,9 @@ undefined4 get_devices(int param_1)
     }
   }
   else {
-    _rd_lock_part_39_constprop_80(DAT_0001f3a4,0x25f);
+    _rd_lock_part_39_constprop_80("get_devices",0x25f);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_0001f3a4,0x261);
+  _rw_unlock_part_40_constprop_79("get_devices",0x261);
 }
 

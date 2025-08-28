@@ -16,7 +16,7 @@ int Curl_pp_statemach(int *param_1,int param_2)
   iVar1 = Curl_pp_state_timeout();
   uVar6 = *puVar4;
   if (iVar1 < 1) {
-    Curl_failf(uVar6,DAT_00052ad0);
+    Curl_failf(uVar6,"server response timeout");
     return 0x1c;
   }
   if (999 < iVar1) {
@@ -53,7 +53,7 @@ joined_r0x00052a74:
     }
   }
   if (iVar1 == -1) {
-    Curl_failf(uVar6,DAT_00052ad4);
+    Curl_failf(uVar6,"select/poll error");
     iVar1 = 0x1b;
   }
   else if (iVar1 != 0) {

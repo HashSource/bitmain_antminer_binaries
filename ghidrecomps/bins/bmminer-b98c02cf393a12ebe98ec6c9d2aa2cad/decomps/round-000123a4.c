@@ -6,7 +6,7 @@ double round(double __x)
 {
   double dVar1;
   
-  dVar1 = (double)(*(code *)PTR_round_0007cf78)();
+  dVar1 = round(__x);
   return dVar1;
 }
 

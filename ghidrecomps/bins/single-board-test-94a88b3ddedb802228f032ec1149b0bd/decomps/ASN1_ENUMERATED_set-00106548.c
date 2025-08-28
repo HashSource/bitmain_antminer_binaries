@@ -17,7 +17,7 @@ int ASN1_ENUMERATED_set(ASN1_ENUMERATED *a,long v)
     if (a->data != (uchar *)0x0) {
       CRYPTO_free(a->data);
     }
-    puVar1 = (uchar *)CRYPTO_malloc(5,DAT_00106604,0x51);
+    puVar1 = (uchar *)CRYPTO_malloc(5,"a_enum.c",0x51);
     a->data = puVar1;
     if (puVar1 == (uchar *)0x0) goto LAB_001065e4;
     *puVar1 = '\0';
@@ -31,7 +31,7 @@ int ASN1_ENUMERATED_set(ASN1_ENUMERATED *a,long v)
   puVar1 = a->data;
   if (puVar1 == (uchar *)0x0) {
 LAB_001065e4:
-    ERR_put_error(0xd,0x70,0x41,DAT_00106604,0x55);
+    ERR_put_error(0xd,0x70,0x41,"a_enum.c",0x55);
     return 0;
   }
   if (v < 0) {

@@ -10,7 +10,7 @@ int ENGINE_register_digests(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7d74,DAT_000a7d70,e,local_14[0],iVar1,0);
+    iVar1 = engine_table_register(&digest_table,0xa7d25,e,local_14[0],iVar1,0);
   }
   return iVar1;
 }

@@ -6,7 +6,7 @@ int sigemptyset(sigset_t *__set)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sigemptyset_0007d004)();
+  iVar1 = sigemptyset(__set);
   return iVar1;
 }
 

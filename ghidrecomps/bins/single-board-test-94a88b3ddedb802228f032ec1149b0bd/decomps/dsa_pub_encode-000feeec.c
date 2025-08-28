@@ -42,7 +42,7 @@ LAB_000fef56:
       iVar2 = 0x92;
     }
   }
-  ERR_put_error(10,0x76,0x41,DAT_000fef8c,iVar2);
+  ERR_put_error(10,0x76,0x41,"dsa_ameth.c",iVar2);
 LAB_000fef3c:
   if (local_1c[0] != (uchar *)0x0) {
     CRYPTO_free(local_1c[0]);

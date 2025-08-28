@@ -6,7 +6,7 @@ int UI_add_input_boolean
 {
   int iVar1;
   
-  iVar1 = general_allocate_boolean_constprop_3();
+  iVar1 = general_allocate_boolean_constprop_3(ui);
   return iVar1;
 }
 

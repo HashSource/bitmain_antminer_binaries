@@ -2,30 +2,32 @@
 int dtls1_dispatch_alert(undefined4 *param_1)
 
 {
-  undefined *puVar1;
+  undefined4 extraout_r2;
+  undefined4 uVar1;
+  undefined4 extraout_r2_00;
   int iVar2;
   code *pcVar3;
-  undefined local_1c;
-  undefined local_1b;
+  undefined1 local_1c;
+  undefined1 local_1b;
   
   iVar2 = param_1[0x16];
-  local_1c = *(undefined *)(iVar2 + 400);
-  local_1b = *(undefined *)(iVar2 + 0x191);
+  local_1c = *(undefined1 *)(iVar2 + 400);
+  local_1b = *(undefined1 *)(iVar2 + 0x191);
   *(undefined4 *)(iVar2 + 0x18c) = 0;
   if (*(int *)(iVar2 + 0x108) == 0) {
-    puVar1 = &local_1c;
-    iVar2 = do_dtls1_write_part_2(param_1,0x15,puVar1,2,0);
+    iVar2 = do_dtls1_write_part_2(param_1,0x15,&local_1c,2,0);
+    uVar1 = extraout_r2;
   }
   else {
-    OpenSSLDie(DAT_00077c7c,0x5e1,DAT_00077c80);
-    puVar1 = &local_1c;
-    iVar2 = ssl3_write_pending(param_1,0x15,puVar1,2);
+    OpenSSLDie("d1_pkt.c",0x5e1,"0");
+    iVar2 = ssl3_write_pending(param_1,0x15,&local_1c,2);
+    uVar1 = extraout_r2_00;
   }
   if (iVar2 < 1) {
-    puVar1 = (undefined *)0x1;
+    uVar1 = 1;
   }
   if (iVar2 < 1) {
-    *(undefined **)(param_1[0x16] + 0x18c) = puVar1;
+    *(undefined4 *)(param_1[0x16] + 0x18c) = uVar1;
   }
   else {
     if (*(char *)(param_1[0x16] + 400) == '\x02') {
@@ -38,8 +40,8 @@ int dtls1_dispatch_alert(undefined4 *param_1)
     if ((pcVar3 != (code *)0x0) ||
        (pcVar3 = *(code **)(param_1[0x39] + 0x9c), pcVar3 != (code *)0x0)) {
       (*pcVar3)(param_1,0x4008,
-                CONCAT11(*(undefined *)(param_1[0x16] + 400),*(undefined *)(param_1[0x16] + 0x191)))
-      ;
+                CONCAT11(*(undefined1 *)(param_1[0x16] + 400),*(undefined1 *)(param_1[0x16] + 0x191)
+                        ));
     }
   }
   return iVar2;

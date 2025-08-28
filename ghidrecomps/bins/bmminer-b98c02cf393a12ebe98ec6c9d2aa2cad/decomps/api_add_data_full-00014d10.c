@@ -1,10 +1,10 @@
 
 undefined4 *
-api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefined4 *param_4,
+api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,char *param_4,
                  char param_5)
 
 {
-  undefined uVar1;
+  char cVar1;
   undefined2 uVar2;
   undefined4 *puVar3;
   undefined4 uVar4;
@@ -12,7 +12,7 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
   size_t sVar6;
   void *__dest;
   undefined4 *puVar7;
-  undefined *puVar8;
+  char *pcVar8;
   int iVar9;
   undefined4 uVar10;
   char acStack_820 [2052];
@@ -34,9 +34,9 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
     *(undefined4 **)(iVar9 + 0x14) = puVar3;
   }
   *(char *)(puVar3 + 3) = param_5;
-  if (param_4 == (undefined4 *)0x0) {
-    *(undefined *)(puVar3 + 3) = 0;
-    param_4 = &DAT_00057984;
+  if (param_4 == (char *)0x0) {
+    *(undefined1 *)(puVar3 + 3) = 0;
+    param_4 = "(null)";
     *puVar3 = 2;
   }
   else if (param_5 != '\0') {
@@ -44,16 +44,16 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
     case 0:
     case 1:
     case 2:
-      sVar6 = strlen((char *)param_4);
+      sVar6 = strlen(param_4);
       __dest = malloc(sVar6 + 1);
       puVar3[2] = __dest;
       memcpy(__dest,param_4,sVar6 + 1);
       return param_1;
     case 3:
-      puVar8 = (undefined *)malloc(4);
-      uVar1 = *(undefined *)param_4;
-      puVar3[2] = puVar8;
-      *puVar8 = uVar1;
+      pcVar8 = (char *)malloc(4);
+      cVar1 = *param_4;
+      puVar3[2] = pcVar8;
+      *pcVar8 = cVar1;
       return param_1;
     case 4:
     case 5:
@@ -68,15 +68,15 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
     case 9:
     case 0x10:
       puVar7 = (undefined4 *)malloc(4);
-      uVar4 = *param_4;
+      uVar4 = *(undefined4 *)param_4;
       puVar3[2] = puVar7;
       *puVar7 = uVar4;
       return param_1;
     case 10:
     case 0xb:
       puVar7 = (undefined4 *)malloc(8);
-      uVar4 = *param_4;
-      uVar10 = param_4[1];
+      uVar4 = *(undefined4 *)param_4;
+      uVar10 = *(undefined4 *)(param_4 + 4);
       puVar3[2] = puVar7;
       *puVar7 = uVar4;
       puVar7[1] = uVar10;
@@ -91,22 +91,22 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
     case 0x18:
     case 0x19:
       puVar7 = (undefined4 *)malloc(8);
-      uVar4 = *param_4;
-      uVar10 = param_4[1];
+      uVar4 = *(undefined4 *)param_4;
+      uVar10 = *(undefined4 *)(param_4 + 4);
       puVar3[2] = puVar7;
       *puVar7 = uVar4;
       puVar7[1] = uVar10;
       return param_1;
     case 0xe:
-      puVar8 = (undefined *)malloc(1);
-      uVar1 = *(undefined *)param_4;
-      puVar3[2] = puVar8;
-      *puVar8 = uVar1;
+      pcVar8 = (char *)malloc(1);
+      cVar1 = *param_4;
+      puVar3[2] = pcVar8;
+      *pcVar8 = cVar1;
       return param_1;
     case 0xf:
       puVar7 = (undefined4 *)malloc(8);
-      uVar10 = param_4[1];
-      uVar4 = *param_4;
+      uVar10 = *(undefined4 *)(param_4 + 4);
+      uVar4 = *(undefined4 *)param_4;
       puVar3[2] = puVar7;
       *puVar7 = uVar4;
       puVar7[1] = uVar10;
@@ -115,7 +115,7 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
     case 0x16:
     case 0x1a:
       puVar7 = (undefined4 *)malloc(4);
-      uVar4 = *param_4;
+      uVar4 = *(undefined4 *)param_4;
       puVar3[2] = puVar7;
       *puVar7 = uVar4;
       return param_1;
@@ -126,7 +126,7 @@ api_add_data_full(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
     }
     puVar3[2] = "Unknown";
     *puVar3 = 1;
-    *(undefined *)(puVar3 + 3) = 0;
+    *(undefined1 *)(puVar3 + 3) = 0;
     return param_1;
   }
   puVar3[2] = param_4;

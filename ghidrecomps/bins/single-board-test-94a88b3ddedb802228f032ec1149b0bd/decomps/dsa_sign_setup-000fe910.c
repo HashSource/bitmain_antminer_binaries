@@ -1,5 +1,5 @@
 
-undefined4 dsa_sign_setup(int param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNUM **param_4)
+undefined4 dsa_sign_setup(int param_1,BN_CTX *param_2,undefined4 *param_3,undefined4 *param_4)
 
 {
   BIGNUM *r;
@@ -16,7 +16,7 @@ undefined4 dsa_sign_setup(int param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNUM **
   
   if (((*(int *)(param_1 + 0xc) == 0) || (*(int *)(param_1 + 0x10) == 0)) ||
      (*(int *)(param_1 + 0x14) == 0)) {
-    ERR_put_error(10,0x6b,0x65,DAT_000fead4,0xe6);
+    ERR_put_error(10,0x6b,0x65,"dsa_ossl.c",0xe6);
     return 0;
   }
   BN_init(&BStack_50);
@@ -24,7 +24,7 @@ undefined4 dsa_sign_setup(int param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNUM **
   ctx = param_2;
   if (((param_2 == (BN_CTX *)0x0) && (ctx = BN_CTX_new(), ctx == (BN_CTX *)0x0)) ||
      (r = BN_new(), r == (BIGNUM *)0x0)) {
-    ERR_put_error(10,0x6b,3,DAT_000fead4,0x130);
+    ERR_put_error(10,0x6b,3,"dsa_ossl.c",0x130);
     uVar6 = 0;
     goto LAB_000fe9bc;
   }
@@ -56,12 +56,12 @@ LAB_000fe97a:
         (iVar1 = BN_div((BIGNUM *)0x0,r,r,*(BIGNUM **)(param_1 + 0x10),ctx), iVar1 != 0)) &&
        (pBVar2 = BN_mod_inverse((BIGNUM *)0x0,&BStack_50,*(BIGNUM **)(param_1 + 0x10),ctx),
        pBVar2 != (BIGNUM *)0x0)) {
-      if (*param_3 != (BIGNUM *)0x0) {
-        BN_clear_free(*param_3);
+      if ((BIGNUM *)*param_3 != (BIGNUM *)0x0) {
+        BN_clear_free((BIGNUM *)*param_3);
       }
       *param_3 = pBVar2;
-      if (*param_4 != (BIGNUM *)0x0) {
-        BN_clear_free(*param_4);
+      if ((BIGNUM *)*param_4 != (BIGNUM *)0x0) {
+        BN_clear_free((BIGNUM *)*param_4);
       }
       uVar6 = 1;
       *param_4 = r;
@@ -86,7 +86,7 @@ LAB_000fea4c:
   }
 LAB_000fe9a2:
   uVar6 = 0;
-  ERR_put_error(10,0x6b,3,DAT_000fead4,0x130);
+  ERR_put_error(10,0x6b,3,"dsa_ossl.c",0x130);
   BN_clear_free(r);
 LAB_000fe9bc:
   if (param_2 == (BN_CTX *)0x0) {

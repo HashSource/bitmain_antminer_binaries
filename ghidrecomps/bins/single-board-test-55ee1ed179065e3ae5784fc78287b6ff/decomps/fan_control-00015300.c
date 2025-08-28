@@ -1,5 +1,5 @@
 
-void fan_control(undefined param_1)
+void fan_control(undefined1 param_1)
 
 {
   if (fan_pwm_handle == 0) {

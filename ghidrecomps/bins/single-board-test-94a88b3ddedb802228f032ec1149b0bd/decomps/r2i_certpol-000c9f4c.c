@@ -6,30 +6,30 @@ _STACK * r2i_certpol(undefined4 param_1,X509V3_CTX *param_2,char *param_3)
   _STACK *st;
   _STACK *st_00;
   ASN1_OBJECT *pAVar2;
-  ASN1_OBJECT **val;
+  ASN1_VALUE *val;
   int iVar3;
   undefined4 *puVar4;
   _STACK *section;
-  ASN1_OBJECT **ppAVar5;
-  size_t sVar6;
-  _STACK *section_00;
-  ASN1_STRING **ppAVar7;
-  int iVar8;
+  ASN1_VALUE *pAVar5;
+  ASN1_STRING *pAVar6;
+  size_t sVar7;
+  ASN1_VALUE *pAVar8;
+  int iVar9;
   _STACK *st_01;
-  void *pvVar9;
+  void *pvVar10;
   ASN1_INTEGER *data;
-  int iVar10;
-  int *piVar11;
-  char *pcVar12;
-  ASN1_STRING *str;
-  ASN1_VALUE *pAVar13;
+  int iVar11;
+  _STACK *p_Var12;
+  int *piVar13;
+  char *pcVar14;
+  ASN1_VALUE *pAVar15;
   _STACK *st_02;
-  int iVar14;
+  int iVar16;
   int local_48;
   
   st = sk_new_null();
   if (st == (_STACK *)0x0) {
-    ERR_put_error(0x22,0x82,0x41,DAT_000ca4b0,0x93);
+    ERR_put_error(0x22,0x82,0x41,"v3_cpols.c",0x93);
   }
   else {
     st_00 = &X509V3_parse_list(param_3)->stack;
@@ -39,131 +39,131 @@ _STACK * r2i_certpol(undefined4 param_1,X509V3_CTX *param_2,char *param_3)
 LAB_000c9fac:
       iVar3 = sk_num(st_00);
       if (iVar3 <= local_48) {
-        sk_pop_free(st_00,DAT_000ca4bc);
+        sk_pop_free(st_00,(func *)0xc7009);
         return st;
       }
       puVar4 = (undefined4 *)sk_value(st_00,local_48);
-      if ((puVar4[2] == 0) && (pcVar12 = (char *)puVar4[1], pcVar12 != (char *)0x0)) {
-        iVar3 = strcmp(pcVar12,DAT_000ca210);
+      if ((puVar4[2] == 0) && (pcVar14 = (char *)puVar4[1], pcVar14 != (char *)0x0)) {
+        iVar3 = strcmp(pcVar14,"ia5org");
         if (iVar3 == 0) {
           bVar1 = true;
 LAB_000c9fa6:
           local_48 = local_48 + 1;
           goto LAB_000c9fac;
         }
-        if (*pcVar12 != '@') {
-          pAVar2 = OBJ_txt2obj(pcVar12,0);
+        if (*pcVar14 != '@') {
+          pAVar2 = OBJ_txt2obj(pcVar14,0);
           if (pAVar2 == (ASN1_OBJECT *)0x0) {
-            iVar14 = 0xb8;
+            iVar16 = 0xb8;
             iVar3 = 0x6e;
             goto LAB_000ca34e;
           }
-          val = (ASN1_OBJECT **)ASN1_item_new(DAT_000ca20c);
-          *val = pAVar2;
+          val = ASN1_item_new((ASN1_ITEM *)&POLICYINFO_it);
+          *(ASN1_OBJECT **)val = pAVar2;
           iVar3 = sk_push(st,val);
           if (iVar3 != 0) goto LAB_000c9fa6;
 LAB_000ca398:
-          ASN1_item_free((ASN1_VALUE *)val,DAT_000ca4d0);
-          ERR_put_error(0x22,0x82,0x41,DAT_000ca4b0,0xc1);
+          ASN1_item_free(val,(ASN1_ITEM *)&POLICYINFO_it);
+          ERR_put_error(0x22,0x82,0x41,"v3_cpols.c",0xc1);
           goto LAB_000ca0be;
         }
-        section = &X509V3_get_section(param_2,pcVar12 + 1)->stack;
+        section = &X509V3_get_section(param_2,pcVar14 + 1)->stack;
         if (section != (_STACK *)0x0) {
-          val = (ASN1_OBJECT **)ASN1_item_new(DAT_000ca20c);
-          if (val == (ASN1_OBJECT **)0x0) {
+          val = ASN1_item_new((ASN1_ITEM *)&POLICYINFO_it);
+          if (val == (ASN1_VALUE *)0x0) {
 LAB_000ca09c:
-            ERR_put_error(0x22,0x83,0x41,DAT_000ca220,0x118);
+            ERR_put_error(0x22,0x83,0x41,"v3_cpols.c",0x118);
           }
           else {
-            for (iVar3 = 0; iVar14 = sk_num(section), iVar3 < iVar14; iVar3 = iVar3 + 1) {
+            for (iVar3 = 0; iVar16 = sk_num(section), iVar3 < iVar16; iVar3 = iVar3 + 1) {
               puVar4 = (undefined4 *)sk_value(section,iVar3);
-              pcVar12 = (char *)puVar4[1];
-              iVar14 = strcmp(pcVar12,DAT_000ca214);
-              if (iVar14 == 0) {
+              pcVar14 = (char *)puVar4[1];
+              iVar16 = strcmp(pcVar14,"policyIdentifier");
+              if (iVar16 == 0) {
                 pAVar2 = OBJ_txt2obj((char *)puVar4[2],0);
                 if (pAVar2 == (ASN1_OBJECT *)0x0) {
                   iVar3 = 0x6e;
-                  iVar14 = 0xdc;
+                  iVar16 = 0xdc;
                   goto LAB_000ca3d4;
                 }
-                *val = pAVar2;
+                *(ASN1_OBJECT **)val = pAVar2;
               }
               else {
-                iVar14 = name_cmp(pcVar12,DAT_000ca218);
-                if (iVar14 != 0) {
-                  iVar14 = name_cmp((char *)puVar4[1],DAT_000ca22c);
-                  if (iVar14 == 0) {
+                iVar16 = name_cmp(pcVar14,"CPS");
+                if (iVar16 != 0) {
+                  iVar16 = name_cmp((char *)puVar4[1],"userNotice");
+                  if (iVar16 == 0) {
                     if (*(char *)puVar4[2] == '@') {
-                      section_00 = &X509V3_get_section(param_2,(char *)puVar4[2] + 1)->stack;
-                      if (section_00 != (_STACK *)0x0) {
-                        ppAVar5 = (ASN1_OBJECT **)ASN1_item_new(DAT_000ca21c);
-                        if (ppAVar5 == (ASN1_OBJECT **)0x0) {
+                      p_Var12 = &X509V3_get_section(param_2,(char *)puVar4[2] + 1)->stack;
+                      if (p_Var12 != (_STACK *)0x0) {
+                        pAVar5 = ASN1_item_new((ASN1_ITEM *)POLICYQUALINFO_it);
+                        if (pAVar5 == (ASN1_VALUE *)0x0) {
 LAB_000ca250:
-                          ERR_put_error(0x22,0x84,0x41,DAT_000ca4b0,0x16b);
+                          ERR_put_error(0x22,0x84,0x41,"v3_cpols.c",0x16b);
                         }
                         else {
                           pAVar2 = OBJ_nid2obj(0xa5);
-                          *ppAVar5 = pAVar2;
+                          *(ASN1_OBJECT **)pAVar5 = pAVar2;
                           if (pAVar2 == (ASN1_OBJECT *)0x0) {
-                            ERR_put_error(0x22,0x84,0x44,DAT_000ca4b0,0x12a);
+                            ERR_put_error(0x22,0x84,0x44,"v3_cpols.c",0x12a);
                           }
                           else {
-                            pAVar2 = (ASN1_OBJECT *)ASN1_item_new(DAT_000ca230);
-                            if (pAVar2 == (ASN1_OBJECT *)0x0) goto LAB_000ca250;
-                            ppAVar5[1] = pAVar2;
-                            for (iVar14 = 0; iVar8 = sk_num(section_00), iVar14 < iVar8;
-                                iVar14 = iVar14 + 1) {
-                              puVar4 = (undefined4 *)sk_value(section_00,iVar14);
-                              pcVar12 = (char *)puVar4[1];
-                              iVar8 = strcmp(pcVar12,DAT_000ca234);
-                              if (iVar8 == 0) {
-                                str = ASN1_STRING_type_new(0x1a);
-                                pAVar2->ln = (char **)str;
-                                if (str == (ASN1_STRING *)0x0) goto LAB_000ca250;
+                            pAVar8 = ASN1_item_new((ASN1_ITEM *)USERNOTICE_it);
+                            if (pAVar8 == (ASN1_VALUE *)0x0) goto LAB_000ca250;
+                            *(ASN1_VALUE **)(pAVar5 + 4) = pAVar8;
+                            for (iVar16 = 0; iVar9 = sk_num(p_Var12), iVar16 < iVar9;
+                                iVar16 = iVar16 + 1) {
+                              puVar4 = (undefined4 *)sk_value(p_Var12,iVar16);
+                              pcVar14 = (char *)puVar4[1];
+                              iVar9 = strcmp(pcVar14,"explicitText");
+                              if (iVar9 == 0) {
+                                pAVar6 = ASN1_STRING_type_new(0x1a);
+                                *(ASN1_STRING **)(pAVar8 + 4) = pAVar6;
+                                if (pAVar6 == (ASN1_STRING *)0x0) goto LAB_000ca250;
 LAB_000ca156:
-                                pcVar12 = (char *)puVar4[2];
-                                sVar6 = strlen(pcVar12);
-                                iVar8 = ASN1_STRING_set(str,pcVar12,sVar6);
-                                if (iVar8 == 0) goto LAB_000ca250;
+                                pcVar14 = (char *)puVar4[2];
+                                sVar7 = strlen(pcVar14);
+                                iVar9 = ASN1_STRING_set(pAVar6,pcVar14,sVar7);
+                                if (iVar9 == 0) goto LAB_000ca250;
                               }
                               else {
-                                iVar8 = strcmp(pcVar12,DAT_000ca238);
-                                if (iVar8 == 0) {
-                                  ppAVar7 = (ASN1_STRING **)pAVar2->sn;
-                                  if (ppAVar7 == (ASN1_STRING **)0x0) {
-                                    ppAVar7 = (ASN1_STRING **)ASN1_item_new(DAT_000ca4c0);
-                                    if (ppAVar7 == (ASN1_STRING **)0x0) goto LAB_000ca250;
-                                    pAVar2->sn = (char *)ppAVar7;
+                                iVar9 = strcmp(pcVar14,"organization");
+                                if (iVar9 == 0) {
+                                  pAVar15 = *(ASN1_VALUE **)pAVar8;
+                                  if (pAVar15 == (ASN1_VALUE *)0x0) {
+                                    pAVar15 = ASN1_item_new((ASN1_ITEM *)NOTICEREF_it);
+                                    if (pAVar15 == (ASN1_VALUE *)0x0) goto LAB_000ca250;
+                                    *(ASN1_VALUE **)pAVar8 = pAVar15;
                                   }
-                                  str = *ppAVar7;
+                                  pAVar6 = *(ASN1_STRING **)pAVar15;
                                   if (bVar1) {
-                                    str->type = 0x16;
+                                    pAVar6->type = 0x16;
                                   }
                                   else {
-                                    str->type = 0x1a;
+                                    pAVar6->type = 0x1a;
                                   }
                                   goto LAB_000ca156;
                                 }
-                                iVar8 = strcmp(pcVar12,DAT_000ca23c);
-                                if (iVar8 != 0) {
-                                  iVar14 = 0x15b;
+                                iVar9 = strcmp(pcVar14,"noticeNumbers");
+                                if (iVar9 != 0) {
+                                  iVar16 = 0x15b;
                                   iVar3 = 0x8a;
 LAB_000ca2dc:
-                                  ERR_put_error(0x22,0x84,iVar3,DAT_000ca4b0,iVar14);
-                                  ERR_add_error_data(6,DAT_000ca4c8,*puVar4,DAT_000ca4cc,puVar4[1],
-                                                     DAT_000ca4c4,puVar4[2]);
+                                  ERR_put_error(0x22,0x84,iVar3,"v3_cpols.c",iVar16);
+                                  ERR_add_error_data(6,"section:",*puVar4,",name:",puVar4[1],
+                                                     ",value:",puVar4[2]);
                                   goto LAB_000ca262;
                                 }
-                                pAVar13 = (ASN1_VALUE *)pAVar2->sn;
-                                if (pAVar13 == (ASN1_VALUE *)0x0) {
-                                  pAVar13 = ASN1_item_new(DAT_000ca4c0);
-                                  if (pAVar13 != (ASN1_VALUE *)0x0) {
-                                    pAVar2->sn = (char *)pAVar13;
+                                pAVar15 = *(ASN1_VALUE **)pAVar8;
+                                if (pAVar15 == (ASN1_VALUE *)0x0) {
+                                  pAVar15 = ASN1_item_new((ASN1_ITEM *)NOTICEREF_it);
+                                  if (pAVar15 != (ASN1_VALUE *)0x0) {
+                                    *(ASN1_VALUE **)pAVar8 = pAVar15;
                                     st_01 = &X509V3_parse_list((char *)puVar4[2])->stack;
                                     if (st_01 != (_STACK *)0x0) goto LAB_000ca1c2;
 LAB_000ca2d0:
                                     iVar3 = 0x8d;
-                                    iVar14 = 0x152;
+                                    iVar16 = 0x152;
                                     goto LAB_000ca2dc;
                                   }
                                   goto LAB_000ca250;
@@ -171,123 +171,122 @@ LAB_000ca2d0:
                                 st_01 = &X509V3_parse_list((char *)puVar4[2])->stack;
                                 if (st_01 == (_STACK *)0x0) goto LAB_000ca2d0;
 LAB_000ca1c2:
-                                iVar8 = sk_num(st_01);
-                                if (iVar8 == 0) goto LAB_000ca2d0;
-                                st_02 = *(_STACK **)(pAVar13 + 4);
-                                iVar8 = 0;
+                                iVar9 = sk_num(st_01);
+                                if (iVar9 == 0) goto LAB_000ca2d0;
+                                st_02 = *(_STACK **)(pAVar15 + 4);
+                                iVar9 = 0;
 LAB_000ca1f0:
-                                iVar10 = sk_num(st_01);
-                                if (iVar8 < iVar10) {
-                                  pvVar9 = sk_value(st_01,iVar8);
+                                iVar11 = sk_num(st_01);
+                                if (iVar9 < iVar11) {
+                                  pvVar10 = sk_value(st_01,iVar9);
                                   data = s2i_ASN1_INTEGER((X509V3_EXT_METHOD *)0x0,
-                                                          *(char **)((int)pvVar9 + 4));
+                                                          *(char **)((int)pvVar10 + 4));
                                   if (data != (ASN1_INTEGER *)0x0) goto code_r0x000ca1e8;
-                                  ERR_put_error(0x22,0x85,0x8c,DAT_000ca4b0,0x17c);
+                                  ERR_put_error(0x22,0x85,0x8c,"v3_cpols.c",0x17c);
                                   goto LAB_000ca28c;
                                 }
-                                sk_pop_free(st_01,DAT_000ca224);
+                                sk_pop_free(st_01,(func *)0xc7009);
                               }
                             }
-                            piVar11 = (int *)pAVar2->sn;
-                            if ((piVar11 == (int *)0x0) || ((piVar11[1] != 0 && (*piVar11 != 0)))) {
-                              X509V3_section_free(param_2,(stack_st_CONF_VALUE *)section_00);
-                              pAVar2 = val[1];
-                              if (pAVar2 == (ASN1_OBJECT *)0x0) {
-                                pAVar2 = (ASN1_OBJECT *)sk_new_null();
-                                val[1] = pAVar2;
+                            piVar13 = *(int **)pAVar8;
+                            if ((piVar13 == (int *)0x0) || ((piVar13[1] != 0 && (*piVar13 != 0)))) {
+                              X509V3_section_free(param_2,(stack_st_CONF_VALUE *)p_Var12);
+                              p_Var12 = *(_STACK **)(val + 4);
+                              if (p_Var12 == (_STACK *)0x0) {
+                                p_Var12 = sk_new_null();
+                                *(_STACK **)(val + 4) = p_Var12;
                               }
-                              iVar14 = sk_push((_STACK *)pAVar2,ppAVar5);
-                              if (iVar14 != 0) goto LAB_000ca018;
+                              iVar16 = sk_push(p_Var12,pAVar5);
+                              if (iVar16 != 0) goto LAB_000ca018;
                               goto LAB_000ca09c;
                             }
-                            ERR_put_error(0x22,0x84,0x8e,DAT_000ca4b0,0x164);
+                            ERR_put_error(0x22,0x84,0x8e,"v3_cpols.c",0x164);
                           }
                         }
 LAB_000ca262:
-                        ASN1_item_free((ASN1_VALUE *)ppAVar5,DAT_000ca4b4);
-                        X509V3_section_free(param_2,(stack_st_CONF_VALUE *)section_00);
+                        ASN1_item_free(pAVar5,(ASN1_ITEM *)POLICYQUALINFO_it);
+                        X509V3_section_free(param_2,(stack_st_CONF_VALUE *)p_Var12);
                         goto LAB_000ca0ae;
                       }
-                      iVar14 = 0xfc;
+                      iVar16 = 0xfc;
                       iVar3 = 0x87;
                     }
                     else {
-                      iVar14 = 0xf6;
+                      iVar16 = 0xf6;
                       iVar3 = 0x89;
                     }
                   }
                   else {
-                    iVar14 = 0x10a;
+                    iVar16 = 0x10a;
                     iVar3 = 0x8a;
                   }
 LAB_000ca3d4:
-                  ERR_put_error(0x22,0x83,iVar3,DAT_000ca4b0,iVar14);
-                  ERR_add_error_data(6,DAT_000ca4c8,*puVar4,DAT_000ca4cc,puVar4[1],DAT_000ca4c4,
-                                     puVar4[2]);
+                  ERR_put_error(0x22,0x83,iVar3,"v3_cpols.c",iVar16);
+                  ERR_add_error_data(6,"section:",*puVar4,",name:",puVar4[1],",value:",puVar4[2]);
                   goto LAB_000ca0ae;
                 }
-                if (val[1] == (ASN1_OBJECT *)0x0) {
-                  pAVar2 = (ASN1_OBJECT *)sk_new_null();
-                  val[1] = pAVar2;
+                if (*(int *)(val + 4) == 0) {
+                  p_Var12 = sk_new_null();
+                  *(_STACK **)(val + 4) = p_Var12;
                 }
-                ppAVar5 = (ASN1_OBJECT **)ASN1_item_new(DAT_000ca21c);
-                if ((ppAVar5 == (ASN1_OBJECT **)0x0) ||
-                   (iVar14 = sk_push((_STACK *)val[1],ppAVar5), iVar14 == 0)) goto LAB_000ca09c;
+                pAVar5 = ASN1_item_new((ASN1_ITEM *)POLICYQUALINFO_it);
+                if ((pAVar5 == (ASN1_VALUE *)0x0) ||
+                   (iVar16 = sk_push(*(_STACK **)(val + 4),pAVar5), iVar16 == 0)) goto LAB_000ca09c;
                 pAVar2 = OBJ_nid2obj(0xa4);
-                *ppAVar5 = pAVar2;
+                *(ASN1_OBJECT **)pAVar5 = pAVar2;
                 if (pAVar2 == (ASN1_OBJECT *)0x0) {
-                  ERR_put_error(0x22,0x83,0x44,DAT_000ca4b0,0xea);
+                  ERR_put_error(0x22,0x83,0x44,"v3_cpols.c",0xea);
                   goto LAB_000ca0ae;
                 }
-                pAVar2 = (ASN1_OBJECT *)ASN1_STRING_type_new(0x16);
-                ppAVar5[1] = pAVar2;
-                if (pAVar2 == (ASN1_OBJECT *)0x0) goto LAB_000ca09c;
-                pcVar12 = (char *)puVar4[2];
-                sVar6 = strlen(pcVar12);
-                iVar14 = ASN1_STRING_set((ASN1_STRING *)pAVar2,pcVar12,sVar6);
-                if (iVar14 == 0) goto LAB_000ca09c;
+                pAVar6 = ASN1_STRING_type_new(0x16);
+                *(ASN1_STRING **)(pAVar5 + 4) = pAVar6;
+                if (pAVar6 == (ASN1_STRING *)0x0) goto LAB_000ca09c;
+                pcVar14 = (char *)puVar4[2];
+                sVar7 = strlen(pcVar14);
+                iVar16 = ASN1_STRING_set(pAVar6,pcVar14,sVar7);
+                if (iVar16 == 0) goto LAB_000ca09c;
               }
 LAB_000ca018:
             }
-            if (*val != (ASN1_OBJECT *)0x0) {
+            if (*(int *)val != 0) {
               X509V3_section_free(param_2,(stack_st_CONF_VALUE *)section);
               iVar3 = sk_push(st,val);
               if (iVar3 == 0) goto LAB_000ca398;
               goto LAB_000c9fa6;
             }
-            ERR_put_error(0x22,0x83,0x8b,DAT_000ca4b0,0x111);
+            ERR_put_error(0x22,0x83,0x8b,"v3_cpols.c",0x111);
           }
 LAB_000ca0ae:
-          ASN1_item_free((ASN1_VALUE *)val,DAT_000ca20c);
+          ASN1_item_free(val,(ASN1_ITEM *)&POLICYINFO_it);
           X509V3_section_free(param_2,(stack_st_CONF_VALUE *)section);
           goto LAB_000ca0be;
         }
-        iVar14 = 0xac;
+        iVar16 = 0xac;
         iVar3 = 0x87;
       }
       else {
         iVar3 = 0x86;
-        iVar14 = 0xa0;
+        iVar16 = 0xa0;
       }
 LAB_000ca34e:
-      ERR_put_error(0x22,0x82,iVar3,DAT_000ca4b0,iVar14);
-      ERR_add_error_data(6,DAT_000ca4c8,*puVar4,DAT_000ca4cc,puVar4[1],DAT_000ca4c4,puVar4[2]);
+      ERR_put_error(0x22,0x82,iVar3,"v3_cpols.c",iVar16);
+      ERR_add_error_data(6,"section:",*puVar4,",name:",puVar4[1],",value:",puVar4[2]);
       goto LAB_000ca0be;
     }
-    ERR_put_error(0x22,0x82,0x22,DAT_000ca4b0,0x98);
+    ERR_put_error(0x22,0x82,0x22,"v3_cpols.c",0x98);
 LAB_000ca0be:
-    sk_pop_free(st_00,DAT_000ca224);
-    sk_pop_free(st,DAT_000ca228);
+    sk_pop_free(st_00,(func *)0xc7009);
+    sk_pop_free(st,(func *)0xc9f41);
   }
   return (_STACK *)0x0;
 code_r0x000ca1e8:
-  iVar10 = sk_push(st_02,data);
-  iVar8 = iVar8 + 1;
-  if (iVar10 == 0) {
-    ERR_put_error(0x22,0x85,0x41,DAT_000ca4b0,0x185);
+  iVar11 = sk_push(st_02,data);
+  iVar9 = iVar9 + 1;
+  if (iVar11 == 0) {
+    ERR_put_error(0x22,0x85,0x41,"v3_cpols.c",0x185);
 LAB_000ca28c:
-    sk_pop_free(st_02,DAT_000ca4b8);
-    sk_pop_free(st_01,DAT_000ca4bc);
+    sk_pop_free(st_02,(func *)0xbd009);
+    sk_pop_free(st_01,(func *)0xc7009);
     goto LAB_000ca262;
   }
   goto LAB_000ca1f0;

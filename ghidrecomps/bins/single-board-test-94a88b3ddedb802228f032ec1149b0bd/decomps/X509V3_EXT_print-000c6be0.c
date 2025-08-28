@@ -17,7 +17,7 @@ int X509V3_EXT_print(BIO *out,X509_EXTENSION *ext,ulong flag,int indent)
   if (method == (X509V3_EXT_METHOD *)0x0) {
     uVar4 = flag & 0xf0000;
     if (uVar4 == 0x10000) {
-      BIO_printf(out,DAT_000c6d48,indent,DAT_000c6d3c);
+      BIO_printf(out,"%*s<Not Supported>",indent,&DAT_0013a6fc);
       return 1;
     }
     if (uVar4 < 0x10001) {
@@ -48,7 +48,7 @@ LAB_000c6ce6:
   if (val == (ASN1_VALUE *)0x0) {
     uVar4 = flag & 0xf0000;
     if (uVar4 == 0x10000) {
-      BIO_printf(out,DAT_000c6d4c,indent,DAT_000c6d3c);
+      BIO_printf(out,"%*s<Parse Error>",indent,&DAT_0013a6fc);
       return 1;
     }
     if (uVar4 < 0x10001) {
@@ -81,8 +81,8 @@ LAB_000c6ce6:
     ptr = (*method->i2s)(method,val);
     if (ptr != (char *)0x0) {
       iVar3 = 1;
-      BIO_printf(out,DAT_000c6d40,indent,DAT_000c6d3c,ptr);
-      sk_pop_free((_STACK *)0x0,DAT_000c6d44);
+      BIO_printf(out,"%*s%s",indent,&DAT_0013a6fc,ptr);
+      sk_pop_free((_STACK *)0x0,(func *)0xc7009);
       CRYPTO_free(ptr);
       it = method->it;
       goto joined_r0x000c6c66;
@@ -91,7 +91,7 @@ LAB_000c6c56:
     iVar3 = 0;
     st = (_STACK *)0x0;
   }
-  sk_pop_free(st,DAT_000c6d44);
+  sk_pop_free(st,(func *)0xc7009);
   it = method->it;
 joined_r0x000c6c66:
   if (it == (ASN1_ITEM *)0x0) {

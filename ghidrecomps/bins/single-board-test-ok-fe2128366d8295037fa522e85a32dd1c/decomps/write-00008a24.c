@@ -6,9 +6,7 @@ ssize_t write(int __fd,void *__buf,size_t __n)
 {
   ssize_t sVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x00008a2c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  sVar1 = (*(code *)PTR_LAB_00024518)();
+  sVar1 = (*(code *)(undefined *)0x0)(__fd);
   return sVar1;
 }
 

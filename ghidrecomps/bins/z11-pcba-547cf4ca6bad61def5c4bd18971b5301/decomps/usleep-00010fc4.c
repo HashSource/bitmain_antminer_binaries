@@ -6,7 +6,7 @@ int usleep(__useconds_t __useconds)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_usleep_00046e28)();
+  iVar1 = usleep(__useconds);
   return iVar1;
 }
 

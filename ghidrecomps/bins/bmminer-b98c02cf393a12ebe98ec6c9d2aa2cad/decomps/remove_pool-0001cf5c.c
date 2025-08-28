@@ -28,7 +28,7 @@ void remove_pool(int *param_1)
     piVar2[*param_1] = (int)piVar1;
   }
   *param_1 = total_pools;
-  *(undefined *)((int)param_1 + 0x69) = 1;
+  *(undefined1 *)((int)param_1 + 0x69) = 1;
   total_pools = iVar5;
   return;
 }

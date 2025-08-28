@@ -1,5 +1,5 @@
 
-undefined4 opt_set_false(undefined *param_1)
+undefined4 opt_set_false(undefined1 *param_1)
 
 {
   *param_1 = 0;

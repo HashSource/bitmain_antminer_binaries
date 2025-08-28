@@ -15,7 +15,7 @@ int asn1_enc_save(ASN1_VALUE **pval,uchar *in,int inlen,ASN1_ITEM *it)
       if (*(void **)(pAVar2 + iVar3) != (void *)0x0) {
         CRYPTO_free(*(void **)(pAVar2 + iVar3));
       }
-      pvVar1 = CRYPTO_malloc(inlen,DAT_000bba20,0xae);
+      pvVar1 = CRYPTO_malloc(inlen,"tasn_utl.c",0xae);
       *(void **)(pAVar2 + iVar3) = pvVar1;
       if (pvVar1 != (void *)0x0) {
         memcpy(pvVar1,in,inlen);

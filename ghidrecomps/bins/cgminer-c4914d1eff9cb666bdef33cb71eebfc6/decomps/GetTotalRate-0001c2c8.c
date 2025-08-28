@@ -13,8 +13,7 @@ int GetTotalRate(void)
   if (freq_mode == 2) {
     for (chain = 0; chain < 8; chain = chain + 1) {
       if (dev->chain_exist[chain] != 0) {
-        total_rate = (int)((float)(longlong)total_rate +
-                          freq_from_board[chain] * DAT_0001c36c * DAT_0001c370);
+        total_rate = (int)((float)(longlong)total_rate + freq_from_board[chain] * 60.0 * 208.0);
       }
     }
     iVar1 = total_rate / 1000;

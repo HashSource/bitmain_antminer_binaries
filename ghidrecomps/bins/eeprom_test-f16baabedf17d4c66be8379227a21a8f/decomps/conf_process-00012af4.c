@@ -26,7 +26,6 @@ _Bool conf_process(int chain,uint16_t (*freq_data) [9],char *str)
   line_num = 0;
   stamp_num = 0;
   sVar1 = strlen(str);
-  str_len = sVar1 + 1;
   sprintf(chain_stamp,"chain %d",chain + 1);
   pcVar2 = strstr(str,chain_stamp);
   if (pcVar2 == (char *)0x0) {
@@ -35,13 +34,13 @@ _Bool conf_process(int chain,uint16_t (*freq_data) [9],char *str)
   }
   else {
     printf("now set: %s freq array ...\n",chain_stamp);
-    for (i = 0; i < str_len; i = i + 1) {
+    for (i = 0; i < (int)(sVar1 + 1); i = i + 1) {
       if ((str[i] == '\n') || (str[i] == '\0')) {
         line_flag[line_num] = i;
         line_num = line_num + 1;
       }
     }
-    for (i_1 = 0; i_1 < str_len; i_1 = i_1 + 1) {
+    for (i_1 = 0; i_1 < (int)(sVar1 + 1); i_1 = i_1 + 1) {
       if (str[i_1] == ':') {
         stamp_flag[stamp_num] = i_1;
         stamp_num = stamp_num + 1;

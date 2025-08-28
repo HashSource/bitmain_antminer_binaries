@@ -25,13 +25,12 @@ int calculate_asic_number(uint actual_asic_number)
     else if (actual_asic_number - 0x41 < 0x40) {
       actual_asic_number = 0x80;
     }
-    else if ((*DAT_00033d9c == '\0') ||
-            (((*DAT_00033da0 == '\0' && (*DAT_00033da4 == '\0')) && (*DAT_00033da8 < 7)))) {
+    else if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
+      snprintf(tmp42,0x800,"actual_asic_number = %d, but it is error\n",actual_asic_number);
+      _applog(7,tmp42,false);
       actual_asic_number = 0xffffffff;
     }
     else {
-      snprintf(tmp42,0x800,DAT_00033dac,actual_asic_number);
-      _applog(7,tmp42,false);
       actual_asic_number = 0xffffffff;
     }
   }

@@ -11,7 +11,7 @@ void i2d_DHxparams(int param_1,uchar **param_2)
   undefined4 local_20;
   undefined4 local_1c;
   undefined4 local_18;
-  int **local_14;
+  undefined4 **local_14;
   
   local_24 = *(undefined4 *)(param_1 + 8);
   local_1c = *(undefined4 *)(param_1 + 0xc);
@@ -29,7 +29,7 @@ void i2d_DHxparams(int param_1,uchar **param_2)
     local_34[0] = *(int *)(param_1 + 0x30);
     local_2c = *(int *)(param_1 + 0x2c);
   }
-  ASN1_item_i2d((ASN1_VALUE *)&local_24,param_2,DAT_00100488);
+  ASN1_item_i2d((ASN1_VALUE *)&local_24,param_2,(ASN1_ITEM *)DHxparams_it);
   return;
 }
 

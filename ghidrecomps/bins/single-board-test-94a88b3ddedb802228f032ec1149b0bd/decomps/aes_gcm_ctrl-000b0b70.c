@@ -45,7 +45,7 @@ int * aes_gcm_ctrl(int *param_1,undefined4 param_2,size_t param_3,int *param_4)
       *(int **)(iVar3 + 0x278) = param_4;
       return param_1;
     }
-    pvVar2 = CRYPTO_malloc(*(int *)(iVar7 + 0x27c),DAT_000b0e5c,0x4ec);
+    pvVar2 = CRYPTO_malloc(*(int *)(iVar7 + 0x27c),"e_aes.c",0x4ec);
     *(void **)(iVar3 + 0x278) = pvVar2;
     if (pvVar2 != (void *)0x0) {
       memcpy(pvVar2,*(void **)(iVar7 + 0x278),*(size_t *)(iVar7 + 0x27c));
@@ -58,7 +58,7 @@ int * aes_gcm_ctrl(int *param_1,undefined4 param_2,size_t param_3,int *param_4)
         if (*(int **)(iVar7 + 0x278) != param_1 + 8) {
           CRYPTO_free(*(int **)(iVar7 + 0x278));
         }
-        pvVar2 = CRYPTO_malloc(param_3,DAT_000b0e5c,0x48e);
+        pvVar2 = CRYPTO_malloc(param_3,"e_aes.c",0x48e);
         *(void **)(iVar7 + 0x278) = pvVar2;
         if (pvVar2 == (void *)0x0) {
           return (int *)0x0;
@@ -136,7 +136,7 @@ LAB_000b0bee:
       param_1[0xc] = iVar8;
       param_1[0xd] = iVar3;
       iVar3 = param_1[2];
-      *(undefined *)(param_1 + 0xf) = *(undefined *)(param_4 + 3);
+      *(char *)(param_1 + 0xf) = (char)param_4[3];
       *(undefined4 *)(iVar7 + 0x288) = 0xd;
       if (iVar3 == 0) {
         sVar5 = -0x18;
@@ -144,10 +144,10 @@ LAB_000b0bee:
       else {
         sVar5 = -8;
       }
-      sVar5 = CONCAT11(*(undefined *)((int)param_1 + 0x3b),*(undefined *)(param_1 + 0xf)) + sVar5;
+      sVar5 = CONCAT11(*(undefined1 *)((int)param_1 + 0x3b),(char)param_1[0xf]) + sVar5;
       *(char *)(param_1 + 0xf) = (char)sVar5;
       *(char *)((int)param_1 + 0x3b) = (char)((ushort)sVar5 >> 8);
-      return (int *)0x10;
+      return (int *)&DAT_00000010;
     }
     break;
   case 0x18:

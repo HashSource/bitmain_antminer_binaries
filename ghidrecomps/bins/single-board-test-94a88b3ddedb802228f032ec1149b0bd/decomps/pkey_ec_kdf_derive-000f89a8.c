@@ -38,7 +38,7 @@ int pkey_ec_kdf_derive(int param_1,void *param_2,size_t *param_3)
       return 0;
     }
 LAB_000f8abe:
-    ERR_put_error(0x10,0xd9,0x8c,DAT_000f8af4,0xd8);
+    ERR_put_error(0x10,0xd9,0x8c,"ec_pmeth.c",0xd8);
     return 0;
   }
   if (param_2 == (void *)0x0) {
@@ -60,12 +60,12 @@ LAB_000f8abe:
     iVar7 = iVar3 + 7;
   }
   sVar6 = iVar7 >> 3;
-  out = CRYPTO_malloc(sVar6,DAT_000f8af4,0x105);
+  out = CRYPTO_malloc(sVar6,"ec_pmeth.c",0x105);
   if (out == (void *)0x0) {
     return 0;
   }
   if ((*(int *)(param_1 + 8) == 0) || (*(int *)(param_1 + 0xc) == 0)) {
-    ERR_put_error(0x10,0xd9,0x8c,DAT_000f8af4,0xd8);
+    ERR_put_error(0x10,0xd9,0x8c,"ec_pmeth.c",0xd8);
   }
   else {
     pEVar1 = *(EC_KEY **)(*(int *)(param_1 + 0x14) + 8);

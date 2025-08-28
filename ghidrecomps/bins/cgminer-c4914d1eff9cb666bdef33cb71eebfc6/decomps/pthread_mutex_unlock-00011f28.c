@@ -6,7 +6,7 @@ int pthread_mutex_unlock(pthread_mutex_t *__mutex)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_mutex_unlock_000a800c)();
+  iVar1 = pthread_mutex_unlock(__mutex);
   return iVar1;
 }
 

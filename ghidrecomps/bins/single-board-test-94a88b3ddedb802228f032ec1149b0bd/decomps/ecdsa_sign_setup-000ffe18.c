@@ -1,5 +1,5 @@
 
-BIGNUM * ecdsa_sign_setup(EC_KEY *param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNUM **param_4)
+BIGNUM * ecdsa_sign_setup(EC_KEY *param_1,BN_CTX *param_2,undefined4 *param_3,undefined4 *param_4)
 
 {
   EC_GROUP *group;
@@ -17,12 +17,12 @@ BIGNUM * ecdsa_sign_setup(EC_KEY *param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNU
   
   if ((param_1 == (EC_KEY *)0x0) || (group = EC_KEY_get0_group(param_1), group == (EC_GROUP *)0x0))
   {
-    ERR_put_error(0x2a,0x67,0x43,DAT_001000a4,100);
+    ERR_put_error(0x2a,0x67,0x43,"ecs_ossl.c",100);
     return (BIGNUM *)0x0;
   }
   ctx = param_2;
   if ((param_2 == (BN_CTX *)0x0) && (ctx = BN_CTX_new(), ctx == (BN_CTX *)0x0)) {
-    ERR_put_error(0x2a,0x67,0x41,DAT_001000a4,0x6a);
+    ERR_put_error(0x2a,0x67,0x41,"ecs_ossl.c",0x6a);
     return (BIGNUM *)0x0;
   }
   pBVar1 = BN_new();
@@ -31,7 +31,7 @@ BIGNUM * ecdsa_sign_setup(EC_KEY *param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNU
   x = BN_new();
   if ((pBVar1 == (BIGNUM *)0x0 || r == (BIGNUM *)0x0) ||
      (order == (BIGNUM *)0x0 || x == (BIGNUM *)0x0)) {
-    ERR_put_error(0x2a,0x67,0x41,DAT_001000a4,0x75);
+    ERR_put_error(0x2a,0x67,0x41,"ecs_ossl.c",0x75);
     r_00 = pBVar1;
     if (pBVar1 != (BIGNUM *)0x0) {
       r_00 = (BIGNUM *)0x0;
@@ -51,7 +51,7 @@ BIGNUM * ecdsa_sign_setup(EC_KEY *param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNU
           do {
             iVar4 = BN_rand_range(pBVar1,order);
             if (iVar4 == 0) {
-              ERR_put_error(0x2a,0x67,0x68,DAT_001000a4,0x86);
+              ERR_put_error(0x2a,0x67,0x68,"ecs_ossl.c",0x86);
               goto LAB_000ffe86;
             }
           } while (pBVar1->top == 0);
@@ -93,11 +93,11 @@ BIGNUM * ecdsa_sign_setup(EC_KEY *param_1,BN_CTX *param_2,BIGNUM **param_3,BIGNU
           pBVar3 = BN_mod_inverse(pBVar1,pBVar1,order,ctx);
           if (pBVar3 != (BIGNUM *)0x0) {
 LAB_000fffe0:
-            if (*param_4 != (BIGNUM *)0x0) {
-              BN_clear_free(*param_4);
+            if ((BIGNUM *)*param_4 != (BIGNUM *)0x0) {
+              BN_clear_free((BIGNUM *)*param_4);
             }
-            if (*param_3 != (BIGNUM *)0x0) {
-              BN_clear_free(*param_3);
+            if ((BIGNUM *)*param_3 != (BIGNUM *)0x0) {
+              BN_clear_free((BIGNUM *)*param_3);
             }
             *param_4 = r;
             *param_3 = pBVar1;
@@ -122,12 +122,12 @@ LAB_000fffe0:
           }
         }
 LAB_00100088:
-        ERR_put_error(0x2a,0x67,3,DAT_001000a4,iVar4);
+        ERR_put_error(0x2a,0x67,3,"ecs_ossl.c",iVar4);
         goto LAB_000ffe86;
       }
     }
 LAB_00100050:
-    ERR_put_error(0x2a,0x67,0x10,DAT_001000a4,iVar4);
+    ERR_put_error(0x2a,0x67,0x10,"ecs_ossl.c",iVar4);
 LAB_000ffe86:
     BN_clear_free(pBVar1);
   }

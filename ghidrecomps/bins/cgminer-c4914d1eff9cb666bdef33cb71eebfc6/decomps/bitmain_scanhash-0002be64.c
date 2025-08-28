@@ -46,7 +46,7 @@ void * bitmain_scanhash(void *arg)
             _cg_runlock(&info->update_lock,"driver-btm-soc.c","bitmain_scanhash",0x1e17);
             pthread_mutex_unlock((pthread_mutex_t *)&nonce_mutex);
             cgsleep_ms(1);
-            if ((((uint)h | h._4_4_) != 0) && (4 < log_level)) {
+            if (((uint)h != 0 || h._4_4_ != 0) && (4 < log_level)) {
               print_crt_time_to_file(log_file,4);
               pFile_6 = (FILE *)fopen(log_file,"a+");
               if (pFile_6 != (FILE *)0x0) {
@@ -63,7 +63,7 @@ void * bitmain_scanhash(void *arg)
           }
           nonce3 = nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce3;
           job_id = nonce_read_out.nonce_buffer[nonce_read_out.p_rd].job_id;
-          nonce2._0_4_ = *(undefined4 *)&nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce2;
+          nonce2._0_4_ = (undefined4)nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce2;
           nonce2._4_4_ = *(undefined4 *)
                           ((int)&nonce_read_out.nonce_buffer[nonce_read_out.p_rd].nonce2 + 4);
           chain_id = nonce_read_out.nonce_buffer[nonce_read_out.p_rd].chain_num;

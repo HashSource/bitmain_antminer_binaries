@@ -39,7 +39,7 @@ DH * make_cp_exchange_key(BIGNUM *param_1,EVP_PKEY *param_2,undefined4 param_3)
         } while (puVar4 != auStack_98);
       }
       DH_free(dh);
-      init_gost_hash_ctx(auStack_98,DAT_00114ef0);
+      init_gost_hash_ctx(auStack_98,GostR3411_94_CryptoProParamSet);
       start_hash(auStack_98);
       hash_block(auStack_98,local_118,0x80);
       finish_hash(auStack_98,param_3);

@@ -11,7 +11,7 @@ int PKCS7_add_recipient_info(PKCS7 *p7,PKCS7_RECIP_INFO *ri)
   }
   else {
     if (iVar1 != 0x18) {
-      ERR_put_error(0x21,0x66,0x71,DAT_000cf824,0x1fb);
+      ERR_put_error(0x21,0x66,0x71,"pk7_lib.c",0x1fb);
       return 0;
     }
     st = &((p7->d).signed_and_enveloped)->recipientinfo->stack;

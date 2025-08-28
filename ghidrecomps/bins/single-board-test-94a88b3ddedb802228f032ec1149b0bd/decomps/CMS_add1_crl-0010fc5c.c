@@ -2,15 +2,15 @@
 int CMS_add1_crl(CMS_ContentInfo *cms,X509_CRL *crl)
 
 {
-  undefined4 *puVar1;
+  CMS_RevocationInfoChoice *pCVar1;
   
-  puVar1 = (undefined4 *)CMS_add0_RevocationInfoChoice(cms);
-  if (puVar1 != (undefined4 *)0x0) {
-    *puVar1 = 0;
-    puVar1[1] = crl;
-    CRYPTO_add_lock(&crl->references,1,6,DAT_0010fc8c,0x21a);
-    puVar1 = (undefined4 *)0x1;
+  pCVar1 = CMS_add0_RevocationInfoChoice(cms);
+  if (pCVar1 != (CMS_RevocationInfoChoice *)0x0) {
+    *(undefined4 *)pCVar1 = 0;
+    *(X509_CRL **)(pCVar1 + 4) = crl;
+    CRYPTO_add_lock(&crl->references,1,6,"cms_lib.c",0x21a);
+    pCVar1 = (CMS_RevocationInfoChoice *)0x1;
   }
-  return (int)puVar1;
+  return (int)pCVar1;
 }
 

@@ -10,7 +10,7 @@ int ENGINE_set_default_ciphers(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a7cd4,DAT_000a7cd0,e,local_14[0],iVar1,1);
+    iVar1 = engine_table_register(&cipher_table,0xa7c05,e,local_14[0],iVar1,1);
   }
   return iVar1;
 }

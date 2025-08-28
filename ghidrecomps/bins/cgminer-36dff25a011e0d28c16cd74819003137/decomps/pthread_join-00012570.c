@@ -6,7 +6,7 @@ int pthread_join(pthread_t __th,void **__thread_return)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_join_000c0208)();
+  iVar1 = pthread_join(__th,__thread_return);
   return iVar1;
 }
 

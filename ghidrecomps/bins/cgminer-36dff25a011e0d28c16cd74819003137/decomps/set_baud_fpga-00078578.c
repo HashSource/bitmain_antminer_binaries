@@ -21,8 +21,8 @@ void set_baud_fpga(int baud)
     fclose(__stream);
   }
   iVar2 = get_bt8d_control();
-  fpga_bt8d.v._2_1_ = (undefined)((uint)iVar2 >> 0x10);
-  fpga_bt8d.v._3_1_ = (undefined)((uint)iVar2 >> 0x18);
+  fpga_bt8d.v._2_1_ = (undefined1)((uint)iVar2 >> 0x10);
+  fpga_bt8d.v._3_1_ = (undefined1)((uint)iVar2 >> 0x18);
   fpga_bt8d.v._0_2_ = (undefined2)iVar2;
   fpga_bt8d.v._2_1_ = fpga_bt8d.v._2_1_ & 0xc0 | (byte)iVar1 & 0x3f;
   set_bt8d_control(fpga_bt8d.v);

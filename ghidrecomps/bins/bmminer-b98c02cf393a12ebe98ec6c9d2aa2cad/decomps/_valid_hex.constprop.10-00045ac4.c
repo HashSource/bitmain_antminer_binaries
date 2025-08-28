@@ -1,5 +1,5 @@
 
-undefined _valid_hex_constprop_10(byte *param_1,undefined4 param_2,undefined4 param_3)
+undefined1 _valid_hex_constprop_10(byte *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   size_t sVar1;

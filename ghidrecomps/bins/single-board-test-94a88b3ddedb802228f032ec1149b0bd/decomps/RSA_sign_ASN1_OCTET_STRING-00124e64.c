@@ -15,9 +15,9 @@ int RSA_sign_ASN1_OCTET_STRING(int type,uchar *m,uint m_length,uchar *sigret,uin
   flen = i2d_ASN1_OCTET_STRING(&local_30,(uchar **)0x0);
   iVar1 = RSA_size(rsa);
   if (flen < iVar1 + -10) {
-    from = (uchar *)CRYPTO_malloc(iVar1 + 1U,DAT_00124f0c,0x56);
+    from = (uchar *)CRYPTO_malloc(iVar1 + 1U,"rsa_saos.c",0x56);
     if (from == (uchar *)0x0) {
-      ERR_put_error(4,0x76,0x41,DAT_00124f0c,0x58);
+      ERR_put_error(4,0x76,0x41,"rsa_saos.c",0x58);
       uVar2 = 0;
     }
     else {
@@ -33,7 +33,7 @@ int RSA_sign_ASN1_OCTET_STRING(int type,uchar *m,uint m_length,uchar *sigret,uin
     }
   }
   else {
-    ERR_put_error(4,0x76,0x70,DAT_00124f0c,0x53);
+    ERR_put_error(4,0x76,0x70,"rsa_saos.c",0x53);
     uVar2 = 0;
   }
   return uVar2;

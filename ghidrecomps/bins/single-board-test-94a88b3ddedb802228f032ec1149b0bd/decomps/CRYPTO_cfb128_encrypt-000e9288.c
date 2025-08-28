@@ -93,10 +93,10 @@ LAB_000e94f0:
       pbVar13 = pbVar4 + uVar1;
       (*param_8)(param_5,param_5,param_4);
       pbVar12 = pbVar2 + uVar1;
-      uVar9 = param_3 & 0xfffffffc;
+      uVar9 = param_3 >> 2;
       local_30 = param_3 - 1;
       uVar7 = uVar1;
-      if (param_3 >> 2 != 0 &&
+      if (uVar9 != 0 &&
           ((((uint)pbVar12 | (uint)pbVar11 | (uint)pbVar13) & 3) == 0 &&
           ((3 < param_3 &&
            ((pbVar11 + 4 <= pbVar13 || pbVar13 + 4 <= pbVar11) &&
@@ -110,10 +110,10 @@ LAB_000e94f0:
           *(uint *)(pbVar13 + iVar5) = uVar3 ^ *(uint *)(pbVar11 + iVar5);
           *(uint *)(pbVar11 + iVar5) = uVar3;
           iVar5 = iVar5 + 4;
-        } while (uVar7 < param_3 >> 2);
-        local_30 = local_30 - uVar9;
-        uVar7 = uVar9 + uVar1;
-        if (param_3 == uVar9) goto LAB_000e94c2;
+        } while (uVar7 < uVar9);
+        local_30 = local_30 + uVar9 * -4;
+        uVar7 = uVar9 * 4 + uVar1;
+        if (param_3 == uVar9 * 4) goto LAB_000e94c2;
       }
       local_30 = uVar7 + local_30;
       do {
@@ -199,9 +199,9 @@ LAB_000e94c2:
       (*param_8)(param_5,param_5,param_4);
       pbVar12 = pbVar2 + uVar1;
       iVar5 = param_3 - 1;
-      uVar9 = param_3 & 0xfffffffc;
+      uVar9 = param_3 >> 2;
       uVar7 = uVar1;
-      if (param_3 >> 2 != 0 &&
+      if (uVar9 != 0 &&
           ((((uint)pbVar12 | (uint)pbVar11 | (uint)pbVar13) & 3) == 0 &&
           ((3 < param_3 &&
            ((pbVar11 + 4 <= pbVar13 || pbVar13 + 4 <= pbVar11) &&
@@ -216,10 +216,10 @@ LAB_000e94c2:
           *(uint *)(pbVar11 + iVar6) = uVar8 ^ uVar3;
           *(uint *)(pbVar13 + iVar6) = uVar8 ^ uVar3;
           iVar6 = iVar6 + 4;
-        } while (uVar7 < param_3 >> 2);
-        iVar5 = iVar5 - uVar9;
-        uVar7 = uVar9 + uVar1;
-        if (param_3 == uVar9) goto LAB_000e94c2;
+        } while (uVar7 < uVar9);
+        iVar5 = iVar5 + uVar9 * -4;
+        uVar7 = uVar9 * 4 + uVar1;
+        if (param_3 == uVar9 * 4) goto LAB_000e94c2;
       }
       iVar5 = uVar7 + iVar5;
       do {

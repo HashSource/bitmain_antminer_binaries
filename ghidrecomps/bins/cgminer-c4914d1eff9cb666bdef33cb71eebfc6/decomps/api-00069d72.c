@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void api(int api_thr_id)
 
 {
@@ -310,7 +308,8 @@ void api(int api_thr_id)
                         firstjoin = true;
                         sVar10 = strlen(cmd);
                         cmdsbuf = (char *)_cgmalloc(sVar10 + 3,"api-btm.c","api",0x158c);
-                        *(undefined2 *)cmdsbuf = DAT_00092f08;
+                        cmdsbuf[0] = '|';
+                        cmdsbuf[1] = '\0';
                         param = (char *)0x0;
                       }
                       isjoin = pcVar6 != (char *)0x0;
@@ -340,7 +339,8 @@ LAB_0006af0e:
                                 }
                                 strcat(cmdsbuf,pcVar6);
                                 sVar10 = strlen(cmdsbuf);
-                                *(undefined2 *)(cmdsbuf + sVar10) = DAT_00092f08;
+                                (cmdsbuf + sVar10)[0] = '|';
+                                (cmdsbuf + sVar10)[1] = '\0';
                                 head_join(io_data_00,pcVar6,isjson,&firstjoin);
                                 if (cmds[i].joinable != true) {
                                   message(io_data_00,0x2d,0,cmds[i].name,isjson);
@@ -433,55 +433,14 @@ LAB_0006b112:
               _mutex_lock(&quit_restart_lock,"api-btm.c","api",0x15ef);
               if (do_a_restart == false) {
                 if (do_a_quit != false) {
-                  iVar4 = thr_info_create(&bye_thr,(pthread_attr_t *)0x0,quit_thread + 1,&bye_thr);
+                  iVar4 = thr_info_create(&bye_thr,(pthread_attr_t *)0x0,
+                                          (_func_void_ptr_void_ptr *)0x68b69,&bye_thr);
                   if (iVar4 != 0) {
                     _mutex_unlock(&quit_restart_lock,"api-btm.c","api",0x15fe);
-                    tmp42_18[0] = s_API_failed_to_initiate_a_clean_q_000941a0[0];
-                    tmp42_18[1] = s_API_failed_to_initiate_a_clean_q_000941a0[1];
-                    tmp42_18[2] = s_API_failed_to_initiate_a_clean_q_000941a0[2];
-                    tmp42_18[3] = s_API_failed_to_initiate_a_clean_q_000941a0[3];
-                    tmp42_18[4] = s_API_failed_to_initiate_a_clean_q_000941a0[4];
-                    tmp42_18[5] = s_API_failed_to_initiate_a_clean_q_000941a0[5];
-                    tmp42_18[6] = s_API_failed_to_initiate_a_clean_q_000941a0[6];
-                    tmp42_18[7] = s_API_failed_to_initiate_a_clean_q_000941a0[7];
-                    tmp42_18[8] = s_API_failed_to_initiate_a_clean_q_000941a0[8];
-                    tmp42_18[9] = s_API_failed_to_initiate_a_clean_q_000941a0[9];
-                    tmp42_18[10] = s_API_failed_to_initiate_a_clean_q_000941a0[10];
-                    tmp42_18[11] = s_API_failed_to_initiate_a_clean_q_000941a0[11];
-                    tmp42_18[12] = s_API_failed_to_initiate_a_clean_q_000941a0[12];
-                    tmp42_18[13] = s_API_failed_to_initiate_a_clean_q_000941a0[13];
-                    tmp42_18[14] = s_API_failed_to_initiate_a_clean_q_000941a0[14];
-                    tmp42_18[15] = s_API_failed_to_initiate_a_clean_q_000941a0[15];
-                    tmp42_18[16] = s_API_failed_to_initiate_a_clean_q_000941a0[16];
-                    tmp42_18[17] = s_API_failed_to_initiate_a_clean_q_000941a0[17];
-                    tmp42_18[18] = s_API_failed_to_initiate_a_clean_q_000941a0[18];
-                    tmp42_18[19] = s_API_failed_to_initiate_a_clean_q_000941a0[19];
-                    tmp42_18[20] = s_API_failed_to_initiate_a_clean_q_000941a0[20];
-                    tmp42_18[21] = s_API_failed_to_initiate_a_clean_q_000941a0[21];
-                    tmp42_18[22] = s_API_failed_to_initiate_a_clean_q_000941a0[22];
-                    tmp42_18[23] = s_API_failed_to_initiate_a_clean_q_000941a0[23];
-                    tmp42_18[24] = s_API_failed_to_initiate_a_clean_q_000941a0[24];
-                    tmp42_18[25] = s_API_failed_to_initiate_a_clean_q_000941a0[25];
-                    tmp42_18[26] = s_API_failed_to_initiate_a_clean_q_000941a0[26];
-                    tmp42_18[27] = s_API_failed_to_initiate_a_clean_q_000941a0[27];
-                    tmp42_18[28] = s_API_failed_to_initiate_a_clean_q_000941a0[28];
-                    tmp42_18[29] = s_API_failed_to_initiate_a_clean_q_000941a0[29];
-                    tmp42_18[30] = s_API_failed_to_initiate_a_clean_q_000941a0[30];
-                    tmp42_18[31] = s_API_failed_to_initiate_a_clean_q_000941a0[31];
-                    tmp42_18[32] = s_API_failed_to_initiate_a_clean_q_000941a0[32];
-                    tmp42_18[33] = s_API_failed_to_initiate_a_clean_q_000941a0[33];
-                    tmp42_18[34] = s_API_failed_to_initiate_a_clean_q_000941a0[34];
-                    tmp42_18[35] = s_API_failed_to_initiate_a_clean_q_000941a0[35];
-                    tmp42_18[36] = s_API_failed_to_initiate_a_clean_q_000941a0[36];
-                    tmp42_18[37] = s_API_failed_to_initiate_a_clean_q_000941a0[37];
-                    tmp42_18[38] = s_API_failed_to_initiate_a_clean_q_000941a0[38];
-                    tmp42_18[39] = s_API_failed_to_initiate_a_clean_q_000941a0[39];
-                    tmp42_18[40] = s_API_failed_to_initiate_a_clean_q_000941a0[40];
-                    tmp42_18[41] = s_API_failed_to_initiate_a_clean_q_000941a0[41];
-                    tmp42_18[42] = s_API_failed_to_initiate_a_clean_q_000941a0[42];
-                    tmp42_18[43] = s_API_failed_to_initiate_a_clean_q_000941a0[43];
-                    tmp42_18._44_2_ = (undefined2)ram0x000941cc;
-                    tmp42_18[46] = (char)((uint)ram0x000941cc >> 0x10);
+                    builtin_strncpy(tmp42_18,"API failed to initiate a clean quit - aborti",0x2c);
+                    tmp42_18[0x2c] = 'n';
+                    tmp42_18[0x2d] = 'g';
+                    tmp42_18[0x2e] = '\0';
                     _applog(3,tmp42_18,true);
                     _quit(1);
                   }
@@ -489,53 +448,11 @@ LAB_0006b112:
                 }
               }
               else {
-                iVar4 = thr_info_create(&bye_thr,(pthread_attr_t *)0x0,restart_thread + 1,&bye_thr);
+                iVar4 = thr_info_create(&bye_thr,(pthread_attr_t *)0x0,
+                                        (_func_void_ptr_void_ptr *)0x68c37,&bye_thr);
                 if (iVar4 != 0) {
                   _mutex_unlock(&quit_restart_lock,"api-btm.c","api",0x15f5);
-                  tmp42_17[0] = s_API_failed_to_initiate_a_restart_00094174[0];
-                  tmp42_17[1] = s_API_failed_to_initiate_a_restart_00094174[1];
-                  tmp42_17[2] = s_API_failed_to_initiate_a_restart_00094174[2];
-                  tmp42_17[3] = s_API_failed_to_initiate_a_restart_00094174[3];
-                  tmp42_17[4] = s_API_failed_to_initiate_a_restart_00094174[4];
-                  tmp42_17[5] = s_API_failed_to_initiate_a_restart_00094174[5];
-                  tmp42_17[6] = s_API_failed_to_initiate_a_restart_00094174[6];
-                  tmp42_17[7] = s_API_failed_to_initiate_a_restart_00094174[7];
-                  tmp42_17[8] = s_API_failed_to_initiate_a_restart_00094174[8];
-                  tmp42_17[9] = s_API_failed_to_initiate_a_restart_00094174[9];
-                  tmp42_17[10] = s_API_failed_to_initiate_a_restart_00094174[10];
-                  tmp42_17[11] = s_API_failed_to_initiate_a_restart_00094174[11];
-                  tmp42_17[12] = s_API_failed_to_initiate_a_restart_00094174[12];
-                  tmp42_17[13] = s_API_failed_to_initiate_a_restart_00094174[13];
-                  tmp42_17[14] = s_API_failed_to_initiate_a_restart_00094174[14];
-                  tmp42_17[15] = s_API_failed_to_initiate_a_restart_00094174[15];
-                  tmp42_17[16] = s_API_failed_to_initiate_a_restart_00094174[16];
-                  tmp42_17[17] = s_API_failed_to_initiate_a_restart_00094174[17];
-                  tmp42_17[18] = s_API_failed_to_initiate_a_restart_00094174[18];
-                  tmp42_17[19] = s_API_failed_to_initiate_a_restart_00094174[19];
-                  tmp42_17[20] = s_API_failed_to_initiate_a_restart_00094174[20];
-                  tmp42_17[21] = s_API_failed_to_initiate_a_restart_00094174[21];
-                  tmp42_17[22] = s_API_failed_to_initiate_a_restart_00094174[22];
-                  tmp42_17[23] = s_API_failed_to_initiate_a_restart_00094174[23];
-                  tmp42_17[24] = s_API_failed_to_initiate_a_restart_00094174[24];
-                  tmp42_17[25] = s_API_failed_to_initiate_a_restart_00094174[25];
-                  tmp42_17[26] = s_API_failed_to_initiate_a_restart_00094174[26];
-                  tmp42_17[27] = s_API_failed_to_initiate_a_restart_00094174[27];
-                  tmp42_17[28] = s_API_failed_to_initiate_a_restart_00094174[28];
-                  tmp42_17[29] = s_API_failed_to_initiate_a_restart_00094174[29];
-                  tmp42_17[30] = s_API_failed_to_initiate_a_restart_00094174[30];
-                  tmp42_17[31] = s_API_failed_to_initiate_a_restart_00094174[31];
-                  tmp42_17[32] = s_API_failed_to_initiate_a_restart_00094174[32];
-                  tmp42_17[33] = s_API_failed_to_initiate_a_restart_00094174[33];
-                  tmp42_17[34] = s_API_failed_to_initiate_a_restart_00094174[34];
-                  tmp42_17[35] = s_API_failed_to_initiate_a_restart_00094174[35];
-                  tmp42_17[36] = s_API_failed_to_initiate_a_restart_00094174[36];
-                  tmp42_17[37] = s_API_failed_to_initiate_a_restart_00094174[37];
-                  tmp42_17[38] = s_API_failed_to_initiate_a_restart_00094174[38];
-                  tmp42_17[39] = s_API_failed_to_initiate_a_restart_00094174[39];
-                  tmp42_17[40] = s_API_failed_to_initiate_a_restart_00094174[40];
-                  tmp42_17[41] = s_API_failed_to_initiate_a_restart_00094174[41];
-                  tmp42_17[42] = s_API_failed_to_initiate_a_restart_00094174[42];
-                  tmp42_17[43] = s_API_failed_to_initiate_a_restart_00094174[43];
+                  builtin_strncpy(tmp42_17,"API failed to initiate a restart - aborting",0x2c);
                   _applog(3,tmp42_17,true);
                   _quit(1);
                 }

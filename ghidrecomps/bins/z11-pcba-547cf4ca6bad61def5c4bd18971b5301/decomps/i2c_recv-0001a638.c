@@ -1,18 +1,18 @@
 
 undefined4
-i2c_recv(byte param_1,undefined param_2,char param_3,undefined param_4,undefined4 *param_5)
+i2c_recv(byte param_1,undefined1 param_2,char param_3,undefined1 param_4,undefined4 *param_5)
 
 {
   int iVar1;
   undefined4 uVar2;
-  uint local_28;
+  undefined4 local_28;
   byte local_24;
-  undefined local_23;
-  undefined local_22;
+  undefined1 local_23;
+  undefined1 local_22;
   undefined4 local_20;
-  undefined local_18;
-  undefined local_17;
-  undefined local_16;
+  undefined1 local_18;
+  undefined1 local_17;
+  undefined1 local_16;
   uint local_14;
   
   iVar1 = i2c_status(param_1,param_2);

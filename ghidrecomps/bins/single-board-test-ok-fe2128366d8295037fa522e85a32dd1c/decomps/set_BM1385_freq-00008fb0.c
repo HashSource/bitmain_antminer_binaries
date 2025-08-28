@@ -1,5 +1,5 @@
 
-void set_BM1385_freq(undefined param_1,undefined param_2,undefined4 param_3,char param_4)
+void set_BM1385_freq(undefined1 param_1,undefined1 param_2,undefined4 param_3,char param_4)
 
 {
   byte bVar1;
@@ -10,8 +10,8 @@ void set_BM1385_freq(undefined param_1,undefined param_2,undefined4 param_3,char
   undefined4 local_24;
   undefined4 local_20;
   byte local_1c;
-  undefined local_1b;
-  undefined local_1a;
+  undefined1 local_1b;
+  undefined1 local_1a;
   byte local_19;
   undefined4 local_18;
   undefined4 local_14;
@@ -31,8 +31,8 @@ void set_BM1385_freq(undefined param_1,undefined param_2,undefined4 param_3,char
   printf("\n--- %s\n","set_BM1385_freq");
   get_BM1385_plldata(param_3,&local_2c,&local_32,&local_30);
   local_1c = 7;
-  local_1b = (undefined)((uint)local_2c >> 0x10);
-  local_1a = (undefined)((uint)local_2c >> 8);
+  local_1b = (undefined1)((uint)local_2c >> 0x10);
+  local_1a = (undefined1)((uint)local_2c >> 8);
   bVar1 = (byte)local_2c;
   local_19 = bVar1;
   local_19 = CRC5(&local_1c,0x1b);
@@ -45,7 +45,7 @@ void set_BM1385_freq(undefined param_1,undefined param_2,undefined4 param_3,char
     local_1c = local_1c | 0x80;
   }
   local_1c = local_1c | 2;
-  local_1a = (undefined)((ushort)local_32 >> 8);
+  local_1a = (undefined1)((ushort)local_32 >> 8);
   bVar1 = (byte)local_32;
   local_1b = param_2;
   local_19 = bVar1;

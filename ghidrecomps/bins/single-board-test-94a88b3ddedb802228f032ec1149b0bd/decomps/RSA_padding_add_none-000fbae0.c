@@ -5,11 +5,11 @@ int RSA_padding_add_none(uchar *to,int tlen,uchar *f,int fl)
   int iVar1;
   
   if (tlen < fl) {
-    ERR_put_error(4,0x6b,0x6e,DAT_000fbb20,0x45);
+    ERR_put_error(4,0x6b,0x6e,"rsa_none.c",0x45);
     iVar1 = 0;
   }
   else if (fl < tlen) {
-    ERR_put_error(4,0x6b,0x7a,DAT_000fbb20,0x4a);
+    ERR_put_error(4,0x6b,0x7a,"rsa_none.c",0x4a);
     iVar1 = 0;
   }
   else {

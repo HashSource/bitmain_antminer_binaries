@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int get_index_from_high_pll(int freq)
 
 {
@@ -16,20 +14,10 @@ int get_index_from_high_pll(int freq)
   }
   if (i == 0x21) {
     if (((use_syslog) || (opt_log_output)) || (2 < opt_log_level)) {
-      tmp42._0_4_ = s_high_freq_index_set_error_return_00076c58._0_4_;
-      tmp42._4_4_ = s_high_freq_index_set_error_return_00076c58._4_4_;
-      tmp42._8_4_ = s_high_freq_index_set_error_return_00076c58._8_4_;
-      tmp42._12_4_ = s_high_freq_index_set_error_return_00076c58._12_4_;
-      tmp42._16_4_ = s_high_freq_index_set_error_return_00076c58._16_4_;
-      tmp42._20_4_ = s_high_freq_index_set_error_return_00076c58._20_4_;
-      tmp42._24_4_ = s_high_freq_index_set_error_return_00076c58._24_4_;
-      tmp42._28_4_ = s_high_freq_index_set_error_return_00076c58._28_4_;
-      tmp42._32_4_ = s_high_freq_index_set_error_return_00076c58._32_4_;
-      tmp42._36_4_ = s_high_freq_index_set_error_return_00076c58._36_4_;
-      tmp42._40_4_ = s_high_freq_index_set_error_return_00076c58._40_4_;
-      tmp42._44_4_ = s_high_freq_index_set_error_return_00076c58._44_4_;
-      tmp42._48_2_ = (undefined2)ram0x00076c88;
-      tmp42[50] = (char)((uint)ram0x00076c88 >> 0x10);
+      builtin_strncpy(tmp42,"high freq index set error,return default pll ind",0x30);
+      tmp42[0x30] = 'e';
+      tmp42[0x31] = 'x';
+      tmp42[0x32] = '\0';
       _applog(3,tmp42,false);
     }
     i = get_index_from_high_pll(200);

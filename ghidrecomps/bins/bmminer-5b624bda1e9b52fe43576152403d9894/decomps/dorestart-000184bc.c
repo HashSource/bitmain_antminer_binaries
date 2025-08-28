@@ -4,17 +4,14 @@
 void dorestart(io_data *io_data,long c,char *param,_Bool isjson,char group)
 
 {
-  undefined *puVar1;
-  
   if (isjson) {
-    io_put(io_data,DAT_000184e0);
+    io_put(io_data,"{\"STATUS\":\"RESTART\"");
   }
   else {
-    io_put(io_data,DAT_000184d8);
+    io_put(io_data,"RESTART");
   }
-  puVar1 = DAT_000184dc;
-  *DAT_000184dc = 1;
-  puVar1[1] = 1;
+  bye = true;
+  do_a_restart = true;
   return;
 }
 

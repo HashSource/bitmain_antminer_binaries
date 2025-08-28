@@ -2,7 +2,7 @@
 _Bool test_nonce(work *work,uint32_t nonce)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   bool bVar3;
   uint32_t nonce_local;
@@ -15,7 +15,7 @@ _Bool test_nonce(work *work,uint32_t nonce)
   if (bVar3) {
     iVar2 = 1;
   }
-  uVar1 = (undefined)iVar2;
+  uVar1 = (undefined1)iVar2;
   if (!bVar3) {
     uVar1 = 0;
   }

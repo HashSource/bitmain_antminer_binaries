@@ -48,7 +48,7 @@ uint pkey_dh_ctrl(int param_1,int param_2,uint param_3,uint *param_4)
     }
     else {
       if (param_3 == 0xfffffffe) {
-        return (uint)*(byte *)(puVar2 + 8);
+        return (uint)(byte)puVar2[8];
       }
       if (param_3 - 1 < 2) {
         *(char *)(puVar2 + 8) = (char)param_3;

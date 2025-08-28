@@ -14,7 +14,7 @@ int ocsp_match_issuerid_part_4(X509 *param_1,undefined4 *param_2)
   name = OBJ_nid2sn(iVar1);
   md = EVP_get_digestbyname(name);
   if (md == (EVP_MD *)0x0) {
-    ERR_put_error(0x27,0x6d,0x77,DAT_000d3af0,0x13f);
+    ERR_put_error(0x27,0x6d,0x77,"ocsp_vfy.c",0x13f);
     return -1;
   }
   __n = EVP_MD_size(md);

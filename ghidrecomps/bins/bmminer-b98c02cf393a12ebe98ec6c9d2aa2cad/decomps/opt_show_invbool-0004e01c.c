@@ -1,14 +1,14 @@
 
-void opt_show_invbool(undefined4 param_1,char *param_2)
+void opt_show_invbool(char *param_1,char *param_2)
 
 {
-  char *pcVar1;
+  char *__src;
   
-  pcVar1 = "false";
+  __src = "false";
   if (*param_2 == '\0') {
-    pcVar1 = "true";
+    __src = "true";
   }
-  (*(code *)PTR_strncpy_0007cfc4)(param_1,pcVar1,0x50);
+  strncpy(param_1,__src,0x50);
   return;
 }
 

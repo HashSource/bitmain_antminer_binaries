@@ -1,24 +1,16 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void hw_test_customized(void)
 
 {
-  undefined4 local_87c;
-  undefined4 uStack_878;
-  undefined4 uStack_874;
+  char local_87c [12];
   undefined4 local_870;
-  undefined4 local_86c;
-  undefined4 uStack_868;
-  undefined4 uStack_864;
-  undefined4 uStack_860;
-  undefined4 local_85c;
+  char local_86c [20];
   undefined2 local_858;
-  undefined local_856;
-  undefined auStack_47c [281];
-  undefined auStack_363 [281];
-  undefined auStack_24a [281];
-  undefined auStack_131 [281];
+  undefined1 local_856;
+  undefined1 auStack_47c [281];
+  undefined1 auStack_363 [281];
+  undefined1 auStack_24a [281];
+  undefined1 auStack_131 [281];
   int local_18;
   int local_14;
   
@@ -46,84 +38,44 @@ void hw_test_customized(void)
       sleep(0x1e);
       local_14 = local_14 + 0x1e;
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
-        snprintf((char *)&local_87c,0x400,"seconds %d\n",local_14);
-        _applog(2,&local_87c,0);
+        snprintf(local_87c,0x400,"seconds %d\n",local_14);
+        _applog(2,local_87c,0);
       }
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
-        local_87c._0_1_ = s_asic_1_2_3_4_000349c8[0];
-        local_87c._1_1_ = s_asic_1_2_3_4_000349c8[1];
-        local_87c._2_1_ = s_asic_1_2_3_4_000349c8[2];
-        local_87c._3_1_ = s_asic_1_2_3_4_000349c8[3];
-        uStack_878._0_1_ = s_asic_1_2_3_4_000349c8[4];
-        uStack_878._1_1_ = s_asic_1_2_3_4_000349c8[5];
-        uStack_878._2_1_ = s_asic_1_2_3_4_000349c8[6];
-        uStack_878._3_1_ = s_asic_1_2_3_4_000349c8[7];
-        uStack_874._0_1_ = s_asic_1_2_3_4_000349c8[8];
-        uStack_874._1_1_ = s_asic_1_2_3_4_000349c8[9];
-        uStack_874._2_1_ = s_asic_1_2_3_4_000349c8[10];
-        uStack_874._3_1_ = s_asic_1_2_3_4_000349c8[11];
-        local_870._0_1_ = s_asic_1_2_3_4_000349c8[12];
-        local_870._1_1_ = s_asic_1_2_3_4_000349c8[13];
-        local_870._2_1_ = s_asic_1_2_3_4_000349c8[14];
-        local_870._3_1_ = s_asic_1_2_3_4_000349c8[15];
-        local_86c._0_1_ = s_asic_1_2_3_4_000349c8[16];
-        local_86c._1_1_ = s_asic_1_2_3_4_000349c8[17];
-        local_86c._2_1_ = s_asic_1_2_3_4_000349c8[18];
-        local_86c._3_1_ = s_asic_1_2_3_4_000349c8[19];
-        uStack_868._0_1_ = s_asic_1_2_3_4_000349c8[20];
-        uStack_868._1_1_ = s_asic_1_2_3_4_000349c8[21];
-        uStack_868._2_1_ = s_asic_1_2_3_4_000349c8[22];
-        uStack_868._3_1_ = s_asic_1_2_3_4_000349c8[23];
-        uStack_864._0_1_ = s_asic_1_2_3_4_000349c8[24];
-        uStack_864._1_1_ = s_asic_1_2_3_4_000349c8[25];
-        uStack_864._2_1_ = s_asic_1_2_3_4_000349c8[26];
-        uStack_864._3_1_ = s_asic_1_2_3_4_000349c8[27];
-        uStack_860._0_1_ = s_asic_1_2_3_4_000349c8[28];
-        uStack_860._1_1_ = s_asic_1_2_3_4_000349c8[29];
-        uStack_860._2_1_ = s_asic_1_2_3_4_000349c8[30];
-        uStack_860._3_1_ = s_asic_1_2_3_4_000349c8[31];
-        local_85c._0_1_ = s_asic_1_2_3_4_000349c8[32];
-        local_85c._1_1_ = s_asic_1_2_3_4_000349c8[33];
-        local_85c._2_1_ = s_asic_1_2_3_4_000349c8[34];
-        local_85c._3_1_ = s_asic_1_2_3_4_000349c8[35];
-        local_858 = (undefined2)ram0x000349ec;
-        local_856 = (undefined)((uint)ram0x000349ec >> 0x10);
-        _applog(2,&local_87c,0);
+        builtin_strncpy(local_87c,"asic        ",0xc);
+        local_870._0_1_ = '1';
+        local_870._1_1_ = ' ';
+        local_870._2_1_ = ' ';
+        local_870._3_1_ = ' ';
+        builtin_strncpy(local_86c,"    2       3       ",0x14);
+        local_858 = 0xa34;
+        local_856 = 0;
+        _applog(2,local_87c,0);
       }
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
-        snprintf((char *)&local_87c,0x400,"valid       %d      %d      %d      %d\n",
+        snprintf(local_87c,0x400,"valid       %d      %d      %d      %d\n",
                  nonce_num_each_asic._0_4_,nonce_num_each_asic._4_4_,nonce_num_each_asic._8_4_,
                  nonce_invalid_num_each_asic._0_4_);
-        _applog(2,&local_87c,0);
+        _applog(2,local_87c,0);
       }
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
-        snprintf((char *)&local_87c,0x400,"invalid-1   %d      %d      %d      %d\n",
+        snprintf(local_87c,0x400,"invalid-1   %d      %d      %d      %d\n",
                  nonce_invalid_num_each_asic_2._0_4_,nonce_invalid_num_each_asic_2._8_4_,
                  nonce_invalid_num_each_asic_2._16_4_,one_work_nonce_each_asic._0_4_);
-        _applog(2,&local_87c,0);
+        _applog(2,local_87c,0);
       }
       if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
-        snprintf((char *)&local_87c,0x400,"invalid-2   %d      %d      %d      %d\n",
+        snprintf(local_87c,0x400,"invalid-2   %d      %d      %d      %d\n",
                  nonce_invalid_num_each_asic_2._4_4_,nonce_invalid_num_each_asic_2._12_4_,
                  nonce_invalid_num_each_asic_2._20_4_,one_work_nonce_each_asic._4_4_);
-        _applog(2,&local_87c,0);
+        _applog(2,local_87c,0);
       }
     }
   }
   if (((use_syslog != '\0') || (opt_log_output != '\0')) || (1 < opt_log_level)) {
-    local_87c._0_1_ = s_test_finished_000349ac[0];
-    local_87c._1_1_ = s_test_finished_000349ac[1];
-    local_87c._2_1_ = s_test_finished_000349ac[2];
-    local_87c._3_1_ = s_test_finished_000349ac[3];
-    uStack_878._0_1_ = s_test_finished_000349ac[4];
-    uStack_878._1_1_ = s_test_finished_000349ac[5];
-    uStack_878._2_1_ = s_test_finished_000349ac[6];
-    uStack_878._3_1_ = s_test_finished_000349ac[7];
-    uStack_874._0_1_ = s_test_finished_000349ac[8];
-    uStack_874._1_1_ = s_test_finished_000349ac[9];
-    uStack_874._2_1_ = s_test_finished_000349ac[10];
-    uStack_874._3_1_ = s_test_finished_000349ac[11];
-    _applog(2,&local_87c,0);
+    builtin_strncpy(local_87c,"test finishe",0xc);
+    local_870 = CONCAT13(local_870._3_1_,0xa64);
+    _applog(2,local_87c,0);
   }
   return;
 }

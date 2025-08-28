@@ -4,7 +4,7 @@ int tq_new(void)
 {
   int iVar1;
   
-  iVar1 = _cgcalloc(1,0x58,"util.c",DAT_00046334,0x435);
+  iVar1 = _cgcalloc(1,0x58,"util.c","tq_new",0x435);
   *(int *)iVar1 = iVar1;
   *(int *)(iVar1 + 4) = iVar1;
   pthread_mutex_init((pthread_mutex_t *)(iVar1 + 0xc),(pthread_mutexattr_t *)0x0);

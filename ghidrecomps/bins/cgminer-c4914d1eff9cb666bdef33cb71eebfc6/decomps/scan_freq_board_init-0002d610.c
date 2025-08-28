@@ -9,8 +9,6 @@ int scan_freq_board_init(working_mode_e working_mode)
   int iVar5;
   double dVar6;
   float fVar7;
-  char *in_stack_ffffffb8;
-  undefined4 in_stack_ffffffbc;
   working_mode_e working_mode_local;
   FILE *pFile_1;
   FILE *pFile_5;
@@ -28,8 +26,7 @@ int scan_freq_board_init(working_mode_e working_mode)
     print_crt_time_to_file(log_file,3);
     pFVar2 = fopen(log_file,"a+");
     if (pFVar2 != (FILE *)0x0) {
-      in_stack_ffffffb8 = "scan_freq_board_init";
-      fprintf(pFVar2,"%s:%d:%s: board init ..\n","driver-btm-soc.c",0x1f5a);
+      fprintf(pFVar2,"%s:%d:%s: board init ..\n","driver-btm-soc.c",0x1f5a,"scan_freq_board_init");
     }
     fclose(pFVar2);
   }
@@ -51,8 +48,7 @@ int scan_freq_board_init(working_mode_e working_mode)
               dVar6 = get_working_voltage_by_chain((uint8_t)chain);
               if ((int)((uint)((double)(float)dVar6 < g_sweep_config_eco.max_aging_voltage) << 0x1f)
                   < 0) {
-                set_working_voltage_by_chain
-                          ((uint8_t)chain,(double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+                set_working_voltage_by_chain((uint8_t)chain,(double)(float)dVar6 + 0.1);
               }
             }
           }
@@ -61,7 +57,7 @@ int scan_freq_board_init(working_mode_e working_mode)
           dVar6 = get_working_voltage();
           if ((int)((uint)((double)(float)dVar6 < g_sweep_config_eco.max_aging_voltage) << 0x1f) < 0
              ) {
-            set_working_voltage((double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+            set_working_voltage((double)(float)dVar6 + 0.1);
           }
         }
       }
@@ -73,8 +69,7 @@ int scan_freq_board_init(working_mode_e working_mode)
               dVar6 = get_working_voltage_by_chain((uint8_t)chain);
               if ((int)((uint)((double)(float)dVar6 < g_sweep_config_hpf.max_aging_voltage) << 0x1f)
                   < 0) {
-                set_working_voltage_by_chain
-                          ((uint8_t)chain,(double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+                set_working_voltage_by_chain((uint8_t)chain,(double)(float)dVar6 + 0.1);
               }
             }
           }
@@ -83,7 +78,7 @@ int scan_freq_board_init(working_mode_e working_mode)
           dVar6 = get_working_voltage();
           if ((int)((uint)((double)(float)dVar6 < g_sweep_config_hpf.max_aging_voltage) << 0x1f) < 0
              ) {
-            set_working_voltage((double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+            set_working_voltage((double)(float)dVar6 + 0.1);
           }
         }
       }
@@ -92,10 +87,10 @@ int scan_freq_board_init(working_mode_e working_mode)
   else {
     power_init();
     if (working_mode == MODE1) {
-      _set_working_voltage((double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+      _set_working_voltage(g_sweep_config_eco.sweep_start_voltage);
     }
     else {
-      _set_working_voltage((double)CONCAT44(in_stack_ffffffbc,in_stack_ffffffb8));
+      _set_working_voltage(g_sweep_config_hpf.sweep_start_voltage);
     }
     scan_freq_init_highest_voltage(working_mode);
   }
@@ -189,7 +184,7 @@ int scan_freq_board_init(working_mode_e working_mode)
     iVar5 = calculate_core_number((uint)dev->corenum);
     iVar5 = __aeabi_idiv(0x1000000,iVar5);
     fVar7 = (((float)(longlong)(int)((uint)dev->addrInterval * iVar5) / (float)(longlong)iVar4) *
-            DAT_0002da18) / DAT_0002da1c;
+            50.0) / 100.0;
     dev->timeout = (uint)(0.0 < fVar7) * (int)fVar7;
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);

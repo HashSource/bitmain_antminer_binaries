@@ -5,8 +5,6 @@ void slowly_set_working_power_t11(uint8_t chain)
   byte bVar1;
   FILE *pFVar2;
   double dVar3;
-  undefined4 in_stack_ffffffa8;
-  undefined4 in_stack_ffffffac;
   uint8_t chain_local;
   FILE *pFile;
   FILE *pFile_4;
@@ -21,8 +19,7 @@ void slowly_set_working_power_t11(uint8_t chain)
   memset(power_info[chain].iic_data,0xff,0x20);
   power_info[chain].is_voltage_stable = true;
   if (chain == power_info[chain].chain_num) {
-    calc_power_iic_data_by_chain
-              (power_info + chain,(double)CONCAT44(in_stack_ffffffac,in_stack_ffffffa8));
+    calc_power_iic_data_by_chain(power_info + chain,power_info[chain].working_voltage);
     bVar1 = power_info[chain].iic_data_index;
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);

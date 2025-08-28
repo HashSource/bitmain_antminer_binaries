@@ -11,10 +11,10 @@ void set_ticket_mask(undefined4 param_1)
     get_ticket_mask();
     return;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
-    fprintf(__stream,"%s:%d:%s: set TICKET_MASK_FPGA is 0x%x\n","znyq7010.c",0x208,DAT_0004cdc4,
-            param_1);
+    fprintf(__stream,"%s:%d:%s: set TICKET_MASK_FPGA is 0x%x\n","znyq7010.c",0x208,"set_ticket_mask"
+            ,param_1);
   }
   fclose(__stream);
   get_ticket_mask();

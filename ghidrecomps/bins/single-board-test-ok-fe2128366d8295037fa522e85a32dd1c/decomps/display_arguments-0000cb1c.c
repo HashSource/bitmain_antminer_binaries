@@ -2,7 +2,7 @@
 void display_arguments(void)
 
 {
-  undefined auStack_48 [16];
+  undefined1 auStack_48 [16];
   char acStack_38 [16];
   char acStack_28 [16];
   char acStack_18 [16];

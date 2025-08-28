@@ -37,14 +37,14 @@ void * tq_pop(thread_q *tq,timespec *abstime)
                      ((pthread_cond_t *)&tq->cond,(pthread_mutex_t *)&tq->mutex,(timespec *)abstime)
       ;
     }
-    if ((rc != 0) || (iVar1 = list_empty(&tq->q), iVar1 != 0)) goto out;
+    if ((rc != 0) || (iVar1 = list_empty(&tq->q), iVar1 != 0)) goto LAB_0003e9ae;
   }
   entry = (tq->q).next;
   __ptr = &entry[-1].prev;
   rval = *__ptr;
   list_del(entry);
   free(__ptr);
-out:
+LAB_0003e9ae:
   _mutex_unlock(&tq->mutex,"util.c","tq_pop",0x4b7);
   if ((opt_debug != false) &&
      (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {

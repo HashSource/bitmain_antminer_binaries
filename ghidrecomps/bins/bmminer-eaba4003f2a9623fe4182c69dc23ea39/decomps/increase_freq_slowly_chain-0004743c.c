@@ -19,7 +19,7 @@ void increase_freq_slowly_chain(int chainid,float init_freq,float final_freq,flo
   }
   for (i = 0; i < steps; i = i + 1) {
     freq_tmp = (float)(longlong)(i + 1) * freq_step + init_freq;
-    if (freq_tmp != final_freq && freq_tmp < final_freq == (NAN(freq_tmp) || NAN(final_freq))) {
+    if (final_freq < freq_tmp) {
       freq_tmp = final_freq;
     }
     if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {

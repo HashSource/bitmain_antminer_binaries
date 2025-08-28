@@ -2,7 +2,7 @@
 int s2hex(int param_1,int param_2,uint param_3)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   FILE *__stream;
   int iVar2;
   uint uVar3;
@@ -25,13 +25,13 @@ int s2hex(int param_1,int param_2,uint param_3)
       uVar3 = -uVar3;
     }
     for (local_14 = 0; local_14 < (int)param_3 / 2; local_14 = local_14 + 1) {
-      uVar1 = twoc2hex(*(undefined *)(param_2 + local_14 * 2),
-                       *(undefined *)(local_14 * 2 + 1 + param_2));
-      *(undefined *)(param_1 + local_14) = uVar1;
+      uVar1 = twoc2hex(*(undefined1 *)(param_2 + local_14 * 2),
+                       *(undefined1 *)(local_14 * 2 + 1 + param_2));
+      *(undefined1 *)(param_1 + local_14) = uVar1;
     }
     if (uVar3 != 0) {
-      uVar1 = twoc2hex(*(undefined *)(param_2 + local_14 * 2),0);
-      *(undefined *)(param_1 + local_14) = uVar1;
+      uVar1 = twoc2hex(*(undefined1 *)(param_2 + local_14 * 2),0);
+      *(undefined1 *)(param_1 + local_14) = uVar1;
     }
     iVar2 = uVar3 + (int)param_3 / 2;
   }

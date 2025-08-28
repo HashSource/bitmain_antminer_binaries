@@ -3,7 +3,7 @@ void conncache_remove_bundle(int param_1,int param_2)
 
 {
   int *piVar1;
-  undefined auStack_1c [16];
+  undefined1 auStack_1c [16];
   
   if (param_1 != 0) {
     Curl_hash_start_iterate(param_1,auStack_1c);

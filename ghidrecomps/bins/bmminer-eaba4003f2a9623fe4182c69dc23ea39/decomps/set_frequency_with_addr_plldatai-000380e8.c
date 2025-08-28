@@ -4,8 +4,6 @@ void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar c
 {
   uint uVar1;
   uint uVar2;
-  uint in_stack_fffff6a8;
-  undefined4 in_stack_fffff6ac;
   uchar chain_local;
   uchar addr_local;
   uchar mode_local;
@@ -38,8 +36,8 @@ void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar c
   pllindex_local = pllindex;
   if (0xe < chain_badcore_num[chain][uVar1 & 0xff]) {
     if (((use_syslog != false) || (opt_log_output != false)) || (4 < opt_log_level)) {
-      in_stack_fffff6a8 = (uint)chain;
-      snprintf(tmp42,0x800,"Detect a bad chip=%d on chain[%d], fixed to 400M\n",uVar1 & 0xff);
+      snprintf(tmp42,0x800,"Detect a bad chip=%d on chain[%d], fixed to 400M\n",uVar1 & 0xff,
+               (uint)chain);
       _applog(5,tmp42,false);
     }
     pllindex_local = 0xc;
@@ -58,7 +56,7 @@ void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar c
     set_BC_command_buffer(cmd_buf);
     uVar2 = get_BC_write_command();
     set_BC_write_command(uVar2 & 0xfff0ffff | uVar1 << 0x10 | 0x80800000);
-    cgsleep_us(CONCAT44(in_stack_fffff6ac,in_stack_fffff6a8));
+    cgsleep_us(3000);
     memset(buf,0,9);
     memset(cmd_buf,0,0xc);
     buf[0] = 0x82;
@@ -70,7 +68,7 @@ void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar c
     set_BC_command_buffer(cmd_buf);
     uVar2 = get_BC_write_command();
     set_BC_write_command(uVar2 & 0xfff0ffff | uVar1 << 0x10 | 0x80800000);
-    cgsleep_us(CONCAT44(in_stack_fffff6ac,in_stack_fffff6a8));
+    cgsleep_us(5000);
   }
   else {
     memset(buf,0,9);
@@ -95,11 +93,11 @@ void set_frequency_with_addr_plldatai(int pllindex,uchar mode,uchar addr,uchar c
     while( true ) {
       uVar2 = get_BC_write_command();
       if (-1 < (int)uVar2) break;
-      cgsleep_us(CONCAT44(in_stack_fffff6ac,in_stack_fffff6a8));
+      cgsleep_us(500);
     }
     set_BC_command_buffer(cmd_buf);
     set_BC_write_command(uVar2 & 0xfff0ffff | uVar1 << 0x10 | 0x80800000);
-    cgsleep_us(CONCAT44(in_stack_fffff6ac,in_stack_fffff6a8));
+    cgsleep_us(10000);
   }
   return;
 }

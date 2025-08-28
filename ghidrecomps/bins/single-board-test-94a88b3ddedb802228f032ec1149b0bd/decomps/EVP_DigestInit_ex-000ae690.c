@@ -4,7 +4,6 @@
 int EVP_DigestInit_ex(EVP_MD_CTX *ctx,EVP_MD *type,ENGINE *impl)
 
 {
-  char *file;
   int iVar1;
   void *pvVar2;
   EVP_MD *pEVar3;
@@ -20,7 +19,7 @@ int EVP_DigestInit_ex(EVP_MD_CTX *ctx,EVP_MD *type,ENGINE *impl)
     if (ctx->digest == (EVP_MD *)0x0) {
       if (type == (EVP_MD *)0x0) {
 LAB_000ae73c:
-        ERR_put_error(6,0x80,0x8b,DAT_000ae7cc,0xd0);
+        ERR_put_error(6,0x80,0x8b,"digest.c",0xd0);
         return 0;
       }
     }
@@ -34,13 +33,13 @@ LAB_000ae73c:
   else {
     iVar1 = ENGINE_init(impl);
     if (iVar1 == 0) {
-      ERR_put_error(6,0x80,0x86,DAT_000ae7cc,0xb6);
+      ERR_put_error(6,0x80,0x86,"digest.c",0xb6);
       return 0;
     }
 LAB_000ae6cc:
     type = ENGINE_get_digest(impl,type->type);
     if (type == (EVP_MD *)0x0) {
-      ERR_put_error(6,0x80,0x86,DAT_000ae7cc,0xc1);
+      ERR_put_error(6,0x80,0x86,"digest.c",0xc1);
       ENGINE_finish(impl);
       return 0;
     }
@@ -52,13 +51,12 @@ LAB_000ae6cc:
       CRYPTO_free(ctx->md_data);
     }
     ctx->digest = type;
-    file = DAT_000ae7cc;
     if ((-1 < (int)(ctx->flags << 0x17)) && (iVar1 = type->ctx_size, iVar1 != 0)) {
       ctx->update = (_func_1230 *)type->update;
-      pvVar2 = CRYPTO_malloc(iVar1,file,0xdc);
+      pvVar2 = CRYPTO_malloc(iVar1,"digest.c",0xdc);
       ctx->md_data = pvVar2;
       if (pvVar2 == (void *)0x0) {
-        ERR_put_error(6,0x80,0x41,DAT_000ae7cc,0xde);
+        ERR_put_error(6,0x80,0x41,"digest.c",0xde);
         return 0;
       }
     }

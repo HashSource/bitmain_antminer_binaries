@@ -32,7 +32,7 @@ uint pkey_gost_ctrl(EVP_PKEY_CTX *param_1,int param_2,uint param_3,EVP_MD *param
           puVar1[1] = (uint)param_4;
           return 1;
         }
-        ERR_GOST_error(0x7d,0x6c,DAT_000df7e8,0x52,pEVar3);
+        ERR_GOST_error(0x7d,0x6c,"gost_pmeth.c",0x52,pEVar3);
         return 0;
       }
     }
@@ -45,7 +45,7 @@ uint pkey_gost_ctrl(EVP_PKEY_CTX *param_1,int param_2,uint param_3,EVP_MD *param
       if (8 < param_2) {
         return 1;
       }
-      __dest = CRYPTO_malloc(param_3,DAT_000df7e8,0x6d);
+      __dest = CRYPTO_malloc(param_3,"gost_pmeth.c",0x6d);
       puVar1[2] = (uint)__dest;
       memcpy(__dest,param_4,param_3);
       return 1;

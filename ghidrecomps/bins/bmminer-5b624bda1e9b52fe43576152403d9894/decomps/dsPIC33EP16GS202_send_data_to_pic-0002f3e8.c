@@ -47,10 +47,11 @@ int dsPIC33EP16GS202_send_data_to_pic(uchar which_iic,uchar *buf)
     usleep(200000);
     bVar2 = T9_plus_write_pic_iic(true,false,'\0',which_iic,'\0');
     bVar3 = T9_plus_write_pic_iic(true,false,'\0',which_iic,'\0');
-    printf(DAT_0002f638,DAT_0002f634,(uint)bVar2,(uint)bVar3);
+    printf("--- %s: read_back_data[0] = 0x%x, read_back_data[1] = 0x%x\n",
+           "dsPIC33EP16GS202_send_data_to_pic",(uint)bVar2,(uint)bVar3);
     usleep(100000);
     if ((bVar2 == 2) && (bVar3 == 1)) break;
-    sprintf(logstr,DAT_0002f63c,DAT_0002f634,(uint)which_iic);
+    sprintf(logstr,"%s failed on Chain[%d]!\n","dsPIC33EP16GS202_send_data_to_pic",(uint)which_iic);
     writeInitLogFile(logstr);
     sleep(1);
     iVar6 = iVar6 + -1;
@@ -58,7 +59,7 @@ int dsPIC33EP16GS202_send_data_to_pic(uchar which_iic,uchar *buf)
       return 0;
     }
   }
-  printf(DAT_0002f640,DAT_0002f634);
+  printf("\n--- %s ok\n\n","dsPIC33EP16GS202_send_data_to_pic");
   return 1;
 }
 

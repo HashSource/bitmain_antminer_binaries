@@ -1,9 +1,9 @@
 
-undefined4 strbuffer_append_byte(undefined4 param_1,undefined param_2)
+undefined4 strbuffer_append_byte(undefined4 param_1,undefined1 param_2)
 
 {
   undefined4 uVar1;
-  undefined local_d;
+  undefined1 local_d;
   undefined4 local_c;
   
   local_d = param_2;

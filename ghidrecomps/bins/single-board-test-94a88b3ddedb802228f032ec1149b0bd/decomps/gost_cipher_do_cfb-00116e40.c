@@ -96,7 +96,7 @@ undefined4 gost_cipher_do_cfb(int param_1,uint *param_2,uint *param_3,uint param
       *(byte *)((int)param_2 + 1) = *(byte *)(param_1 + 0x31) ^ *(byte *)((int)puVar14 + 1);
       *(byte *)((int)param_2 + 2) = *(byte *)(param_1 + 0x32) ^ *(byte *)((int)puVar14 + 2);
       *(byte *)((int)param_2 + 3) = *(byte *)(param_1 + 0x33) ^ *(byte *)((int)puVar14 + 3);
-      *(byte *)(param_2 + 1) = *(byte *)(param_1 + 0x34) ^ *(byte *)(puVar14 + 1);
+      *(byte *)(param_2 + 1) = *(byte *)(param_1 + 0x34) ^ (byte)puVar14[1];
       *(byte *)((int)param_2 + 5) = *(byte *)(param_1 + 0x35) ^ *(byte *)((int)puVar14 + 5);
       *(byte *)((int)param_2 + 6) = *(byte *)(param_1 + 0x36) ^ *(byte *)((int)puVar14 + 6);
       *(byte *)((int)param_2 + 7) = *(byte *)(param_1 + 0x37) ^ *(byte *)((int)puVar14 + 7);
@@ -141,7 +141,7 @@ undefined4 gost_cipher_do_cfb(int param_1,uint *param_2,uint *param_3,uint param
   }
   uVar9 = param_4 - uVar10;
   uVar7 = uVar9 >> 2;
-  local_44 = uVar9 & 0xfffffffc;
+  local_44 = uVar7 * 4;
   uVar8 = ~uVar10;
   if (uVar7 == 0 ||
       ((((uint)param_2 | (uint)param_3) & 3) != 0 ||

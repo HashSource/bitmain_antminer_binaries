@@ -4,14 +4,13 @@
 void set_time_out_control(uint value)
 
 {
-  char cVar1;
+  _Bool _Var1;
   char tmp42 [2048];
   
-  cVar1 = *DAT_0002dbb4;
-  *(uint *)(*(int *)(DAT_0002dbb0 + 0x8d4) + 0x88) = value;
-  if ((cVar1 != '\0') &&
-     (((*DAT_0002dbb8 != '\0' || (*DAT_0002dbbc != '\0')) || (6 < *DAT_0002dbc0)))) {
-    snprintf(tmp42,0x800,DAT_0002dbc4,DAT_0002dbc8,value);
+  _Var1 = opt_debug;
+  axi_fpga_addr[0x22] = value;
+  if ((_Var1) && (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: set FAN_CONTROL is 0x%x\n","set_time_out_control",value);
     _applog(7,tmp42,false);
   }
   get_time_out_control();

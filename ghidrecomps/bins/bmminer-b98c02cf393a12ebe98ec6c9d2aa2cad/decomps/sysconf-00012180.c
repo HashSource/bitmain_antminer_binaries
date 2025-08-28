@@ -6,7 +6,7 @@ long sysconf(int __name)
 {
   long lVar1;
   
-  lVar1 = (*(code *)PTR_sysconf_0007cec8)();
+  lVar1 = sysconf(__name);
   return lVar1;
 }
 

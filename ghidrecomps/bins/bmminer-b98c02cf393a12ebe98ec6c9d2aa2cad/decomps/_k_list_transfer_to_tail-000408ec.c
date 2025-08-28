@@ -15,14 +15,16 @@ void _k_list_transfer_to_tail
   if (*param_1 != *param_2) {
     snprintf(acStack_820,0x800,
              "List %s can\'t %s() to a %s list - from %s %s() line %d in %s %s():%d",*param_1,
-             DAT_000409dc,*param_2,param_3,param_4,param_5,"klist.c",DAT_000409dc,0x170);
+             "_k_list_transfer_to_tail",*param_2,param_3,param_4,param_5,"klist.c",
+             "_k_list_transfer_to_tail",0x170);
     _applog(3,acStack_820,1);
     _quit(1);
   }
-  if (*(char *)(param_1 + 0xb) == '\0') {
+  if ((char)param_1[0xb] == '\0') {
     snprintf(acStack_820,0x800,
              "List %s can\'t %s() - do_tail is false - from %s %s() line %d in %s %s():%d",*param_1,
-             DAT_000409dc,param_3,param_4,param_5,"klist.c",DAT_000409dc,0x175);
+             "_k_list_transfer_to_tail",param_3,param_4,param_5,"klist.c","_k_list_transfer_to_tail"
+             ,0x175);
     _applog(3,acStack_820,1);
     _quit(1);
   }

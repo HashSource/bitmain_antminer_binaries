@@ -7,9 +7,9 @@ void set_address(byte param_1,char param_2,byte param_3)
   uint local_28;
   int local_24;
   undefined4 local_20;
-  uint local_1c;
+  undefined4 local_1c;
   undefined4 local_18;
-  undefined local_14;
+  undefined1 local_14;
   uint local_10;
   uint local_c;
   

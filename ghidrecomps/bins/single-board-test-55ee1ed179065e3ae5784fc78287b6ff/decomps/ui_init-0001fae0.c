@@ -27,7 +27,7 @@ undefined4 ui_init(void)
       }
       ui_flicker_map = new_c_map(0x1f991,0,0);
       ui_pull_thread = 1;
-      pthread_create(&ui_thread,(pthread_attr_t *)0x0,ui_pull_function + 1,(void *)0x0);
+      pthread_create(&ui_thread,(pthread_attr_t *)0x0,(__start_routine *)0x1f86d,(void *)0x0);
       ui_inited = 1;
       uVar2 = 0;
     }

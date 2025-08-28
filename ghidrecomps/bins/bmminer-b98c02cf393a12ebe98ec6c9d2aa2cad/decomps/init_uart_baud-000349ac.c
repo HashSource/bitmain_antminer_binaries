@@ -8,9 +8,9 @@ void init_uart_baud(void)
     set_baud(1);
     return;
   }
-  __stream = fopen(log_file,(char *)&DAT_0005e760);
+  __stream = fopen(log_file,"a+");
   if (__stream != (FILE *)0x0) {
-    fprintf(__stream,"%s:%d:%s: set baud=%d\n","driver-btm-c5.c",0x2598,DAT_00034a14,1);
+    fprintf(__stream,"%s:%d:%s: set baud=%d\n","driver-btm-c5.c",0x2598,"init_uart_baud",1);
   }
   fclose(__stream);
   set_baud(1);

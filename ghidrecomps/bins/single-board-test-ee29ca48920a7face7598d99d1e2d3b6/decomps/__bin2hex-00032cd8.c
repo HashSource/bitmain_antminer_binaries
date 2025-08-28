@@ -1,9 +1,9 @@
 
-void __bin2hex(undefined *param_1,int param_2,int param_3)
+void __bin2hex(undefined1 *param_1,int param_2,int param_3)
 
 {
-  undefined *puVar1;
-  undefined *local_14;
+  undefined1 *puVar1;
+  undefined1 *local_14;
   int local_c;
   
   local_14 = param_1;

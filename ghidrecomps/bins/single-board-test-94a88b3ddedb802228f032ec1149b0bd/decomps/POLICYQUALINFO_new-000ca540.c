@@ -6,7 +6,7 @@ POLICYQUALINFO * POLICYQUALINFO_new(void)
 {
   POLICYQUALINFO *pPVar1;
   
-  pPVar1 = (POLICYQUALINFO *)ASN1_item_new(DAT_000ca548);
+  pPVar1 = (POLICYQUALINFO *)ASN1_item_new((ASN1_ITEM *)POLICYQUALINFO_it);
   return pPVar1;
 }
 

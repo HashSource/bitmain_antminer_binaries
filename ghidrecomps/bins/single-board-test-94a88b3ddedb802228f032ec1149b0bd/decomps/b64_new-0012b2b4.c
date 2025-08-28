@@ -4,7 +4,7 @@ undefined4 b64_new(int param_1)
 {
   undefined4 *puVar1;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0xa5c,DAT_0012b2e8,0x76);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0xa5c,"bio_b64.c",0x76);
   if (puVar1 != (undefined4 *)0x0) {
     *puVar1 = 0;
     puVar1[2] = 0;

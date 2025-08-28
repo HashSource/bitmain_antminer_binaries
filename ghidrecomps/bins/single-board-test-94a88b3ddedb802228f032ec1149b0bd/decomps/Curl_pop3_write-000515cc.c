@@ -77,7 +77,7 @@ LAB_00051656:
             if (bVar2) {
               uVar7 = uVar7 - 1;
             }
-            uVar11 = Curl_client_write(param_1,1,DAT_00051710,uVar7);
+            uVar11 = Curl_client_write(param_1,1,&DAT_001397c4,uVar7);
             uVar4 = (uint)((ulonglong)uVar11 >> 0x20);
             if ((int)uVar11 != 0) {
               return (int)uVar11;
@@ -116,7 +116,7 @@ joined_r0x0005160e:
     } while (iVar8 != param_3);
   }
   if (uVar5 == 5) {
-    iVar9 = Curl_client_write(param_1,1,DAT_00051710,2);
+    iVar9 = Curl_client_write(param_1,1,&DAT_001397c4,2);
     *(uint *)(uVar3 + 0x130) = *(uint *)(uVar3 + 0x130) & 0xfffffffe;
     param_1[0x100] = 0;
   }

@@ -3,116 +3,104 @@ void AES_encrypt(uchar *in,uchar *out,AES_KEY *key)
 
 {
   byte bVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uVar4;
-  uint uVar5;
-  int iVar6;
+  undefined4 uVar2;
+  uint uVar3;
+  uint uVar4;
+  int iVar5;
+  uint uVar6;
   uint uVar7;
   uint uVar8;
-  int iVar9;
-  uint uVar10;
-  uint uVar11;
-  undefined4 uVar12;
-  AES_KEY *pAVar13;
-  uint uVar14;
-  uint uVar15;
+  uint uVar9;
+  undefined4 uVar10;
+  AES_KEY *pAVar11;
+  uint uVar12;
+  uint uVar13;
   int local_34;
   
-  iVar2 = DAT_000e3298;
-  uVar7 = (((uint)in[9] << 0x10 | (uint)in[8] << 0x18) ^ (uint)in[0xb] | (uint)in[10] << 8) ^
+  uVar6 = (((uint)in[9] << 0x10 | (uint)in[8] << 0x18) ^ (uint)in[0xb] | (uint)in[10] << 8) ^
           key->rd_key[2];
-  iVar6 = key->rounds >> 1;
-  uVar14 = (((uint)in[1] << 0x10 | (uint)*in << 0x18) ^ (uint)in[3] | (uint)in[2] << 8) ^
+  iVar5 = key->rounds >> 1;
+  uVar12 = (((uint)in[1] << 0x10 | (uint)*in << 0x18) ^ (uint)in[3] | (uint)in[2] << 8) ^
            key->rd_key[0];
-  uVar5 = (((uint)in[5] << 0x10 | (uint)in[4] << 0x18) ^ (uint)in[7] | (uint)in[6] << 8) ^
+  uVar3 = (((uint)in[5] << 0x10 | (uint)in[4] << 0x18) ^ (uint)in[7] | (uint)in[6] << 8) ^
           key->rd_key[1];
-  uVar10 = (((uint)in[0xd] << 0x10 | (uint)in[0xc] << 0x18) ^ (uint)in[0xf] | (uint)in[0xe] << 8) ^
-           key->rd_key[3];
-  pAVar13 = key;
-  local_34 = iVar6;
+  uVar8 = (((uint)in[0xd] << 0x10 | (uint)in[0xc] << 0x18) ^ (uint)in[0xf] | (uint)in[0xe] << 8) ^
+          key->rd_key[3];
+  pAVar11 = key;
+  local_34 = iVar5;
   while( true ) {
-    HintPreloadData(pAVar13->rd_key + 0x14);
-    HintPreloadData(pAVar13->rd_key + 0x15);
-    uVar11 = *(uint *)(DAT_000e3298 + (uVar14 >> 0x18) * 4) ^
-             *(uint *)(DAT_000e3298 + (uVar10 & 0xff) * 4 + 0xc00) ^ pAVar13->rd_key[4] ^
-             *(uint *)(DAT_000e3298 + ((uVar5 << 8) >> 0x18) * 4 + 0x400) ^
-             *(uint *)(DAT_000e3298 + ((uVar7 << 0x10) >> 0x18) * 4 + 0x800);
-    uVar15 = *(uint *)(DAT_000e3298 + (uVar14 & 0xff) * 4 + 0xc00) ^
-             *(uint *)(DAT_000e3298 + (uVar5 >> 0x18) * 4) ^ pAVar13->rd_key[5] ^
-             *(uint *)(DAT_000e3298 + ((uVar7 << 8) >> 0x18) * 4 + 0x400) ^
-             *(uint *)(DAT_000e3298 + ((uVar10 << 0x10) >> 0x18) * 4 + 0x800);
-    uVar8 = *(uint *)(DAT_000e3298 + (uVar7 >> 0x18) * 4) ^
-            *(uint *)(DAT_000e3298 + (uVar5 & 0xff) * 4 + 0xc00) ^ pAVar13->rd_key[6] ^
-            *(uint *)(DAT_000e3298 + ((uVar10 << 8) >> 0x18) * 4 + 0x400) ^
-            *(uint *)(DAT_000e3298 + ((uVar14 << 0x10) >> 0x18) * 4 + 0x800);
+    HintPreloadData(pAVar11->rd_key + 0x14);
+    HintPreloadData(pAVar11->rd_key + 0x15);
+    uVar9 = *(uint *)(&Te0 + (uVar12 >> 0x18) * 4) ^ *(uint *)(Te3 + (uVar8 & 0xff) * 4) ^
+            pAVar11->rd_key[4] ^ *(uint *)(Te1 + ((uVar3 << 8) >> 0x18) * 4) ^
+            *(uint *)(Te2 + ((uVar6 << 0x10) >> 0x18) * 4);
+    uVar13 = *(uint *)(Te3 + (uVar12 & 0xff) * 4) ^ *(uint *)(&Te0 + (uVar3 >> 0x18) * 4) ^
+             pAVar11->rd_key[5] ^ *(uint *)(Te1 + ((uVar6 << 8) >> 0x18) * 4) ^
+             *(uint *)(Te2 + ((uVar8 << 0x10) >> 0x18) * 4);
+    uVar7 = *(uint *)(&Te0 + (uVar6 >> 0x18) * 4) ^ *(uint *)(Te3 + (uVar3 & 0xff) * 4) ^
+            pAVar11->rd_key[6] ^ *(uint *)(Te1 + ((uVar8 << 8) >> 0x18) * 4) ^
+            *(uint *)(Te2 + ((uVar12 << 0x10) >> 0x18) * 4);
     local_34 = local_34 + -1;
-    uVar10 = pAVar13->rd_key[7] ^
-             *(uint *)(DAT_000e3298 + (uVar7 & 0xff) * 4 + 0xc00) ^
-             *(uint *)(DAT_000e3298 + (uVar10 >> 0x18) * 4) ^
-             *(uint *)(DAT_000e3298 + ((uVar14 << 8) >> 0x18) * 4 + 0x400) ^
-             *(uint *)(DAT_000e3298 + ((uVar5 << 0x10) >> 0x18) * 4 + 0x800);
+    uVar8 = pAVar11->rd_key[7] ^
+            *(uint *)(Te3 + (uVar6 & 0xff) * 4) ^ *(uint *)(&Te0 + (uVar8 >> 0x18) * 4) ^
+            *(uint *)(Te1 + ((uVar12 << 8) >> 0x18) * 4) ^
+            *(uint *)(Te2 + ((uVar3 << 0x10) >> 0x18) * 4);
     if (local_34 == 0) break;
-    uVar14 = *(uint *)(DAT_000e3298 + ((uVar15 << 8) >> 0x18) * 4 + 0x400) ^
-             *(uint *)(DAT_000e3298 + (uVar11 >> 0x18) * 4) ^
-             *(uint *)(DAT_000e3298 + (uVar10 & 0xff) * 4 + 0xc00) ^
-             ((AES_KEY *)(pAVar13->rd_key + 8))->rd_key[0] ^
-             *(uint *)(DAT_000e3298 + ((uVar8 << 0x10) >> 0x18) * 4 + 0x800);
-    uVar5 = *(uint *)(DAT_000e3298 + ((uVar10 << 0x10) >> 0x18) * 4 + 0x800) ^
-            *(uint *)(DAT_000e3298 + (uVar11 & 0xff) * 4 + 0xc00) ^
-            *(uint *)(DAT_000e3298 + (uVar15 >> 0x18) * 4) ^ pAVar13->rd_key[9] ^
-            *(uint *)(DAT_000e3298 + ((uVar8 << 8) >> 0x18) * 4 + 0x400);
-    uVar7 = *(uint *)(DAT_000e3298 + (uVar8 >> 0x18) * 4) ^
-            *(uint *)(DAT_000e3298 + (uVar15 & 0xff) * 4 + 0xc00) ^ pAVar13->rd_key[10] ^
-            *(uint *)(DAT_000e3298 + ((uVar10 << 8) >> 0x18) * 4 + 0x400) ^
-            *(uint *)(DAT_000e3298 + ((uVar11 << 0x10) >> 0x18) * 4 + 0x800);
-    uVar10 = *(uint *)(DAT_000e3298 + ((uVar11 << 8) >> 0x18) * 4 + 0x400) ^
-             pAVar13->rd_key[0xb] ^
-             *(uint *)(DAT_000e3298 + (uVar8 & 0xff) * 4 + 0xc00) ^
-             *(uint *)(DAT_000e3298 + (uVar10 >> 0x18) * 4) ^
-             *(uint *)(DAT_000e3298 + ((uVar15 << 0x10) >> 0x18) * 4 + 0x800);
-    pAVar13 = (AES_KEY *)(pAVar13->rd_key + 8);
+    uVar12 = *(uint *)(Te1 + ((uVar13 << 8) >> 0x18) * 4) ^
+             *(uint *)(&Te0 + (uVar9 >> 0x18) * 4) ^ *(uint *)(Te3 + (uVar8 & 0xff) * 4) ^
+             ((AES_KEY *)(pAVar11->rd_key + 8))->rd_key[0] ^
+             *(uint *)(Te2 + ((uVar7 << 0x10) >> 0x18) * 4);
+    uVar3 = *(uint *)(Te2 + ((uVar8 << 0x10) >> 0x18) * 4) ^
+            *(uint *)(Te3 + (uVar9 & 0xff) * 4) ^ *(uint *)(&Te0 + (uVar13 >> 0x18) * 4) ^
+            pAVar11->rd_key[9] ^ *(uint *)(Te1 + ((uVar7 << 8) >> 0x18) * 4);
+    uVar6 = *(uint *)(&Te0 + (uVar7 >> 0x18) * 4) ^ *(uint *)(Te3 + (uVar13 & 0xff) * 4) ^
+            pAVar11->rd_key[10] ^ *(uint *)(Te1 + ((uVar8 << 8) >> 0x18) * 4) ^
+            *(uint *)(Te2 + ((uVar9 << 0x10) >> 0x18) * 4);
+    uVar8 = *(uint *)(Te1 + ((uVar9 << 8) >> 0x18) * 4) ^
+            pAVar11->rd_key[0xb] ^
+            *(uint *)(Te3 + (uVar7 & 0xff) * 4) ^ *(uint *)(&Te0 + (uVar8 >> 0x18) * 4) ^
+            *(uint *)(Te2 + ((uVar13 << 0x10) >> 0x18) * 4);
+    pAVar11 = (AES_KEY *)(pAVar11->rd_key + 8);
   }
-  uVar14 = key->rd_key[iVar6 * 8];
-  uVar12 = *(undefined4 *)(DAT_000e3298 + ((uVar15 << 8) >> 0x18) * 4 + 0xc00);
-  uVar4 = *(undefined4 *)(DAT_000e3298 + ((uVar8 << 0x10) >> 0x18) * 4);
-  uVar7 = *(uint *)(DAT_000e3298 + (uVar11 >> 0x18) * 4 + 0x800) & 0xff000000 ^
-          (uint)*(byte *)(DAT_000e3298 + (uVar10 & 0xff) * 4 + 0x400) ^ uVar14;
-  uVar5 = *(uint *)(DAT_000e3298 + (uVar15 >> 0x18) * 4 + 0x800);
-  bVar1 = *(byte *)(DAT_000e3298 + (uVar11 & 0xff) * 4 + 0x400);
-  iVar3 = DAT_000e3298 + ((uVar8 << 8) >> 0x18) * 4;
-  iVar9 = DAT_000e3298 + (uVar8 & 0xff) * 4;
-  uVar8 = *(uint *)(DAT_000e3298 + (uVar8 >> 0x18) * 4 + 0x800);
-  out[3] = (uchar)uVar7;
-  out[1] = (byte)(uVar14 >> 0x10) ^ (byte)((uint)uVar12 >> 0x10);
-  out[2] = (byte)((uint)uVar4 >> 8) ^ (byte)(uVar14 >> 8);
-  *out = (uchar)(uVar7 >> 0x18);
-  uVar7 = key->rd_key[iVar6 * 8 + 1];
-  uVar4 = *(undefined4 *)(iVar2 + ((uVar10 << 0x10) >> 0x18) * 4);
-  uVar5 = (uint)bVar1 ^ uVar5 & 0xff000000 ^ uVar7;
-  bVar1 = *(byte *)(iVar2 + (uVar15 & 0xff) * 4 + 0x400);
-  out[5] = (byte)(uVar7 >> 0x10) ^ (byte)((uint)*(undefined4 *)(iVar3 + 0xc00) >> 0x10);
-  out[7] = (uchar)uVar5;
-  out[4] = (uchar)(uVar5 >> 0x18);
-  out[6] = (byte)((uint)uVar4 >> 8) ^ (byte)(uVar7 >> 8);
-  uVar4 = *(undefined4 *)(iVar2 + ((uVar10 << 8) >> 0x18) * 4 + 0xc00);
-  uVar5 = key->rd_key[iVar6 * 8 + 2];
-  uVar12 = *(undefined4 *)(iVar2 + ((uVar11 << 0x10) >> 0x18) * 4);
-  uVar7 = *(uint *)(iVar2 + (uVar10 >> 0x18) * 4 + 0x800);
-  uVar10 = uVar5 ^ (uint)bVar1 ^ uVar8 & 0xff000000;
-  bVar1 = *(byte *)(iVar9 + 0x400);
-  out[0xb] = (uchar)uVar10;
-  out[10] = (byte)(uVar5 >> 8) ^ (byte)((uint)uVar12 >> 8);
-  uVar12 = *(undefined4 *)(iVar2 + ((uVar11 << 8) >> 0x18) * 4 + 0xc00);
-  out[8] = (uchar)(uVar10 >> 0x18);
-  out[9] = (byte)(uVar5 >> 0x10) ^ (byte)((uint)uVar4 >> 0x10);
-  uVar5 = key->rd_key[iVar6 * 8 + 3];
-  uVar4 = *(undefined4 *)(iVar2 + ((uVar15 << 0x10) >> 0x18) * 4);
-  uVar7 = uVar7 & 0xff000000 ^ (uint)bVar1 ^ uVar5;
-  out[0xf] = (uchar)uVar7;
-  out[0xc] = (uchar)(uVar7 >> 0x18);
-  out[0xd] = (byte)(uVar5 >> 0x10) ^ (byte)((uint)uVar12 >> 0x10);
-  out[0xe] = (byte)(uVar5 >> 8) ^ (byte)((uint)uVar4 >> 8);
+  uVar12 = key->rd_key[iVar5 * 8];
+  uVar10 = *(undefined4 *)(Te3 + ((uVar13 << 8) >> 0x18) * 4);
+  uVar2 = *(undefined4 *)(&Te0 + ((uVar7 << 0x10) >> 0x18) * 4);
+  uVar6 = *(uint *)(Te2 + (uVar9 >> 0x18) * 4) & 0xff000000 ^ (uint)(byte)Te1[(uVar8 & 0xff) * 4] ^
+          uVar12;
+  uVar3 = *(uint *)(Te2 + (uVar13 >> 0x18) * 4);
+  bVar1 = Te1[(uVar9 & 0xff) * 4];
+  uVar4 = *(uint *)(Te2 + (uVar7 >> 0x18) * 4);
+  out[3] = (uchar)uVar6;
+  out[1] = (byte)(uVar12 >> 0x10) ^ (byte)((uint)uVar10 >> 0x10);
+  out[2] = (byte)((uint)uVar2 >> 8) ^ (byte)(uVar12 >> 8);
+  *out = (uchar)(uVar6 >> 0x18);
+  uVar6 = key->rd_key[iVar5 * 8 + 1];
+  uVar2 = *(undefined4 *)(&Te0 + ((uVar8 << 0x10) >> 0x18) * 4);
+  uVar3 = (uint)bVar1 ^ uVar3 & 0xff000000 ^ uVar6;
+  bVar1 = Te1[(uVar13 & 0xff) * 4];
+  out[5] = (byte)(uVar6 >> 0x10) ^
+           (byte)((uint)*(undefined4 *)(Te3 + ((uVar7 << 8) >> 0x18) * 4) >> 0x10);
+  out[7] = (uchar)uVar3;
+  out[4] = (uchar)(uVar3 >> 0x18);
+  out[6] = (byte)((uint)uVar2 >> 8) ^ (byte)(uVar6 >> 8);
+  uVar2 = *(undefined4 *)(Te3 + ((uVar8 << 8) >> 0x18) * 4);
+  uVar3 = key->rd_key[iVar5 * 8 + 2];
+  uVar10 = *(undefined4 *)(&Te0 + ((uVar9 << 0x10) >> 0x18) * 4);
+  uVar6 = *(uint *)(Te2 + (uVar8 >> 0x18) * 4);
+  uVar8 = uVar3 ^ (uint)bVar1 ^ uVar4 & 0xff000000;
+  bVar1 = Te1[(uVar7 & 0xff) * 4];
+  out[0xb] = (uchar)uVar8;
+  out[10] = (byte)(uVar3 >> 8) ^ (byte)((uint)uVar10 >> 8);
+  uVar10 = *(undefined4 *)(Te3 + ((uVar9 << 8) >> 0x18) * 4);
+  out[8] = (uchar)(uVar8 >> 0x18);
+  out[9] = (byte)(uVar3 >> 0x10) ^ (byte)((uint)uVar2 >> 0x10);
+  uVar3 = key->rd_key[iVar5 * 8 + 3];
+  uVar2 = *(undefined4 *)(&Te0 + ((uVar13 << 0x10) >> 0x18) * 4);
+  uVar6 = uVar6 & 0xff000000 ^ (uint)bVar1 ^ uVar3;
+  out[0xf] = (uchar)uVar6;
+  out[0xc] = (uchar)(uVar6 >> 0x18);
+  out[0xd] = (byte)(uVar3 >> 0x10) ^ (byte)((uint)uVar10 >> 0x10);
+  out[0xe] = (byte)(uVar3 >> 8) ^ (byte)((uint)uVar2 >> 8);
   return;
 }
 

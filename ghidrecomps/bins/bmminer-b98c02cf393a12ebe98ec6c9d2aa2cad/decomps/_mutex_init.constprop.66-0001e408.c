@@ -5,8 +5,7 @@ void _mutex_init_constprop_66
 {
   int iVar1;
   int *piVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
+  undefined8 uVar3;
   char acStack_818 [2052];
   undefined4 uStack_14;
   undefined4 uStack_10;
@@ -16,12 +15,11 @@ void _mutex_init_constprop_66
   if (iVar1 == 0) {
     return;
   }
-  uVar3 = 0x1e421;
-  uVar4 = _mutex_init_part_42_constprop_67(param_2,param_3);
-  uStack_14 = uVar3;
+  uVar3 = _mutex_init_part_42_constprop_67(param_2,param_3);
+  uStack_14 = 0x1e421;
   piVar2 = __errno_location();
   snprintf(acStack_818,0x800,"Failed to pthread_rwlock_init errno=%d in %s %s():%d",*piVar2,
-           "cgminer.c",(int)uVar4,(int)((ulonglong)uVar4 >> 0x20));
+           "cgminer.c",(int)uVar3,(int)((ulonglong)uVar3 >> 0x20));
   _applog(3,acStack_818,1);
                     /* WARNING: Subroutine does not return */
   __quit(1);

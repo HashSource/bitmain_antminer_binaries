@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable temp_pwm_percent:int[r0:4] conflicts with parameter, skipped. */
 
 void set_PWM(uchar pwm_percent)
 

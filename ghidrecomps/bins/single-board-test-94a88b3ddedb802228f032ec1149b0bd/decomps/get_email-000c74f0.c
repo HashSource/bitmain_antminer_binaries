@@ -26,7 +26,7 @@ _STACK * get_email(X509_NAME *param_1,_STACK *param_2)
     } while (((pAVar1->type != 0x16) || (data = pAVar1->data, data == (uchar *)0x0)) ||
             (pAVar1->length == 0));
     if (st == (_STACK *)0x0) {
-      st = sk_new(DAT_000c75e4);
+      st = sk_new((cmp *)0xc7035);
       if (st == (_STACK *)0x0) {
         return (_STACK *)0x0;
       }
@@ -37,7 +37,7 @@ _STACK * get_email(X509_NAME *param_1,_STACK *param_2)
           ((pcVar3 = BUF_strdup((char *)pAVar1->data), pcVar3 != (char *)0x0 &&
            (iVar2 = sk_push(st,pcVar3), iVar2 != 0))));
 LAB_000c7554:
-  sk_pop_free(st,DAT_000c75e0);
+  sk_pop_free(st,(func *)0xc7005);
   return (_STACK *)0x0;
 LAB_000c756c:
   iVar2 = sk_num(param_2);
@@ -48,7 +48,7 @@ LAB_000c756c:
   if ((((*piVar4 == 1) && (piVar4 = (int *)piVar4[1], piVar4[1] == 0x16)) &&
       (data_00 = (void *)piVar4[2], data_00 != (void *)0x0)) && (*piVar4 != 0)) {
     if (st == (_STACK *)0x0) {
-      st = sk_new(DAT_000c75e4);
+      st = sk_new((cmp *)0xc7035);
       if (st == (_STACK *)0x0) {
         return (_STACK *)0x0;
       }

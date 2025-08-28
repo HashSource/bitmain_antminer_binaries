@@ -10,7 +10,7 @@ int BN_BLINDING_update(BN_BLINDING *b,BN_CTX *ctx)
   
   pBVar2 = *(BIGNUM **)b;
   if ((pBVar2 == (BIGNUM *)0x0) || (*(int *)(b + 4) == 0)) {
-    ERR_put_error(3,0x67,0x6b,DAT_000f2830,0xc4);
+    ERR_put_error(3,0x67,0x6b,"bn_blind.c",0xc4);
     pBVar1 = (BN_BLINDING *)0x0;
   }
   else {

@@ -11,7 +11,7 @@ void * check_nonce_loop(void *args)
     while (runtime->start_recv == 0) {
       usleep(100000);
     }
-    pthread_create(&send_id,(pthread_attr_t *)0x0,check_nonce + 1,args);
+    pthread_create(&send_id,(pthread_attr_t *)0x0,(__start_routine *)0x21339,args);
     pthread_join(send_id,(void **)0x0);
     usleep(5000);
   } while( true );

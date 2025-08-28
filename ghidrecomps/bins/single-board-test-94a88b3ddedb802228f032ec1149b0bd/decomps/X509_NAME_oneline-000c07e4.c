@@ -2,47 +2,48 @@
 char * X509_NAME_oneline(X509_NAME *a,char *buf,int size)
 
 {
-  byte bVar1;
-  int iVar2;
-  ASN1_OBJECT **ppAVar3;
-  char *pcVar4;
+  char *pcVar1;
+  byte bVar2;
+  int iVar3;
+  undefined4 *puVar4;
+  char *buf_00;
   size_t __n;
   uint uVar5;
-  byte *pbVar6;
-  byte *pbVar7;
-  char *pcVar8;
-  ASN1_OBJECT *pAVar9;
+  uint uVar6;
+  int iVar7;
+  byte *pbVar8;
+  byte *pbVar9;
   uint uVar10;
-  uint uVar11;
-  char *pcVar12;
-  int iVar13;
+  uint *puVar11;
+  uint uVar12;
+  uint uVar13;
   int iVar14;
-  char *pcVar15;
+  char *__dest;
+  int iVar15;
   int iVar16;
-  int iVar17;
   BUF_MEM *local_98;
   char *local_90;
   int local_8c;
-  uint local_88 [4];
+  int local_88 [4];
   char acStack_78 [84];
   
   if (buf == (char *)0x0) {
     local_98 = BUF_MEM_new();
     if (local_98 == (BUF_MEM *)0x0) {
-      ERR_put_error(0xb,0x74,0x41,DAT_000c0a90,0xd0);
+      ERR_put_error(0xb,0x74,0x41,"x509_obj.c",0xd0);
       return (char *)0x0;
     }
-    iVar13 = BUF_MEM_grow(local_98,200);
-    if (iVar13 == 0) {
+    iVar16 = BUF_MEM_grow(local_98,200);
+    if (iVar16 == 0) {
 LAB_000c08c2:
-      ERR_put_error(0xb,0x74,0x41,DAT_000c0a90,0xd0);
+      ERR_put_error(0xb,0x74,0x41,"x509_obj.c",0xd0);
       BUF_MEM_free(local_98);
       return (char *)0x0;
     }
     *local_98->data = '\0';
     if (a == (X509_NAME *)0x0) {
       local_90 = local_98->data;
-      iVar13 = 199;
+      iVar16 = 199;
       CRYPTO_free(local_98);
       size = 200;
       goto LAB_000c0a5a;
@@ -51,40 +52,39 @@ LAB_000c08c2:
   }
   else {
     if (a == (X509_NAME *)0x0) {
-      iVar13 = size + -1;
+      iVar16 = size + -1;
       local_90 = buf;
 LAB_000c0a5a:
-      strncpy(local_90,DAT_000c0a94,size);
-      local_90[iVar13] = '\0';
+      strncpy(local_90,"NO X509_NAME",size);
+      local_90[iVar16] = '\0';
       return local_90;
     }
     local_98 = (BUF_MEM *)0x0;
     local_8c = size;
   }
-  iVar13 = DAT_000c0a8c;
   iVar14 = 0;
-  iVar2 = sk_num(&a->entries->stack);
-  iVar17 = 0;
-  if (0 < iVar2) {
+  iVar3 = sk_num(&a->entries->stack);
+  iVar16 = 0;
+  if (0 < iVar3) {
     do {
-      ppAVar3 = (ASN1_OBJECT **)sk_value(&a->entries->stack,iVar14);
-      iVar2 = OBJ_obj2nid(*ppAVar3);
-      if ((iVar2 == 0) || (pcVar4 = OBJ_nid2sn(iVar2), pcVar4 == (char *)0x0)) {
-        pcVar4 = acStack_78;
-        i2t_ASN1_OBJECT(pcVar4,0x50,*ppAVar3);
+      puVar4 = (undefined4 *)sk_value(&a->entries->stack,iVar14);
+      iVar3 = OBJ_obj2nid((ASN1_OBJECT *)*puVar4);
+      if ((iVar3 == 0) || (buf_00 = OBJ_nid2sn(iVar3), buf_00 == (char *)0x0)) {
+        buf_00 = acStack_78;
+        i2t_ASN1_OBJECT(buf_00,0x50,(ASN1_OBJECT *)*puVar4);
       }
-      __n = strlen(pcVar4);
-      pAVar9 = ppAVar3[1];
-      pcVar12 = pAVar9->sn;
-      iVar2 = pAVar9->nid;
-      if ((pAVar9->ln == (char **)0x1b) && (((uint)pcVar12 & 3) == 0)) {
-        pcVar8 = (char *)0x0;
+      __n = strlen(buf_00);
+      puVar11 = (uint *)puVar4[1];
+      uVar13 = *puVar11;
+      uVar5 = puVar11[2];
+      if ((puVar11[1] == 0x1b) && ((uVar13 & 3) == 0)) {
+        uVar10 = 0;
         local_88[0] = 0;
         local_88[1] = 0;
         local_88[2] = 0;
-        if ((int)pcVar12 < 1) {
+        if ((int)uVar13 < 1) {
 LAB_000c0a32:
-          uVar10 = 0;
+          iVar3 = 0;
           local_88[3] = 1;
           local_88[2] = 0;
           local_88[1] = 0;
@@ -92,103 +92,103 @@ LAB_000c0a32:
           goto LAB_000c088c;
         }
         do {
-          pcVar15 = pcVar8 + iVar2;
-          uVar10 = (uint)pcVar8 & 3;
-          pcVar8 = pcVar8 + 1;
-          if (*pcVar15 != '\0') {
-            local_88[uVar10] = 1;
+          pcVar1 = (char *)(uVar5 + uVar10);
+          uVar6 = uVar10 & 3;
+          uVar10 = uVar10 + 1;
+          if (*pcVar1 != '\0') {
+            local_88[uVar6] = 1;
           }
-        } while (pcVar8 != pcVar12);
-        if ((local_88[2] | local_88[0] | local_88[1]) == 0) goto LAB_000c0a32;
+        } while (uVar10 != uVar13);
+        if (local_88[2] == 0 && (local_88[0] == 0 && local_88[1] == 0)) goto LAB_000c0a32;
         local_88[3] = 1;
-        uVar10 = 1;
+        iVar3 = 1;
         local_88[2] = 1;
         local_88[1] = 1;
         local_88[0] = 1;
 LAB_000c0892:
-        pcVar8 = (char *)0x0;
-        iVar16 = 0;
-        uVar5 = uVar10;
+        uVar10 = 0;
+        iVar15 = 0;
+        iVar7 = iVar3;
         while( true ) {
-          if (uVar5 != 0) {
-            if ((byte)pcVar8[iVar2] - 0x20 < 0x5f) {
-              iVar16 = iVar16 + 1;
+          if (iVar7 != 0) {
+            if (*(byte *)(uVar5 + uVar10) - 0x20 < 0x5f) {
+              iVar15 = iVar15 + 1;
             }
             else {
-              iVar16 = iVar16 + 4;
+              iVar15 = iVar15 + 4;
             }
           }
-          pcVar8 = pcVar8 + 1;
-          if (pcVar8 == pcVar12) break;
-          uVar5 = local_88[(uint)pcVar8 & 3];
+          uVar10 = uVar10 + 1;
+          if (uVar10 == uVar13) break;
+          iVar7 = local_88[uVar10 & 3];
         }
       }
       else {
-        uVar10 = 1;
+        iVar3 = 1;
         local_88[3] = 1;
         local_88[2] = 1;
         local_88[1] = 1;
         local_88[0] = 1;
 LAB_000c088c:
-        if (0 < (int)pcVar12) goto LAB_000c0892;
-        iVar16 = 0;
+        if (0 < (int)uVar13) goto LAB_000c0892;
+        iVar15 = 0;
       }
       local_88[3] = 1;
-      iVar2 = iVar16 + __n + 2 + iVar17;
+      iVar15 = iVar15 + __n + 2 + iVar16;
       if (local_98 == (BUF_MEM *)0x0) {
-        pcVar8 = buf;
-        if (local_8c <= iVar2) goto LAB_000c09bc;
+        pcVar1 = buf;
+        if (local_8c <= iVar15) goto LAB_000c09bc;
       }
       else {
-        iVar16 = BUF_MEM_grow(local_98,iVar2 + 1);
-        if (iVar16 == 0) goto LAB_000c08c2;
-        pcVar8 = local_98->data;
+        iVar7 = BUF_MEM_grow(local_98,iVar15 + 1);
+        if (iVar7 == 0) goto LAB_000c08c2;
+        pcVar1 = local_98->data;
       }
-      pcVar15 = pcVar8 + iVar17 + 1;
-      pcVar8[iVar17] = '/';
-      memcpy(pcVar15,pcVar4,__n);
-      pcVar15[__n] = '=';
-      pbVar6 = (byte *)(pcVar15 + __n + 1);
-      iVar17 = ppAVar3[1]->nid;
-      if (0 < (int)pcVar12) {
-        pcVar4 = (char *)0x0;
-        pbVar7 = pbVar6;
+      __dest = pcVar1 + iVar16 + 1;
+      pcVar1[iVar16] = '/';
+      memcpy(__dest,buf_00,__n);
+      __dest[__n] = '=';
+      pbVar8 = (byte *)(__dest + __n + 1);
+      iVar16 = *(int *)(puVar4[1] + 8);
+      if (0 < (int)uVar13) {
+        uVar5 = 0;
+        pbVar9 = pbVar8;
         while( true ) {
-          pbVar6 = pbVar7;
-          if (uVar10 != 0) {
-            bVar1 = pcVar4[iVar17];
-            uVar11 = (uint)bVar1;
-            uVar5 = uVar11 - 0x20;
-            uVar10 = uVar5;
-            if (0x5e < uVar5) {
-              bVar1 = *(byte *)(iVar13 + (uVar11 & 0xf));
-              uVar10 = (uint)*(byte *)(iVar13 + ((int)uVar11 >> 4));
-              *pbVar7 = 0x5c;
+          pbVar8 = pbVar9;
+          if (iVar3 != 0) {
+            bVar2 = *(byte *)(iVar16 + uVar5);
+            uVar12 = (uint)bVar2;
+            uVar6 = uVar12 - 0x20;
+            uVar10 = uVar6;
+            if (0x5e < uVar6) {
+              bVar2 = "0123456789ABCDEF"[uVar12 & 0xf];
+              uVar10 = (uint)(byte)"0123456789ABCDEF"[(int)uVar12 >> 4];
+              *pbVar9 = 0x5c;
             }
-            if (0x5e < uVar5) {
-              pbVar7[3] = bVar1;
+            if (0x5e < uVar6) {
+              pbVar9[3] = bVar2;
             }
-            if (uVar5 < 0x5f) {
-              pbVar6 = pbVar7 + 1;
-              *pbVar7 = bVar1;
+            if (uVar6 < 0x5f) {
+              pbVar8 = pbVar9 + 1;
+              *pbVar9 = bVar2;
             }
             else {
-              pbVar7[2] = (byte)uVar10;
-              pbVar7[1] = 0x78;
-              pbVar6 = pbVar7 + 4;
+              pbVar9[2] = (byte)uVar10;
+              pbVar9[1] = 0x78;
+              pbVar8 = pbVar9 + 4;
             }
           }
-          pcVar4 = pcVar4 + 1;
-          if (pcVar4 == pcVar12) break;
-          uVar10 = local_88[(uint)pcVar4 & 3];
-          pbVar7 = pbVar6;
+          uVar5 = uVar5 + 1;
+          if (uVar5 == uVar13) break;
+          iVar3 = local_88[uVar5 & 3];
+          pbVar9 = pbVar8;
         }
       }
-      *pbVar6 = 0;
+      *pbVar8 = 0;
       iVar14 = iVar14 + 1;
-      iVar16 = sk_num(&a->entries->stack);
-      iVar17 = iVar2;
-    } while (iVar14 < iVar16);
+      iVar3 = sk_num(&a->entries->stack);
+      iVar16 = iVar15;
+    } while (iVar14 < iVar3);
   }
   if (local_98 != (BUF_MEM *)0x0) {
     buf = local_98->data;

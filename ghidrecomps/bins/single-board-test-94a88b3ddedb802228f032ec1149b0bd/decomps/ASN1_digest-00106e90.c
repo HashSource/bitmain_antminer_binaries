@@ -8,9 +8,9 @@ int ASN1_digest(undefined1 *i2d,EVP_MD *type,char *data,uchar *md,uint *len)
   void *local_24 [2];
   
   count = (*(code *)i2d)(data,0);
-  data_00 = CRYPTO_malloc(count,DAT_00106ef4,0x52);
+  data_00 = CRYPTO_malloc(count,"a_digest.c",0x52);
   if (data_00 == (void *)0x0) {
-    ERR_put_error(0xd,0xb8,0x41,DAT_00106ef4,0x53);
+    ERR_put_error(0xd,0xb8,0x41,"a_digest.c",0x53);
     iVar1 = 0;
   }
   else {

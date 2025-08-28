@@ -5,11 +5,11 @@ int ENGINE_free(ENGINE *e)
   int iVar1;
   
   if (e == (ENGINE *)0x0) {
-    ERR_put_error(0x26,0x6c,0x43,DAT_000a6310,0x70);
+    ERR_put_error(0x26,0x6c,0x43,"eng_lib.c",0x70);
     iVar1 = 0;
   }
   else {
-    iVar1 = CRYPTO_add_lock((int *)(e + 0x58),-1,0x1e,DAT_000a6310,0x74);
+    iVar1 = CRYPTO_add_lock((int *)(e + 0x58),-1,0x1e,"eng_lib.c",0x74);
     if (iVar1 < 1) {
       engine_pkey_meths_free(e);
       engine_pkey_asn1_meths_free(e);

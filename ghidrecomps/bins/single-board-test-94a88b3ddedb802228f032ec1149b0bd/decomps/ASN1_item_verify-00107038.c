@@ -16,11 +16,11 @@ int ASN1_item_verify(ASN1_ITEM *it,X509_ALGOR *algor1,ASN1_BIT_STRING *signature
   
   local_44 = (uchar *)0x0;
   if (pkey == (EVP_PKEY *)0x0) {
-    ERR_put_error(0xd,0xc5,0x43,DAT_001071c4,0x92);
+    ERR_put_error(0xd,0xc5,0x43,"a_verify.c",0x92);
     return -1;
   }
   if ((signature->type == 3) && ((signature->flags & 7U) != 0)) {
-    ERR_put_error(0xd,0xc5,0xdc,DAT_001071c4,0x97);
+    ERR_put_error(0xd,0xc5,0xdc,"a_verify.c",0x97);
     return -1;
   }
   EVP_MD_CTX_init(&EStack_38);
@@ -30,7 +30,7 @@ int ASN1_item_verify(ASN1_ITEM *it,X509_ALGOR *algor1,ASN1_BIT_STRING *signature
   if (iVar1 == 0) {
 LAB_001070f4:
     iVar1 = -1;
-    ERR_put_error(0xd,0xc5,199,DAT_001071c4,iVar2);
+    ERR_put_error(0xd,0xc5,199,"a_verify.c",iVar2);
   }
   else {
     if (local_40 == 0) {
@@ -44,7 +44,7 @@ LAB_001070f4:
 LAB_0010711c:
       cnt = ASN1_item_i2d((ASN1_VALUE *)data,&local_44,it);
       if (local_44 == (uchar *)0x0) {
-        ERR_put_error(0xd,0xc5,0x41,DAT_001071c4,0xcb);
+        ERR_put_error(0xd,0xc5,0x41,"a_verify.c",0xcb);
         iVar1 = -1;
         goto LAB_00107096;
       }
@@ -54,7 +54,7 @@ LAB_0010711c:
         CRYPTO_free(local_44);
         iVar1 = EVP_DigestVerifyFinal(&EStack_38,signature->data,signature->length);
         if (iVar1 < 1) {
-          ERR_put_error(0xd,0xc5,6,DAT_001071c4,0xda);
+          ERR_put_error(0xd,0xc5,6,"a_verify.c",0xda);
           iVar1 = 0;
         }
         else {
@@ -69,13 +69,13 @@ LAB_0010711c:
       name = OBJ_nid2sn(local_40);
       type = EVP_get_digestbyname(name);
       if (type == (EVP_MD *)0x0) {
-        ERR_put_error(0xd,0xc5,0xa1,DAT_001071c4,0xb6);
+        ERR_put_error(0xd,0xc5,0xa1,"a_verify.c",0xb6);
         iVar1 = -1;
         goto LAB_00107096;
       }
       iVar1 = EVP_PKEY_type(local_3c);
       if (iVar1 != *(int *)pkey->ameth) {
-        ERR_put_error(0xd,0xc5,200,DAT_001071c4,0xbc);
+        ERR_put_error(0xd,0xc5,200,"a_verify.c",0xbc);
         iVar1 = -1;
         goto LAB_00107096;
       }
@@ -83,7 +83,7 @@ LAB_0010711c:
       iVar2 = 0xc1;
       if (iVar1 != 0) goto LAB_0010711c;
     }
-    ERR_put_error(0xd,0xc5,6,DAT_001071c4,iVar2);
+    ERR_put_error(0xd,0xc5,6,"a_verify.c",iVar2);
   }
 LAB_00107096:
   EVP_MD_CTX_cleanup(&EStack_38);

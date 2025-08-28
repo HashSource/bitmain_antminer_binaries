@@ -14,10 +14,10 @@ int priv_decode_gost(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
   int iVar5;
   uchar *local_4c;
   uchar *local_48;
-  long local_44;
+  int local_44;
   X509_ALGOR *local_40;
   ASN1_OBJECT *local_3c;
-  undefined auStack_38 [31];
+  undefined1 auStack_38 [31];
   uchar local_19 [5];
   
   iVar5 = 0;
@@ -38,7 +38,7 @@ int priv_decode_gost(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
   if (*local_48 == '\x04') {
     a = d2i_ASN1_OCTET_STRING((ASN1_OCTET_STRING **)0x0,&local_48,local_44);
     if ((a == (ASN1_OCTET_STRING *)0x0) || (a->length != 0x20)) {
-      ERR_GOST_error(0x84,0x72,DAT_00115b4c,0x13f);
+      ERR_GOST_error(0x84,0x72,"gost_ameth.c",0x13f);
       return 0;
     }
     puVar4 = local_19 + 1;
@@ -59,7 +59,7 @@ int priv_decode_gost(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
     prv = ASN1_INTEGER_to_BN(ai,(BIGNUM *)0x0);
     ASN1_INTEGER_free(ai);
     if (prv == (BIGNUM *)0x0) {
-      ERR_GOST_error(0x84,0x72,DAT_00115b4c,0x14e);
+      ERR_GOST_error(0x84,0x72,"gost_ameth.c",0x14e);
       return 0;
     }
   }
@@ -88,7 +88,7 @@ int priv_decode_gost(EVP_PKEY *param_1,PKCS8_PRIV_KEY_INFO *param_2)
       EVP_PKEY_assign(param_1,iVar2,key);
     }
     pBVar3 = BN_dup(prv);
-    *(BIGNUM **)&key->field_0x1c = pBVar3;
+    key->priv_key = pBVar3;
     iVar2 = EVP_PKEY_missing_parameters(param_1);
     if (iVar2 == 0) {
       iVar2 = 1;

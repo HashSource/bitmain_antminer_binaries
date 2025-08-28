@@ -4,7 +4,7 @@ RSA * RSAPublicKey_dup(RSA *rsa)
 {
   RSA *pRVar1;
   
-  pRVar1 = (RSA *)ASN1_item_dup(DAT_000a44d8,rsa);
+  pRVar1 = (RSA *)ASN1_item_dup((ASN1_ITEM *)RSAPublicKey_it,rsa);
   return pRVar1;
 }
 

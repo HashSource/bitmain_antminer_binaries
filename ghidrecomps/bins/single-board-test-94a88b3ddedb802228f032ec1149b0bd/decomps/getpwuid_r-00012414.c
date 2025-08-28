@@ -6,7 +6,7 @@ int getpwuid_r(__uid_t __uid,passwd *__resultbuf,char *__buffer,size_t __buflen,
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_getpwuid_r_0019436c)();
+  iVar1 = getpwuid_r(__uid,__resultbuf,__buffer,__buflen,__result);
   return iVar1;
 }
 

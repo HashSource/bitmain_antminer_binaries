@@ -4,7 +4,7 @@ tls1_generate_master_secret(int param_1,undefined4 param_2,undefined4 param_3,un
 
 {
   undefined4 uVar1;
-  undefined auStack_50 [52];
+  undefined1 auStack_50 [52];
   
   uVar1 = ssl_get_algorithm2();
   tls1_PRF_constprop_0

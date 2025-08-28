@@ -1,8 +1,8 @@
 
-void generateHash(void *param_1,undefined4 param_2,undefined4 param_3,undefined param_4)
+void generateHash(void *param_1,undefined4 param_2,undefined4 param_3,undefined1 param_4)
 
 {
-  undefined auStack_180 [364];
+  undefined1 auStack_180 [364];
   undefined4 local_14 [2];
   
   local_14[0] = param_2;

@@ -1,7 +1,4 @@
 
-/* WARNING: Removing unreachable block (ram,0x0002a91c) */
-/* WARNING: Removing unreachable block (ram,0x0002a7de) */
-
 void read_config(void)
 
 {
@@ -10,10 +7,14 @@ void read_config(void)
   char *pcVar2;
   int iVar3;
   char cVar4;
+  int local_428;
+  int local_424;
   char local_420;
   char local_41f;
   
   memset(&local_420,0,0x400);
+  local_428 = 0;
+  local_424 = 0;
   __stream = fopen("/etc/config/Config.ini","r");
 LAB_0002a11c:
   do {
@@ -28,10 +29,10 @@ LAB_0002a11c:
       if ((local_420 == '#') || (local_41f == '#')) goto LAB_0002a11c;
       pcVar1 = strstr(&local_420,"TestDir=");
       if (pcVar1 == (char *)0x0) break;
+      pcVar2 = (char *)0x82e6b;
       iVar3 = 0;
       pcVar1 = pcVar1 + 8;
       cVar4 = *pcVar1;
-      pcVar2 = DAT_0002a428;
       do {
         pcVar2 = pcVar2 + 1;
         *pcVar2 = cVar4;
@@ -161,207 +162,215 @@ LAB_0002a164:
                                                                   pcVar1 = strstr(&local_420,
                                                                                   "StartTemp=");
                                                                   if (pcVar1 != (char *)0x0) {
+                                                                    sscanf(pcVar1 + 10,"%d",0x2f4654
+                                                                          );
                                                                     sscanf(pcVar1 + 10,"%d",
-                                                                           DAT_0002a948);
-                                                                    sscanf(pcVar1 + 10,"%d");
-                                                                    Conf._208_4_ = 0;
-                                                                  }
-                                                                }
-                                                                else {
-                                                                  sscanf(pcVar1 + 0xc,"%d",
-                                                                         DAT_0002a944);
-                                                                }
-                                                              }
-                                                              else {
-                                                                sscanf(pcVar1 + 7,"%d",DAT_0002a940)
-                                                                ;
-                                                              }
-                                                            }
-                                                            else {
-                                                              sscanf(pcVar1 + 7,"%d",DAT_0002a93c);
-                                                            }
-                                                          }
-                                                          else {
-                                                            sscanf(pcVar1 + 5,"%d",DAT_0002a938);
-                                                          }
-                                                        }
-                                                        else {
-                                                          sscanf(pcVar1 + 5,"%d",DAT_0002a934);
-                                                        }
-                                                      }
-                                                      else {
-                                                        sscanf(pcVar1 + 6,"%d",DAT_0002a930);
-                                                      }
+                                                                           &local_424);
+                                                                    Conf._208_4_ = local_424;
+                                                                    if (local_424 < 0) {
+                                                                      local_424 = -local_424;
+                                                                      Conf._208_4_ = -(int)(char)
+                                                  local_424;
+                                                  }
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 0xc,"%d",0x2f4650);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 7,"%d",0x2f466c);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 7,"%d",0x2f4668);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 5,"%d",0x2f4664);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 5,"%d",0x2f4660);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 6,"%d",0x2f465c);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 5,"%d",0x2f4658);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 0x12,"%d",&local_428);
+                                                    iVar3 = local_428;
+                                                    if (local_428 < 0) {
+                                                      local_428 = -local_428;
                                                     }
-                                                    else {
-                                                      sscanf(pcVar1 + 5,"%d",DAT_0002a92c);
-                                                    }
-                                                  }
-                                                  else {
-                                                    sscanf(pcVar1 + 0x12,"%d");
-                                                    Conf[176] = 0;
+                                                    Conf[0xb0] = (undefined1)iVar3;
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xc,"%ud",DAT_0002a7b4);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2f4630);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xc,"%ud",DAT_0002a7b0);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2f462c);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xc,"%ud",DAT_0002a7ac);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2f4628);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xc,"%ud",DAT_0002a7a8);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2f4624);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 8,"%ud",DAT_0002a7a4);
+                                                    sscanf(pcVar1 + 8,"%ud",0x2f4620);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xc,"%ud",DAT_0002a7a0);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2f461c);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 4,"%ud",DAT_0002a79c);
+                                                    sscanf(pcVar1 + 4,"%ud",0x2f4618);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a798);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f4614);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a794);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f4610);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a790);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f460c);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a78c);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f4608);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 7,"%d",DAT_0002a788);
+                                                    sscanf(pcVar1 + 7,"%d",0x2f4604);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 10,"%d",DAT_0002a784);
+                                                    sscanf(pcVar1 + 10,"%d",0x2f4600);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xc,"%d",DAT_0002a780);
+                                                    sscanf(pcVar1 + 0xc,"%d",0x2f45fc);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 9,"%ud",DAT_0002a77c);
+                                                    sscanf(pcVar1 + 9,"%ud",0x2f45f8);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a778);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f45f4);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a774);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f45f0);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar1 + 0xf,"%ud",DAT_0002a770);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2f45ec);
                                                   }
                                                 }
                                                 else {
-                                                  sscanf(pcVar1 + 9,"%d",DAT_0002a76c);
+                                                  sscanf(pcVar1 + 9,"%d",0x2f45e8);
                                                 }
                                               }
                                               else {
-                                                sscanf(pcVar1 + 9,"%d",DAT_0002a768);
+                                                sscanf(pcVar1 + 9,"%d",0x2f45e4);
                                               }
                                             }
                                             else {
-                                              sscanf(pcVar1 + 9,"%d",DAT_0002a764);
+                                              sscanf(pcVar1 + 9,"%d",0x2f45e0);
                                             }
                                           }
                                           else {
-                                            sscanf(pcVar1 + 0xc,"%d",DAT_0002a760);
+                                            sscanf(pcVar1 + 0xc,"%d",0x2f45dc);
                                           }
                                         }
                                         else {
-                                          sscanf(pcVar1 + 0xc,"%d",DAT_0002a470);
+                                          sscanf(pcVar1 + 0xc,"%d",0x2f45d8);
                                         }
                                       }
                                       else {
-                                        sscanf(pcVar1 + 0xc,"%d",DAT_0002a46c);
+                                        sscanf(pcVar1 + 0xc,"%d",0x2f45d4);
                                       }
                                     }
                                     else {
-                                      sscanf(pcVar1 + 0xc,"%d",DAT_0002a468);
+                                      sscanf(pcVar1 + 0xc,"%d",0x2f45d0);
                                     }
                                   }
                                   else {
-                                    sscanf(pcVar1 + 0xc,"%d",DAT_0002a464);
+                                    sscanf(pcVar1 + 0xc,"%d",0x2f45c8);
                                   }
                                 }
                                 else {
-                                  sscanf(pcVar1 + 0xb,"%d",DAT_0002a460);
+                                  sscanf(pcVar1 + 0xb,"%d",0x2f45c4);
                                 }
                               }
                               else {
-                                sscanf(pcVar1 + 9,"%d",DAT_0002a45c);
+                                sscanf(pcVar1 + 9,"%d",0x2f45c0);
                               }
                             }
                             else {
-                              sscanf(pcVar1 + 0xb,"%d",DAT_0002a458);
+                              sscanf(pcVar1 + 0xb,"%d",0x2f45bc);
                             }
                           }
                           else {
-                            sscanf(pcVar1 + 8,"%d",DAT_0002a454);
+                            sscanf(pcVar1 + 8,"%d",0x2f45a0);
                           }
                         }
                       }
                       else {
-                        sscanf(pcVar1 + 7,"%d",DAT_0002a450);
+                        sscanf(pcVar1 + 7,"%d",0x2f4644);
                       }
                     }
                     else {
-                      sscanf(pcVar1 + 7,"%d",DAT_0002a44c);
+                      sscanf(pcVar1 + 7,"%d",0x2f4640);
                     }
                   }
                   else {
-                    sscanf(pcVar1 + 7,"%d",DAT_0002a448);
+                    sscanf(pcVar1 + 7,"%d",0x2f463c);
                   }
                 }
                 else {
-                  sscanf(pcVar1 + 0xd,"%d",DAT_0002a444);
+                  sscanf(pcVar1 + 0xd,"%d",0x2f464c);
                 }
               }
               else {
-                sscanf(pcVar1 + 7,"%d",DAT_0002a440);
+                sscanf(pcVar1 + 7,"%d",0x2f4638);
               }
             }
             else {
-              sscanf(pcVar1 + 5,"%d",DAT_0002a43c);
+              sscanf(pcVar1 + 5,"%d",0x2f459c);
               Conf._196_4_ = 0;
             }
           }
           else {
-            sscanf(pcVar1 + 0xb,"%d",DAT_0002a438);
+            sscanf(pcVar1 + 0xb,"%d",0x2f4598);
           }
         }
         else {
-          sscanf(pcVar1 + 0xb,"%d",DAT_0002a434);
+          sscanf(pcVar1 + 0xb,"%d",0x2f4594);
         }
       }
       else {
-        sscanf(pcVar1 + 0xb,"%d",DAT_0002a430);
+        sscanf(pcVar1 + 0xb,"%d",0x2f4590);
       }
     }
     else {
-      sscanf(pcVar1 + 10,"%d",DAT_0002a42c);
+      sscanf(pcVar1 + 10,"%d",0x2f458c);
     }
   } while( true );
 }

@@ -1,13 +1,13 @@
 
 undefined4
-blake2b(int param_1,int param_2,int param_3,byte param_4,uint param_5,uint param_6,byte param_7)
+blake2b(int param_1,int param_2,int param_3,byte param_4,int param_5,int param_6,byte param_7)
 
 {
   int iVar1;
   undefined4 uVar2;
-  undefined auStack_178 [364];
+  undefined1 auStack_178 [364];
   
-  if ((param_2 == 0) && ((param_5 | param_6) != 0)) {
+  if ((param_2 == 0) && (param_5 != 0 || param_6 != 0)) {
     uVar2 = 0xffffffff;
   }
   else if (param_1 == 0) {

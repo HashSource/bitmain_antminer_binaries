@@ -4,8 +4,8 @@
 void OPENSSL_init(void)
 
 {
-  if (*DAT_0008ba00 == 0) {
-    *DAT_0008ba00 = 1;
+  if (done_6972 == 0) {
+    done_6972 = 1;
   }
   return;
 }

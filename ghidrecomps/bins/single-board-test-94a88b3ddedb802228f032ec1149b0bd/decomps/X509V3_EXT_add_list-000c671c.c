@@ -2,34 +2,27 @@
 int X509V3_EXT_add_list(X509V3_EXT_METHOD *extlist)
 
 {
-  _STACK **pp_Var1;
-  _STACK *st;
-  int iVar2;
+  int iVar1;
   
-  pp_Var1 = DAT_000c6770;
-  iVar2 = extlist->ext_nid;
+  iVar1 = extlist->ext_nid;
   while( true ) {
-    if (iVar2 == -1) {
+    if (iVar1 == -1) {
       return 1;
     }
-    st = *pp_Var1;
-    if (st == (_STACK *)0x0) {
-      st = sk_new(DAT_000c6778);
-      *pp_Var1 = st;
-      if (st == (_STACK *)0x0) {
-        iVar2 = 0x4d;
-        goto LAB_000c674a;
-      }
+    if ((ext_list == (_STACK *)0x0) &&
+       (ext_list = sk_new((cmp *)0xc6561), ext_list == (_STACK *)0x0)) break;
+    iVar1 = sk_push(ext_list,extlist);
+    if (iVar1 == 0) {
+      iVar1 = 0x51;
+      goto LAB_000c674a;
     }
-    iVar2 = sk_push(st,extlist);
-    if (iVar2 == 0) break;
-    iVar2 = extlist[1].ext_nid;
+    iVar1 = extlist[1].ext_nid;
     HintPreloadData(extlist + 7);
     extlist = extlist + 1;
   }
-  iVar2 = 0x51;
+  iVar1 = 0x4d;
 LAB_000c674a:
-  ERR_put_error(0x22,0x68,0x41,DAT_000c6774,iVar2);
+  ERR_put_error(0x22,0x68,0x41,"v3_lib.c",iVar1);
   return 0;
 }
 

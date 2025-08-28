@@ -4,43 +4,34 @@
 char * load_config(char *arg,void *unused)
 
 {
-  int iVar1;
-  int iVar2;
-  json_t *config_00;
   json_t *config;
-  size_t sVar3;
-  size_t sVar4;
-  char *__s;
-  char *json_error_1;
-  undefined4 uVar5;
-  int iVar6;
+  size_t sVar1;
+  size_t sVar2;
   char *json_error;
+  char *__s;
   uint size;
-  size_t siz;
   json_error_t err;
   
-  iVar1 = DAT_0001e518;
-  if (*(int *)(DAT_0001e518 + 0x340) == 0) {
-    uVar5 = __strdup();
-    *(undefined4 *)(iVar1 + 0x340) = uVar5;
+  if (cnfbuf == (char *)0x0) {
+    cnfbuf = (char *)__strdup();
   }
-  iVar2 = DAT_0001e518;
-  iVar6 = *(int *)(iVar1 + 0x344) + 1;
-  *(int *)(iVar1 + 0x344) = iVar6;
-  __s = DAT_0001e51c;
-  if (iVar6 < 0xb) {
-    config_00 = json_load_file(arg,0,&err);
-    if ((config_00 == (json_t *)0x0) || (config_00->type != JSON_OBJECT)) {
-      sVar3 = strlen(arg);
-      sVar4 = strlen(err.text);
-      size = sVar3 + sVar4 + 0x23;
-      __s = (char *)_cgmalloc(size,DAT_0001e520,DAT_0001e524,0x7f9);
-      snprintf(__s,size,DAT_0001e528,arg,err.text);
+  include_count = include_count + 1;
+  if (include_count < 0xb) {
+    config = json_load_file(arg,0,&err);
+    if ((config == (json_t *)0x0) || (config->type != JSON_OBJECT)) {
+      sVar1 = strlen(arg);
+      sVar2 = strlen(err.text);
+      size = sVar1 + sVar2 + 0x23;
+      __s = (char *)_cgmalloc(size,"cgminer.c","load_config",0x7f9);
+      snprintf(__s,size,"JSON decode of file \'%s\' failed\n %s",arg,err.text);
     }
     else {
-      *(undefined *)(iVar2 + 0x348) = 1;
-      __s = parse_config(config_00,true);
+      config_loaded = true;
+      __s = parse_config(config,true);
     }
+  }
+  else {
+    __s = "Too many levels of JSON includes (limit 10) or a loop";
   }
   return __s;
 }

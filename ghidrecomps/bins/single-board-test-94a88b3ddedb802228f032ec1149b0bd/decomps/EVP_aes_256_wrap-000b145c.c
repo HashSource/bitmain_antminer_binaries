@@ -1,7 +1,7 @@
 
-undefined4 EVP_aes_256_wrap(void)
+undefined1 * EVP_aes_256_wrap(void)
 
 {
-  return DAT_000b1460;
+  return aes_256_wrap;
 }
 

@@ -48,7 +48,7 @@ void minerstats(int param_1,undefined4 param_2,undefined4 param_3,int param_4)
   } while (iVar4 < total_devices);
 LAB_00018e4a:
   if (local_44 != 0) {
-    *(undefined *)(param_1 + 0xd) = 1;
+    *(undefined1 *)(param_1 + 0xd) = 1;
   }
   return;
 }

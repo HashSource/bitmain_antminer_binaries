@@ -1,9 +1,9 @@
 
-undefined check_test_process(int param_1)
+undefined1 check_test_process(int param_1)
 
 {
   int iVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   bool bVar3;
   int local_1c;
   FILE *local_18;
@@ -41,7 +41,7 @@ undefined check_test_process(int param_1)
   if (bVar3) {
     local_14 = 1;
   }
-  uVar2 = (undefined)local_14;
+  uVar2 = (undefined1)local_14;
   if (!bVar3) {
     uVar2 = 0;
   }

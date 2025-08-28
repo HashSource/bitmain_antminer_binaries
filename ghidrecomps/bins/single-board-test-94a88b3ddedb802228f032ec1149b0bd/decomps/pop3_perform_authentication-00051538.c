@@ -31,7 +31,7 @@ int pop3_perform_authentication(undefined4 *param_1)
         iVar1 = pop3_perform_user(param_1);
         return iVar1;
       }
-      Curl_infof(*param_1,DAT_000515c8);
+      Curl_infof(*param_1,"No known authentication mechanisms supported!\n");
       return 0x43;
     }
     iVar1 = 0;

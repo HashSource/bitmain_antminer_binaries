@@ -24,9 +24,7 @@ void Curl_setup_transfer(int *param_1,int param_2,int param_3,int param_4,char p
   *(undefined4 *)(iVar2 + 0x58) = param_6;
   *(undefined4 *)(iVar2 + 0x68) = param_8;
   if ((param_5 != '\0') ||
-     (((*(undefined *)(iVar2 + 0x98) = 0,
-       (int)(param_4 - (uint)(param_3 == 0)) < 0 ==
-       (SBORROW4(param_4,(uint)(param_3 == 0)) != false) &&
+     (((*(undefined1 *)(iVar2 + 0x98) = 0, (int)(uint)(param_3 == 0) <= param_4 &&
        (Curl_pgrsSetDownloadSize(iVar2), *(char *)(iVar2 + 0x14a) != '\0')) ||
       (*(char *)(iVar2 + 0x307) == '\0')))) {
     uVar1 = param_1[0x89] + 1;

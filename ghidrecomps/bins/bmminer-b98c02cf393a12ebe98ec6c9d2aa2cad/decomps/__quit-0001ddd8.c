@@ -3,9 +3,9 @@ void __quit(int param_1,int param_2)
 
 {
   int iVar1;
-  pthread_t local_c [3];
+  pthread_t local_c [2];
   
-  iVar1 = pthread_create(local_c,(pthread_attr_t *)0x0,killall_thread + 1,(void *)0x0);
+  iVar1 = pthread_create(local_c,(pthread_attr_t *)0x0,(__start_routine *)0x1bd85,(void *)0x0);
   if (iVar1 == 0) {
     if (param_2 != 0) {
       clean_up();

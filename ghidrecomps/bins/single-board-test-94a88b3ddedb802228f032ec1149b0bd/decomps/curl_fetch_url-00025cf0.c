@@ -1,6 +1,6 @@
 
 undefined4
-curl_fetch_url(undefined4 param_1,undefined4 param_2,void **param_3,undefined4 param_4,
+curl_fetch_url(undefined4 param_1,undefined4 param_2,int *param_3,undefined4 param_4,
               undefined4 param_5)
 
 {
@@ -8,13 +8,13 @@ curl_fetch_url(undefined4 param_1,undefined4 param_2,void **param_3,undefined4 p
   undefined4 uVar2;
   
   pvVar1 = calloc(1,4);
-  *param_3 = pvVar1;
-  if (*param_3 == (void *)0x0) {
+  *param_3 = (int)pvVar1;
+  if (*param_3 == 0) {
     fwrite("ERROR: Failed to allocate payload in curl_fetch_url",1,0x33,stderr);
     uVar2 = 2;
   }
   else {
-    param_3[1] = (void *)0x0;
+    param_3[1] = 0;
     curl_easy_setopt(param_1,0x2712,param_2);
     curl_easy_setopt(param_1,0x4e2b,0x25c59);
     curl_easy_setopt(param_1,0x2711,param_3);

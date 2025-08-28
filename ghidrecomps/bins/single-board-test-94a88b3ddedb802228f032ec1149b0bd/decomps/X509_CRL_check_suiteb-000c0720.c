@@ -10,7 +10,7 @@ undefined4 X509_CRL_check_suiteb(int *param_1,int *param_2,uint param_3)
   if ((param_3 & 0x30000) == 0) {
     return 0;
   }
-  iVar1 = OBJ_obj2nid(**(ASN1_OBJECT ***)(*param_1 + 4));
+  iVar1 = OBJ_obj2nid((ASN1_OBJECT *)**(undefined4 **)(*param_1 + 4));
   if (((param_2 == (int *)0x0) || (*param_2 != 0x198)) ||
      (group = EC_KEY_get0_group((EC_KEY *)param_2[5]), group == (EC_GROUP *)0x0)) {
     return 0x39;

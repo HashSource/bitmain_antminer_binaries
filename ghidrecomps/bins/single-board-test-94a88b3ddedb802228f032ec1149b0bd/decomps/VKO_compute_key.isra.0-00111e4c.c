@@ -1,6 +1,6 @@
 
 undefined4
-VKO_compute_key_isra_0(undefined4 param_1,EC_POINT *param_2,EC_KEY *param_3,undefined *param_4)
+VKO_compute_key_isra_0(undefined4 param_1,EC_POINT *param_2,EC_KEY *param_3,undefined1 *param_4)
 
 {
   BIGNUM *a;
@@ -12,19 +12,19 @@ VKO_compute_key_isra_0(undefined4 param_1,EC_POINT *param_2,EC_KEY *param_3,unde
   BIGNUM *order;
   BIGNUM *x;
   BIGNUM *y;
-  undefined *puVar2;
-  undefined *puVar3;
-  undefined local_120;
-  undefined local_11f;
-  undefined local_11e;
-  undefined local_11d;
-  undefined local_11c;
-  undefined local_11b;
-  undefined local_11a;
-  undefined local_119;
-  undefined local_118 [64];
-  undefined auStack_d8 [63];
-  undefined local_99 [117];
+  undefined1 *puVar2;
+  undefined1 *puVar3;
+  undefined1 local_120;
+  undefined1 local_11f;
+  undefined1 local_11e;
+  undefined1 local_11d;
+  undefined1 local_11c;
+  undefined1 local_11b;
+  undefined1 local_11a;
+  undefined1 local_119;
+  undefined1 local_118 [64];
+  undefined1 auStack_d8 [63];
+  undefined1 local_99 [117];
   
   a = EC_KEY_get0_private_key(param_3);
   pEVar1 = EC_KEY_get0_group(param_3);
@@ -60,7 +60,7 @@ VKO_compute_key_isra_0(undefined4 param_1,EC_POINT *param_2,EC_KEY *param_3,unde
     puVar2 = puVar2 + -1;
     *puVar2 = *puVar3;
   } while (puVar3 != local_118 + 0x3f);
-  init_gost_hash_ctx(local_99 + 1,DAT_00111f94);
+  init_gost_hash_ctx(local_99 + 1,GostR3411_94_CryptoProParamSet);
   start_hash(local_99 + 1);
   hash_block(local_99 + 1,auStack_d8,0x40);
   finish_hash(local_99 + 1,param_1);

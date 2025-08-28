@@ -5,8 +5,8 @@ void PreparePICandVoltage(void)
   char cVar1;
   int iVar2;
   undefined4 local_170;
-  undefined auStack_16c [4];
-  undefined auStack_168 [4];
+  undefined1 auStack_16c [4];
+  undefined1 auStack_168 [4];
   int local_164;
   undefined4 local_160;
   undefined4 local_15c;
@@ -17,8 +17,8 @@ void PreparePICandVoltage(void)
   uint local_148;
   uint local_144;
   uint local_140;
-  undefined auStack_13c [64];
-  undefined auStack_fc [128];
+  undefined1 auStack_13c [64];
+  undefined1 auStack_fc [128];
   FILE *local_7c;
   FILE *local_78;
   FILE *local_74;
@@ -136,9 +136,9 @@ void PreparePICandVoltage(void)
           if ((*(byte *)((int)&local_14c + local_20 * 2) < 0x54) &&
              (*(byte *)((int)&local_14c + local_20 * 2 + 1) < 0x72)) {
             disabled_cores_pos[(*(int *)(disabled_cores_num + local_1c * 4) + local_1c * 8) * 2] =
-                 *(undefined *)((int)&local_14c + local_20 * 2);
+                 *(undefined1 *)((int)&local_14c + local_20 * 2);
             disabled_cores_pos[(*(int *)(disabled_cores_num + local_1c * 4) + local_1c * 8) * 2 + 1]
-                 = *(undefined *)((int)&local_14c + local_20 * 2 + 1);
+                 = *(undefined1 *)((int)&local_14c + local_20 * 2 + 1);
             if (3 < log_level) {
               local_40 = fopen(log_file,"a+");
               if (local_40 != (FILE *)0x0) {

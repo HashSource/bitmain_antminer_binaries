@@ -6,7 +6,7 @@ long atol(char *__nptr)
 {
   long lVar1;
   
-  lVar1 = (*(code *)PTR_atol_000c0168)();
+  lVar1 = atol(__nptr);
   return lVar1;
 }
 

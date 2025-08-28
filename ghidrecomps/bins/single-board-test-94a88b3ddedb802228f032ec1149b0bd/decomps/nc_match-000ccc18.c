@@ -1,10 +1,10 @@
 
-int nc_match(int *param_1,_STACK **param_2,undefined4 param_3,undefined4 param_4)
+int nc_match(int *param_1,undefined4 *param_2,undefined4 param_3,undefined4 param_4)
 
 {
   char cVar1;
   int iVar2;
-  int **ppiVar3;
+  undefined4 *puVar3;
   char *pcVar4;
   int *piVar5;
   int iVar6;
@@ -15,15 +15,15 @@ int nc_match(int *param_1,_STACK **param_2,undefined4 param_3,undefined4 param_4
   char *pcVar11;
   
   iVar8 = 0;
-  for (iVar7 = 0; iVar2 = sk_num(*param_2), iVar7 < iVar2; iVar7 = iVar7 + 1) {
-    ppiVar3 = (int **)sk_value(*param_2,iVar7);
-    piVar5 = *ppiVar3;
+  for (iVar7 = 0; iVar2 = sk_num((_STACK *)*param_2), iVar7 < iVar2; iVar7 = iVar7 + 1) {
+    puVar3 = (undefined4 *)sk_value((_STACK *)*param_2,iVar7);
+    piVar5 = (int *)*puVar3;
     iVar2 = *param_1;
     if (iVar2 != *piVar5) goto LAB_000ccc26;
-    if (ppiVar3[1] != (int *)0x0) {
+    if (puVar3[1] != 0) {
       return 0x31;
     }
-    if (ppiVar3[2] != (int *)0x0) {
+    if (puVar3[2] != 0) {
       return 0x31;
     }
     if (iVar8 == 2) goto LAB_000ccc7e;
@@ -82,14 +82,14 @@ LAB_000ccc26:
   }
   iVar7 = 0;
   do {
-    iVar8 = sk_num(param_2[1]);
+    iVar8 = sk_num((_STACK *)param_2[1]);
     if (iVar8 <= iVar7) {
       return 0;
     }
-    ppiVar3 = (int **)sk_value(param_2[1],iVar7);
-    piVar5 = *ppiVar3;
+    puVar3 = (undefined4 *)sk_value((_STACK *)param_2[1],iVar7);
+    piVar5 = (int *)*puVar3;
     if (*param_1 != *piVar5) goto LAB_000ccd26;
-    if ((ppiVar3[1] != (int *)0x0) || (ppiVar3[2] != (int *)0x0)) {
+    if ((puVar3[1] != 0) || (puVar3[2] != 0)) {
       return 0x31;
     }
     switch(*param_1) {

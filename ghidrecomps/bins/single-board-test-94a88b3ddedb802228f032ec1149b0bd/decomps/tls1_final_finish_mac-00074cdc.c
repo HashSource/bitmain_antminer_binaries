@@ -9,16 +9,15 @@ tls1_final_finish_mac(int param_1,undefined4 param_2,undefined4 param_3,undefine
   uint uVar4;
   undefined4 uVar5;
   EVP_MD_CTX *in;
-  uint uVar6;
   size_t len;
   uchar *md;
   uint local_d8;
   uint local_d4;
   EVP_MD *local_d0;
-  undefined auStack_cc [12];
+  undefined1 auStack_cc [12];
   EVP_MD_CTX EStack_c0;
   uchar auStack_a8 [128];
-  undefined auStack_28 [4];
+  undefined1 auStack_28 [4];
   
   if ((*(int *)(*(int *)(param_1 + 0x58) + 0x178) == 0) ||
      (iVar2 = ssl3_digest_cached_records(), iVar2 != 0)) {
@@ -31,11 +30,11 @@ tls1_final_finish_mac(int param_1,undefined4 param_2,undefined4 param_3,undefine
       if ((uVar4 & local_d4) != 0) {
         uVar4 = EVP_MD_size(local_d0);
         in = *(EVP_MD_CTX **)(*(int *)(*(int *)(param_1 + 0x58) + 0x17c) + iVar2 * 4);
-        uVar6 = 1 - (int)in;
+        iVar3 = 1 - (int)in;
         if ((EVP_MD_CTX *)0x1 < in) {
-          uVar6 = 0;
+          iVar3 = 0;
         }
-        if (((uVar6 | uVar4 >> 0x1f) == 0) && ((int)uVar4 <= (int)(auStack_28 + -(int)md))) {
+        if ((iVar3 == 0 && -1 < (int)uVar4) && ((int)uVar4 <= (int)(auStack_28 + -(int)md))) {
           iVar3 = EVP_MD_CTX_copy_ex(&EStack_c0,in);
           if ((iVar3 == 0) || (iVar3 = EVP_DigestFinal_ex(&EStack_c0,md,&local_d8), iVar3 == 0)) {
             bVar1 = true;

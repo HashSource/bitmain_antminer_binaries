@@ -34,7 +34,7 @@ undefined4 Curl_read(int *param_1,int param_2,void *param_3,uint param_4,size_t 
     }
     if (uVar2 != 0) {
       memcpy(param_3,(void *)(param_1[0x98] + param_1[0x99]),uVar2);
-      *(undefined *)((int)param_1 + 0x201) = 0;
+      *(undefined1 *)((int)param_1 + 0x201) = 0;
       param_1[0x99] = param_1[0x99] + uVar2;
       *param_5 = uVar2;
       return 0;

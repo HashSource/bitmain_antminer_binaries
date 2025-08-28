@@ -13,8 +13,8 @@ byte CRC5_v1(byte *param_1,byte param_2)
   byte local_a;
   byte local_9;
   
-  local_14 = DAT_00036620;
-  local_10 = DAT_00036624;
+  local_14 = 0x1010101;
+  local_10 = 1;
   local_a = 0x80;
   local_b = '\0';
   local_9 = 0;

@@ -76,7 +76,7 @@ uint read_uart_data_in_fpga(uchar which_uart,uchar *buf,uint length)
     buf[i * 4 + 2] = (uchar)(uVar5 >> 8);
     buf[i * 4 + 3] = (uchar)uVar5;
   }
-  uVar4 = length & 0xfffffffc;
+  uVar4 = (length >> 2) * 4;
   uVar5 = length & 3;
   if (uVar5 != 0) {
     uVar3 = read_axi_fpga(chain_read_data_addr);

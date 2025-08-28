@@ -13,7 +13,7 @@ void __work_completed(int param_1,int param_2)
   if (iVar4 == 0) {
     iVar3 = *(int *)(param_2 + 0x160);
     if (iVar3 == 0) {
-      free(**(void ***)(*(int *)(param_1 + 0x160) + 0x158));
+      free((void *)**(undefined4 **)(*(int *)(param_1 + 0x160) + 0x158));
       free(*(void **)(*(int *)(param_1 + 0x160) + 0x158));
       *(undefined4 *)(param_1 + 0x160) = 0;
       return;

@@ -8,9 +8,9 @@ undefined4 * ECDSA_METHOD_new(undefined4 *param_1)
   undefined4 uVar4;
   uint uVar5;
   
-  puVar1 = (undefined4 *)CRYPTO_malloc(0x18,DAT_000ffb1c,0x11b);
+  puVar1 = (undefined4 *)CRYPTO_malloc(0x18,"ecs_lib.c",0x11b);
   if (puVar1 == (undefined4 *)0x0) {
-    ERR_put_error(0x2a,0x69,0x41,DAT_000ffb1c,0x11d);
+    ERR_put_error(0x2a,0x69,0x41,"ecs_lib.c",0x11d);
   }
   else {
     if (param_1 == (undefined4 *)0x0) {

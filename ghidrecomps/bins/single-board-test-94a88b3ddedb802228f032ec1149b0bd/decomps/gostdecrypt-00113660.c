@@ -1,5 +1,5 @@
 
-void gostdecrypt(int *param_1,byte *param_2,undefined *param_3)
+void gostdecrypt(int *param_1,byte *param_2,undefined1 *param_3)
 
 {
   int iVar1;

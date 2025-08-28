@@ -9,7 +9,7 @@ int EC_KEY_generate_key(EC_KEY *key)
   EC_POINT *r;
   
   if ((key == (EC_KEY *)0x0) || (*(int *)(key + 4) == 0)) {
-    ERR_put_error(0x10,0xb3,0x43,DAT_000a34f4,0xf3);
+    ERR_put_error(0x10,0xb3,0x43,"ec_key.c",0xf3);
     return 0;
   }
   order = BN_new();

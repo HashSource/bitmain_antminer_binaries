@@ -6,11 +6,11 @@ char * json_dumps(json_t *json,size_t flags)
 {
   int iVar1;
   char *pcVar2;
-  char *result;
   strbuffer_t strbuff;
   
   iVar1 = strbuffer_init(&strbuff);
-  if ((iVar1 == 0) && (iVar1 = json_dump_callback(json,DAT_0003dcb0,&strbuff,flags), iVar1 == 0)) {
+  if ((iVar1 == 0) &&
+     (iVar1 = json_dump_callback(json,(json_dump_callback_t)0x3d79d,&strbuff,flags), iVar1 == 0)) {
     if ((int)(flags << 0x13) < 0) {
       pcVar2 = jsonp_eolstrsteal(&strbuff);
     }

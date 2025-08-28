@@ -4,15 +4,14 @@
 int get_QN_write_data_command(void)
 
 {
-  int iVar1;
+  uint uVar1;
   char tmp42 [2048];
   
-  iVar1 = *(int *)(*(int *)(DAT_0002d308 + 0x8d4) + 0x80);
-  if ((*DAT_0002d30c != '\0') &&
-     (((*DAT_0002d310 != '\0' || (*DAT_0002d314 != '\0')) || (6 < *DAT_0002d318)))) {
-    snprintf(tmp42,0x800,DAT_0002d31c,DAT_0002d320,iVar1);
+  uVar1 = axi_fpga_addr[0x20];
+  if ((opt_debug) && (((use_syslog || (opt_log_output)) || (6 < opt_log_level)))) {
+    snprintf(tmp42,0x800,"%s: QN_WRITE_DATA_COMMAND is 0x%x\n","get_QN_write_data_command",uVar1);
     _applog(7,tmp42,false);
   }
-  return iVar1;
+  return uVar1;
 }
 

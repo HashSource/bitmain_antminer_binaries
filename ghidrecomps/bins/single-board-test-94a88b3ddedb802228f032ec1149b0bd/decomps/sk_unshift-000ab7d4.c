@@ -18,7 +18,7 @@ int sk_unshift(_STACK *st,void *data)
     ppcVar5 = st->data;
   }
   else {
-    ppcVar5 = (char **)CRYPTO_realloc(st->data,st->num_alloc << 3,DAT_000ab894,0xbb);
+    ppcVar5 = (char **)CRYPTO_realloc(st->data,st->num_alloc << 3,"stack.c",0xbb);
     if (ppcVar5 == (char **)0x0) {
       return 0;
     }

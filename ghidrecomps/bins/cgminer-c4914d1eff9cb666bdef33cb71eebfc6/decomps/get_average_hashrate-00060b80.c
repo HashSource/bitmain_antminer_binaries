@@ -23,7 +23,6 @@ double get_average_hashrate(uint32_t minutes)
   int32_t end_index;
   
   if (length < 2) {
-    dVar3 = DAT_00060da0;
     if (3 < log_level) {
       print_crt_time_to_file(log_file,3);
       pFVar2 = fopen(log_file,"a+");
@@ -32,8 +31,8 @@ double get_average_hashrate(uint32_t minutes)
                 "get_average_hashrate");
       }
       fclose(pFVar2);
-      dVar3 = DAT_00060da0;
     }
+    dVar3 = 0.0;
   }
   else {
     minutes_local = minutes;
@@ -81,8 +80,7 @@ double get_average_hashrate(uint32_t minutes)
       }
       fclose(pFVar2);
     }
-    dVar3 = (thashrate_array[uVar1] - thashrate_array[end_index]) /
-            (double)(ulonglong)(minutes_local * 0x3c);
+    dVar3 = (thashrate_array[uVar1] - thashrate_array[end_index]) / (double)(minutes_local * 0x3c);
     if (3 < log_level) {
       print_crt_time_to_file(hash_log,3);
       pFVar2 = fopen(hash_log,"a+");
@@ -121,7 +119,7 @@ double get_average_hashrate(uint32_t minutes)
       }
       fclose(pFVar2);
     }
-    dVar3 = dVar3 * DAT_00060da8;
+    dVar3 = dVar3 * 1000.0;
   }
   return dVar3;
 }

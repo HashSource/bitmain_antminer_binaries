@@ -1,10 +1,10 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void __kill_work(void)
 
 {
-  if (*DAT_0002297c != '\0') {
+  if (successful_connect) {
     __kill_work();
     return;
   }

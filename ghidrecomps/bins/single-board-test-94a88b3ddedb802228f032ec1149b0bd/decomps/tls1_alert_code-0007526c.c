@@ -1,16 +1,16 @@
 
-int tls1_alert_code(uint param_1)
+int tls1_alert_code(undefined1 *param_1)
 
 {
-  uint uVar1;
+  undefined1 *puVar1;
   int iVar2;
   
-  uVar1 = param_1;
-  if (param_1 < 0x74) {
-    uVar1 = DAT_00075280 + param_1;
+  puVar1 = param_1;
+  if (param_1 < (undefined1 *)0x74) {
+    puVar1 = &empty_18630 + (int)param_1;
   }
-  if (param_1 < 0x74) {
-    iVar2 = (int)*(char *)(uVar1 + 4);
+  if (param_1 < (undefined1 *)0x74) {
+    iVar2 = (int)(char)puVar1[4];
   }
   else {
     iVar2 = -1;

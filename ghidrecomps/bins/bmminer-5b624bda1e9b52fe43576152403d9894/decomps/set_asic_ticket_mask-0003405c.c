@@ -5,22 +5,17 @@ void set_asic_ticket_mask(uint ticket_mask)
 
 {
   uint uVar1;
-  int *piVar2;
-  int *piVar3;
-  byte bVar4;
-  uint uVar5;
-  uint ret;
+  byte bVar2;
+  uint uVar3;
+  uint uVar4;
+  int iVar5;
   uint uVar6;
-  int iVar7;
-  uint uVar8;
   uchar buf [9];
   uint cmd_buf [3];
   char tmp42 [2048];
   
-  piVar3 = DAT_000341e4;
-  piVar2 = DAT_000341d0;
   uVar1 = ticket_mask >> 0x10 & 0xff;
-  iVar7 = 0;
+  iVar5 = 0;
   buf[4] = '\0';
   buf[5] = '\0';
   buf[6] = '\0';
@@ -34,33 +29,34 @@ void set_asic_ticket_mask(uint ticket_mask)
   cmd_buf[1] = 0;
   cmd_buf[2] = 0;
   do {
-    while (*(int *)(*piVar3 + (iVar7 + 2) * 4) != 1) {
-      iVar7 = iVar7 + 1;
-      if (iVar7 == 0x10) {
+    while (dev->chain_exist[iVar5] != 1) {
+      iVar5 = iVar5 + 1;
+      if (iVar5 == 0x10) {
         return;
       }
     }
-    if (*piVar2 == 0) {
-      uVar8 = ticket_mask & 0x1f;
-      buf[2] = (uchar)uVar8;
+    if (opt_multi_version == 0) {
+      uVar6 = ticket_mask & 0x1f;
+      buf[2] = (uchar)uVar6;
       buf[0] = '\0';
       buf[1] = '\x10';
       buf[0] = 0x86;
-      bVar4 = CRC5(buf,'\x1b');
-      uVar5 = (uint)bVar4;
-      buf[3] = bVar4;
+      bVar2 = CRC5(buf,'\x1b');
+      uVar3 = (uint)bVar2;
+      buf[3] = bVar2;
       if ((opt_debug == false) ||
-         (((use_syslog == false && (*DAT_000341d4 == '\0')) && (*DAT_000341d8 < 7)))) {
-        uVar6 = 0x86100000;
+         (((use_syslog == false && (opt_log_output == false)) && (opt_log_level < 7)))) {
+        uVar4 = 0x86100000;
       }
       else {
-        snprintf(tmp42,0x800,DAT_000341dc,DAT_000341e0,0x86,0x10,uVar8,uVar5);
+        snprintf(tmp42,0x800,"%s: buf[0]=0x%x, buf[1]=0x%x, buf[2]=0x%x, buf[3]=0x%x\n",
+                 "set_asic_ticket_mask",0x86,0x10,uVar6,uVar3);
         _applog(7,tmp42,false);
-        uVar8 = (uint)buf._0_4_ >> 0x10 & 0xff;
-        uVar5 = (uint)buf._0_4_ >> 0x18;
-        uVar6 = buf._0_4_ << 0x18 | ((uint)buf._0_4_ >> 8 & 0xff) << 0x10;
+        uVar6 = (uint)buf._0_4_ >> 0x10 & 0xff;
+        uVar3 = (uint)buf._0_4_ >> 0x18;
+        uVar4 = buf._0_4_ << 0x18 | ((uint)buf._0_4_ >> 8 & 0xff) << 0x10;
       }
-      cmd_buf[0] = uVar6 | uVar5 | uVar8 << 8;
+      cmd_buf[0] = uVar4 | uVar3 | uVar6 << 8;
     }
     else {
       buf._4_4_ = uVar1 << 8;
@@ -78,11 +74,11 @@ void set_asic_ticket_mask(uint ticket_mask)
                    ticket_mask & 0xff;
     }
     set_BC_command_buffer(cmd_buf);
-    uVar5 = get_BC_write_command();
-    uVar8 = iVar7 << 0x10;
-    iVar7 = iVar7 + 1;
-    set_BC_write_command(uVar5 & 0xfff0ffff | uVar8 | 0x80800000);
-  } while (iVar7 != 0x10);
+    uVar3 = get_BC_write_command();
+    uVar6 = iVar5 << 0x10;
+    iVar5 = iVar5 + 1;
+    set_BC_write_command(uVar3 & 0xfff0ffff | uVar6 | 0x80800000);
+  } while (iVar5 != 0x10);
   return;
 }
 

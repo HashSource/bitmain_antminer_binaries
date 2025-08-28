@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable result:char *[r0:4] conflicts with parameter, skipped. */
 
 char * strbuffer_steal_value(strbuffer_t *strbuff)
 

@@ -20,7 +20,7 @@ X509_LOOKUP * X509_STORE_add_lookup(X509_STORE *v,X509_LOOKUP_METHOD *m)
       return pXVar2;
     }
   }
-  pXVar2 = (X509_LOOKUP *)CRYPTO_malloc(0x14,DAT_000c3b9c,0x45);
+  pXVar2 = (X509_LOOKUP *)CRYPTO_malloc(0x14,"x509_lu.c",0x45);
   if (pXVar2 != (X509_LOOKUP *)0x0) {
     p_Var4 = m->new_item;
     pXVar2->method = m;

@@ -6,9 +6,9 @@ ENGINE * ENGINE_new(void)
 {
   ENGINE *__s;
   
-  __s = (ENGINE *)CRYPTO_malloc(0x70,DAT_000a6200,0x45);
+  __s = (ENGINE *)CRYPTO_malloc(0x70,"eng_lib.c",0x45);
   if (__s == (ENGINE *)0x0) {
-    ERR_put_error(0x26,0x7a,0x41,DAT_000a6200,0x47);
+    ERR_put_error(0x26,0x7a,0x41,"eng_lib.c",0x47);
   }
   else {
     memset(__s,0,0x70);

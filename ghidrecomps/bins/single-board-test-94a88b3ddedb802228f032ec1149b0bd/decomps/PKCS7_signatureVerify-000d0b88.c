@@ -7,7 +7,7 @@ int PKCS7_signatureVerify(BIO *bio,PKCS7 *p7,PKCS7_SIGNER_INFO *si,X509 *x509)
   BIO *bp;
   EVP_PKEY *pkey;
   ASN1_OBJECT *b;
-  ASN1_OBJECT **ppAVar3;
+  undefined4 *puVar3;
   int iVar4;
   void *pvVar5;
   char *name;
@@ -25,7 +25,7 @@ int PKCS7_signatureVerify(BIO *bio,PKCS7 *p7,PKCS7_SIGNER_INFO *si,X509 *x509)
   EVP_MD_CTX_init(&EStack_78);
   iVar1 = OBJ_obj2nid(p7->type);
   if ((iVar1 != 0x16) && (iVar1 = OBJ_obj2nid(p7->type), iVar1 != 0x18)) {
-    ERR_put_error(0x21,0x71,0x72,DAT_000d0da0,0x40f);
+    ERR_put_error(0x21,0x71,0x72,"pk7_doit.c",0x40f);
     goto LAB_000d0c2a;
   }
   iVar1 = OBJ_obj2nid(si->digest_alg->algorithm);
@@ -35,7 +35,7 @@ int PKCS7_signatureVerify(BIO *bio,PKCS7 *p7,PKCS7_SIGNER_INFO *si,X509 *x509)
       if (bp == (BIO *)0x0) break;
       BIO_ctrl(bp,0x78,0,&local_84);
       if (local_84 == (EVP_MD_CTX *)0x0) {
-        ERR_put_error(0x21,0x71,0x44,DAT_000d0da0,0x41f);
+        ERR_put_error(0x21,0x71,0x44,"pk7_doit.c",0x41f);
         iVar1 = 0;
         goto LAB_000d0c2c;
       }
@@ -64,20 +64,20 @@ LAB_000d0c3a:
   iVar6 = 0x41a;
   goto LAB_000d0c06;
   while( true ) {
-    ppAVar3 = (ASN1_OBJECT **)sk_value(val,iVar6);
-    iVar4 = OBJ_cmp(*ppAVar3,b);
+    puVar3 = (undefined4 *)sk_value(val,iVar6);
+    iVar4 = OBJ_cmp((ASN1_OBJECT *)*puVar3,b);
     iVar6 = iVar6 + 1;
     if (iVar4 == 0) break;
 LAB_000d0cd6:
     iVar4 = sk_num(val);
     if (iVar4 <= iVar6) goto LAB_000d0ce8;
   }
-  if ((((ppAVar3[1] == (ASN1_OBJECT *)0x0) && (iVar6 = sk_num((_STACK *)ppAVar3[2]), iVar6 != 0)) &&
-      (pvVar5 = sk_value((_STACK *)ppAVar3[2],0), pvVar5 != (void *)0x0)) &&
+  if ((((puVar3[1] == 0) && (iVar6 = sk_num((_STACK *)puVar3[2]), iVar6 != 0)) &&
+      (pvVar5 = sk_value((_STACK *)puVar3[2],0), pvVar5 != (void *)0x0)) &&
      (psVar7 = *(size_t **)((int)pvVar5 + 4), psVar7 != (size_t *)0x0)) {
     if ((*psVar7 != local_7c) || (iVar6 = memcmp((void *)psVar7[2],auStack_60,*psVar7), iVar6 != 0))
     {
-      ERR_put_error(0x21,0x71,0x65,DAT_000d0da0,0x450);
+      ERR_put_error(0x21,0x71,0x65,"pk7_doit.c",0x450);
       iVar1 = -1;
       goto LAB_000d0c2c;
     }
@@ -85,9 +85,9 @@ LAB_000d0cd6:
     pEVar2 = EVP_get_digestbyname(name);
     iVar1 = EVP_DigestInit_ex(&EStack_78,pEVar2,(ENGINE *)0x0);
     if (iVar1 != 0) {
-      cnt = ASN1_item_i2d((ASN1_VALUE *)val,&local_80,DAT_000d0da4);
+      cnt = ASN1_item_i2d((ASN1_VALUE *)val,&local_80,(ASN1_ITEM *)PKCS7_ATTR_VERIFY_it);
       if ((int)cnt < 1) {
-        ERR_put_error(0x21,0x71,0xd,DAT_000d0da0,0x45b);
+        ERR_put_error(0x21,0x71,0xd,"pk7_doit.c",0x45b);
         iVar1 = -1;
         goto LAB_000d0c2c;
       }
@@ -104,7 +104,7 @@ LAB_000d0c52:
           iVar1 = EVP_VerifyFinal(&EStack_78,pAVar8->data,pAVar8->length,pkey);
           EVP_PKEY_free(pkey);
           if (iVar1 < 1) {
-            ERR_put_error(0x21,0x71,0x69,DAT_000d0da0,0x46f);
+            ERR_put_error(0x21,0x71,0x69,"pk7_doit.c",0x46f);
             iVar1 = -1;
           }
           else {
@@ -122,7 +122,7 @@ LAB_000d0ce8:
   iVar6 = 0x440;
 LAB_000d0c06:
   iVar1 = 0;
-  ERR_put_error(0x21,0x71,0x6c,DAT_000d0da0,iVar6);
+  ERR_put_error(0x21,0x71,0x6c,"pk7_doit.c",iVar6);
 LAB_000d0c2c:
   EVP_MD_CTX_cleanup(&EStack_78);
   return iVar1;

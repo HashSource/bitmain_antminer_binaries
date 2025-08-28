@@ -2,22 +2,20 @@
 int X509_PURPOSE_add(int id,int trust,int flags,ck *ck,char *name,char *sname,void *arg)
 
 {
-  _STACK **pp_Var1;
-  int iVar2;
-  char *pcVar3;
+  int iVar1;
+  char *pcVar2;
   int *data;
-  uint uVar4;
-  _STACK *st;
+  uint uVar3;
   int local_3c [8];
   
-  uVar4 = id - 1;
-  if (uVar4 < 9) {
+  uVar3 = id - 1;
+  if (uVar3 < 9) {
 LAB_000cbb12:
-    if ((int)uVar4 < 9) {
-      data = (int *)(DAT_000cbbf4 + uVar4 * 0x1c);
+    if ((int)uVar3 < 9) {
+      data = (int *)(&xstandard + uVar3 * 0x1c);
     }
     else {
-      data = (int *)sk_value(*DAT_000cbbf0,uVar4 - 9);
+      data = (int *)sk_value(xptable,uVar3 - 9);
     }
 LAB_000cbb20:
     if (data[2] << 0x1e < 0) {
@@ -25,14 +23,14 @@ LAB_000cbb20:
       CRYPTO_free((void *)data[5]);
     }
 LAB_000cbb32:
-    pcVar3 = BUF_strdup(name);
-    data[4] = (int)pcVar3;
-    pcVar3 = BUF_strdup(sname);
-    data[5] = (int)pcVar3;
-    if ((data[4] == 0) || (pcVar3 == (char *)0x0)) {
-      iVar2 = 0xe7;
+    pcVar2 = BUF_strdup(name);
+    data[4] = (int)pcVar2;
+    pcVar2 = BUF_strdup(sname);
+    data[5] = (int)pcVar2;
+    if ((data[4] == 0) || (pcVar2 == (char *)0x0)) {
+      iVar1 = 0xe7;
 LAB_000cbbc8:
-      ERR_put_error(0x22,0x89,0x41,DAT_000cbbf8,iVar2);
+      ERR_put_error(0x22,0x89,0x41,"v3_purp.c",iVar1);
       return 0;
     }
     *data = id;
@@ -40,18 +38,15 @@ LAB_000cbbc8:
     data[3] = (int)ck;
     data[6] = (int)arg;
     data[2] = data[2] & 1U | 2 | flags & 0xfffffffeU;
-    pp_Var1 = DAT_000cbbf0;
-    if (uVar4 == 0xffffffff) {
-      st = *DAT_000cbbf0;
-      if (st == (_STACK *)0x0) {
-        st = sk_new(DAT_000cbbfc);
-        iVar2 = 0xf7;
-        *pp_Var1 = st;
-        if (st == (_STACK *)0x0) goto LAB_000cbbc8;
+    if (uVar3 == 0xffffffff) {
+      if (xptable == (_STACK *)0x0) {
+        xptable = sk_new((cmp *)0xcb0c1);
+        iVar1 = 0xf7;
+        if (xptable == (_STACK *)0x0) goto LAB_000cbbc8;
       }
-      iVar2 = sk_push(st,data);
-      if (iVar2 == 0) {
-        iVar2 = 0xfb;
+      iVar1 = sk_push(xptable,data);
+      if (iVar1 == 0) {
+        iVar1 = 0xfb;
         data = (int *)0x0;
         goto LAB_000cbbb4;
       }
@@ -60,21 +55,21 @@ LAB_000cbbc8:
   }
   else {
     local_3c[0] = id;
-    if (((*DAT_000cbbf0 != (_STACK *)0x0) && (iVar2 = sk_find(*DAT_000cbbf0,local_3c), iVar2 != -1))
-       && (uVar4 = iVar2 + 9, iVar2 != -10)) {
-      if (-1 < (int)uVar4) goto LAB_000cbb12;
+    if (((xptable != (_STACK *)0x0) && (iVar1 = sk_find(xptable,local_3c), iVar1 != -1)) &&
+       (uVar3 = iVar1 + 9, iVar1 != -10)) {
+      if (-1 < (int)uVar3) goto LAB_000cbb12;
       data = (int *)0x0;
       goto LAB_000cbb20;
     }
-    data = (int *)CRYPTO_malloc(0x1c,DAT_000cbbf8,0xd6);
-    iVar2 = 0xd7;
+    data = (int *)CRYPTO_malloc(0x1c,"v3_purp.c",0xd6);
+    iVar1 = 0xd7;
     if (data != (int *)0x0) {
-      uVar4 = 0xffffffff;
+      uVar3 = 0xffffffff;
       data[2] = 1;
       goto LAB_000cbb32;
     }
 LAB_000cbbb4:
-    ERR_put_error(0x22,0x89,0x41,DAT_000cbbf8,iVar2);
+    ERR_put_error(0x22,0x89,0x41,"v3_purp.c",iVar1);
   }
   return (int)data;
 }

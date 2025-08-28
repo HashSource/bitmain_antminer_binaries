@@ -13,12 +13,12 @@ void Sha256_Update(CSha256 *p,uint8_t *data,size_t size)
   
   size_local = size;
   data_local = data;
-  curBufferPos = *(uint *)&p->count & 0x3f;
+  curBufferPos = (uint)p->count & 0x3f;
   while (size_local != 0) {
     uVar2 = curBufferPos + 1;
     puVar1 = data_local + 1;
     p->buffer[curBufferPos] = *data_local;
-    uVar3 = *(uint *)&p->count;
+    uVar3 = (uint)p->count;
     iVar4 = *(int *)((int)&p->count + 4);
     *(uint *)&p->count = uVar3 + 1;
     *(uint *)((int)&p->count + 4) = iVar4 + (uint)(0xfffffffe < uVar3);

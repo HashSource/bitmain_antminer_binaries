@@ -1,8 +1,8 @@
 
-void cgtime(undefined4 param_1)
+void cgtime(timeval *param_1)
 
 {
-  (*(code *)PTR_gettimeofday_0007cf0c)(param_1,0);
+  gettimeofday(param_1,(__timezone_ptr_t)0x0);
   return;
 }
 

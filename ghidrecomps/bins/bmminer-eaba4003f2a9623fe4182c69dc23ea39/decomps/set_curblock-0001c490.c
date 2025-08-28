@@ -13,7 +13,7 @@ void set_curblock(char *hexstr,uchar *bedata)
   _cg_memcpy(current_block,bedata,0x20,"cgminer.c","set_curblock",0x1532);
   get_timestamp(blocktime,0x20,&block_timeval);
   _cg_wunlock(&ch_lock,"cgminer.c","set_curblock",0x1534);
-  for (ofs = 0; (ofs < 0x39 && (current_hash[ofs] == (char)DAT_0007313c)); ofs = ofs + 1) {
+  for (ofs = 0; (ofs < 0x39 && (current_hash[ofs] == '0')); ofs = ofs + 1) {
   }
   strncpy(prev_block,current_hash + ofs,8);
   prev_block[8] = '\0';

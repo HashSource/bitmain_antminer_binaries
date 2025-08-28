@@ -1,5 +1,5 @@
 
-undefined4 write_data_into_pic_flash(undefined param_1)
+undefined4 write_data_into_pic_flash(undefined1 param_1)
 
 {
   send_pic_command(param_1);

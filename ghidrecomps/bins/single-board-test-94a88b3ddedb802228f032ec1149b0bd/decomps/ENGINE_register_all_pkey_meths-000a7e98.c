@@ -11,7 +11,7 @@ void ENGINE_register_all_pkey_meths(void)
   for (e = ENGINE_get_first(); e != (ENGINE *)0x0; e = ENGINE_get_next(e)) {
     if ((*(code **)(e + 0x2c) != (code *)0x0) &&
        (iVar1 = (**(code **)(e + 0x2c))(e,0,&local_14,0), 0 < iVar1)) {
-      engine_table_register(DAT_000a7edc,DAT_000a7ed8,e,local_14,iVar1,0);
+      engine_table_register(&pkey_meth_table,0xa7e45,e,local_14,iVar1,0);
     }
   }
   return;

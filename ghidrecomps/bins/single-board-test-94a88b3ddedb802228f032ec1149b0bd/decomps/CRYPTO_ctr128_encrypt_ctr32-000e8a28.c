@@ -47,14 +47,7 @@ void CRYPTO_ctr128_encrypt_ctr32
   for (; 0xf < param_3; param_3 = param_3 + uVar8 * -0x10) {
     uVar8 = param_3 >> 4;
     uVar11 = uVar8 + uVar2;
-    if (CARRY4(uVar8,uVar2) == false) {
-      (*param_8)(pbVar3,pbVar4,uVar8,param_4,param_5);
-      param_5[0xf] = (char)uVar11;
-      param_5[0xc] = (char)(uVar11 >> 0x18);
-      param_5[0xd] = (char)(uVar11 >> 0x10);
-      param_5[0xe] = (char)(uVar11 >> 8);
-    }
-    else {
+    if (CARRY4(uVar8,uVar2)) {
       uVar8 = -uVar2;
       (*param_8)(pbVar3,pbVar4,uVar8,param_4,param_5);
       cVar1 = param_5[0xb];
@@ -112,6 +105,13 @@ LAB_000e8bc0:
         uVar11 = 0;
       }
     }
+    else {
+      (*param_8)(pbVar3,pbVar4,uVar8,param_4,param_5);
+      param_5[0xf] = (char)uVar11;
+      param_5[0xc] = (char)(uVar11 >> 0x18);
+      param_5[0xd] = (char)(uVar11 >> 0x10);
+      param_5[0xe] = (char)(uVar11 >> 8);
+    }
 LAB_000e8b64:
     pbVar4 = pbVar4 + uVar8 * 0x10;
     pbVar3 = pbVar3 + uVar8 * 0x10;
@@ -141,11 +141,11 @@ LAB_000e8b64:
   }
   pbVar7 = pbVar4 + uVar10;
   pbVar9 = pbVar3 + uVar10;
+  uVar8 = param_3 >> 2;
   pbVar12 = (byte *)((int)param_6 + uVar10);
-  uVar8 = param_3 & 0xfffffffc;
   iVar5 = param_3 - 1;
   uVar2 = uVar10;
-  if (param_3 >> 2 == 0 ||
+  if (uVar8 == 0 ||
       ((((uint)pbVar9 | (uint)pbVar7 | (uint)pbVar12) & 3) != 0 ||
       (param_3 < 4 ||
       (pbVar7 < pbVar12 + 4 && pbVar12 < pbVar7 + 4 || pbVar7 < pbVar9 + 4 && pbVar9 < pbVar7 + 4)))
@@ -164,10 +164,10 @@ LAB_000e8cfe:
       uVar2 = uVar2 + 1;
       *(uint *)(pbVar7 + iVar6) = *(uint *)(pbVar12 + iVar6) ^ *(uint *)(pbVar9 + iVar6);
       iVar6 = iVar6 + 4;
-    } while (uVar2 < param_3 >> 2);
-    iVar5 = iVar5 - uVar8;
-    uVar2 = uVar8 + uVar10;
-    if (param_3 != uVar8) goto LAB_000e8cfe;
+    } while (uVar2 < uVar8);
+    iVar5 = iVar5 + uVar8 * -4;
+    uVar2 = uVar8 * 4 + uVar10;
+    if (param_3 != uVar8 * 4) goto LAB_000e8cfe;
   }
   uVar10 = uVar10 + param_3;
 LAB_000e8bac:

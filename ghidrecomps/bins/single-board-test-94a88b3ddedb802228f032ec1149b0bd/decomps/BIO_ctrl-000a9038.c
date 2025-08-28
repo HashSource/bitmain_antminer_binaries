@@ -11,7 +11,7 @@ long BIO_ctrl(BIO *bp,int cmd,long larg,void *parg)
   if (bp != (BIO *)0x0) {
     if ((bp->method == (BIO_METHOD *)0x0) || (p_Var4 = bp->method->ctrl, p_Var4 == (_func_741 *)0x0)
        ) {
-      ERR_put_error(0x20,0x67,0x79,DAT_000a90a8,0x15d);
+      ERR_put_error(0x20,0x67,0x79,"bio_lib.c",0x15d);
       pBVar1 = (BIO *)0xfffffffe;
     }
     else {

@@ -32,7 +32,7 @@ int RSA_verify_PKCS1_PSS_mgf1
     if (sLen != -1) {
       sVar2 = sLen;
       if ((sLen != -2) && (sLen + 2 < 0 != SCARRY4(sLen,2))) {
-        ERR_put_error(4,0x95,0x88,DAT_0012532c,0x6f);
+        ERR_put_error(4,0x95,0x88,"rsa_pss.c",0x6f);
         goto LAB_0012504e;
       }
     }
@@ -48,7 +48,7 @@ int RSA_verify_PKCS1_PSS_mgf1
       if ((int)(cnt + sLen + 1) < iVar4) {
         if (EM[iVar4 + -1] == 0xbc) {
           num = (iVar4 - cnt) - 1;
-          mask = (uint *)CRYPTO_malloc(num,DAT_0012532c,0x87);
+          mask = (uint *)CRYPTO_malloc(num,"rsa_pss.c",0x87);
           if (mask != (uint *)0x0) {
             iVar3 = PKCS1_MGF1((uchar *)mask,num,EM + num,cnt,mgf1Hash);
             if (iVar3 < 0) {
@@ -58,7 +58,7 @@ LAB_0012527c:
             else {
               if (0 < (int)num) {
                 uVar8 = num >> 2;
-                uVar9 = num & 0xfffffffc;
+                uVar9 = uVar8 << 2;
                 if (uVar8 == 0 ||
                     ((((uint)mask | (uint)EM) & 3) != 0 ||
                     (num < 4 || mask < EM + 4 && EM < mask + 1))) {
@@ -108,10 +108,10 @@ LAB_0012527c:
               }
 LAB_00125212:
               if (uVar12 == 0) {
-                uVar12 = (uint)*(byte *)mask;
+                uVar12 = (uint)(byte)*mask;
               }
               else {
-                uVar12 = (uint)*(byte *)mask & 0xff >> (8 - uVar12 & 0xff);
+                uVar12 = (uint)(byte)*mask & 0xff >> (8 - uVar12 & 0xff);
                 *(byte *)mask = (byte)uVar12;
               }
               if (uVar12 == 0) {
@@ -138,7 +138,7 @@ LAB_0012524a:
                   if ((sLen < 0) || (num - uVar8 == sLen)) {
                     iVar3 = EVP_DigestInit_ex(&EStack_80,Hash,(ENGINE *)0x0);
                     if ((((iVar3 == 0) ||
-                         ((iVar3 = EVP_DigestUpdate(&EStack_80,DAT_00125330,8), iVar3 == 0 ||
+                         ((iVar3 = EVP_DigestUpdate(&EStack_80,&zeroes,8), iVar3 == 0 ||
                           (iVar3 = EVP_DigestUpdate(&EStack_80,mHash,cnt), iVar3 == 0)))) ||
                         ((num != uVar8 &&
                          (iVar3 = EVP_DigestUpdate(&EStack_80,(byte *)((int)mask + uVar8),
@@ -150,36 +150,36 @@ LAB_0012524a:
                       iVar3 = 1;
                     }
                     else {
-                      ERR_put_error(4,0x95,0x68,DAT_0012532c,0xa6);
+                      ERR_put_error(4,0x95,0x68,"rsa_pss.c",0xa6);
                       iVar3 = 0;
                     }
                   }
                   else {
                     iVar3 = 0;
-                    ERR_put_error(4,0x95,0x88,DAT_0012532c,0x98);
+                    ERR_put_error(4,0x95,0x88,"rsa_pss.c",0x98);
                   }
                   goto LAB_0012526e;
                 }
               }
-              ERR_put_error(4,0x95,0x87,DAT_0012532c,0x94);
+              ERR_put_error(4,0x95,0x87,"rsa_pss.c",0x94);
               iVar3 = 0;
             }
 LAB_0012526e:
             CRYPTO_free(mask);
             goto LAB_00125050;
           }
-          ERR_put_error(4,0x95,0x41,DAT_0012532c,0x89);
+          ERR_put_error(4,0x95,0x41,"rsa_pss.c",0x89);
         }
         else {
-          ERR_put_error(4,0x95,0x86,DAT_0012532c,0x82);
+          ERR_put_error(4,0x95,0x86,"rsa_pss.c",0x82);
         }
       }
       else {
-        ERR_put_error(4,0x95,0x6d,DAT_0012532c,0x7e);
+        ERR_put_error(4,0x95,0x6d,"rsa_pss.c",0x7e);
       }
     }
     else {
-      ERR_put_error(4,0x95,0x85,DAT_0012532c,0x76);
+      ERR_put_error(4,0x95,0x85,"rsa_pss.c",0x76);
     }
   }
 LAB_0012504e:

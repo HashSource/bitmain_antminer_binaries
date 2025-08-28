@@ -4,20 +4,19 @@ int get_macBytes(char *device,uchar *mac)
 {
   int iVar1;
   int iVar2;
-  int i;
   ifreq ifreq;
   
   iVar1 = socket(2,1,0);
   if (iVar1 < 0) {
-    perror(DAT_0002ab80);
+    perror("error sock");
     iVar1 = 2;
   }
   else {
-    ifreq.ifr_ifrn._0_4_ = *DAT_0002ab7c;
-    ifreq.ifr_ifrn.ifrn_name[4] = (char)DAT_0002ab7c[1];
+    ifreq.ifr_ifrn._0_4_ = 0x30687465;
+    ifreq.ifr_ifrn.ifrn_name[4] = '\0';
     iVar2 = ioctl(iVar1,0x8927,&ifreq);
     if (iVar2 < 0) {
-      perror(DAT_0002ab84);
+      perror("error ioctl");
       close(iVar1);
       iVar1 = 3;
     }

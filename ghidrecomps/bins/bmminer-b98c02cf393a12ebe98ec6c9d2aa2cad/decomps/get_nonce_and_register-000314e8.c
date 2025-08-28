@@ -9,7 +9,7 @@ void get_nonce_and_register(void)
   uint uVar4;
   int iVar5;
   int iVar6;
-  undefined *puVar7;
+  undefined1 *puVar7;
   int iVar8;
   uint uVar9;
   uint local_830;
@@ -28,7 +28,7 @@ void get_nonce_and_register(void)
     } while (uVar1 == 0);
     if ((opt_debug != '\0') &&
        (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
-      snprintf(acStack_828,0x800,"%s: read_loop = %d\n",DAT_00031774,uVar1);
+      snprintf(acStack_828,0x800,"%s: read_loop = %d\n","get_nonce_and_register",uVar1);
       _applog(7,acStack_828,0);
     }
     uVar9 = 0;
@@ -36,14 +36,14 @@ void get_nonce_and_register(void)
       get_return_nonce(&local_830);
       if ((int)local_830 < 0) {
         if ((gBegin_get_nonce != '\0') && ((int)(local_830 << 0x18) < 0)) {
-          pthread_mutex_lock(DAT_00031778);
+          pthread_mutex_lock((pthread_mutex_t *)nonce_mutex);
           iVar6 = nonce2_jobid_address;
           iVar8 = 0;
           uVar4 = (local_830 << 1) >> 0x11;
           *(uint *)(nonce_read_out + nonce_read_out._0_4_ * 0x3c + 0x10) = uVar4;
           iVar5 = uVar4 * 0x40;
           iVar2 = iVar6 + iVar5;
-          puVar7 = (undefined *)(iVar2 + 0x1f);
+          puVar7 = (undefined1 *)(iVar2 + 0x1f);
           *(undefined4 *)(nonce_read_out + nonce_read_out._0_4_ * 0x3c + 0x20) = local_82c;
           *(uint *)(nonce_read_out + nonce_read_out._0_4_ * 0x3c + 0x24) = local_830 & 0xf;
           *(undefined4 *)(nonce_read_out + nonce_read_out._0_4_ * 0x3c + 0xc) =
@@ -72,15 +72,15 @@ void get_nonce_and_register(void)
           else {
             nonce_read_out._8_4_ = 0x1ff;
           }
-          pthread_mutex_unlock(DAT_00031778);
+          pthread_mutex_unlock((pthread_mutex_t *)nonce_mutex);
         }
       }
       else {
         if ((test_show_register != '\0') && (3 < log_level)) {
-          __stream = fopen(log_file,(char *)&DAT_0005e760);
+          __stream = fopen(log_file,"a+");
           if (__stream != (FILE *)0x0) {
             fprintf(__stream,"%s:%d:%s: FPGA recv : buf[0]=0x%08x buf[1]=0x%08x\n","driver-btm-c5.c"
-                    ,0x2dd6,DAT_00031774,local_830,local_82c);
+                    ,0x2dd6,"get_nonce_and_register",local_830,local_82c);
           }
           fclose(__stream);
         }

@@ -9,13 +9,13 @@ int general_allocate_string
   int iVar2;
   
   if (param_2 == 0) {
-    ERR_put_error(0x28,0x6d,0x43,DAT_000d4358,0x8f);
+    ERR_put_error(0x28,0x6d,0x43,"ui_lib.c",0x8f);
   }
   else if ((param_4 - 1U < 3) && (param_6 == 0)) {
-    ERR_put_error(0x28,0x6d,0x69,DAT_000d4358,0x92);
+    ERR_put_error(0x28,0x6d,0x69,"ui_lib.c",0x92);
   }
   else {
-    ptr = (int *)CRYPTO_malloc(0x20,DAT_000d4358,0x93);
+    ptr = (int *)CRYPTO_malloc(0x20,"ui_lib.c",0x93);
     if (ptr != (int *)0x0) {
       iVar2 = *(int *)(param_1 + 4);
       if (param_3 != 0) {

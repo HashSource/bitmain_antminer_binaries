@@ -7,7 +7,7 @@ int UI_set_result(UI *ui,UI_STRING *uis,char *result)
   char *pcVar3;
   uint uVar4;
   char *__s;
-  char *pcVar5;
+  char *__s_00;
   int line;
   char acStack_38 [16];
   char acStack_28 [16];
@@ -22,9 +22,8 @@ LAB_000d4eea:
     uVar4 = *(uint *)uis;
     if (uVar4 != 0) {
       if (uVar4 < 3) {
-        BIO_snprintf(acStack_38,0xd,DAT_000d4f18,*(undefined4 *)(uis + 0x10));
-        BIO_snprintf(acStack_28,0xd,DAT_000d4f18,*(undefined4 *)(uis + 0x14));
-        pcVar5 = DAT_000d4f1c;
+        BIO_snprintf(acStack_38,0xd,"%d",*(undefined4 *)(uis + 0x10));
+        BIO_snprintf(acStack_28,0xd,"%d",*(undefined4 *)(uis + 0x14));
         if ((int)sVar1 < *(int *)(uis + 0x10)) {
           iVar2 = 0x65;
           uVar4 = *(uint *)(ui + 0x14);
@@ -42,27 +41,27 @@ LAB_000d4eea:
           iVar2 = 100;
         }
         *(uint *)(ui + 0x14) = uVar4 | 1;
-        ERR_put_error(0x28,0x69,iVar2,pcVar5,line);
-        ERR_add_error_data(5,DAT_000d4f24,acStack_38,DAT_000d4f28,acStack_28,DAT_000d4f20);
+        ERR_put_error(0x28,0x69,iVar2,"ui_lib.c",line);
+        ERR_add_error_data(5,"You must type in ",acStack_38,&DAT_0016973c,acStack_28," characters");
         goto LAB_000d4eea;
       }
       if (uVar4 == 3) {
-        if (*(undefined **)(uis + 0xc) == (undefined *)0x0) {
+        if (*(undefined1 **)(uis + 0xc) == (undefined1 *)0x0) {
           iVar2 = 0x352;
 LAB_000d4f08:
-          ERR_put_error(0x28,0x69,0x69,DAT_000d4f1c,iVar2);
+          ERR_put_error(0x28,0x69,0x69,"ui_lib.c",iVar2);
           goto LAB_000d4eea;
         }
-        **(undefined **)(uis + 0xc) = 0;
+        **(undefined1 **)(uis + 0xc) = 0;
         uVar4 = (uint)(byte)*result;
         if (uVar4 == 0) {
           return 0;
         }
-        pcVar5 = *(char **)(uis + 0x14);
+        __s_00 = *(char **)(uis + 0x14);
         do {
-          pcVar3 = strchr(pcVar5,uVar4);
+          pcVar3 = strchr(__s_00,uVar4);
           if (pcVar3 != (char *)0x0) {
-            **(char **)(uis + 0xc) = *pcVar5;
+            **(char **)(uis + 0xc) = *__s_00;
             return 0;
           }
           __s = *(char **)(uis + 0x18);

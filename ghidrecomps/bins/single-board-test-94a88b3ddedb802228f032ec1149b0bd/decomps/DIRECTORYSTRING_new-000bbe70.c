@@ -6,7 +6,7 @@ ASN1_STRING * DIRECTORYSTRING_new(void)
 {
   ASN1_STRING *pAVar1;
   
-  pAVar1 = (ASN1_STRING *)ASN1_item_new(DAT_000bbe78);
+  pAVar1 = (ASN1_STRING *)ASN1_item_new((ASN1_ITEM *)DIRECTORYSTRING_it);
   return pAVar1;
 }
 

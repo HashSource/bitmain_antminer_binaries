@@ -2,7 +2,7 @@
 _Bool freq_tuning_check_if_test_done(freq_tuning_info *freq_info)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   bool bVar2;
   freq_tuning_info *freq_info_local;
   int chain;
@@ -21,7 +21,7 @@ _Bool freq_tuning_check_if_test_done(freq_tuning_info *freq_info)
   if (bVar2) {
     chain_num = 1;
   }
-  uVar1 = (undefined)chain_num;
+  uVar1 = (undefined1)chain_num;
   if (!bVar2) {
     uVar1 = 0;
   }

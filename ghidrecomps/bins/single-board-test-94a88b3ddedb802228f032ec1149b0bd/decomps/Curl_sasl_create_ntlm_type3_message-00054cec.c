@@ -1,5 +1,4 @@
 
-/* WARNING: Heritage AFTER dead removal. Example location: s0xfffff78c : 0x00054f14 */
 /* WARNING: Restarted to delay deadcode elimination for space: stack */
 
 int Curl_sasl_create_ntlm_type3_message
@@ -30,7 +29,7 @@ int Curl_sasl_create_ntlm_type3_message
   undefined4 *local_890;
   undefined4 local_88c;
   undefined4 local_888;
-  undefined auStack_884 [16];
+  undefined1 auStack_884 [16];
   undefined4 local_874;
   undefined4 uStack_870;
   int local_86c;
@@ -39,20 +38,22 @@ int Curl_sasl_create_ntlm_type3_message
   int local_860;
   undefined4 local_85c;
   undefined4 local_858;
-  undefined auStack_844 [24];
+  undefined1 auStack_844 [24];
   int local_82c [255];
   char cStack_42d;
-  undefined4 local_42c;
-  undefined auStack_428 [1028];
+  char local_42c [1032];
   
   uVar9 = *(uint *)(param_4 + 4);
   local_890 = (undefined4 *)0x0;
-  local_42c = 0;
+  local_42c[0] = '\0';
+  local_42c[1] = '\0';
+  local_42c[2] = '\0';
+  local_42c[3] = '\0';
   local_894 = 0x18;
-  memset(auStack_428,0,0x3fd);
+  memset(local_42c + 4,0,0x3fd);
   pcVar2 = strchr(param_2,0x5c);
   if ((pcVar2 == (char *)0x0) && (pcVar2 = strchr(param_2,0x2f), pcVar2 == (char *)0x0)) {
-    local_8a4 = DAT_0005511c;
+    local_8a4 = "";
     __n = 0;
     pcVar2 = param_2;
   }
@@ -65,12 +66,12 @@ int Curl_sasl_create_ntlm_type3_message
   if (pcVar2 != (char *)0x0) {
     pcVar3 = (char *)strlen(pcVar2);
   }
-  iVar4 = Curl_gethostname(&local_42c,0x401);
+  iVar4 = Curl_gethostname(local_42c,0x401);
   if (iVar4 == 0) {
-    local_8b0 = strlen((char *)&local_42c);
+    local_8b0 = strlen(local_42c);
   }
   else {
-    Curl_infof(param_1,DAT_00055118);
+    Curl_infof(param_1,"gethostname() failed, continuing without!\n");
     local_8b0 = 0;
   }
   iVar4 = *(int *)(param_4 + 0x14);
@@ -151,7 +152,7 @@ int Curl_sasl_create_ntlm_type3_message
   uVar7 = (__n << 0x10) >> 0x18;
   uVar11 = (uint)((int)pcVar3 << 0x10) >> 0x18;
   uVar8 = (local_8b0 << 0x10) >> 0x18;
-  uVar6 = curl_msnprintf(local_82c,0x400,DAT_00055110,0,0,0,0,0x18,0,0x18,0,0x40,0,0,0,
+  uVar6 = curl_msnprintf(local_82c,0x400,&DAT_0013a5cc,0,0,0,0,0x18,0,0x18,0,0x40,0,0,0,
                          local_894 & 0xff,uVar10,local_894 & 0xff,uVar10,0x58,0,0,0,__n & 0xff,uVar7
                          ,__n & 0xff,uVar7,uVar6 & 0xff,uVar6 * 0x10000 >> 0x18,0,0,
                          (uint)pcVar3 & 0xff,uVar11,(uint)pcVar3 & 0xff,uVar11,uVar5 & 0xff,
@@ -175,18 +176,18 @@ int Curl_sasl_create_ntlm_type3_message
     uVar5 = uVar5 + local_894;
     memcpy(__dest,local_89c,local_894);
   }
-  (**DAT_00055114)(local_890);
+  (*Curl_cfree)(local_890);
   if (pcVar3 + uVar5 + __n + local_8b0 < (char *)0x400) {
     if (uVar9 == 0) {
       memcpy((void *)((int)local_82c + uVar5),local_8a4,__n);
       pcVar12 = pcVar3 + uVar5 + __n;
       memcpy((void *)((int)local_82c + uVar5 + __n),pcVar2,(size_t)pcVar3);
-      memcpy((char *)((int)local_82c + (int)pcVar12),&local_42c,local_8b0);
+      memcpy((char *)((int)local_82c + (int)pcVar12),local_42c,local_8b0);
     }
     else {
       pcVar12 = (char *)((int)local_82c + uVar5);
       if (__n >> 1 != 0) {
-        pcVar13 = pcVar12 + (__n & 0xfffffffe);
+        pcVar13 = pcVar12 + (__n >> 1) * 2;
         local_8a4 = local_8a4 + -1;
         do {
           local_8a4 = local_8a4 + 1;
@@ -198,7 +199,7 @@ int Curl_sasl_create_ntlm_type3_message
       }
       pcVar12 = (char *)((int)local_82c + uVar5 + __n);
       if ((uint)pcVar3 >> 1 != 0) {
-        pcVar13 = pcVar12 + ((uint)pcVar3 & 0xfffffffe);
+        pcVar13 = pcVar12 + ((uint)pcVar3 >> 1) * 2;
         pcVar2 = pcVar2 + -1;
         do {
           pcVar2 = pcVar2 + 1;
@@ -212,7 +213,7 @@ int Curl_sasl_create_ntlm_type3_message
       pcVar2 = (char *)((int)local_82c + (int)pcVar12);
       if (local_8b0 >> 1 != 0) {
         pcVar3 = &cStack_42d;
-        pcVar13 = pcVar2 + (local_8b0 & 0xfffffffe);
+        pcVar13 = pcVar2 + (local_8b0 >> 1) * 2;
         do {
           pcVar3 = pcVar3 + 1;
           cVar1 = *pcVar3;
@@ -226,7 +227,7 @@ int Curl_sasl_create_ntlm_type3_message
     Curl_sasl_ntlm_cleanup(param_4);
   }
   else {
-    Curl_failf(param_1,DAT_00055120);
+    Curl_failf(param_1,"user + domain + host name too big");
     iVar4 = 0x1b;
   }
   return iVar4;

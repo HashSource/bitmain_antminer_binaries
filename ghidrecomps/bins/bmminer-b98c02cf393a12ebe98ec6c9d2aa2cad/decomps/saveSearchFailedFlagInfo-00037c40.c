@@ -14,7 +14,7 @@ void saveSearchFailedFlagInfo(char *param_1)
   system("cp /tmp/search /tmp/err1.log -f");
   system("cp /tmp/freq /tmp/err2.log -f");
   system("cp /tmp/lasttemp /tmp/err3.log -f");
-  (*(code *)PTR_system_0007cf40)(&DAT_00061fc4);
+  system("sync");
   return;
 }
 

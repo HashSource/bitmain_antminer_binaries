@@ -6,7 +6,7 @@ int getsockname(int __fd,sockaddr *__addr,socklen_t *__len)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_getsockname_00194154)();
+  iVar1 = getsockname(__fd,__addr,__len);
   return iVar1;
 }
 

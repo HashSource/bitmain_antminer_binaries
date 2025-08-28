@@ -8,7 +8,7 @@ void json_array_string(void)
   if (iVar1 == 0) {
     return;
   }
-  (*(code *)PTR___strdup_0007cfa4)();
+  __strdup();
   return;
 }
 

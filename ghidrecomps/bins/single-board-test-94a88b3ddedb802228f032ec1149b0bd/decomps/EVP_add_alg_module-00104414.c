@@ -4,7 +4,7 @@
 void EVP_add_alg_module(void)
 
 {
-  CONF_module_add("alg_section",alg_module_init + 1,(undefined1 *)0x0);
+  CONF_module_add("alg_section",(undefined1 *)0x104355,(undefined1 *)0x0);
   return;
 }
 

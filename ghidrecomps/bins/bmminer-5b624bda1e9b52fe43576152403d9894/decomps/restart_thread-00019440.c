@@ -5,27 +5,24 @@ void * restart_thread(void *userdata)
 
 {
   int iVar1;
-  char *in_r2;
-  int in_r3;
+  char *func;
+  char *func_00;
+  int line;
+  int line_00;
   char tmp42 [2048];
   
-  iVar1 = pthread_mutex_lock(DAT_000194bc);
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&quit_restart_lock);
   if (iVar1 != 0) {
-    _mutex_lock(DAT_000194d8,(char *)0x1363,in_r2,in_r3);
+    _mutex_lock((pthread_mutex_t *)"restart_thread",(char *)0x1363,func,line);
   }
-  iVar1 = pthread_mutex_unlock(DAT_000194bc);
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&quit_restart_lock);
   if (iVar1 != 0) {
-    _mutex_unlock_noyield(DAT_000194d8,(char *)0x1364,in_r2,in_r3);
+    _mutex_unlock_noyield((pthread_mutex_t *)"restart_thread",(char *)0x1364,func_00,line_00);
   }
-  (**DAT_000194c0)();
-  if ((*DAT_000194c4 != '\0') &&
-     (((*DAT_000194c8 != '\0' || (*DAT_000194cc != '\0')) || (6 < *DAT_000194d4)))) {
-    tmp42._0_4_ = *DAT_000194d0;
-    tmp42._4_4_ = DAT_000194d0[1];
-    tmp42._8_4_ = DAT_000194d0[2];
-    tmp42._12_4_ = DAT_000194d0[3];
-    tmp42._16_4_ = DAT_000194d0[4];
-    tmp42._20_4_ = DAT_000194d0[5];
+  (*selective_yield)();
+  if ((opt_debug != false) &&
+     (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+    builtin_strncpy(tmp42,"API: restarting bmminer",0x18);
     _applog(7,tmp42,false);
   }
   app_restart();

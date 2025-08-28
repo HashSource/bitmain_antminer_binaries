@@ -2,16 +2,14 @@
 uchar * HMAC(EVP_MD *evp_md,void *key,int key_len,uchar *d,size_t n,uchar *md,uint *md_len)
 
 {
-  uchar *puVar1;
-  int iVar2;
+  int iVar1;
   size_t local_134;
   uchar auStack_130 [64];
   HMAC_CTX local_f0;
   
-  puVar1 = DAT_000977a4;
   EVP_MD_CTX_init(&local_f0.i_ctx);
   if (md == (uchar *)0x0) {
-    md = puVar1;
+    md = &m_10682;
   }
   EVP_MD_CTX_init(&local_f0.o_ctx);
   EVP_MD_CTX_init(&local_f0.md_ctx);
@@ -22,14 +20,14 @@ uchar * HMAC(EVP_MD *evp_md,void *key,int key_len,uchar *d,size_t n,uchar *md,ui
     EVP_MD_CTX_init(&local_f0.md_ctx);
   }
   local_f0.md = (EVP_MD *)0x0;
-  iVar2 = HMAC_Init_ex(&local_f0,key,key_len,evp_md,(ENGINE *)0x0);
-  if (((((iVar2 == 0) || (local_f0.md == (EVP_MD *)0x0)) ||
-       (iVar2 = EVP_DigestUpdate(&local_f0.md_ctx,d,n), iVar2 == 0)) ||
+  iVar1 = HMAC_Init_ex(&local_f0,key,key_len,evp_md,(ENGINE *)0x0);
+  if (((((iVar1 == 0) || (local_f0.md == (EVP_MD *)0x0)) ||
+       (iVar1 = EVP_DigestUpdate(&local_f0.md_ctx,d,n), iVar1 == 0)) ||
       ((local_f0.md == (EVP_MD *)0x0 ||
-       (iVar2 = EVP_DigestFinal_ex(&local_f0.md_ctx,auStack_130,&local_134), iVar2 == 0)))) ||
-     ((iVar2 = EVP_MD_CTX_copy_ex(&local_f0.md_ctx,&local_f0.o_ctx), iVar2 == 0 ||
-      ((iVar2 = EVP_DigestUpdate(&local_f0.md_ctx,auStack_130,local_134), iVar2 == 0 ||
-       (iVar2 = EVP_DigestFinal_ex(&local_f0.md_ctx,md,md_len), iVar2 == 0)))))) {
+       (iVar1 = EVP_DigestFinal_ex(&local_f0.md_ctx,auStack_130,&local_134), iVar1 == 0)))) ||
+     ((iVar1 = EVP_MD_CTX_copy_ex(&local_f0.md_ctx,&local_f0.o_ctx), iVar1 == 0 ||
+      ((iVar1 = EVP_DigestUpdate(&local_f0.md_ctx,auStack_130,local_134), iVar1 == 0 ||
+       (iVar1 = EVP_DigestFinal_ex(&local_f0.md_ctx,md,md_len), iVar1 == 0)))))) {
     md = (uchar *)0x0;
     EVP_MD_CTX_cleanup(&local_f0.i_ctx);
     EVP_MD_CTX_cleanup(&local_f0.o_ctx);

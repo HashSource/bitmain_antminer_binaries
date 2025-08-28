@@ -2,47 +2,47 @@
 CMS_ContentInfo * CMS_EnvelopedData_create(EVP_CIPHER *cipher)
 
 {
-  ASN1_OBJECT **a;
+  CMS_ContentInfo *a;
   int iVar1;
-  ASN1_OBJECT *pAVar2;
+  ASN1_VALUE *pAVar2;
   ASN1_OBJECT *pAVar3;
-  ASN1_OBJECT **ppAVar4;
+  undefined4 *puVar4;
   
-  a = (ASN1_OBJECT **)CMS_ContentInfo_new();
-  if (a == (ASN1_OBJECT **)0x0) goto LAB_000d56a6;
-  if (a[1] == (ASN1_OBJECT *)0x0) {
-    pAVar2 = (ASN1_OBJECT *)ASN1_item_new(DAT_000d56fc);
-    a[1] = pAVar2;
-    if (pAVar2 != (ASN1_OBJECT *)0x0) {
-      ppAVar4 = (ASN1_OBJECT **)pAVar2->length;
-      pAVar2->sn = (char *)0x0;
-      pAVar2 = OBJ_nid2obj(0x15);
-      *ppAVar4 = pAVar2;
-      ASN1_OBJECT_free(*a);
-      pAVar2 = OBJ_nid2obj(0x17);
-      pAVar3 = a[1];
-      *a = pAVar2;
+  a = CMS_ContentInfo_new();
+  if (a == (CMS_ContentInfo *)0x0) goto LAB_000d56a6;
+  if (*(int *)(a + 4) == 0) {
+    pAVar2 = ASN1_item_new((ASN1_ITEM *)CMS_EnvelopedData_it);
+    *(ASN1_VALUE **)(a + 4) = pAVar2;
+    if (pAVar2 != (ASN1_VALUE *)0x0) {
+      puVar4 = *(undefined4 **)(pAVar2 + 0xc);
+      *(undefined4 *)pAVar2 = 0;
+      pAVar3 = OBJ_nid2obj(0x15);
+      *puVar4 = pAVar3;
+      ASN1_OBJECT_free(*(ASN1_OBJECT **)a);
+      pAVar3 = OBJ_nid2obj(0x17);
+      iVar1 = *(int *)(a + 4);
+      *(ASN1_OBJECT **)a = pAVar3;
       goto LAB_000d567a;
     }
-    ERR_put_error(0x2e,0x7e,0x41,DAT_000d56f8,0x5a);
+    ERR_put_error(0x2e,0x7e,0x41,"cms_env.c",0x5a);
   }
   else {
-    iVar1 = OBJ_obj2nid(*a);
+    iVar1 = OBJ_obj2nid(*(ASN1_OBJECT **)a);
     if (iVar1 == 0x17) {
-      pAVar3 = a[1];
+      iVar1 = *(int *)(a + 4);
 LAB_000d567a:
-      if ((pAVar3 != (ASN1_OBJECT *)0x0) &&
-         (iVar1 = cms_EncryptedContent_init(pAVar3->length,cipher,0,0), iVar1 != 0)) {
-        return (CMS_ContentInfo *)a;
+      if ((iVar1 != 0) &&
+         (iVar1 = cms_EncryptedContent_init(*(undefined4 *)(iVar1 + 0xc),cipher,0,0), iVar1 != 0)) {
+        return a;
       }
     }
     else {
-      ERR_put_error(0x2e,0x83,0x6b,DAT_000d56f8,0x4f);
+      ERR_put_error(0x2e,0x83,0x6b,"cms_env.c",0x4f);
     }
   }
-  CMS_ContentInfo_free((CMS_ContentInfo *)a);
+  CMS_ContentInfo_free(a);
 LAB_000d56a6:
-  ERR_put_error(0x2e,0x7c,0x41,DAT_000d56f8,0xad);
+  ERR_put_error(0x2e,0x7c,0x41,"cms_env.c",0xad);
   return (CMS_ContentInfo *)0x0;
 }
 

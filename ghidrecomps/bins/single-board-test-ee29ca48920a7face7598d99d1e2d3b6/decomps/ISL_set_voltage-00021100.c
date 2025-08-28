@@ -1,5 +1,5 @@
 
-ushort ISL_set_voltage(undefined param_1,undefined param_2,undefined param_3,undefined2 param_4)
+ushort ISL_set_voltage(undefined1 param_1,undefined1 param_2,undefined1 param_3,undefined2 param_4)
 
 {
   ushort local_14;

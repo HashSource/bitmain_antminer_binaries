@@ -1,5 +1,5 @@
 
-undefined4 opt_set_bool_arg(char *param_1,undefined *param_2)
+undefined4 opt_set_bool_arg(char *param_1,undefined1 *param_2)
 
 {
   int iVar1;
@@ -10,7 +10,7 @@ undefined4 opt_set_bool_arg(char *param_1,undefined *param_2)
     *param_2 = 1;
     return 0;
   }
-  iVar1 = strcasecmp(param_1,(char *)&DAT_000584ec);
+  iVar1 = strcasecmp(param_1,"no");
   if ((iVar1 != 0) && (iVar1 = strcasecmp(param_1,"false"), iVar1 != 0)) {
     uVar2 = opt_invalid_argument(param_1);
     return uVar2;

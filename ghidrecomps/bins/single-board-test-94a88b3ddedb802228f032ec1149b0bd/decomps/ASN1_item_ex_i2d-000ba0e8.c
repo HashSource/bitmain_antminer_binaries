@@ -23,7 +23,7 @@ int ASN1_item_ex_i2d(ASN1_VALUE **pval,uchar **out,ASN1_ITEM *it,int tag,int acl
   void *local_2c [2];
   
   pcVar5 = (code *)it->funcs;
-  if ((it->itype != '\0') && (*pval == (ASN1_VALUE *)0x0)) goto switchD_000ba10c_caseD_7;
+  if ((it->itype != '\0') && (*pval == (ASN1_VALUE *)0x0)) goto switchD_000ba10c_default;
   constructed = pcVar5;
   if (pcVar5 != (code *)0x0) {
     constructed = *(code **)(pcVar5 + 0x10);
@@ -85,7 +85,7 @@ int ASN1_item_ex_i2d(ASN1_VALUE **pval,uchar **out,ASN1_ITEM *it,int tag,int acl
     }
     else {
       p_Var7 = (_STACK *)*pval;
-      if (p_Var7 == (_STACK *)0x0) goto switchD_000ba10c_caseD_7;
+      if (p_Var7 == (_STACK *)0x0) goto switchD_000ba10c_default;
       if ((local_38 & 2) == 0) {
         local_3c = 0;
       }
@@ -163,7 +163,7 @@ int ASN1_item_ex_i2d(ASN1_VALUE **pval,uchar **out,ASN1_ITEM *it,int tag,int acl
       }
     }
   default:
-switchD_000ba10c_caseD_7:
+switchD_000ba10c_default:
     iVar6 = 0;
     break;
   case '\x03':
@@ -209,7 +209,7 @@ LAB_000ba158:
           do {
             iVar6 = iVar6 + 1;
             pAVar3 = asn1_do_adb(pval,pAVar9,1);
-            if (pAVar3 == (ASN1_TEMPLATE *)0x0) goto switchD_000ba10c_caseD_7;
+            if (pAVar3 == (ASN1_TEMPLATE *)0x0) goto switchD_000ba10c_default;
             ppAVar1 = asn1_get_field_ptr(pval,pAVar3);
             pAVar9 = pAVar9 + 1;
             iVar2 = asn1_template_ex_i2d_constprop_2(ppAVar1,0,pAVar3,aclass);
@@ -227,7 +227,7 @@ LAB_000ba158:
           do {
             iVar2 = iVar2 + 1;
             pAVar3 = asn1_do_adb(pval,pAVar9,1);
-            if (pAVar3 == (ASN1_TEMPLATE *)0x0) goto switchD_000ba10c_caseD_7;
+            if (pAVar3 == (ASN1_TEMPLATE *)0x0) goto switchD_000ba10c_default;
             ppAVar1 = asn1_get_field_ptr(pval,pAVar3);
             pAVar9 = pAVar9 + 1;
             asn1_template_ex_i2d_constprop_2(ppAVar1,out,pAVar3,aclass);
@@ -245,7 +245,7 @@ LAB_000ba158:
         }
       }
     }
-    goto switchD_000ba10c_caseD_7;
+    goto switchD_000ba10c_default;
   }
   return iVar6;
 }

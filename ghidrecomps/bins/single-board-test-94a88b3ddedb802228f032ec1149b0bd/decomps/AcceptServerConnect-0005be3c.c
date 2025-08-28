@@ -18,12 +18,12 @@ undefined4 AcceptServerConnect(int *param_1)
     iVar1 = accept(__fd,asStack_98,&local_9c);
     Curl_closesocket(param_1,__fd);
     if (iVar1 != -1) {
-      Curl_infof(iVar3,DAT_0005bed8);
-      *(undefined *)((int)param_1 + 0x1f5) = 0;
+      Curl_infof(iVar3,"Connection accepted from server\n");
+      *(undefined1 *)((int)param_1 + 0x1f5) = 0;
       param_1[0x56] = iVar1;
       curlx_nonblock(iVar1,1);
       pcVar2 = *(code **)(iVar3 + 0x1d0);
-      *(undefined *)((int)param_1 + 0x165) = 1;
+      *(undefined1 *)((int)param_1 + 0x165) = 1;
       if ((pcVar2 != (code *)0x0) &&
          (iVar1 = (*pcVar2)(*(undefined4 *)(iVar3 + 0x1d4),iVar1), iVar1 != 0)) {
         close_secondarysocket(param_1);
@@ -35,7 +35,7 @@ undefined4 AcceptServerConnect(int *param_1)
   else {
     Curl_closesocket(param_1,__fd);
   }
-  Curl_failf(iVar3,DAT_0005bed4);
+  Curl_failf(iVar3,"Error accept()ing server connect");
   return 0x1e;
 }
 

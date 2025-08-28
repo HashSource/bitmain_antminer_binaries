@@ -20,8 +20,9 @@ void set_sno(uint sno)
       buf[1] = '\t';
       buf[2] = '\0';
       buf[3] = '\x10';
-      buf._4_2_ = CONCAT11((uchar)(sno >> 0x10),(uchar)(sno >> 0x18));
-      buf._4_3_ = CONCAT12((uchar)(sno >> 8),buf._4_2_);
+      buf[5] = (uchar)(sno >> 0x10);
+      buf[4] = (uchar)(sno >> 0x18);
+      buf[6] = (uchar)(sno >> 8);
       buf[7] = (uchar)sno;
       buf[8] = CRC5(buf,'@');
       cmd_buf[0] = (uint)buf._0_4_ >> 0x18 |

@@ -22,12 +22,12 @@ void set_pic_iic_flash_addr_pointer(uint param_1,uint param_2,uint param_3)
       return;
     }
     if (3 < log_level) {
-      __stream = fopen(log_file,(char *)&DAT_0005e760);
+      __stream = fopen(log_file,"a+");
       if (__stream != (FILE *)0x0) {
         fprintf(__stream,
                 "%s:%d:%s: Error of set PIC FLASH addr: addr_H=%x(%x) addr_L=%x(%x) on Chain[%d]\n",
-                "driver-btm-c5.c",0x52e,DAT_0002ea08,param_2,(uint)local_2a,param_3,
-                (uint)local_29[0],param_1);
+                "driver-btm-c5.c",0x52e,"set_pic_iic_flash_addr_pointer",param_2,(uint)local_2a,
+                param_3,(uint)local_29[0],param_1);
       }
       fclose(__stream);
     }

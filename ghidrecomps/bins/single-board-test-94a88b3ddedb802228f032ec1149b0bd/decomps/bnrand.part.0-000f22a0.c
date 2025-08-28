@@ -13,8 +13,6 @@ BIGNUM * bnrand_part_0(int param_1,BIGNUM *param_2,int param_3,int param_4,int p
   size_t len;
   size_t sVar5;
   byte *pbVar6;
-  undefined4 in_stack_ffffffc8;
-  undefined4 in_stack_ffffffcc;
   byte local_30 [4];
   time_t atStack_2c [2];
   
@@ -23,13 +21,13 @@ BIGNUM * bnrand_part_0(int param_1,BIGNUM *param_2,int param_3,int param_4,int p
     iVar1 = param_3 + 7;
   }
   len = iVar1 >> 3;
-  buf = (byte *)CRYPTO_malloc(len,DAT_000f23f8,0x8a);
+  buf = (byte *)CRYPTO_malloc(len,"bn_rand.c",0x8a);
   if (buf == (byte *)0x0) {
-    ERR_put_error(3,0x7f,0x41,DAT_000f23f8,0x8c);
+    ERR_put_error(3,0x7f,0x41,"bn_rand.c",0x8c);
     return (BIGNUM *)0x0;
   }
   time(atStack_2c);
-  RAND_add(atStack_2c,4,(double)CONCAT44(in_stack_ffffffcc,in_stack_ffffffc8));
+  RAND_add(atStack_2c,4,0.0);
   if (param_1 == 0) {
     iVar1 = RAND_bytes(buf,len);
     pBVar2 = (BIGNUM *)0x0;

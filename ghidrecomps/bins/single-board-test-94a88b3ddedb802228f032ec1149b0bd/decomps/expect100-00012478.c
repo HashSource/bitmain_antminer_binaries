@@ -2,13 +2,13 @@
 int expect100(int param_1,int param_2,undefined4 param_3,undefined4 param_4)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   int iVar2;
   int iVar3;
   uint uVar4;
   
   iVar3 = 0;
-  *(undefined *)(param_1 + 0x867c) = 0;
+  *(undefined1 *)(param_1 + 0x867c) = 0;
   if (((*(int *)(param_1 + 0x8678) != 10) && (iVar2 = *(int *)(param_2 + 0x13c), iVar2 != 10)) &&
      ((uVar4 = *(uint *)(param_1 + 0x27c), uVar4 != 1 || (10 < iVar2)))) {
     if ((int)uVar4 < 2) {
@@ -24,17 +24,17 @@ int expect100(int param_1,int param_2,undefined4 param_3,undefined4 param_4)
       iVar3 = 0;
     }
     else {
-      iVar2 = Curl_checkheaders(param_2,DAT_000124f0,param_3,iVar2,param_4);
+      iVar2 = Curl_checkheaders(param_2,"Expect:",param_3,iVar2,param_4);
       if (iVar2 == 0) {
-        iVar3 = Curl_add_bufferf(param_3,DAT_000124f8);
+        iVar3 = Curl_add_bufferf(param_3,"Expect: 100-continue\r\n");
         if (iVar3 == 0) {
-          *(undefined *)(param_1 + 0x867c) = 1;
+          *(undefined1 *)(param_1 + 0x867c) = 1;
         }
       }
       else {
         iVar3 = 0;
-        uVar1 = Curl_compareheader(iVar2,DAT_000124f0,DAT_000124f4);
-        *(undefined *)(param_1 + 0x867c) = uVar1;
+        uVar1 = Curl_compareheader(iVar2,"Expect:","100-continue");
+        *(undefined1 *)(param_1 + 0x867c) = uVar1;
       }
     }
   }

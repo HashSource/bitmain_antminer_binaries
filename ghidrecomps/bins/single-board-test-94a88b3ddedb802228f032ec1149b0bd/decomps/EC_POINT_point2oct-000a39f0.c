@@ -8,7 +8,7 @@ size_t EC_POINT_point2oct(EC_GROUP *group,EC_POINT *p,point_conversion_form_t fo
   
   puVar2 = *(uint **)group;
   if (((code *)puVar2[0x14] == (code *)0x0) && ((*puVar2 & 1) == 0)) {
-    ERR_put_error(0x10,0x7b,0x42,DAT_000a3a74,0x8d);
+    ERR_put_error(0x10,0x7b,0x42,"ec_oct.c",0x8d);
     sVar1 = 0;
   }
   else if (puVar2 == *(uint **)p) {
@@ -23,7 +23,7 @@ size_t EC_POINT_point2oct(EC_GROUP *group,EC_POINT *p,point_conversion_form_t fo
     sVar1 = (*(code *)puVar2[0x14])();
   }
   else {
-    ERR_put_error(0x10,0x7b,0x65,DAT_000a3a74,0x91);
+    ERR_put_error(0x10,0x7b,0x65,"ec_oct.c",0x91);
     sVar1 = 0;
   }
   return sVar1;

@@ -2,8 +2,8 @@
 int read_uart_data_in_fpga(undefined4 param_1,int param_2,uint param_3)
 
 {
-  undefined uVar1;
-  undefined uVar2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   int iVar3;
   undefined4 local_24;
   undefined4 local_20;
@@ -36,21 +36,21 @@ int read_uart_data_in_fpga(undefined4 param_1,int param_2,uint param_3)
     local_18 = param_3 & 3;
     if (local_18 != 0) {
       fpga_read(local_20,&local_24);
-      uVar2 = (undefined)((uint)local_24 >> 0x10);
-      uVar1 = (undefined)((uint)local_24 >> 0x18);
+      uVar2 = (undefined1)((uint)local_24 >> 0x10);
+      uVar1 = (undefined1)((uint)local_24 >> 0x18);
       if (local_18 == 2) {
-        *(undefined *)(param_2 + local_c * 4) = uVar1;
-        *(undefined *)(param_2 + local_c * 4 + 1) = uVar2;
+        *(undefined1 *)(param_2 + local_c * 4) = uVar1;
+        *(undefined1 *)(param_2 + local_c * 4 + 1) = uVar2;
         local_10 = local_10 + 2;
       }
       else if (local_18 == 3) {
-        *(undefined *)(param_2 + local_c * 4) = uVar1;
-        *(undefined *)(param_2 + local_c * 4 + 1) = uVar2;
+        *(undefined1 *)(param_2 + local_c * 4) = uVar1;
+        *(undefined1 *)(param_2 + local_c * 4 + 1) = uVar2;
         *(char *)(param_2 + local_c * 4 + 2) = (char)((uint)local_24 >> 8);
         local_10 = local_10 + 3;
       }
       else if (local_18 == 1) {
-        *(undefined *)(param_2 + local_c * 4) = uVar1;
+        *(undefined1 *)(param_2 + local_c * 4) = uVar1;
         local_10 = local_10 + 1;
       }
       else {

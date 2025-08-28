@@ -25,8 +25,8 @@ int ECPKParameters_print(BIO *bp,EC_GROUP *x,int off)
   BIGNUM *local_c8;
   size_t local_c0;
   size_t local_b0;
-  undefined local_a8;
-  undefined auStack_a7 [131];
+  undefined1 local_a8;
+  undefined1 auStack_a7 [131];
   
   if (x == (EC_GROUP *)0x0) {
     iVar2 = 0x43;
@@ -181,7 +181,7 @@ LAB_000f8e22:
                         else {
                           local_b0 = EC_GROUP_get_seed_len(x);
                         }
-                        buf = (BIGNUM *)CRYPTO_malloc(uVar10 + 10,DAT_000f9158,0x101);
+                        buf = (BIGNUM *)CRYPTO_malloc(uVar10 + 10,"eck_prn.c",0x101);
                         if (buf == (BIGNUM *)0x0) {
                           iVar2 = 0x41;
                           goto LAB_000f8c94;
@@ -189,40 +189,42 @@ LAB_000f8e22:
                         iVar8 = BIO_indent(bp,off,0x80);
                         if (iVar8 != 0) {
                           pcVar3 = OBJ_nid2sn(iVar2);
-                          iVar8 = BIO_printf(bp,DAT_000f915c,pcVar3);
+                          iVar8 = BIO_printf(bp,"Field Type: %s\n",pcVar3);
                           if (0 < iVar8) {
                             if (iVar2 == 0x197) {
                               iVar2 = EC_GROUP_get_basis_type(x);
                               if ((iVar2 != 0) && (iVar8 = BIO_indent(bp,off,0x80), iVar8 != 0)) {
                                 pcVar3 = OBJ_nid2sn(iVar2);
-                                iVar2 = BIO_printf(bp,DAT_000f9184,pcVar3);
+                                iVar2 = BIO_printf(bp,"Basis Type: %s\n",pcVar3);
                                 if (0 < iVar2) {
-                                  iVar2 = ASN1_bn_print(bp,DAT_000f9188,p,(uchar *)buf,off);
+                                  iVar2 = ASN1_bn_print(bp,"Polynomial:",p,(uchar *)buf,off);
                                   goto joined_r0x000f90e2;
                                 }
                               }
                             }
                             else {
-                              iVar2 = ASN1_bn_print(bp,DAT_000f9160,p,(uchar *)buf,off);
+                              iVar2 = ASN1_bn_print(bp,"Prime:",p,(uchar *)buf,off);
 joined_r0x000f90e2:
                               if (((iVar2 != 0) &&
-                                  (iVar2 = ASN1_bn_print(bp,DAT_000f9164,a,(uchar *)buf,off),
-                                  iVar2 != 0)) &&
-                                 (iVar2 = ASN1_bn_print(bp,DAT_000f9168,b,(uchar *)buf,off),
-                                 iVar2 != 0)) {
+                                  (iVar2 = ASN1_bn_print(bp,"A:   ",a,(uchar *)buf,off), iVar2 != 0)
+                                  ) && (iVar2 = ASN1_bn_print(bp,"B:   ",b,(uchar *)buf,off),
+                                       iVar2 != 0)) {
                                 if (form == POINT_CONVERSION_COMPRESSED) {
-                                  iVar2 = ASN1_bn_print(bp,DAT_000f9194,local_c8,(uchar *)buf,off);
+                                  iVar2 = ASN1_bn_print(bp,"Generator (compressed):",local_c8,
+                                                        (uchar *)buf,off);
                                 }
                                 else if (form == POINT_CONVERSION_UNCOMPRESSED) {
-                                  iVar2 = ASN1_bn_print(bp,DAT_000f9190,local_c8,(uchar *)buf,off);
+                                  iVar2 = ASN1_bn_print(bp,"Generator (uncompressed):",local_c8,
+                                                        (uchar *)buf,off);
                                 }
                                 else {
-                                  iVar2 = ASN1_bn_print(bp,DAT_000f916c,local_c8,(uchar *)buf,off);
+                                  iVar2 = ASN1_bn_print(bp,"Generator (hybrid):",local_c8,
+                                                        (uchar *)buf,off);
                                 }
                                 if (((iVar2 != 0) &&
-                                    (iVar2 = ASN1_bn_print(bp,DAT_000f9170,order,(uchar *)buf,off),
+                                    (iVar2 = ASN1_bn_print(bp,"Order: ",order,(uchar *)buf,off),
                                     iVar2 != 0)) &&
-                                   (iVar2 = ASN1_bn_print(bp,DAT_000f9174,cofactor,(uchar *)buf,off)
+                                   (iVar2 = ASN1_bn_print(bp,"Cofactor: ",cofactor,(uchar *)buf,off)
                                    , iVar2 != 0)) {
                                   if (puVar7 == (uchar *)0x0) goto LAB_000f8df2;
                                   if (off < 1) {
@@ -237,12 +239,12 @@ joined_r0x000f90e2:
                                     local_c0 = off;
                                     if (iVar2 < 1) goto LAB_000f8f64;
                                   }
-                                  iVar2 = BIO_printf(bp,DAT_000f9178,DAT_000f917c);
+                                  iVar2 = BIO_printf(bp,"%s","Seed:");
                                   if (0 < iVar2) {
                                     sVar9 = 0;
                                     do {
                                       if (sVar9 == local_b0) {
-                                        iVar2 = BIO_write(bp,DAT_000f918c,1);
+                                        iVar2 = BIO_write(bp,"\n",1);
                                         if (0 < iVar2) goto LAB_000f8df2;
                                         break;
                                       }
@@ -259,7 +261,7 @@ joined_r0x000f90e2:
                                       if (local_b0 != sVar9) {
                                         pcVar3 = ":";
                                       }
-                                      iVar2 = BIO_printf(bp,DAT_000f9180,(uint)*pbVar1,pcVar3);
+                                      iVar2 = BIO_printf(bp,"%02x%s",(uint)*pbVar1,pcVar3);
                                     } while (0 < iVar2);
                                   }
                                 }
@@ -290,13 +292,13 @@ LAB_000f8f64:
         if ((cofactor != (BIGNUM *)0x0) &&
            (cofactor = (BIGNUM *)EC_GROUP_get_curve_name(x), cofactor != (BIGNUM *)0x0)) {
           pcVar3 = OBJ_nid2sn((int)cofactor);
-          iVar2 = BIO_printf(bp,DAT_000f8e64,pcVar3);
-          if ((0 < iVar2) && (iVar2 = BIO_printf(bp,DAT_000f8e68), 0 < iVar2)) {
+          iVar2 = BIO_printf(bp,"ASN1 OID: %s",pcVar3);
+          if ((0 < iVar2) && (iVar2 = BIO_printf(bp,"\n"), 0 < iVar2)) {
             iVar2 = EC_curve_nid2nist(cofactor);
             if (iVar2 != 0) {
               cofactor = (BIGNUM *)BIO_indent(bp,off,0x80);
               if (cofactor == (BIGNUM *)0x0) goto LAB_000f8c74;
-              iVar2 = BIO_printf(bp,DAT_000f8e6c,iVar2);
+              iVar2 = BIO_printf(bp,"NIST CURVE: %s\n",iVar2);
               if (iVar2 < 1) goto LAB_000f8e54;
             }
             cofactor = (BIGNUM *)0x0;
@@ -326,7 +328,7 @@ LAB_000f8c74:
   }
 LAB_000f8c94:
   iVar8 = 0;
-  ERR_put_error(0x10,0x95,iVar2,DAT_000f8e60,0x141);
+  ERR_put_error(0x10,0x95,iVar2,"eck_prn.c",0x141);
 LAB_000f8ca6:
   if (p != (BIGNUM *)0x0) {
     BN_free(p);

@@ -29,7 +29,7 @@ int PKCS7_content_new(PKCS7 *p7,int nid)
         pPVar2->cert = (stack_st_X509 *)p7_00;
         return 1;
       }
-      ERR_put_error(0x21,0x6d,0x70,DAT_000cf3e0,0x96);
+      ERR_put_error(0x21,0x6d,0x70,"pk7_lib.c",0x96);
     }
     PKCS7_free(p7_00);
   }

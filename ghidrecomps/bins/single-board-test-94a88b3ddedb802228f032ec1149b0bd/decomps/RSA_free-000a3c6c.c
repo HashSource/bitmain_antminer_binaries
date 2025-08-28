@@ -6,7 +6,7 @@ void RSA_free(RSA *r)
   _func_1767 *p_Var2;
   
   if (r != (RSA *)0x0) {
-    iVar1 = CRYPTO_add_lock(&r->references,-1,9,DAT_000a3d10,0xd7);
+    iVar1 = CRYPTO_add_lock(&r->references,-1,9,"rsa_lib.c",0xd7);
     if (iVar1 < 1) {
       p_Var2 = r->meth->finish;
       if (p_Var2 != (_func_1767 *)0x0) {

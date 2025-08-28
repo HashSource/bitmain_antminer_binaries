@@ -6,7 +6,7 @@ int sigaction(int __sig,sigaction *__act,sigaction *__oact)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_sigaction_0007cef0)();
+  iVar1 = sigaction(__sig,__act,__oact);
   return iVar1;
 }
 

@@ -19,7 +19,7 @@ undefined4 cms_set1_SignerIdentifier(undefined4 *param_1,undefined4 param_2,int 
     }
   }
   else {
-    ERR_put_error(0x2e,0x92,0x96,DAT_0011031c,0xd3);
+    ERR_put_error(0x2e,0x92,0x96,"cms_sd.c",0xd3);
   }
   return 0;
 }

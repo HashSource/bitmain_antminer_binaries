@@ -4,6 +4,6 @@
 EVP_CIPHER * EVP_aes_256_ecb(void)
 
 {
-  return DAT_000b13e0;
+  return (EVP_CIPHER *)aes_256_ecb;
 }
 

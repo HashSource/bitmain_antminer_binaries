@@ -6,9 +6,7 @@ float strtof(char *__nptr,char **__endptr)
 {
   float fVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a444. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  fVar1 = (float)(*(code *)PTR_LAB_0005f2a0)();
+  fVar1 = (float)(*(code *)(undefined *)0x0)(__nptr);
   return fVar1;
 }
 

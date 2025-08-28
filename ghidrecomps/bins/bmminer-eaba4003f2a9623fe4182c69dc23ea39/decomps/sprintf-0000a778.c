@@ -6,9 +6,7 @@ int sprintf(char *__s,char *__format,...)
 {
   int iVar1;
   
-                    /* WARNING: Could not recover jumptable at 0x0000a780. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  iVar1 = (*(code *)PTR_LAB_0008543c)();
+  iVar1 = (*(code *)(undefined *)0x0)(__s);
   return iVar1;
 }
 

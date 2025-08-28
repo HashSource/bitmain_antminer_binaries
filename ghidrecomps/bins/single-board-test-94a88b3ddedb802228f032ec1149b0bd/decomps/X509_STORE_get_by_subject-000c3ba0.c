@@ -14,16 +14,16 @@ int X509_STORE_get_by_subject(X509_STORE_CTX *vs,int type,X509_NAME *name,X509_O
   int local_30 [3];
   
   pXVar9 = vs->ctx;
-  CRYPTO_lock(9,0xb,DAT_000c3cac,0x131);
+  CRYPTO_lock(9,0xb,"x509_lu.c",0x131);
   p_Var6 = &pXVar9->objs->stack;
   iVar1 = x509_object_idx_cnt(p_Var6,type,name,0);
   if (iVar1 == -1) {
-    CRYPTO_lock(10,0xb,DAT_000c3cac,0x133);
+    CRYPTO_lock(10,0xb,"x509_lu.c",0x133);
     piVar2 = (int *)0x0;
   }
   else {
     piVar2 = (int *)sk_value(p_Var6,iVar1);
-    CRYPTO_lock(10,0xb,DAT_000c3cac,0x133);
+    CRYPTO_lock(10,0xb,"x509_lu.c",0x133);
     if (type != 2 && piVar2 != (int *)0x0) goto LAB_000c3c36;
   }
   iVar1 = vs->current_method;
@@ -57,10 +57,10 @@ LAB_000c3c36:
   ret->type = iVar1;
   (ret->data).x509 = pXVar5;
   if (iVar1 == 1) {
-    CRYPTO_add_lock(&pXVar5->references,1,3,DAT_000c3cac,0x197);
+    CRYPTO_add_lock(&pXVar5->references,1,3,"x509_lu.c",0x197);
   }
   else if (iVar1 == 2) {
-    CRYPTO_add_lock(&pXVar5->valid,1,6,DAT_000c3cac,0x19a);
+    CRYPTO_add_lock(&pXVar5->valid,1,6,"x509_lu.c",0x19a);
   }
   return 1;
 }

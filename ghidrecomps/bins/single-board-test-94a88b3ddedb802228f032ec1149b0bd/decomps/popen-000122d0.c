@@ -6,7 +6,7 @@ FILE * popen(char *__command,char *__modes)
 {
   FILE *pFVar1;
   
-  pFVar1 = (FILE *)(*(code *)PTR_popen_00194304)();
+  pFVar1 = popen(__command,__modes);
   return pFVar1;
 }
 

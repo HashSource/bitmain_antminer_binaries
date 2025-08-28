@@ -6,7 +6,7 @@ int strncmp(char *__s1,char *__s2,size_t __n)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_strncmp_000a8278)();
+  iVar1 = strncmp(__s1,__s2,__n);
   return iVar1;
 }
 

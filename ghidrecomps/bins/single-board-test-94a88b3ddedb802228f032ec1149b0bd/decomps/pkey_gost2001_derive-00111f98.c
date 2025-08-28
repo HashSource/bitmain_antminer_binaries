@@ -16,7 +16,7 @@ pkey_gost2001_derive(EVP_PKEY_CTX *param_1,int param_2,undefined4 *param_3,undef
   pkey_00 = EVP_PKEY_CTX_get0_peerkey(param_1);
   pvVar1 = EVP_PKEY_CTX_get_data(param_1);
   if (*(int *)((int)pvVar1 + 8) == 0) {
-    ERR_GOST_error(0x79,0x80,DAT_00112000,0x55,param_4);
+    ERR_GOST_error(0x79,0x80,"gost2001_keyx.c",0x55,param_4);
     uVar5 = 0;
   }
   else {

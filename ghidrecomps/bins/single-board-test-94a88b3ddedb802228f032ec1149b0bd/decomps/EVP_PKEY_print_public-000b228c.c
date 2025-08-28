@@ -13,7 +13,7 @@ int EVP_PKEY_print_public(BIO *out,EVP_PKEY *pkey,int indent,ASN1_PCTX *pctx)
   }
   BIO_indent(out,indent,0x80);
   pcVar2 = OBJ_nid2ln(pkey->type);
-  BIO_printf(out,DAT_000b22c0,DAT_000b22c4,pcVar2);
+  BIO_printf(out,"%s algorithm \"%s\" unsupported\n","Public Key",pcVar2);
   return 1;
 }
 

@@ -5,38 +5,40 @@ int ssl3_write(SSL *param_1,void *param_2,int param_3)
   int *piVar1;
   int iVar2;
   uint uVar3;
-  BIO *bp;
+  int extraout_r2;
   int iVar4;
+  BIO *bp;
+  int extraout_r3;
   ssl3_state_st *psVar5;
   bool bVar6;
   
-  iVar2 = param_3;
   piVar1 = __errno_location();
   psVar5 = param_1->s3;
   *piVar1 = 0;
-  if (((psVar5->renegotiate != 0) && ((psVar5->rbuf).left == 0)) &&
-     (iVar4 = (psVar5->wbuf).left, iVar4 == 0)) {
+  if (((psVar5->renegotiate != 0) && ((psVar5->rbuf).left == 0)) && ((psVar5->wbuf).left == 0)) {
     uVar3 = SSL_state(param_1);
     psVar5 = param_1->s3;
     bVar6 = (uVar3 & 0x3000) == 0;
+    iVar2 = extraout_r3;
     if (bVar6) {
-      iVar4 = 0x3004;
+      iVar2 = 0x3004;
     }
+    iVar4 = extraout_r2;
     if (bVar6) {
-      param_1->state = iVar4;
-      iVar2 = psVar5->num_renegotiations;
-      iVar4 = psVar5->total_renegotiations;
+      param_1->state = iVar2;
+      iVar4 = psVar5->num_renegotiations;
+      iVar2 = psVar5->total_renegotiations;
     }
     if (bVar6) {
       psVar5->renegotiate = 0;
-      iVar2 = iVar2 + 1;
       iVar4 = iVar4 + 1;
+      iVar2 = iVar2 + 1;
     }
     if (bVar6) {
-      psVar5->num_renegotiations = iVar2;
+      psVar5->num_renegotiations = iVar4;
     }
     if (bVar6) {
-      psVar5->total_renegotiations = iVar4;
+      psVar5->total_renegotiations = iVar2;
     }
   }
   if ((psVar5->flags << 0x1d < 0) && (bp = param_1->wbio, bp == param_1->bbio)) {

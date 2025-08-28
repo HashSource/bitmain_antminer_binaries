@@ -1,5 +1,5 @@
 
-int dprintf_DollarString(byte *param_1,byte **param_2)
+int dprintf_DollarString(byte *param_1,undefined4 *param_2)
 
 {
   ushort **ppuVar1;

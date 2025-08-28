@@ -6,7 +6,7 @@ int pthread_mutex_init(pthread_mutex_t *__mutex,pthread_mutexattr_t *__mutexattr
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_pthread_mutex_init_00046dfc)();
+  iVar1 = pthread_mutex_init(__mutex,__mutexattr);
   return iVar1;
 }
 

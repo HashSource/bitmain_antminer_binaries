@@ -4,74 +4,59 @@
 void * read_temp_func(void)
 
 {
-  undefined2 *puVar1;
-  byte bVar2;
-  char cVar3;
+  byte bVar1;
+  char cVar2;
+  ushort uVar3;
   ushort uVar4;
   ushort uVar5;
-  ushort uVar6;
-  short sVar7;
+  short sVar6;
+  int iVar7;
   ushort uVar8;
   ushort uVar9;
   bool bVar10;
-  undefined4 *puVar11;
-  int *piVar12;
-  int *piVar13;
+  int16_t (*paaiVar11) [8] [4];
+  int16_t (*paiVar12) [4];
+  undefined4 uVar13;
   _Bool _Var14;
   int16_t iVar15;
   uint uVar16;
-  char *pcVar17;
+  all_parameters *paVar17;
   uint uVar18;
-  ushort uVar19;
+  char *pcVar19;
   ushort uVar20;
-  int iVar21;
-  undefined2 *puVar22;
-  int iVar23;
-  int iVar24;
-  undefined2 *puVar25;
-  undefined4 uVar26;
-  ushort uVar27;
-  int iVar28;
-  uint uVar29;
-  undefined4 *puVar30;
+  ushort uVar21;
+  int iVar22;
+  int16_t (*paaiVar23) [8] [4];
+  int16_t *piVar24;
+  all_parameters *paVar25;
+  ushort uVar26;
+  all_parameters *paVar27;
+  uint uVar28;
+  int iVar29;
+  all_parameters *paVar30;
   int iVar31;
-  int iVar32;
-  int iVar33;
-  int iVar34;
+  all_parameters *paVar32;
+  int8_t (*paiVar33) [8];
+  ushort uVar34;
   ushort uVar35;
   ushort uVar36;
-  int iVar37;
-  ushort uVar38;
-  int iVar39;
   int local_158;
   int local_140;
   int16_t temp_top [4];
   int16_t temp_low [4];
   char logstr [256];
   
-  piVar12 = DAT_00039c98;
   local_140 = 0;
   bVar10 = false;
   clearTempLogFile();
   do {
-    puVar30 = DAT_00039c84;
     clearTempLogFile();
-    puVar11 = DAT_00039c88;
-    logstr._0_4_ = *puVar30;
-    logstr._4_4_ = puVar30[1];
-    logstr._8_4_ = puVar30[2];
-    logstr._12_4_ = puVar30[3];
-    logstr._16_4_ = puVar30[4];
-    logstr._20_4_ = puVar30[5];
-    logstr._24_3_ = (undefined3)puVar30[6];
+    uVar13 = logstr._24_4_;
+    builtin_strncpy(logstr,"do read_temp_func once...\n",0x1b);
+    logstr[0x1b] = SUB41(uVar13,3);
     writeLogFile(logstr);
-    pthread_mutex_lock(DAT_00039c8c);
-    logstr._0_4_ = *puVar11;
-    logstr._4_4_ = puVar11[1];
-    logstr._8_4_ = puVar11[2];
-    logstr._12_4_ = puVar11[3];
-    logstr._16_4_ = puVar11[4];
-    logstr._20_4_ = puVar11[5];
+    pthread_mutex_lock((pthread_mutex_t *)&opencore_readtemp_mutex);
+    builtin_strncpy(logstr,"do check_asic_reg 0x08\n",0x18);
     writeLogFile(logstr);
     if (doTestPatten == false) {
       _Var14 = check_asic_reg(8);
@@ -79,341 +64,322 @@ void * read_temp_func(void)
         showAllBadRTInfo();
       }
       else {
-        logstr._0_4_ = *DAT_0003a670;
-        logstr._4_4_ = DAT_0003a670[1];
-        logstr._8_4_ = DAT_0003a670[2];
-        logstr._12_4_ = DAT_0003a670[3];
-        logstr._16_4_ = DAT_0003a670[4];
-        logstr._20_4_ = DAT_0003a670[5];
-        logstr._24_4_ = DAT_0003a670[6];
-        logstr._28_4_ = DAT_0003a670[7];
-        logstr._32_4_ = DAT_0003a670[8];
+        builtin_strncpy(logstr,"Error: check_asic_reg 0x08 timeout\n",0x24);
         writeInitLogFile(logstr);
       }
     }
     else {
       usleep(100000);
     }
-    iVar34 = DAT_00039c9c;
-    piVar13 = DAT_00039c98;
-    logstr._0_4_ = *DAT_00039c90;
-    logstr._4_4_ = DAT_00039c90[1];
-    logstr._8_4_ = DAT_00039c90[2];
-    logstr._12_4_ = DAT_00039c90[3];
-    logstr._16_4_ = DAT_00039c90[4];
-    logstr[20] = (char)DAT_00039c90[5];
+    paiVar33 = middle_Offset;
+    builtin_strncpy(logstr,"Done check_asic_reg\n",0x14);
+    logstr._20_4_ = logstr._20_4_ & 0xffffff00;
     writeLogFile(logstr);
-    iVar31 = *piVar12;
     local_158 = 0;
-    uVar29 = 0;
+    uVar28 = 0;
     temp_top[0] = 0;
     temp_top[1] = 0;
     uVar8 = 0;
     temp_low[0] = 0;
     temp_low[1] = 0;
     uVar9 = 0;
+    paVar30 = dev;
     do {
-      if (*(int *)(iVar31 + (uVar29 + 2) * 4) == 1) {
+      if (paVar30->chain_exist[uVar28] == 1) {
         if (fpga_version < 0xe) {
-          if ((int)uVar29 % 3 == 1) goto LAB_00039c48;
+          if ((int)uVar28 % 3 == 1) goto LAB_00039c48;
         }
-        else if (((uVar29 & 0xfffffffd) == 8) || (uVar29 == 0xc)) {
+        else if (((uVar28 & 0xfffffffd) == 8) || (uVar28 == 0xc)) {
 LAB_00039c48:
-          sprintf(logstr,DAT_00039c94,uVar29);
+          sprintf(logstr,"do read temp on Chain[%d]\n",uVar28);
           writeLogFile(logstr);
-          iVar31 = *piVar12;
-          if (*(char *)(iVar31 + uVar29 + 0x458) < '\x01') {
+          if (dev->chain_asic_temp_num[uVar28] < '\x01') {
+            uVar34 = 1000;
             uVar35 = 1000;
-            uVar36 = 1000;
-            uVar20 = 0;
-            iVar32 = uVar29 << 3;
-            uVar27 = uVar20;
-            uVar19 = uVar20;
-            uVar38 = uVar36;
+            uVar21 = 0;
+            iVar31 = uVar28 << 3;
+            uVar26 = uVar21;
+            uVar20 = uVar21;
+            uVar36 = uVar35;
           }
           else {
-            iVar28 = 0;
-            uVar20 = 0;
-            iVar32 = uVar29 * 8;
-            uVar36 = 1000;
-            uVar27 = 0;
-            uVar19 = 0;
-            uVar38 = 1000;
+            uVar21 = 0;
+            iVar31 = uVar28 * 8;
             uVar35 = 1000;
+            uVar26 = 0;
+            uVar20 = 0;
+            uVar36 = 1000;
+            uVar34 = 1000;
+            iVar29 = 0;
             do {
-              iVar31 = iVar31 + iVar32 + iVar28;
-              sprintf(logstr,DAT_00039f2c,uVar29,(*(byte *)(iVar31 + 0x4e8) >> 2) + 1,
-                      (uint)*(byte *)(iVar31 + 0x468),(int)*(char *)(iVar34 + iVar28));
+              sprintf(logstr,"Chain[%d] Chip[%d] TempTypeID=%02x middle offset=%d\n",uVar28,
+                      (dev->TempChipAddr[uVar28][iVar29] >> 2) + 1,
+                      (uint)dev->TempChipType[uVar28][iVar29],(int)(*paiVar33)[iVar29]);
               writeLogFile(logstr);
-              uVar16 = check_reg_temp(0x98,0,'\0','\0',
-                                      *(uchar *)(*piVar12 + iVar32 + iVar28 + 0x4e8),uVar29);
-              pcVar17 = DAT_00039f20;
+              uVar16 = check_reg_temp(0x98,0,'\0','\0',dev->TempChipAddr[uVar28][iVar29],uVar28);
+              paVar30 = dev;
               if (uVar16 == 0) {
-                sVar7 = *(short *)(*piVar13 + (iVar32 + iVar28 + 0xad) * 8);
-                bVar2 = *(byte *)(*piVar13 + iVar32 + iVar28 + 0x4e8);
-                pcVar17 = DAT_00039f30;
+                pcVar19 = "read failed, old value: Chain[%d] Chip[%d] local Temp=%d\n";
+                sVar6 = dev->chain_asic_temp[uVar28][iVar29][0];
+                bVar1 = dev->TempChipAddr[uVar28][iVar29];
               }
               else {
-                iVar31 = *piVar13;
-                sVar7 = ((ushort)uVar16 & 0xff) - 0x40;
-                *(short *)(iVar31 + (iVar32 + iVar28 + 0xad) * 8) = sVar7;
-                bVar2 = *(byte *)(iVar31 + iVar32 + iVar28 + 0x4e8);
+                pcVar19 = "Chain[%d] Chip[%d] local Temp=%d\n";
+                sVar6 = ((ushort)uVar16 & 0xff) - 0x40;
+                dev->chain_asic_temp[uVar28][iVar29][0] = sVar6;
+                bVar1 = paVar30->TempChipAddr[uVar28][iVar29];
               }
-              sprintf(logstr,pcVar17,uVar29,(bVar2 >> 2) + 1,(int)sVar7);
+              sprintf(logstr,pcVar19,uVar28,(bVar1 >> 2) + 1,(int)sVar6);
               writeLogFile(logstr);
-              set_baud_with_addr(*(uchar *)(*piVar12 + 0x2fea),0,
-                                 *(uchar *)(*piVar12 + iVar32 + iVar28 + 0x4e8),uVar29,1,0,1);
-              check_asic_reg_with_addr
-                        (0x1c,(uint)*(byte *)(*piVar12 + iVar32 + iVar28 + 0x4e8),uVar29,1);
-              uVar16 = check_reg_temp(0x98,1,'\0','\0',
-                                      *(uchar *)(*piVar12 + iVar32 + iVar28 + 0x4e8),uVar29);
+              set_baud_with_addr(dev->baud,0,dev->TempChipAddr[uVar28][iVar29],uVar28,1,0,1);
+              check_asic_reg_with_addr(0x1c,(uint)dev->TempChipAddr[uVar28][iVar29],uVar28,1);
+              uVar16 = check_reg_temp(0x98,1,'\0','\0',dev->TempChipAddr[uVar28][iVar29],uVar28);
+              paVar30 = dev;
               if (uVar16 == 0) {
-                sprintf(logstr,DAT_00039f34,uVar29,
-                        (*(byte *)(*piVar13 + iVar32 + iVar28 + 0x4e8) >> 2) + 1,
-                        (int)*(short *)(*piVar13 + (iVar32 + iVar28) * 8 + 0x56a));
+                sprintf(logstr,"read failed on Chain[%d] Chip[%d] middle Temp old value:%d\n",uVar28
+                        ,(dev->TempChipAddr[uVar28][iVar29] >> 2) + 1,
+                        (int)dev->chain_asic_temp[uVar28][iVar29][1]);
                 writeLogFile(logstr);
               }
               else {
-                iVar33 = *piVar13;
                 iVar15 = get_remote((ushort)uVar16 & 0xff);
-                pcVar17 = DAT_00039f24;
-                iVar31 = *piVar13;
-                iVar23 = (iVar32 + iVar28) * 8;
-                bVar2 = *(byte *)(iVar31 + iVar32 + iVar28 + 0x4e8);
-                *(int16_t *)(iVar33 + iVar23 + 0x56a) = iVar15;
-                sprintf(logstr,pcVar17,uVar29,(bVar2 >> 2) + 1,
-                        (int)*(short *)(iVar31 + iVar23 + 0x56a));
+                paVar17 = dev;
+                bVar1 = dev->TempChipAddr[uVar28][iVar29];
+                paVar30->chain_asic_temp[uVar28][iVar29][1] = iVar15;
+                sprintf(logstr,"Chain[%d] Chip[%d] middle Temp=%d\n",uVar28,(bVar1 >> 2) + 1,
+                        (int)paVar17->chain_asic_temp[uVar28][iVar29][1]);
                 writeLogFile(logstr);
               }
               if (is218_Temp != false) {
-                iVar23 = *piVar12;
-                iVar31 = (int)*(short *)(iVar23 + (iVar32 + iVar28 + 0xad) * 8);
-                if (iVar31 < 1) {
+                iVar22 = (int)dev->chain_asic_temp[uVar28][iVar29][0];
+                if (iVar22 < 1) {
                   uVar18 = 0;
                   uVar16 = uVar18;
                 }
-                else if (iVar31 < 0x33) {
-                  uVar18 = iVar31 + 0x19;
+                else if (iVar22 < 0x33) {
+                  uVar18 = iVar22 + 0x19;
                   uVar16 = uVar18 & 0xffff;
                 }
-                else if (iVar31 < 0x3d) {
-                  uVar18 = iVar31 + 0x1e;
+                else if (iVar22 < 0x3d) {
+                  uVar18 = iVar22 + 0x1e;
                   uVar16 = uVar18 & 0xffff;
                 }
                 else {
-                  uVar18 = (uint)(short)(iVar31 + 0x23U);
-                  uVar16 = iVar31 + 0x23U & 0xffff;
+                  uVar18 = (uint)(short)(iVar22 + 0x23U);
+                  uVar16 = iVar22 + 0x23U & 0xffff;
                 }
-                bVar2 = *(byte *)(iVar23 + iVar32 + iVar28 + 0x4e8);
-                *(short *)(iVar23 + (iVar32 + iVar28) * 8 + 0x56a) = (short)uVar16;
-                sprintf(logstr,DAT_00039f28,uVar29,(bVar2 >> 2) + 1,uVar18);
+                bVar1 = dev->TempChipAddr[uVar28][iVar29];
+                dev->chain_asic_temp[uVar28][iVar29][1] = (int16_t)uVar16;
+                sprintf(logstr,"218 fix Chain[%d] Chip[%d] middle Temp = %d\n",uVar28,
+                        (bVar1 >> 2) + 1,uVar18);
                 writeLogFile(logstr);
               }
-              iVar31 = *piVar12;
-              iVar23 = iVar32 + iVar28;
-              iVar28 = iVar28 + 1;
-              uVar6 = *(ushort *)(iVar31 + (iVar23 + 0xad) * 8);
-              iVar23 = iVar31 + iVar23 * 8;
-              if ((short)uVar20 < (short)uVar6) {
-                uVar20 = uVar6;
+              iVar22 = iVar29 + 1;
+              uVar5 = dev->chain_asic_temp[uVar28][iVar29][0];
+              if ((short)uVar21 < (short)uVar5) {
+                uVar21 = uVar5;
               }
-              uVar4 = *(ushort *)(iVar23 + 0x56a);
-              uVar5 = *(ushort *)(iVar23 + 0x56c);
-              if ((short)uVar6 <= (short)uVar36) {
-                uVar36 = uVar6;
-              }
-              if ((short)uVar27 < (short)uVar4) {
-                uVar27 = uVar4;
-              }
-              if ((short)uVar4 <= (short)uVar38) {
-                uVar38 = uVar4;
-              }
-              if ((short)uVar19 < (short)uVar5) {
-                uVar19 = uVar5;
-              }
+              uVar3 = dev->chain_asic_temp[uVar28][iVar29][1];
+              uVar4 = dev->chain_asic_temp[uVar28][iVar29][2];
               if ((short)uVar5 <= (short)uVar35) {
                 uVar35 = uVar5;
               }
-            } while (iVar28 < *(char *)(iVar31 + uVar29 + 0x458));
+              if ((short)uVar26 < (short)uVar3) {
+                uVar26 = uVar3;
+              }
+              if ((short)uVar3 <= (short)uVar36) {
+                uVar36 = uVar3;
+              }
+              if ((short)uVar20 < (short)uVar4) {
+                uVar20 = uVar4;
+              }
+              if ((short)uVar4 <= (short)uVar34) {
+                uVar34 = uVar4;
+              }
+              iVar29 = iVar22;
+            } while (iVar22 < dev->chain_asic_temp_num[uVar28]);
           }
+          paVar30 = dev;
           _Var14 = check_temp_offside;
-          *(ushort *)(iVar31 + (uVar29 + 0x12d) * 8) = uVar20;
-          *(ushort *)(iVar31 + (uVar29 + 0x13d) * 8) = uVar36;
-          iVar28 = iVar31 + iVar32;
-          *(ushort *)(iVar28 + 0x96a) = uVar27;
-          *(ushort *)(iVar28 + 0x96c) = uVar19;
-          *(ushort *)(iVar28 + 0x9ea) = uVar38;
-          *(ushort *)(iVar28 + 0x9ec) = uVar35;
+          dev->chain_asic_maxtemp[uVar28][0] = uVar21;
+          paVar30->chain_asic_mintemp[uVar28][0] = uVar35;
+          *(ushort *)((int)paVar30->chain_asic_maxtemp[0] + iVar31 + 2) = uVar26;
+          *(ushort *)((int)paVar30->chain_asic_maxtemp[0] + iVar31 + 4) = uVar20;
+          *(ushort *)((int)paVar30->chain_asic_mintemp[0] + iVar31 + 2) = uVar36;
+          *(ushort *)((int)paVar30->chain_asic_mintemp[0] + iVar31 + 4) = uVar34;
           if (_Var14 != false) {
-            uVar27 = *(ushort *)(iVar28 + 0x96a);
-            if (uVar27 - 0x4b < 0x33) {
+            uVar26 = *(ushort *)((int)paVar30->chain_asic_maxtemp[0] + iVar31 + 2);
+            if (uVar26 - 0x4b < 0x33) {
               bVar10 = false;
             }
             else if (!bVar10) {
               bVar10 = true;
-              *(int *)(DAT_0003a338 + local_158) = *(int *)(DAT_0003a338 + local_158) + 1;
+              *(int *)((int)temp_offside + local_158) = *(int *)((int)temp_offside + local_158) + 1;
             }
           }
-          sVar7 = *(short *)(iVar31 + (uVar29 + 0x12d) * 8);
+          sVar6 = paVar30->chain_asic_maxtemp[uVar28][0];
           iVar15 = temp_top[1];
-          if (temp_top[0] < sVar7) {
-            temp_top[0] = sVar7;
+          if (temp_top[0] < sVar6) {
+            temp_top[0] = sVar6;
           }
-          if (iVar15 < (short)uVar27) {
-            temp_top[1] = uVar27;
+          if (iVar15 < (short)uVar26) {
+            temp_top[1] = uVar26;
           }
-          sVar7 = *(short *)(iVar31 + (uVar29 + 0x13d) * 8);
-          if ((short)uVar8 < (short)uVar19) {
-            uVar8 = uVar19;
+          sVar6 = paVar30->chain_asic_mintemp[uVar28][0];
+          if ((short)uVar8 < (short)uVar20) {
+            uVar8 = uVar20;
           }
-          if ((((sVar7 < temp_low[0]) && (0 < sVar7)) && (*(int *)(DAT_0003a328 + local_158) == 0))
-             || (temp_low[0] == 0)) {
-            temp_low[0] = sVar7;
+          if ((((sVar6 < temp_low[0]) && (0 < sVar6)) &&
+              (*(int *)((int)chain_temp_toolow + local_158) == 0)) || (temp_low[0] == 0)) {
+            temp_low[0] = sVar6;
           }
-          sVar7 = *(short *)(iVar31 + iVar32 + 0x9ea);
-          if ((((sVar7 < temp_low[1]) && (0 < sVar7)) && (*(int *)(DAT_0003a328 + local_158) == 0))
-             || (temp_low[1] == 0)) {
-            temp_low[1] = sVar7;
+          sVar6 = *(short *)((int)paVar30->chain_asic_mintemp[0] + iVar31 + 2);
+          if ((((sVar6 < temp_low[1]) && (0 < sVar6)) &&
+              (*(int *)((int)chain_temp_toolow + local_158) == 0)) || (temp_low[1] == 0)) {
+            temp_low[1] = sVar6;
           }
-          if (((((short)uVar35 < (short)uVar9) && (0 < (short)uVar35)) &&
-              (*(int *)(DAT_0003a328 + local_158) == 0)) || (uVar9 == 0)) {
-            uVar9 = uVar35;
+          if (((((short)uVar34 < (short)uVar9) && (0 < (short)uVar34)) &&
+              (*(int *)((int)chain_temp_toolow + local_158) == 0)) || (uVar9 == 0)) {
+            uVar9 = uVar34;
           }
-          sprintf(logstr,DAT_0003a32c,uVar29);
+          sprintf(logstr,"Done read temp on Chain[%d]\n",uVar28);
           writeLogFile(logstr);
-          iVar31 = *piVar12;
+          paVar30 = dev;
         }
       }
-      uVar29 = uVar29 + 1;
-      iVar34 = iVar34 + 8;
+      uVar28 = uVar28 + 1;
+      paiVar33 = paiVar33 + 1;
       local_158 = local_158 + 4;
-    } while (uVar29 != 0x10);
-    iVar37 = iVar31 + 0x568;
-    iVar33 = 0;
-    *(int *)(iVar31 + 0x2fc3) = (int)temp_top[0];
-    iVar39 = 0;
-    uVar29 = 0;
-    *(int *)(iVar31 + 0x2fc7) = (int)temp_top[1];
-    *(int *)(iVar31 + 0x2fcb) = (int)(short)uVar8;
-    *(int *)(iVar31 + 0x2fd3) = (int)temp_low[0];
-    *(int *)(iVar31 + 0x2fd7) = (int)temp_low[1];
-    *(int *)(iVar31 + 0x2fdb) = (int)(short)uVar9;
-    iVar34 = fpga_version;
-    iVar32 = iVar31;
-    iVar28 = iVar31;
-    iVar23 = iVar31;
+    } while (uVar28 != 0x10);
+    iVar29 = 0;
+    paVar30->temp_top1[0] = (int)temp_top[0];
+    iVar22 = 0;
+    uVar28 = 0;
+    paVar30->temp_top1[1] = (int)temp_top[1];
+    paVar30->temp_top1[2] = (int)(short)uVar8;
+    paVar30->temp_low1[0] = (int)temp_low[0];
+    paVar30->temp_low1[1] = (int)temp_low[1];
+    paVar30->temp_low1[2] = (int)(short)uVar9;
+    iVar31 = fpga_version;
+    paVar17 = paVar30;
+    paVar27 = paVar30;
+    paVar32 = paVar30;
     do {
-      if (*(int *)(iVar28 + 8) == 1) {
-        if (iVar34 < 0xe) {
-          iVar24 = ((int)uVar29 / 3) * 3;
-          if ((int)uVar29 % 3 != 1) {
-            cVar3 = *(char *)(iVar23 + 0x458);
-            iVar21 = iVar24 + 1;
-            if (0 < cVar3) {
-              puVar25 = (undefined2 *)(iVar31 + iVar21 * 0x40 + 0x568);
-              puVar22 = (undefined2 *)(iVar31 + uVar29 * 0x40 + 0x56a);
+      if (paVar27->chain_exist[0] == 1) {
+        if (iVar31 < 0xe) {
+          iVar7 = (int)uVar28 / 3;
+          if ((int)uVar28 % 3 != 1) {
+            cVar2 = paVar32->chain_asic_temp_num[0];
+            if (0 < cVar2) {
+              paaiVar23 = paVar30->chain_asic_temp + iVar7 * 3 + 1;
+              piVar24 = paVar30->chain_asic_temp[uVar28][0] + 1;
               do {
-                puVar22[-1] = *puVar25;
-                *puVar22 = puVar25[1];
-                puVar1 = puVar25 + 2;
-                puVar25 = puVar25 + 4;
-                puVar22[1] = *puVar1;
-                puVar22 = puVar22 + 4;
-              } while (puVar25 != (undefined2 *)(iVar37 + ((int)cVar3 + iVar21 * 8) * 8));
+                (*(int16_t (*) [4])(piVar24 + -1))[0] = (*paaiVar23)[0][0];
+                *piVar24 = (*paaiVar23)[0][1];
+                paiVar12 = *paaiVar23;
+                paaiVar23 = (int16_t (*) [8] [4])(*paaiVar23 + 1);
+                piVar24[1] = (*paiVar12)[2];
+                piVar24 = piVar24 + 4;
+              } while (paaiVar23 !=
+                       (int16_t (*) [8] [4])(paVar30->chain_asic_temp[iVar7 * 3 + 1] + cVar2));
             }
-            iVar21 = iVar21 * 8 + iVar31;
-            *(undefined2 *)(iVar32 + 0x968) = *(undefined2 *)(iVar31 + (iVar24 + 0x12e) * 8);
-            *(undefined2 *)(iVar32 + 0x96a) = *(undefined2 *)(iVar21 + 0x96a);
-            *(undefined2 *)(iVar32 + 0x96c) = *(undefined2 *)(iVar21 + 0x96c);
-            *(undefined2 *)(iVar32 + 0x9e8) = *(undefined2 *)(iVar31 + (iVar24 + 0x13e) * 8);
-            *(undefined2 *)(iVar32 + 0x9ea) = *(undefined2 *)(iVar21 + 0x9ea);
-            *(undefined2 *)(iVar32 + 0x9ec) = *(undefined2 *)(iVar21 + 0x9ec);
+            paVar17->chain_asic_maxtemp[0][0] = paVar30->chain_asic_maxtemp[iVar7 * 3 + 1][0];
+            paVar17->chain_asic_maxtemp[0][1] = paVar30->chain_asic_maxtemp[iVar7 * 3 + 1][1];
+            paVar17->chain_asic_maxtemp[0][2] = paVar30->chain_asic_maxtemp[iVar7 * 3 + 1][2];
+            paVar17->chain_asic_mintemp[0][0] = paVar30->chain_asic_mintemp[iVar7 * 3 + 1][0];
+            paVar17->chain_asic_mintemp[0][1] = paVar30->chain_asic_mintemp[iVar7 * 3 + 1][1];
+            paVar17->chain_asic_mintemp[0][2] = paVar30->chain_asic_mintemp[iVar7 * 3 + 1][2];
           }
         }
-        else if (uVar29 < 0xe) {
-          uVar16 = 1 << (uVar29 & 0xff);
+        else if (uVar28 < 0xe) {
+          uVar16 = 1 << (uVar28 & 0xff);
           if ((uVar16 & 0x2008) == 0) {
             if ((uVar16 & 0x804) == 0) {
               if ((uVar16 & 0x202) != 0) {
-                cVar3 = *(char *)(iVar23 + 0x458);
-                if (0 < cVar3) {
-                  iVar21 = iVar31 + uVar29 * 0x40 + 0x568;
-                  iVar24 = iVar31;
+                cVar2 = paVar32->chain_asic_temp_num[0];
+                if (0 < cVar2) {
+                  paaiVar23 = paVar30->chain_asic_temp + uVar28;
+                  paVar25 = paVar30;
                   do {
-                    *(undefined2 *)(iVar24 + iVar33 + 0x568) = *(undefined2 *)(iVar24 + 0x768);
-                    *(undefined2 *)(iVar21 + 2) = *(undefined2 *)(iVar24 + 0x76a);
-                    puVar22 = (undefined2 *)(iVar24 + 0x76c);
-                    iVar24 = iVar24 + 8;
-                    *(undefined2 *)(iVar21 + 4) = *puVar22;
-                    iVar21 = iVar21 + 8;
-                  } while (iVar21 != iVar37 + (cVar3 + iVar39) * 8);
+                    *(int16_t *)((int)paVar25->chain_asic_temp[0][0] + iVar29) =
+                         paVar25->chain_asic_temp[8][0][0];
+                    (*paaiVar23)[0][1] = paVar25->chain_asic_temp[8][0][1];
+                    paaiVar11 = paVar25->chain_asic_temp;
+                    paVar25 = (all_parameters *)paVar25->chain_exist;
+                    (*paaiVar23)[0][2] = paaiVar11[8][0][2];
+                    paaiVar23 = (int16_t (*) [8] [4])(*paaiVar23 + 1);
+                  } while (paaiVar23 !=
+                           (int16_t (*) [8] [4])(paVar30->chain_asic_temp[0] + cVar2 + iVar22));
                 }
-                *(undefined2 *)(iVar32 + 0x968) = *(undefined2 *)(iVar31 + 0x9a8);
-                *(undefined2 *)(iVar32 + 0x96a) = *(undefined2 *)(iVar31 + 0x9aa);
-                *(undefined2 *)(iVar32 + 0x96c) = *(undefined2 *)(iVar31 + 0x9ac);
-                *(undefined2 *)(iVar32 + 0x9e8) = *(undefined2 *)(iVar31 + 0xa28);
-                *(undefined2 *)(iVar32 + 0x9ea) = *(undefined2 *)(iVar31 + 0xa2a);
-                *(undefined2 *)(iVar32 + 0x9ec) = *(undefined2 *)(iVar31 + 0xa2c);
+                paVar17->chain_asic_maxtemp[0][0] = paVar30->chain_asic_maxtemp[8][0];
+                paVar17->chain_asic_maxtemp[0][1] = paVar30->chain_asic_maxtemp[8][1];
+                paVar17->chain_asic_maxtemp[0][2] = paVar30->chain_asic_maxtemp[8][2];
+                paVar17->chain_asic_mintemp[0][0] = paVar30->chain_asic_mintemp[8][0];
+                paVar17->chain_asic_mintemp[0][1] = paVar30->chain_asic_mintemp[8][1];
+                paVar17->chain_asic_mintemp[0][2] = paVar30->chain_asic_mintemp[8][2];
               }
             }
             else {
-              cVar3 = *(char *)(iVar23 + 0x458);
-              if (0 < cVar3) {
-                iVar21 = iVar31 + uVar29 * 0x40 + 0x568;
-                iVar24 = iVar31;
+              cVar2 = paVar32->chain_asic_temp_num[0];
+              if (0 < cVar2) {
+                paaiVar23 = paVar30->chain_asic_temp + uVar28;
+                paVar25 = paVar30;
                 do {
-                  *(undefined2 *)(iVar24 + iVar33 + 0x568) = *(undefined2 *)(iVar24 + 0x7e8);
-                  *(undefined2 *)(iVar21 + 2) = *(undefined2 *)(iVar24 + 0x7ea);
-                  puVar22 = (undefined2 *)(iVar24 + 0x7ec);
-                  iVar24 = iVar24 + 8;
-                  *(undefined2 *)(iVar21 + 4) = *puVar22;
-                  iVar21 = iVar21 + 8;
-                } while (iVar21 != iVar37 + (cVar3 + iVar39) * 8);
+                  *(int16_t *)((int)paVar25->chain_asic_temp[0][0] + iVar29) =
+                       paVar25->chain_asic_temp[10][0][0];
+                  (*paaiVar23)[0][1] = paVar25->chain_asic_temp[10][0][1];
+                  paaiVar11 = paVar25->chain_asic_temp;
+                  paVar25 = (all_parameters *)paVar25->chain_exist;
+                  (*paaiVar23)[0][2] = paaiVar11[10][0][2];
+                  paaiVar23 = (int16_t (*) [8] [4])(*paaiVar23 + 1);
+                } while (paaiVar23 !=
+                         (int16_t (*) [8] [4])(paVar30->chain_asic_temp[0] + cVar2 + iVar22));
               }
-              *(undefined2 *)(iVar32 + 0x968) = *(undefined2 *)(iVar31 + 0x9b8);
-              *(undefined2 *)(iVar32 + 0x96a) = *(undefined2 *)(iVar31 + 0x9ba);
-              *(undefined2 *)(iVar32 + 0x96c) = *(undefined2 *)(iVar31 + 0x9bc);
-              *(undefined2 *)(iVar32 + 0x9e8) = *(undefined2 *)(iVar31 + 0xa38);
-              *(undefined2 *)(iVar32 + 0x9ea) = *(undefined2 *)(iVar31 + 0xa3a);
-              *(undefined2 *)(iVar32 + 0x9ec) = *(undefined2 *)(iVar31 + 0xa3c);
+              paVar17->chain_asic_maxtemp[0][0] = paVar30->chain_asic_maxtemp[10][0];
+              paVar17->chain_asic_maxtemp[0][1] = paVar30->chain_asic_maxtemp[10][1];
+              paVar17->chain_asic_maxtemp[0][2] = paVar30->chain_asic_maxtemp[10][2];
+              paVar17->chain_asic_mintemp[0][0] = paVar30->chain_asic_mintemp[10][0];
+              paVar17->chain_asic_mintemp[0][1] = paVar30->chain_asic_mintemp[10][1];
+              paVar17->chain_asic_mintemp[0][2] = paVar30->chain_asic_mintemp[10][2];
             }
           }
           else {
-            cVar3 = *(char *)(iVar23 + 0x458);
-            if (0 < cVar3) {
-              iVar21 = iVar31 + uVar29 * 0x40 + 0x568;
-              iVar24 = iVar31;
+            cVar2 = paVar32->chain_asic_temp_num[0];
+            if (0 < cVar2) {
+              paaiVar23 = paVar30->chain_asic_temp + uVar28;
+              paVar25 = paVar30;
               do {
-                *(undefined2 *)(iVar24 + iVar33 + 0x568) = *(undefined2 *)(iVar24 + 0x868);
-                *(undefined2 *)(iVar21 + 2) = *(undefined2 *)(iVar24 + 0x86a);
-                puVar22 = (undefined2 *)(iVar24 + 0x86c);
-                iVar24 = iVar24 + 8;
-                *(undefined2 *)(iVar21 + 4) = *puVar22;
-                iVar21 = iVar21 + 8;
-              } while (iVar21 != iVar37 + (cVar3 + iVar39) * 8);
+                *(int16_t *)((int)paVar25->chain_asic_temp[0][0] + iVar29) =
+                     paVar25->chain_asic_temp[0xc][0][0];
+                (*paaiVar23)[0][1] = paVar25->chain_asic_temp[0xc][0][1];
+                paaiVar11 = paVar25->chain_asic_temp;
+                paVar25 = (all_parameters *)paVar25->chain_exist;
+                (*paaiVar23)[0][2] = paaiVar11[0xc][0][2];
+                paaiVar23 = (int16_t (*) [8] [4])(*paaiVar23 + 1);
+              } while (paaiVar23 !=
+                       (int16_t (*) [8] [4])(paVar30->chain_asic_temp[0] + cVar2 + iVar22));
             }
-            *(undefined2 *)(iVar32 + 0x968) = *(undefined2 *)(iVar31 + 0x9c8);
-            *(undefined2 *)(iVar32 + 0x96a) = *(undefined2 *)(iVar31 + 0x9ca);
-            *(undefined2 *)(iVar32 + 0x96c) = *(undefined2 *)(iVar31 + 0x9cc);
-            *(undefined2 *)(iVar32 + 0x9e8) = *(undefined2 *)(iVar31 + 0xa48);
-            *(undefined2 *)(iVar32 + 0x9ea) = *(undefined2 *)(iVar31 + 0xa4a);
-            *(undefined2 *)(iVar32 + 0x9ec) = *(undefined2 *)(iVar31 + 0xa4c);
+            paVar17->chain_asic_maxtemp[0][0] = paVar30->chain_asic_maxtemp[0xc][0];
+            paVar17->chain_asic_maxtemp[0][1] = paVar30->chain_asic_maxtemp[0xc][1];
+            paVar17->chain_asic_maxtemp[0][2] = paVar30->chain_asic_maxtemp[0xc][2];
+            paVar17->chain_asic_mintemp[0][0] = paVar30->chain_asic_mintemp[0xc][0];
+            paVar17->chain_asic_mintemp[0][1] = paVar30->chain_asic_mintemp[0xc][1];
+            paVar17->chain_asic_mintemp[0][2] = paVar30->chain_asic_mintemp[0xc][2];
           }
         }
       }
-      uVar29 = uVar29 + 1;
-      iVar28 = iVar28 + 4;
-      iVar39 = iVar39 + 8;
-      iVar32 = iVar32 + 8;
-      iVar23 = iVar23 + 1;
-      iVar33 = iVar33 + 0x40;
-    } while (uVar29 != 0x10);
+      uVar28 = uVar28 + 1;
+      paVar27 = (all_parameters *)&paVar27->pwm_value;
+      iVar22 = iVar22 + 8;
+      paVar17 = (all_parameters *)paVar17->chain_exist;
+      paVar32 = (all_parameters *)((int)&paVar32->current_job_start_address + 1);
+      iVar29 = iVar29 + 0x40;
+    } while (uVar28 != 0x10);
     check_fan();
     set_PWM_according_to_temperature();
-    iVar34 = DAT_0003a330;
     if (startCheckNetworkJob == false) {
-      if (0x5a < *(int *)(*piVar12 + 0x2fc3)) {
-        uVar29 = 2;
+      if (0x5a < dev->temp_top1[0]) {
+        uVar28 = 2;
         goto LAB_0003a28c;
       }
 LAB_0003a59e:
@@ -427,27 +393,20 @@ LAB_0003a59e:
       }
     }
     else {
-      cgtime((timeval *)(DAT_0003a330 + 0x978));
-      iVar31 = *(int *)(iVar34 + 0x978) - *(int *)(iVar34 + 0x970);
-      if (*(int *)(iVar34 + 0x97c) - *(int *)(iVar34 + 0x974) < 0) {
+      cgtime(&tv_send);
+      iVar31 = tv_send.tv_sec - tv_send_job.tv_sec;
+      if (tv_send.tv_usec - tv_send_job.tv_usec < 0) {
         iVar31 = iVar31 + -1;
       }
-      uVar29 = (uint)*(byte *)(*piVar12 + 0x2fbd);
+      uVar28 = (uint)dev->fan_num;
       if (iVar31 < 0x79) {
-        if ((*(int *)(*piVar12 + 0x2fc3) < 0x5b) && (1 < uVar29)) goto LAB_0003a59e;
+        if ((dev->temp_top1[0] < 0x5b) && (1 < uVar28)) goto LAB_0003a59e;
       }
       else {
-        logstr._0_4_ = *DAT_0003a64c;
-        logstr._4_4_ = DAT_0003a64c[1];
-        logstr._8_4_ = DAT_0003a64c[2];
-        logstr._12_4_ = DAT_0003a64c[3];
-        logstr._16_4_ = DAT_0003a64c[4];
-        logstr._20_4_ = DAT_0003a64c[5];
-        logstr._24_4_ = DAT_0003a64c[6];
-        logstr._28_4_ = DAT_0003a64c[7];
-        logstr._32_4_ = DAT_0003a64c[8];
-        logstr._36_2_ = (undefined2)DAT_0003a64c[9];
-        logstr[38] = (char)((uint)DAT_0003a64c[9] >> 0x10);
+        builtin_strncpy(logstr,"Fatal Error: network connection lost",0x24);
+        logstr[0x24] = '!';
+        logstr[0x25] = '\n';
+        logstr[0x26] = '\0';
         writeInitLogFile(logstr);
       }
 LAB_0003a28c:
@@ -459,116 +418,112 @@ LAB_0003a28c:
         }
       }
       else {
-        iVar31 = *piVar12;
         global_stop = true;
-        iVar34 = *(int *)(iVar31 + 0x2fc3);
-        if (iVar34 < 0x5b) {
-          if (uVar29 < 2) {
-            iVar34 = 2;
-          }
-          if (uVar29 < 2) {
-            *(int *)(DAT_0003a330 + 0x9d0) = iVar34;
+        if (dev->temp_top1[0] < 0x5b) {
+          if (uVar28 < 2) {
+            FatalErrorValue = 2;
             goto LAB_0003a5c0;
           }
-          if (*(uint *)(iVar31 + 0x2fbf) < uVar29 * 0x28) {
-            uVar26 = 3;
+          if (dev->fan_speed_top1 < uVar28 * 0x28) {
+            FatalErrorValue = 3;
           }
           else {
-            uVar26 = 4;
+            FatalErrorValue = 4;
           }
-          *(undefined4 *)(DAT_0003a330 + 0x9d0) = uVar26;
         }
         else {
-          *(undefined4 *)(DAT_0003a330 + 0x9d0) = 1;
+          FatalErrorValue = 1;
 LAB_0003a5c0:
-          iVar34 = 0;
+          iVar31 = 0;
           status_error = true;
           once_error = true;
-          while( true ) {
-            if (*(int *)(iVar31 + (iVar34 + 2) * 4) == 1) {
-              pthread_mutex_lock(DAT_0003a674);
-              disable_pic_dac((uchar)iVar34);
-              pthread_mutex_unlock(DAT_0003a674);
+          do {
+            if (dev->chain_exist[iVar31] == 1) {
+              pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+              disable_pic_dac((uchar)iVar31);
+              pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
             }
-            iVar34 = iVar34 + 1;
-            if (iVar34 == 0x10) break;
-            iVar31 = *piVar12;
-          }
+            iVar31 = iVar31 + 1;
+          } while (iVar31 != 0x10);
         }
-        uVar29 = get_dhash_acc_control();
-        set_dhash_acc_control(uVar29 & 0xffffffbf);
+        uVar28 = get_dhash_acc_control();
+        set_dhash_acc_control(uVar28 & 0xffffffbf);
       }
     }
     if (stop_mining == false) {
-      if (*(char *)(DAT_0003a334 + 8) != '\0') goto LAB_0003a30c;
+      if (status_error != false) goto LAB_0003a30c;
       goto LAB_0003a35e;
     }
-    *(undefined *)(DAT_0003a334 + 8) = 1;
+    status_error = true;
 LAB_0003a30c:
     switch(FatalErrorValue) {
     case 1:
-      puVar30 = DAT_0003a668;
+      pcVar19 = "Fatal Error: Temperature is too high!\n";
       goto LAB_0003a33e;
     case 2:
-      logstr._0_4_ = *DAT_0003a664;
-      logstr._4_4_ = DAT_0003a664[1];
-      logstr._8_4_ = DAT_0003a664[2];
-      logstr._12_4_ = DAT_0003a664[3];
-      logstr._16_4_ = DAT_0003a664[4];
-      logstr._20_4_ = DAT_0003a664[5];
+      builtin_strncpy(logstr,"Fatal Error: Fan lost!\n",0x18);
       break;
     case 3:
-      logstr._0_4_ = *DAT_0003a660;
-      logstr._4_4_ = DAT_0003a660[1];
-      logstr._8_4_ = DAT_0003a660[2];
-      logstr._12_4_ = DAT_0003a660[3];
-      logstr._16_4_ = DAT_0003a660[4];
-      logstr._20_4_ = DAT_0003a660[5];
-      logstr._24_4_ = DAT_0003a660[6];
-      logstr._28_4_ = DAT_0003a660[7];
-      logstr[32] = (char)DAT_0003a660[8];
+      builtin_strncpy(logstr,"Fatal Error: Fan speed too low!\n",0x20);
+      logstr._32_4_ = logstr._32_4_ & 0xffffff00;
       break;
     case 4:
-      puVar30 = DAT_0003a64c;
+      pcVar19 = "Fatal Error: network connection lost!\n";
 LAB_0003a33e:
-      logstr._0_4_ = *puVar30;
-      logstr._4_4_ = puVar30[1];
-      logstr._8_4_ = puVar30[2];
-      logstr._12_4_ = puVar30[3];
-      logstr._16_4_ = puVar30[4];
-      logstr._20_4_ = puVar30[5];
-      logstr._24_4_ = puVar30[6];
-      logstr._28_4_ = puVar30[7];
-      logstr._32_4_ = puVar30[8];
-      logstr._36_2_ = (undefined2)puVar30[9];
-      logstr[38] = (char)((uint)puVar30[9] >> 0x10);
+      logstr._0_4_ = *(undefined4 *)pcVar19;
+      logstr._4_4_ = *(undefined4 *)(pcVar19 + 4);
+      logstr._8_4_ = *(undefined4 *)(pcVar19 + 8);
+      logstr._12_4_ = *(undefined4 *)(pcVar19 + 0xc);
+      logstr._16_4_ = *(undefined4 *)(pcVar19 + 0x10);
+      logstr._20_4_ = *(undefined4 *)(pcVar19 + 0x14);
+      logstr._24_4_ = *(undefined4 *)(pcVar19 + 0x18);
+      logstr._28_4_ = *(undefined4 *)(pcVar19 + 0x1c);
+      logstr._32_4_ = *(undefined4 *)(pcVar19 + 0x20);
+      logstr._36_2_ = (undefined2)*(undefined4 *)(pcVar19 + 0x24);
+      logstr[0x26] = (char)((uint)*(undefined4 *)(pcVar19 + 0x24) >> 0x10);
       break;
     default:
-      logstr._0_4_ = *DAT_0003a66c;
-      logstr._4_4_ = DAT_0003a66c[1];
-      logstr._8_4_ = DAT_0003a66c[2];
-      logstr._12_4_ = DAT_0003a66c[3];
-      logstr._16_4_ = DAT_0003a66c[4];
-      logstr._20_4_ = DAT_0003a66c[5];
-      logstr._24_4_ = DAT_0003a66c[6];
-      logstr[28] = (char)DAT_0003a66c[7];
+      logstr[0] = 'F';
+      logstr[1] = 'a';
+      logstr[2] = 't';
+      logstr[3] = 'a';
+      logstr[4] = 'l';
+      logstr[5] = ' ';
+      logstr[6] = 'E';
+      logstr[7] = 'r';
+      logstr[8] = 'r';
+      logstr[9] = 'o';
+      logstr[10] = 'r';
+      logstr[0xb] = ':';
+      logstr[0xc] = ' ';
+      logstr[0xd] = 'u';
+      logstr[0xe] = 'n';
+      logstr[0xf] = 'k';
+      logstr[0x10] = 'o';
+      logstr[0x11] = 'w';
+      logstr[0x12] = 'n';
+      logstr[0x13] = ' ';
+      logstr[0x14] = 's';
+      logstr[0x15] = 't';
+      logstr[0x16] = 'a';
+      logstr[0x17] = 't';
+      logstr[0x18] = 'u';
+      logstr[0x19] = 's';
+      logstr[0x1a] = '.';
+      logstr[0x1b] = '\n';
+      logstr._28_4_ = logstr._28_4_ & 0xffffff00;
     }
     writeInitLogFile(logstr);
 LAB_0003a35e:
     processTEST();
-    puVar30 = DAT_0003a650;
-    sprintf(logstr,DAT_0003a654,(uint)*(byte *)(*piVar12 + 0x2fed));
+    sprintf(logstr,"FAN PWM: %d\n",(uint)dev->fan_pwm);
     writeLogFile(logstr);
-    pthread_mutex_unlock(DAT_0003a658);
-    logstr._0_4_ = *puVar30;
-    logstr._4_4_ = puVar30[1];
-    logstr._8_4_ = puVar30[2];
-    logstr._12_4_ = puVar30[3];
-    logstr._16_4_ = puVar30[4];
-    logstr[20] = (char)(short)puVar30[5];
-    logstr[21] = (char)((ushort)(short)puVar30[5] >> 8);
+    pthread_mutex_unlock((pthread_mutex_t *)&opencore_readtemp_mutex);
+    uVar13 = logstr._20_4_;
+    builtin_strncpy(logstr,"read_temp_func Done!\n",0x16);
+    logstr._22_2_ = SUB42(uVar13,2);
     writeLogFile(logstr);
-    sprintf(logstr,DAT_0003a65c,(uint)*(ushort *)(axi_fpga_addr + 0x3e));
+    sprintf(logstr,"CRC error counter=%d\n",(uint)(ushort)axi_fpga_addr[0x3e]);
     writeLogFile(logstr);
     updateLogFile();
     if (doTestPatten == false) {

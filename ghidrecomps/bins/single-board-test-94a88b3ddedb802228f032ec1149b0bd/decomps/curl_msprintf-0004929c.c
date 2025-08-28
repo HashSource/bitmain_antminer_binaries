@@ -1,8 +1,8 @@
 
-void curl_msprintf(undefined *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+void curl_msprintf(undefined1 *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
-  undefined *local_24 [2];
+  undefined1 *local_24 [2];
   undefined4 *local_1c;
   undefined4 uStack_8;
   undefined4 uStack_4;

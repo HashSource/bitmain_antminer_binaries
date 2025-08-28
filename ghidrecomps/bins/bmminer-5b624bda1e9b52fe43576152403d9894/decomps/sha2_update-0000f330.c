@@ -8,11 +8,10 @@ void sha2_update(sha2_context *ctx,uchar *input,int ilen)
   uint uVar1;
   uint uVar2;
   size_t __n;
-  int fill;
   uchar *data;
   int iVar3;
   uint uVar4;
-  uint left;
+  undefined4 unaff_lr;
   
   if (0 < ilen) {
     uVar4 = ctx->total[0] & 0x3f;
@@ -44,14 +43,12 @@ void sha2_update(sha2_context *ctx,uchar *input,int ilen)
         sha2_process(ctx,data);
         data = data + 0x40;
       } while (0x3f < iVar3);
-      uVar2 = ilen - 0x40;
-      ilen = uVar2 - (uVar2 & 0xffffffc0);
-      input = input + ((uVar2 >> 6) + 1) * 0x40;
+      uVar2 = ilen - 0x40U >> 6;
+      ilen = (ilen - 0x40U) + uVar2 * -0x40;
+      input = input + (uVar2 + 1) * 0x40;
     }
     if (0 < ilen) {
-                    /* WARNING: Could not recover jumptable at 0x0000a384. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-      (*(code *)PTR_LAB_0005f264)(ctx->buffer + uVar4,input,ilen,in_r3);
+      (*(code *)(undefined *)0x0)(ctx->buffer + uVar4,input,ilen,in_r3,unaff_lr);
       return;
     }
   }

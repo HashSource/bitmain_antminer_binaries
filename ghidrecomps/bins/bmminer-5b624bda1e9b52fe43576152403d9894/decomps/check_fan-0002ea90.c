@@ -1,11 +1,11 @@
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void check_fan(void)
 
 {
-  char cVar1;
-  int *piVar2;
+  uchar uVar1;
+  all_parameters *paVar2;
   int iVar3;
   uint uVar4;
   uint uVar5;
@@ -15,42 +15,41 @@ void check_fan(void)
   byte local_2d;
   uint fan_speed;
   
-  piVar2 = DAT_0002eb5c;
   iVar7 = 2;
   local_2d = 0;
   do {
     iVar6 = 8;
     do {
       iVar3 = get_fan_speed(&local_2d,&fan_speed);
+      paVar2 = dev;
       if (iVar3 != -1) {
         uVar8 = (uint)local_2d;
-        iVar3 = *piVar2;
         uVar4 = fan_speed * 0x78;
-        *(uint *)(iVar3 + (uVar8 + 0xbd2) * 4 + 2) = uVar4;
+        dev->fan_speed_value[uVar8] = uVar4;
         if (fan_speed == 0) {
-          if (*(char *)(iVar3 + uVar8 + 0x2f42) == '\x01') {
-            uVar5 = *(uint *)(iVar3 + 0x4c);
-            cVar1 = *(char *)(iVar3 + 0x2fbd);
-            *(undefined *)(iVar3 + uVar8 + 0x2f42) = 0;
+          if (paVar2->fan_exist[uVar8] == '\x01') {
+            uVar5 = paVar2->fan_exist_map;
+            uVar1 = paVar2->fan_num;
+            paVar2->fan_exist[uVar8] = '\0';
             if (1 << uVar8 == 0) {
               uVar5 = uVar5 & 1;
             }
             else {
               uVar5 = 0;
             }
-            *(uint *)(iVar3 + 0x4c) = uVar5;
-            *(char *)(iVar3 + 0x2fbd) = cVar1 + -1;
+            paVar2->fan_exist_map = uVar5;
+            paVar2->fan_num = uVar1 + 0xff;
           }
         }
-        else if (*(char *)(iVar3 + uVar8 + 0x2f42) == '\0') {
-          uVar5 = *(uint *)(iVar3 + 0x4c);
-          cVar1 = *(char *)(iVar3 + 0x2fbd);
-          *(undefined *)(iVar3 + uVar8 + 0x2f42) = 1;
-          *(uint *)(iVar3 + 0x4c) = uVar5 | 1 << uVar8;
-          *(char *)(iVar3 + 0x2fbd) = cVar1 + '\x01';
+        else if (paVar2->fan_exist[uVar8] == '\0') {
+          uVar5 = paVar2->fan_exist_map;
+          uVar1 = paVar2->fan_num;
+          paVar2->fan_exist[uVar8] = '\x01';
+          paVar2->fan_exist_map = uVar5 | 1 << uVar8;
+          paVar2->fan_num = uVar1 + '\x01';
         }
-        if (*(uint *)(iVar3 + 0x2fbf) < uVar4) {
-          *(uint *)(iVar3 + 0x2fbf) = uVar4;
+        if (paVar2->fan_speed_top1 < uVar4) {
+          paVar2->fan_speed_top1 = uVar4;
         }
       }
       iVar6 = iVar6 + -1;

@@ -2,7 +2,7 @@
 _Bool tq_push(thread_q *tq,void *data)
 
 {
-  void **__ptr;
+  undefined4 *__ptr;
   bool bVar1;
   void *data_local;
   thread_q *tq_local;
@@ -10,7 +10,7 @@ _Bool tq_push(thread_q *tq,void *data)
   tq_ent *ent;
   _Bool rc;
   
-  __ptr = (void **)_cgcalloc(1,0xc,"util.c","tq_push",0x474);
+  __ptr = (undefined4 *)_cgcalloc(1,0xc,"util.c","tq_push",0x474);
   *__ptr = data;
   __ptr[1] = __ptr + 1;
   __ptr[2] = __ptr + 1;

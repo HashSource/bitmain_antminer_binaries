@@ -17,9 +17,9 @@ int RSA_memory_lock(RSA *r)
     pBVar1 = (BIGNUM *)
              CRYPTO_malloc_locked
                        ((r->dmq1->top + r->d->top + r->p->top + r->q->top + r->dmp1->top +
-                         r->iqmp->top + 0x20) * 4,DAT_000a3f94,0x13a);
+                         r->iqmp->top + 0x20) * 4,"rsa_lib.c",0x13a);
     if (pBVar1 == (BIGNUM *)0x0) {
-      ERR_put_error(4,0x82,0x41,DAT_000a3f94,0x13b);
+      ERR_put_error(4,0x82,0x41,"rsa_lib.c",0x13b);
       iVar2 = 0;
     }
     else {

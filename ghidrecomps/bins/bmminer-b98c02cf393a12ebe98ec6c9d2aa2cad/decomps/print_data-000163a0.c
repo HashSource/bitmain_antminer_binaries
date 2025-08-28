@@ -2,85 +2,80 @@
 undefined4 print_data(undefined4 param_1,undefined4 *param_2,int param_3,int param_4)
 
 {
-  undefined4 uVar1;
-  double dVar2;
-  int iVar3;
-  int iVar4;
+  int iVar1;
+  int iVar2;
   void *__ptr;
-  int *piVar5;
-  char *pcVar6;
-  int iVar7;
-  float *pfVar8;
-  undefined4 *puVar9;
-  pthread_mutex_t *ppVar10;
+  int *piVar3;
+  char *pcVar4;
+  int iVar5;
+  float *pfVar6;
+  undefined4 *puVar7;
+  pthread_mutex_t *ppVar8;
   void *local_874;
   char acStack_870 [64];
   char acStack_830 [2052];
   
-  ppVar10 = *(pthread_mutex_t **)(strbufs + 8);
-  iVar3 = pthread_mutex_lock(ppVar10);
-  uVar1 = DAT_000166f8;
-  if (iVar3 == 0) {
-    iVar3 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar10 + 1));
+  ppVar8 = *(pthread_mutex_t **)(strbufs + 8);
+  iVar1 = pthread_mutex_lock(ppVar8);
+  if (iVar1 == 0) {
+    iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar8 + 1));
   }
   else {
-    piVar5 = __errno_location();
-    uVar1 = DAT_00016bec;
-    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             DAT_00016bec,0x4af);
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x4af);
     _applog(3,acStack_830,1);
     _quit(1);
-    iVar3 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar10 + 1));
+    iVar1 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar8 + 1));
   }
-  if (iVar3 != 0) {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x4af);
-    _applog(3,acStack_830,1);
-    _quit(1);
-  }
-  iVar3 = _k_unlink_head(strbufs,"api.c",DAT_000166f8,0x4b0);
-  ppVar10 = *(pthread_mutex_t **)(strbufs + 8);
-  iVar4 = pthread_rwlock_unlock((pthread_rwlock_t *)(ppVar10 + 1));
-  if (iVar4 != 0) {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x4b1);
+  if (iVar1 != 0) {
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x4af);
     _applog(3,acStack_830,1);
     _quit(1);
   }
-  iVar4 = pthread_mutex_unlock(ppVar10);
-  if (iVar4 != 0) {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x4b1);
+  iVar1 = _k_unlink_head(strbufs,"api.c","print_data",0x4b0);
+  ppVar8 = *(pthread_mutex_t **)(strbufs + 8);
+  iVar2 = pthread_rwlock_unlock((pthread_rwlock_t *)(ppVar8 + 1));
+  if (iVar2 != 0) {
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x4b1);
+    _applog(3,acStack_830,1);
+    _quit(1);
+  }
+  iVar2 = pthread_mutex_unlock(ppVar8);
+  if (iVar2 != 0) {
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x4b1);
     _applog(3,acStack_830,1);
     _quit(1);
   }
   (*selective_yield)();
-  *(undefined4 *)(*(int *)(iVar3 + 0xc) + 4) = 0;
+  *(undefined4 *)(*(int *)(iVar1 + 0xc) + 4) = 0;
   if (param_4 != 0) {
-    add_item_buf_isra_2(iVar3 + 0xc,&DAT_0005c74c);
+    add_item_buf_isra_2(iVar1 + 0xc,&DAT_0005c74c);
   }
-  iVar4 = iVar3 + 0xc;
+  iVar2 = iVar1 + 0xc;
   if (param_3 == 0) {
     if (param_2 != (undefined4 *)0x0) {
 LAB_0001644e:
-      dVar2 = DAT_000166f0;
       if (param_3 != 0) goto LAB_00016506;
 LAB_0001646a:
-      add_item_buf_isra_2(iVar4,param_2[1]);
-      add_item_buf_isra_2(iVar4,"=");
-      puVar9 = param_2;
+      add_item_buf_isra_2(iVar2,param_2[1]);
+      add_item_buf_isra_2(iVar2,"=");
+      puVar7 = param_2;
       switch(*param_2) {
       case 0:
         local_874 = (void *)param_2[2];
         __ptr = (void *)escape_string(local_874,0);
-        add_item_buf_isra_2(iVar4,__ptr);
+        add_item_buf_isra_2(iVar2,__ptr);
         break;
       case 1:
       case 2:
-        add_item_buf_isra_2(iVar4,param_2[2]);
+        add_item_buf_isra_2(iVar2,param_2[2]);
         goto LAB_000164da;
       case 3:
         goto switchD_00016482_caseD_3;
@@ -95,7 +90,7 @@ LAB_0001646a:
         goto switchD_00016482_caseD_7;
       case 9:
         snprintf(acStack_870,0x40,"0x%08x",*(undefined4 *)param_2[2]);
-        add_item_buf_isra_2(iVar4,acStack_870);
+        add_item_buf_isra_2(iVar2,acStack_870);
         goto LAB_000164da;
       case 10:
         goto switchD_00016482_caseD_a;
@@ -129,45 +124,45 @@ LAB_0001646a:
       case 0x19:
         goto switchD_00016482_caseD_19;
       default:
-        goto switchD_00016482_caseD_1b;
+        goto switchD_00016482_default;
       }
 LAB_00016670:
-      puVar9 = param_2;
+      puVar7 = param_2;
       if (local_874 != __ptr) {
         free(__ptr);
       }
 LAB_000164da:
-      free((void *)puVar9[1]);
-      if (*(char *)(puVar9 + 3) == '\0') {
-        param_2 = (undefined4 *)puVar9[5];
+      free((void *)puVar7[1]);
+      if (*(char *)(puVar7 + 3) == '\0') {
+        param_2 = (undefined4 *)puVar7[5];
       }
       else {
-        free((void *)puVar9[2]);
-        param_2 = (undefined4 *)puVar9[5];
+        free((void *)puVar7[2]);
+        param_2 = (undefined4 *)puVar7[5];
       }
-      if (puVar9 == param_2) {
-        free(puVar9);
-        if (param_3 != 0) goto LAB_00016974;
-        goto LAB_000165d0;
+      if (puVar7 == param_2) {
+        free(puVar7);
+        if (param_3 == 0) goto LAB_000165d0;
+        goto LAB_00016974;
       }
-      iVar7 = puVar9[4];
-      param_2[4] = iVar7;
-      *(undefined4 **)(iVar7 + 0x14) = param_2;
-      free(puVar9);
-      add_item_buf_isra_2(iVar4,&DAT_0005c74c);
+      iVar5 = puVar7[4];
+      param_2[4] = iVar5;
+      *(undefined4 **)(iVar5 + 0x14) = param_2;
+      free(puVar7);
+      add_item_buf_isra_2(iVar2,&DAT_0005c74c);
       if (param_3 == 0) goto LAB_0001646a;
 LAB_00016506:
-      add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
-      add_item_buf_isra_2(iVar4,param_2[1]);
-      add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
-      add_item_buf_isra_2(iVar4,&DAT_000670e8);
+      add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
+      add_item_buf_isra_2(iVar2,param_2[1]);
+      add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
+      add_item_buf_isra_2(iVar2,&DAT_000670e8);
       switch(*param_2) {
       case 0:
         goto switchD_00016542_caseD_0;
       case 1:
       case 2:
-        add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
-        pcVar6 = (char *)param_2[2];
+        add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
+        pcVar4 = (char *)param_2[2];
         goto LAB_000168f0;
       case 3:
 switchD_00016482_caseD_3:
@@ -191,13 +186,13 @@ switchD_00016482_caseD_7:
         snprintf(acStack_870,0x40,"%u",*(undefined4 *)param_2[2]);
         break;
       case 9:
-        add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
+        add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
         snprintf(acStack_870,0x40,"0x%08x",*(undefined4 *)param_2[2]);
-        pcVar6 = acStack_870;
+        pcVar4 = acStack_870;
 LAB_000168f0:
-        add_item_buf_isra_2(iVar4,pcVar6);
-        add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
-        puVar9 = param_2;
+        add_item_buf_isra_2(iVar2,pcVar4);
+        add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
+        puVar7 = param_2;
         goto LAB_000164da;
       case 10:
 switchD_00016482_caseD_a:
@@ -217,11 +212,11 @@ switchD_00016482_caseD_d:
         break;
       case 0xe:
 switchD_00016482_caseD_e:
-        pcVar6 = "false";
+        pcVar4 = "false";
         if (*(char *)param_2[2] != '\0') {
-          pcVar6 = "true";
+          pcVar4 = "true";
         }
-        snprintf(acStack_870,0x40,"%s",pcVar6);
+        snprintf(acStack_870,0x40,"%s",pcVar4);
         break;
       case 0xf:
 switchD_00016482_caseD_f:
@@ -244,16 +239,16 @@ switchD_00016482_caseD_12:
         break;
       case 0x13:
 switchD_00016482_caseD_13:
-        pfVar8 = (float *)param_2[2];
-        pcVar6 = "%.2f";
+        pfVar6 = (float *)param_2[2];
+        pcVar4 = "%.2f";
         goto LAB_000166c8;
       case 0x16:
       case 0x1a:
 switchD_00016482_caseD_16:
-        pfVar8 = (float *)param_2[2];
-        pcVar6 = "%.3f";
+        pfVar6 = (float *)param_2[2];
+        pcVar4 = "%.3f";
 LAB_000166c8:
-        snprintf(acStack_870,0x40,pcVar6,pfVar8,(double)*pfVar8);
+        snprintf(acStack_870,0x40,pcVar4,pfVar6,(double)*pfVar6);
         break;
       case 0x17:
 switchD_00016482_caseD_17:
@@ -265,75 +260,75 @@ switchD_00016482_caseD_18:
         break;
       case 0x19:
 switchD_00016482_caseD_19:
-        snprintf(acStack_870,0x40,"%.4f",(double *)param_2[2],*(double *)param_2[2] * dVar2);
+        snprintf(acStack_870,0x40,"%.4f",(double *)param_2[2],*(double *)param_2[2] * 100.0);
         break;
       default:
-switchD_00016482_caseD_1b:
+switchD_00016482_default:
         if (((use_syslog != '\0') || (opt_log_output != '\0')) || (2 < opt_log_level)) {
           snprintf(acStack_830,0x800,"API: unknown2 data type %d ignored");
           _applog(3,acStack_830,0);
         }
         if (param_3 != 0) {
-          add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
-          pcVar6 = "Unknown";
+          add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
+          pcVar4 = "Unknown";
           goto LAB_000168f0;
         }
-        add_item_buf_isra_2(iVar4,"Unknown");
-        puVar9 = param_2;
+        add_item_buf_isra_2(iVar2,"Unknown");
+        puVar7 = param_2;
         goto LAB_000164da;
       }
-      add_item_buf_isra_2(iVar4,acStack_870);
-      puVar9 = param_2;
+      add_item_buf_isra_2(iVar2,acStack_870);
+      puVar7 = param_2;
       goto LAB_000164da;
     }
 LAB_000165d0:
-    add_item_buf_isra_2(iVar4,&DAT_00057a28);
+    add_item_buf_isra_2(iVar2,&DAT_00057a28);
   }
   else {
-    add_item_buf_isra_2(iVar4,&DAT_000634c8);
+    add_item_buf_isra_2(iVar2,&DAT_000634c8);
     if (param_2 != (undefined4 *)0x0) goto LAB_0001644e;
 LAB_00016974:
-    add_item_buf_isra_2(iVar4,"}");
+    add_item_buf_isra_2(iVar2,"}");
   }
-  io_add(param_1,**(undefined4 **)(iVar3 + 0xc));
-  ppVar10 = *(pthread_mutex_t **)(strbufs + 8);
-  iVar4 = pthread_mutex_lock(ppVar10);
-  if (iVar4 == 0) {
-    iVar4 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar10 + 1));
-  }
-  else {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x55b);
-    _applog(3,acStack_830,1);
-    _quit(1);
-    iVar4 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar10 + 1));
-  }
-  if (iVar4 != 0) {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x55b);
-    _applog(3,acStack_830,1);
-    _quit(1);
-  }
-  _k_add_head(strbufs,iVar3,"api.c",DAT_000166f8,0x55c);
-  ppVar10 = *(pthread_mutex_t **)(strbufs + 8);
-  iVar3 = pthread_rwlock_unlock((pthread_rwlock_t *)(ppVar10 + 1));
-  if (iVar3 == 0) {
-    iVar3 = pthread_mutex_unlock(ppVar10);
+  io_add(param_1,**(undefined4 **)(iVar1 + 0xc));
+  ppVar8 = *(pthread_mutex_t **)(strbufs + 8);
+  iVar2 = pthread_mutex_lock(ppVar8);
+  if (iVar2 == 0) {
+    iVar2 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar8 + 1));
   }
   else {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x55d);
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON LOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x55b);
     _applog(3,acStack_830,1);
     _quit(1);
-    iVar3 = pthread_mutex_unlock(ppVar10);
+    iVar2 = pthread_rwlock_wrlock((pthread_rwlock_t *)(ppVar8 + 1));
   }
-  if (iVar3 != 0) {
-    piVar5 = __errno_location();
-    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar5,"api.c",
-             uVar1,0x55d);
+  if (iVar2 != 0) {
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF WRLOCK ERROR ON LOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x55b);
+    _applog(3,acStack_830,1);
+    _quit(1);
+  }
+  _k_add_head(strbufs,iVar1,"api.c","print_data",0x55c);
+  ppVar8 = *(pthread_mutex_t **)(strbufs + 8);
+  iVar1 = pthread_rwlock_unlock((pthread_rwlock_t *)(ppVar8 + 1));
+  if (iVar1 == 0) {
+    iVar1 = pthread_mutex_unlock(ppVar8);
+  }
+  else {
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF RWLOCK ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x55d);
+    _applog(3,acStack_830,1);
+    _quit(1);
+    iVar1 = pthread_mutex_unlock(ppVar8);
+  }
+  if (iVar1 != 0) {
+    piVar3 = __errno_location();
+    snprintf(acStack_830,0x800,"WTF MUTEX ERROR ON UNLOCK! errno=%d in %s %s():%d",*piVar3,"api.c",
+             "print_data",0x55d);
     _applog(3,acStack_830,1);
     _quit(1);
   }
@@ -342,9 +337,9 @@ LAB_00016974:
 switchD_00016542_caseD_0:
   local_874 = (void *)param_2[2];
   __ptr = (void *)escape_string(local_874,1);
-  add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
-  add_item_buf_isra_2(iVar4,__ptr);
-  add_item_buf_isra_2(iVar4,&DAT_0005c7f8);
+  add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
+  add_item_buf_isra_2(iVar2,__ptr);
+  add_item_buf_isra_2(iVar2,&DAT_0005c7f8);
   goto LAB_00016670;
 }
 

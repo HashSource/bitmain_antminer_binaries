@@ -3,6 +3,7 @@ void imap_block_statemach(int param_1,undefined4 param_2,undefined4 param_3,int 
 
 {
   int iVar1;
+  undefined4 extraout_r2;
   int iVar2;
   
   if (*(int *)(param_1 + 0x3f8) != 0) {
@@ -13,6 +14,7 @@ void imap_block_statemach(int param_1,undefined4 param_2,undefined4 param_3,int 
       if (param_4 == 0) {
         return;
       }
+      param_3 = extraout_r2;
     } while (iVar1 == 0);
   }
   return;

@@ -19,7 +19,7 @@ int RSA_sign(int type,uchar *m,uint m_length,uchar *sigret,uint *siglen,RSA *rsa
   }
   if (type == 0x72) {
     if (m_length != 0x24) {
-      ERR_put_error(4,0x75,0x83,DAT_000a40e0,0x5d);
+      ERR_put_error(4,0x75,0x83,"rsa_sign.c",0x5d);
       return 0;
     }
     iVar1 = RSA_size(rsa);
@@ -31,11 +31,11 @@ int RSA_sign(int type,uchar *m,uint m_length,uchar *sigret,uint *siglen,RSA *rsa
     local_50.algor = &local_40;
     local_40.algorithm = OBJ_nid2obj(type);
     if ((local_50.algor)->algorithm == (ASN1_OBJECT *)0x0) {
-      ERR_put_error(4,0x75,0x75,DAT_000a40e0,0x66);
+      ERR_put_error(4,0x75,0x75,"rsa_sign.c",0x66);
       return 0;
     }
     if ((local_50.algor)->algorithm->length == 0) {
-      ERR_put_error(4,0x75,0x74,DAT_000a40e0,0x6b);
+      ERR_put_error(4,0x75,0x74,"rsa_sign.c",0x6b);
       return 0;
     }
     local_48.value.ptr = (char *)0x0;
@@ -48,12 +48,12 @@ int RSA_sign(int type,uchar *m,uint m_length,uchar *sigret,uint *siglen,RSA *rsa
     iVar1 = RSA_size(rsa);
     if (iVar1 + -10 <= flen) {
 LAB_000a40a2:
-      ERR_put_error(4,0x75,0x70,DAT_000a40e0,0x7a);
+      ERR_put_error(4,0x75,0x70,"rsa_sign.c",0x7a);
       return 0;
     }
-    m = (uchar *)CRYPTO_malloc(iVar1 + 1,DAT_000a40e0,0x7e);
+    m = (uchar *)CRYPTO_malloc(iVar1 + 1,"rsa_sign.c",0x7e);
     if (m == (uchar *)0x0) {
-      ERR_put_error(4,0x75,0x41,DAT_000a40e0,0x80);
+      ERR_put_error(4,0x75,0x41,"rsa_sign.c",0x80);
       return 0;
     }
     local_54 = m;

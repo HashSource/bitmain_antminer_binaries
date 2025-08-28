@@ -2,7 +2,7 @@
 void open_core(uint param_1)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   uint uVar2;
   int iVar3;
   byte *pbVar4;
@@ -15,7 +15,7 @@ void open_core(uint param_1)
   int iVar10;
   uint uVar11;
   char *local_8f4;
-  uint local_8e0;
+  undefined4 local_8e0;
   undefined4 local_8dc;
   undefined4 local_8d8;
   byte local_8d4;
@@ -23,23 +23,22 @@ void open_core(uint param_1)
   uint local_8cc;
   int local_8c8;
   uint local_8c4 [3];
-  undefined local_8b8;
+  undefined1 local_8b8;
   int local_8a0;
   uint local_890;
-  uint local_88c;
-  uint local_888;
-  undefined local_884;
+  uint local_88c [2];
+  undefined1 local_884;
   undefined4 uStack_880;
   undefined4 local_87c [8];
   byte local_85c;
   byte local_85b;
   byte local_85a [38];
-  undefined local_834;
-  undefined local_829;
+  undefined1 local_834;
+  undefined1 local_829;
   byte local_828;
-  undefined local_827;
-  undefined local_826;
-  undefined local_825;
+  undefined1 local_827;
+  undefined1 local_826;
+  undefined1 local_825;
   uint local_824;
   byte local_820 [2044];
   
@@ -56,7 +55,7 @@ void open_core(uint param_1)
   local_8d4 = 0;
   if (opt_multi_version != 0) {
     uVar2 = get_dhash_acc_control();
-    local_8f4 = DAT_00036510;
+    local_8f4 = disabledcore_pos_buf;
     set_dhash_acc_control(uVar2 & 0xffff7fdf | (opt_multi_version & 0xf) << 8 | 0x8000);
     set_hash_counting_number(0);
     iVar10 = dev;
@@ -69,8 +68,8 @@ void open_core(uint param_1)
     local_8d0 = 0x5809001c;
     local_890 = 0;
     uVar2 = 0;
-    local_88c = 0;
-    local_888 = 0;
+    local_88c[0] = 0;
+    local_88c[1] = 0;
     local_884 = 0;
     memset(&local_828,0xff,0x34);
     do {
@@ -83,8 +82,8 @@ void open_core(uint param_1)
         local_826 = 0;
         local_824 = 0;
         local_820[0] = 0xff;
-        local_820[11] = 0xff;
-        uVar1 = (undefined)(uVar2 | 0xffffff80);
+        local_820[0xb] = 0xff;
+        uVar1 = (undefined1)(uVar2 | 0xffffff80);
         local_827 = uVar1;
         local_825 = local_826;
         set_BC_command_buffer(&local_8d0);
@@ -99,10 +98,10 @@ void open_core(uint param_1)
               iVar3 = iVar3 + -1;
               if (iVar3 == 0) {
                 if (log_level < 4) goto LAB_000365c4;
-                __stream = fopen(log_file,(char *)&DAT_0005e760);
+                __stream = fopen(log_file,"a+");
                 if (__stream != (FILE *)0x0) {
                   fprintf(__stream,"%s:%d:%s: Error: send open core work Failed on Chain[%d]!\n",
-                          "driver-btm-c5.c",0x2b10,DAT_000366b0,uVar2);
+                          "driver-btm-c5.c",0x2b10,"open_core",uVar2);
                 }
                 fclose(__stream);
                 close_bad_core(uVar2,param_1);
@@ -117,11 +116,11 @@ void open_core(uint param_1)
               local_890 = 0x1000000;
               local_828 = 1;
             }
-            puVar8 = &local_88c;
+            puVar8 = local_88c;
             local_827 = uVar1;
             local_890 = (uint)CONCAT11(local_826,local_825) | ((uVar2 | 0xffffff80) & 0xff) << 0x10
                         | local_890;
-            local_88c = local_824;
+            local_88c[0] = local_824;
             pbVar5 = &local_828;
             do {
               pbVar4 = pbVar5 + 4;
@@ -182,8 +181,8 @@ LAB_00036464:
   if ((opt_debug != '\0') &&
      (((use_syslog != '\0' || (opt_log_output != '\0')) || (6 < opt_log_level)))) {
     snprintf((char *)&local_828,0x800,
-             "%s: gateblk[0]=0x%x, gateblk[1]=0x%x, gateblk[2]=0x%x, gateblk[3]=0x%x\n",DAT_0003650c
-             ,0x86,0,uVar9,uVar2);
+             "%s: gateblk[0]=0x%x, gateblk[1]=0x%x, gateblk[2]=0x%x, gateblk[3]=0x%x\n","open_core",
+             0x86,0,uVar9,uVar2);
     _applog(7,&local_828,0);
     iVar10 = dev;
   }

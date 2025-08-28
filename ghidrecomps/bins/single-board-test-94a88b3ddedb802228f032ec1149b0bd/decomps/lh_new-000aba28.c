@@ -2,29 +2,25 @@
 _LHASH * lh_new(LHASH_HASH_FN_TYPE h,LHASH_COMP_FN_TYPE c)
 
 {
-  LHASH_COMP_FN_TYPE pLVar1;
-  LHASH_HASH_FN_TYPE pLVar2;
   _LHASH *ptr;
-  LHASH_NODE **ppLVar3;
+  LHASH_NODE **ppLVar1;
   
-  ptr = (_LHASH *)CRYPTO_malloc(0x60,DAT_000abaf0,0x78);
+  ptr = (_LHASH *)CRYPTO_malloc(0x60,"lhash.c",0x78);
   if (ptr != (_LHASH *)0x0) {
-    ppLVar3 = (LHASH_NODE **)CRYPTO_malloc(0x40,DAT_000abaf0,0x7a);
-    ptr->b = ppLVar3;
-    pLVar1 = DAT_000abaf4;
-    if (ppLVar3 == (LHASH_NODE **)0x0) {
+    ppLVar1 = (LHASH_NODE **)CRYPTO_malloc(0x40,"lhash.c",0x7a);
+    ptr->b = ppLVar1;
+    if (ppLVar1 == (LHASH_NODE **)0x0) {
       CRYPTO_free(ptr);
       ptr = (_LHASH *)0x0;
     }
     else {
-      *ppLVar3 = (LHASH_NODE *)0x0;
-      pLVar2 = DAT_000abaf8;
+      *ppLVar1 = (LHASH_NODE *)0x0;
       if (c == (LHASH_COMP_FN_TYPE)0x0) {
-        c = pLVar1;
+        c = strcmp;
       }
       ptr->b[1] = (LHASH_NODE *)0x0;
       if (h == (LHASH_HASH_FN_TYPE)0x0) {
-        h = pLVar2;
+        h = (code *)0xab9e9;
       }
       ptr->b[2] = (LHASH_NODE *)0x0;
       ptr->b[3] = (LHASH_NODE *)0x0;

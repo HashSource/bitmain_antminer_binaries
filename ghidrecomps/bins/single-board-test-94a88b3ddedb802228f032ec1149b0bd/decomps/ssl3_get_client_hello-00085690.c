@@ -12,20 +12,21 @@ SSL_COMP * ssl3_get_client_hello(SSL *param_1)
   int iVar8;
   SSL_CIPHER *pSVar9;
   SSL_METHOD *pSVar10;
-  undefined4 *puVar11;
+  byte *pbVar11;
   undefined4 uVar12;
   SSL_SESSION *pSVar13;
   int iVar14;
   uint uVar15;
-  undefined4 *puVar16;
+  int extraout_r3;
+  byte *pbVar16;
   dtls1_state_st *pdVar17;
   SSL_COMP *unaff_r5;
   _func_3206 *p_Var18;
   _STACK *p_Var19;
-  undefined4 *puVar20;
+  byte *pbVar20;
   code *pcVar21;
   SSL_CIPHER *pSVar22;
-  undefined4 *puVar23;
+  byte *pbVar23;
   tls_session_secret_cb_fn ptVar24;
   uint uVar25;
   ssl3_state_st *psVar26;
@@ -33,7 +34,7 @@ SSL_COMP * ssl3_get_client_hello(SSL *param_1)
   undefined4 uVar28;
   undefined4 uVar29;
   bool bVar30;
-  undefined4 *local_38;
+  byte *local_38;
   int local_34;
   _STACK *local_30;
   _STACK *local_2c [2];
@@ -48,16 +49,17 @@ LAB_0008578c:
     if (pcVar21 != (code *)0x0) {
       iVar6 = (*pcVar21)(param_1,*(undefined4 *)(param_1->cert + 0x148));
       if (iVar6 == 0) {
-        ERR_put_error(0x14,0x8a,0x179,DAT_00085d18,0x578);
+        ERR_put_error(0x14,0x8a,0x179,"s3_srvr.c",0x578);
         uVar12 = 0x50;
         goto LAB_00085760;
       }
+      iVar27 = extraout_r3;
       if (iVar6 < 0) {
-        pcVar21 = (code *)0x4;
+        iVar27 = 4;
         unaff_r5 = (SSL_COMP *)0xffffffff;
       }
       if (iVar6 < 0) {
-        param_1->rwstate = (int)pcVar21;
+        param_1->rwstate = iVar27;
         return unaff_r5;
       }
       param_1->rwstate = 1;
@@ -68,7 +70,7 @@ LAB_0008578c:
     if (pSVar4 == (SSL_CIPHER *)0x0) {
       iVar14 = 0x585;
 LAB_00085a46:
-      ERR_put_error(0x14,0x8a,0xc1,DAT_00085d18,iVar14);
+      ERR_put_error(0x14,0x8a,0xc1,"s3_srvr.c",iVar14);
       uVar12 = 0x28;
     }
     else {
@@ -84,7 +86,7 @@ LAB_000857d8:
         }
         iVar14 = 0x5b8;
 LAB_000859f8:
-        ERR_put_error(0x14,0x8a,0xe2,DAT_00085a08,iVar14);
+        ERR_put_error(0x14,0x8a,0xe2,"s3_srvr.c",iVar14);
         goto LAB_00085768;
       }
 LAB_000857f8:
@@ -108,21 +110,21 @@ LAB_000856b4:
     if (local_34 == 0) {
       return pSVar2;
     }
-    puVar20 = (undefined4 *)param_1->init_msg;
+    pbVar20 = (byte *)param_1->init_msg;
     param_1->max_cert_list = 0;
     if ((int)pSVar2 < 0x23) {
       iVar14 = 0x3b3;
-      local_38 = puVar20;
+      local_38 = pbVar20;
       goto LAB_00085750;
     }
-    local_38 = (undefined4 *)((int)puVar20 + 2);
+    local_38 = pbVar20 + 2;
     iVar14 = *(int *)(param_1->method->ssl3_enc + 0x38);
-    uVar15 = (uint)CONCAT11(*(byte *)puVar20,*(byte *)((int)puVar20 + 1));
+    uVar15 = (uint)CONCAT11(*pbVar20,pbVar20[1]);
     param_1->first_packet = uVar15;
     if (-1 < iVar14 << 0x1c) {
       if (param_1->version <= (int)uVar15) goto LAB_0008580a;
 LAB_00085728:
-      ERR_put_error(0x14,0x8a,0x10b,DAT_00085a08,0x3c1);
+      ERR_put_error(0x14,0x8a,0x10b,"s3_srvr.c",0x3c1);
       if (((param_1->first_packet >> 8 == 3) && (param_1->enc_write_ctx == (EVP_CIPHER_CTX *)0x0))
          && (param_1->write_hash == (EVP_MD_CTX *)0x0)) {
         param_1->version = param_1->first_packet;
@@ -142,41 +144,41 @@ LAB_00085728:
     }
 LAB_0008580a:
     lVar5 = SSL_ctrl(param_1,0x20,0,(void *)0x0);
-    puVar23 = (undefined4 *)((int)puVar20 + (int)pSVar2);
+    pbVar23 = pbVar20 + (int)pSVar2;
     if (lVar5 << 0x12 < 0) {
-      if (puVar23 <= (undefined4 *)((int)local_38 + *(byte *)(local_38 + 8) + 0x21)) {
+      if (pbVar23 <= local_38 + local_38[0x20] + 0x21) {
         iVar14 = 0x3da;
         goto LAB_00085750;
       }
-      if (*(byte *)((int)local_38 + *(byte *)(local_38 + 8) + 0x21) == 0) {
+      if (local_38[local_38[0x20] + 0x21] == 0) {
         return (SSL_COMP *)0x1;
       }
     }
-    puVar11 = (undefined4 *)((int)local_38 + 0x21);
-    uVar28 = local_38[1];
-    uVar29 = local_38[2];
-    uVar12 = local_38[3];
+    pbVar11 = local_38 + 0x21;
+    uVar28 = *(undefined4 *)(local_38 + 4);
+    uVar29 = *(undefined4 *)(local_38 + 8);
+    uVar12 = *(undefined4 *)(local_38 + 0xc);
     psVar26 = param_1->s3;
-    *(undefined4 *)psVar26->client_random = *local_38;
+    *(undefined4 *)psVar26->client_random = *(undefined4 *)local_38;
     *(undefined4 *)(psVar26->client_random + 4) = uVar28;
     *(undefined4 *)(psVar26->client_random + 8) = uVar29;
     *(undefined4 *)(psVar26->client_random + 0xc) = uVar12;
-    uVar12 = local_38[4];
-    uVar28 = local_38[5];
-    uVar29 = local_38[6];
-    *(undefined4 *)(psVar26->client_random + 0x1c) = local_38[7];
+    uVar12 = *(undefined4 *)(local_38 + 0x10);
+    uVar28 = *(undefined4 *)(local_38 + 0x14);
+    uVar29 = *(undefined4 *)(local_38 + 0x18);
+    *(undefined4 *)(psVar26->client_random + 0x1c) = *(undefined4 *)(local_38 + 0x1c);
     *(undefined4 *)(psVar26->client_random + 0x10) = uVar12;
     *(undefined4 *)(psVar26->client_random + 0x14) = uVar28;
     *(undefined4 *)(psVar26->client_random + 0x18) = uVar29;
-    uVar15 = (uint)*(byte *)(local_38 + 8);
-    local_38 = puVar11;
-    if (puVar23 < (undefined4 *)((int)puVar11 + uVar15)) {
+    uVar15 = (uint)local_38[0x20];
+    local_38 = pbVar11;
+    if (pbVar23 < pbVar11 + uVar15) {
       iVar14 = 0x3ec;
       goto LAB_00085750;
     }
     param_1->hit = 0;
     if ((param_1->new_session == 0) || (-1 < param_1->references << 0xf)) {
-      iVar14 = ssl_get_prev_session(param_1,puVar11,uVar15,puVar23);
+      iVar14 = ssl_get_prev_session(param_1,pbVar11,uVar15,pbVar23);
       if (iVar14 == 1) {
         if (param_1->version != param_1->session->ssl_version) goto LAB_000858b6;
         param_1->hit = 1;
@@ -189,17 +191,17 @@ LAB_000858b6:
       iVar14 = ssl_get_new_session(param_1,1);
       if (iVar14 != 0) {
 LAB_000858c2:
-        puVar11 = (undefined4 *)((int)local_38 + uVar15);
+        pbVar11 = local_38 + uVar15;
         if (*(int *)(param_1->method->ssl3_enc + 0x38) << 0x1c < 0) {
-          puVar16 = (undefined4 *)((int)puVar11 + 1);
-          if (puVar23 < puVar16) {
+          pbVar16 = pbVar11 + 1;
+          if (pbVar23 < pbVar16) {
             iVar14 = 0x41e;
-            local_38 = puVar11;
+            local_38 = pbVar11;
           }
           else {
-            uVar15 = (uint)*(byte *)((int)local_38 + uVar15);
-            local_38 = puVar16;
-            if ((undefined4 *)((int)puVar16 + uVar15) <= puVar23) {
+            uVar15 = (uint)local_38[uVar15];
+            local_38 = pbVar16;
+            if (pbVar16 + uVar15 <= pbVar23) {
               lVar5 = SSL_ctrl(param_1,0x20,0,(void *)0x0);
               if ((lVar5 << 0x12 < 0) && (uVar15 != 0)) {
                 memcpy(param_1->d1->rcvd_cookie,local_38,uVar15);
@@ -217,7 +219,7 @@ LAB_000858c2:
                   if (iVar14 == 0) {
                     iVar14 = 0x43e;
 LAB_00085dbc:
-                    ERR_put_error(0x14,0x8a,0x134,DAT_00085ea0,iVar14);
+                    ERR_put_error(0x14,0x8a,0x134,"s3_srvr.c",iVar14);
                     uVar12 = 0x28;
                     goto LAB_00085760;
                   }
@@ -227,7 +229,7 @@ LAB_00085dbc:
               else {
                 iVar14 = -1;
               }
-              local_38 = (undefined4 *)((int)local_38 + uVar15);
+              local_38 = local_38 + uVar15;
               if (param_1->method->version != 0x1ffff) goto LAB_0008592c;
               if ((0xfefd < param_1->first_packet) || (param_1->references << 4 < 0)) {
                 if ((*(uint *)(param_1->cert + 0x38) & 0x30000) == 0) {
@@ -244,7 +246,7 @@ LAB_00085dbc:
                   iVar6 = 0x457;
                   iVar14 = 0x183;
                 }
-                ERR_put_error(0x14,0x8a,iVar14,DAT_00085d18,iVar6);
+                ERR_put_error(0x14,0x8a,iVar14,"s3_srvr.c",iVar6);
                 uVar12 = 0x46;
                 param_1->version = param_1->first_packet;
                 goto LAB_00085760;
@@ -261,66 +263,66 @@ LAB_00085de2:
         }
         else {
           iVar14 = -1;
-          local_38 = puVar11;
+          local_38 = pbVar11;
 LAB_0008592c:
-          puVar11 = (undefined4 *)((int)local_38 + 2);
-          if (puVar11 <= puVar23) {
-            uVar15 = (uint)CONCAT11(*(byte *)local_38,*(byte *)((int)local_38 + 1));
-            local_38 = puVar11;
+          pbVar11 = local_38 + 2;
+          if (pbVar11 <= pbVar23) {
+            uVar15 = (uint)CONCAT11(*local_38,local_38[1]);
+            local_38 = pbVar11;
             if (uVar15 == 0) {
-              ERR_put_error(0x14,0x8a,0xb7,DAT_00085d18,0x473);
+              ERR_put_error(0x14,0x8a,0xb7,"s3_srvr.c",0x473);
               uVar12 = 0x2f;
             }
-            else if (puVar23 < (undefined4 *)((int)puVar11 + uVar15 + 1)) {
+            else if (pbVar23 < pbVar11 + uVar15 + 1) {
               iVar14 = 0x47b;
 LAB_00085a5c:
-              ERR_put_error(0x14,0x8a,0x9f,DAT_00085d18,iVar14);
+              ERR_put_error(0x14,0x8a,0x9f,"s3_srvr.c",iVar14);
               uVar12 = 0x32;
             }
             else {
-              iVar6 = ssl_bytes_to_cipher_list(param_1,puVar11,uVar15,&local_30);
+              iVar6 = ssl_bytes_to_cipher_list(param_1,pbVar11,uVar15,&local_30);
               if (iVar6 == 0) goto LAB_00085768;
-              local_38 = (undefined4 *)(uVar15 + (int)local_38);
-              puVar11 = local_38;
+              local_38 = local_38 + uVar15;
+              pbVar11 = local_38;
               if (param_1->hit != 0) {
                 iVar27 = *(int *)(*(int *)(param_1->session->krb5_client_princ + 0x24) + 8);
                 iVar6 = 0;
                 do {
                   iVar8 = sk_num(local_30);
                   if (iVar8 <= iVar6) {
-                    ERR_put_error(0x14,0x8a,0xd7,DAT_00085a08,0x4b3);
+                    ERR_put_error(0x14,0x8a,0xd7,"s3_srvr.c",0x4b3);
                     uVar12 = 0x2f;
                     goto LAB_00085760;
                   }
                   pvVar7 = sk_value(local_30,iVar6);
-                  puVar11 = local_38;
+                  pbVar11 = local_38;
                   iVar6 = iVar6 + 1;
                 } while (*(int *)((int)pvVar7 + 8) != iVar27);
               }
-              puVar16 = (undefined4 *)((int)puVar11 + 1);
-              uVar15 = (uint)*(byte *)puVar11;
-              local_38 = (undefined4 *)((int)puVar16 + uVar15);
-              if (puVar23 < local_38) {
+              pbVar16 = pbVar11 + 1;
+              uVar15 = (uint)*pbVar11;
+              local_38 = pbVar16 + uVar15;
+              if (pbVar23 < local_38) {
                 iVar14 = 0x4bd;
-                local_38 = puVar16;
+                local_38 = pbVar16;
                 goto LAB_00085a5c;
               }
               if (uVar15 == 0) {
 LAB_00085ab4:
-                ERR_put_error(0x14,0x8a,0xbb,DAT_00085d18,0x4cc);
+                ERR_put_error(0x14,0x8a,0xbb,"s3_srvr.c",0x4cc);
                 uVar12 = 0x32;
                 goto LAB_00085760;
               }
-              if (*(byte *)((int)puVar11 + 1) != 0) {
+              if (pbVar11[1] != 0) {
                 do {
-                  if (puVar16 == (undefined4 *)((int)puVar11 + uVar15)) goto LAB_00085ab4;
-                  puVar16 = (undefined4 *)((int)puVar16 + 1);
-                } while (*(byte *)puVar16 != 0);
+                  if (pbVar16 == pbVar11 + uVar15) goto LAB_00085ab4;
+                  pbVar16 = pbVar16 + 1;
+                } while (*pbVar16 != 0);
               }
               if ((0x2ff < param_1->version) &&
-                 (iVar6 = ssl_parse_clienthello_tlsext(param_1,&local_38,puVar20,pSVar2), iVar6 == 0
+                 (iVar6 = ssl_parse_clienthello_tlsext(param_1,&local_38,pbVar20,pSVar2), iVar6 == 0
                  )) {
-                ERR_put_error(0x14,0x8a,0xe3,DAT_00085ea0,0x4d3);
+                ERR_put_error(0x14,0x8a,0xe3,"s3_srvr.c",0x4d3);
                 goto LAB_00085768;
               }
               iVar6 = ssl_fill_hello_random(param_1,1,param_1->s3->server_random,0x20);
@@ -339,7 +341,10 @@ LAB_00085ab4:
                 if (iVar6 == 0) goto LAB_00085b86;
                 pSVar13 = param_1->session;
                 param_1->hit = 1;
-                *(undefined4 *)(pSVar13->krb5_client_princ + 0x10) = 0;
+                pSVar13->krb5_client_princ[0x10] = '\0';
+                pSVar13->krb5_client_princ[0x11] = '\0';
+                pSVar13->krb5_client_princ[0x12] = '\0';
+                pSVar13->krb5_client_princ[0x13] = '\0';
                 *(_STACK **)(pSVar13->krb5_client_princ + 0x2c) = local_30;
                 local_30 = p_Var19;
                 if (local_2c[0] != (_STACK *)0x0) {
@@ -389,25 +394,25 @@ LAB_00085b86:
                   (psVar26->tmp).new_compression = unaff_r5;
 LAB_00085bdc:
                   if ((psVar26->tmp).new_compression == (SSL_COMP *)0x0) {
-                    ERR_put_error(0x14,0x8a,0x155,DAT_00085ea0,0x52a);
+                    ERR_put_error(0x14,0x8a,0x155,"s3_srvr.c",0x52a);
                     uVar12 = 0x50;
                   }
                   else {
                     iVar6 = 0;
                     do {
-                      puVar11 = (undefined4 *)((int)puVar11 + 1);
-                      if (*(byte *)puVar11 == uVar25) {
+                      pbVar11 = pbVar11 + 1;
+                      if (*pbVar11 == uVar25) {
                         if (iVar6 < (int)uVar15) goto LAB_00085c00;
                         break;
                       }
                       iVar6 = iVar6 + 1;
                     } while (iVar6 < (int)uVar15);
-                    ERR_put_error(0x14,0x8a,0x156,DAT_00085ea0,0x535);
+                    ERR_put_error(0x14,0x8a,0x156,"s3_srvr.c",0x535);
                     uVar12 = 0x2f;
                   }
                 }
                 else {
-                  ERR_put_error(0x14,0x8a,0x154,DAT_00085ea0,0x51d);
+                  ERR_put_error(0x14,0x8a,0x154,"s3_srvr.c",0x51d);
                   uVar12 = 0x50;
                 }
                 goto LAB_00085760;
@@ -457,14 +462,14 @@ LAB_00085d20:
                 for (iVar6 = 0; iVar6 < iVar27; iVar6 = iVar6 + 1) {
                   unaff_r5 = (SSL_COMP *)
                              sk_value(*(_STACK **)(param_1->psk_server_callback + 0x98),iVar6);
-                  puVar20 = puVar11;
+                  pbVar20 = pbVar11;
                   do {
-                    puVar20 = (undefined4 *)((int)puVar20 + 1);
-                    if ((uint)*(byte *)puVar20 == unaff_r5->id) {
+                    pbVar20 = pbVar20 + 1;
+                    if ((uint)*pbVar20 == unaff_r5->id) {
                       (param_1->s3->tmp).new_compression = unaff_r5;
                       goto LAB_00085c00;
                     }
-                  } while (puVar20 != (undefined4 *)(uVar15 + (int)puVar11));
+                  } while (pbVar20 != pbVar11 + uVar15);
                 }
                 unaff_r5 = (SSL_COMP *)0x0;
 LAB_00085c00:
@@ -493,7 +498,7 @@ LAB_00085c00:
                 iVar14 = 0x56f;
                 goto LAB_000859f8;
               }
-              ERR_put_error(0x14,0x8a,0x44,DAT_00085ea0,0x56a);
+              ERR_put_error(0x14,0x8a,0x44,"s3_srvr.c",0x56a);
               uVar12 = 0x50;
             }
             goto LAB_00085760;
@@ -501,7 +506,7 @@ LAB_00085c00:
           iVar14 = 0x46c;
         }
 LAB_00085750:
-        ERR_put_error(0x14,0x8a,0xa0,DAT_00085a08,iVar14);
+        ERR_put_error(0x14,0x8a,0xa0,"s3_srvr.c",iVar14);
         uVar12 = 0x32;
         goto LAB_00085760;
       }

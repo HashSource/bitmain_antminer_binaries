@@ -1,10 +1,10 @@
 
-void ssl3_set_handshake_header(int param_1,undefined param_2,int param_3)
+void ssl3_set_handshake_header(int param_1,undefined1 param_2,int param_3)
 
 {
-  undefined *puVar1;
+  undefined1 *puVar1;
   
-  puVar1 = *(undefined **)(*(int *)(param_1 + 0x3c) + 4);
+  puVar1 = *(undefined1 **)(*(int *)(param_1 + 0x3c) + 4);
   *puVar1 = param_2;
   puVar1[3] = (char)param_3;
   puVar1[1] = (char)((uint)param_3 >> 0x10);

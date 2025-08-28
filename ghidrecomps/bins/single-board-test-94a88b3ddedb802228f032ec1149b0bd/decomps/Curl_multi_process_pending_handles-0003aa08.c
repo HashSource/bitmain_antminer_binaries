@@ -6,7 +6,7 @@ void Curl_multi_process_pending_handles(int param_1)
   int *piVar2;
   int iVar3;
   
-  piVar1 = **(int ***)(param_1 + 0x18);
+  piVar1 = (int *)**(int **)(param_1 + 0x18);
   do {
     piVar2 = piVar1;
     if (piVar1 == (int *)0x0) {

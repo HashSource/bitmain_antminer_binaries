@@ -20,14 +20,12 @@ int dtls1_connect(SSL *param_1)
   int iVar15;
   _func_3206 *p_Var16;
   ssl3_enc_method *psVar17;
-  undefined4 in_stack_ffffffc0;
-  undefined4 in_stack_ffffffc4;
   int local_34;
   time_t local_30;
   int local_2c [2];
   
   local_30 = time((time_t *)0x0);
-  RAND_add(&local_30,4,(double)CONCAT44(in_stack_ffffffc4,in_stack_ffffffc0));
+  RAND_add(&local_30,4,0.0);
   ERR_clear_error();
   piVar1 = __errno_location();
   p_Var14 = param_1->info_callback;
@@ -132,7 +130,7 @@ LAB_00075704:
             *(int *)(p_Var13 + 0x58) = *(int *)(p_Var13 + 0x58) + 1;
           }
           iVar3 = *(int *)(p_Var13 + 0x3c);
-          param_1->handshake_func = DAT_00075da8;
+          param_1->handshake_func = dtls1_connect;
           *(int *)(p_Var13 + 0x3c) = iVar3 + 1;
           if (p_Var14 != (_func_3294 *)0x0) {
             (*p_Var14)(param_1,0x20,1);
@@ -267,7 +265,7 @@ LAB_00075d60:
       }
     }
 LAB_00075864:
-    ERR_put_error(0x14,0xf9,0xff,DAT_00075980,0x2fc);
+    ERR_put_error(0x14,0xf9,0xff,"d1_clnt.c",0x2fc);
     local_34 = -1;
   }
   else {
@@ -438,7 +436,7 @@ LAB_000759b0:
           }
           uVar2 = param_1->version & 0xff00;
           if (uVar2 != 0x100 && uVar2 != 0xfe00) {
-            ERR_put_error(0x14,0xf9,0x44,DAT_00075e04,0xe5);
+            ERR_put_error(0x14,0xf9,0x44,"d1_clnt.c",0xe5);
             local_34 = -1;
             param_1->state = 5;
             break;

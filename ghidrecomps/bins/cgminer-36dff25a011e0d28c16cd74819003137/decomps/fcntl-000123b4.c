@@ -6,7 +6,7 @@ int fcntl(int __fd,int __cmd,...)
 {
   int iVar1;
   
-  iVar1 = (*(code *)PTR_fcntl_000c0174)();
+  iVar1 = fcntl(__fd,__cmd);
   return iVar1;
 }
 

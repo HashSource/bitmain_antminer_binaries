@@ -4,16 +4,14 @@
 void ERR_load_BUF_strings(void)
 
 {
-  ERR_STRING_DATA *str;
   char *pcVar1;
   
-  str = DAT_00102024;
-  pcVar1 = ERR_func_error_string(DAT_00102024->error);
+  pcVar1 = ERR_func_error_string(BUF_str_functs);
   if (pcVar1 != (char *)0x0) {
     return;
   }
-  ERR_load_strings(0,str);
-  ERR_load_strings(0,DAT_00102028);
+  ERR_load_strings(0,(ERR_STRING_DATA *)&BUF_str_functs);
+  ERR_load_strings(0,(ERR_STRING_DATA *)&BUF_str_reasons);
   return;
 }
 

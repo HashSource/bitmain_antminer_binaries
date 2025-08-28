@@ -23,9 +23,9 @@ int find_queued_work_byid(int param_1,int param_2)
     }
   }
   else {
-    _rd_lock_part_39_constprop_80(DAT_0001f2e4,0x24de);
+    _rd_lock_part_39_constprop_80("find_queued_work_byid",0x24de);
   }
                     /* WARNING: Subroutine does not return */
-  _rw_unlock_part_40_constprop_79(DAT_0001f2e4,0x24e0);
+  _rw_unlock_part_40_constprop_79("find_queued_work_byid",0x24e0);
 }
 

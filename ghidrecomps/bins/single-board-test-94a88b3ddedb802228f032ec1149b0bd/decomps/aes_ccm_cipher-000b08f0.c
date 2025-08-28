@@ -7,7 +7,7 @@ size_t aes_ccm_cipher(int param_1,void *param_2,int param_3,size_t param_4)
   int iVar3;
   int iVar4;
   int iVar5;
-  undefined auStack_30 [16];
+  undefined1 auStack_30 [16];
   
   iVar3 = *(int *)(param_1 + 0x60);
   iVar5 = iVar3 + 0x110;

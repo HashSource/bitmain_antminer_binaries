@@ -1,9 +1,9 @@
 
-undefined interrupted(void)
+undefined1 interrupted(void)
 
 {
   int *piVar1;
-  undefined uVar2;
+  undefined1 uVar2;
   int iVar3;
   bool bVar4;
   
@@ -13,7 +13,7 @@ undefined interrupted(void)
   if (bVar4) {
     iVar3 = 1;
   }
-  uVar2 = (undefined)iVar3;
+  uVar2 = (undefined1)iVar3;
   if (!bVar4) {
     uVar2 = 0;
   }

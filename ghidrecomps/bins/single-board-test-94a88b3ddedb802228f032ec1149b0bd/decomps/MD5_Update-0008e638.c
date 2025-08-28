@@ -36,10 +36,9 @@ int MD5_Update(MD5_CTX *c,void *data,size_t len)
     }
     uVar1 = len >> 6;
     if (uVar1 != 0) {
-      uVar2 = len & 0xffffffc0;
-      len = len - uVar2;
+      len = len + uVar1 * -0x40;
       md5_block_data_order(c,data,uVar1);
-      data = (void *)((int)data + uVar2);
+      data = (void *)((int)data + uVar1 * 0x40);
     }
     if (len != 0) {
       c->num = len;

@@ -4,27 +4,23 @@
 void inc_dev_status(int max_fan,int max_temp)
 
 {
-  pthread_mutex_t *__mutex;
   int iVar1;
-  char *in_r2;
-  int *func;
-  int in_r3;
-  int *line;
+  char *func;
+  char *func_00;
+  int line;
+  int line_00;
   
-  iVar1 = pthread_mutex_lock(DAT_00020930);
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&stats_lock);
   if (iVar1 != 0) {
-    _mutex_lock(DAT_00020940,(char *)0x21d3,in_r2,in_r3);
+    _mutex_lock((pthread_mutex_t *)"inc_dev_status",(char *)0x21d3,func,line);
   }
-  line = DAT_00020938;
-  func = DAT_00020934;
-  __mutex = DAT_00020930;
-  *DAT_00020934 = max_fan;
-  *line = max_temp;
-  iVar1 = pthread_mutex_unlock(__mutex);
+  g_max_fan = max_fan;
+  g_max_temp = max_temp;
+  iVar1 = pthread_mutex_unlock((pthread_mutex_t *)&stats_lock);
   if (iVar1 != 0) {
-    _mutex_unlock_noyield(DAT_00020940,(char *)0x21d6,(char *)func,(int)line);
+    _mutex_unlock_noyield((pthread_mutex_t *)"inc_dev_status",(char *)0x21d6,func_00,line_00);
   }
-  (**DAT_0002093c)();
+  (*selective_yield)();
   return;
 }
 

@@ -11,7 +11,7 @@ int itemstats_isra_17(undefined4 param_1,int param_2,undefined4 param_3,int para
   double local_30;
   double dStack_28;
   
-  local_30 = ((total_mhashes_done - new_total_mhashes_done) / DAT_00018ca0) /
+  local_30 = ((total_mhashes_done - new_total_mhashes_done) / 1000.0) /
              (total_secs - new_total_secs);
   local_34 = param_2;
   uVar1 = api_add_data_full(0,"STATS",6,&local_34,0);

@@ -2,58 +2,48 @@
 void set_target(uchar *dest_target,double diff)
 
 {
-  char *pcVar1;
   char *__ptr;
-  char *htarget;
-  double in_d0;
+  double dVar1;
   double dVar2;
-  double dVar3;
   uchar target [32];
   char tmp42 [2048];
   
-  if (in_d0 == 0.0) {
-    if (((*DAT_0001f74c == '\0') && (*DAT_0001f750 == '\0')) && (*DAT_0001f754 < 3)) {
-      in_d0 = 1.0;
+  if (diff == 0.0) {
+    if (((use_syslog) || (opt_log_output)) || (2 < opt_log_level)) {
+      builtin_strncpy(tmp42,"Diff zero passed to set_targ",0x1c);
+      tmp42[0x1c] = 'e';
+      tmp42[0x1d] = 't';
+      tmp42[0x1e] = '\0';
+      _applog(3,tmp42,false);
+      diff = 1.0;
     }
     else {
-      tmp42._0_4_ = *DAT_0001f75c;
-      tmp42._4_4_ = DAT_0001f75c[1];
-      tmp42._8_4_ = DAT_0001f75c[2];
-      tmp42._12_4_ = DAT_0001f75c[3];
-      tmp42._16_4_ = DAT_0001f75c[4];
-      tmp42._20_4_ = DAT_0001f75c[5];
-      tmp42._24_4_ = DAT_0001f75c[6];
-      tmp42._28_2_ = (undefined2)DAT_0001f75c[7];
-      tmp42[30] = (char)((uint)DAT_0001f75c[7] >> 0x10);
-      _applog(3,tmp42,false);
-      in_d0 = 1.0;
+      diff = 1.0;
     }
   }
-  pcVar1 = DAT_0001f740;
-  dVar3 = DAT_0001f708 / in_d0;
-  dVar2 = dVar3 * DAT_0001f710;
-  target._24_8_ = __fixunsdfdi(SUB84(dVar2,0),(int)((ulonglong)dVar2 >> 0x20));
-  dVar2 = (double)__aeabi_ul2d();
-  dVar3 = dVar3 - dVar2 * DAT_0001f718;
-  dVar2 = dVar3 * DAT_0001f720;
-  target._16_8_ = __fixunsdfdi(SUB84(dVar2,0),(int)((ulonglong)dVar2 >> 0x20));
-  dVar2 = (double)__aeabi_ul2d();
-  dVar3 = dVar3 - dVar2 * DAT_0001f728;
-  dVar2 = dVar3 * DAT_0001f730;
-  target._8_8_ = __fixunsdfdi(SUB84(dVar2,0),(int)((ulonglong)dVar2 >> 0x20));
-  dVar2 = (double)__aeabi_ul2d();
-  dVar3 = dVar3 - dVar2 * DAT_0001f738;
-  target._0_8_ = __fixunsdfdi(SUB84(dVar3,0),(int)((ulonglong)dVar3 >> 0x20));
-  if (*pcVar1 != '\0') {
+  dVar1 = (2.695953529101131e+67 / diff) * 1.5930919111324523e-58;
+  target._24_8_ = __fixunsdfdi(SUB84(dVar1,0),(int)((ulonglong)dVar1 >> 0x20));
+  dVar1 = (double)__aeabi_ul2d();
+  dVar2 = 2.695953529101131e+67 / diff - dVar1 * 6.277101735386681e+57;
+  dVar1 = dVar2 * 2.938735877055719e-39;
+  target._16_8_ = __fixunsdfdi(SUB84(dVar1,0),(int)((ulonglong)dVar1 >> 0x20));
+  dVar1 = (double)__aeabi_ul2d();
+  dVar2 = dVar2 - dVar1 * 3.402823669209385e+38;
+  dVar1 = dVar2 * 5.421010862427522e-20;
+  target._8_8_ = __fixunsdfdi(SUB84(dVar1,0),(int)((ulonglong)dVar1 >> 0x20));
+  dVar1 = (double)__aeabi_ul2d();
+  dVar2 = dVar2 - dVar1 * 1.8446744073709552e+19;
+  target._0_8_ = __fixunsdfdi(SUB84(dVar2,0),(int)((ulonglong)dVar2 >> 0x20));
+  if (opt_debug != false) {
     __ptr = bin2hex(target,0x20);
-    if ((*pcVar1 != '\0') &&
-       (((*DAT_0001f74c != '\0' || (*DAT_0001f750 != '\0')) || (6 < *DAT_0001f754)))) {
-      snprintf(tmp42,0x800,DAT_0001f758,__ptr);
+    if ((opt_debug != false) &&
+       (((use_syslog != false || (opt_log_output != false)) || (6 < opt_log_level)))) {
+      snprintf(tmp42,0x800,"Generated target %s",__ptr);
       _applog(7,tmp42,false);
     }
     free(__ptr);
   }
-  _cg_memcpy(dest_target,target,0x20,DAT_0001f748,DAT_0001f744,0x1ffe);
+  _cg_memcpy(dest_target,target,0x20,"cgminer.c","set_target",0x1ffe);
   return;
 }
 

@@ -10,7 +10,7 @@ int find_oldest_idle_connection(int param_1)
   int iVar6;
   undefined4 local_2c;
   undefined4 uStack_28;
-  undefined auStack_24 [12];
+  undefined1 auStack_24 [12];
   
   uVar3 = *(undefined4 *)(param_1 + 0x580);
   curlx_tvnow(&local_2c);
@@ -23,7 +23,8 @@ int find_oldest_idle_connection(int param_1)
     iVar6 = 0;
     iVar5 = -1;
     do {
-      for (piVar1 = **(int ***)(*piVar1 + 8); piVar1 != (int *)0x0; piVar1 = (int *)piVar1[2]) {
+      for (piVar1 = (int *)**(int **)(*piVar1 + 8); piVar1 != (int *)0x0; piVar1 = (int *)piVar1[2])
+      {
         while (iVar4 = *piVar1, *(char *)(iVar4 + 0x40) == '\0') {
           iVar2 = curlx_tvdiff(local_2c,uStack_28,*(undefined4 *)(iVar4 + 0x144),
                                *(undefined4 *)(iVar4 + 0x148));

@@ -1,11 +1,11 @@
 
-void enable_read_temperature_from_asic(int param_1,undefined param_2)
+void enable_read_temperature_from_asic(int param_1,undefined1 param_2)
 
 {
   uint local_2c;
   uint local_28;
   int local_24;
-  uint local_20;
+  undefined4 local_20;
   uint local_1c;
   byte local_18;
   uint local_14;
@@ -19,9 +19,9 @@ void enable_read_temperature_from_asic(int param_1,undefined param_2)
   if (((*(int *)(cgpu + (param_1 + 0x9c638) * 4) == 1) && (testDone[param_1] != '\x01')) &&
      (cgpu._2562268_4_ == 0)) {
     local_20 = CONCAT13((char)MISC_CONTROL,CONCAT12(param_2,0x948));
-    local_1c = CONCAT13(cgpu[2562398] << 5,
-                        CONCAT12(cgpu[2562397] << 6 | cgpu[2562356] & 0x1f,
-                                 CONCAT11(cgpu[2562396],0x40))) | 0x2000;
+    local_1c = CONCAT13(cgpu[0x27195e] << 5,
+                        CONCAT12(cgpu[0x27195d] << 6 | cgpu[0x271934] & 0x1f,
+                                 CONCAT11(cgpu[0x27195c],0x40))) | 0x2000;
     local_c = param_1;
     local_18 = CRC5(&local_20,0x40);
     local_2c = (local_20 >> 0x10 & 0xff) << 8 | local_20 << 0x18 | (local_20 >> 8 & 0xff) << 0x10 |

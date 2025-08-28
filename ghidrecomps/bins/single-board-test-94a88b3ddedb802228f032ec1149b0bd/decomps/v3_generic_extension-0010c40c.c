@@ -13,8 +13,8 @@ v3_generic_extension(char *param_1,char *param_2,int param_3,int param_4,X509V3_
   
   a = OBJ_txt2obj(param_1,0);
   if (a == (ASN1_OBJECT *)0x0) {
-    ERR_put_error(0x22,0x74,0x73,DAT_0010c504,0x111);
-    ERR_add_error_data(2,DAT_0010c50c,param_1);
+    ERR_put_error(0x22,0x74,0x73,"v3_conf.c",0x111);
+    ERR_add_error_data(2,"name=",param_1);
     data = (ASN1_STRING *)0x0;
     pXVar1 = (X509_EXTENSION *)0x0;
     goto LAB_0010c44e;
@@ -25,7 +25,7 @@ LAB_0010c46c:
     if (ptr != (uchar *)0x0) {
       data = ASN1_STRING_type_new(4);
       if (data == (ASN1_STRING *)0x0) {
-        ERR_put_error(0x22,0x74,0x41,DAT_0010c504,0x123);
+        ERR_put_error(0x22,0x74,0x41,"v3_conf.c",0x123);
         ASN1_OBJECT_free(a);
         ASN1_STRING_free((ASN1_STRING *)0x0);
         CRYPTO_free(ptr);
@@ -49,8 +49,8 @@ LAB_0010c46c:
   }
   pXVar1 = (X509_EXTENSION *)0x0;
   data = (ASN1_STRING *)0x0;
-  ERR_put_error(0x22,0x74,0x74,DAT_0010c504,0x11d);
-  ERR_add_error_data(2,DAT_0010c508,param_2);
+  ERR_put_error(0x22,0x74,0x74,"v3_conf.c",0x11d);
+  ERR_add_error_data(2,"value=",param_2);
 LAB_0010c44e:
   ASN1_OBJECT_free(a);
   ASN1_STRING_free(data);

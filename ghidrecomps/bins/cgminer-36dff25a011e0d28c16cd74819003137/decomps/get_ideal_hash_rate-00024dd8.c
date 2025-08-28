@@ -12,8 +12,7 @@ int get_ideal_hash_rate(void)
   if (freq_mode == 2) {
     for (chain = 0; chain < 0x10; chain = chain + 1) {
       if (dev->chain_exist[chain] != 0) {
-        total_rate = (int)((float)(longlong)total_rate +
-                          freq_from_board[chain] * DAT_00024ef0 * DAT_00024ef4);
+        total_rate = (int)((float)(longlong)total_rate + freq_from_board[chain] * 48.0 * 672.0);
       }
     }
     iVar1 = total_rate / 1000;

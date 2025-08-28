@@ -15,17 +15,18 @@ LAB_00042f66:
       }
     }
     else {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
-        fprintf(pFVar2,"%s:%d:%s: setting to highest voltage...\n","power.c",0x2f2,DAT_00042fbc);
+        fprintf(pFVar2,"%s:%d:%s: setting to highest voltage...\n","power.c",0x2f2,
+                "quickly_set_to_highest_voltage");
       }
       fclose(pFVar2);
       if (DAT_0080b6f0 == 0) goto LAB_00042f66;
       if (3 < log_level) {
-        pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+        pFVar2 = fopen(log_file,"a+");
         if (pFVar2 != (FILE *)0x0) {
-          fprintf(pFVar2,"%s:%d:%s: iic data set to %d\n","power.c",0x2f8,DAT_00042fbc,DAT_0080b6f0)
-          ;
+          fprintf(pFVar2,"%s:%d:%s: iic data set to %d\n","power.c",0x2f8,
+                  "quickly_set_to_highest_voltage",DAT_0080b6f0);
         }
         fclose(pFVar2);
       }
@@ -35,10 +36,10 @@ LAB_00042f66:
   }
   else {
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
         fprintf(pFVar2,"%s:%d:%s: setting to highest voltage... current iic data:%d\n","power.c",
-                0x2e5,DAT_00042fbc,DAT_0080b6e8);
+                0x2e5,"quickly_set_to_highest_voltage",DAT_0080b6e8);
       }
       fclose(pFVar2);
     }
@@ -52,9 +53,10 @@ LAB_00042f66:
     }
     iVar1 = write_iic_of_S9_plus_power(uVar3,&power_info);
     if (3 < log_level) {
-      pFVar2 = fopen(log_file,(char *)&DAT_0005e760);
+      pFVar2 = fopen(log_file,"a+");
       if (pFVar2 != (FILE *)0x0) {
-        fprintf(pFVar2,"%s:%d:%s: iic data set to %d\n","power.c",0x2ef,DAT_00042fbc,uVar3);
+        fprintf(pFVar2,"%s:%d:%s: iic data set to %d\n","power.c",0x2ef,
+                "quickly_set_to_highest_voltage",uVar3);
       }
       iVar1 = fclose(pFVar2);
     }

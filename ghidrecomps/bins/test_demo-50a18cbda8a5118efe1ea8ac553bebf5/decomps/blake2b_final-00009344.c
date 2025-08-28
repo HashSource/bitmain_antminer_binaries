@@ -24,7 +24,7 @@ void blake2b_final(int param_1,int param_2,undefined4 param_3,undefined4 param_4
   if (uVar1 < 0x80) {
     iVar3 = 0;
     do {
-      *(undefined *)(param_1 + uVar1) = 0;
+      *(undefined1 *)(param_1 + uVar1) = 0;
       uVar1 = uVar1 + 1;
     } while (uVar1 != 0x80);
     *(undefined4 *)(param_1 + 0xd0) = 0x80;

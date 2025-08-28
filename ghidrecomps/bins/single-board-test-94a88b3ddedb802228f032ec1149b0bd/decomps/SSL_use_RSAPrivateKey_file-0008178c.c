@@ -12,12 +12,12 @@ int SSL_use_RSAPrivateKey_file(SSL *ssl,char *file,int type)
   type_00 = BIO_s_file();
   bp = BIO_new(type_00);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(0x14,0xce,7,DAT_000818a8,0xee);
+    ERR_put_error(0x14,0xce,7,"ssl_rsa.c",0xee);
     return 0;
   }
   lVar1 = BIO_ctrl(bp,0x6c,3,file);
   if (lVar1 < 1) {
-    ERR_put_error(0x14,0xce,2,DAT_000818a8,0xf3);
+    ERR_put_error(0x14,0xce,2,"ssl_rsa.c",0xf3);
     iVar2 = 0;
   }
   else {
@@ -28,7 +28,7 @@ int SSL_use_RSAPrivateKey_file(SSL *ssl,char *file,int type)
     else {
       if (type != 1) {
         iVar2 = 0;
-        ERR_put_error(0x14,0xce,0x7c,DAT_000818a8,0x100);
+        ERR_put_error(0x14,0xce,0x7c,"ssl_rsa.c",0x100);
         goto LAB_000817d0;
       }
       r = PEM_read_bio_RSAPrivateKey
@@ -37,19 +37,19 @@ int SSL_use_RSAPrivateKey_file(SSL *ssl,char *file,int type)
       iVar2 = 9;
     }
     if (r == (RSA *)0x0) {
-      ERR_put_error(0x14,0xce,iVar2,DAT_000818a8,0x104);
+      ERR_put_error(0x14,0xce,iVar2,"ssl_rsa.c",0x104);
       iVar2 = 0;
     }
     else {
       iVar2 = ssl_cert_inst(&ssl->cert);
       if (iVar2 == 0) {
-        ERR_put_error(0x14,0xcc,0x41,DAT_000818a8,0x9a);
+        ERR_put_error(0x14,0xcc,0x41,"ssl_rsa.c",0x9a);
         iVar2 = 0;
       }
       else {
         pkey = EVP_PKEY_new();
         if (pkey == (EVP_PKEY *)0x0) {
-          ERR_put_error(0x14,0xcc,6,DAT_000818a8,0x9e);
+          ERR_put_error(0x14,0xcc,6,"ssl_rsa.c",0x9e);
           iVar2 = 0;
         }
         else {

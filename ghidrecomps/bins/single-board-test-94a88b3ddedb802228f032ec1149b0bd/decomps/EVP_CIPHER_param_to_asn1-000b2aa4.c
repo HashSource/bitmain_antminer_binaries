@@ -21,7 +21,7 @@ int EVP_CIPHER_param_to_asn1(EVP_CIPHER_CTX *c,ASN1_TYPE *type)
   if (type != (ASN1_TYPE *)0x0) {
     len = pEVar2->iv_len;
     if (0x10 < len) {
-      OpenSSLDie(DAT_000b2b08,0x7c,DAT_000b2b0c);
+      OpenSSLDie("evp_lib.c",0x7c,"j <= sizeof(c->iv)");
     }
     iVar1 = ASN1_TYPE_set_octetstring(type,c->oiv,len);
     return iVar1;

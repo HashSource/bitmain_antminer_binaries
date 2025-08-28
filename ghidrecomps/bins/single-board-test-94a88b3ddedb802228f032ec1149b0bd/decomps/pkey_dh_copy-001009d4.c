@@ -2,22 +2,22 @@
 ASN1_OBJECT * pkey_dh_copy(int param_1,int param_2)
 
 {
-  undefined uVar1;
+  undefined1 uVar1;
   ASN1_OBJECT *pAVar2;
   ASN1_OBJECT *pAVar3;
   void *pvVar4;
-  char *pcVar5;
+  int iVar5;
   uchar *puVar6;
-  char *pcVar7;
-  char **ppcVar8;
-  char *pcVar9;
+  int iVar7;
+  undefined4 *puVar8;
+  int iVar9;
   char *pcVar10;
   
-  pAVar2 = (ASN1_OBJECT *)CRYPTO_malloc(0x38,DAT_00100a68,0x65);
+  pAVar2 = (ASN1_OBJECT *)CRYPTO_malloc(0x38,"dh_pmeth.c",0x65);
   pAVar3 = pAVar2;
   if (pAVar2 != (ASN1_OBJECT *)0x0) {
     pAVar2->length = -1;
-    *(undefined *)&pAVar2[1].nid = 1;
+    *(undefined1 *)&pAVar2[1].nid = 1;
     pAVar2->ln = (char **)0x2;
     pAVar2->nid = 0;
     pAVar2->data = (uchar *)0x0;
@@ -29,33 +29,33 @@ ASN1_OBJECT * pkey_dh_copy(int param_1,int param_2)
     pAVar2[2].sn = (char *)0x0;
     pAVar2[2].ln = (char **)0x0;
     *(ASN1_OBJECT **)(param_1 + 0x14) = pAVar2;
-    ppcVar8 = *(char ***)(param_2 + 0x14);
+    puVar8 = *(undefined4 **)(param_2 + 0x14);
     *(undefined4 *)(param_1 + 0x24) = 2;
     *(ASN1_OBJECT **)(param_1 + 0x20) = pAVar2 + 1;
-    pcVar10 = *ppcVar8;
-    pcVar5 = ppcVar8[2];
-    pcVar9 = ppcVar8[3];
-    puVar6 = (uchar *)ppcVar8[4];
-    pcVar7 = ppcVar8[5];
-    uVar1 = *(undefined *)(ppcVar8 + 8);
-    pAVar2->ln = (char **)ppcVar8[1];
+    pcVar10 = (char *)*puVar8;
+    iVar5 = puVar8[2];
+    iVar9 = puVar8[3];
+    puVar6 = (uchar *)puVar8[4];
+    iVar7 = puVar8[5];
+    uVar1 = *(undefined1 *)(puVar8 + 8);
+    pAVar2->ln = (char **)puVar8[1];
     pAVar2->sn = pcVar10;
-    pAVar2->length = (int)pcVar9;
-    pAVar2->nid = (int)pcVar5;
+    pAVar2->length = iVar9;
+    pAVar2->nid = iVar5;
     pAVar2->data = puVar6;
-    pAVar2->flags = (int)pcVar7;
-    *(undefined *)&pAVar2[1].nid = uVar1;
-    pAVar3 = OBJ_dup((ASN1_OBJECT *)ppcVar8[9]);
+    pAVar2->flags = iVar7;
+    *(undefined1 *)&pAVar2[1].nid = uVar1;
+    pAVar3 = OBJ_dup((ASN1_OBJECT *)puVar8[9]);
     pAVar2[1].length = (int)pAVar3;
     if (pAVar3 != (ASN1_OBJECT *)0x0) {
-      pAVar2[1].data = (uchar *)ppcVar8[10];
+      pAVar2[1].data = (uchar *)puVar8[10];
       if (pAVar2[1].flags != 0) {
-        pvVar4 = BUF_memdup(ppcVar8[0xb],(size_t)ppcVar8[0xc]);
-        pcVar5 = ppcVar8[0xc];
+        pvVar4 = BUF_memdup((void *)puVar8[0xb],puVar8[0xc]);
+        pcVar10 = (char *)puVar8[0xc];
         pAVar2[1].flags = (int)pvVar4;
-        pAVar2[2].sn = pcVar5;
+        pAVar2[2].sn = pcVar10;
       }
-      pAVar2[2].ln = (char **)ppcVar8[0xd];
+      pAVar2[2].ln = (char **)puVar8[0xd];
       return (ASN1_OBJECT *)0x1;
     }
   }

@@ -1,12 +1,12 @@
 
-void value_free_stack_LHASH_DOALL(void **param_1)
+void value_free_stack_LHASH_DOALL(undefined4 *param_1)
 
 {
   int iVar1;
   void *ptr;
   _STACK *p_Var2;
   
-  if (param_1[1] != (void *)0x0) {
+  if (param_1[1] != 0) {
     return;
   }
   p_Var2 = (_STACK *)param_1[2];
@@ -24,7 +24,7 @@ void value_free_stack_LHASH_DOALL(void **param_1)
   if (p_Var2 != (_STACK *)0x0) {
     sk_free(p_Var2);
   }
-  CRYPTO_free(*param_1);
+  CRYPTO_free((void *)*param_1);
   CRYPTO_free(param_1);
   return;
 }

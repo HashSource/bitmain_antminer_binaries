@@ -7,9 +7,11 @@ char * ASN1_tag2str(int tag)
   if ((tag & 0xfffffff7U) == 0x102) {
     tag = tag & 0xfffffeff;
   }
-  pcVar1 = DAT_000bca10;
   if ((uint)tag < 0x1f) {
-    pcVar1 = *(char **)(DAT_000bca0c + tag * 4);
+    pcVar1 = *(char **)(&tag2str_9369 + tag * 4);
+  }
+  else {
+    pcVar1 = "(unknown)";
   }
   return pcVar1;
 }

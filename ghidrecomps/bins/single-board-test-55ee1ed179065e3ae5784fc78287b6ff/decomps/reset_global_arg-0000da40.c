@@ -19,17 +19,17 @@ void reset_global_arg(void)
   pthread_mutex_init((pthread_mutex_t *)reg_mutex,(pthread_mutexattr_t *)0x0);
   for (local_c = 0; local_c < 4; local_c = local_c + 1) {
     *(undefined4 *)(time_counter + local_c * 4) = 0;
-    *(undefined *)((int)&gWork_Num_For_Hw_Check + local_c) = 0;
-    *(undefined *)((int)&gIsOpenCoreEnd + local_c) = 0;
-    *(undefined *)((int)&gStartTest + local_c) = 0;
+    *(undefined1 *)((int)&gWork_Num_For_Hw_Check + local_c) = 0;
+    *(undefined1 *)((int)&gIsOpenCoreEnd + local_c) = 0;
+    *(undefined1 *)((int)&gStartTest + local_c) = 0;
     if (pattern_test_time == '\0') {
-      *(undefined *)((int)&gT1_offset_value + local_c) = 0;
-      *(undefined *)((int)&gT2_offset_value + local_c) = 0;
-      *(undefined *)((int)&gT3_offset_value + local_c) = 0;
+      *(undefined1 *)((int)&gT1_offset_value + local_c) = 0;
+      *(undefined1 *)((int)&gT2_offset_value + local_c) = 0;
+      *(undefined1 *)((int)&gT3_offset_value + local_c) = 0;
     }
-    *(undefined *)((int)&Sensor1_OK + local_c) = 1;
-    *(undefined *)((int)&Sensor2_OK + local_c) = 1;
-    *(undefined *)((int)&Sensor3_OK + local_c) = 1;
+    *(undefined1 *)((int)&Sensor1_OK + local_c) = 1;
+    *(undefined1 *)((int)&Sensor2_OK + local_c) = 1;
+    *(undefined1 *)((int)&Sensor3_OK + local_c) = 1;
     *(undefined4 *)(Sensor1_temp + local_c * 4) = 0;
     *(undefined4 *)(Sensor2_temp + local_c * 4) = 0;
     *(undefined4 *)(Sensor3_temp + local_c * 4) = 0;
@@ -40,12 +40,12 @@ void reset_global_arg(void)
     *(undefined4 *)(lowest_temp + local_c * 4) = 0;
     *(undefined4 *)(gGlobalHighestTemp + local_c * 4) = 0;
     *(undefined4 *)(temp_change + local_c * 4) = 0;
-    *(undefined *)((int)&gHigherThanAlarmTemp + local_c) = 0;
-    *(undefined *)((int)&gHigherThanMaxTempGap + local_c) = 0;
+    *(undefined1 *)((int)&gHigherThanAlarmTemp + local_c) = 0;
+    *(undefined1 *)((int)&gHigherThanMaxTempGap + local_c) = 0;
     *(undefined4 *)(gMaxTempGap_value + local_c * 4) = 0;
-    *(undefined *)((int)&gIsReadTemp + local_c) = 1;
-    *(undefined *)((int)&gReadingTemp + local_c) = 0;
-    *(undefined *)((int)&gNotReadOutTemp + local_c) = 0;
+    *(undefined1 *)((int)&gIsReadTemp + local_c) = 1;
+    *(undefined1 *)((int)&gReadingTemp + local_c) = 0;
+    *(undefined1 *)((int)&gNotReadOutTemp + local_c) = 0;
     pthread_mutex_init((pthread_mutex_t *)(HW_check_mutex + local_c * 0x18),
                        (pthread_mutexattr_t *)0x0);
     cgpu[local_c + 0x1004b8] = 0;

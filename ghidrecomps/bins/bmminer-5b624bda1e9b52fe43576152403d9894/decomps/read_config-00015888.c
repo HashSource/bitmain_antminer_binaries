@@ -1,369 +1,361 @@
 
-/* WARNING: Removing unreachable block (ram,0x00015f30) */
-/* WARNING: Removing unreachable block (ram,0x00015d88) */
 /* WARNING: Unknown calling convention */
 
 int read_config(void)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined4 uVar3;
-  char *__format;
   FILE *__stream;
-  char *pcVar4;
-  char *temp;
-  char cVar5;
-  int iVar6;
-  int iVar7;
+  char *pcVar1;
+  char cVar2;
+  int iVar3;
+  int iVar4;
   FILE *file;
-  int offset;
-  int starttemp;
+  int local_420;
+  int local_41c;
   char str [1024];
   
-  iVar1 = DAT_00015ae4;
   memset(str,0,0x400);
-  __stream = fopen(DAT_00015ae8,DAT_00015aec);
+  local_420 = 0;
+  local_41c = 0;
+  __stream = fopen("/etc/config/Config.ini","r");
   do {
     while( true ) {
       do {
-        pcVar4 = fgets(str,0x3ff,__stream);
-        if (pcVar4 == (char *)0x0) {
-          *(undefined4 *)(iVar1 + 0xf10) = 0x12;
-          *(undefined4 *)(iVar1 + 0xf24) = 0x56b;
-          *(undefined4 *)(iVar1 + 0xf0c) = 0x72;
+        pcVar1 = fgets(str,0x3ff,__stream);
+        if (pcVar1 == (char *)0x0) {
+          Conf.AsicNum = 0x12;
+          Conf.AsicType = 0x56b;
+          Conf.CoreNum = 0x72;
           return 0;
         }
       } while ((str[0] == '#') || (str[1] == '#'));
-      pcVar4 = strstr(str,DAT_00015af0);
-      iVar2 = DAT_00015af4;
-      if (pcVar4 != (char *)0x0) break;
-      pcVar4 = strstr(str,DAT_00015b00);
-      if (pcVar4 == (char *)0x0) {
-        pcVar4 = strstr(str,DAT_00015b0c);
-        if (pcVar4 == (char *)0x0) {
-          pcVar4 = strstr(str,DAT_00015b14);
-          if (pcVar4 == (char *)0x0) {
-            pcVar4 = strstr(str,DAT_00015b1c);
-            if (pcVar4 == (char *)0x0) {
-              pcVar4 = strstr(str,DAT_00015b24);
-              if (pcVar4 == (char *)0x0) {
-                pcVar4 = strstr(str,DAT_00015b2c);
-                if (pcVar4 == (char *)0x0) {
-                  pcVar4 = strstr(str,DAT_00015b34);
-                  if (pcVar4 == (char *)0x0) {
-                    pcVar4 = strstr(str,DAT_00015b3c);
-                    if (pcVar4 == (char *)0x0) {
-                      pcVar4 = strstr(str,DAT_00015b44);
-                      if (pcVar4 == (char *)0x0) {
-                        pcVar4 = strstr(str,DAT_00015b4c);
-                        if (pcVar4 == (char *)0x0) {
-                          pcVar4 = strstr(str,DAT_00015b54);
-                          if (pcVar4 == (char *)0x0) {
-                            pcVar4 = strstr(str,DAT_00015b58);
-                            if (pcVar4 == (char *)0x0) {
-                              pcVar4 = strstr(str,DAT_00015b60);
-                              if (pcVar4 == (char *)0x0) {
-                                pcVar4 = strstr(str,DAT_00015b68);
-                                if (pcVar4 == (char *)0x0) {
-                                  pcVar4 = strstr(str,DAT_00015b70);
-                                  if (pcVar4 == (char *)0x0) {
-                                    pcVar4 = strstr(str,DAT_00015b78);
-                                    if (pcVar4 == (char *)0x0) {
-                                      pcVar4 = strstr(str,DAT_00015b80);
-                                      if (pcVar4 == (char *)0x0) {
-                                        pcVar4 = strstr(str,DAT_00015b88);
-                                        if (pcVar4 == (char *)0x0) {
-                                          pcVar4 = strstr(str,DAT_00015b90);
-                                          if (pcVar4 == (char *)0x0) {
-                                            pcVar4 = strstr(str,DAT_00015b98);
-                                            if (pcVar4 == (char *)0x0) {
-                                              pcVar4 = strstr(str,DAT_00015de0);
-                                              if (pcVar4 == (char *)0x0) {
-                                                pcVar4 = strstr(str,DAT_00015dec);
-                                                if (pcVar4 == (char *)0x0) {
-                                                  pcVar4 = strstr(str,DAT_00015df4);
-                                                  if (pcVar4 == (char *)0x0) {
-                                                    pcVar4 = strstr(str,DAT_00015dfc);
-                                                    if (pcVar4 == (char *)0x0) {
-                                                      pcVar4 = strstr(str,DAT_00015e08);
-                                                      if (pcVar4 == (char *)0x0) {
-                                                        pcVar4 = strstr(str,DAT_00015e10);
-                                                        if (pcVar4 == (char *)0x0) {
-                                                          pcVar4 = strstr(str,DAT_00015e18);
-                                                          if (pcVar4 == (char *)0x0) {
-                                                            pcVar4 = strstr(str,DAT_00015e20);
-                                                            if (pcVar4 == (char *)0x0) {
-                                                              pcVar4 = strstr(str,DAT_00015e28);
-                                                              if (pcVar4 == (char *)0x0) {
-                                                                pcVar4 = strstr(str,DAT_00015e30);
-                                                                if (pcVar4 == (char *)0x0) {
-                                                                  pcVar4 = strstr(str,DAT_00015e38);
-                                                                  if (pcVar4 == (char *)0x0) {
-                                                                    pcVar4 = strstr(str,DAT_00015e40
-                                                                                   );
-                                                                    if (pcVar4 == (char *)0x0) {
-                                                                      pcVar4 = strstr(str,
-                                                  DAT_00015e48);
-                                                  if (pcVar4 == (char *)0x0) {
-                                                    pcVar4 = strstr(str,DAT_00015e50);
-                                                    if (pcVar4 == (char *)0x0) {
-                                                      pcVar4 = strstr(str,DAT_00015e58);
-                                                      if (pcVar4 == (char *)0x0) {
-                                                        pcVar4 = strstr(str,DAT_00015e60);
-                                                        if (pcVar4 == (char *)0x0) {
-                                                          pcVar4 = strstr(str,DAT_00015e68);
-                                                          if (pcVar4 == (char *)0x0) {
-                                                            pcVar4 = strstr(str,DAT_00015e70);
-                                                            if (pcVar4 == (char *)0x0) {
-                                                              pcVar4 = strstr(str,DAT_00015e78);
-                                                              if (pcVar4 == (char *)0x0) {
-                                                                pcVar4 = strstr(str,DAT_00015e80);
-                                                                if (pcVar4 == (char *)0x0) {
-                                                                  pcVar4 = strstr(str,DAT_00015e88);
-                                                                  if (pcVar4 == (char *)0x0) {
-                                                                    pcVar4 = strstr(str,DAT_00015e90
-                                                                                   );
-                                                                    if (pcVar4 == (char *)0x0) {
-                                                                      pcVar4 = strstr(str,
-                                                  DAT_00015e94);
-                                                  if (pcVar4 == (char *)0x0) {
-                                                    pcVar4 = strstr(str,DAT_00015e9c);
-                                                    if (pcVar4 == (char *)0x0) {
-                                                      pcVar4 = strstr(str,DAT_00015ea4);
-                                                      if (pcVar4 == (char *)0x0) {
-                                                        pcVar4 = strstr(str,DAT_00015f40);
-                                                        if (pcVar4 == (char *)0x0) {
-                                                          pcVar4 = strstr(str,DAT_00015f4c);
-                                                          if (pcVar4 == (char *)0x0) {
-                                                            pcVar4 = strstr(str,DAT_00015f54);
-                                                            if (pcVar4 == (char *)0x0) {
-                                                              pcVar4 = strstr(str,DAT_00015f5c);
-                                                              if (pcVar4 == (char *)0x0) {
-                                                                pcVar4 = strstr(str,DAT_00015f64);
-                                                                if (pcVar4 != (char *)0x0) {
-                                                                  sscanf(pcVar4 + 10,DAT_00015f44,
-                                                                         DAT_00015f68);
-                                                                  sscanf(pcVar4 + 10,DAT_00015f44);
-                                                                  *(undefined4 *)(iVar1 + 0xfac) = 0
-                                                                  ;
-                                                                }
-                                                              }
-                                                              else {
-                                                                sscanf(pcVar4 + 0xc,DAT_00015f44,
-                                                                       DAT_00015f60);
-                                                              }
-                                                            }
-                                                            else {
-                                                              sscanf(pcVar4 + 7,DAT_00015f44,
-                                                                     DAT_00015f58);
-                                                            }
-                                                          }
-                                                          else {
-                                                            sscanf(pcVar4 + 7,DAT_00015f44,
-                                                                   DAT_00015f50);
-                                                          }
-                                                        }
-                                                        else {
-                                                          sscanf(pcVar4 + 5,DAT_00015f44,
-                                                                 DAT_00015f48);
-                                                        }
-                                                      }
-                                                      else {
-                                                        sscanf(pcVar4 + 5,DAT_00015de4,DAT_00015ea8)
-                                                        ;
+      pcVar1 = strstr(str,"TestDir=");
+      if (pcVar1 != (char *)0x0) break;
+      pcVar1 = strstr(str,"DataCount=");
+      if (pcVar1 == (char *)0x0) {
+        pcVar1 = strstr(str,"PassCount1=");
+        if (pcVar1 == (char *)0x0) {
+          pcVar1 = strstr(str,"PassCount2=");
+          if (pcVar1 == (char *)0x0) {
+            pcVar1 = strstr(str,"PassCount3=");
+            if (pcVar1 == (char *)0x0) {
+              pcVar1 = strstr(str,"Freq=");
+              if (pcVar1 == (char *)0x0) {
+                pcVar1 = strstr(str,"freq_e=");
+                if (pcVar1 == (char *)0x0) {
+                  pcVar1 = strstr(str,"UseConfigVol=");
+                  if (pcVar1 == (char *)0x0) {
+                    pcVar1 = strstr(str,"freq_m=");
+                    if (pcVar1 == (char *)0x0) {
+                      pcVar1 = strstr(str,"freq_a=");
+                      if (pcVar1 == (char *)0x0) {
+                        pcVar1 = strstr(str,"freq_t=");
+                        if (pcVar1 == (char *)0x0) {
+                          pcVar1 = strstr(str,"force_freq=");
+                          if (pcVar1 == (char *)0x0) {
+                            pcVar1 = strstr(str,"Timeout=");
+                            if (pcVar1 == (char *)0x0) {
+                              pcVar1 = strstr(str,"UseFreqPIC=");
+                              if (pcVar1 == (char *)0x0) {
+                                pcVar1 = strstr(str,"TestMode=");
+                                if (pcVar1 == (char *)0x0) {
+                                  pcVar1 = strstr(str,"CheckChain=");
+                                  if (pcVar1 == (char *)0x0) {
+                                    pcVar1 = strstr(str,"CommandMode=");
+                                    if (pcVar1 == (char *)0x0) {
+                                      pcVar1 = strstr(str,"ValidNonce1=");
+                                      if (pcVar1 == (char *)0x0) {
+                                        pcVar1 = strstr(str,"ValidNonce2=");
+                                        if (pcVar1 == (char *)0x0) {
+                                          pcVar1 = strstr(str,"ValidNonce3=");
+                                          if (pcVar1 == (char *)0x0) {
+                                            pcVar1 = strstr(str,"Pic_VOLTAGE=");
+                                            if (pcVar1 == (char *)0x0) {
+                                              pcVar1 = strstr(str,"Voltage1=");
+                                              if (pcVar1 == (char *)0x0) {
+                                                pcVar1 = strstr(str,"Voltage2=");
+                                                if (pcVar1 == (char *)0x0) {
+                                                  pcVar1 = strstr(str,"Voltage3=");
+                                                  if (pcVar1 == (char *)0x0) {
+                                                    pcVar1 = strstr(str,"final_voltage1=");
+                                                    if (pcVar1 == (char *)0x0) {
+                                                      pcVar1 = strstr(str,"final_voltage2=");
+                                                      if (pcVar1 == (char *)0x0) {
+                                                        pcVar1 = strstr(str,"final_voltage3=");
+                                                        if (pcVar1 == (char *)0x0) {
+                                                          pcVar1 = strstr(str,"freq_gap=");
+                                                          if (pcVar1 == (char *)0x0) {
+                                                            pcVar1 = strstr(str,"OpenCoreGap=");
+                                                            if (pcVar1 == (char *)0x0) {
+                                                              pcVar1 = strstr(str,"CheckTemp=");
+                                                              if (pcVar1 == (char *)0x0) {
+                                                                pcVar1 = strstr(str,"IICPic=");
+                                                                if (pcVar1 == (char *)0x0) {
+                                                                  pcVar1 = strstr(str,
+                                                  "Open_Core_Num1=");
+                                                  if (pcVar1 == (char *)0x0) {
+                                                    pcVar1 = strstr(str,"Open_Core_Num2=");
+                                                    if (pcVar1 == (char *)0x0) {
+                                                      pcVar1 = strstr(str,"Open_Core_Num3=");
+                                                      if (pcVar1 == (char *)0x0) {
+                                                        pcVar1 = strstr(str,"Open_Core_Num4=");
+                                                        if (pcVar1 == (char *)0x0) {
+                                                          pcVar1 = strstr(str,"DAC=");
+                                                          if (pcVar1 == (char *)0x0) {
+                                                            pcVar1 = strstr(str,"GetTempFrom=");
+                                                            if (pcVar1 == (char *)0x0) {
+                                                              pcVar1 = strstr(str,"TempSel=");
+                                                              if (pcVar1 == (char *)0x0) {
+                                                                pcVar1 = strstr(str,"TempSensor1=");
+                                                                if (pcVar1 == (char *)0x0) {
+                                                                  pcVar1 = strstr(str,"TempSensor2="
+                                                                                 );
+                                                                  if (pcVar1 == (char *)0x0) {
+                                                                    pcVar1 = strstr(str,
+                                                  "TempSensor3=");
+                                                  if (pcVar1 == (char *)0x0) {
+                                                    pcVar1 = strstr(str,"TempSensor4=");
+                                                    if (pcVar1 == (char *)0x0) {
+                                                      pcVar1 = strstr(str,"DefaultTempOffset=");
+                                                      if (pcVar1 == (char *)0x0) {
+                                                        pcVar1 = strstr(str,"year=");
+                                                        if (pcVar1 == (char *)0x0) {
+                                                          pcVar1 = strstr(str,"month=");
+                                                          if (pcVar1 == (char *)0x0) {
+                                                            pcVar1 = strstr(str,"date=");
+                                                            if (pcVar1 == (char *)0x0) {
+                                                              pcVar1 = strstr(str,"hour=");
+                                                              if (pcVar1 == (char *)0x0) {
+                                                                pcVar1 = strstr(str,"minute=");
+                                                                if (pcVar1 == (char *)0x0) {
+                                                                  pcVar1 = strstr(str,"second=");
+                                                                  if (pcVar1 == (char *)0x0) {
+                                                                    pcVar1 = strstr(str,
+                                                  "StartSensor=");
+                                                  if (pcVar1 == (char *)0x0) {
+                                                    pcVar1 = strstr(str,"StartTemp=");
+                                                    if (pcVar1 != (char *)0x0) {
+                                                      sscanf(pcVar1 + 10,"%d",0x2d450c);
+                                                      sscanf(pcVar1 + 10,"%d",&local_41c);
+                                                      Conf.StartTemp = local_41c;
+                                                      if (local_41c < 0) {
+                                                        local_41c = -local_41c;
+                                                        Conf.StartTemp = -(int)(char)local_41c;
                                                       }
                                                     }
-                                                    else {
-                                                      sscanf(pcVar4 + 6,DAT_00015de4,DAT_00015ea0);
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 0xc,"%d",0x2d4508);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 7,"%d",0x2d4524);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 7,"%d",0x2d4520);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 5,"%d",0x2d451c);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 5,"%d",0x2d4518);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 6,"%d",0x2d4514);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 5,"%d",0x2d4510);
+                                                  }
+                                                  }
+                                                  else {
+                                                    sscanf(pcVar1 + 0x12,"%d",&local_420);
+                                                    iVar3 = local_420;
+                                                    if (local_420 < 0) {
+                                                      local_420 = -local_420;
                                                     }
-                                                  }
-                                                  else {
-                                                    sscanf(pcVar4 + 5,DAT_00015de4,DAT_00015e98);
+                                                    Conf.DefaultTempOffset = (char)iVar3;
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0x12,DAT_00015de4);
-                                                    *(undefined *)(iVar1 + 0xf8c) = 0;
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2d44e8);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xc,DAT_00015e00,DAT_00015e8c);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2d44e4);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xc,DAT_00015e00,DAT_00015e84);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2d44e0);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xc,DAT_00015e00,DAT_00015e7c);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2d44dc);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xc,DAT_00015e00,DAT_00015e74);
+                                                    sscanf(pcVar1 + 8,"%ud",0x2d44d8);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 8,DAT_00015e00,DAT_00015e6c);
+                                                    sscanf(pcVar1 + 0xc,"%ud",0x2d44d4);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xc,DAT_00015e00,DAT_00015e64);
+                                                    sscanf(pcVar1 + 4,"%ud",0x2d44d0);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 4,DAT_00015e00,DAT_00015e5c);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44cc);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e54);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44c8);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e4c);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44c4);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e44);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44c0);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e3c);
+                                                    sscanf(pcVar1 + 7,"%d",0x2d44bc);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 7,DAT_00015de4,DAT_00015e34);
+                                                    sscanf(pcVar1 + 10,"%d",0x2d44b8);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 10,DAT_00015de4,DAT_00015e2c);
+                                                    sscanf(pcVar1 + 0xc,"%d",0x2d44b4);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xc,DAT_00015de4,DAT_00015e24);
+                                                    sscanf(pcVar1 + 9,"%ud",0x2d44b0);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 9,DAT_00015e00,DAT_00015e1c);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44ac);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e14);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44a8);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e0c);
+                                                    sscanf(pcVar1 + 0xf,"%ud",0x2d44a4);
                                                   }
                                                   }
                                                   else {
-                                                    sscanf(pcVar4 + 0xf,DAT_00015e00,DAT_00015e04);
-                                                  }
-                                                  }
-                                                  else {
-                                                    sscanf(pcVar4 + 9,DAT_00015de4,DAT_00015df8);
+                                                    sscanf(pcVar1 + 9,"%d",0x2d44a0);
                                                   }
                                                 }
                                                 else {
-                                                  sscanf(pcVar4 + 9,DAT_00015de4,DAT_00015df0);
+                                                  sscanf(pcVar1 + 9,"%d",0x2d449c);
                                                 }
                                               }
                                               else {
-                                                sscanf(pcVar4 + 9,DAT_00015de4,DAT_00015de8);
+                                                sscanf(pcVar1 + 9,"%d",0x2d4498);
                                               }
                                             }
                                             else {
-                                              sscanf(pcVar4 + 0xc,DAT_00015b04,DAT_00015b9c);
+                                              sscanf(pcVar1 + 0xc,"%d",0x2d4494);
                                             }
                                           }
                                           else {
-                                            sscanf(pcVar4 + 0xc,DAT_00015b04,DAT_00015b94);
+                                            sscanf(pcVar1 + 0xc,"%d",0x2d4490);
                                           }
                                         }
                                         else {
-                                          sscanf(pcVar4 + 0xc,DAT_00015b04,DAT_00015b8c);
+                                          sscanf(pcVar1 + 0xc,"%d",0x2d448c);
                                         }
                                       }
                                       else {
-                                        sscanf(pcVar4 + 0xc,DAT_00015b04,DAT_00015b84);
+                                        sscanf(pcVar1 + 0xc,"%d",0x2d4488);
                                       }
                                     }
                                     else {
-                                      sscanf(pcVar4 + 0xc,DAT_00015b04,DAT_00015b7c);
+                                      sscanf(pcVar1 + 0xc,"%d",0x2d4480);
                                     }
                                   }
                                   else {
-                                    sscanf(pcVar4 + 0xb,DAT_00015b04,DAT_00015b74);
+                                    sscanf(pcVar1 + 0xb,"%d",0x2d447c);
                                   }
                                 }
                                 else {
-                                  sscanf(pcVar4 + 9,DAT_00015b04,DAT_00015b6c);
+                                  sscanf(pcVar1 + 9,"%d",0x2d4478);
                                 }
                               }
                               else {
-                                sscanf(pcVar4 + 0xb,DAT_00015b04,DAT_00015b64);
+                                sscanf(pcVar1 + 0xb,"%d",0x2d4474);
                               }
                             }
                             else {
-                              sscanf(pcVar4 + 8,DAT_00015b04,DAT_00015b5c);
+                              sscanf(pcVar1 + 8,"%d",0x2d4458);
                             }
                           }
                         }
                         else {
-                          sscanf(pcVar4 + 7,DAT_00015b04,DAT_00015b50);
+                          sscanf(pcVar1 + 7,"%d",0x2d44fc);
                         }
                       }
                       else {
-                        sscanf(pcVar4 + 7,DAT_00015b04,DAT_00015b48);
+                        sscanf(pcVar1 + 7,"%d",0x2d44f8);
                       }
                     }
                     else {
-                      sscanf(pcVar4 + 7,DAT_00015b04,DAT_00015b40);
+                      sscanf(pcVar1 + 7,"%d",0x2d44f4);
                     }
                   }
                   else {
-                    sscanf(pcVar4 + 0xd,DAT_00015b04,DAT_00015b38);
+                    sscanf(pcVar1 + 0xd,"%d",0x2d4504);
                   }
                 }
                 else {
-                  sscanf(pcVar4 + 7,DAT_00015b04,DAT_00015b30);
+                  sscanf(pcVar1 + 7,"%d",0x2d44f0);
                 }
               }
               else {
-                sscanf(pcVar4 + 5,DAT_00015b04,DAT_00015b28);
-                *(undefined4 *)(iVar1 + 4000) = 0;
+                sscanf(pcVar1 + 5,"%d",0x2d4454);
+                Conf.force_freq = 0;
               }
             }
             else {
-              sscanf(pcVar4 + 0xb,DAT_00015b04,DAT_00015b20);
+              sscanf(pcVar1 + 0xb,"%d",0x2d4450);
             }
           }
           else {
-            sscanf(pcVar4 + 0xb,DAT_00015b04,DAT_00015b18);
+            sscanf(pcVar1 + 0xb,"%d",0x2d444c);
           }
         }
         else {
-          sscanf(pcVar4 + 0xb,DAT_00015b04,DAT_00015b10);
+          sscanf(pcVar1 + 0xb,"%d",0x2d4448);
         }
       }
       else {
-        sscanf(pcVar4 + 10,DAT_00015b04,DAT_00015b08);
+        sscanf(pcVar1 + 10,"%d",0x2d4444);
       }
     }
-    cVar5 = pcVar4[8];
-    iVar6 = 0;
+    cVar2 = pcVar1[8];
+    iVar3 = 0;
     do {
-      *(char *)(iVar2 + iVar6 + 0x25c) = cVar5;
-      __format = DAT_00015afc;
-      uVar3 = DAT_00015af8;
-      iVar7 = iVar6 + 1;
-      cVar5 = pcVar4[iVar6 + 9];
-      if (cVar5 == '\n' || cVar5 == '\r') goto LAB_000158f8;
-      iVar6 = iVar7;
-    } while (iVar7 != 0x40);
-    iVar7 = 0x41;
+      cgpu.workdataPathPrefix[iVar3] = cVar2;
+      iVar4 = iVar3 + 1;
+      cVar2 = pcVar1[iVar3 + 9];
+      if (cVar2 == '\n' || cVar2 == '\r') goto LAB_000158f8;
+      iVar3 = iVar4;
+    } while (iVar4 != 0x40);
+    iVar4 = 0x41;
 LAB_000158f8:
-    *(undefined *)(iVar2 + iVar7 + 0x25c) = 0;
-    printf(__format,uVar3);
+    cgpu.workdataPathPrefix[iVar4] = '\0';
+    printf("workdataPathPrefix:%s\n",0x62d24);
   } while( true );
 }
 

@@ -9,7 +9,7 @@ stack_st_X509_INFO * PEM_X509_INFO_read(FILE *fp,stack_st_X509_INFO *sk,undefine
   type = BIO_s_file();
   bp = BIO_new(type);
   if (bp == (BIO *)0x0) {
-    ERR_put_error(9,0x73,7,DAT_0010ace4,0x51);
+    ERR_put_error(9,0x73,7,"pem_info.c",0x51);
     psVar1 = (stack_st_X509_INFO *)0x0;
   }
   else {

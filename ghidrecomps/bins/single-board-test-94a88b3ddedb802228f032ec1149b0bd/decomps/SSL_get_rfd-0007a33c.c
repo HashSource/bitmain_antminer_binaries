@@ -3,7 +3,7 @@ int SSL_get_rfd(SSL *s)
 
 {
   BIO *bp;
-  int local_c [3];
+  int local_c [2];
   
   local_c[0] = -1;
   bp = BIO_find_type(s->rbio,0x100);

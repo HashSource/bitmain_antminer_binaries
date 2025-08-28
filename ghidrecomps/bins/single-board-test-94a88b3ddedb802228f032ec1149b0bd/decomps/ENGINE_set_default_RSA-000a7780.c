@@ -8,7 +8,7 @@ int ENGINE_set_default_RSA(ENGINE *e)
     iVar1 = 1;
   }
   else {
-    iVar1 = engine_table_register(DAT_000a77a4,DAT_000a77a8,e,DAT_000a77ac,1,1);
+    iVar1 = engine_table_register(&rsa_table,0xa76f5,e,&dummy_nid,1,1);
   }
   return iVar1;
 }

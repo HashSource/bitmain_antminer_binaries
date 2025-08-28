@@ -6,7 +6,7 @@ char * strpbrk(char *__s,char *__accept)
 {
   char *pcVar1;
   
-  pcVar1 = (char *)(*(code *)PTR_strpbrk_000a8244)();
+  pcVar1 = strpbrk(__s,__accept);
   return pcVar1;
 }
 

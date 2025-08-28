@@ -14,7 +14,7 @@ undefined4 check_chain(void)
     if (local_12c == 1) {
       gChain = (byte)local_128;
       *(byte *)((int)&chain_info + (local_128 & 0xff) * 2) = gChain;
-      *(undefined *)((int)&chain_info + (uint)gChain * 2 + 1) = 0;
+      *(undefined1 *)((int)&chain_info + (uint)gChain * 2 + 1) = 0;
       printf("gChain = %d\n",(uint)gChain);
       uVar2 = 0;
     }

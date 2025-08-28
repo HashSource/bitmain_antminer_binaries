@@ -11,7 +11,7 @@ int UI_process(UI *ui)
   if ((*(code **)(*(int *)ui + 4) == (code *)0x0) ||
      (iVar1 = (**(code **)(*(int *)ui + 4))(), iVar1 != 0)) {
     if (*(int *)(ui + 0x14) << 0x17 < 0) {
-      ERR_print_errors_cb(DAT_000d4be0,ui);
+      ERR_print_errors_cb((cb *)0xd4251,ui);
     }
     iVar1 = 0;
     do {

@@ -14,7 +14,7 @@ ec_GFp_simple_group_set_curve
   
   iVar1 = BN_num_bits(param_2);
   if (((iVar1 < 3) || (param_2->top < 1)) || (-1 < (int)(*param_2->d << 0x1f))) {
-    ERR_put_error(0x10,0xa6,0x67,DAT_0012b27c,0xba);
+    ERR_put_error(0x10,0xa6,0x67,"ecp_smpl.c",0xba);
     return 0;
   }
   if (param_5 == (BN_CTX *)0x0) {

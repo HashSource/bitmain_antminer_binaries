@@ -5,7 +5,8 @@ void minerconfig(int param_1,undefined4 param_2,undefined4 param_3,uint param_4)
   uint uVar1;
   undefined4 uVar2;
   char *pcVar3;
-  undefined uVar4;
+  undefined1 extraout_r3;
+  undefined1 uVar4;
   bool bVar5;
   undefined4 local_20;
   undefined4 local_1c [2];
@@ -30,14 +31,14 @@ void minerconfig(int param_1,undefined4 param_2,undefined4 param_3,uint param_4)
   uVar2 = api_add_data_full(uVar2,"Queue",6,&opt_queue,0);
   uVar2 = api_add_data_full(uVar2,"Expiry",6,&opt_expiry,0);
   uVar2 = api_add_data_full(uVar2,"Hotplug",2,&DAT_00058254,0);
-  uVar4 = 0;
-  print_data(param_1,uVar2,param_4);
+  print_data(param_1,uVar2,param_4,0);
   bVar5 = (param_4 & uVar1) != 0;
+  uVar4 = extraout_r3;
   if (bVar5) {
     uVar4 = 1;
   }
   if (bVar5) {
-    *(undefined *)(param_1 + 0xd) = uVar4;
+    *(undefined1 *)(param_1 + 0xd) = uVar4;
   }
   return;
 }

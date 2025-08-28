@@ -11,13 +11,13 @@ ASN1_INTEGER * dsa_priv_encode(PKCS8_PRIV_KEY_INFO *param_1,int param_2)
   local_24[0] = (uchar *)0x0;
   if ((*(int *)(param_2 + 0x14) == 0) || (*(int *)(*(int *)(param_2 + 0x14) + 0x1c) == 0)) {
     a_00 = (ASN1_INTEGER *)0x0;
-    ERR_put_error(10,0x74,0x65,DAT_000fed3c,0x124);
+    ERR_put_error(10,0x74,0x65,"dsa_ameth.c",0x124);
     a = (ASN1_STRING *)0x0;
   }
   else {
     a = ASN1_STRING_new();
     if (a == (ASN1_STRING *)0x0) {
-      ERR_put_error(10,0x74,0x41,DAT_000fed3c,299);
+      ERR_put_error(10,0x74,0x41,"dsa_ameth.c",299);
       a_00 = (ASN1_INTEGER *)0x0;
     }
     else {
@@ -25,14 +25,14 @@ ASN1_INTEGER * dsa_priv_encode(PKCS8_PRIV_KEY_INFO *param_1,int param_2)
       a->length = iVar1;
       if (iVar1 < 1) {
         a_00 = (ASN1_INTEGER *)0x0;
-        ERR_put_error(10,0x74,0x41,DAT_000fed3c,0x131);
+        ERR_put_error(10,0x74,0x41,"dsa_ameth.c",0x131);
       }
       else {
         a->type = 0x10;
         a_00 = BN_to_ASN1_INTEGER(*(BIGNUM **)(*(int *)(param_2 + 0x14) + 0x1c),(ASN1_INTEGER *)0x0)
         ;
         if (a_00 == (ASN1_INTEGER *)0x0) {
-          ERR_put_error(10,0x74,0x6d,DAT_000fed3c,0x13a);
+          ERR_put_error(10,0x74,0x6d,"dsa_ameth.c",0x13a);
         }
         else {
           iVar1 = i2d_ASN1_INTEGER(a_00,local_24);

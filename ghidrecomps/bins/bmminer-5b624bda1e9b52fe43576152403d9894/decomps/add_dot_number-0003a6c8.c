@@ -5,7 +5,6 @@ void add_dot_number(char *number)
 
 {
   char *pcVar1;
-  char *pstr;
   uint uVar2;
   char acStack_33 [3];
   char tempStr [32];

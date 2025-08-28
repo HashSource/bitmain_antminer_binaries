@@ -1,23 +1,23 @@
 
-undefined4 ssl_cert_inst(int **param_1)
+undefined4 ssl_cert_inst(int *param_1)
 
 {
   int *__s;
   EVP_MD *pEVar1;
   undefined4 uVar2;
   
-  if (param_1 == (int **)0x0) {
-    ERR_put_error(0x14,0xde,0x43,DAT_0007d918,0x20c);
+  if (param_1 == (int *)0x0) {
+    ERR_put_error(0x14,0xde,0x43,"ssl_cert.c",0x20c);
     uVar2 = 0;
   }
   else {
     uVar2 = 1;
-    if (*param_1 == (int *)0x0) {
-      __s = (int *)CRYPTO_malloc(0x170,DAT_0007d918,0xcc);
+    if (*param_1 == 0) {
+      __s = (int *)CRYPTO_malloc(0x170,"ssl_cert.c",0xcc);
       if (__s == (int *)0x0) {
-        ERR_put_error(0x14,0xa2,0x41,DAT_0007d918,0xce);
-        *param_1 = (int *)0x0;
-        ERR_put_error(0x14,0xde,0x41,DAT_0007d918,0x211);
+        ERR_put_error(0x14,0xa2,0x41,"ssl_cert.c",0xce);
+        *param_1 = 0;
+        ERR_put_error(0x14,0xde,0x41,"ssl_cert.c",0x211);
         uVar2 = 0;
       }
       else {
@@ -33,7 +33,7 @@ undefined4 ssl_cert_inst(int **param_1)
         __s[0x11] = (int)pEVar1;
         pEVar1 = EVP_sha1();
         __s[0x34] = (int)pEVar1;
-        *param_1 = __s;
+        *param_1 = (int)__s;
       }
     }
   }

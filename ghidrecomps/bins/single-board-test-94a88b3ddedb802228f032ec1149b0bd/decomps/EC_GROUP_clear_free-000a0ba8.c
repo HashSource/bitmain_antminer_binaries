@@ -2,7 +2,7 @@
 void EC_GROUP_clear_free(EC_GROUP *group)
 
 {
-  void **ptr;
+  undefined4 *ptr;
   code *pcVar1;
   int *ptr_00;
   void *pvVar2;
@@ -13,12 +13,12 @@ void EC_GROUP_clear_free(EC_GROUP *group)
        ) {
       (*pcVar1)();
     }
-    ptr = (void **)*(void **)(group + 0x44);
-    while (ptr != (void **)0x0) {
-      pvVar2 = *ptr;
+    ptr = (undefined4 *)*(void **)(group + 0x44);
+    while (ptr != (undefined4 *)0x0) {
+      pvVar2 = (void *)*ptr;
       (*(code *)ptr[4])(ptr[1]);
       CRYPTO_free(ptr);
-      ptr = (void **)pvVar2;
+      ptr = (undefined4 *)pvVar2;
     }
     *(undefined4 *)(group + 0x44) = 0;
     if ((*(int *)(group + 0x34) < 0) && (*(BN_MONT_CTX **)(group + 0xac) != (BN_MONT_CTX *)0x0)) {

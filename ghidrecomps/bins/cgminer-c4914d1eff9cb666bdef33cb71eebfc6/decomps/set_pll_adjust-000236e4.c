@@ -3,7 +3,6 @@ void set_pll_adjust(float low_freq,float final_freq)
 
 {
   FILE *pFVar1;
-  float fVar2;
   float final_freq_local;
   float low_freq_local;
   FILE *pFile;
@@ -31,15 +30,12 @@ void set_pll_adjust(float low_freq,float final_freq)
     for (chain = '\0'; chain < 0x10; chain = chain + '\x01') {
       if ((dev->chain_exist[chain] != 0) && (scanfreq_info.test_done[chain] == false)) {
         steps = (final_freq - low_freq) / freq_adjust_step;
-        fVar2 = freq_adjust_step * steps + low_freq;
-        if (final_freq != fVar2 && final_freq < fVar2 == (NAN(final_freq) || NAN(fVar2))) {
+        if (freq_adjust_step * steps + low_freq < final_freq) {
           steps = steps + 1.0;
         }
-        for (i = 0; fVar2 = (float)(ulonglong)i,
-            steps != fVar2 && steps < fVar2 == (NAN(steps) || NAN(fVar2)); i = i + 1) {
-          freq_tmp = low_freq + (float)(ulonglong)(i + 1) * freq_adjust_step;
-          if (freq_tmp != final_freq && freq_tmp < final_freq == (NAN(freq_tmp) || NAN(final_freq)))
-          {
+        for (i = 0; (float)i < steps; i = i + 1) {
+          freq_tmp = low_freq + (float)(i + 1) * freq_adjust_step;
+          if (final_freq < freq_tmp) {
             freq_tmp = final_freq;
           }
           for (vol_region = '\0'; vol_region < 6; vol_region = vol_region + '\x01') {

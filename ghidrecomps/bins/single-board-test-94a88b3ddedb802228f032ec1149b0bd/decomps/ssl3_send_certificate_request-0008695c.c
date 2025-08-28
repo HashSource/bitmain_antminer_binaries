@@ -87,7 +87,7 @@ undefined4 ssl3_send_certificate_request(SSL *param_1)
       if (iVar2 == 0) {
         iVar2 = 0x836;
 LAB_00086ae4:
-        ERR_put_error(0x14,0x96,7,DAT_00086b34,iVar2);
+        ERR_put_error(0x14,0x96,7,"s3_srvr.c",iVar2);
         param_1->state = 5;
         return 0xffffffff;
       }

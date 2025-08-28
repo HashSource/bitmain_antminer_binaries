@@ -11,10 +11,10 @@ CONF_VALUE * _CONF_new_section(CONF *conf,char *section)
   p_Var1 = sk_new_null();
   ptr = p_Var1;
   if (p_Var1 != (_STACK *)0x0) {
-    ptr = (_STACK *)CRYPTO_malloc(0xc,DAT_0010d97c,0x119);
+    ptr = (_STACK *)CRYPTO_malloc(0xc,"conf_api.c",0x119);
     if (ptr != (_STACK *)0x0) {
       sVar2 = strlen(section);
-      pvVar3 = CRYPTO_malloc(sVar2 + 1,DAT_0010d97c,0x11c);
+      pvVar3 = CRYPTO_malloc(sVar2 + 1,"conf_api.c",0x11c);
       ptr->num = (int)pvVar3;
       if (pvVar3 != (void *)0x0) {
         memcpy(pvVar3,section,sVar2 + 1);
@@ -25,7 +25,7 @@ CONF_VALUE * _CONF_new_section(CONF *conf,char *section)
         if (pvVar3 == (void *)0x0) {
           return (CONF_VALUE *)ptr;
         }
-        OpenSSLDie(DAT_0010d97c,0x124,DAT_0010d980);
+        OpenSSLDie("conf_api.c",0x124,"vv == NULL");
         return (CONF_VALUE *)ptr;
       }
     }

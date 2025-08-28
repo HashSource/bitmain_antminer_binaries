@@ -1,6 +1,5 @@
 
 /* WARNING: Unknown calling convention */
-/* Local variable len:int[r0:4] conflicts with parameter, skipped. */
 
 int ser_number(uchar *s,int32_t val)
 

@@ -9,15 +9,13 @@ int Curl_GetFTPResponse(int *param_1,undefined4 *param_2,int *param_3)
   int *piVar5;
   int iVar6;
   bool bVar7;
-  int local_34;
-  int local_30;
-  int local_2c [2];
+  int local_34 [4];
   
   uVar2 = *param_2;
   uVar4 = param_2[0x55];
-  local_30 = 0;
+  local_34[1] = 0;
   if (param_3 == (int *)0x0) {
-    param_3 = &local_30;
+    param_3 = local_34 + 1;
   }
   else {
     *param_3 = 0;
@@ -32,14 +30,17 @@ LAB_0005cd6c:
     }
     iVar1 = Curl_pp_state_timeout(param_2 + 0xf0);
     if (iVar1 < 1) {
-      Curl_failf(uVar2,DAT_0005ce50);
+      Curl_failf(uVar2,"FTP response timeout");
       return 0x1c;
     }
+    if (999 < iVar1) {
+      iVar1 = 1000;
+    }
     if ((param_2[0xf0] != 0) && (iVar3 < 2)) break;
-    iVar1 = Curl_socket_check(uVar4,0xffffffff,0xffffffff);
+    iVar1 = Curl_socket_check(uVar4,0xffffffff,0xffffffff,iVar1);
     if (iVar1 == -1) {
       piVar5 = __errno_location();
-      Curl_failf(uVar2,DAT_0005ce48,*piVar5);
+      Curl_failf(uVar2,"FTP response aborted due to select/poll error: %d",*piVar5);
       return 0x38;
     }
     if (iVar1 != 0) break;
@@ -50,17 +51,17 @@ LAB_0005cd6c:
   }
   piVar5 = (int *)param_2[0xfb];
   iVar6 = *piVar5;
-  iVar1 = Curl_pp_readresp(uVar4,param_2 + 0xf0,local_2c,&local_34);
-  *(int *)(iVar6 + 0x86f4) = local_2c[0];
-  bVar7 = local_2c[0] == 0x1a5;
-  *param_3 = local_2c[0];
+  iVar1 = Curl_pp_readresp(uVar4,param_2 + 0xf0,local_34 + 2,local_34);
+  *(int *)(iVar6 + 0x86f4) = local_34[2];
+  bVar7 = local_34[2] == 0x1a5;
+  *param_3 = local_34[2];
   if (bVar7) {
-    Curl_infof(iVar6,DAT_0005ce4c);
+    Curl_infof(iVar6,"We got a 421 - timeout!\n");
     iVar1 = 0x1c;
     piVar5[0x10a] = 0;
   }
   else if (iVar1 == 0) {
-    if (local_34 == 0) {
+    if (local_34[0] == 0) {
       iVar3 = iVar3 + 1;
       if (param_2[0xf0] == 0) {
         iVar3 = 0;
@@ -68,13 +69,13 @@ LAB_0005cd6c:
       *param_1 = *param_1;
     }
     else {
-      *param_1 = *param_1 + local_34;
+      *param_1 = *param_1 + local_34[0];
       iVar3 = 0;
     }
     goto LAB_0005cd6c;
   }
 LAB_0005ce28:
-  *(undefined *)(param_2 + 0xf4) = 0;
+  *(undefined1 *)(param_2 + 0xf4) = 0;
   return iVar1;
 }
 

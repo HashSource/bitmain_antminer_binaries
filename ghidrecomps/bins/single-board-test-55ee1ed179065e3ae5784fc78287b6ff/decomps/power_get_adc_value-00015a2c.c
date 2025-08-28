@@ -14,8 +14,8 @@ void power_get_adc_value(void)
   undefined4 local_10;
   undefined2 local_c;
   
-  local_10 = DAT_0002b1f0;
-  local_c = DAT_0002b1f4;
+  local_10 = 0x404aa55;
+  local_c = 8;
   local_30 = 0;
   local_2c = 0;
   local_28 = 0;

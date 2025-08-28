@@ -9,7 +9,7 @@ ec_key_st * EVP_PKEY_get1_EC_KEY(EVP_PKEY *pkey)
     peVar1 = (ec_key_st *)(pkey->pkey).ptr;
   }
   else {
-    ERR_put_error(6,0x83,0x8e,DAT_000b2188,0x140);
+    ERR_put_error(6,0x83,0x8e,"p_lib.c",0x140);
     peVar1 = (ec_key_st *)0x0;
   }
   return peVar1;

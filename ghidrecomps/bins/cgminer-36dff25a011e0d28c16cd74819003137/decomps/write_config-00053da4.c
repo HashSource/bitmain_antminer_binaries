@@ -94,7 +94,7 @@ void write_config(FILE *fcfg)
     pcVar5 = strdup(opt->names);
     p = strtok(pcVar5,"|");
     while (p != (char *)0x0) {
-      if ((p[1] == '-') && ((undefined4 *)opt->desc != &opt_hidden)) {
+      if ((p[1] == '-') && (opt->desc != (char *)&opt_hidden)) {
                     /* WARNING: Load size is inaccurate */
         if (((opt->type & OPT_NOARG) == 0) ||
            (((opt->cb != opt_set_bool && (opt->cb != opt_set_invbool)) ||
@@ -113,7 +113,7 @@ void write_config(FILE *fcfg)
             if (((opt->type & OPT_HASARG) == 0) ||
                ((opt->cb_arg != set_float_125_to_500 && (opt->cb_arg != set_float_100_to_250)))) {
                     /* WARNING: Load size is inaccurate */
-              if (((opt->type & (OPT_HASARG|OPT_PROCESSARG)) != 0) &&
+              if (((opt->type & (OPT_PROCESSARG|OPT_HASARG)) != 0) &&
                  (((char **)(opt->u).carg != &opt_set_null && (*(opt->u).carg != (char *)0x0)))) {
                 pcVar6 = json_escape(*(opt->u).carg);
                 fprintf((FILE *)fcfg,",\n\"%s\" : \"%s\"",p + 2,pcVar6);
