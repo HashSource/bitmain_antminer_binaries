@@ -1,8 +1,0 @@
-
-void ACCESS_DESCRIPTION_free(ACCESS_DESCRIPTION *a)
-
-{
-  ASN1_item_free((ASN1_VALUE *)a,(ASN1_ITEM *)&ACCESS_DESCRIPTION_it);
-  return;
-}
-

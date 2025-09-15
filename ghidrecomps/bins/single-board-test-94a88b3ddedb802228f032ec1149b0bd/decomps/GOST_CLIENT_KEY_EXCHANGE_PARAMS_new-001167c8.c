@@ -1,8 +1,0 @@
-
-void GOST_CLIENT_KEY_EXCHANGE_PARAMS_new(void)
-
-{
-  ASN1_item_new((ASN1_ITEM *)GOST_CLIENT_KEY_EXCHANGE_PARAMS_it);
-  return;
-}
-

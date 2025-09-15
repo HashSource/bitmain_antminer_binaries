@@ -1,9 +1,0 @@
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
-EVP_CIPHER * EVP_aes_256_cbc_hmac_sha1(void)
-
-{
-  return (EVP_CIPHER *)0x0;
-}
-
