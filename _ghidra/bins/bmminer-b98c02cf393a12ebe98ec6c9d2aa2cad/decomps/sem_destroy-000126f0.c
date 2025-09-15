@@ -1,0 +1,12 @@
+
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+int sem_destroy(sem_t *__sem)
+
+{
+  int iVar1;
+  
+  iVar1 = sem_destroy(__sem);
+  return iVar1;
+}
+

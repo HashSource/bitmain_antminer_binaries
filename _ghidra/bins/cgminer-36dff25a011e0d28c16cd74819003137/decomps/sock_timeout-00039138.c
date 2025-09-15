@@ -1,0 +1,24 @@
+
+/* WARNING: Unknown calling convention */
+
+_Bool sock_timeout(void)
+
+{
+  int *piVar1;
+  undefined1 uVar2;
+  int iVar3;
+  bool bVar4;
+  
+  piVar1 = __errno_location();
+  iVar3 = *piVar1;
+  bVar4 = iVar3 == 0x6e;
+  if (bVar4) {
+    iVar3 = 1;
+  }
+  uVar2 = (undefined1)iVar3;
+  if (!bVar4) {
+    uVar2 = 0;
+  }
+  return (_Bool)uVar2;
+}
+

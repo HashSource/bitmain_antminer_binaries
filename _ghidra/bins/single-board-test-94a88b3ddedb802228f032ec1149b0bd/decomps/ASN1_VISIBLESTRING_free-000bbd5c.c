@@ -1,0 +1,8 @@
+
+void ASN1_VISIBLESTRING_free(ASN1_VISIBLESTRING *a)
+
+{
+  ASN1_item_free((ASN1_VALUE *)a,(ASN1_ITEM *)ASN1_VISIBLESTRING_it);
+  return;
+}
+

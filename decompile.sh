@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
 
 # Clean Cache
-rm -rf ./ghidrecomps
+rm -rf ./_ghidra
 
-ghidrecomp DR5/single-board-test
-ghidrecomp DR5/test_demo
-ghidrecomp S9k/cgminer
-ghidrecomp S9k/poweroff_hashboard
-ghidrecomp S9SES9KTestJig/bitmain_axi.ko
-ghidrecomp S9SES9KTestJig/bmminer
-ghidrecomp S9SES9KTestJig/eeprom_test
-ghidrecomp S9SES9KTestJig/fpga_mem_driver.ko
-ghidrecomp S11/bmminer
-ghidrecomp S11/single-board-test
-ghidrecomp S17/single-board-test
-ghidrecomp S17e/cgminer
-ghidrecomp S17pro/single-board-test
-ghidrecomp T9+/bmminer
-ghidrecomp T17/cgminer
-ghidrecomp T17e/cgminer
-ghidrecomp Z9-mini/single-board-test
-ghidrecomp Z9-mini/single-board-test-default
-ghidrecomp Z9-mini/single-board-test-ok
-ghidrecomp Z9-mini/test_demo
-ghidrecomp Z11/single-board-test
-ghidrecomp Z11/z11-pcba
-ghidrecomp Z15/single-board-test
+ghidrecomp --output-path _ghidra DR5/single-board-test
+ghidrecomp --output-path _ghidra DR5/test_demo
+ghidrecomp --output-path _ghidra S9k/cgminer
+ghidrecomp --output-path _ghidra S9k/poweroff_hashboard
+ghidrecomp --output-path _ghidra S9SES9KTestJig/bitmain_axi.ko
+ghidrecomp --output-path _ghidra S9SES9KTestJig/bmminer
+ghidrecomp --output-path _ghidra S9SES9KTestJig/eeprom_test
+ghidrecomp --output-path _ghidra S9SES9KTestJig/fpga_mem_driver.ko
+ghidrecomp --output-path _ghidra S11/bmminer
+ghidrecomp --output-path _ghidra S11/single-board-test
+ghidrecomp --output-path _ghidra S17/single-board-test
+ghidrecomp --output-path _ghidra S17e/cgminer
+ghidrecomp --output-path _ghidra S17pro/single-board-test
+ghidrecomp --output-path _ghidra T9+/bmminer
+ghidrecomp --output-path _ghidra T17/cgminer
+ghidrecomp --output-path _ghidra T17e/cgminer
+ghidrecomp --output-path _ghidra Z9-mini/single-board-test
+ghidrecomp --output-path _ghidra Z9-mini/single-board-test-default
+ghidrecomp --output-path _ghidra Z9-mini/single-board-test-ok
+ghidrecomp --output-path _ghidra Z9-mini/test_demo
+ghidrecomp --output-path _ghidra Z11/single-board-test
+ghidrecomp --output-path _ghidra Z11/z11-pcba
+ghidrecomp --output-path _ghidra Z15/single-board-test

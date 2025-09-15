@@ -1,5 +1,8 @@
 *.log
 
 # Too Large For Github
-ghidrecomps/ghidra_projects
-ghidrecomps/symbols
+_ghidra/ghidra_projects
+_ghidra/symbols
+
+# Ida Database Files
+*.i64

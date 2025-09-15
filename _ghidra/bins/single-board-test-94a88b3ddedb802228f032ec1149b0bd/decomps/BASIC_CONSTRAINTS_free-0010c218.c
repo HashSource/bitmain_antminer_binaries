@@ -1,0 +1,8 @@
+
+void BASIC_CONSTRAINTS_free(BASIC_CONSTRAINTS *a)
+
+{
+  ASN1_item_free((ASN1_VALUE *)a,(ASN1_ITEM *)&BASIC_CONSTRAINTS_it);
+  return;
+}
+

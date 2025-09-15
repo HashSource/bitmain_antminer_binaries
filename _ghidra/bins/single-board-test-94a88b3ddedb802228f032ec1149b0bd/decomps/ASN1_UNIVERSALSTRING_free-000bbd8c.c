@@ -1,0 +1,8 @@
+
+void ASN1_UNIVERSALSTRING_free(ASN1_UNIVERSALSTRING *a)
+
+{
+  ASN1_item_free((ASN1_VALUE *)a,(ASN1_ITEM *)ASN1_UNIVERSALSTRING_it);
+  return;
+}
+
