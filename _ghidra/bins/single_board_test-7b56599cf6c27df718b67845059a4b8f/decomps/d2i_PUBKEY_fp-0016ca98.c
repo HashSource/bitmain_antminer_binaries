@@ -1,0 +1,10 @@
+
+EVP_PKEY * d2i_PUBKEY_fp(FILE *fp,EVP_PKEY **a)
+
+{
+  EVP_PKEY *pEVar1;
+  
+  pEVar1 = (EVP_PKEY *)ASN1_d2i_fp((xnew *)0x1319c1,(undefined1 *)0x16e041,fp,a);
+  return pEVar1;
+}
+

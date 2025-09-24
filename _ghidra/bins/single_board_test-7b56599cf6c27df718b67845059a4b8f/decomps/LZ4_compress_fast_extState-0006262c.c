@@ -1,0 +1,2328 @@
+
+/* WARNING: Removing unreachable block (ram,0x0006aa0c) */
+/* WARNING: Removing unreachable block (ram,0x00069650) */
+/* WARNING: Removing unreachable block (ram,0x00069684) */
+/* WARNING: Removing unreachable block (ram,0x00069686) */
+/* WARNING: Removing unreachable block (ram,0x00069688) */
+/* WARNING: Removing unreachable block (ram,0x0006968e) */
+/* WARNING: Removing unreachable block (ram,0x00069376) */
+/* WARNING: Removing unreachable block (ram,0x000693a8) */
+/* WARNING: Removing unreachable block (ram,0x00069386) */
+/* WARNING: Removing unreachable block (ram,0x000694e4) */
+/* WARNING: Removing unreachable block (ram,0x000694f4) */
+/* WARNING: Removing unreachable block (ram,0x00068c9e) */
+/* WARNING: Removing unreachable block (ram,0x00068c40) */
+/* WARNING: Removing unreachable block (ram,0x00068c4a) */
+/* WARNING: Removing unreachable block (ram,0x00068b38) */
+/* WARNING: Removing unreachable block (ram,0x00068aac) */
+/* WARNING: Removing unreachable block (ram,0x000631a4) */
+/* WARNING: Removing unreachable block (ram,0x000631d4) */
+/* WARNING: Removing unreachable block (ram,0x000631d6) */
+/* WARNING: Removing unreachable block (ram,0x000631d8) */
+/* WARNING: Removing unreachable block (ram,0x000631de) */
+/* WARNING: Removing unreachable block (ram,0x00063ee6) */
+/* WARNING: Removing unreachable block (ram,0x00063306) */
+/* WARNING: Removing unreachable block (ram,0x00063314) */
+/* WARNING: Removing unreachable block (ram,0x00062908) */
+/* WARNING: Removing unreachable block (ram,0x00062864) */
+/* WARNING: Removing unreachable block (ram,0x000627f6) */
+/* WARNING: Removing unreachable block (ram,0x000627a6) */
+/* WARNING: Removing unreachable block (ram,0x00062784) */
+/* WARNING: Removing unreachable block (ram,0x000627cc) */
+/* WARNING: Removing unreachable block (ram,0x000628ba) */
+/* WARNING: Removing unreachable block (ram,0x000628c2) */
+/* WARNING: Removing unreachable block (ram,0x000628ec) */
+/* WARNING: Removing unreachable block (ram,0x000629e2) */
+/* WARNING: Removing unreachable block (ram,0x00062f0a) */
+/* WARNING: Removing unreachable block (ram,0x00062f34) */
+/* WARNING: Removing unreachable block (ram,0x00062f18) */
+/* WARNING: Removing unreachable block (ram,0x00063160) */
+/* WARNING: Removing unreachable block (ram,0x0006318c) */
+/* WARNING: Removing unreachable block (ram,0x0006318e) */
+/* WARNING: Removing unreachable block (ram,0x00063190) */
+/* WARNING: Removing unreachable block (ram,0x00063196) */
+/* WARNING: Removing unreachable block (ram,0x00063a6a) */
+/* WARNING: Removing unreachable block (ram,0x00063972) */
+/* WARNING: Removing unreachable block (ram,0x0006399a) */
+/* WARNING: Removing unreachable block (ram,0x0006399c) */
+/* WARNING: Removing unreachable block (ram,0x0006399e) */
+/* WARNING: Removing unreachable block (ram,0x000639a6) */
+/* WARNING: Removing unreachable block (ram,0x00063b3c) */
+/* WARNING: Removing unreachable block (ram,0x000639b0) */
+/* WARNING: Removing unreachable block (ram,0x000639fe) */
+/* WARNING: Removing unreachable block (ram,0x00063a00) */
+/* WARNING: Removing unreachable block (ram,0x00063a02) */
+/* WARNING: Removing unreachable block (ram,0x00063a0a) */
+/* WARNING: Removing unreachable block (ram,0x00063b28) */
+/* WARNING: Removing unreachable block (ram,0x00063a16) */
+/* WARNING: Removing unreachable block (ram,0x00063a54) */
+/* WARNING: Removing unreachable block (ram,0x00063a7e) */
+/* WARNING: Removing unreachable block (ram,0x00063ad8) */
+/* WARNING: Removing unreachable block (ram,0x00063aae) */
+/* WARNING: Removing unreachable block (ram,0x00063afa) */
+/* WARNING: Removing unreachable block (ram,0x00063ab2) */
+/* WARNING: Removing unreachable block (ram,0x00063ab6) */
+/* WARNING: Removing unreachable block (ram,0x00063b1a) */
+/* WARNING: Removing unreachable block (ram,0x00063b3a) */
+/* WARNING: Removing unreachable block (ram,0x00062e90) */
+/* WARNING: Removing unreachable block (ram,0x00062e86) */
+/* WARNING: Removing unreachable block (ram,0x00062eb0) */
+/* WARNING: Removing unreachable block (ram,0x00063caa) */
+/* WARNING: Removing unreachable block (ram,0x00064402) */
+/* WARNING: Removing unreachable block (ram,0x00064432) */
+/* WARNING: Removing unreachable block (ram,0x00064468) */
+/* WARNING: Removing unreachable block (ram,0x0006443a) */
+/* WARNING: Removing unreachable block (ram,0x00067fdc) */
+/* WARNING: Removing unreachable block (ram,0x00067078) */
+/* WARNING: Removing unreachable block (ram,0x0006713a) */
+/* WARNING: Removing unreachable block (ram,0x00067088) */
+/* WARNING: Removing unreachable block (ram,0x000670d2) */
+/* WARNING: Removing unreachable block (ram,0x000670fc) */
+/* WARNING: Removing unreachable block (ram,0x000670dc) */
+/* WARNING: Removing unreachable block (ram,0x000670b2) */
+/* WARNING: Removing unreachable block (ram,0x000670fe) */
+/* WARNING: Removing unreachable block (ram,0x00067cb0) */
+/* WARNING: Removing unreachable block (ram,0x00067d08) */
+/* WARNING: Removing unreachable block (ram,0x00067d0a) */
+/* WARNING: Removing unreachable block (ram,0x00067d0c) */
+/* WARNING: Removing unreachable block (ram,0x00067d14) */
+/* WARNING: Removing unreachable block (ram,0x00067440) */
+/* WARNING: Removing unreachable block (ram,0x00067474) */
+/* WARNING: Removing unreachable block (ram,0x00067476) */
+/* WARNING: Removing unreachable block (ram,0x00067478) */
+/* WARNING: Removing unreachable block (ram,0x0006747e) */
+/* WARNING: Removing unreachable block (ram,0x00066d28) */
+/* WARNING: Removing unreachable block (ram,0x00066d4c) */
+/* WARNING: Removing unreachable block (ram,0x00066da0) */
+/* WARNING: Removing unreachable block (ram,0x00066da2) */
+/* WARNING: Removing unreachable block (ram,0x00066da4) */
+/* WARNING: Removing unreachable block (ram,0x00066dac) */
+/* WARNING: Removing unreachable block (ram,0x00066e24) */
+/* WARNING: Removing unreachable block (ram,0x00066e0e) */
+/* WARNING: Removing unreachable block (ram,0x00066e38) */
+/* WARNING: Removing unreachable block (ram,0x00066e84) */
+/* WARNING: Removing unreachable block (ram,0x00066ef0) */
+/* WARNING: Removing unreachable block (ram,0x00066ec2) */
+/* WARNING: Removing unreachable block (ram,0x00066e9c) */
+/* WARNING: Removing unreachable block (ram,0x00066f1e) */
+/* WARNING: Removing unreachable block (ram,0x00066f36) */
+/* WARNING: Removing unreachable block (ram,0x00066f54) */
+/* WARNING: Removing unreachable block (ram,0x00066a8e) */
+/* WARNING: Removing unreachable block (ram,0x000669be) */
+/* WARNING: Removing unreachable block (ram,0x000668c6) */
+/* WARNING: Removing unreachable block (ram,0x0006689c) */
+/* WARNING: Removing unreachable block (ram,0x000668f4) */
+/* WARNING: Removing unreachable block (ram,0x00066928) */
+/* WARNING: Removing unreachable block (ram,0x00066a30) */
+/* WARNING: Removing unreachable block (ram,0x00066a3a) */
+/* WARNING: Removing unreachable block (ram,0x00066a6a) */
+/* WARNING: Removing unreachable block (ram,0x00066ba4) */
+/* WARNING: Removing unreachable block (ram,0x00066d02) */
+/* WARNING: Removing unreachable block (ram,0x00066fc8) */
+/* WARNING: Removing unreachable block (ram,0x00067224) */
+/* WARNING: Removing unreachable block (ram,0x000675be) */
+/* WARNING: Removing unreachable block (ram,0x000675d0) */
+/* WARNING: Removing unreachable block (ram,0x00067d78) */
+/* WARNING: Removing unreachable block (ram,0x00067d8c) */
+/* WARNING: Removing unreachable block (ram,0x00067dea) */
+/* WARNING: Removing unreachable block (ram,0x00067dc0) */
+/* WARNING: Removing unreachable block (ram,0x00067e0c) */
+/* WARNING: Removing unreachable block (ram,0x00067dc4) */
+/* WARNING: Removing unreachable block (ram,0x00067dc8) */
+/* WARNING: Removing unreachable block (ram,0x00067e2c) */
+/* WARNING: Removing unreachable block (ram,0x00067e3a) */
+/* WARNING: Removing unreachable block (ram,0x00067d22) */
+/* WARNING: Removing unreachable block (ram,0x00067d62) */
+/* WARNING: Removing unreachable block (ram,0x00067e4c) */
+/* WARNING: Removing unreachable block (ram,0x00067166) */
+/* WARNING: Removing unreachable block (ram,0x00067198) */
+/* WARNING: Removing unreachable block (ram,0x00067176) */
+/* WARNING: Removing unreachable block (ram,0x0006890e) */
+/* WARNING: Removing unreachable block (ram,0x00066712) */
+/* WARNING: Removing unreachable block (ram,0x000662a8) */
+/* WARNING: Removing unreachable block (ram,0x0006636a) */
+/* WARNING: Removing unreachable block (ram,0x000662b8) */
+/* WARNING: Removing unreachable block (ram,0x000662e2) */
+/* WARNING: Removing unreachable block (ram,0x00066302) */
+/* WARNING: Removing unreachable block (ram,0x0006632c) */
+/* WARNING: Removing unreachable block (ram,0x0006630c) */
+/* WARNING: Removing unreachable block (ram,0x0006632e) */
+/* WARNING: Removing unreachable block (ram,0x00064f6a) */
+/* WARNING: Removing unreachable block (ram,0x00064f9c) */
+/* WARNING: Removing unreachable block (ram,0x00064f7a) */
+/* WARNING: Removing unreachable block (ram,0x00065a70) */
+/* WARNING: Removing unreachable block (ram,0x00065a9c) */
+/* WARNING: Removing unreachable block (ram,0x00065a9e) */
+/* WARNING: Removing unreachable block (ram,0x00065aa0) */
+/* WARNING: Removing unreachable block (ram,0x00065aa8) */
+/* WARNING: Removing unreachable block (ram,0x00065c52) */
+/* WARNING: Removing unreachable block (ram,0x00065ab4) */
+/* WARNING: Removing unreachable block (ram,0x00065b0c) */
+/* WARNING: Removing unreachable block (ram,0x00065b0e) */
+/* WARNING: Removing unreachable block (ram,0x00065b10) */
+/* WARNING: Removing unreachable block (ram,0x00065b18) */
+/* WARNING: Removing unreachable block (ram,0x00065c3e) */
+/* WARNING: Removing unreachable block (ram,0x00065b26) */
+/* WARNING: Removing unreachable block (ram,0x00065b7c) */
+/* WARNING: Removing unreachable block (ram,0x00065b66) */
+/* WARNING: Removing unreachable block (ram,0x00065b90) */
+/* WARNING: Removing unreachable block (ram,0x00065bee) */
+/* WARNING: Removing unreachable block (ram,0x00065bc4) */
+/* WARNING: Removing unreachable block (ram,0x00065c10) */
+/* WARNING: Removing unreachable block (ram,0x00065bc8) */
+/* WARNING: Removing unreachable block (ram,0x00065bcc) */
+/* WARNING: Removing unreachable block (ram,0x00065c30) */
+/* WARNING: Removing unreachable block (ram,0x00065c50) */
+/* WARNING: Removing unreachable block (ram,0x000651fa) */
+/* WARNING: Removing unreachable block (ram,0x0006522a) */
+/* WARNING: Removing unreachable block (ram,0x0006522c) */
+/* WARNING: Removing unreachable block (ram,0x0006522e) */
+/* WARNING: Removing unreachable block (ram,0x00065234) */
+/* WARNING: Removing unreachable block (ram,0x000650d8) */
+/* WARNING: Removing unreachable block (ram,0x000650e8) */
+/* WARNING: Removing unreachable block (ram,0x00064e7c) */
+/* WARNING: Removing unreachable block (ram,0x00064f3e) */
+/* WARNING: Removing unreachable block (ram,0x00064e8c) */
+/* WARNING: Removing unreachable block (ram,0x00064eb6) */
+/* WARNING: Removing unreachable block (ram,0x00064ed6) */
+/* WARNING: Removing unreachable block (ram,0x00064f00) */
+/* WARNING: Removing unreachable block (ram,0x00064ee0) */
+/* WARNING: Removing unreachable block (ram,0x00064f02) */
+/* WARNING: Removing unreachable block (ram,0x00064892) */
+/* WARNING: Removing unreachable block (ram,0x0006486e) */
+/* WARNING: Removing unreachable block (ram,0x000647c2) */
+/* WARNING: Removing unreachable block (ram,0x000646ca) */
+/* WARNING: Removing unreachable block (ram,0x000646a0) */
+/* WARNING: Removing unreachable block (ram,0x000646f8) */
+/* WARNING: Removing unreachable block (ram,0x0006472c) */
+/* WARNING: Removing unreachable block (ram,0x00065244) */
+/* WARNING: Removing unreachable block (ram,0x00065278) */
+/* WARNING: Removing unreachable block (ram,0x0006527a) */
+/* WARNING: Removing unreachable block (ram,0x0006527c) */
+/* WARNING: Removing unreachable block (ram,0x00065282) */
+/* WARNING: Removing unreachable block (ram,0x00066396) */
+/* WARNING: Removing unreachable block (ram,0x000663c8) */
+/* WARNING: Removing unreachable block (ram,0x000663a6) */
+/* WARNING: Removing unreachable block (ram,0x000665c2) */
+/* WARNING: Removing unreachable block (ram,0x000665f6) */
+/* WARNING: Removing unreachable block (ram,0x00066632) */
+/* WARNING: Removing unreachable block (ram,0x00066600) */
+/* WARNING: Removing unreachable block (ram,0x00064834) */
+/* WARNING: Removing unreachable block (ram,0x0006483e) */
+/* WARNING: Removing unreachable block (ram,0x00068ad6) */
+/* WARNING: Removing unreachable block (ram,0x00068b04) */
+/* WARNING: Removing unreachable block (ram,0x00068bce) */
+/* WARNING: Removing unreachable block (ram,0x00068c7a) */
+/* WARNING: Removing unreachable block (ram,0x00069288) */
+/* WARNING: Removing unreachable block (ram,0x0006934a) */
+/* WARNING: Removing unreachable block (ram,0x00069298) */
+/* WARNING: Removing unreachable block (ram,0x000692e2) */
+/* WARNING: Removing unreachable block (ram,0x0006930c) */
+/* WARNING: Removing unreachable block (ram,0x000692ec) */
+/* WARNING: Removing unreachable block (ram,0x000692c2) */
+/* WARNING: Removing unreachable block (ram,0x0006930e) */
+/* WARNING: Removing unreachable block (ram,0x00069ec0) */
+/* WARNING: Removing unreachable block (ram,0x00069f18) */
+/* WARNING: Removing unreachable block (ram,0x00069f1a) */
+/* WARNING: Removing unreachable block (ram,0x00069f1c) */
+/* WARNING: Removing unreachable block (ram,0x00069f24) */
+/* WARNING: Removing unreachable block (ram,0x0006a04a) */
+/* WARNING: Removing unreachable block (ram,0x00069f32) */
+/* WARNING: Removing unreachable block (ram,0x00069f88) */
+/* WARNING: Removing unreachable block (ram,0x00069f72) */
+/* WARNING: Removing unreachable block (ram,0x00069f9c) */
+/* WARNING: Removing unreachable block (ram,0x00069ffa) */
+/* WARNING: Removing unreachable block (ram,0x00069fd0) */
+/* WARNING: Removing unreachable block (ram,0x0006a01c) */
+/* WARNING: Removing unreachable block (ram,0x00069fd4) */
+/* WARNING: Removing unreachable block (ram,0x00069fd8) */
+/* WARNING: Removing unreachable block (ram,0x0006a03c) */
+/* WARNING: Removing unreachable block (ram,0x0006a05c) */
+/* WARNING: Removing unreachable block (ram,0x000697ce) */
+/* WARNING: Removing unreachable block (ram,0x000697e0) */
+/* WARNING: Removing unreachable block (ram,0x0006ab1c) */
+/* WARNING: Recovered jumptable eliminated as dead code */
+/* WARNING: Removing unreachable block (ram,0x0006901e) */
+/* WARNING: Removing unreachable block (ram,0x0006a426) */
+/* WARNING: Removing unreachable block (ram,0x0006a362) */
+/* WARNING: Removing unreachable block (ram,0x00069540) */
+/* WARNING: Removing unreachable block (ram,0x0006601a) */
+/* WARNING: Removing unreachable block (ram,0x000653ee) */
+/* WARNING: Removing unreachable block (ram,0x00065134) */
+/* WARNING: Removing unreachable block (ram,0x000653c2) */
+/* WARNING: Removing unreachable block (ram,0x000653d4) */
+/* WARNING: Removing unreachable block (ram,0x00065f56) */
+/* WARNING: Removing unreachable block (ram,0x00066494) */
+/* WARNING: Removing unreachable block (ram,0x00064c12) */
+/* WARNING: Removing unreachable block (ram,0x0006650a) */
+/* WARNING: Removing unreachable block (ram,0x000687fc) */
+/* WARNING: Removing unreachable block (ram,0x000683ec) */
+/* WARNING: Removing unreachable block (ram,0x00068448) */
+/* WARNING: Removing unreachable block (ram,0x000672f0) */
+/* WARNING: Removing unreachable block (ram,0x00067306) */
+/* WARNING: Removing unreachable block (ram,0x0006727e) */
+/* WARNING: Removing unreachable block (ram,0x000672d4) */
+/* WARNING: Removing unreachable block (ram,0x000672e4) */
+/* WARNING: Removing unreachable block (ram,0x0006727c) */
+/* WARNING: Removing unreachable block (ram,0x000675ea) */
+/* WARNING: Removing unreachable block (ram,0x000680e2) */
+/* WARNING: Removing unreachable block (ram,0x00068168) */
+/* WARNING: Removing unreachable block (ram,0x00068152) */
+/* WARNING: Removing unreachable block (ram,0x0006817c) */
+/* WARNING: Removing unreachable block (ram,0x0006822c) */
+/* WARNING: Removing unreachable block (ram,0x00068216) */
+/* WARNING: Removing unreachable block (ram,0x00068240) */
+/* WARNING: Removing unreachable block (ram,0x0006828c) */
+/* WARNING: Removing unreachable block (ram,0x000682a4) */
+/* WARNING: Removing unreachable block (ram,0x00068326) */
+/* WARNING: Removing unreachable block (ram,0x0006833e) */
+/* WARNING: Removing unreachable block (ram,0x0006835c) */
+/* WARNING: Removing unreachable block (ram,0x00067330) */
+/* WARNING: Removing unreachable block (ram,0x00067012) */
+/* WARNING: Removing unreachable block (ram,0x0006452a) */
+/* WARNING: Removing unreachable block (ram,0x00062bfa) */
+/* WARNING: Removing unreachable block (ram,0x00063078) */
+/* WARNING: Removing unreachable block (ram,0x0006308e) */
+/* WARNING: Removing unreachable block (ram,0x000640d4) */
+/* WARNING: Removing unreachable block (ram,0x000630b4) */
+/* WARNING: Removing unreachable block (ram,0x00062dd0) */
+/* WARNING: Removing unreachable block (ram,0x00062e30) */
+/* WARNING: Removing unreachable block (ram,0x00062ee6) */
+/* WARNING: Removing unreachable block (ram,0x00062e3e) */
+/* WARNING: Removing unreachable block (ram,0x00063dac) */
+/* WARNING: Removing unreachable block (ram,0x00063e2a) */
+/* WARNING: Removing unreachable block (ram,0x00063e14) */
+/* WARNING: Removing unreachable block (ram,0x00063e3e) */
+/* WARNING: Removing unreachable block (ram,0x00063f46) */
+/* WARNING: Removing unreachable block (ram,0x00063f5c) */
+/* WARNING: Removing unreachable block (ram,0x00063fde) */
+/* WARNING: Removing unreachable block (ram,0x00063ff4) */
+/* WARNING: Removing unreachable block (ram,0x00064010) */
+/* WARNING: Removing unreachable block (ram,0x0006435a) */
+/* WARNING: Removing unreachable block (ram,0x000697fa) */
+/* WARNING: Removing unreachable block (ram,0x0006a6b4) */
+/* WARNING: Removing unreachable block (ram,0x0006a776) */
+/* WARNING: Removing unreachable block (ram,0x0006a6c4) */
+/* WARNING: Removing unreachable block (ram,0x0006a70e) */
+/* WARNING: Removing unreachable block (ram,0x0006a738) */
+/* WARNING: Removing unreachable block (ram,0x0006a718) */
+/* WARNING: Removing unreachable block (ram,0x0006a6ee) */
+/* WARNING: Removing unreachable block (ram,0x0006a73a) */
+/* WARNING: Removing unreachable block (ram,0x0006a7a2) */
+/* WARNING: Removing unreachable block (ram,0x0006a7d4) */
+/* WARNING: Removing unreachable block (ram,0x0006a7b2) */
+/* WARNING: Removing unreachable block (ram,0x0006a916) */
+/* WARNING: Removing unreachable block (ram,0x0006411e) */
+/* WARNING: Removing unreachable block (ram,0x0006412e) */
+/* WARNING: Removing unreachable block (ram,0x000641e4) */
+/* WARNING: Removing unreachable block (ram,0x0006413c) */
+/* WARNING: Removing unreachable block (ram,0x00064184) */
+/* WARNING: Removing unreachable block (ram,0x000641ae) */
+/* WARNING: Removing unreachable block (ram,0x0006418e) */
+/* WARNING: Removing unreachable block (ram,0x00064164) */
+/* WARNING: Removing unreachable block (ram,0x000641b0) */
+/* WARNING: Removing unreachable block (ram,0x0006337a) */
+/* WARNING: Removing unreachable block (ram,0x00063388) */
+/* WARNING: Removing unreachable block (ram,0x000633b0) */
+/* WARNING: Removing unreachable block (ram,0x000633ba) */
+/* WARNING: Removing unreachable block (ram,0x000633fe) */
+/* WARNING: Removing unreachable block (ram,0x00063400) */
+/* WARNING: Removing unreachable block (ram,0x00063402) */
+/* WARNING: Removing unreachable block (ram,0x00063408) */
+/* WARNING: Removing unreachable block (ram,0x00063432) */
+/* WARNING: Removing unreachable block (ram,0x000634d2) */
+/* WARNING: Removing unreachable block (ram,0x000634e4) */
+/* WARNING: Removing unreachable block (ram,0x000634e6) */
+/* WARNING: Removing unreachable block (ram,0x000634e8) */
+/* WARNING: Removing unreachable block (ram,0x000634ee) */
+/* WARNING: Removing unreachable block (ram,0x00063500) */
+/* WARNING: Removing unreachable block (ram,0x0006351e) */
+/* WARNING: Removing unreachable block (ram,0x0006353a) */
+/* WARNING: Removing unreachable block (ram,0x0006354a) */
+/* WARNING: Removing unreachable block (ram,0x0006355e) */
+/* WARNING: Removing unreachable block (ram,0x0006356c) */
+/* WARNING: Removing unreachable block (ram,0x0006345e) */
+/* WARNING: Removing unreachable block (ram,0x000634a6) */
+/* WARNING: Removing unreachable block (ram,0x00063488) */
+/* WARNING: Removing unreachable block (ram,0x00063450) */
+/* WARNING: Removing unreachable block (ram,0x0006357c) */
+/* WARNING: Removing unreachable block (ram,0x000635a4) */
+/* WARNING: Removing unreachable block (ram,0x000635e2) */
+/* WARNING: Removing unreachable block (ram,0x000635e4) */
+/* WARNING: Removing unreachable block (ram,0x000635e6) */
+/* WARNING: Removing unreachable block (ram,0x000635ec) */
+/* WARNING: Removing unreachable block (ram,0x00063616) */
+/* WARNING: Removing unreachable block (ram,0x000636b6) */
+/* WARNING: Removing unreachable block (ram,0x000636c8) */
+/* WARNING: Removing unreachable block (ram,0x000636ca) */
+/* WARNING: Removing unreachable block (ram,0x000636cc) */
+/* WARNING: Removing unreachable block (ram,0x000636d2) */
+/* WARNING: Removing unreachable block (ram,0x000636e4) */
+/* WARNING: Removing unreachable block (ram,0x00063702) */
+/* WARNING: Removing unreachable block (ram,0x0006371e) */
+/* WARNING: Removing unreachable block (ram,0x0006372e) */
+/* WARNING: Removing unreachable block (ram,0x00063742) */
+/* WARNING: Removing unreachable block (ram,0x00063750) */
+/* WARNING: Removing unreachable block (ram,0x00063642) */
+/* WARNING: Removing unreachable block (ram,0x0006368a) */
+/* WARNING: Removing unreachable block (ram,0x0006366c) */
+/* WARNING: Removing unreachable block (ram,0x00063634) */
+/* WARNING: Removing unreachable block (ram,0x00063760) */
+/* WARNING: Removing unreachable block (ram,0x0006300c) */
+/* WARNING: Removing unreachable block (ram,0x00062aec) */
+/* WARNING: Removing unreachable block (ram,0x00062b0e) */
+/* WARNING: Removing unreachable block (ram,0x00062b2e) */
+/* WARNING: Removing unreachable block (ram,0x00062b7e) */
+/* WARNING: Removing unreachable block (ram,0x00062b80) */
+/* WARNING: Removing unreachable block (ram,0x00062b82) */
+/* WARNING: Removing unreachable block (ram,0x00062b8a) */
+/* WARNING: Removing unreachable block (ram,0x00062c52) */
+/* WARNING: Removing unreachable block (ram,0x00062cbc) */
+/* WARNING: Removing unreachable block (ram,0x00062c8e) */
+/* WARNING: Removing unreachable block (ram,0x00062c68) */
+/* WARNING: Removing unreachable block (ram,0x00062cea) */
+/* WARNING: Removing unreachable block (ram,0x00062d00) */
+/* WARNING: Removing unreachable block (ram,0x00062d1c) */
+/* WARNING: Removing unreachable block (ram,0x0006332a) */
+/* WARNING: Removing unreachable block (ram,0x00064080) */
+/* WARNING: Removing unreachable block (ram,0x00068592) */
+/* WARNING: Removing unreachable block (ram,0x000685c4) */
+/* WARNING: Removing unreachable block (ram,0x000685a2) */
+/* WARNING: Removing unreachable block (ram,0x00068706) */
+/* WARNING: Removing unreachable block (ram,0x0006863a) */
+/* WARNING: Removing unreachable block (ram,0x000684fe) */
+/* WARNING: Removing unreachable block (ram,0x00068528) */
+/* WARNING: Removing unreachable block (ram,0x00068508) */
+/* WARNING: Removing unreachable block (ram,0x000684a4) */
+/* WARNING: Removing unreachable block (ram,0x00068566) */
+/* WARNING: Removing unreachable block (ram,0x000684b4) */
+/* WARNING: Removing unreachable block (ram,0x000684de) */
+/* WARNING: Removing unreachable block (ram,0x0006852a) */
+/* WARNING: Removing unreachable block (ram,0x00068492) */
+/* WARNING: Removing unreachable block (ram,0x00068638) */
+/* WARNING: Removing unreachable block (ram,0x0006764e) */
+/* WARNING: Removing unreachable block (ram,0x00067660) */
+/* WARNING: Removing unreachable block (ram,0x0006768e) */
+/* WARNING: Removing unreachable block (ram,0x0006769a) */
+/* WARNING: Removing unreachable block (ram,0x000676e0) */
+/* WARNING: Removing unreachable block (ram,0x000676e2) */
+/* WARNING: Removing unreachable block (ram,0x000676e4) */
+/* WARNING: Removing unreachable block (ram,0x000676ea) */
+/* WARNING: Removing unreachable block (ram,0x00067714) */
+/* WARNING: Removing unreachable block (ram,0x000677b4) */
+/* WARNING: Removing unreachable block (ram,0x000677c6) */
+/* WARNING: Removing unreachable block (ram,0x000677c8) */
+/* WARNING: Removing unreachable block (ram,0x000677ca) */
+/* WARNING: Removing unreachable block (ram,0x000677d0) */
+/* WARNING: Removing unreachable block (ram,0x000677e2) */
+/* WARNING: Removing unreachable block (ram,0x00067800) */
+/* WARNING: Removing unreachable block (ram,0x0006781c) */
+/* WARNING: Removing unreachable block (ram,0x0006782c) */
+/* WARNING: Removing unreachable block (ram,0x00067840) */
+/* WARNING: Removing unreachable block (ram,0x0006784e) */
+/* WARNING: Removing unreachable block (ram,0x00067740) */
+/* WARNING: Removing unreachable block (ram,0x00067788) */
+/* WARNING: Removing unreachable block (ram,0x0006776a) */
+/* WARNING: Removing unreachable block (ram,0x00067732) */
+/* WARNING: Removing unreachable block (ram,0x0006785e) */
+/* WARNING: Removing unreachable block (ram,0x0006788c) */
+/* WARNING: Removing unreachable block (ram,0x000678ce) */
+/* WARNING: Removing unreachable block (ram,0x000678d0) */
+/* WARNING: Removing unreachable block (ram,0x000678d2) */
+/* WARNING: Removing unreachable block (ram,0x000678d8) */
+/* WARNING: Removing unreachable block (ram,0x00067902) */
+/* WARNING: Removing unreachable block (ram,0x000679a2) */
+/* WARNING: Removing unreachable block (ram,0x000679b4) */
+/* WARNING: Removing unreachable block (ram,0x000679b6) */
+/* WARNING: Removing unreachable block (ram,0x000679b8) */
+/* WARNING: Removing unreachable block (ram,0x000679be) */
+/* WARNING: Removing unreachable block (ram,0x000679d0) */
+/* WARNING: Removing unreachable block (ram,0x000679ee) */
+/* WARNING: Removing unreachable block (ram,0x00067a0a) */
+/* WARNING: Removing unreachable block (ram,0x00067a1a) */
+/* WARNING: Removing unreachable block (ram,0x00067a2e) */
+/* WARNING: Removing unreachable block (ram,0x00067a3c) */
+/* WARNING: Removing unreachable block (ram,0x0006792e) */
+/* WARNING: Removing unreachable block (ram,0x00067976) */
+/* WARNING: Removing unreachable block (ram,0x00067958) */
+/* WARNING: Removing unreachable block (ram,0x00067920) */
+/* WARNING: Removing unreachable block (ram,0x00067a4c) */
+/* WARNING: Removing unreachable block (ram,0x00068690) */
+/* WARNING: Removing unreachable block (ram,0x0006985e) */
+/* WARNING: Removing unreachable block (ram,0x00069870) */
+/* WARNING: Removing unreachable block (ram,0x0006989e) */
+/* WARNING: Removing unreachable block (ram,0x000698aa) */
+/* WARNING: Removing unreachable block (ram,0x000698f0) */
+/* WARNING: Removing unreachable block (ram,0x000698f2) */
+/* WARNING: Removing unreachable block (ram,0x000698f4) */
+/* WARNING: Removing unreachable block (ram,0x000698fa) */
+/* WARNING: Removing unreachable block (ram,0x00069924) */
+/* WARNING: Removing unreachable block (ram,0x000699c4) */
+/* WARNING: Removing unreachable block (ram,0x000699d6) */
+/* WARNING: Removing unreachable block (ram,0x000699d8) */
+/* WARNING: Removing unreachable block (ram,0x000699da) */
+/* WARNING: Removing unreachable block (ram,0x000699e0) */
+/* WARNING: Removing unreachable block (ram,0x000699f2) */
+/* WARNING: Removing unreachable block (ram,0x00069a10) */
+/* WARNING: Removing unreachable block (ram,0x00069a2c) */
+/* WARNING: Removing unreachable block (ram,0x00069a3c) */
+/* WARNING: Removing unreachable block (ram,0x00069a50) */
+/* WARNING: Removing unreachable block (ram,0x00069a5e) */
+/* WARNING: Removing unreachable block (ram,0x00069950) */
+/* WARNING: Removing unreachable block (ram,0x00069998) */
+/* WARNING: Removing unreachable block (ram,0x0006997a) */
+/* WARNING: Removing unreachable block (ram,0x00069942) */
+/* WARNING: Removing unreachable block (ram,0x00069a6e) */
+/* WARNING: Removing unreachable block (ram,0x00069a9c) */
+/* WARNING: Removing unreachable block (ram,0x00069ade) */
+/* WARNING: Removing unreachable block (ram,0x00069ae0) */
+/* WARNING: Removing unreachable block (ram,0x00069ae2) */
+/* WARNING: Removing unreachable block (ram,0x00069ae8) */
+/* WARNING: Removing unreachable block (ram,0x00069b12) */
+/* WARNING: Removing unreachable block (ram,0x00069bb2) */
+/* WARNING: Removing unreachable block (ram,0x00069bc4) */
+/* WARNING: Removing unreachable block (ram,0x00069bc6) */
+/* WARNING: Removing unreachable block (ram,0x00069bc8) */
+/* WARNING: Removing unreachable block (ram,0x00069bce) */
+/* WARNING: Removing unreachable block (ram,0x00069be0) */
+/* WARNING: Removing unreachable block (ram,0x00069bfe) */
+/* WARNING: Removing unreachable block (ram,0x00069c1a) */
+/* WARNING: Removing unreachable block (ram,0x00069c2a) */
+/* WARNING: Removing unreachable block (ram,0x00069c3e) */
+/* WARNING: Removing unreachable block (ram,0x00069c4c) */
+/* WARNING: Removing unreachable block (ram,0x00069b3e) */
+/* WARNING: Removing unreachable block (ram,0x00069b86) */
+/* WARNING: Removing unreachable block (ram,0x00069b68) */
+/* WARNING: Removing unreachable block (ram,0x00069b30) */
+/* WARNING: Removing unreachable block (ram,0x00069c5c) */
+/* WARNING: Removing unreachable block (ram,0x0006a8a0) */
+/* WARNING: Removing unreachable block (ram,0x000686aa) */
+/* WARNING: Removing unreachable block (ram,0x00065452) */
+/* WARNING: Removing unreachable block (ram,0x00065464) */
+/* WARNING: Removing unreachable block (ram,0x00065492) */
+/* WARNING: Removing unreachable block (ram,0x0006549e) */
+/* WARNING: Removing unreachable block (ram,0x000654e4) */
+/* WARNING: Removing unreachable block (ram,0x000654e6) */
+/* WARNING: Removing unreachable block (ram,0x000654e8) */
+/* WARNING: Removing unreachable block (ram,0x000654ee) */
+/* WARNING: Removing unreachable block (ram,0x00065518) */
+/* WARNING: Removing unreachable block (ram,0x000655b8) */
+/* WARNING: Removing unreachable block (ram,0x000655ca) */
+/* WARNING: Removing unreachable block (ram,0x000655cc) */
+/* WARNING: Removing unreachable block (ram,0x000655ce) */
+/* WARNING: Removing unreachable block (ram,0x000655d4) */
+/* WARNING: Removing unreachable block (ram,0x000655e6) */
+/* WARNING: Removing unreachable block (ram,0x00065604) */
+/* WARNING: Removing unreachable block (ram,0x00065620) */
+/* WARNING: Removing unreachable block (ram,0x00065630) */
+/* WARNING: Removing unreachable block (ram,0x00065644) */
+/* WARNING: Removing unreachable block (ram,0x00065652) */
+/* WARNING: Removing unreachable block (ram,0x00065544) */
+/* WARNING: Removing unreachable block (ram,0x0006558c) */
+/* WARNING: Removing unreachable block (ram,0x0006556e) */
+/* WARNING: Removing unreachable block (ram,0x00065536) */
+/* WARNING: Removing unreachable block (ram,0x00065662) */
+/* WARNING: Removing unreachable block (ram,0x00065690) */
+/* WARNING: Removing unreachable block (ram,0x000656d2) */
+/* WARNING: Removing unreachable block (ram,0x000656d4) */
+/* WARNING: Removing unreachable block (ram,0x000656d6) */
+/* WARNING: Removing unreachable block (ram,0x000656dc) */
+/* WARNING: Removing unreachable block (ram,0x00065706) */
+/* WARNING: Removing unreachable block (ram,0x000657a6) */
+/* WARNING: Removing unreachable block (ram,0x000657b8) */
+/* WARNING: Removing unreachable block (ram,0x000657ba) */
+/* WARNING: Removing unreachable block (ram,0x000657bc) */
+/* WARNING: Removing unreachable block (ram,0x000657c2) */
+/* WARNING: Removing unreachable block (ram,0x000657d4) */
+/* WARNING: Removing unreachable block (ram,0x000657f2) */
+/* WARNING: Removing unreachable block (ram,0x0006580e) */
+/* WARNING: Removing unreachable block (ram,0x0006581e) */
+/* WARNING: Removing unreachable block (ram,0x00065832) */
+/* WARNING: Removing unreachable block (ram,0x00065840) */
+/* WARNING: Removing unreachable block (ram,0x00065732) */
+/* WARNING: Removing unreachable block (ram,0x0006577a) */
+/* WARNING: Removing unreachable block (ram,0x0006575c) */
+/* WARNING: Removing unreachable block (ram,0x00065724) */
+/* WARNING: Removing unreachable block (ram,0x00065850) */
+/* WARNING: Removing unreachable block (ram,0x00064208) */
+/* WARNING: Removing unreachable block (ram,0x00064232) */
+/* WARNING: Removing unreachable block (ram,0x00064216) */
+/* WARNING: Removing unreachable block (ram,0x0006429c) */
+/* WARNING: Removing unreachable block (ram,0x00068782) */
+/* WARNING: Removing unreachable block (ram,0x00062fb6) */
+/* WARNING: Removing unreachable block (ram,0x00062d86) */
+/* WARNING: Removing unreachable block (ram,0x0006429a) */
+/* WARNING: Removing unreachable block (ram,0x0006300a) */
+/* WARNING: Removing unreachable block (ram,0x000642f0) */
+/* WARNING: Removing unreachable block (ram,0x00063060) */
+/* WARNING: Removing unreachable block (ram,0x0006306e) */
+/* WARNING: Removing unreachable block (ram,0x00064306) */
+/* WARNING: Removing unreachable block (ram,0x000643cc) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+int LZ4_compress_fast_extState
+              (void *state,char *source,char *dest,int inputSize,int maxOutputSize,int acceleration)
+
+{
+  short sVar1;
+  short sVar2;
+  U16 UVar3;
+  U16 UVar4;
+  LZ4_stream_t *tableBase;
+  int iVar5;
+  U32 UVar6;
+  U32 UVar7;
+  reg_t rVar8;
+  reg_t rVar9;
+  U32 UVar10;
+  undefined4 uVar11;
+  uint uVar12;
+  char cVar13;
+  byte bVar14;
+  byte bVar15;
+  BYTE *pBVar16;
+  uint uVar17;
+  BYTE *pBVar18;
+  char *pcVar19;
+  BYTE *pBVar20;
+  LZ4_u32 LVar21;
+  BYTE *pBVar22;
+  uint uVar23;
+  BYTE *pBVar24;
+  bool bVar25;
+  int inputSize_local;
+  char *dest_local;
+  char *source_local;
+  void *state_local;
+  int result_3;
+  size_t accumulator_3;
+  size_t lastRun_3;
+  U16 *hashTable_107;
+  U32 *hashTable_106;
+  U16 *hashTable_105;
+  U32 *hashTable_104;
+  U32 matchIndex_7;
+  U16 *hashTable_103;
+  U32 *hashTable_102;
+  U32 current_7;
+  U32 h_31;
+  U16 *hashTable_101;
+  U32 *hashTable_100;
+  BYTE **hashTable_99;
+  U32 h_30;
+  U32 h_29;
+  U16 *hashTable_98;
+  U32 *hashTable_97;
+  BYTE **hashTable_96;
+  U32 h_28;
+  U16 *hashTable_95;
+  U32 *hashTable_94;
+  BYTE **hashTable_93;
+  U32 h_27;
+  BYTE *ptr_3;
+  U32 newMatchCode_3;
+  reg_t diff_23;
+  reg_t diff_22;
+  BYTE *pStart_11;
+  BYTE *local_c64;
+  BYTE *local_c60;
+  uint more_3;
+  reg_t diff_21;
+  reg_t diff_20;
+  BYTE *pStart_10;
+  uint matchCode_3;
+  reg_t diff_19;
+  reg_t diff_18;
+  BYTE *pStart_9;
+  BYTE *limit_3;
+  BYTE *e_3;
+  BYTE *s_3;
+  BYTE *d_3;
+  int len_3;
+  BYTE *token_3;
+  uint litLength_3;
+  BYTE *filledIp_3;
+  U16 *hashTable_92;
+  U32 *hashTable_91;
+  U16 *hashTable_90;
+  U32 *hashTable_89;
+  U32 matchIndex_6;
+  U16 *hashTable_88;
+  U32 *hashTable_87;
+  U32 current_6;
+  U32 h_26;
+  int searchMatchNb_7;
+  int step_7;
+  BYTE *forwardIp_7;
+  U16 *hashTable_86;
+  U32 *hashTable_85;
+  BYTE **hashTable_84;
+  BYTE *match_3;
+  U32 h_25;
+  int searchMatchNb_6;
+  int step_6;
+  BYTE *forwardIp_6;
+  U32 forwardH_3;
+  U16 *hashTable_83;
+  U32 *hashTable_82;
+  BYTE **hashTable_81;
+  U32 h_24;
+  BYTE *lowLimit_3;
+  U32 offset_3;
+  BYTE *olimit_3;
+  BYTE *op_3;
+  BYTE *dictBase_3;
+  BYTE *matchlimit_3;
+  BYTE *mflimitPlusOne_3;
+  BYTE *iend_3;
+  BYTE *anchor_3;
+  BYTE *dictEnd_3;
+  U32 prefixIdxLimit_3;
+  int maybe_extMem_3;
+  U32 dictDelta_3;
+  U32 dictSize_3;
+  BYTE *dictionary_3;
+  LZ4_stream_t_internal *dictCtx_3;
+  BYTE *base_3;
+  U32 startIndex_3;
+  BYTE *ip_3;
+  int result_2;
+  size_t accumulator_2;
+  size_t lastRun_2;
+  U16 *hashTable_80;
+  U32 *hashTable_79;
+  U16 *hashTable_78;
+  U32 *hashTable_77;
+  U32 matchIndex_5;
+  U16 *hashTable_76;
+  U32 *hashTable_75;
+  U32 current_5;
+  U32 h_23;
+  U16 *hashTable_74;
+  U32 *hashTable_73;
+  BYTE **hashTable_72;
+  U32 h_22;
+  U32 h_21;
+  U16 *hashTable_71;
+  U32 *hashTable_70;
+  BYTE **hashTable_69;
+  U32 h_20;
+  U16 *hashTable_68;
+  U32 *hashTable_67;
+  BYTE **hashTable_66;
+  U32 h_19;
+  BYTE *ptr_2;
+  U32 newMatchCode_2;
+  reg_t diff_17;
+  reg_t diff_16;
+  BYTE *pStart_8;
+  BYTE *local_8f8;
+  BYTE *local_8f4;
+  uint more_2;
+  reg_t diff_15;
+  reg_t diff_14;
+  BYTE *pStart_7;
+  uint matchCode_2;
+  reg_t diff_13;
+  reg_t diff_12;
+  BYTE *pStart_6;
+  BYTE *limit_2;
+  BYTE *e_2;
+  BYTE *s_2;
+  BYTE *d_2;
+  int len_2;
+  BYTE *token_2;
+  uint litLength_2;
+  BYTE *filledIp_2;
+  U16 *hashTable_65;
+  U32 *hashTable_64;
+  U16 *hashTable_63;
+  U32 *hashTable_62;
+  U32 matchIndex_4;
+  U16 *hashTable_61;
+  U32 *hashTable_60;
+  U32 current_4;
+  U32 h_18;
+  int searchMatchNb_5;
+  int step_5;
+  BYTE *forwardIp_5;
+  U16 *hashTable_59;
+  U32 *hashTable_58;
+  BYTE **hashTable_57;
+  BYTE *match_2;
+  U32 h_17;
+  int searchMatchNb_4;
+  int step_4;
+  BYTE *forwardIp_4;
+  U32 forwardH_2;
+  U16 *hashTable_56;
+  U32 *hashTable_55;
+  BYTE **hashTable_54;
+  U32 h_16;
+  BYTE *lowLimit_2;
+  U32 offset_2;
+  BYTE *olimit_2;
+  BYTE *op_2;
+  BYTE *dictBase_2;
+  BYTE *matchlimit_2;
+  BYTE *mflimitPlusOne_2;
+  BYTE *iend_2;
+  BYTE *anchor_2;
+  BYTE *dictEnd_2;
+  U32 prefixIdxLimit_2;
+  int maybe_extMem_2;
+  U32 dictDelta_2;
+  U32 dictSize_2;
+  BYTE *dictionary_2;
+  LZ4_stream_t_internal *dictCtx_2;
+  BYTE *base_2;
+  U32 startIndex_2;
+  BYTE *ip_2;
+  int result_1;
+  size_t accumulator_1;
+  size_t lastRun_1;
+  U16 *hashTable_53;
+  U32 *hashTable_52;
+  U16 *hashTable_51;
+  U32 *hashTable_50;
+  U32 matchIndex_3;
+  U16 *hashTable_49;
+  U32 *hashTable_48;
+  U32 current_3;
+  U32 h_15;
+  U16 *hashTable_47;
+  U32 *hashTable_46;
+  BYTE **hashTable_45;
+  U32 h_14;
+  U32 h_13;
+  U16 *hashTable_44;
+  U32 *hashTable_43;
+  BYTE **hashTable_42;
+  U32 h_12;
+  U16 *hashTable_41;
+  U32 *hashTable_40;
+  BYTE **hashTable_39;
+  U32 h_11;
+  BYTE *ptr_1;
+  U32 newMatchCode_1;
+  reg_t diff_11;
+  reg_t diff_10;
+  BYTE *pStart_5;
+  BYTE *local_590;
+  BYTE *local_58c;
+  uint more_1;
+  reg_t diff_9;
+  reg_t diff_8;
+  BYTE *pStart_4;
+  uint matchCode_1;
+  reg_t diff_7;
+  reg_t diff_6;
+  BYTE *pStart_3;
+  BYTE *limit_1;
+  BYTE *e_1;
+  BYTE *s_1;
+  BYTE *d_1;
+  int len_1;
+  BYTE *token_1;
+  uint litLength_1;
+  BYTE *filledIp_1;
+  U16 *hashTable_38;
+  U32 *hashTable_37;
+  U16 *hashTable_36;
+  U32 *hashTable_35;
+  U32 matchIndex_2;
+  U16 *hashTable_34;
+  U32 *hashTable_33;
+  U32 current_2;
+  U32 h_10;
+  int searchMatchNb_3;
+  int step_3;
+  BYTE *forwardIp_3;
+  U16 *hashTable_32;
+  U32 *hashTable_31;
+  BYTE **hashTable_30;
+  BYTE *match_1;
+  U32 h_9;
+  int searchMatchNb_2;
+  int step_2;
+  BYTE *forwardIp_2;
+  U32 forwardH_1;
+  U16 *hashTable_29;
+  U32 *hashTable_28;
+  BYTE **hashTable_27;
+  U32 h_8;
+  BYTE *lowLimit_1;
+  U32 offset_1;
+  BYTE *olimit_1;
+  BYTE *op_1;
+  BYTE *dictBase_1;
+  BYTE *matchlimit_1;
+  BYTE *mflimitPlusOne_1;
+  BYTE *iend_1;
+  BYTE *anchor_1;
+  BYTE *dictEnd_1;
+  U32 prefixIdxLimit_1;
+  int maybe_extMem_1;
+  U32 dictDelta_1;
+  U32 dictSize_1;
+  BYTE *dictionary_1;
+  LZ4_stream_t_internal *dictCtx_1;
+  BYTE *base_1;
+  U32 startIndex_1;
+  BYTE *ip_1;
+  int result;
+  size_t accumulator;
+  size_t lastRun;
+  U16 *hashTable_26;
+  U32 *hashTable_25;
+  U16 *hashTable_24;
+  U32 *hashTable_23;
+  U32 matchIndex_1;
+  U16 *hashTable_22;
+  U32 *hashTable_21;
+  U32 current_1;
+  U32 h_7;
+  U16 *hashTable_20;
+  U32 *hashTable_19;
+  BYTE **hashTable_18;
+  U32 h_6;
+  U32 h_5;
+  U16 *hashTable_17;
+  U32 *hashTable_16;
+  BYTE **hashTable_15;
+  U32 h_4;
+  U16 *hashTable_14;
+  U32 *hashTable_13;
+  BYTE **hashTable_12;
+  U32 h_3;
+  BYTE *ptr;
+  U32 newMatchCode;
+  reg_t diff_5;
+  reg_t diff_4;
+  BYTE *pStart_2;
+  BYTE *local_228;
+  BYTE *local_224;
+  uint more;
+  reg_t diff_3;
+  reg_t diff_2;
+  BYTE *pStart_1;
+  uint matchCode;
+  reg_t diff_1;
+  reg_t diff;
+  BYTE *pStart;
+  BYTE *limit;
+  BYTE *e;
+  BYTE *s;
+  BYTE *d;
+  int len;
+  BYTE *token;
+  uint litLength;
+  BYTE *filledIp;
+  U16 *hashTable_11;
+  U32 *hashTable_10;
+  U16 *hashTable_9;
+  U32 *hashTable_8;
+  U32 matchIndex;
+  U16 *hashTable_7;
+  U32 *hashTable_6;
+  U32 current;
+  U32 h_2;
+  int searchMatchNb_1;
+  int step_1;
+  BYTE *forwardIp_1;
+  U16 *hashTable_5;
+  U32 *hashTable_4;
+  BYTE **hashTable_3;
+  BYTE *match;
+  U32 h_1;
+  int searchMatchNb;
+  int step;
+  BYTE *forwardIp;
+  U32 forwardH;
+  U16 *hashTable_2;
+  U32 *hashTable_1;
+  BYTE **hashTable;
+  U32 h;
+  BYTE *lowLimit;
+  U32 offset;
+  BYTE *olimit;
+  BYTE *op;
+  BYTE *dictBase;
+  BYTE *matchlimit;
+  BYTE *mflimitPlusOne;
+  BYTE *iend;
+  BYTE *anchor;
+  BYTE *dictEnd;
+  U32 prefixIdxLimit;
+  int maybe_extMem;
+  U32 dictDelta;
+  U32 dictSize;
+  BYTE *dictionary;
+  LZ4_stream_t_internal *dictCtx;
+  BYTE *base;
+  U32 startIndex;
+  BYTE *ip;
+  tableType_t tableType_1;
+  tableType_t tableType;
+  LZ4_stream_t_internal *ctx;
+  
+  tableBase = LZ4_initStream(state,0x4020);
+  if (acceleration < 1) {
+    acceleration = 1;
+  }
+  if (0x10001 < acceleration) {
+    acceleration = 0x10001;
+  }
+  iVar5 = LZ4_compressBound(inputSize);
+  sVar1 = (short)source;
+  if (maxOutputSize < iVar5) {
+    if (inputSize < 0x1000b) {
+      if ((uint)inputSize < 0x7e000001) {
+        if (inputSize == 0) {
+          if (maxOutputSize < 1) {
+            pBVar16 = (BYTE *)0x0;
+          }
+          else {
+            *dest = '\0';
+            pBVar16 = (BYTE *)0x1;
+          }
+        }
+        else {
+          iVar5 = (int)source - (tableBase->internal_donotuse).currentOffset;
+          pBVar16 = (BYTE *)(source + inputSize + -0xb);
+          pBVar18 = (BYTE *)(dest + maxOutputSize);
+          if (inputSize < 0x1000b) {
+            (tableBase->internal_donotuse).dictSize =
+                 (tableBase->internal_donotuse).dictSize + inputSize;
+            (tableBase->internal_donotuse).currentOffset =
+                 (tableBase->internal_donotuse).currentOffset + inputSize;
+            (tableBase->internal_donotuse).tableType = 3;
+            op_2 = (BYTE *)dest;
+            anchor_2 = (BYTE *)source;
+            if (0xc < inputSize) {
+              UVar6 = LZ4_read32(source);
+              uVar17 = UVar6 * -0x61c8864f >> 0x13;
+              sVar2 = (short)iVar5;
+                    /* WARNING: Could not find normalized switch variable to match jumptable */
+              switch(0x66c70) {
+              case 1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                *(char **)(uVar17 * 4 + (int)tableBase) = source;
+                break;
+              case 2:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                *(int *)(uVar17 * 4 + (int)tableBase) = (int)source - iVar5;
+                break;
+              case 3:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                *(short *)(uVar17 * 2 + (int)tableBase) = sVar1 - sVar2;
+              }
+                    /* WARNING: This code block may not be properly labeled as switch case */
+              ip_2 = (BYTE *)(source + 1);
+              UVar6 = LZ4_read32(ip_2);
+LAB_00066d1c:
+              forwardIp_5 = ip_2;
+              step_5 = 1;
+              searchMatchNb_5 = acceleration << 6;
+              do {
+                forwardH_2 = UVar6 * -0x61c8864f >> 0x13;
+                ip_2 = forwardIp_5;
+                pBVar22 = forwardIp_5 + step_5;
+                step_5 = searchMatchNb_5 >> 6;
+                pBVar20 = pBVar22;
+                if (pBVar16 < pBVar22) {
+                  pBVar20 = (BYTE *)0x1;
+                }
+                cVar13 = (char)pBVar20;
+                if (pBVar16 >= pBVar22) {
+                  cVar13 = '\0';
+                }
+                if (cVar13 != '\0') goto LAB_000687a0;
+                match_2 = (BYTE *)((uint)*(ushort *)(forwardH_2 * 2 + (int)tableBase) + iVar5);
+                UVar6 = LZ4_read32(pBVar22);
+                *(short *)(forwardH_2 * 2 + (int)tableBase) = (short)forwardIp_5 - sVar2;
+                UVar10 = LZ4_read32(match_2);
+                UVar7 = LZ4_read32(forwardIp_5);
+                searchMatchNb_5 = searchMatchNb_5 + 1;
+                forwardIp_5 = pBVar22;
+              } while (UVar10 != UVar7);
+              while( true ) {
+                pBVar20 = anchor_2;
+                if (anchor_2 < ip_2) {
+                  pBVar20 = (BYTE *)0x1;
+                }
+                bVar14 = (byte)pBVar20;
+                if (ip_2 <= anchor_2) {
+                  bVar14 = 0;
+                }
+                pcVar19 = source;
+                if (source < match_2) {
+                  pcVar19 = (char *)0x1;
+                }
+                bVar15 = (byte)pcVar19;
+                if (match_2 <= source) {
+                  bVar15 = 0;
+                }
+                if (((bVar15 & bVar14) == 0) || (ip_2[-1] != match_2[-1])) break;
+                ip_2 = ip_2 + -1;
+                match_2 = match_2 + -1;
+              }
+              uVar17 = (int)ip_2 - (int)anchor_2;
+              pBVar20 = op_2 + 1;
+              token_2 = op_2;
+              pBVar22 = pBVar20 + uVar17 + uVar17 / 0xff + 8;
+              bVar25 = pBVar18 < pBVar22;
+              if (bVar25) {
+                pBVar22 = (BYTE *)0x1;
+              }
+              cVar13 = (char)pBVar22;
+              if (!bVar25) {
+                cVar13 = '\0';
+              }
+              if (cVar13 != '\0') {
+                return 0;
+              }
+              if (uVar17 < 0xf) {
+                *op_2 = (BYTE)((uVar17 & 0xff) << 4);
+                op_2 = pBVar20;
+              }
+              else {
+                *op_2 = 0xf0;
+                op_2 = pBVar20;
+                for (len_2 = uVar17 - 0xf; 0xfe < len_2; len_2 = len_2 + -0xff) {
+                  *op_2 = 0xff;
+                  op_2 = op_2 + 1;
+                }
+                *op_2 = (BYTE)len_2;
+                op_2 = op_2 + 1;
+              }
+              d_2 = op_2;
+              s_2 = anchor_2;
+              do {
+                uVar11 = *(undefined4 *)(s_2 + 4);
+                *(undefined4 *)d_2 = *(undefined4 *)s_2;
+                *(undefined4 *)(d_2 + 4) = uVar11;
+                d_2 = d_2 + 8;
+                s_2 = s_2 + 8;
+              } while (d_2 < op_2 + uVar17);
+              op_2 = op_2 + uVar17;
+              do {
+                LZ4_writeLE16(op_2,(short)ip_2 - (short)match_2);
+                op_2 = op_2 + 2;
+                pBVar20 = ip_2 + 4;
+                local_8f8 = match_2 + 4;
+                pBVar22 = (BYTE *)(source + inputSize + -8);
+                bVar25 = pBVar20 < pBVar22;
+                if (bVar25) {
+                  pBVar22 = (BYTE *)0x1;
+                }
+                cVar13 = (char)pBVar22;
+                if (!bVar25) {
+                  cVar13 = '\0';
+                }
+                local_8f4 = pBVar20;
+                if (cVar13 == '\0') {
+LAB_00067b96:
+                  while( true ) {
+                    pBVar22 = (BYTE *)(source + inputSize + -8);
+                    bVar25 = local_8f4 < pBVar22;
+                    if (bVar25) {
+                      pBVar22 = (BYTE *)0x1;
+                    }
+                    cVar13 = (char)pBVar22;
+                    if (!bVar25) {
+                      cVar13 = '\0';
+                    }
+                    if (cVar13 == '\0') {
+                      if (local_8f4 < source + inputSize + -6) {
+                        UVar3 = LZ4_read16(local_8f8);
+                        UVar4 = LZ4_read16(local_8f4);
+                        if (UVar3 == UVar4) {
+                          local_8f4 = local_8f4 + 2;
+                          local_8f8 = local_8f8 + 2;
+                        }
+                      }
+                      if ((local_8f4 < source + inputSize + -5) && (*local_8f8 == *local_8f4)) {
+                        local_8f4 = local_8f4 + 1;
+                      }
+                      local_8f4 = local_8f4 + -(int)pBVar20;
+                      goto LAB_00067c40;
+                    }
+                    rVar8 = LZ4_read_ARCH(local_8f8);
+                    rVar9 = LZ4_read_ARCH(local_8f4);
+                    if ((rVar9 ^ rVar8) != 0) break;
+                    local_8f4 = local_8f4 + 4;
+                    local_8f8 = local_8f8 + 4;
+                  }
+                  uVar17 = LZ4_NbCommonBytes(rVar9 ^ rVar8);
+                  local_8f4 = local_8f4 + (uVar17 - (int)pBVar20);
+                }
+                else {
+                  rVar8 = LZ4_read_ARCH(local_8f8);
+                  rVar9 = LZ4_read_ARCH(pBVar20);
+                  if ((rVar9 ^ rVar8) == 0) {
+                    local_8f4 = ip_2 + 8;
+                    local_8f8 = match_2 + 8;
+                    goto LAB_00067b96;
+                  }
+                  local_8f4 = (BYTE *)LZ4_NbCommonBytes(rVar9 ^ rVar8);
+                }
+LAB_00067c40:
+                anchor_2 = ip_2 + (int)(local_8f4 + 4);
+                pBVar20 = op_2 + (uint)(local_8f4 + 0xf0) / 0xff + 6;
+                bVar25 = pBVar18 < pBVar20;
+                if (bVar25) {
+                  pBVar20 = (BYTE *)0x1;
+                }
+                cVar13 = (char)pBVar20;
+                if (!bVar25) {
+                  cVar13 = '\0';
+                }
+                if (cVar13 != '\0') {
+                  return 0;
+                }
+                if (local_8f4 < (BYTE *)0xf) {
+                  *token_2 = (char)local_8f4 + *token_2;
+                }
+                else {
+                  *token_2 = *token_2 + '\x0f';
+                  LZ4_write32(op_2,0xffffffff);
+                  for (matchCode_2 = (uint)(local_8f4 + -0xf); 0x3fb < matchCode_2;
+                      matchCode_2 = matchCode_2 - 0x3fc) {
+                    op_2 = op_2 + 4;
+                    LZ4_write32(op_2,0xffffffff);
+                  }
+                  pBVar20 = op_2 + matchCode_2 / 0xff;
+                  op_2 = pBVar20 + 1;
+                  *pBVar20 = (char)matchCode_2 + (char)(matchCode_2 / 0xff);
+                }
+                if (pBVar16 <= anchor_2) break;
+                pBVar20 = anchor_2 + -2;
+                UVar6 = LZ4_read32(pBVar20);
+                uVar17 = UVar6 * -0x61c8864f >> 0x13;
+                    /* WARNING: Could not find normalized switch variable to match jumptable */
+                switch(0x680a8) {
+                case 1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                  *(BYTE **)(uVar17 * 4 + (int)tableBase) = pBVar20;
+                  break;
+                case 2:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                  *(int *)(uVar17 * 4 + (int)tableBase) = (int)pBVar20 - iVar5;
+                  break;
+                case 3:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                  *(short *)(uVar17 * 2 + (int)tableBase) = (short)pBVar20 - sVar2;
+                }
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                UVar6 = LZ4_read32(anchor_2);
+                uVar17 = UVar6 * -0x61c8864f >> 0x13;
+                match_2 = (BYTE *)((uint)*(ushort *)(uVar17 * 2 + (int)tableBase) + iVar5);
+                *(short *)(uVar17 * 2 + (int)tableBase) = (short)anchor_2 - sVar2;
+                UVar6 = LZ4_read32(match_2);
+                UVar10 = LZ4_read32(anchor_2);
+                if (UVar6 != UVar10) goto LAB_0006871e;
+                token_2 = op_2;
+                *op_2 = '\0';
+                op_2 = op_2 + 1;
+                ip_2 = anchor_2;
+              } while( true );
+            }
+LAB_000687a0:
+            pcVar19 = source + (inputSize - (int)anchor_2);
+            if (pBVar18 < op_2 + (int)(pcVar19 + (uint)(pcVar19 + 0xf0) / 0xff + 1)) {
+              pBVar16 = (BYTE *)0x0;
+            }
+            else {
+              if (pcVar19 < (char *)0xf) {
+                *op_2 = (BYTE)(((uint)pcVar19 & 0xff) << 4);
+                op_2 = op_2 + 1;
+              }
+              else {
+                *op_2 = 0xf0;
+                pBVar16 = op_2;
+                for (accumulator_2 = (size_t)(pcVar19 + -0xf); op_2 = pBVar16 + 1,
+                    0xfe < accumulator_2; accumulator_2 = accumulator_2 - 0xff) {
+                  *op_2 = 0xff;
+                  pBVar16 = op_2;
+                }
+                *op_2 = (BYTE)accumulator_2;
+                op_2 = pBVar16 + 2;
+              }
+              memcpy(op_2,anchor_2,(size_t)pcVar19);
+              pBVar16 = op_2 + ((int)pcVar19 - (int)dest);
+            }
+          }
+          else {
+            pBVar16 = (BYTE *)0x0;
+          }
+        }
+      }
+      else {
+        pBVar16 = (BYTE *)0x0;
+      }
+    }
+    else {
+      if (source < &Elf32_Ehdr_00010000) {
+        LVar21 = 2;
+      }
+      else {
+        LVar21 = 1;
+      }
+      if ((uint)inputSize < 0x7e000001) {
+        if (inputSize == 0) {
+          if (maxOutputSize < 1) {
+            pBVar16 = (BYTE *)0x0;
+          }
+          else {
+            *dest = '\0';
+            pBVar16 = (BYTE *)0x1;
+          }
+        }
+        else {
+          pBVar16 = (BYTE *)(source + -(tableBase->internal_donotuse).currentOffset);
+          pBVar18 = (BYTE *)(source + inputSize + -0xb);
+          pBVar20 = (BYTE *)(dest + maxOutputSize);
+          if ((LVar21 == 3) && (0x1000a < inputSize)) {
+            pBVar16 = (BYTE *)0x0;
+          }
+          else {
+            (tableBase->internal_donotuse).dictSize =
+                 (tableBase->internal_donotuse).dictSize + inputSize;
+            (tableBase->internal_donotuse).currentOffset =
+                 (tableBase->internal_donotuse).currentOffset + inputSize;
+            (tableBase->internal_donotuse).tableType = LVar21;
+            op_3 = (BYTE *)dest;
+            anchor_3 = (BYTE *)source;
+            if (inputSize < 0xd) {
+LAB_0006a9b0:
+              pcVar19 = source + (inputSize - (int)anchor_3);
+              if (pBVar20 < op_3 + (int)(pcVar19 + (uint)(pcVar19 + 0xf0) / 0xff + 1)) {
+                pBVar16 = (BYTE *)0x0;
+              }
+              else {
+                if (pcVar19 < (char *)0xf) {
+                  *op_3 = (BYTE)(((uint)pcVar19 & 0xff) << 4);
+                  op_3 = op_3 + 1;
+                }
+                else {
+                  *op_3 = 0xf0;
+                  pBVar16 = op_3;
+                  for (accumulator_3 = (size_t)(pcVar19 + -0xf); op_3 = pBVar16 + 1,
+                      0xfe < accumulator_3; accumulator_3 = accumulator_3 - 0xff) {
+                    *op_3 = 0xff;
+                    pBVar16 = op_3;
+                  }
+                  *op_3 = (BYTE)accumulator_3;
+                  op_3 = pBVar16 + 2;
+                }
+                memcpy(op_3,anchor_3,(size_t)pcVar19);
+                pBVar16 = op_3 + ((int)pcVar19 - (int)dest);
+              }
+            }
+            else {
+              UVar6 = LZ4_read32(source);
+              if (LVar21 == 3) {
+                uVar17 = UVar6 * -0x61c8864f >> 0x13;
+              }
+              else {
+                uVar17 = UVar6 * -0x61c8864f >> 0x14;
+              }
+              sVar2 = (short)pBVar16;
+              switch(LVar21) {
+              case 1:
+                *(char **)(uVar17 * 4 + (int)tableBase) = source;
+                break;
+              case 2:
+                *(int *)(uVar17 * 4 + (int)tableBase) = (int)source - (int)pBVar16;
+                break;
+              case 3:
+                *(short *)(uVar17 * 2 + (int)tableBase) = sVar1 - sVar2;
+              }
+              ip_3 = (BYTE *)(source + 1);
+              UVar6 = LZ4_read32(ip_3);
+              if (LVar21 == 3) {
+                forwardH_3 = UVar6 * -0x61c8864f >> 0x13;
+              }
+              else {
+                forwardH_3 = UVar6 * -0x61c8864f >> 0x14;
+              }
+              while( true ) {
+                if (LVar21 == 1) {
+                  forwardIp_6 = ip_3;
+                  step_6 = 1;
+                  searchMatchNb_6 = acceleration << 6;
+                  pBVar22 = forwardIp_6;
+                  do {
+                    do {
+                      forwardIp_6 = pBVar22;
+                      ip_3 = forwardIp_6;
+                      pBVar22 = forwardIp_6 + step_6;
+                      iVar5 = searchMatchNb_6 + 1;
+                      step_6 = searchMatchNb_6 >> 6;
+                      pBVar24 = pBVar22;
+                      if (pBVar18 < pBVar22) {
+                        pBVar24 = (BYTE *)0x1;
+                      }
+                      cVar13 = (char)pBVar24;
+                      if (pBVar18 >= pBVar22) {
+                        cVar13 = '\0';
+                      }
+                      if (cVar13 != '\0') goto LAB_0006a9b0;
+                      match_3 = LZ4_getPositionOnHash(forwardH_3,tableBase,byPtr,pBVar16);
+                      UVar6 = LZ4_read32(pBVar22);
+                      uVar17 = UVar6 * -0x61c8864f >> 0x14;
+                    /* WARNING: Could not find normalized switch variable to match jumptable */
+                      switch(0x690ac) {
+                      case 1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                        *(BYTE **)(forwardH_3 * 4 + (int)tableBase) = forwardIp_6;
+                        break;
+                      case 2:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                        *(int *)(forwardH_3 * 4 + (int)tableBase) = (int)forwardIp_6 - (int)pBVar16;
+                        break;
+                      case 3:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                        *(short *)(forwardH_3 * 2 + (int)tableBase) = (short)forwardIp_6 - sVar2;
+                      }
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                      searchMatchNb_6 = iVar5;
+                      forwardH_3 = uVar17;
+                    } while (match_3 + 0xffff < forwardIp_6);
+                    UVar6 = LZ4_read32(match_3);
+                    UVar10 = LZ4_read32(forwardIp_6);
+                  } while (UVar6 != UVar10);
+                }
+                else {
+                  forwardIp_7 = ip_3;
+                  step_7 = 1;
+                  searchMatchNb_7 = acceleration << 6;
+                  pBVar22 = forwardIp_7;
+                  do {
+                    do {
+                      forwardIp_7 = pBVar22;
+                      uVar17 = (int)forwardIp_7 - (int)pBVar16;
+                      if (LVar21 == 2) {
+                        uVar12 = *(uint *)(forwardH_3 * 4 + (int)tableBase);
+                      }
+                      else if (LVar21 == 3) {
+                        uVar12 = (uint)*(ushort *)(forwardH_3 * 2 + (int)tableBase);
+                      }
+                      else {
+                        uVar12 = 0;
+                      }
+                      ip_3 = forwardIp_7;
+                      pBVar22 = forwardIp_7 + step_7;
+                      iVar5 = searchMatchNb_7 + 1;
+                      step_7 = searchMatchNb_7 >> 6;
+                      pBVar24 = pBVar22;
+                      if (pBVar18 < pBVar22) {
+                        pBVar24 = (BYTE *)0x1;
+                      }
+                      cVar13 = (char)pBVar24;
+                      if (pBVar18 >= pBVar22) {
+                        cVar13 = '\0';
+                      }
+                      if (cVar13 != '\0') goto LAB_0006a9b0;
+                      match_3 = pBVar16 + uVar12;
+                      UVar6 = LZ4_read32(pBVar22);
+                      if (LVar21 == 3) {
+                        uVar23 = UVar6 * -0x61c8864f >> 0x13;
+                      }
+                      else {
+                        uVar23 = UVar6 * -0x61c8864f >> 0x14;
+                      }
+                      if (LVar21 == 2) {
+                        *(uint *)(forwardH_3 * 4 + (int)tableBase) = uVar17;
+                      }
+                      else if (LVar21 == 3) {
+                        *(short *)(forwardH_3 * 2 + (int)tableBase) = (short)uVar17;
+                      }
+                      searchMatchNb_7 = iVar5;
+                      forwardH_3 = uVar23;
+                    } while ((LVar21 != 3) && (uVar12 + 0xffff < uVar17));
+                    UVar6 = LZ4_read32(match_3);
+                    UVar10 = LZ4_read32(forwardIp_7);
+                  } while (UVar6 != UVar10);
+                }
+                while( true ) {
+                  pBVar22 = anchor_3;
+                  if (anchor_3 < ip_3) {
+                    pBVar22 = (BYTE *)0x1;
+                  }
+                  bVar14 = (byte)pBVar22;
+                  if (ip_3 <= anchor_3) {
+                    bVar14 = 0;
+                  }
+                  pcVar19 = source;
+                  if (source < match_3) {
+                    pcVar19 = (char *)0x1;
+                  }
+                  bVar15 = (byte)pcVar19;
+                  if (match_3 <= source) {
+                    bVar15 = 0;
+                  }
+                  if (((bVar15 & bVar14) == 0) || (ip_3[-1] != match_3[-1])) break;
+                  ip_3 = ip_3 + -1;
+                  match_3 = match_3 + -1;
+                }
+                uVar17 = (int)ip_3 - (int)anchor_3;
+                pBVar22 = op_3 + 1;
+                token_3 = op_3;
+                pBVar24 = pBVar22 + uVar17 + uVar17 / 0xff + 8;
+                bVar25 = pBVar20 < pBVar24;
+                if (bVar25) {
+                  pBVar24 = (BYTE *)0x1;
+                }
+                cVar13 = (char)pBVar24;
+                if (!bVar25) {
+                  cVar13 = '\0';
+                }
+                if (cVar13 != '\0') break;
+                if (uVar17 < 0xf) {
+                  *op_3 = (BYTE)((uVar17 & 0xff) << 4);
+                  op_3 = pBVar22;
+                }
+                else {
+                  *op_3 = 0xf0;
+                  op_3 = pBVar22;
+                  for (len_3 = uVar17 - 0xf; 0xfe < len_3; len_3 = len_3 + -0xff) {
+                    *op_3 = 0xff;
+                    op_3 = op_3 + 1;
+                  }
+                  *op_3 = (BYTE)len_3;
+                  op_3 = op_3 + 1;
+                }
+                d_3 = op_3;
+                s_3 = anchor_3;
+                do {
+                  uVar11 = *(undefined4 *)(s_3 + 4);
+                  *(undefined4 *)d_3 = *(undefined4 *)s_3;
+                  *(undefined4 *)(d_3 + 4) = uVar11;
+                  d_3 = d_3 + 8;
+                  s_3 = s_3 + 8;
+                } while (d_3 < op_3 + uVar17);
+                op_3 = op_3 + uVar17;
+LAB_000697c4:
+                LZ4_writeLE16(op_3,(short)ip_3 - (short)match_3);
+                op_3 = op_3 + 2;
+                pBVar22 = ip_3 + 4;
+                local_c64 = match_3 + 4;
+                pBVar24 = (BYTE *)(source + inputSize + -8);
+                bVar25 = pBVar22 < pBVar24;
+                if (bVar25) {
+                  pBVar24 = (BYTE *)0x1;
+                }
+                cVar13 = (char)pBVar24;
+                if (!bVar25) {
+                  cVar13 = '\0';
+                }
+                local_c60 = pBVar22;
+                if (cVar13 == '\0') {
+LAB_00069da6:
+                  while( true ) {
+                    pBVar24 = (BYTE *)(source + inputSize + -8);
+                    bVar25 = local_c60 < pBVar24;
+                    if (bVar25) {
+                      pBVar24 = (BYTE *)0x1;
+                    }
+                    cVar13 = (char)pBVar24;
+                    if (!bVar25) {
+                      cVar13 = '\0';
+                    }
+                    if (cVar13 == '\0') {
+                      if (local_c60 < source + inputSize + -6) {
+                        UVar3 = LZ4_read16(local_c64);
+                        UVar4 = LZ4_read16(local_c60);
+                        if (UVar3 == UVar4) {
+                          local_c60 = local_c60 + 2;
+                          local_c64 = local_c64 + 2;
+                        }
+                      }
+                      if ((local_c60 < source + inputSize + -5) && (*local_c64 == *local_c60)) {
+                        local_c60 = local_c60 + 1;
+                      }
+                      local_c60 = local_c60 + -(int)pBVar22;
+                      goto LAB_00069e50;
+                    }
+                    rVar8 = LZ4_read_ARCH(local_c64);
+                    rVar9 = LZ4_read_ARCH(local_c60);
+                    if ((rVar9 ^ rVar8) != 0) break;
+                    local_c60 = local_c60 + 4;
+                    local_c64 = local_c64 + 4;
+                  }
+                  uVar17 = LZ4_NbCommonBytes(rVar9 ^ rVar8);
+                  local_c60 = local_c60 + (uVar17 - (int)pBVar22);
+                }
+                else {
+                  rVar8 = LZ4_read_ARCH(local_c64);
+                  rVar9 = LZ4_read_ARCH(pBVar22);
+                  if ((rVar9 ^ rVar8) == 0) {
+                    local_c60 = ip_3 + 8;
+                    local_c64 = match_3 + 8;
+                    goto LAB_00069da6;
+                  }
+                  local_c60 = (BYTE *)LZ4_NbCommonBytes(rVar9 ^ rVar8);
+                }
+LAB_00069e50:
+                anchor_3 = ip_3 + (int)(local_c60 + 4);
+                pBVar22 = op_3 + (uint)(local_c60 + 0xf0) / 0xff + 6;
+                bVar25 = pBVar20 < pBVar22;
+                if (bVar25) {
+                  pBVar22 = (BYTE *)0x1;
+                }
+                cVar13 = (char)pBVar22;
+                if (!bVar25) {
+                  cVar13 = '\0';
+                }
+                if (cVar13 != '\0') {
+                  return 0;
+                }
+                if (local_c60 < (BYTE *)0xf) {
+                  *token_3 = (char)local_c60 + *token_3;
+                }
+                else {
+                  *token_3 = *token_3 + '\x0f';
+                  LZ4_write32(op_3,0xffffffff);
+                  for (matchCode_3 = (uint)(local_c60 + -0xf); 0x3fb < matchCode_3;
+                      matchCode_3 = matchCode_3 - 0x3fc) {
+                    op_3 = op_3 + 4;
+                    LZ4_write32(op_3,0xffffffff);
+                  }
+                  pBVar22 = op_3 + matchCode_3 / 0xff;
+                  op_3 = pBVar22 + 1;
+                  *pBVar22 = (char)matchCode_3 + (char)(matchCode_3 / 0xff);
+                }
+                if (pBVar18 <= anchor_3) goto LAB_0006a9b0;
+                pBVar22 = anchor_3 + -2;
+                UVar6 = LZ4_read32(pBVar22);
+                if (LVar21 == 3) {
+                  uVar17 = UVar6 * -0x61c8864f >> 0x13;
+                }
+                else {
+                  uVar17 = UVar6 * -0x61c8864f >> 0x14;
+                }
+                switch(LVar21) {
+                case 1:
+                  *(BYTE **)(uVar17 * 4 + (int)tableBase) = pBVar22;
+                  break;
+                case 2:
+                  *(int *)(uVar17 * 4 + (int)tableBase) = (int)pBVar22 - (int)pBVar16;
+                  break;
+                case 3:
+                  *(short *)(uVar17 * 2 + (int)tableBase) = (short)pBVar22 - sVar2;
+                }
+                ip_3 = anchor_3;
+                if (LVar21 != 1) {
+                  UVar6 = LZ4_read32(anchor_3);
+                  if (LVar21 == 3) {
+                    uVar17 = UVar6 * -0x61c8864f >> 0x13;
+                  }
+                  else {
+                    uVar17 = UVar6 * -0x61c8864f >> 0x14;
+                  }
+                  uVar12 = (int)anchor_3 - (int)pBVar16;
+                  if (LVar21 == 2) {
+                    uVar23 = *(uint *)(uVar17 * 4 + (int)tableBase);
+                  }
+                  else if (LVar21 == 3) {
+                    uVar23 = (uint)*(ushort *)(uVar17 * 2 + (int)tableBase);
+                  }
+                  else {
+                    uVar23 = 0;
+                  }
+                  match_3 = pBVar16 + uVar23;
+                  if (LVar21 == 2) {
+                    *(uint *)(uVar17 * 4 + (int)tableBase) = uVar12;
+                  }
+                  else if (LVar21 == 3) {
+                    *(short *)(uVar17 * 2 + (int)tableBase) = (short)uVar12;
+                  }
+                  if ((LVar21 != 3) && (uVar23 + 0xffff < uVar12)) goto LAB_0006a92e;
+                  UVar6 = LZ4_read32(match_3);
+                  UVar10 = LZ4_read32(anchor_3);
+                  if (UVar6 != UVar10) goto LAB_0006a92e;
+                  token_3 = op_3;
+                  *op_3 = '\0';
+                  op_3 = op_3 + 1;
+                  goto LAB_000697c4;
+                }
+                UVar6 = LZ4_read32(anchor_3);
+                match_3 = LZ4_getPositionOnHash(UVar6 * -0x61c8864f >> 0x14,tableBase,byPtr,pBVar16)
+                ;
+                UVar6 = LZ4_read32(anchor_3);
+                *(BYTE **)((UVar6 * -0x61c8864f >> 0x14) * 4 + (int)tableBase) = anchor_3;
+                if (anchor_3 <= match_3 + 0xffff) {
+                  UVar6 = LZ4_read32(match_3);
+                  UVar10 = LZ4_read32(anchor_3);
+                  if (UVar6 != UVar10) goto LAB_0006a92e;
+                  token_3 = op_3;
+                  *op_3 = '\0';
+                  op_3 = op_3 + 1;
+                  goto LAB_000697c4;
+                }
+LAB_0006a92e:
+                ip_3 = anchor_3 + 1;
+                UVar6 = LZ4_read32(ip_3);
+                if (LVar21 == 3) {
+                  forwardH_3 = UVar6 * -0x61c8864f >> 0x13;
+                }
+                else {
+                  forwardH_3 = UVar6 * -0x61c8864f >> 0x14;
+                }
+              }
+              pBVar16 = (BYTE *)0x0;
+            }
+          }
+        }
+      }
+      else {
+        pBVar16 = (BYTE *)0x0;
+      }
+    }
+  }
+  else if (inputSize < 0x1000b) {
+    if ((uint)inputSize < 0x7e000001) {
+      if (inputSize == 0) {
+        *dest = '\0';
+        pBVar16 = (BYTE *)0x1;
+      }
+      else {
+        iVar5 = (int)source - (tableBase->internal_donotuse).currentOffset;
+        pBVar16 = (BYTE *)(source + inputSize + -0xb);
+        if (inputSize < 0x1000b) {
+          (tableBase->internal_donotuse).dictSize =
+               (tableBase->internal_donotuse).dictSize + inputSize;
+          (tableBase->internal_donotuse).currentOffset =
+               (tableBase->internal_donotuse).currentOffset + inputSize;
+          (tableBase->internal_donotuse).tableType = 3;
+          op = (BYTE *)dest;
+          anchor = (BYTE *)source;
+          if (0xc < inputSize) {
+            UVar6 = LZ4_read32(source);
+            uVar17 = UVar6 * -0x61c8864f >> 0x13;
+            sVar2 = (short)iVar5;
+                    /* WARNING: Could not find normalized switch variable to match jumptable */
+            switch(0x62a7e) {
+            case 1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+              *(char **)(uVar17 * 4 + (int)tableBase) = source;
+              break;
+            case 2:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+              *(int *)(uVar17 * 4 + (int)tableBase) = (int)source - iVar5;
+              break;
+            case 3:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+              *(short *)(uVar17 * 2 + (int)tableBase) = sVar1 - sVar2;
+            }
+                    /* WARNING: This code block may not be properly labeled as switch case */
+            ip = (BYTE *)(source + 1);
+            UVar6 = LZ4_read32(ip);
+LAB_00062b04:
+            forwardIp_1 = ip;
+            step_1 = 1;
+            searchMatchNb_1 = acceleration << 6;
+            pBVar18 = forwardIp_1;
+            do {
+              forwardIp_1 = pBVar18;
+              forwardH = UVar6 * -0x61c8864f >> 0x13;
+              pBVar18 = forwardIp_1 + step_1;
+              step_1 = searchMatchNb_1 >> 6;
+              pBVar20 = pBVar18;
+              if (pBVar16 < pBVar18) {
+                pBVar20 = (BYTE *)0x1;
+              }
+              cVar13 = (char)pBVar20;
+              if (pBVar16 >= pBVar18) {
+                cVar13 = '\0';
+              }
+              if (cVar13 != '\0') goto LAB_000643ea;
+              match = (BYTE *)((uint)*(ushort *)(forwardH * 2 + (int)tableBase) + iVar5);
+              UVar6 = LZ4_read32(pBVar18);
+              *(short *)(forwardH * 2 + (int)tableBase) = (short)forwardIp_1 - sVar2;
+              UVar10 = LZ4_read32(match);
+              UVar7 = LZ4_read32(forwardIp_1);
+              searchMatchNb_1 = searchMatchNb_1 + 1;
+            } while (UVar10 != UVar7);
+            ip = forwardIp_1;
+            while( true ) {
+              pBVar18 = anchor;
+              if (anchor < ip) {
+                pBVar18 = (BYTE *)0x1;
+              }
+              bVar14 = (byte)pBVar18;
+              if (ip <= anchor) {
+                bVar14 = 0;
+              }
+              pcVar19 = source;
+              if (source < match) {
+                pcVar19 = (char *)0x1;
+              }
+              bVar15 = (byte)pcVar19;
+              if (match <= source) {
+                bVar15 = 0;
+              }
+              if (((bVar15 & bVar14) == 0) || (ip[-1] != match[-1])) break;
+              ip = ip + -1;
+              match = match + -1;
+            }
+            uVar17 = (int)ip - (int)anchor;
+            token = op;
+            if (uVar17 < 0xf) {
+              *op = (BYTE)((uVar17 & 0xff) << 4);
+              op = op + 1;
+            }
+            else {
+              *op = 0xf0;
+              op = op + 1;
+              for (len = uVar17 - 0xf; 0xfe < len; len = len + -0xff) {
+                *op = 0xff;
+                op = op + 1;
+              }
+              *op = (BYTE)len;
+              op = op + 1;
+            }
+            d = op;
+            s = anchor;
+            do {
+              uVar11 = *(undefined4 *)(s + 4);
+              *(undefined4 *)d = *(undefined4 *)s;
+              *(undefined4 *)(d + 4) = uVar11;
+              d = d + 8;
+              s = s + 8;
+            } while (d < op + uVar17);
+            op = op + uVar17;
+            do {
+              LZ4_writeLE16(op,(short)ip - (short)match);
+              op = op + 2;
+              pBVar18 = ip + 4;
+              local_228 = match + 4;
+              pBVar20 = (BYTE *)(source + inputSize + -8);
+              bVar25 = pBVar18 < pBVar20;
+              if (bVar25) {
+                pBVar20 = (BYTE *)0x1;
+              }
+              cVar13 = (char)pBVar20;
+              if (!bVar25) {
+                cVar13 = '\0';
+              }
+              local_224 = pBVar18;
+              if (cVar13 == '\0') {
+LAB_000638a2:
+                while( true ) {
+                  pBVar20 = (BYTE *)(source + inputSize + -8);
+                  bVar25 = local_224 < pBVar20;
+                  if (bVar25) {
+                    pBVar20 = (BYTE *)0x1;
+                  }
+                  cVar13 = (char)pBVar20;
+                  if (!bVar25) {
+                    cVar13 = '\0';
+                  }
+                  if (cVar13 == '\0') {
+                    if (local_224 < source + inputSize + -6) {
+                      UVar3 = LZ4_read16(local_228);
+                      UVar4 = LZ4_read16(local_224);
+                      if (UVar3 == UVar4) {
+                        local_224 = local_224 + 2;
+                        local_228 = local_228 + 2;
+                      }
+                    }
+                    if ((local_224 < source + inputSize + -5) && (*local_228 == *local_224)) {
+                      local_224 = local_224 + 1;
+                    }
+                    local_224 = local_224 + -(int)pBVar18;
+                    goto LAB_0006394c;
+                  }
+                  rVar8 = LZ4_read_ARCH(local_228);
+                  rVar9 = LZ4_read_ARCH(local_224);
+                  if ((rVar9 ^ rVar8) != 0) break;
+                  local_224 = local_224 + 4;
+                  local_228 = local_228 + 4;
+                }
+                uVar17 = LZ4_NbCommonBytes(rVar9 ^ rVar8);
+                local_224 = local_224 + (uVar17 - (int)pBVar18);
+              }
+              else {
+                rVar8 = LZ4_read_ARCH(local_228);
+                rVar9 = LZ4_read_ARCH(pBVar18);
+                if ((rVar9 ^ rVar8) == 0) {
+                  local_224 = ip + 8;
+                  local_228 = match + 8;
+                  goto LAB_000638a2;
+                }
+                local_224 = (BYTE *)LZ4_NbCommonBytes(rVar9 ^ rVar8);
+              }
+LAB_0006394c:
+              anchor = ip + (int)(local_224 + 4);
+              if (local_224 < (BYTE *)0xf) {
+                *token = (char)local_224 + *token;
+              }
+              else {
+                *token = *token + '\x0f';
+                LZ4_write32(op,0xffffffff);
+                for (matchCode = (uint)(local_224 + -0xf); 0x3fb < matchCode;
+                    matchCode = matchCode - 0x3fc) {
+                  op = op + 4;
+                  LZ4_write32(op,0xffffffff);
+                }
+                pBVar18 = op + matchCode / 0xff;
+                op = pBVar18 + 1;
+                *pBVar18 = (char)matchCode + (char)(matchCode / 0xff);
+              }
+              if (pBVar16 <= anchor) break;
+              pBVar18 = anchor + -2;
+              UVar6 = LZ4_read32(pBVar18);
+              uVar17 = UVar6 * -0x61c8864f >> 0x13;
+                    /* WARNING: Could not find normalized switch variable to match jumptable */
+              switch(0x63d74) {
+              case 1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                *(BYTE **)(uVar17 * 4 + (int)tableBase) = pBVar18;
+                break;
+              case 2:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                *(int *)(uVar17 * 4 + (int)tableBase) = (int)pBVar18 - iVar5;
+                break;
+              case 3:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                *(short *)(uVar17 * 2 + (int)tableBase) = (short)pBVar18 - sVar2;
+              }
+                    /* WARNING: This code block may not be properly labeled as switch case */
+              UVar6 = LZ4_read32(anchor);
+              uVar17 = UVar6 * -0x61c8864f >> 0x13;
+              match = (BYTE *)((uint)*(ushort *)(uVar17 * 2 + (int)tableBase) + iVar5);
+              *(short *)(uVar17 * 2 + (int)tableBase) = (short)anchor - sVar2;
+              UVar6 = LZ4_read32(match);
+              UVar10 = LZ4_read32(anchor);
+              if (UVar6 != UVar10) goto LAB_00064370;
+              token = op;
+              *op = '\0';
+              op = op + 1;
+              ip = anchor;
+            } while( true );
+          }
+LAB_000643ea:
+          pcVar19 = source + (inputSize - (int)anchor);
+          if (pcVar19 < (char *)0xf) {
+            *op = (BYTE)(((uint)pcVar19 & 0xff) << 4);
+            op = op + 1;
+          }
+          else {
+            *op = 0xf0;
+            pBVar16 = op;
+            for (accumulator = (size_t)(pcVar19 + -0xf); op = pBVar16 + 1, 0xfe < accumulator;
+                accumulator = accumulator - 0xff) {
+              *op = 0xff;
+              pBVar16 = op;
+            }
+            *op = (BYTE)accumulator;
+            op = pBVar16 + 2;
+          }
+          memcpy(op,anchor,(size_t)pcVar19);
+          pBVar16 = op + ((int)pcVar19 - (int)dest);
+        }
+        else {
+          pBVar16 = (BYTE *)0x0;
+        }
+      }
+    }
+    else {
+      pBVar16 = (BYTE *)0x0;
+    }
+  }
+  else {
+    if (source < &Elf32_Ehdr_00010000) {
+      LVar21 = 2;
+    }
+    else {
+      LVar21 = 1;
+    }
+    if ((uint)inputSize < 0x7e000001) {
+      if (inputSize == 0) {
+        *dest = '\0';
+        pBVar16 = (BYTE *)0x1;
+      }
+      else {
+        pBVar16 = (BYTE *)(source + -(tableBase->internal_donotuse).currentOffset);
+        pBVar18 = (BYTE *)(source + inputSize + -0xb);
+        if ((LVar21 == 3) && (0x1000a < inputSize)) {
+          pBVar16 = (BYTE *)0x0;
+        }
+        else {
+          (tableBase->internal_donotuse).dictSize =
+               (tableBase->internal_donotuse).dictSize + inputSize;
+          (tableBase->internal_donotuse).currentOffset =
+               (tableBase->internal_donotuse).currentOffset + inputSize;
+          (tableBase->internal_donotuse).tableType = LVar21;
+          op_1 = (BYTE *)dest;
+          anchor_1 = (BYTE *)source;
+          if (0xc < inputSize) {
+            UVar6 = LZ4_read32(source);
+            if (LVar21 == 3) {
+              uVar17 = UVar6 * -0x61c8864f >> 0x13;
+            }
+            else {
+              uVar17 = UVar6 * -0x61c8864f >> 0x14;
+            }
+            sVar2 = (short)pBVar16;
+            switch(LVar21) {
+            case 1:
+              *(char **)(uVar17 * 4 + (int)tableBase) = source;
+              break;
+            case 2:
+              *(int *)(uVar17 * 4 + (int)tableBase) = (int)source - (int)pBVar16;
+              break;
+            case 3:
+              *(short *)(uVar17 * 2 + (int)tableBase) = sVar1 - sVar2;
+            }
+            ip_1 = (BYTE *)(source + 1);
+            UVar6 = LZ4_read32(ip_1);
+            if (LVar21 == 3) {
+              forwardH_1 = UVar6 * -0x61c8864f >> 0x13;
+            }
+            else {
+              forwardH_1 = UVar6 * -0x61c8864f >> 0x14;
+            }
+            do {
+              if (LVar21 == 1) {
+                forwardIp_2 = ip_1;
+                step_2 = 1;
+                searchMatchNb_2 = acceleration << 6;
+                pBVar20 = forwardIp_2;
+                do {
+                  do {
+                    forwardIp_2 = pBVar20;
+                    ip_1 = forwardIp_2;
+                    pBVar20 = forwardIp_2 + step_2;
+                    iVar5 = searchMatchNb_2 + 1;
+                    step_2 = searchMatchNb_2 >> 6;
+                    pBVar22 = pBVar20;
+                    if (pBVar18 < pBVar20) {
+                      pBVar22 = (BYTE *)0x1;
+                    }
+                    cVar13 = (char)pBVar22;
+                    if (pBVar18 >= pBVar20) {
+                      cVar13 = '\0';
+                    }
+                    if (cVar13 != '\0') goto LAB_000665a4;
+                    match_1 = LZ4_getPositionOnHash(forwardH_1,tableBase,byPtr,pBVar16);
+                    UVar6 = LZ4_read32(pBVar20);
+                    uVar17 = UVar6 * -0x61c8864f >> 0x14;
+                    /* WARNING: Could not find normalized switch variable to match jumptable */
+                    switch(0x64ca0) {
+                    case 1:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                      *(BYTE **)(forwardH_1 * 4 + (int)tableBase) = forwardIp_2;
+                      break;
+                    case 2:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                      *(int *)(forwardH_1 * 4 + (int)tableBase) = (int)forwardIp_2 - (int)pBVar16;
+                      break;
+                    case 3:
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                      *(short *)(forwardH_1 * 2 + (int)tableBase) = (short)forwardIp_2 - sVar2;
+                    }
+                    /* WARNING: This code block may not be properly labeled as switch case */
+                    searchMatchNb_2 = iVar5;
+                    forwardH_1 = uVar17;
+                  } while (match_1 + 0xffff < forwardIp_2);
+                  UVar6 = LZ4_read32(match_1);
+                  UVar10 = LZ4_read32(forwardIp_2);
+                } while (UVar6 != UVar10);
+              }
+              else {
+                forwardIp_3 = ip_1;
+                step_3 = 1;
+                searchMatchNb_3 = acceleration << 6;
+                pBVar20 = forwardIp_3;
+                do {
+                  do {
+                    forwardIp_3 = pBVar20;
+                    uVar17 = (int)forwardIp_3 - (int)pBVar16;
+                    if (LVar21 == 2) {
+                      uVar12 = *(uint *)(forwardH_1 * 4 + (int)tableBase);
+                    }
+                    else if (LVar21 == 3) {
+                      uVar12 = (uint)*(ushort *)(forwardH_1 * 2 + (int)tableBase);
+                    }
+                    else {
+                      uVar12 = 0;
+                    }
+                    ip_1 = forwardIp_3;
+                    pBVar20 = forwardIp_3 + step_3;
+                    iVar5 = searchMatchNb_3 + 1;
+                    step_3 = searchMatchNb_3 >> 6;
+                    pBVar22 = pBVar20;
+                    if (pBVar18 < pBVar20) {
+                      pBVar22 = (BYTE *)0x1;
+                    }
+                    cVar13 = (char)pBVar22;
+                    if (pBVar18 >= pBVar20) {
+                      cVar13 = '\0';
+                    }
+                    if (cVar13 != '\0') goto LAB_000665a4;
+                    match_1 = pBVar16 + uVar12;
+                    UVar6 = LZ4_read32(pBVar20);
+                    if (LVar21 == 3) {
+                      uVar23 = UVar6 * -0x61c8864f >> 0x13;
+                    }
+                    else {
+                      uVar23 = UVar6 * -0x61c8864f >> 0x14;
+                    }
+                    if (LVar21 == 2) {
+                      *(uint *)(forwardH_1 * 4 + (int)tableBase) = uVar17;
+                    }
+                    else if (LVar21 == 3) {
+                      *(short *)(forwardH_1 * 2 + (int)tableBase) = (short)uVar17;
+                    }
+                    searchMatchNb_3 = iVar5;
+                    forwardH_1 = uVar23;
+                  } while ((LVar21 != 3) && (uVar12 + 0xffff < uVar17));
+                  UVar6 = LZ4_read32(match_1);
+                  UVar10 = LZ4_read32(forwardIp_3);
+                } while (UVar6 != UVar10);
+              }
+              while( true ) {
+                pBVar20 = anchor_1;
+                if (anchor_1 < ip_1) {
+                  pBVar20 = (BYTE *)0x1;
+                }
+                bVar14 = (byte)pBVar20;
+                if (ip_1 <= anchor_1) {
+                  bVar14 = 0;
+                }
+                pcVar19 = source;
+                if (source < match_1) {
+                  pcVar19 = (char *)0x1;
+                }
+                bVar15 = (byte)pcVar19;
+                if (match_1 <= source) {
+                  bVar15 = 0;
+                }
+                if (((bVar15 & bVar14) == 0) || (ip_1[-1] != match_1[-1])) break;
+                ip_1 = ip_1 + -1;
+                match_1 = match_1 + -1;
+              }
+              uVar17 = (int)ip_1 - (int)anchor_1;
+              token_1 = op_1;
+              if (uVar17 < 0xf) {
+                *op_1 = (BYTE)((uVar17 & 0xff) << 4);
+                op_1 = op_1 + 1;
+              }
+              else {
+                *op_1 = 0xf0;
+                op_1 = op_1 + 1;
+                for (len_1 = uVar17 - 0xf; 0xfe < len_1; len_1 = len_1 + -0xff) {
+                  *op_1 = 0xff;
+                  op_1 = op_1 + 1;
+                }
+                *op_1 = (BYTE)len_1;
+                op_1 = op_1 + 1;
+              }
+              d_1 = op_1;
+              s_1 = anchor_1;
+              do {
+                uVar11 = *(undefined4 *)(s_1 + 4);
+                *(undefined4 *)d_1 = *(undefined4 *)s_1;
+                *(undefined4 *)(d_1 + 4) = uVar11;
+                d_1 = d_1 + 8;
+                s_1 = s_1 + 8;
+              } while (d_1 < op_1 + uVar17);
+              op_1 = op_1 + uVar17;
+LAB_000653b8:
+              LZ4_writeLE16(op_1,(short)ip_1 - (short)match_1);
+              op_1 = op_1 + 2;
+              pBVar20 = ip_1 + 4;
+              local_590 = match_1 + 4;
+              pBVar22 = (BYTE *)(source + inputSize + -8);
+              bVar25 = pBVar20 < pBVar22;
+              if (bVar25) {
+                pBVar22 = (BYTE *)0x1;
+              }
+              cVar13 = (char)pBVar22;
+              if (!bVar25) {
+                cVar13 = '\0';
+              }
+              local_58c = pBVar20;
+              if (cVar13 == '\0') {
+LAB_0006599a:
+                while( true ) {
+                  pBVar22 = (BYTE *)(source + inputSize + -8);
+                  bVar25 = local_58c < pBVar22;
+                  if (bVar25) {
+                    pBVar22 = (BYTE *)0x1;
+                  }
+                  cVar13 = (char)pBVar22;
+                  if (!bVar25) {
+                    cVar13 = '\0';
+                  }
+                  if (cVar13 == '\0') {
+                    if (local_58c < source + inputSize + -6) {
+                      UVar3 = LZ4_read16(local_590);
+                      UVar4 = LZ4_read16(local_58c);
+                      if (UVar3 == UVar4) {
+                        local_58c = local_58c + 2;
+                        local_590 = local_590 + 2;
+                      }
+                    }
+                    if ((local_58c < source + inputSize + -5) && (*local_590 == *local_58c)) {
+                      local_58c = local_58c + 1;
+                    }
+                    local_58c = local_58c + -(int)pBVar20;
+                    goto LAB_00065a44;
+                  }
+                  rVar8 = LZ4_read_ARCH(local_590);
+                  rVar9 = LZ4_read_ARCH(local_58c);
+                  if ((rVar9 ^ rVar8) != 0) break;
+                  local_58c = local_58c + 4;
+                  local_590 = local_590 + 4;
+                }
+                uVar17 = LZ4_NbCommonBytes(rVar9 ^ rVar8);
+                local_58c = local_58c + (uVar17 - (int)pBVar20);
+              }
+              else {
+                rVar8 = LZ4_read_ARCH(local_590);
+                rVar9 = LZ4_read_ARCH(pBVar20);
+                if ((rVar9 ^ rVar8) == 0) {
+                  local_58c = ip_1 + 8;
+                  local_590 = match_1 + 8;
+                  goto LAB_0006599a;
+                }
+                local_58c = (BYTE *)LZ4_NbCommonBytes(rVar9 ^ rVar8);
+              }
+LAB_00065a44:
+              anchor_1 = ip_1 + (int)(local_58c + 4);
+              if (local_58c < (BYTE *)0xf) {
+                *token_1 = (char)local_58c + *token_1;
+              }
+              else {
+                *token_1 = *token_1 + '\x0f';
+                LZ4_write32(op_1,0xffffffff);
+                for (matchCode_1 = (uint)(local_58c + -0xf); 0x3fb < matchCode_1;
+                    matchCode_1 = matchCode_1 - 0x3fc) {
+                  op_1 = op_1 + 4;
+                  LZ4_write32(op_1,0xffffffff);
+                }
+                pBVar20 = op_1 + matchCode_1 / 0xff;
+                op_1 = pBVar20 + 1;
+                *pBVar20 = (char)matchCode_1 + (char)(matchCode_1 / 0xff);
+              }
+              if (pBVar18 <= anchor_1) break;
+              pBVar20 = anchor_1 + -2;
+              UVar6 = LZ4_read32(pBVar20);
+              if (LVar21 == 3) {
+                uVar17 = UVar6 * -0x61c8864f >> 0x13;
+              }
+              else {
+                uVar17 = UVar6 * -0x61c8864f >> 0x14;
+              }
+              switch(LVar21) {
+              case 1:
+                *(BYTE **)(uVar17 * 4 + (int)tableBase) = pBVar20;
+                break;
+              case 2:
+                *(int *)(uVar17 * 4 + (int)tableBase) = (int)pBVar20 - (int)pBVar16;
+                break;
+              case 3:
+                *(short *)(uVar17 * 2 + (int)tableBase) = (short)pBVar20 - sVar2;
+              }
+              ip_1 = anchor_1;
+              if (LVar21 == 1) {
+                UVar6 = LZ4_read32(anchor_1);
+                match_1 = LZ4_getPositionOnHash(UVar6 * -0x61c8864f >> 0x14,tableBase,byPtr,pBVar16)
+                ;
+                UVar6 = LZ4_read32(anchor_1);
+                *(BYTE **)((UVar6 * -0x61c8864f >> 0x14) * 4 + (int)tableBase) = anchor_1;
+                if (match_1 + 0xffff < anchor_1) goto LAB_00066522;
+                UVar6 = LZ4_read32(match_1);
+                UVar10 = LZ4_read32(anchor_1);
+                if (UVar6 != UVar10) goto LAB_00066522;
+                token_1 = op_1;
+                *op_1 = '\0';
+                op_1 = op_1 + 1;
+                goto LAB_000653b8;
+              }
+              UVar6 = LZ4_read32(anchor_1);
+              if (LVar21 == 3) {
+                uVar17 = UVar6 * -0x61c8864f >> 0x13;
+              }
+              else {
+                uVar17 = UVar6 * -0x61c8864f >> 0x14;
+              }
+              uVar12 = (int)anchor_1 - (int)pBVar16;
+              if (LVar21 == 2) {
+                uVar23 = *(uint *)(uVar17 * 4 + (int)tableBase);
+              }
+              else if (LVar21 == 3) {
+                uVar23 = (uint)*(ushort *)(uVar17 * 2 + (int)tableBase);
+              }
+              else {
+                uVar23 = 0;
+              }
+              match_1 = pBVar16 + uVar23;
+              if (LVar21 == 2) {
+                *(uint *)(uVar17 * 4 + (int)tableBase) = uVar12;
+              }
+              else if (LVar21 == 3) {
+                *(short *)(uVar17 * 2 + (int)tableBase) = (short)uVar12;
+              }
+              if ((LVar21 == 3) || (uVar12 <= uVar23 + 0xffff)) {
+                UVar6 = LZ4_read32(match_1);
+                UVar10 = LZ4_read32(anchor_1);
+                if (UVar6 != UVar10) goto LAB_00066522;
+                token_1 = op_1;
+                *op_1 = '\0';
+                op_1 = op_1 + 1;
+                goto LAB_000653b8;
+              }
+LAB_00066522:
+              ip_1 = anchor_1 + 1;
+              UVar6 = LZ4_read32(ip_1);
+              if (LVar21 == 3) {
+                forwardH_1 = UVar6 * -0x61c8864f >> 0x13;
+              }
+              else {
+                forwardH_1 = UVar6 * -0x61c8864f >> 0x14;
+              }
+            } while( true );
+          }
+LAB_000665a4:
+          pcVar19 = source + (inputSize - (int)anchor_1);
+          if (pcVar19 < (char *)0xf) {
+            *op_1 = (BYTE)(((uint)pcVar19 & 0xff) << 4);
+            op_1 = op_1 + 1;
+          }
+          else {
+            *op_1 = 0xf0;
+            pBVar16 = op_1;
+            for (accumulator_1 = (size_t)(pcVar19 + -0xf); op_1 = pBVar16 + 1, 0xfe < accumulator_1;
+                accumulator_1 = accumulator_1 - 0xff) {
+              *op_1 = 0xff;
+              pBVar16 = op_1;
+            }
+            *op_1 = (BYTE)accumulator_1;
+            op_1 = pBVar16 + 2;
+          }
+          memcpy(op_1,anchor_1,(size_t)pcVar19);
+          pBVar16 = op_1 + ((int)pcVar19 - (int)dest);
+        }
+      }
+    }
+    else {
+      pBVar16 = (BYTE *)0x0;
+    }
+  }
+  return (int)pBVar16;
+LAB_0006871e:
+  ip_2 = anchor_2 + 1;
+  UVar6 = LZ4_read32(ip_2);
+  goto LAB_00066d1c;
+LAB_00064370:
+  ip = anchor + 1;
+  UVar6 = LZ4_read32(ip);
+  goto LAB_00062b04;
+}
+

@@ -1,0 +1,96 @@
+
+void curve448_scalar_halve(uint *param_1,uint *param_2)
+
+{
+  uint uVar1;
+  uint uVar2;
+  uint uVar3;
+  uint uVar4;
+  uint uVar5;
+  uint uVar6;
+  uint uVar7;
+  uint uVar8;
+  uint uVar9;
+  uint uVar10;
+  uint uVar11;
+  uint uVar12;
+  uint uVar13;
+  uint uVar14;
+  uint uVar15;
+  uint uVar16;
+  
+  uVar1 = *param_2;
+  uVar3 = (int)(uVar1 << 0x1f) >> 0x1f;
+  uVar7 = uVar1 + (uVar3 & 0xab5844f3);
+  *param_1 = uVar7;
+  uVar1 = (uint)CARRY4(uVar3 & 0xab5844f3,uVar1);
+  uVar4 = (uVar3 & 0x2378c292) + param_2[1];
+  uVar2 = uVar4 + uVar1;
+  uVar4 = (uint)CARRY4(uVar3 & 0x2378c292,param_2[1]) + (uint)CARRY4(uVar4,uVar1);
+  param_1[1] = uVar2;
+  uVar8 = (uVar3 & 0x8dc58f55) + param_2[2];
+  uVar1 = uVar8 + uVar4;
+  uVar4 = (uint)CARRY4(uVar3 & 0x8dc58f55,param_2[2]) + (uint)CARRY4(uVar8,uVar4);
+  param_1[2] = uVar1;
+  uVar8 = (uVar3 & 0x216cc272) + param_2[3];
+  uVar9 = uVar4 + uVar8;
+  uVar15 = (uint)CARRY4(uVar3 & 0x216cc272,param_2[3]) + (uint)CARRY4(uVar4,uVar8);
+  param_1[3] = uVar9;
+  uVar8 = (uVar3 & 0xaed63690) + param_2[4];
+  uVar4 = uVar8 + uVar15;
+  uVar15 = (uint)CARRY4(uVar3 & 0xaed63690,param_2[4]) + (uint)CARRY4(uVar8,uVar15);
+  param_1[4] = uVar4;
+  uVar5 = (uVar3 & 0xc44edb49) + param_2[5];
+  uVar8 = uVar15 + uVar5;
+  uVar5 = (uint)CARRY4(uVar3 & 0xc44edb49,param_2[5]) + (uint)CARRY4(uVar15,uVar5);
+  param_1[5] = uVar8;
+  uVar6 = (uVar3 & 0x7cca23e9) + param_2[6];
+  uVar15 = uVar6 + uVar5;
+  uVar6 = (uint)CARRY4(uVar3 & 0x7cca23e9,param_2[6]) + (uint)CARRY4(uVar6,uVar5);
+  param_1[6] = uVar15;
+  uVar5 = uVar3 + param_2[7];
+  uVar10 = uVar6 + uVar5;
+  uVar6 = (uint)CARRY4(uVar3,param_2[7]) + (uint)CARRY4(uVar6,uVar5);
+  param_1[7] = uVar10;
+  uVar5 = uVar3 + param_2[8];
+  uVar11 = uVar6 + uVar5;
+  uVar6 = (uint)CARRY4(uVar3,param_2[8]) + (uint)CARRY4(uVar6,uVar5);
+  param_1[8] = uVar11;
+  uVar5 = uVar3 + param_2[9];
+  uVar12 = uVar6 + uVar5;
+  uVar16 = (uint)CARRY4(uVar3,param_2[9]) + (uint)CARRY4(uVar6,uVar5);
+  param_1[9] = uVar12;
+  uVar6 = param_2[10];
+  uVar5 = uVar3 + uVar6;
+  uVar13 = uVar16 + uVar5;
+  param_1[10] = uVar13;
+  uVar6 = (uint)CARRY4(uVar3,uVar6) + (uint)CARRY4(uVar16,uVar5);
+  uVar5 = uVar3 + param_2[0xb];
+  uVar16 = uVar5 + uVar6;
+  uVar6 = (uint)CARRY4(uVar3,param_2[0xb]) + (uint)CARRY4(uVar5,uVar6);
+  param_1[0xb] = uVar16;
+  uVar14 = uVar3 + param_2[0xc];
+  uVar5 = uVar6 + uVar14;
+  uVar14 = (uint)CARRY4(uVar3,param_2[0xc]) + (uint)CARRY4(uVar6,uVar14);
+  param_1[0xc] = uVar5;
+  uVar6 = param_2[0xd];
+  *param_1 = uVar2 * -0x80000000 | uVar7 >> 1;
+  param_1[2] = uVar9 * -0x80000000 | uVar1 >> 1;
+  param_1[5] = uVar15 * -0x80000000 | uVar8 >> 1;
+  param_1[6] = uVar10 * -0x80000000 | uVar15 >> 1;
+  param_1[7] = uVar11 * -0x80000000 | uVar10 >> 1;
+  param_1[8] = uVar12 * -0x80000000 | uVar11 >> 1;
+  param_1[9] = uVar13 * -0x80000000 | uVar12 >> 1;
+  param_1[10] = uVar16 * -0x80000000 | uVar13 >> 1;
+  uVar15 = (uVar3 & 0x3fffffff) + uVar6;
+  param_1[1] = uVar1 * -0x80000000 | uVar2 >> 1;
+  param_1[0xb] = uVar5 * -0x80000000 | uVar16 >> 1;
+  uVar1 = uVar14 + uVar15;
+  param_1[4] = uVar8 * -0x80000000 | uVar4 >> 1;
+  param_1[3] = uVar4 * -0x80000000 | uVar9 >> 1;
+  param_1[0xc] = uVar5 >> 1 | uVar1 * -0x80000000;
+  param_1[0xd] = ((uint)CARRY4(uVar3 & 0x3fffffff,uVar6) + (uint)CARRY4(uVar14,uVar15)) *
+                 -0x80000000 | uVar1 >> 1;
+  return;
+}
+

@@ -1,0 +1,24 @@
+
+/* WARNING: Unknown calling convention */
+
+int32_t iic_write_reg(int32_t ctx,uint8_t *reg,uint32_t bytes,void *data,uint32_t size,
+                     _Bool reg_addr_valid)
+
+{
+  int iVar1;
+  int32_t iVar2;
+  char tmp42 [2048];
+  
+  iVar1 = pthread_mutex_lock((pthread_mutex_t *)&iic_mutex);
+  if (iVar1 == 0) {
+    iVar2 = i2c_write_reg(ctx,reg,bytes,data,size,reg_addr_valid);
+    pthread_mutex_unlock((pthread_mutex_t *)&iic_mutex);
+  }
+  else {
+    iVar2 = -4;
+    builtin_strncpy(tmp42,"failed to i2c lock\n",0x14);
+    _applog(0,tmp42,false);
+  }
+  return iVar2;
+}
+
