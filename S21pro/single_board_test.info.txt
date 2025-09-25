@@ -1,0 +1,2 @@
+OS    EM_ARM
+Arch  arm
