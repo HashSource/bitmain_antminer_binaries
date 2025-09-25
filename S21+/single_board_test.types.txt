@@ -1,0 +1,3386 @@
+**abi.Type
+
+**big.Int
+
+*[1024]uint8
+
+*[16384]uint8
+
+*[19]int
+
+*[2048]uint8
+
+*[256]*hpack.node
+
+*[316]int
+
+*[32768]uint8
+
+*[3]uintptr
+
+*[4096]uint8
+
+*[4]uintptr
+
+*[8192]uint8
+
+*[9]uintptr
+
+*[]*runtime.bmap
+
+*[]runtime.ancestorInfo
+
+*[]syscall.Iovec
+
+*[]uint8
+
+*uint8
+
+*uint8
+
+*abi.ITab
+
+*abi.Imethod
+
+*int32
+
+*uint8
+
+*int32
+
+*int
+
+*bool
+
+*[]uint8
+
+*asn1.RawValue
+
+*asn1.encoder
+
+*asn1.fieldParameters
+
+*asn1.tagAndLength
+
+*atomic.Pointer[go.shape.struct { internal/concurrent.isEntry bool }]
+
+*atomic.Pointer[internal/concurrent.entry[go.shape.*internal/abi.Type,go.shape.interface {}]]
+
+*atomic.Pointer[internal/concurrent.entry[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]]
+
+*atomic.align64
+
+*atomic.align64
+
+*uint
+
+*big.divisor
+
+*bisect.Writer
+
+*bisect.cond
+
+*bool
+
+*int8
+
+*cipher.AEAD
+
+*cipher.Block
+
+*cipher.BlockMode
+
+*cipher.Stream
+
+*cipher.cbc
+
+*cipher.cbcDecAble
+
+*cipher.cbcEncAble
+
+*cipher.gcmAble
+
+*cipher.gcmFieldElement
+
+*complex128
+
+*complex64
+
+*concurrent.HashTrieMap[go.shape.*internal/abi.Type,go.shape.interface {}]
+
+*concurrent.HashTrieMap[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]
+
+*concurrent.entry[go.shape.*internal/abi.Type,go.shape.interface {}]
+
+*concurrent.entry[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]
+
+*func(unsafe.Pointer, unsafe.Pointer) bool
+
+*func(unsafe.Pointer, uintptr) uintptr
+
+*concurrent.indirect[go.shape.*internal/abi.Type,go.shape.interface {}]
+
+*concurrent.indirect[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]
+
+*concurrent.node[go.shape.*internal/abi.Type,go.shape.interface {}]
+
+*concurrent.node[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]
+
+*func()
+
+*context.Context
+
+*context.afterFuncer
+
+*context.canceler
+
+*context.stringer
+
+*cpu.option
+
+*cpu.option
+
+*[256]uint32
+
+*[8][256]uint32
+
+*crypto.PrivateKey
+
+*crypto.PublicKey
+
+*crypto.Signer
+
+*crypto.SignerOpts
+
+*cryptobyte.BuildError
+
+*uint8
+
+*dsa.Parameters
+
+*dsa.PublicKey
+
+*ecdh.Curve
+
+*[0]func()
+
+*elliptic.Curve
+
+*elliptic.unmarshaler
+
+*error
+
+*exec.ctxResult
+
+*exec.goroutineStatus
+
+*[4]uint64
+
+*[4]uint64
+
+*[6]uint64
+
+*[9]uint64
+
+*flate.Reader
+
+*flate.Resetter
+
+*flate.compressionLevel
+
+*flate.literalNode
+
+*flate.tableEntry
+
+*float32
+
+*float64
+
+*fmt.Formatter
+
+*fmt.GoStringer
+
+*fmt.State
+
+*fmt.Stringer
+
+*fmt.fmtFlags
+
+*fmtsort.KeyValue
+
+*fs.DirEntry
+
+*fs.FileInfo
+
+*fs.ReadDirFile
+
+*func() bool
+
+*func() go.shape.interface { Error() string }
+
+**abi.Type
+
+*[]string
+
+*bool
+
+*go.shape.interface { Error() string }
+
+*go.shape.interface {}
+
+*string
+
+*go.shape.struct { Key reflect.Value; Value reflect.Value }
+
+*go.shape.struct { internal/concurrent.isEntry bool }
+
+*go.shape.struct { internal/weak.u unsafe.Pointer }
+
+*go.shape.struct { net/http.key string; net/http.values []string }
+
+*go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string }
+
+*godebug.setting
+
+*godebug.value
+
+*godebugs.Info
+
+*hash.Hash
+
+*hash.Hash32
+
+*hmac.marshalable
+
+*[0]func()
+
+*hpack.node
+
+*hpack.pairNameValue
+
+*http.File
+
+*http.FileSystem
+
+*http.Handler
+
+*http.I
+
+*http.ResponseWriter
+
+*http.anyDirs
+
+*http.baseContexter
+
+*http.closeWriter
+
+*http.entry[string,*net/http.routingNode]
+
+*http.headerSorter
+
+*http.http2Frame
+
+*http.http2OpenStreamOptions
+
+*http.http2WriteScheduler
+
+*http.http2bodyReadMsg
+
+*http.http2connectionStater
+
+*func(*http.http2frameCache, http.http2FrameHeader, func(string), []uint8) (http.http2Frame, error)
+
+*http.http2frameWriteResult
+
+*http.http2headersOrContinuation
+
+*[0]func()
+
+*http.http2pipeBuffer
+
+*http.http2readFrameResult
+
+*int
+
+*http.http2startPushRequest
+
+*http.http2synctestGroupInterface
+
+*http.http2unstartedHandler
+
+*http.http2writeContext
+
+*http.http2writeFramer
+
+*http.keyValues
+
+*http.muxEntry
+
+*string
+
+*http.requestTooLarger
+
+*http.routingIndexKey
+
+*http.segment
+
+*http.sniffSig
+
+*httpproxy.matcher
+
+*int
+
+*int16
+
+*int32
+
+*int64
+
+*int8
+
+*interface {}
+
+*io.ByteScanner
+
+*io.Closer
+
+*io.ReadCloser
+
+*io.ReadSeeker
+
+*io.Reader
+
+*io.ReaderFrom
+
+*io.StringWriter
+
+*io.WriteCloser
+
+*io.Writer
+
+*io.WriterTo
+
+*func(func(string) bool)
+
+*main.fInfo
+
+*mlkem768.decryptionKey
+
+*mlkem768.encryptionKey
+
+*uint16
+
+*[256]uint16
+
+*net.Addr
+
+*net.Conn
+
+*net.Error
+
+*net.KeepAliveConfig
+
+*net.Listener
+
+*net.PacketConn
+
+*net.byName
+
+*net.ipAttr
+
+*net.nssConf
+
+*uint8
+
+*net.sockaddr
+
+*net.temporary
+
+*net.timeout
+
+*netip.addrDetail
+
+*nettrace.LookupIPAltResolverKey
+
+*nettrace.Trace
+
+*nettrace.TraceKey
+
+*func(*norm.Iter) []uint8
+
+*func(norm.input, int) norm.Properties
+
+*uint8
+
+*os.Signal
+
+*uint8
+
+*os.timeout
+
+*pem.Block
+
+*pkix.AlgorithmIdentifier
+
+*pkix.AttributeTypeAndValue
+
+*pkix.Extension
+
+*[]pkix.AttributeTypeAndValue
+
+*string
+
+*poll.splicePipe
+
+*poll.splicePipeFields
+
+*rand.Source
+
+*reflect.Type
+
+*reflect.abiStep
+
+*int
+
+*reflect.layoutKey
+
+*reflect.layoutType
+
+*reflect.makeFuncCtxt
+
+*reflect.methodValue
+
+*reflect.visit
+
+*reflectlite.Type
+
+*rsa.CRTValue
+
+*rsa.PrecomputedValues
+
+*runtime.Frame
+
+*runtime._defer
+
+*runtime._typePair
+
+*runtime.ancestorInfo
+
+*uint8
+
+*[32]uintptr
+
+*runtime.coro
+
+*runtime.dlogPerM
+
+*runtime.funcinl
+
+*runtime.functab
+
+*runtime.gcBgMarkWorkerNode
+
+*int
+
+*runtime.gobuf
+
+*runtime.gsignalStack
+
+*runtime.heldLockInfo
+
+*runtime.initTask
+
+*runtime.lfnode
+
+*runtime.libcall
+
+*runtime.lockRankStruct
+
+*runtime.mOS
+
+*runtime.mTraceState
+
+*runtime.mapextra
+
+*runtime.metricData
+
+*runtime.metricFloat64Histogram
+
+*int
+
+*runtime.modulehash
+
+*runtime.mutex
+
+*runtime.note
+
+*runtime.pcHeader
+
+*runtime.pcvalueCache
+
+*runtime.pcvalueCacheEnt
+
+*runtime.persistentAlloc
+
+*runtime.ptabEntry
+
+*runtime.savedOpenDeferState
+
+*[2]uint32
+
+*[]uint8
+
+*runtime.special
+
+*runtime.stack
+
+*runtime.stackfreelist
+
+*string
+
+*runtime.stringer
+
+*runtime.sudog
+
+*runtime.sysmontick
+
+*runtime.textsect
+
+*uint32
+
+*runtime.timerWhen
+
+*uint8
+
+*runtime.traceBufHeader
+
+*runtime.traceFrame
+
+*uint64
+
+*uint16
+
+*uint32
+
+*uint64
+
+*runtime.untracedG
+
+*runtime.winlibcall
+
+*runtime.workbufhdr
+
+*int
+
+*singleflight.Result
+
+*singleflight.call
+
+*sort.Interface
+
+*string
+
+*strings.replacer
+
+*strings.span
+
+*struct { io.Reader; io.WriterTo }
+
+*struct { runtime.gList; n int32 }
+
+*struct { sync.Once; v *x509.Certificate }
+
+*sync.Locker
+
+*sync.eface
+
+*sync.notifyList
+
+*sync.poolLocal
+
+*sync.poolLocalInternal
+
+*sync.readOnly
+
+*sys.NotInHeap
+
+*sys.nih
+
+*syscall.Conn
+
+*syscall.Credential
+
+*syscall.NetlinkMessage
+
+*syscall.NetlinkRouteAttr
+
+*syscall.NlMsghdr
+
+*syscall.RawConn
+
+*syscall.RawSockaddrInet4
+
+*syscall.RawSockaddrInet6
+
+*syscall.RawSockaddrLinklayer
+
+*syscall.RawSockaddrNetlink
+
+*syscall.RawSockaddrUnix
+
+*syscall.Rlimit
+
+*syscall.RtAttr
+
+*syscall.Rusage
+
+*syscall.Sockaddr
+
+*syscall.Stat_t
+
+*syscall.SysProcAttr
+
+*syscall.SysProcIDMap
+
+*uint32
+
+*uint32
+
+*testlog.Interface
+
+*time.zone
+
+*time.zoneTrans
+
+*tls.ClientSessionCache
+
+*tls.QUICEvent
+
+*int
+
+*int
+
+*tls.activeCert
+
+*tls.aead
+
+*tls.binaryMarshaler
+
+*tls.cacheEntry
+
+*tls.cbcMode
+
+*tls.cipherSuite
+
+*tls.constantTimeHash
+
+*tls.echCipher
+
+*tls.echConfig
+
+*tls.echContext
+
+*tls.echExtension
+
+*tls.handshakeMessage
+
+*tls.handshakeMessageWithOriginalBytes
+
+*tls.keyAgreement
+
+*tls.keyShare
+
+*tls.keySharePrivateKeys
+
+*tls.pskIdentity
+
+*tls.quicState
+
+*tls.ticketKey
+
+*tls.transcriptHash
+
+*uint
+
+*uint16
+
+*uint32
+
+*uint64
+
+*uint8
+
+*uintptr
+
+*unicode.Range16
+
+*unicode.Range32
+
+*unicode.RangeTable
+
+*unique.cloneSeq
+
+*unique.uniqueMap[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string }]
+
+*unsafe.Pointer
+
+*unsafeheader.Slice
+
+*int
+
+*int
+
+*int
+
+*x509.lazyCert
+
+*x509.potentialParent
+
+*x509.pssParameters
+
+*x509.pubKeyEqual
+
+*x509.rfc2821Mailbox
+
+*[28]uint8
+
+*func(io.Writer) (io.WriteCloser, error)
+
+*func(io.Reader) io.ReadCloser
+
+<-chan error
+
+<-chan exec.ctxResult
+
+<-chan singleflight.Result
+
+<-chan struct {}
+
+<-chan time.Time
+
+[0]*bisect.dedup
+
+[0]*concurrent.entry[*internal/abi.Type,interface {}]
+
+[0]*concurrent.entry[go.shape.*internal/abi.Type,go.shape.interface {}]
+
+[0]*concurrent.entry[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]
+
+[0]*concurrent.entry[net/netip.addrDetail,internal/weak.Pointer[net/netip.addrDetail]]
+
+[0]*concurrent.node[*internal/abi.Type,interface {}]
+
+[0]*concurrent.node[net/netip.addrDetail,internal/weak.Pointer[net/netip.addrDetail]]
+
+[0]*go.shape.struct { internal/concurrent.isEntry bool }
+
+[0]*godebug.value
+
+[0]*http.response
+
+[0]*interface {}
+
+[0]*os.dirInfo
+
+[0]*runtime.PanicNilError
+
+[0]*string
+
+[0]*sync.poolChainElt
+
+[0]*sync.readOnly
+
+[0]uint64
+
+[0]uintptr
+
+[0]unsafe.Pointer
+
+[1024]uint8
+
+[108]int8
+
+[10]runtime.heldLockInfo
+
+[10]uint8
+
+[112]uint8
+
+[128]*runtime.mspan
+
+[128]*runtime.sudog
+
+[128][4]uint64
+
+[128]uint8
+
+[12]uint8
+
+[131072]uint32
+
+[132][15]*nistec.P521Point
+
+[133]uint8
+
+[136]*runtime.mspan
+
+[13]uint8
+
+[13]unsafe.Pointer
+
+[14]uint8
+
+[15]uint8
+
+[16384]flate.tableEntry
+
+[16384]uint8
+
+[168]uint8
+
+[16]atomic.Pointer[go.shape.struct { internal/concurrent.isEntry bool }]
+
+[16]atomic.Pointer[internal/concurrent.node[*internal/abi.Type,interface {}]]
+
+[16]atomic.Pointer[internal/concurrent.node[net/netip.addrDetail,internal/weak.Pointer[net/netip.addrDetail]]]
+
+[16]cipher.gcmFieldElement
+
+[16]uint64
+
+[16]uint8
+
+[16]uintptr
+
+[17]int32
+
+[18]uint8
+
+[19]int
+
+[19]int32
+
+[19]uint8
+
+[1]*x509.Certificate
+
+[1][]*x509.Certificate
+
+[1][]int32
+
+[1][]uint8
+
+[1]uint
+
+[1]chan<- singleflight.Result
+
+[1]httpproxy.matcher
+
+[1]int
+
+[1]interface {}
+
+[1]net.Addr
+
+[1]net.IPAddr
+
+[1]pkix.AttributeTypeAndValue
+
+[1]string
+
+[1]time.zone
+
+[1]time.zoneTrans
+
+[1]uint16
+
+[1]tls.keyShare
+
+[1]tls.pskIdentity
+
+[1]uint8
+
+[1]uintptr
+
+[1]unsafe.Pointer
+
+[1]int
+
+[2048]uint8
+
+[22]uint8
+
+[2400]uint8
+
+[248]uint8
+
+[256]*hpack.node
+
+[256][]uint8
+
+[256]hpack.node
+
+[256]int
+
+[256]uintptr
+
+[256]uint32
+
+[256]uint8
+
+[257]uint32
+
+[25]uint64
+
+[27]cpu.option
+
+[28]uint8
+
+[29]uint8
+
+[2]*runtime.traceBuf
+
+[2][8]runtime.pcvalueCacheEnt
+
+[2]asn1.encoder
+
+[2]interface {}
+
+[2]runtime.Frame
+
+[2]tls.keyShare
+
+[2]uint64
+
+[2]uint8
+
+[30]uint8
+
+[316]int
+
+[32768]uint32
+
+[32768]uint8
+
+[32]*runtime._defer
+
+[32]norm.Properties
+
+[32]uint64
+
+[32]uint8
+
+[32]uintptr
+
+[3]atomic.Uint32
+
+[3]cpu.option
+
+[3][256]uint16
+
+[3]uint16
+
+[3]uint8
+
+[3]uintptr
+
+[4096]uint8
+
+[46]uint8
+
+[48]uint8
+
+[4]runtime.stackfreelist
+
+[4]uint16
+
+[4]uint16
+
+[4]uint32
+
+[4]uint64
+
+[4]uint8
+
+[4]uintptr
+
+[508]uintptr
+
+[50]uint8
+
+[512]uint32
+
+[512]uint8
+
+[512]uintptr
+
+[56][15]*nistec.P224Point
+
+[57]uint8
+
+[5]http.http2Setting
+
+[5]uint16
+
+[5]uint32
+
+[5]uint8
+
+[5]uintptr
+
+[60]uint32
+
+[64][15]*nistec.P256Point
+
+[64]uint8
+
+[65516]uint8
+
+[65]uint8
+
+[66]uint8
+
+[68]uint64
+
+[68]uint8
+
+[6]uint8
+
+[6]uintptr
+
+[76]uint8
+
+[7]uint16
+
+[8192]uint8
+
+[8]runtime.pcvalueCacheEnt
+
+[8]tls.QUICEvent
+
+[8]uint32
+
+[8]uint64
+
+[8]uint8
+
+[96]fiat.P224Element
+
+[96][15]*nistec.P384Point
+
+[97]uint8
+
+[9][256]uint16
+
+[9]uint8
+
+[9]uintptr
+
+[]*abi.ITab
+
+[]*abi.Type
+
+[]*big.Int
+
+[]*bisect.dedup
+
+[]*concurrent.entry[*internal/abi.Type,interface {}]
+
+[]*concurrent.entry[go.shape.*internal/abi.Type,go.shape.interface {}]
+
+[]*concurrent.entry[go.shape.struct { net/netip.isV6 bool; net/netip.zoneV6 string },go.shape.struct { internal/weak.u unsafe.Pointer }]
+
+[]*concurrent.entry[net/netip.addrDetail,internal/weak.Pointer[net/netip.addrDetail]]
+
+[]*concurrent.node[*internal/abi.Type,interface {}]
+
+[]*concurrent.node[net/netip.addrDetail,internal/weak.Pointer[net/netip.addrDetail]]
+
+[]*go.shape.struct { internal/concurrent.isEntry bool }
+
+[]*godebug.value
+
+[]*hpack.node
+
+[]*http.conn
+
+[]*http.http2serverConn
+
+[]*http.http2stream
+
+[]*http.http2writeQueue
+
+[]*http.pattern
+
+[]*http.response
+
+[]*http.routingNode
+
+[]*interface {}
+
+[]*multipart.FileHeader
+
+[]*net.IPNet
+
+[]*net.Listener
+
+[]*nistec.P224Point
+
+[]*nistec.P256Point
+
+[]*nistec.P384Point
+
+[]*nistec.P521Point
+
+[]*os.File
+
+[]*os.dirInfo
+
+[]*runtime.PanicNilError
+
+[]*runtime._defer
+
+[]*runtime.bmap
+
+[]*runtime.initTask
+
+[]*runtime.moduledata
+
+[]*runtime.mspan
+
+[]*runtime.sudog
+
+[]*runtime.traceBuf
+
+[]*singleflight.call
+
+[]*string
+
+[]*strings.trieNode
+
+[]*sync.entry
+
+[]*sync.poolChainElt
+
+[]*sync.readOnly
+
+[]*tls.Certificate
+
+[]*tls.activeCert
+
+[]*unicode.RangeTable
+
+[]*url.URL
+
+[]*x509.Certificate
+
+[][4]uint64
+
+[][8]runtime.pcvalueCacheEnt
+
+[][]*abi.Type
+
+[][]*http.pattern
+
+[][]*multipart.FileHeader
+
+[][]*x509.Certificate
+
+[][]int
+
+[][]int32
+
+[][]net.nssSource
+
+[][]string
+
+[][]uint32
+
+[][]uint8
+
+[]abi.Imethod
+
+[]int32
+
+[][]int
+
+[]asn1.encoder
+
+[]atomic.Pointer[go.shape.struct { internal/concurrent.isEntry bool }]
+
+[]atomic.Pointer[internal/concurrent.node[*internal/abi.Type,interface {}]]
+
+[]atomic.Pointer[internal/concurrent.node[net/netip.addrDetail,internal/weak.Pointer[net/netip.addrDetail]]]
+
+[]atomic.Uint32
+
+[]uint
+
+[]bisect.cond
+
+[]bool
+
+[]chan<- singleflight.Result
+
+[]cipher.gcmFieldElement
+
+[]context.canceler
+
+[]cpu.option
+
+[]cpu.option
+
+[][256]uint32
+
+[]uint
+
+[]uint16
+
+[]uint16
+
+[]uint8
+
+[]error
+
+[]fiat.P224Element
+
+[]flate.hcode
+
+[]flate.literalNode
+
+[]flate.tableEntry
+
+[]uint32
+
+[]float64
+
+[]fmtsort.KeyValue
+
+[]fs.DirEntry
+
+[]fs.FileInfo
+
+[]func()
+
+[]func() *hpke.hkdfKDF
+
+[]func() error
+
+[]func(*http.Server, *tls.Conn, http.Handler)
+
+[]hpack.HeaderField
+
+[]hpack.node
+
+[]hpack.pairNameValue
+
+[]int
+
+[]http.entry[string,*net/http.routingNode]
+
+[]uint32
+
+[]uint8
+
+[]uint8
+
+[]http.http2FrameWriteRequest
+
+[]http.http2Setting
+
+[]uint16
+
+[]func(*http.http2frameCache, http.http2FrameHeader, func(string), []uint8) (http.http2Frame, error)
+
+[]http.http2unstartedHandler
+
+[]http.httpRange
+
+[]http.keyValues
+
+[]http.muxEntry
+
+[]http.routingIndexKey
+
+[]http.segment
+
+[]httpproxy.matcher
+
+[]int
+
+[]int16
+
+[]int32
+
+[]int64
+
+[]int8
+
+[]interface {}
+
+[]io.Closer
+
+[]map[uint8]string
+
+[]map[string]int
+
+[]map[string]string
+
+[]uint16
+
+[][256]uint16
+
+[]net.Addr
+
+[][]uint8
+
+[]net.IPAddr
+
+[]net.byName
+
+[]int
+
+[]net.ipAttr
+
+[]net.nssCriterion
+
+[]net.nssSource
+
+[]netip.Addr
+
+[]netip.addrDetail
+
+[][15]*nistec.P224Point
+
+[][15]*nistec.P256Point
+
+[][15]*nistec.P384Point
+
+[][15]*nistec.P521Point
+
+[]norm.Properties
+
+[]pkix.AttributeTypeAndValue
+
+[]pkix.Extension
+
+[]reflect.abiStep
+
+[]reflect.visit
+
+[]rsa.CRTValue
+
+[]runtime.Frame
+
+[]runtime._typePair
+
+[]runtime.ancestorInfo
+
+[]runtime.functab
+
+[]uintptr
+
+[]runtime.heldLockInfo
+
+[]runtime.metricData
+
+[]runtime.modulehash
+
+[]runtime.pcvalueCacheEnt
+
+[]runtime.ptabEntry
+
+[]runtime.stackfreelist
+
+[]runtime.textsect
+
+[]runtime.timerWhen
+
+[]string
+
+[]struct { curve ecdh.Curve; hash crypto.Hash; nSecret uint16 }
+
+[]struct { keySize int; nonceSize int; aead func([]uint8) (cipher.AEAD, error) }
+
+[]struct {}
+
+[]sync.eface
+
+[]syscall.Iovec
+
+[]syscall.SysProcIDMap
+
+[]time.zone
+
+[]time.zoneTrans
+
+[]tls.Certificate
+
+[]uint16
+
+[]tls.QUICEvent
+
+[]uint16
+
+[]uint8
+
+[]tls.echCipher
+
+[]tls.echExtension
+
+[]tls.keyShare
+
+[]tls.pskIdentity
+
+[]tls.ticketKey
+
+[]uint
+
+[]uint16
+
+[]uint32
+
+[]uint64
+
+[]uint8
+
+[]uintptr
+
+[]unicode.Range16
+
+[]unicode.Range32
+
+[]unsafe.Pointer
+
+[]weak.Pointer[net/netip.addrDetail]
+
+[]int
+
+[]x509.OID
+
+[]x509.lazyCert
+
+[][28]uint8
+
+[]func(io.Writer) (io.WriteCloser, error)
+
+uint8
+
+uint8
+
+type abi.FuncType struct {
+	abi.Type
+	InCount  uint16
+	OutCount uint16
+}
+
+type abi.ITab struct {
+	Inter *abi.InterfaceType
+	Type  *abi.Type
+	Hash  uint32
+	Fun   [1]uintptr
+}
+
+type abi.Imethod struct {
+	Name int32
+	Typ  int32
+}
+
+[0]uint8
+
+type abi.InterfaceType struct {
+	abi.Type
+	PkgPath abi.Name
+	Methods []abi.Imethod
+}
+
+uint8
+
+type abi.Name struct {
+	Bytes *uint8
+}
+
+int32
+
+type abi.PtrType struct {
+	abi.Type
+	Elem *abi.Type
+}
+
+type abi.RegArgs struct {
+	Ints        [0]uintptr
+	Floats      [0]uint64
+	Ptrs        [0]unsafe.Pointer
+	ReturnIsPtr [0]uint8
+}
+
+uint8
+
+type abi.Type struct {
+	Size_       uintptr
+	PtrBytes    uintptr
+	Hash        uint32
+	TFlag       uint8
+	Align_      uint8
+	FieldAlign_ uint8
+	Kind_       uint8
+	Equal       func(unsafe.Pointer, unsafe.Pointer) bool
+	GCData      *uint8
+	Str         int32
+	PtrToThis   int32
+}
+
+int32
+
+int
+
+type asn1.BitString struct {
+	Bytes     []uint8
+	BitLength int
+}
+
+int
+
+bool
+
+[]int
+
+[]uint8
+
+type asn1.RawValue struct {
+	Class      int
+	Tag        int
+	IsCompound bool
+	Bytes      []uint8
+	FullBytes  []uint8
+}
+
+type asn1.StructuralError struct {
+	Msg string
+}
+
+type asn1.SyntaxError struct {
+	Msg string
+}
+
+uint8
+
+type asn1.bitStringEncoder struct {
+	Bytes     []uint8
+	BitLength int
+}
+
+uint8
+
+[]uint8
+
+int64
+
+type asn1.invalidUnmarshalError struct {
+	Type reflect.Type
+}
+
+[]asn1.encoder
+
+[]int
+
+[]asn1.encoder
+
+string
+
+type atomic.align64 struct{}
+
+type atomic.align64 struct{}
+
+type atomic.noCopy struct{}
+
+type atomic.noCopy struct{}
+
+int64
+
+uint
+
+[]uint
+
+bool
+
+type boring.PrivateKeyECDH struct{}
+
+type boring.PublicKeyECDH struct{}
+
+int8
+
+chan []uint8
+
+chan bool
+
+chan error
+
+chan exec.ctxResult
+
+chan exec.goroutineStatus
+
+chan http.http2FrameWriteRequest
+
+chan http.http2bodyReadMsg
+
+chan http.http2frameWriteResult
+
+chan http.http2readFrameResult
+
+chan int
+
+chan interface {}
+
+chan net.dialResult
+
+chan net.result
+
+chan singleflight.Result
+
+chan struct {}
+
+chan time.Time
+
+chan<- exec.ctxResult
+
+chan<- singleflight.Result
+
+complex128
+
+complex64
+
+func(unsafe.Pointer, unsafe.Pointer) bool
+
+func(unsafe.Pointer, uintptr) uintptr
+
+func()
+
+type context.deadlineExceededError struct{}
+
+type context.emptyCtx struct{}
+
+type cpu.option struct {
+	Name      string
+	Feature   *bool
+	Specified bool
+	Enable    bool
+}
+
+type cpu.option struct {
+	Name      string
+	Feature   *bool
+	Specified bool
+	Enable    bool
+	Required  bool
+}
+
+[256]uint32
+
+[8][256]uint32
+
+uint
+
+type cryptobyte.BuildError struct {
+	Err error
+}
+
+int
+
+type dnsmessage.AAAAResource struct {
+	AAAA [16]uint8
+}
+
+type dnsmessage.AResource struct {
+	A [4]uint8
+}
+
+uint16
+
+uint16
+
+uint16
+
+uint8
+
+type dsa.Parameters struct {
+	P *big.Int
+	Q *big.Int
+	G *big.Int
+}
+
+type dsa.PublicKey struct {
+	dsa.Parameters
+	Y *big.Int
+}
+
+type ecdh.x25519Curve struct{}
+
+type ecdsa.PrivateKey struct {
+	ecdsa.PublicKey
+	D *big.Int
+}
+
+type ecdsa.PublicKey struct {
+	elliptic.Curve
+	X *big.Int
+	Y *big.Int
+}
+
+[]uint8
+
+[]uint8
+
+[0]func()
+
+type elliptic.CurveParams struct {
+	P       *big.Int
+	N       *big.Int
+	B       *big.Int
+	Gx      *big.Int
+	Gy      *big.Int
+	BitSize int
+	Name    string
+}
+
+type error interface {
+	Error() string
+}
+type exec.Error struct {
+	Name string
+	Err  error
+}
+
+type exec.ExitError struct {
+	*os.ProcessState
+	Stderr []uint8
+}
+
+[4]uint64
+
+[4]uint64
+
+[6]uint64
+
+[9]uint64
+
+int64
+
+string
+
+[]flate.literalNode
+
+[]flate.literalNode
+
+uint32
+
+float32
+
+float64
+
+[]uint8
+
+type fmtsort.KeyValue struct {
+	Key   reflect.Value
+	Value reflect.Value
+}
+
+uint32
+
+type fs.PathError struct {
+	Op   string
+	Path string
+	Err  error
+}
+
+func()
+
+func() (*hpack.Encoder, *bytes.Buffer)
+
+func() (*x509.Certificate, error)
+
+func() ([]uint8, error)
+
+func() (fs.FileInfo, error)
+
+func() (http.http2FrameWriteRequest, bool)
+
+func() (int, bool)
+
+func() (interface {}, error)
+
+func() (io.ReadCloser, error)
+
+func() (net.Conn, error)
+
+func() (netip.addrDetail, weak.Pointer[net/netip.addrDetail])
+
+func() (syscall.RawConn, error)
+
+func() (time.Time, bool)
+
+func() (uint32, error)
+
+func() (uint8, error)
+
+func() (unsafe.Pointer, uint32, error)
+
+func() *abi.Type
+
+func() *abi.UncommonType
+
+func() *elliptic.CurveParams
+
+func() *hpke.hkdfKDF
+
+func() *http.http2Framer
+
+func() *nistec.P224Point
+
+func() *nistec.P256Point
+
+func() *nistec.P384Point
+
+func() *nistec.P521Point
+
+func() *poll.FD
+
+func() <-chan struct {}
+
+func() <-chan time.Time
+
+func() []error
+
+func() []uint8
+
+func() uint8
+
+func() bool
+
+func() context.Context
+
+func() uint
+
+func() crypto.PublicKey
+
+func() error
+
+func() uint32
+
+func() bool
+
+func() go.shape.interface { Error() string }
+
+func() hash.Hash
+
+func() map[string][]string
+
+func() http.http2FrameHeader
+
+func() http.http2WriteScheduler
+
+func() int
+
+func() int32
+
+func() int64
+
+func() interface {}
+
+func() net.Addr
+
+func() string
+
+func() int
+
+func() uint
+
+func() reflect.Type
+
+func() reflectlite.Type
+
+func() string
+
+func() time.Time
+
+func() tls.ConnectionState
+
+func() uint32
+
+func() uint64
+
+func() uintptr
+
+func(*abi.Type, interface {}) bool
+
+func(*big.Int, *big.Int) (*big.Int, *big.Int)
+
+func(*big.Int, *big.Int) bool
+
+func(*big.Int, *big.Int, *big.Int, *big.Int) (*big.Int, *big.Int)
+
+func(*big.Int, *big.Int, []uint8) (*big.Int, *big.Int)
+
+func(*ecdh.PrivateKey) *ecdh.PublicKey
+
+func(*ecdh.PrivateKey, *ecdh.PublicKey) ([]uint8, error)
+
+func(*exec.Cmd)
+
+func(*flate.compressor)
+
+func(*flate.compressor, []uint8) int
+
+func(*flate.decompressor)
+
+func(*http.Server, *tls.Conn, http.Handler)
+
+func(*http.http2serverConn)
+
+func(*net.netFD) error
+
+func(*norm.reorderBuffer) bool
+
+func(*os.Process) error
+
+func(*os.file) error
+
+func(*poll.splicePipe)
+
+func(*runtime.coro)
+
+func(*runtime.g, unsafe.Pointer) bool
+
+func(*runtime.statAggregate, *runtime.metricValue)
+
+func(*tls.CertificateRequestInfo) (*tls.Certificate, error)
+
+func(*tls.ClientHelloInfo) (*tls.Certificate, error)
+
+func(*tls.ClientHelloInfo) (*tls.Config, error)
+
+func(*tls.Config, *tls.Certificate, *tls.clientHelloMsg, *tls.serverHelloMsg) (*tls.serverKeyExchangeMsg, error)
+
+func(*tls.Config, *tls.Certificate, *tls.clientKeyExchangeMsg, uint16) ([]uint8, error)
+
+func(*tls.Config, *tls.clientHelloMsg, *tls.serverHelloMsg, *x509.Certificate, *tls.serverKeyExchangeMsg) error
+
+func(*tls.Config, *tls.clientHelloMsg, *x509.Certificate) ([]uint8, *tls.clientKeyExchangeMsg, error)
+
+func(*tls.activeCert)
+
+func(<-chan singleflight.Result, func())
+
+func([]*x509.Certificate) error
+
+func([][]uint8, [][]*x509.Certificate) error
+
+func([]int) reflect.StructField
+
+func([]interface {}, bool, error)
+
+func([]uint8)
+
+func([]uint8) (*big.Int, *big.Int)
+
+func([]uint8) (*ecdh.PrivateKey, error)
+
+func([]uint8) (*ecdh.PublicKey, error)
+
+func([]uint8) (cipher.AEAD, error)
+
+func([]uint8) (int, error)
+
+func([]uint8) (int, net.Addr, error)
+
+func([]uint8) []uint8
+
+func([]uint8) bool
+
+func([]uint8) cipher.BlockMode
+
+func([]uint8) error
+
+func([]uint8) hash.Hash
+
+func([]uint8, []uint32)
+
+func([]uint8, []uint8)
+
+func([]uint8, []uint8) int
+
+func([]uint8, []uint8) tls.aead
+
+func([]uint8, []uint8, []uint8, []uint8)
+
+func([]uint8, []uint8, []uint8, []uint8) ([]uint8, error)
+
+func([]uint8, []uint8, []uint8, []uint8) []uint8
+
+func([]uint8, []uint8, bool) interface {}
+
+func([]uint8, int) string
+
+func([]uint8, net.Addr) (int, error)
+
+func([]uint8, tls.ConnectionState) (*tls.SessionState, error)
+
+func(bool, error, error)
+
+func(complex128) bool
+
+func(context.Context) error
+
+func(context.Context, bool)
+
+func(context.Context, net.Conn) context.Context
+
+func(context.Context, string, *net.TCPAddr, *net.TCPAddr) (*net.TCPConn, error)
+
+func(context.Context, string, string) ([]net.IPAddr, error)
+
+func(context.Context, string, string) (net.Conn, error)
+
+func(context.Context, string, string, syscall.RawConn) error
+
+func(context.Context, int64) (context.Context, func())
+
+func(crypto.PublicKey) bool
+
+func(uint16)
+
+func(error) bool
+
+func(float64) bool
+
+func(fmt.State, int32)
+
+func(fmtsort.KeyValue, fmtsort.KeyValue) int
+
+func(fs.DirEntry, fs.DirEntry) int
+
+func(func() error)
+
+func(func())
+
+func(func()) func() bool
+
+func(func(*abi.Type, interface {}) bool)
+
+func(func(netip.addrDetail, weak.Pointer[net/netip.addrDetail]) bool)
+
+func(func(string) bool)
+
+func(func(string) bool) (reflect.StructField, bool)
+
+func(func(uintptr) bool) error
+
+func(func(uintptr)) error
+
+func(hpack.HeaderField)
+
+func(http.ResponseWriter, *http.Request)
+
+func(http.http2FrameWriteRequest)
+
+func(http.http2writeContext) error
+
+func(http.keyValues, http.keyValues) int
+
+func(int)
+
+func(int) ([]fs.DirEntry, error)
+
+func(int) ([]fs.FileInfo, error)
+
+func(int) (syscall.Sockaddr, error)
+
+func(int) bool
+
+func(int) error
+
+func(int) reflect.Method
+
+func(int) reflect.StructField
+
+func(int) reflect.Type
+
+func(int) string
+
+func(int, int)
+
+func(int, int) (cipher.AEAD, error)
+
+func(int, int) bool
+
+func(int64) bool
+
+func(int64) int64
+
+func(int64, int) (int64, error)
+
+func(interface {}) bool
+
+func(interface {}) interface {}
+
+func(interface {}, uintptr, int64)
+
+func(io.Reader) (*ecdh.PrivateKey, error)
+
+func(io.Reader) (int64, error)
+
+func(io.Reader, []uint8) error
+
+func(io.Reader, []uint8, crypto.SignerOpts) ([]uint8, error)
+
+func(io.Writer) (int64, error)
+
+func(io.Writer, string) (int, error)
+
+func(net.Conn, int)
+
+func(net.Listener) context.Context
+
+func(netip.addrDetail, weak.Pointer[net/netip.addrDetail]) bool
+
+func(reflect.Type) bool
+
+func(reflectlite.Type) bool
+
+func(string)
+
+func(string) (*tls.ClientSessionState, bool)
+
+func(string) (http.File, error)
+
+func(string) (int, error)
+
+func(string) (reflect.Method, bool)
+
+func(string) (reflect.StructField, bool)
+
+func(string) bool
+
+func(string) func()
+
+func(string) net.sockaddr
+
+func(string) string
+
+func(string, *http.routingNode) bool
+
+func(string, *tls.ClientSessionState)
+
+func(string, []interface {})
+
+func(string, []uint8, int) ([]uint8, error)
+
+func(string, int, int) int
+
+func(string, string)
+
+func(string, string, error)
+
+func(string, string, []uint8) bool
+
+func(string, string, syscall.RawConn) error
+
+func(int64) bool
+
+func(int64) interface { C() <-chan time.Time; Reset(time.Duration) bool; Stop() bool }
+
+func(int64, func()) interface { C() <-chan time.Time; Reset(time.Duration) bool; Stop() bool }
+
+func(time.Time) error
+
+func(tls.ConnectionState) error
+
+func(tls.ConnectionState, *tls.SessionState) ([]uint8, error)
+
+func(uint16) bool
+
+func(tls.keyShare) bool
+
+func(uint16) bool
+
+func(uint16) tls.keyAgreement
+
+func(uint32)
+
+func(uint32) []uint8
+
+func(uint32, http.http2OpenStreamOptions)
+
+func(uint32, http.http2PriorityParam)
+
+func(uint64) bool
+
+func(uintptr)
+
+func(uintptr) (uintptr, int64)
+
+func(uintptr) bool
+
+func(unsafe.Pointer, unsafe.Pointer) bool
+
+*abi.Type
+
+[]string
+
+bool
+
+string
+
+type go.shape.struct { Key reflect.Value; Value reflect.Value } struct{
+	Key reflect.Value
+	Value reflect.Value
+}
+
+type godebug.runtimeStderr struct{}
+
+type godebugs.Info struct {
+	Name    string
+	Package string
+	Changed int
+	Old     string
+	Opaque  bool
+}
+
+type hpack.DecodingError struct {
+	Err error
+}
+
+type hpack.HeaderField struct {
+	Name      string
+	Value     string
+	Sensitive bool
+}
+
+int
+
+[0]func()
+
+int
+
+string
+
+func(http.ResponseWriter, *http.Request)
+
+map[string][]string
+
+type http.MaxBytesError struct {
+	Limit int64
+}
+
+type http.ProtocolError struct {
+	ErrorString string
+}
+
+type http.Response struct{
+	Status string
+	StatusCode int
+	Proto string
+	ProtoMajor int
+	ProtoMinor int
+	Header map[string][]string
+	Body io.ReadCloser
+	ContentLength int64
+	TransferEncoding []string
+	Close bool
+	Uncompressed bool
+	Trailer map[string][]string
+	Request *<nil>
+	TLS *tls.ConnectionState
+}
+
+int64
+
+[]fs.DirEntry
+
+[]fs.FileInfo
+
+type http.globalOptionsHandler struct{}
+
+[]uint8
+
+uint32
+
+uint32
+
+uint8
+
+uint8
+
+type http.http2OpenStreamOptions struct {
+	PusherID uint32
+}
+
+type http.http2PriorityParam struct {
+	StreamDep uint32
+	Exclusive bool
+	Weight    uint8
+}
+
+type http.http2Setting struct {
+	ID  uint16
+	Val uint32
+}
+
+uint16
+
+type http.http2StreamError struct {
+	StreamID uint32
+	Code     uint32
+	Cause    error
+}
+
+chan struct {}
+
+type http.http2connError struct {
+	Code   uint32
+	Reason string
+}
+
+string
+
+type http.http2flushFrameWriter struct{}
+
+func(*http.http2frameCache, http.http2FrameHeader, func(string), []uint8) (http.http2Frame, error)
+
+type http.http2goAwayFlowError struct{}
+
+uint64
+
+type http.http2handlerPanicRST struct {
+	StreamID uint32
+}
+
+string
+
+string
+
+[0]func()
+
+string
+
+int
+
+int
+
+type http.http2timeTimer struct {
+	*time.Timer
+}
+
+[]*http.http2writeQueue
+
+[]http.http2Setting
+
+type http.http2writeSettingsAck struct{}
+
+type http.mp4Sig struct{}
+
+type http.noBody struct{}
+
+string
+
+type http.textSig struct{}
+
+type http.writerOnly struct {
+	io.Writer
+}
+
+type httpproxy.Config struct {
+	HTTPProxy  string
+	HTTPSProxy string
+	NoProxy    string
+	CGI        bool
+}
+
+type httpproxy.allMatch struct{}
+
+int32
+
+int
+
+int16
+
+int32
+
+int64
+
+int8
+
+type interface { C() <-chan time.Time; Reset(time.Duration) bool; Stop() bool } interface {
+	C() <-chan time.Time
+	Reset(int64) bool
+	Stop() bool
+}
+type interface {} interface{}
+type io.LimitedReader struct {
+	R io.Reader
+	N int64
+}
+
+type io.discard struct{}
+
+type io.nopCloser struct {
+	io.Reader
+}
+
+type io.nopCloserWriterTo struct {
+	io.Reader
+}
+
+func(func(string) bool)
+
+[]main.fInfo
+
+map[*abi.Type]interface {}
+
+map[*http.conn]struct {}
+
+map[*http.http2serverConn]struct {}
+
+map[*net.Listener]struct {}
+
+map[int32]*abi.Type
+
+map[context.canceler]struct {}
+
+map[uint][]uint8
+
+map[uint16]string
+
+map[uint16]string
+
+map[uint8]string
+
+map[hpack.pairNameValue]uint64
+
+map[int]string
+
+map[uint32]string
+
+map[uint8]string
+
+map[uint8]func(*http.http2frameCache, http.http2FrameHeader, func(string), []uint8) (http.http2Frame, error)
+
+map[uint8]map[uint8]string
+
+map[uint8]string
+
+map[uint16]bool
+
+map[uint16]string
+
+map[http.routingIndexKey][]*http.pattern
+
+map[int32]unsafe.Pointer
+
+map[int]string
+
+map[interface {}]*sync.entry
+
+map[int]string
+
+map[netip.addrDetail]weak.Pointer[net/netip.addrDetail]
+
+map[reflect.visit]bool
+
+map[runtime._typePair]struct {}
+
+map[string]*http.routingNode
+
+map[string]*singleflight.call
+
+map[string]*tls.Certificate
+
+map[string]*unicode.RangeTable
+
+map[string][]*multipart.FileHeader
+
+map[string][]int
+
+map[string][]net.nssSource
+
+map[string][]string
+
+map[string]bool
+
+map[string]func(*http.Server, *tls.Conn, http.Handler)
+
+map[string]http.muxEntry
+
+map[string]int
+
+map[string]map[string]int
+
+map[string]map[string]string
+
+map[string]net.byName
+
+map[string]runtime.metricData
+
+map[string]string
+
+map[string]uint16
+
+map[string]uint64
+
+map[uint8]string
+
+map[uint16]bool
+
+map[uint16]func() *hpke.hkdfKDF
+
+map[uint16]struct { curve ecdh.Curve; hash crypto.Hash; nSecret uint16 }
+
+map[uint16]struct { keySize int; nonceSize int; aead func([]uint8) (cipher.AEAD, error) }
+
+map[uint16]func(io.Writer) (io.WriteCloser, error)
+
+map[uint32]*http.http2stream
+
+map[uint32]*http.http2writeQueue
+
+map[uint32][]*abi.Type
+
+map[uint32]int32
+
+map[uint64]bool
+
+map[unsafe.Pointer]int32
+
+map[[28]uint8]bool
+
+uint16
+
+[256]uint16
+
+type multipart.Form struct {
+	Value map[string][]string
+	File  map[string][]*multipart.FileHeader
+}
+
+type net.AddrError struct {
+	Err  string
+	Addr string
+}
+
+type net.DNSError struct {
+	UnwrapErr   error
+	Err         string
+	Name        string
+	Server      string
+	IsTimeout   bool
+	IsTemporary bool
+	IsNotFound  bool
+}
+
+uint
+
+[]uint8
+
+[]uint8
+
+type net.IPAddr struct {
+	IP   []uint8
+	Zone string
+}
+
+[]uint8
+
+type net.IPNet struct {
+	IP   []uint8
+	Mask []uint8
+}
+
+type net.Interface struct {
+	Index        int
+	MTU          int
+	Name         string
+	HardwareAddr []uint8
+	Flags        uint
+}
+
+type net.KeepAliveConfig struct {
+	Enable   bool
+	Idle     int64
+	Interval int64
+	Count    int
+}
+
+type net.OpError struct {
+	Op     string
+	Net    string
+	Source net.Addr
+	Addr   net.Addr
+	Err    error
+}
+
+type net.ParseError struct {
+	Type string
+	Text string
+}
+
+type net.TCPAddr struct {
+	IP   []uint8
+	Port int
+	Zone string
+}
+
+type net.UDPAddr struct {
+	IP   []uint8
+	Port int
+	Zone string
+}
+
+type net.UnixAddr struct {
+	Name string
+	Net  string
+}
+
+string
+
+[]net.Addr
+
+type net.canceledError struct{}
+
+int
+
+type net.ipAttr struct {
+	Scope      uint8
+	Precedence uint8
+	Label      uint8
+}
+
+uint8
+
+type net.noReadFrom struct{}
+
+type net.noWriteTo struct{}
+
+uint8
+
+type net.timeoutError struct{}
+
+type nettrace.LookupIPAltResolverKey struct{}
+
+type nettrace.Trace struct {
+	DNSStart     func(string)
+	DNSDone      func([]interface{}, bool, error)
+	ConnectStart func(string, string)
+	ConnectDone  func(string, string, error)
+}
+
+type nettrace.TraceKey struct{}
+
+[15]*nistec.P224Point
+
+[15]*nistec.P256Point
+
+[15]*nistec.P384Point
+
+[15]*nistec.P521Point
+
+int
+
+func(*norm.Iter) []uint8
+
+func(norm.input, int) norm.Properties
+
+uint8
+
+uint8
+
+type os.LinkError struct {
+	Op  string
+	Old string
+	New string
+	Err error
+}
+
+type os.SyscallError struct {
+	Syscall string
+	Err     error
+}
+
+type os.noReadFrom struct{}
+
+type os.noWriteTo struct{}
+
+uint8
+
+type pem.Block struct {
+	Type    string
+	Headers map[string]string
+	Bytes   []uint8
+}
+
+type pkix.AlgorithmIdentifier struct {
+	Algorithm  []int
+	Parameters asn1.RawValue `asn1:"optional"`
+}
+
+type pkix.AttributeTypeAndValue struct {
+	Type  []int
+	Value interface{}
+}
+
+type pkix.Extension struct {
+	Id       []int
+	Critical bool `asn1:"optional"`
+	Value    []uint8
+}
+
+type pkix.Name struct {
+	Country            []string
+	Organization       []string
+	OrganizationalUnit []string
+	Locality           []string
+	Province           []string
+	StreetAddress      []string
+	PostalCode         []string
+	SerialNumber       string
+	CommonName         string
+	Names              []pkix.AttributeTypeAndValue
+	ExtraNames         []pkix.AttributeTypeAndValue
+}
+
+[][]pkix.AttributeTypeAndValue
+
+[]pkix.AttributeTypeAndValue
+
+type poll.DeadlineExceededError struct{}
+
+string
+
+type poll.errNetClosing struct{}
+
+type rand.runtimeSource struct{}
+
+int
+
+int
+
+uint
+
+type reflect.Method struct {
+	Name    string
+	PkgPath string
+	Type    reflect.Type
+	Func    reflect.Value
+	Index   int
+}
+
+type reflect.StructField struct {
+	Name      string
+	PkgPath   string
+	Type      reflect.Type
+	Tag       string
+	Offset    uintptr
+	Index     []int
+	Anonymous bool
+}
+
+string
+
+type reflect.ValueError struct {
+	Method string
+	Kind   uint
+}
+
+int
+
+uintptr
+
+type reflect.ptrType struct {
+	abi.PtrType
+}
+
+type reflectlite.ValueError struct {
+	Method string
+	Kind   uint8
+}
+
+type reflectlite.rtype struct {
+	*abi.Type
+}
+
+type rsa.CRTValue struct {
+	Exp   *big.Int
+	Coeff *big.Int
+	R     *big.Int
+}
+
+type rsa.PSSOptions struct {
+	SaltLength int
+	Hash       uint
+}
+
+type rsa.PrivateKey struct {
+	rsa.PublicKey
+	D           *big.Int
+	Primes      []*big.Int
+	Precomputed rsa.PrecomputedValues
+}
+
+type rsa.PublicKey struct {
+	N *big.Int
+	E int
+}
+
+uint8
+
+[32]uintptr
+
+type runtime.cpuStats struct {
+	GCAssistTime       int64
+	GCDedicatedTime    int64
+	GCIdleTime         int64
+	GCPauseTime        int64
+	GCTotalTime        int64
+	ScavengeAssistTime int64
+	ScavengeBgTime     int64
+	ScavengeTotalTime  int64
+	IdleTime           int64
+	UserTime           int64
+	TotalTime          int64
+}
+
+type runtime.dlogPerM struct{}
+
+string
+
+int
+
+uintptr
+
+uintptr
+
+int
+
+type runtime.lockRankStruct struct{}
+
+int
+
+func() uint64
+
+uintptr
+
+string
+
+uintptr
+
+[2]uint32
+
+[]uint8
+
+uint8
+
+[1]uint64
+
+string
+
+uint32
+
+uint8
+
+uint64
+
+uint16
+
+uint32
+
+uint64
+
+uint8
+
+type runtime.winlibcall struct{}
+
+int
+
+type singleflight.Result struct {
+	Val    interface{}
+	Err    error
+	Shared bool
+}
+
+type strconv.NumError struct {
+	Func string
+	Num  string
+	Err  error
+}
+
+string
+
+[]uint8
+
+[256]uint8
+
+type struct { io.Reader; io.WriterTo } struct{
+	io.Reader
+	io.WriterTo
+}
+
+type struct {} struct{}
+
+uintptr
+
+type sync.noCopy struct{}
+
+type sys.nih struct{}
+
+type syscall.Credential struct {
+	Uid         uint32
+	Gid         uint32
+	Groups      []uint32
+	NoSetGroups bool
+}
+
+uintptr
+
+type syscall.Iovec struct {
+	Base *uint8
+	Len  uint32
+}
+
+type syscall.NetlinkMessage struct {
+	Header syscall.NlMsghdr
+	Data   []uint8
+}
+
+type syscall.NetlinkRouteAttr struct {
+	Attr  syscall.RtAttr
+	Value []uint8
+}
+
+type syscall.NlMsghdr struct {
+	Len   uint32
+	Type  uint16
+	Flags uint16
+	Seq   uint32
+	Pid   uint32
+}
+
+type syscall.RawSockaddrInet4 struct {
+	Family uint16
+	Port   uint16
+	Addr   [4]uint8
+	Zero   [8]uint8
+}
+
+type syscall.RawSockaddrInet6 struct {
+	Family   uint16
+	Port     uint16
+	Flowinfo uint32
+	Addr     [16]uint8
+	Scope_id uint32
+}
+
+type syscall.RawSockaddrLinklayer struct {
+	Family   uint16
+	Protocol uint16
+	Ifindex  int32
+	Hatype   uint16
+	Pkttype  uint8
+	Halen    uint8
+	Addr     [8]uint8
+}
+
+type syscall.RawSockaddrNetlink struct {
+	Family uint16
+	Pad    uint16
+	Pid    uint32
+	Groups uint32
+}
+
+type syscall.RawSockaddrUnix struct {
+	Family uint16
+	Path   [108]int8
+}
+
+type syscall.Rlimit struct {
+	Cur uint64
+	Max uint64
+}
+
+type syscall.RtAttr struct {
+	Len  uint16
+	Type uint16
+}
+
+type syscall.Rusage struct {
+	Utime    syscall.Timeval
+	Stime    syscall.Timeval
+	Maxrss   int32
+	Ixrss    int32
+	Idrss    int32
+	Isrss    int32
+	Minflt   int32
+	Majflt   int32
+	Nswap    int32
+	Inblock  int32
+	Oublock  int32
+	Msgsnd   int32
+	Msgrcv   int32
+	Nsignals int32
+	Nvcsw    int32
+	Nivcsw   int32
+}
+
+int
+
+type syscall.Stat_t struct {
+	Dev       uint64
+	X__pad1   uint16
+	Pad_cgo_0 [2]uint8
+	X__st_ino uint32
+	Mode      uint32
+	Nlink     uint32
+	Uid       uint32
+	Gid       uint32
+	Rdev      uint64
+	X__pad2   uint16
+	Pad_cgo_1 [6]uint8
+	Size      int64
+	Blksize   int32
+	Pad_cgo_2 [4]uint8
+	Blocks    int64
+	Atim      syscall.Timespec
+	Mtim      syscall.Timespec
+	Ctim      syscall.Timespec
+	Ino       uint64
+}
+
+type syscall.SysProcAttr struct {
+	Chroot                     string
+	Credential                 *syscall.Credential
+	Ptrace                     bool
+	Setsid                     bool
+	Setpgid                    bool
+	Setctty                    bool
+	Noctty                     bool
+	Ctty                       int
+	Foreground                 bool
+	Pgid                       int
+	Pdeathsig                  int
+	Cloneflags                 uintptr
+	Unshareflags               uintptr
+	UidMappings                []syscall.SysProcIDMap
+	GidMappings                []syscall.SysProcIDMap
+	GidMappingsEnableSetgroups bool
+	AmbientCaps                []uintptr
+	UseCgroupFD                bool
+	CgroupFD                   int
+	PidFD                      *int
+}
+
+type syscall.SysProcIDMap struct {
+	ContainerID int
+	HostID      int
+	Size        int
+}
+
+type syscall.Timespec struct {
+	Sec  int32
+	Nsec int32
+}
+
+type syscall.Timeval struct {
+	Sec  int32
+	Usec int32
+}
+
+uint32
+
+uint32
+
+uint32
+
+map[string][]string
+
+string
+
+int64
+
+type time.ParseError struct {
+	Layout     string
+	Value      string
+	LayoutElem string
+	ValueElem  string
+	Message    string
+}
+
+string
+
+uint8
+
+type tls.Certificate struct {
+	Certificate                  [][]uint8
+	PrivateKey                   crypto.PrivateKey
+	SupportedSignatureAlgorithms []uint16
+	OCSPStaple                   []uint8
+	SignedCertificateTimestamps  [][]uint8
+	Leaf                         *x509.Certificate
+}
+
+type tls.CertificateVerificationError struct {
+	UnverifiedCertificates []*x509.Certificate
+	Err                    error
+}
+
+int
+
+uint16
+
+type tls.ECHRejectionError struct {
+	RetryConfigList []uint8
+}
+
+int
+
+type tls.QUICEvent struct {
+	Kind         int
+	Level        int
+	Data         []uint8
+	Suite        uint16
+	SessionState *tls.SessionState
+}
+
+int
+
+type tls.RecordHeaderError struct {
+	Msg          string
+	RecordHeader [5]uint8
+	Conn         net.Conn
+}
+
+int
+
+uint16
+
+uint8
+
+type tls.atLeastReader struct {
+	R io.Reader
+	N int64
+}
+
+type tls.certCache struct {
+	sync.Map
+}
+
+type tls.echCipher struct {
+	KDFID  uint16
+	AEADID uint16
+}
+
+type tls.echExtension struct {
+	Type uint16
+	Data []uint8
+}
+
+type tls.endOfEarlyDataMsg struct{}
+
+type tls.helloRequestMsg struct{}
+
+type tls.rsaKeyAgreement struct{}
+
+type tls.serverHelloDoneMsg struct{}
+
+uint
+
+uint16
+
+uint32
+
+uint64
+
+uint8
+
+uintptr
+
+type unicode.Range16 struct {
+	Lo     uint16
+	Hi     uint16
+	Stride uint16
+}
+
+type unicode.Range32 struct {
+	Lo     uint32
+	Hi     uint32
+	Stride uint32
+}
+
+type unicode.RangeTable struct {
+	R16         []unicode.Range16
+	R32         []unicode.Range32
+	LatinOffset int
+}
+
+unsafe.Pointer
+
+type unsafeheader.Slice struct {
+	Data unsafe.Pointer
+	Len  int
+	Cap  int
+}
+
+type url.Error struct {
+	Op  string
+	URL string
+	Err error
+}
+
+string
+
+string
+
+type url.URL struct {
+	Scheme      string
+	Opaque      string
+	User        *url.Userinfo
+	Host        string
+	Path        string
+	RawPath     string
+	OmitHost    bool
+	ForceQuery  bool
+	RawQuery    string
+	Fragment    string
+	RawFragment string
+}
+
+map[string][]string
+
+type x509.Certificate struct {
+	Raw                         []uint8
+	RawTBSCertificate           []uint8
+	RawSubjectPublicKeyInfo     []uint8
+	RawSubject                  []uint8
+	RawIssuer                   []uint8
+	Signature                   []uint8
+	SignatureAlgorithm          int
+	PublicKeyAlgorithm          int
+	PublicKey                   interface{}
+	Version                     int
+	SerialNumber                *big.Int
+	Issuer                      pkix.Name
+	Subject                     pkix.Name
+	NotBefore                   time.Time
+	NotAfter                    time.Time
+	KeyUsage                    int
+	Extensions                  []pkix.Extension
+	ExtraExtensions             []pkix.Extension
+	UnhandledCriticalExtensions [][]int
+	ExtKeyUsage                 []int
+	UnknownExtKeyUsage          [][]int
+	BasicConstraintsValid       bool
+	IsCA                        bool
+	MaxPathLen                  int
+	MaxPathLenZero              bool
+	SubjectKeyId                []uint8
+	AuthorityKeyId              []uint8
+	OCSPServer                  []string
+	IssuingCertificateURL       []string
+	DNSNames                    []string
+	EmailAddresses              []string
+	IPAddresses                 [][]uint8
+	URIs                        []*url.URL
+	PermittedDNSDomainsCritical bool
+	PermittedDNSDomains         []string
+	ExcludedDNSDomains          []string
+	PermittedIPRanges           []*net.IPNet
+	ExcludedIPRanges            []*net.IPNet
+	PermittedEmailAddresses     []string
+	ExcludedEmailAddresses      []string
+	PermittedURIDomains         []string
+	ExcludedURIDomains          []string
+	CRLDistributionPoints       []string
+	PolicyIdentifiers           [][]int
+	Policies                    []x509.OID
+}
+
+type x509.CertificateInvalidError struct {
+	Cert   *x509.Certificate
+	Reason int
+	Detail string
+}
+
+type x509.ConstraintViolationError struct{}
+
+int
+
+type x509.HostnameError struct {
+	Certificate *x509.Certificate
+	Host        string
+}
+
+int
+
+int
+
+int
+
+int
+
+int
+
+type x509.SystemRootsError struct {
+	Err error
+}
+
+type x509.UnhandledCriticalExtension struct{}
+
+type x509.pssParameters struct {
+	Hash         pkix.AlgorithmIdentifier `asn1:"explicit,tag:0"`
+	MGF          pkix.AlgorithmIdentifier `asn1:"explicit,tag:1"`
+	SaltLength   int                         `asn1:"explicit,tag:2"`
+	TrailerField int                         `asn1:"optional,explicit,tag:3,default:1"`
+}
+
+[28]uint8
+
+func(io.Writer) (io.WriteCloser, error)
+
+func(io.Reader) io.ReadCloser
+
+type zip.FileHeader struct {
+	Name               string
+	Comment            string
+	NonUTF8            bool
+	CreatorVersion     uint16
+	ReaderVersion      uint16
+	Flags              uint16
+	Method             uint16
+	Modified           time.Time
+	ModifiedTime       uint16
+	ModifiedDate       uint16
+	CRC32              uint32
+	CompressedSize     uint32
+	UncompressedSize   uint32
+	CompressedSize64   uint64
+	UncompressedSize64 uint64
+	Extra              []uint8
+	ExternalAttrs      uint32
+}
+
+type zip.dirWriter struct{}
+
+type zip.nopCloser struct {
+	io.Writer
+}
+
+type go.shape.interface { Error() string } interface {
+	Error() string
+}
+type go.shape.interface {} interface{}
+*[]main.fInfo
+
+type main.fInfo struct {
+	name    string
+	modTime time.Time
+	size    int64
+}
+
+

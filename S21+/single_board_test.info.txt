@@ -1,0 +1,20 @@
+OS              EM_ARM
+Arch            arm
+Compiler        1.23.6 (2025-02-04)
+Build ID        H_nhuRCKkgHtWo1xs0Mi/_uhHWqzsRymSXjOGjYFQ/MdNA-RbRY5-dJG7zVZM4/OaFLWuqlB_tTTWHrDYra
+GoRoot          /usr/local/go
+Main root       /home/sheep/project/cminer/tools/fixture_web
+# main          1
+# std           113
+# vendor        0
+-buildmode      exe
+-compiler       gc
+DefaultGODEBUG  asynctimerchan=1,gotypesalias=0,httpservecontentkeepheaders=1,tls3des=1,tlskyber=0,x509keypairleaf=0,x509negativeserial=1
+CGO_ENABLED     0
+GOARCH          arm
+GOOS            linux
+GOARM           7,hardfloat
+vcs             git
+vcs.revision    c0393b038dbd1703fceb88473fb83fa4c4ceb5ad
+vcs.time        2025-08-28T09:47:37Z
+vcs.modified    true
