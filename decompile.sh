@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Clean Cache
-rm -rf ./_ghidra
+# rm -rf ./_ghidra
 
 ghidrecomp --output-path _ghidra DR5/single-board-test
 ghidrecomp --output-path _ghidra DR5/test_demo
@@ -26,3 +26,10 @@ ghidrecomp --output-path _ghidra Z9-mini/test_demo
 ghidrecomp --output-path _ghidra Z11/single-board-test
 ghidrecomp --output-path _ghidra Z11/z11-pcba
 ghidrecomp --output-path _ghidra Z15/single-board-test
+ghidrecomp --output-path _ghidra S21/single_board_test
+ghidrecomp --output-path _ghidra S21+/single_board_test
+ghidrecomp --output-path _ghidra S21pro/single_board_test
+ghidrecomp --output-path _ghidra S21xp/single_board_test
+ghidrecomp --output-path _ghidra S21xp/single_board_test
+ghidrecomp --output-path _ghidra S21xp-hydro/single_board_test
+ghidrecomp --output-path _ghidra U3S21EXPH/single_board_test
