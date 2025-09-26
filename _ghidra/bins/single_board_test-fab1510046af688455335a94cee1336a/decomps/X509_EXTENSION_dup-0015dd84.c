@@ -1,0 +1,10 @@
+
+X509_EXTENSION * X509_EXTENSION_dup(X509_EXTENSION *ex)
+
+{
+  X509_EXTENSION *pXVar1;
+  
+  pXVar1 = (X509_EXTENSION *)ASN1_item_dup((ASN1_ITEM *)&X509_EXTENSION_it,ex);
+  return pXVar1;
+}
+

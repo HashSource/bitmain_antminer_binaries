@@ -1,0 +1,10 @@
+
+int BN_BLINDING_convert(BIGNUM *n,BN_BLINDING *b,BN_CTX *ctx)
+
+{
+  int iVar1;
+  
+  iVar1 = BN_BLINDING_convert_ex(n,(BIGNUM *)0x0,b,ctx);
+  return iVar1;
+}
+

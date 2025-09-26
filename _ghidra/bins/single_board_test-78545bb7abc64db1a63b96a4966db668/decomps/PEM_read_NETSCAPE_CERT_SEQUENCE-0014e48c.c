@@ -1,0 +1,11 @@
+
+NETSCAPE_CERT_SEQUENCE *
+PEM_read_NETSCAPE_CERT_SEQUENCE(FILE *fp,NETSCAPE_CERT_SEQUENCE **x,undefined1 *cb,void *u)
+
+{
+  NETSCAPE_CERT_SEQUENCE *pNVar1;
+  
+  pNVar1 = (NETSCAPE_CERT_SEQUENCE *)PEM_ASN1_read((undefined1 *)0x18f151,"CERTIFICATE",fp,x,cb,u);
+  return pNVar1;
+}
+

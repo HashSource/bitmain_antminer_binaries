@@ -1,0 +1,573 @@
+
+int ssl23_connect(SSL *param_1)
+
+{
+  byte bVar1;
+  byte bVar2;
+  byte *pbVar3;
+  byte *pbVar4;
+  int *piVar5;
+  uint uVar6;
+  int iVar7;
+  uint uVar8;
+  stack_st_SSL_CIPHER *psVar9;
+  byte *pbVar10;
+  _STACK *p_Var11;
+  void *pvVar12;
+  SSL_METHOD *pSVar13;
+  BUF_MEM *str;
+  time_t tVar14;
+  int iVar15;
+  undefined4 *puVar16;
+  ssl2_state_st *psVar17;
+  uint uVar18;
+  undefined4 uVar19;
+  _func_3199 *p_Var20;
+  size_t __n;
+  uint uVar21;
+  SSL_CTX *pSVar22;
+  uchar *puVar23;
+  _func_3291 *p_Var24;
+  int iVar25;
+  _func_3294 *p_Var26;
+  ssl3_state_st *psVar27;
+  byte *pbVar28;
+  undefined4 uVar29;
+  int iVar30;
+  byte *pbVar31;
+  _func_3294 *p_Var32;
+  int iVar33;
+  _func_3292 *p_Var34;
+  uint uVar35;
+  undefined4 uVar36;
+  bool bVar37;
+  bool bVar38;
+  byte local_4c;
+  byte *local_44;
+  time_t local_38;
+  undefined4 local_34;
+  undefined4 local_30;
+  undefined2 local_2c;
+  byte local_2a;
+  
+  local_38 = time((time_t *)0x0);
+  RAND_add(&local_38,4,0.0);
+  ERR_clear_error();
+  piVar5 = __errno_location();
+  p_Var32 = param_1->info_callback;
+  *piVar5 = 0;
+  if (p_Var32 == (_func_3294 *)0x0) {
+    p_Var32 = *(_func_3294 **)(param_1->psk_server_callback + 0x9c);
+  }
+  param_1->in_handshake = param_1->in_handshake + 1;
+  uVar6 = SSL_state(param_1);
+  if (((uVar6 & 0x3000) == 0) || (iVar7 = SSL_state(param_1), iVar7 << 0x11 < 0)) {
+    SSL_clear(param_1);
+  }
+  iVar7 = param_1->state;
+  do {
+    iVar33 = iVar7;
+    if (iVar33 < 0x1212) {
+      if (iVar33 < 0x1210) {
+        if ((iVar33 != 0x1000) && (iVar33 != 0x1003)) goto LAB_0010f8b6;
+        goto LAB_0010f82a;
+      }
+      uVar6 = param_1->references;
+      param_1->shutdown = 0;
+      local_34 = 0;
+      iVar7 = iVar33;
+      if ((uVar6 & 0x1000000) == 0) {
+        p_Var11 = &SSL_get_ciphers(param_1)->stack;
+        iVar7 = 0;
+        do {
+          iVar25 = sk_num(p_Var11);
+          if (iVar25 <= iVar7) {
+            iVar7 = param_1->state;
+            goto LAB_0010f64a;
+          }
+          pvVar12 = sk_value(p_Var11,iVar7);
+          iVar7 = iVar7 + 1;
+        } while (*(int *)((int)pvVar12 + 0x1c) != 1);
+        iVar7 = param_1->state;
+        uVar21 = 0x1000000;
+        uVar35 = 0x3000000;
+        uVar8 = 0x7000000;
+        uVar18 = 0x17000000;
+        bVar38 = true;
+      }
+      else {
+LAB_0010f64a:
+        uVar21 = 0;
+        uVar35 = 0x2000000;
+        bVar38 = false;
+        uVar8 = 0x6000000;
+        uVar18 = 0x16000000;
+      }
+      if ((int)(uVar6 << 4) < 0) {
+        iVar25 = 0x303;
+        if (uVar18 != (uVar18 & uVar6)) {
+          iVar25 = 0x302;
+        }
+      }
+      else {
+        iVar25 = 0x303;
+      }
+      if (((int)(uVar6 << 3) < 0) && ((uVar8 & uVar6) != uVar8)) {
+        iVar25 = 0x301;
+      }
+      if (((int)(uVar6 << 5) < 0) && ((uVar35 & uVar6) != uVar35)) {
+        iVar25 = 0x300;
+      }
+      if (((int)(uVar6 << 6) < 0) && ((uVar6 & uVar21) != uVar21)) {
+        iVar25 = 2;
+        pbVar31 = (byte *)param_1->init_buf->data;
+        if (iVar7 != 0x1210) goto LAB_0010f938;
+LAB_0010f6ba:
+        psVar27 = param_1->s3;
+        if ((int)(param_1->options << 0x1a) < 0) {
+          tVar14 = time((time_t *)0x0);
+          psVar27->client_random[3] = (uchar)tVar14;
+          psVar27->client_random[0] = (uchar)((uint)tVar14 >> 0x18);
+          psVar27->client_random[1] = (uchar)((uint)tVar14 >> 0x10);
+          psVar27->client_random[2] = (uchar)((uint)tVar14 >> 8);
+          iVar7 = RAND_pseudo_bytes(psVar27->client_random + 4,0x1c);
+        }
+        else {
+          iVar7 = RAND_pseudo_bytes(psVar27->client_random,0x20);
+        }
+        if (iVar7 < 1) goto LAB_0010fb5c;
+        if (iVar25 == 0x303) {
+          bVar1 = 3;
+          local_4c = 3;
+        }
+        else {
+          if ((*(uint *)(param_1->cert + 0x38) & 0x30000) != 0) {
+            ERR_put_error(0x14,0x74,0x17b,"s23_clnt.c",0x18a);
+            goto LAB_0010fb5c;
+          }
+          if (iVar25 == 0x302) {
+            bVar1 = 2;
+            local_4c = 3;
+          }
+          else if (iVar25 == 0x301) {
+            bVar1 = 1;
+            local_4c = 3;
+          }
+          else if (iVar25 == 0x300) {
+            local_4c = 3;
+            bVar1 = 0;
+          }
+          else {
+            if (iVar25 != 2) {
+              ERR_put_error(0x14,0x74,0xbf,"s23_clnt.c",0x1a1);
+              goto LAB_0010fb5c;
+            }
+            local_4c = 0;
+            bVar1 = 2;
+          }
+        }
+        param_1->first_packet = iVar25;
+        if (!bVar38) {
+          pbVar31[9] = local_4c;
+          pbVar31[10] = bVar1;
+          pbVar28 = pbVar31 + 0x2e;
+          psVar27 = param_1->s3;
+          uVar36 = *(undefined4 *)(psVar27->client_random + 4);
+          uVar29 = *(undefined4 *)(psVar27->client_random + 8);
+          uVar19 = *(undefined4 *)(psVar27->client_random + 0xc);
+          *(undefined4 *)(pbVar31 + 0xb) = *(undefined4 *)psVar27->client_random;
+          *(undefined4 *)(pbVar31 + 0xf) = uVar36;
+          *(undefined4 *)(pbVar31 + 0x13) = uVar29;
+          *(undefined4 *)(pbVar31 + 0x17) = uVar19;
+          uVar36 = *(undefined4 *)(psVar27->client_random + 0x14);
+          uVar19 = *(undefined4 *)(psVar27->client_random + 0x1c);
+          uVar29 = *(undefined4 *)(psVar27->client_random + 0x18);
+          *(undefined4 *)(pbVar31 + 0x1b) = *(undefined4 *)(psVar27->client_random + 0x10);
+          *(undefined4 *)(pbVar31 + 0x1f) = uVar36;
+          *(undefined4 *)(pbVar31 + 0x27) = uVar19;
+          *(undefined4 *)(pbVar31 + 0x23) = uVar29;
+          pbVar31[0x2b] = 0;
+          psVar9 = SSL_get_ciphers(param_1);
+          iVar7 = ssl_cipher_list_to_bytes(param_1,psVar9,pbVar28,0x125ff1);
+          if (iVar7 == 0) {
+            iVar7 = 0x1fe;
+LAB_0010ff10:
+            ERR_put_error(0x14,0x74,0xb5,"s23_clnt.c",iVar7);
+          }
+          else {
+            pbVar31[0x2d] = (byte)iVar7;
+            pbVar31[0x2c] = (byte)((uint)iVar7 >> 8);
+            pbVar10 = pbVar28 + iVar7;
+            if ((param_1->references << 0xe < 0) ||
+               (*(_STACK **)(param_1->psk_server_callback + 0x98) == (_STACK *)0x0)) {
+              local_44 = pbVar10 + 1;
+              pbVar28[iVar7] = 1;
+            }
+            else {
+              local_44 = pbVar10 + 1;
+              iVar15 = sk_num(*(_STACK **)(param_1->psk_server_callback + 0x98));
+              pbVar28[iVar7] = (char)iVar15 + 1;
+              if (0 < iVar15) {
+                iVar7 = 0;
+                do {
+                  iVar30 = iVar7 + 1;
+                  puVar16 = (undefined4 *)
+                            sk_value(*(_STACK **)(param_1->psk_server_callback + 0x98),iVar7);
+                  pbVar10 = pbVar10 + 1;
+                  *pbVar10 = (byte)*puVar16;
+                  iVar7 = iVar30;
+                } while (iVar30 != iVar15);
+                local_44 = local_44 + iVar30;
+              }
+            }
+            *local_44 = 0;
+            iVar7 = ssl_prepare_clienthello_tlsext(param_1);
+            if (iVar7 < 1) {
+              ERR_put_error(0x14,0x74,0xe2,"s23_clnt.c",0x222);
+            }
+            else {
+              iVar7 = ssl_add_clienthello_tlsext(param_1,local_44 + 1,pbVar31 + 0x4000,&local_34);
+              if (iVar7 == 0) {
+                ssl3_send_alert(param_1,2,local_34);
+                iVar7 = 0x22a;
+              }
+              else {
+                pbVar31[5] = 1;
+                iVar15 = iVar7 - (int)(pbVar31 + 9);
+                pbVar31[8] = (byte)iVar15;
+                uVar6 = iVar15 + 4;
+                pbVar31[6] = (byte)((uint)iVar15 >> 0x10);
+                pbVar31[7] = (byte)((uint)iVar15 >> 8);
+                if (uVar6 < 0x4001) {
+                  *pbVar31 = 0x16;
+                  pbVar31[1] = local_4c;
+                  if ((param_1->first_packet >> 8 == 3) && (0x301 < param_1->first_packet)) {
+                    bVar1 = 1;
+                  }
+                  pbVar31[2] = bVar1;
+                  pbVar31[4] = (byte)uVar6;
+                  pbVar31[3] = (byte)(uVar6 >> 8);
+                  param_1->init_num = iVar7 - (int)pbVar31;
+                  param_1->init_off = 0;
+                  ssl3_finish_mac(param_1,pbVar31 + 5,(iVar7 - (int)pbVar31) + -5);
+                  goto LAB_0010f7dc;
+                }
+                iVar7 = 0x239;
+              }
+              ERR_put_error(0x14,0x74,0x44,"s23_clnt.c",iVar7);
+            }
+          }
+          goto LAB_0010fb5c;
+        }
+        pbVar31[2] = 1;
+        pbVar31[3] = local_4c;
+        pbVar31[4] = bVar1;
+        pbVar28 = pbVar31 + 0xb;
+        psVar9 = SSL_get_ciphers(param_1);
+        iVar7 = ssl_cipher_list_to_bytes(param_1,psVar9,pbVar28,0);
+        if (iVar7 == 0) {
+          iVar7 = 0x1b7;
+          goto LAB_0010ff10;
+        }
+        pbVar31[6] = (byte)iVar7;
+        pbVar10 = pbVar28 + iVar7;
+        pbVar31[7] = 0;
+        pbVar31[8] = 0;
+        pbVar31[5] = (byte)((uint)iVar7 >> 8);
+        uVar6 = param_1->references;
+        pbVar31[9] = 0;
+        bVar37 = (uVar6 & 2) != 0;
+        if (bVar37) {
+          pbVar28 = (byte *)0x10;
+          pbVar3 = pbVar28;
+          pbVar4 = pbVar28;
+        }
+        else {
+          pbVar3 = (byte *)0x0;
+          pbVar4 = (byte *)0x20;
+        }
+        pbVar31[10] = (byte)pbVar4;
+        if (!bVar37) {
+          pbVar28 = pbVar4;
+        }
+        memset(param_1->s3->client_random,0,0x20);
+        iVar7 = RAND_pseudo_bytes(pbVar3 + 0xc0 + (int)(param_1->s3->read_sequence + -8),
+                                  (int)pbVar28);
+        if (iVar7 < 1) goto LAB_0010fb5c;
+        memcpy(pbVar10,pbVar3 + 0xc0 + (int)(param_1->s3->read_sequence + -8),(size_t)pbVar28);
+        iVar7 = (int)(pbVar10 + (int)pbVar28) - (int)(pbVar31 + 2);
+        pbVar31[1] = (byte)iVar7;
+        *pbVar31 = (byte)((uint)iVar7 >> 8) | 0x80;
+        param_1->init_off = 0;
+        param_1->init_num = iVar7 + 2;
+        ssl3_finish_mac(param_1);
+LAB_0010f7dc:
+        param_1->state = 0x1211;
+        param_1->init_off = 0;
+        iVar7 = ssl23_write_bytes(param_1);
+        if (1 < iVar7) goto LAB_0010f946;
+LAB_0010f7f2:
+        if (iVar7 != 1) goto LAB_0010f8ca;
+LAB_0010f7f4:
+        param_1->init_num = 0;
+        param_1->state = 0x1220;
+      }
+      else {
+        if (param_1->tlsext_debug_arg != (void *)0x0) {
+          bVar38 = false;
+        }
+        if (param_1->servername_done != -1) {
+          bVar38 = false;
+        }
+        if (*(int *)(param_1->cert + 0x160) != 0) {
+          bVar38 = false;
+        }
+        pbVar31 = (byte *)param_1->init_buf->data;
+        if (iVar7 == 0x1210) goto LAB_0010f6ba;
+LAB_0010f938:
+        iVar7 = ssl23_write_bytes(param_1);
+        if (iVar7 < 2) goto LAB_0010f7f2;
+LAB_0010f946:
+        p_Var34 = param_1->msg_callback;
+        if (p_Var34 == (_func_3292 *)0x0) goto LAB_0010f7f4;
+        if (bVar38) {
+          (*p_Var34)(1,2,0,param_1->init_buf->data + 2,iVar7 - 2,param_1,param_1->msg_callback_arg);
+          param_1->init_num = 0;
+          param_1->state = 0x1220;
+        }
+        else {
+          (*p_Var34)(1,iVar25,0x100,param_1->init_buf->data,5,param_1,param_1->msg_callback_arg);
+          (*param_1->msg_callback)
+                    (1,iVar25,0x16,param_1->init_buf->data + 5,iVar7 - 5,param_1,
+                     param_1->msg_callback_arg);
+          param_1->init_num = 0;
+          param_1->state = 0x1220;
+        }
+      }
+      pSVar22 = param_1->ctx;
+    }
+    else {
+      if (iVar33 != 0x4000) {
+        if (iVar33 < 0x4001) {
+          if (iVar33 - 0x1220U < 2) {
+            iVar7 = ssl23_read_bytes(param_1,7);
+            if (iVar7 == 7) {
+              pbVar31 = param_1->packet;
+              local_30 = *(undefined4 *)pbVar31;
+              bVar1 = *pbVar31;
+              local_2a = pbVar31[6];
+              local_2c = *(undefined2 *)(pbVar31 + 4);
+              if ((((-1 < (int)((uint)bVar1 << 0x18)) || (pbVar31[2] != 4)) || (pbVar31[5] != 0)) ||
+                 (pbVar31[6] != 2)) {
+                if ((pbVar31[1] == 3) && (bVar2 = pbVar31[2], bVar2 < 4)) {
+                  if (bVar1 == 0x16) {
+                    bVar1 = pbVar31[5];
+                  }
+                  else {
+                    if ((bVar1 != 0x15) || (pbVar31[3] != 0)) goto LAB_0010fbca;
+                    bVar1 = pbVar31[4];
+                  }
+                  if (bVar1 == 2) {
+                    if (bVar2 == 0) {
+                      if (param_1->references << 6 < 0) goto LAB_0010fba2;
+                      param_1->version = 0x300;
+                      pSVar13 = SSLv3_client_method();
+                      param_1->method = pSVar13;
+                    }
+                    else if (bVar2 == 1) {
+                      if (param_1->references << 5 < 0) goto LAB_0010fba2;
+                      param_1->version = 0x301;
+                      pSVar13 = TLSv1_client_method();
+                      param_1->method = pSVar13;
+                    }
+                    else if (bVar2 == 2) {
+                      if (param_1->references << 3 < 0) {
+LAB_0010fba2:
+                        iVar7 = 0x2e1;
+                        goto LAB_0010fba6;
+                      }
+                      param_1->version = 0x302;
+                      pSVar13 = TLSv1_1_client_method();
+                      param_1->method = pSVar13;
+                    }
+                    else {
+                      if ((bVar2 != 3) || (param_1->references << 4 < 0)) goto LAB_0010fba2;
+                      param_1->version = 0x303;
+                      pSVar13 = TLSv1_2_client_method();
+                      param_1->method = pSVar13;
+                    }
+                    if (0x303 < param_1->version) {
+                      OpenSSLDie("s23_clnt.c",0x2e6,"s->version <= TLS_MAX_VERSION");
+                    }
+                    if ((*pbVar31 != 0x15) || (pbVar31[5] == 1)) {
+                      iVar7 = ssl_init_wbio_buffer(param_1,1);
+                      if (iVar7 == 0) goto LAB_0010fb5c;
+                      param_1->state = 0x1120;
+                      puVar23 = (param_1->s3->rbuf).buf;
+                      param_1->rstate = 0xf0;
+                      param_1->packet_length = 7;
+                      if (puVar23 == (uchar *)0x0) {
+                        iVar7 = ssl3_setup_read_buffer(param_1);
+                        if (iVar7 == 0) goto LAB_0010fb5c;
+                        puVar23 = (param_1->s3->rbuf).buf;
+                      }
+                      param_1->packet = puVar23;
+                      *(undefined4 *)puVar23 = local_30;
+                      puVar23[6] = local_2a;
+                      *(undefined2 *)(puVar23 + 4) = local_2c;
+                      psVar27 = param_1->s3;
+                      p_Var20 = param_1->method->ssl_connect;
+                      (psVar27->rbuf).left = 7;
+                      (psVar27->rbuf).offset = 0;
+                      param_1->handshake_func = (_func_3291 *)p_Var20;
+                      goto LAB_0010fab2;
+                    }
+                    p_Var26 = param_1->info_callback;
+                    if ((p_Var26 != (_func_3294 *)0x0) ||
+                       (p_Var26 = *(_func_3294 **)(param_1->psk_server_callback + 0x9c),
+                       p_Var26 != (_func_3294 *)0x0)) {
+                      (*p_Var26)(param_1,0x4004,(int)CONCAT11(pbVar31[5],pbVar31[6]));
+                    }
+                    if (param_1->msg_callback != (_func_3292 *)0x0) {
+                      (*param_1->msg_callback)
+                                (0,param_1->version,0x100,pbVar31,5,param_1,
+                                 param_1->msg_callback_arg);
+                      (*param_1->msg_callback)
+                                (0,param_1->version,0x15,pbVar31 + 5,2,param_1,
+                                 param_1->msg_callback_arg);
+                    }
+                    param_1->rwstate = 1;
+                    ERR_put_error(0x14,0x77,pbVar31[6] + 1000,"s23_clnt.c",0x301);
+                    goto LAB_0010fb5c;
+                  }
+                }
+LAB_0010fbca:
+                ERR_put_error(0x14,0x77,0xfc,"s23_clnt.c",0x31a);
+                goto LAB_0010fb5c;
+              }
+              if (param_1->references << 7 < 0) {
+                iVar7 = 0x287;
+LAB_0010fba6:
+                ERR_put_error(0x14,0x77,0x102,"s23_clnt.c",iVar7);
+                goto LAB_0010fb5c;
+              }
+              if (param_1->s2 == (ssl2_state_st *)0x0) {
+                iVar7 = ssl2_new(param_1);
+                if (iVar7 == 0) goto LAB_0010fb5c;
+              }
+              else {
+                ssl2_clear();
+              }
+              psVar27 = param_1->s3;
+              psVar17 = param_1->s2;
+              if ((param_1->references & 2U) == 0) {
+                __n = 0x20;
+              }
+              else {
+                __n = 0x10;
+              }
+              psVar17->challenge_length = __n;
+              memcpy(psVar17->challenge,(void *)((int)psVar27 + (0xe0 - __n)),__n);
+              if (param_1->s3 != (ssl3_state_st *)0x0) {
+                ssl3_free(param_1);
+              }
+              iVar7 = BUF_MEM_grow_clean(param_1->init_buf,0x3fff);
+              if (iVar7 == 0) {
+                ERR_put_error(0x14,0x77,7,"s23_clnt.c",0x2a6);
+                goto LAB_0010fb5c;
+              }
+              iVar7 = 0x1020;
+              param_1->state = 0x1020;
+              bVar38 = param_1->first_packet != 2;
+              psVar17 = param_1->s2;
+              if (bVar38) {
+                iVar7 = 1;
+              }
+              if (bVar38) {
+                psVar17->ssl2_rollback = iVar7;
+              }
+              puVar23 = psVar17->rbuf;
+              param_1->rstate = 0xf0;
+              param_1->packet_length = 7;
+              param_1->packet = puVar23;
+              *(undefined4 *)puVar23 = local_30;
+              *(undefined2 *)(puVar23 + 4) = local_2c;
+              puVar23[6] = local_2a;
+              psVar17 = param_1->s2;
+              psVar17->rbuf_left = 7;
+              psVar17->rbuf_offs = 0;
+              psVar17->write_sequence = 1;
+              pSVar13 = SSLv2_client_method();
+              p_Var24 = (_func_3291 *)pSVar13->ssl_connect;
+              param_1->method = pSVar13;
+              param_1->handshake_func = p_Var24;
+LAB_0010fab2:
+              param_1->init_num = 0;
+              iVar7 = ssl_get_new_session(param_1);
+              if (iVar7 == 0) {
+LAB_0010fb5c:
+                iVar7 = -1;
+LAB_0010f8ca:
+                param_1->in_handshake = param_1->in_handshake + -1;
+LAB_0010f8d0:
+                if (p_Var32 != (_func_3294 *)0x0) {
+                  (*p_Var32)(param_1,0x1002,iVar7);
+                }
+                return iVar7;
+              }
+              iVar7 = SSL_connect(param_1);
+            }
+            p_Var32 = (_func_3294 *)((uint)p_Var32 & iVar7 >> 0x1f);
+            goto LAB_0010f8ca;
+          }
+        }
+        else if (iVar33 == 0x5000) goto LAB_0010f82a;
+LAB_0010f8b6:
+        iVar7 = -1;
+        ERR_put_error(0x14,0x75,0xff,"s23_clnt.c",0xeb);
+        goto LAB_0010f8ca;
+      }
+LAB_0010f82a:
+      if (param_1->session != (SSL_SESSION *)0x0) {
+        ERR_put_error(0x14,0x75,0xdd,"s23_clnt.c",0xb2);
+        iVar7 = -1;
+        goto LAB_0010f8ca;
+      }
+      param_1->server = 0;
+      if (p_Var32 != (_func_3294 *)0x0) {
+        (*p_Var32)(param_1,0x10,1);
+      }
+      param_1->type = 0x1000;
+      if (param_1->init_buf == (BUF_MEM *)0x0) {
+        str = BUF_MEM_new();
+        if (str == (BUF_MEM *)0x0) goto LAB_0010fb5c;
+        iVar7 = BUF_MEM_grow(str,0x4000);
+        if (iVar7 == 0) {
+          iVar7 = -1;
+          param_1->in_handshake = param_1->in_handshake + -1;
+          BUF_MEM_free(str);
+          goto LAB_0010f8d0;
+        }
+        param_1->init_buf = str;
+      }
+      iVar7 = ssl3_setup_buffers(param_1);
+      if (iVar7 == 0) goto LAB_0010fb5c;
+      ssl3_init_finished_mac(param_1);
+      param_1->state = 0x1210;
+      *(int *)(param_1->psk_server_callback + 0x34) =
+           *(int *)(param_1->psk_server_callback + 0x34) + 1;
+      param_1->init_num = 0;
+      pSVar22 = param_1->ctx;
+    }
+    if (pSVar22 != (SSL_CTX *)0x0) {
+      BIO_ctrl(param_1->wbio,0xb,0,(void *)0x0);
+    }
+    iVar7 = param_1->state;
+    if ((p_Var32 != (_func_3294 *)0x0) && (iVar7 != iVar33)) {
+      param_1->state = iVar33;
+      (*p_Var32)(param_1,0x1001,1);
+      param_1->state = iVar7;
+    }
+  } while( true );
+}
+

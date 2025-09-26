@@ -1,0 +1,10 @@
+
+PKCS7 * PEM_read_bio_PKCS7(BIO *bp,PKCS7 **x,undefined1 *cb,void *u)
+
+{
+  PKCS7 *pPVar1;
+  
+  pPVar1 = (PKCS7 *)PEM_ASN1_read_bio((undefined1 *)0x150de5,"PKCS7",bp,x,cb,u);
+  return pPVar1;
+}
+

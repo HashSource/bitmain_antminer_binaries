@@ -1,0 +1,333 @@
+
+_Bool prepare_MES_system_handshake_information(uint32_t which_information)
+
+{
+  byte bVar1;
+  char *pcVar2;
+  json_t *pjVar3;
+  json_t *pjVar4;
+  uint32_t which_information_local;
+  char time_stamp [48];
+  char tmp1 [256];
+  char data [10];
+  json_error_t error;
+  json_t *array_table [1];
+  char *template_ptr;
+  json_t *config_ids;
+  json_t *software_commit_id;
+  json_t *params;
+  _Bool ret;
+  json_t *Config_File;
+  
+  Config_File = (json_t *)0x0;
+  data[0] = '\0';
+  data[1] = '\0';
+  data[2] = '\0';
+  data[3] = '\0';
+  data[4] = '\0';
+  data[5] = '\0';
+  data[6] = '\0';
+  data[7] = '\0';
+  data[8] = '\0';
+  data[9] = '\0';
+  memset(download_configuration_handshake_information,0,200);
+  if (which_information == 0) {
+    Config_File = json_load_file("/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini"
+                                 ,0,&error);
+    if ((Config_File == (json_t *)0x0) || (Config_File->type != JSON_OBJECT)) {
+      print_time_stamp(time_stamp,0x30);
+      printf("%s ",time_stamp);
+      printf("%s : Can\'t read out %s file.\n","prepare_MES_system_handshake_information",
+             "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+      snprintf(tmp1,0x100,"Can\'t read out %s file.",
+               "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+      log_to_file(tmp1,time_stamp);
+      ret = false;
+    }
+    else {
+      pcVar2 = json_dumps(Config_File,0);
+      print_time_stamp(time_stamp,0x30);
+      printf("%s ",time_stamp);
+      printf("%s : content: %s\n","prepare_MES_system_handshake_information",pcVar2);
+      snprintf(tmp1,0x100,"content: %s",pcVar2);
+      log_to_file(tmp1,time_stamp);
+      pjVar3 = json_object_get(Config_File,"params");
+      if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_OBJECT)) {
+        print_time_stamp(time_stamp,0x30);
+        printf("%s ",time_stamp);
+        printf("%s : Can\'t read out params in %s\n","prepare_MES_system_handshake_information",
+               "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+        snprintf(tmp1,0x100,"Can\'t read out params in %s",
+                 "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+        log_to_file(tmp1,time_stamp);
+        ret = false;
+      }
+      else {
+        pjVar4 = json_object_get(pjVar3,"software_commit_id");
+        if ((pjVar4 == (json_t *)0x0) || (pjVar4->type != JSON_STRING)) {
+          print_time_stamp(time_stamp,0x30);
+          printf("%s ",time_stamp);
+          printf("%s : Can\'t read out software_commit_id in %s\n",
+                 "prepare_MES_system_handshake_information",
+                 "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+          snprintf(tmp1,0x100,"Can\'t read out software_commit_id in %s",
+                   "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+          log_to_file(tmp1,time_stamp);
+          ret = false;
+        }
+        else {
+          json_string_set(pjVar4,zhiju_software_commit_id);
+          pjVar3 = json_object_get(pjVar3,"config_ids");
+          if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_ARRAY)) {
+            print_time_stamp(time_stamp,0x30);
+            printf("%s ",time_stamp);
+            printf("%s : Can\'t read out config_ids in %s\n",
+                   "prepare_MES_system_handshake_information",
+                   "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+            snprintf(tmp1,0x100,"Can\'t read out config_ids in %s",
+                     "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+            log_to_file(tmp1,time_stamp);
+            ret = false;
+          }
+          else {
+            pjVar3 = json_array_get(pjVar3,0);
+            if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_OBJECT)) {
+              print_time_stamp(time_stamp,0x30);
+              printf("%s ",time_stamp);
+              printf("%s : Can\'t read out array_table in config_ids in %s\n",
+                     "prepare_MES_system_handshake_information",
+                     "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+              snprintf(tmp1,0x100,"Can\'t read out array_table in config_ids in %s",
+                       "/mnt/card/Config/MES_system/MES_system_get_all_config_template.ini");
+              log_to_file(tmp1,time_stamp);
+              ret = false;
+            }
+            else {
+              pjVar4 = json_object_get(pjVar3,"miner_type");
+              json_string_set(pjVar4,(Local_Config_Information->Hash_Board).Miner_Type);
+              pjVar3 = json_object_get(pjVar3,"board_name");
+              json_string_set(pjVar3,(Local_Config_Information->Hash_Board).Board_Name);
+              pcVar2 = json_dumps(Config_File,0);
+              mes_system_handshake_file_length = strlen(pcVar2);
+              memcpy(download_configuration_handshake_information,pcVar2,
+                     mes_system_handshake_file_length);
+              print_time_stamp(time_stamp,0x30);
+              printf("%s ",time_stamp);
+              printf("%s : size: %d, content: %s\n","prepare_MES_system_handshake_information",
+                     mes_system_handshake_file_length,download_configuration_handshake_information);
+              snprintf(tmp1,0x100,"size: %d, content: %s",mes_system_handshake_file_length,
+                       download_configuration_handshake_information);
+              log_to_file(tmp1,time_stamp);
+              ret = true;
+            }
+          }
+        }
+      }
+    }
+  }
+  else if (which_information == 1) {
+    Config_File = json_load_file("/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini"
+                                 ,0,&error);
+    if ((Config_File == (json_t *)0x0) || (Config_File->type != JSON_OBJECT)) {
+      print_time_stamp(time_stamp,0x30);
+      printf("%s ",time_stamp);
+      printf("%s : Can\'t read out %s file.\n","prepare_MES_system_handshake_information",
+             "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+      snprintf(tmp1,0x100,"Can\'t read out %s file.",
+               "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+      log_to_file(tmp1,time_stamp);
+      ret = false;
+    }
+    else {
+      pcVar2 = json_dumps(Config_File,0);
+      print_time_stamp(time_stamp,0x30);
+      printf("%s ",time_stamp);
+      printf("%s : content: %s\n","prepare_MES_system_handshake_information",pcVar2);
+      snprintf(tmp1,0x100,"content: %s",pcVar2);
+      log_to_file(tmp1,time_stamp);
+      pjVar3 = json_object_get(Config_File,"params");
+      if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_OBJECT)) {
+        print_time_stamp(time_stamp,0x30);
+        printf("%s ",time_stamp);
+        printf("%s : Can\'t read out params in %s\n","prepare_MES_system_handshake_information",
+               "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+        snprintf(tmp1,0x100,"Can\'t read out params in %s",
+                 "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+        log_to_file(tmp1,time_stamp);
+        ret = false;
+      }
+      else {
+        pjVar3 = json_object_get(pjVar3,"config_ids");
+        if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_ARRAY)) {
+          print_time_stamp(time_stamp,0x30);
+          printf("%s ",time_stamp);
+          printf("%s : Can\'t read out config_ids in %s\n",
+                 "prepare_MES_system_handshake_information",
+                 "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+          snprintf(tmp1,0x100,"Can\'t read out config_ids in %s",
+                   "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+          log_to_file(tmp1,time_stamp);
+          ret = false;
+        }
+        else {
+          pjVar3 = json_array_get(pjVar3,0);
+          if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_OBJECT)) {
+            print_time_stamp(time_stamp,0x30);
+            printf("%s ",time_stamp);
+            printf("%s : Can\'t read out array_table in config_ids in %s\n",
+                   "prepare_MES_system_handshake_information",
+                   "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+            snprintf(tmp1,0x100,"Can\'t read out array_table in config_ids in %s",
+                     "/mnt/card/Config/MES_system/MES_system_get_particular_config_template.ini");
+            log_to_file(tmp1,time_stamp);
+            ret = false;
+          }
+          else {
+            pjVar4 = json_object_get(pjVar3,"miner_type");
+            json_string_set(pjVar4,(Local_Config_Information->Hash_Board).Miner_Type);
+            pjVar4 = json_object_get(pjVar3,"board_name");
+            json_string_set(pjVar4,(Local_Config_Information->Hash_Board).Board_Name);
+            pjVar4 = json_object_get(pjVar3,"sn");
+            json_string_set(pjVar4,sn.board_sn);
+            memset(data,0x30,10);
+            substr(qr_code.hashboard_ctrl_code,5,2,data);
+            pjVar4 = json_object_get(pjVar3,"chip_technology");
+            json_string_set(pjVar4,data);
+            pjVar4 = json_object_get(pjVar3,"ft_version");
+            json_string_set(pjVar4,qr_code.chip_ftversion);
+            pjVar4 = json_object_get(pjVar3,"bin");
+            bVar1 = get_chip_bin(&qr_code);
+            json_integer_set(pjVar4,(ulonglong)bVar1);
+            memset(data,0x30,10);
+            substr(qr_code.hashboard_ctrl_code,0,3,data);
+            pjVar4 = json_object_get(pjVar3,"hardware_version");
+            json_string_set(pjVar4,data);
+            memset(data,0x30,10);
+            substr(qr_code.hashboard_ctrl_code,3,2,data);
+            pjVar3 = json_object_get(pjVar3,"bom_version");
+            json_string_set(pjVar3,data);
+            pcVar2 = json_dumps(Config_File,0);
+            mes_system_handshake_file_length = strlen(pcVar2);
+            memcpy(download_configuration_handshake_information,pcVar2,
+                   mes_system_handshake_file_length);
+            print_time_stamp(time_stamp,0x30);
+            printf("%s ",time_stamp);
+            printf("%s : size: %d, content: %s\n","prepare_MES_system_handshake_information",
+                   mes_system_handshake_file_length,download_configuration_handshake_information);
+            snprintf(tmp1,0x100,"size: %d, content: %s",mes_system_handshake_file_length,
+                     download_configuration_handshake_information);
+            log_to_file(tmp1,time_stamp);
+            ret = true;
+          }
+        }
+      }
+    }
+  }
+  else if (which_information == 2) {
+    Config_File = json_load_file("/mnt/card/Config/MES_system/MES_system_get_version_template.ini",0
+                                 ,&error);
+    if ((Config_File == (json_t *)0x0) || (Config_File->type != JSON_OBJECT)) {
+      print_time_stamp(time_stamp,0x30);
+      printf("%s ",time_stamp);
+      printf("%s : Can\'t read out %s file.\n","prepare_MES_system_handshake_information",
+             "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+      snprintf(tmp1,0x100,"Can\'t read out %s file.",
+               "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+      log_to_file(tmp1,time_stamp);
+      ret = false;
+    }
+    else {
+      pcVar2 = json_dumps(Config_File,0);
+      print_time_stamp(time_stamp,0x30);
+      printf("%s ",time_stamp);
+      printf("%s : content: %s\n","prepare_MES_system_handshake_information",pcVar2);
+      snprintf(tmp1,0x100,"content: %s",pcVar2);
+      log_to_file(tmp1,time_stamp);
+      pjVar3 = json_object_get(Config_File,"params");
+      if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_OBJECT)) {
+        print_time_stamp(time_stamp,0x30);
+        printf("%s ",time_stamp);
+        printf("%s : Can\'t read out params in %s\n","prepare_MES_system_handshake_information",
+               "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+        snprintf(tmp1,0x100,"Can\'t read out params in %s",
+                 "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+        log_to_file(tmp1,time_stamp);
+        ret = false;
+      }
+      else {
+        pjVar3 = json_object_get(pjVar3,"config_ids");
+        if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_ARRAY)) {
+          print_time_stamp(time_stamp,0x30);
+          printf("%s ",time_stamp);
+          printf("%s : Can\'t read out configIds in %s\n","prepare_MES_system_handshake_information"
+                 ,"/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+          snprintf(tmp1,0x100,"Can\'t read out configIds in %s",
+                   "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+          log_to_file(tmp1,time_stamp);
+          ret = false;
+        }
+        else {
+          pjVar3 = json_array_get(pjVar3,0);
+          if ((pjVar3 == (json_t *)0x0) || (pjVar3->type != JSON_OBJECT)) {
+            print_time_stamp(time_stamp,0x30);
+            printf("%s ",time_stamp);
+            printf("%s : Can\'t read out array_table in configIds in %s\n",
+                   "prepare_MES_system_handshake_information",
+                   "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+            snprintf(tmp1,0x100,"Can\'t read out array_table in configIds in %s",
+                     "/mnt/card/Config/MES_system/MES_system_get_version_template.ini");
+            log_to_file(tmp1,time_stamp);
+            ret = false;
+          }
+          else {
+            pjVar4 = json_object_get(pjVar3,"miner_type");
+            json_string_set(pjVar4,(Local_Config_Information->Hash_Board).Miner_Type);
+            pjVar3 = json_object_get(pjVar3,"board_name");
+            json_string_set(pjVar3,(Local_Config_Information->Hash_Board).Board_Name);
+            pcVar2 = json_dumps(Config_File,0);
+            mes_system_handshake_file_length = strlen(pcVar2);
+            memcpy(download_configuration_handshake_information,pcVar2,
+                   mes_system_handshake_file_length);
+            print_time_stamp(time_stamp,0x30);
+            printf("%s ",time_stamp);
+            printf("%s : size: %d, content: %s\n","prepare_MES_system_handshake_information",
+                   mes_system_handshake_file_length,download_configuration_handshake_information);
+            snprintf(tmp1,0x100,"size: %d, content: %s",mes_system_handshake_file_length,
+                     download_configuration_handshake_information);
+            log_to_file(tmp1,time_stamp);
+            ret = true;
+          }
+        }
+      }
+    }
+  }
+  else {
+    print_time_stamp(time_stamp,0x30);
+    printf("%s ",time_stamp);
+    printf("%s : Do not support get information type %d from MES system\n",
+           "prepare_MES_system_handshake_information",which_information);
+    snprintf(tmp1,0x100,"Do not support get information type %d from MES system",which_information);
+    log_to_file(tmp1,time_stamp);
+    ret = false;
+  }
+  if (Config_File != (json_t *)0x0) {
+    json_decref(Config_File);
+  }
+  if (ret != true) {
+    lcd_clear_result();
+    lcd_show(0,(Local_Config_Information->Hash_Board).Board_Name);
+    lcd_show(1,"prepare MES");
+    lcd_show(2,"handshake infor");
+    lcd_show(3,"fail");
+    print_time_stamp(time_stamp,0x30);
+    printf("%s ",time_stamp);
+    printf("%s : prepare MES system handshake information fail\n",
+           "prepare_MES_system_handshake_information");
+    builtin_strncpy(tmp1,"prepare MES system handshake information fai",0x2c);
+    tmp1[0x2c] = 'l';
+    tmp1[0x2d] = '\0';
+    log_to_file(tmp1,time_stamp);
+  }
+  return ret;
+}
+

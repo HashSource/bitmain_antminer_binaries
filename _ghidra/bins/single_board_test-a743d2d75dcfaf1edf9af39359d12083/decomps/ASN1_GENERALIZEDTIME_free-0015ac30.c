@@ -1,0 +1,8 @@
+
+void ASN1_GENERALIZEDTIME_free(ASN1_GENERALIZEDTIME *a)
+
+{
+  ASN1_item_free((ASN1_VALUE *)a,(ASN1_ITEM *)ASN1_GENERALIZEDTIME_it);
+  return;
+}
+

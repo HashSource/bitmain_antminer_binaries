@@ -1,0 +1,59 @@
+
+LZ4F_errorCode_t LZ4F_freeCompressionContext(LZ4F_cctx *cctxPtr)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
+  LZ4F_AllocFunction p_Var14;
+  LZ4F_AllocFunction p_Var15;
+  LZ4F_AllocFunction p_Var16;
+  LZ4F_CallocFunction p_Var17;
+  LZ4F_CallocFunction p_Var18;
+  LZ4F_CallocFunction p_Var19;
+  LZ4F_FreeFunction p_Var7;
+  LZ4F_FreeFunction p_Var8;
+  LZ4F_FreeFunction p_Var9;
+  LZ4F_CustomMem LVar10;
+  undefined8 uVar11;
+  undefined8 uVar12;
+  undefined8 uVar13;
+  undefined8 uVar20;
+  undefined8 uVar21;
+  undefined8 uVar22;
+  void *in_stack_00000000;
+  LZ4F_cctx *cctxPtr_local;
+  
+  if (cctxPtr != (LZ4F_cctx *)0x0) {
+    uVar1 = (cctxPtr->cmem).customAlloc;
+    uVar2 = (cctxPtr->cmem).customCalloc;
+    register0x00000028 = (LZ4F_CallocFunction)uVar2;
+    p_Var14 = (LZ4F_AllocFunction)uVar1;
+    p_Var7 = (cctxPtr->cmem).customFree;
+    uVar11 = CONCAT44(in_stack_00000000,p_Var7);
+    LVar10 = (LZ4F_CustomMem)CONCAT88(uVar11,uVar20);
+    LZ4F_free(cctxPtr->lz4CtxPtr,LVar10);
+    uVar3 = (cctxPtr->cmem).customAlloc;
+    uVar4 = (cctxPtr->cmem).customCalloc;
+    register0x00000028 = (LZ4F_CallocFunction)uVar4;
+    p_Var15 = (LZ4F_AllocFunction)uVar3;
+    p_Var8 = (cctxPtr->cmem).customFree;
+    in_stack_00000000 = in_stack_00000000;
+    uVar12 = CONCAT44(in_stack_00000000,p_Var8);
+    LVar10 = (LZ4F_CustomMem)CONCAT88(uVar12,uVar21);
+    LZ4F_free(cctxPtr->tmpBuff,LVar10);
+    uVar5 = (cctxPtr->cmem).customAlloc;
+    uVar6 = (cctxPtr->cmem).customCalloc;
+    register0x00000028 = (LZ4F_CallocFunction)uVar6;
+    p_Var16 = (LZ4F_AllocFunction)uVar5;
+    p_Var9 = (cctxPtr->cmem).customFree;
+    uVar13 = CONCAT44(in_stack_00000000,p_Var9);
+    LVar10 = (LZ4F_CustomMem)CONCAT88(uVar13,uVar22);
+    LZ4F_free(cctxPtr,LVar10);
+  }
+  return 0;
+}
+

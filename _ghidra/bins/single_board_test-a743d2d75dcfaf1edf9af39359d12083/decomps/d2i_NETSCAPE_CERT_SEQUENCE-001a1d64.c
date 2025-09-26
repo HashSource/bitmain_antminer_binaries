@@ -1,0 +1,11 @@
+
+NETSCAPE_CERT_SEQUENCE * d2i_NETSCAPE_CERT_SEQUENCE(NETSCAPE_CERT_SEQUENCE **a,uchar **in,long len)
+
+{
+  NETSCAPE_CERT_SEQUENCE *pNVar1;
+  
+  pNVar1 = (NETSCAPE_CERT_SEQUENCE *)
+           ASN1_item_d2i((ASN1_VALUE **)a,in,len,(ASN1_ITEM *)&NETSCAPE_CERT_SEQUENCE_it);
+  return pNVar1;
+}
+
